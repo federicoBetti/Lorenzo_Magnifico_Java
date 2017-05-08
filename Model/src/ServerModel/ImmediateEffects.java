@@ -5,12 +5,12 @@ public class ImmediateEffects {
     public ImmediateEffects() {
     }
 
-    public void SearchImmediateEffects (TrisIE effect, Player player){
+    public static void SearchImmediateEffects (TrisIE effect, Player player){
         TowerAction TA = new TowerAction();
         SearchImmediateEffects(effect,player,TA);
     }
 
-    public void SearchImmediateEffects(TrisIE effect, Player player, TowerAction variableToFill) {
+    public static void SearchImmediateEffects(TrisIE effect, Player player, TowerAction variableToFill) {
     	
         switch ( effect.getType() ){
         	case "takeRos":
@@ -67,7 +67,7 @@ public class ImmediateEffects {
     }
     
     
-    public void addFaithPoints ( TrisIE effect, Player player ){ //
+    public static void addFaithPoints(TrisIE effect, Player player){ //
     	Score score = player.getScore();
     	int faithPoints = score.getFaithPoints();
   		faithPoints += effect.getQuantity();
@@ -75,7 +75,7 @@ public class ImmediateEffects {
   		player.setScore(score);
     }
     
-    public void addWood ( TrisIE effect, Player player ){  //
+    public static void addWood(TrisIE effect, Player player){  //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int wood = pboard.getWood();
     	wood += effect.getQuantity();
@@ -83,7 +83,7 @@ public class ImmediateEffects {
     	player.setPersonalBoardReference(pboard);
     }
     
-    public void addVictoryPoints ( TrisIE effect, Player player ){ //
+    public static void addVictoryPoints(TrisIE effect, Player player){ //
     	Score score = player.getScore();
     	int victoryPoints = score.getVictoryPoints();
     	victoryPoints += effect.getQuantity();
@@ -91,7 +91,7 @@ public class ImmediateEffects {
     	player.setScore(score);
     }
     
-    public void addMilitaryPoints ( TrisIE effect, Player player ){ //
+    public static void addMilitaryPoints(TrisIE effect, Player player){ //
     	Score score = player.getScore();
     	int militaryPoints = score.getMilitaryPoints();
     	militaryPoints += effect.getQuantity();
@@ -99,7 +99,7 @@ public class ImmediateEffects {
     	player.setScore(score);
     }
      
-    public void addServants ( TrisIE effect, Player player ){ //
+    public static void addServants(TrisIE effect, Player player){ //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int servants = pboard.getServants();
     	servants += effect.getQuantity();
@@ -107,7 +107,7 @@ public class ImmediateEffects {
     	player.setPersonalBoardReference(pboard);
     }
     
-    public void addCoins ( TrisIE effect, Player player ){  //
+    public static void addCoins(TrisIE effect, Player player){  //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int coins = pboard.getCoins();
     	coins += effect.getQuantity();
@@ -115,7 +115,7 @@ public class ImmediateEffects {
     	player.setPersonalBoardReference(pboard);
     }
     
-    public void addStone ( TrisIE effect, Player player ){ //
+    public static void addStone(TrisIE effect, Player player){ //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int stone = pboard.getStone();
     	stone += effect.getQuantity();
@@ -127,7 +127,7 @@ public class ImmediateEffects {
     
     //PUNTI VITTORIA IN BASE A CARTE O PUNTI MILIARI POSSEDUTI
     
-    public void victoryPointsForEachTwoMilitaryPoints ( TrisIE effect, Player player ){
+    public static void victoryPointsForEachTwoMilitaryPoints(TrisIE effect, Player player){
     	Score score = player.getScore();
     	int militaryPoints = score.getMilitaryPoints();
     	int victoryPoints = score.getVictoryPoints();
@@ -137,7 +137,7 @@ public class ImmediateEffects {
     	player.setScore(score);
     }
     
-    public void twoVictoryPointsForEachGreenCard ( Player player ){
+    public static void twoVictoryPointsForEachGreenCard(Player player){
     	int count = 0;
     	Score score = player.getScore();
     	int victoryPoints = score.getVictoryPoints();
@@ -151,7 +151,7 @@ public class ImmediateEffects {
     	player.setScore(score);
     }
     
-    public void twoVictoryPointsForEachPurpleCard ( Player player ){
+    public static void twoVictoryPointsForEachPurpleCard(Player player){
     	int count = 0;
     	Score score = player.getScore();
     	int victoryPoints = score.getVictoryPoints();
@@ -165,7 +165,7 @@ public class ImmediateEffects {
     	player.setScore(score);
     }
     
-    public void twoVictoryPointsForEachYellowCard ( Player player ){
+    public static void twoVictoryPointsForEachYellowCard(Player player){
     	int count = 0;
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	BuildingCard[] buildings = pboard.getBuildings();
@@ -179,7 +179,7 @@ public class ImmediateEffects {
     	player.setScore(score);
     }
     
-    public void twoVictoryPointsForEachBlueCard ( Player player ){
+    public static void twoVictoryPointsForEachBlueCard(Player player){
     	int count = 0;
     	Score score = player.getScore();
     	int victoryPoints = score.getVictoryPoints();
@@ -196,7 +196,7 @@ public class ImmediateEffects {
     
     //GET DISCOUNT
     
-    public TowerAction getDiscountForTowerAction ( TrisIE effect, Player player, TowerAction towerA ){
+    public static TowerAction getDiscountForTowerAction(TrisIE effect, Player player, TowerAction towerA){
     	
     	if ( towerA.getDiscountedResource1().equals("empty") ){
     		towerA.setDiscountedResource1(effect.getParameter());
@@ -209,7 +209,7 @@ public class ImmediateEffects {
     	return towerA;
     }
     
-    public TowerAction getDiceValueForTowerAction ( TrisIE effect, Player player, TowerAction towerA ){
+    public static TowerAction getDiceValueForTowerAction(TrisIE effect, Player player, TowerAction towerA){
     	
     	towerA.setKindOfCard(effect.getParameter());
     	towerA.setNewCardDicevalue(effect.getQuantity());
@@ -217,7 +217,7 @@ public class ImmediateEffects {
     	return towerA;
     }
     
-    public BonusProductionOrHarvesterAction bonusProdHarv ( TrisIE effect, Player player, BonusProductionOrHarvesterAction bph ){
+    public static BonusProductionOrHarvesterAction bonusProdHarv(TrisIE effect, Player player, BonusProductionOrHarvesterAction bph){
     	
     	bph.setKinfOfAction(effect.getParameter());
     	bph.setDiceValue(effect.getQuantity());

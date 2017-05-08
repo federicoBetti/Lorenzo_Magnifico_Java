@@ -13,9 +13,6 @@ public class VenturesCard extends Card {
     public VenturesCard() {
     }
 
-    /**
-     *
-     */
     private VenturesCost[] possibleCost;
 
     /**
