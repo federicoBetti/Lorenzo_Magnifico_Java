@@ -5,6 +5,11 @@ public class ImmediateEffects {
     public ImmediateEffects() {
     }
 
+    public void SearchImmediateEffects (TrisIE effect, Player player){
+        TowerAction TA = new TowerAction();
+        SearchImmediateEffects(effect,player,TA);
+    }
+
     public void SearchImmediateEffects(TrisIE effect, Player player, TowerAction variableToFill) {
     	
         switch ( effect.getType() ){
