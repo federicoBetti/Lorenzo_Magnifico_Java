@@ -11,7 +11,7 @@ public interface ControllerInterface {
      * @param position 
      * @param familyM
      */
-    public void TakeDevelopementCard(int position, FamilyMember familyM);
+    public BonusInteraction TakeDevelopementCard(int position, FamilyMember familyM);
 
     /**
      * @param position 

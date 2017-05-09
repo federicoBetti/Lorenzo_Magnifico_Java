@@ -10,16 +10,19 @@ public abstract class Card {
 
     private int period;
 
-    private ImmediateEffects IEReference;
-
-    private PermanentEffects PEReference;
-
     private ArrayList<TrisIE> Immediate_Effects;
+
+    private ArrayList<TrisIE> Permanent_Effects;
+
+    private ArrayList<Effects> cardEffects;
 
     /**
      * @param player 
      * @return
      */
+    public Card(){
+
+    }
     public void MakeImmediateEffects(Player player) {
         for (TrisIE x: Immediate_Effects) {
             ImmediateEffects.SearchImmediateEffects(x, player);

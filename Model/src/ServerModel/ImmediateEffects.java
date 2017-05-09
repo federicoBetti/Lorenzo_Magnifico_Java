@@ -15,6 +15,7 @@ public class ImmediateEffects {
     
         switch ( effect.getType() ){
         	case "takeRos":
+
         		switch ( effect.getParameter() ){
         			case "wood":
         				addWood( effect, player );
@@ -31,7 +32,7 @@ public class ImmediateEffects {
         			case "coins":
         				addCoins( effect, player );
         			case "privilege" :
-        				//addPrivilege(effect, player); 
+        				//addPrivilege(effect, player);
         		}
         	
         	case "pointsForEachCardOrMP":
@@ -45,7 +46,7 @@ public class ImmediateEffects {
         			case "yellowCard":
         				twoVictoryPointsForEachYellowCard ( player );
         			case "blueCard":
-        				twoVictoryPointsForEachBlueCard ( player );	
+        				twoVictoryPointsForEachBlueCard ( player );
         		}
         	
         	case "BonusTowerActionWithDiscount":
@@ -67,7 +68,7 @@ public class ImmediateEffects {
        
     }
     
-    
+
     public static void addFaithPoints(TrisIE effect, Player player){ //
     	Score score = player.getScore();
     	int faithPoints = score.getFaithPoints();
@@ -75,7 +76,7 @@ public class ImmediateEffects {
   		score.setFaithPoints(faithPoints);
   		player.setScore(score);
     }
-    
+
     public static void addWood(TrisIE effect, Player player){  //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int wood = pboard.getWood();
@@ -83,7 +84,7 @@ public class ImmediateEffects {
     	pboard.setWood(wood);
     	player.setPersonalBoardReference(pboard);
     }
-    
+
     public static void addVictoryPoints(TrisIE effect, Player player){ //
     	Score score = player.getScore();
     	int victoryPoints = score.getVictoryPoints();
@@ -91,7 +92,7 @@ public class ImmediateEffects {
     	score.setVictoryPoints(victoryPoints);
     	player.setScore(score);
     }
-    
+
     public static void addMilitaryPoints(TrisIE effect, Player player){ //
     	Score score = player.getScore();
     	int militaryPoints = score.getMilitaryPoints();
@@ -99,7 +100,7 @@ public class ImmediateEffects {
     	score.setMilitaryPoints(militaryPoints);
     	player.setScore(score);
     }
-     
+
     public static void addServants(TrisIE effect, Player player){ //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int servants = pboard.getServants();
@@ -107,7 +108,7 @@ public class ImmediateEffects {
     	pboard.setServants(servants);
     	player.setPersonalBoardReference(pboard);
     }
-    
+
     public static void addCoins(TrisIE effect, Player player){  //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int coins = pboard.getCoins();
@@ -115,7 +116,7 @@ public class ImmediateEffects {
     	pboard.setCoins(coins);
     	player.setPersonalBoardReference(pboard);
     }
-    
+
     public static void addStone(TrisIE effect, Player player){ //
     	PersonalBoard pboard = player.getPersonalBoardReference();
     	int stone = pboard.getStone();
@@ -137,7 +138,7 @@ public class ImmediateEffects {
     	score.setVictoryPoints(victoryPoints);
     	player.setScore(score);
     }
-    
+
     public static void twoVictoryPointsForEachGreenCard(Player player){
     	int count = 0;
     	Score score = player.getScore();
@@ -146,12 +147,12 @@ public class ImmediateEffects {
     	TerritoryCard[] territories = pboard.getTerritories();
     	for ( count = 0; territories[count] != null; count++ );
     	int bonus = count*2;
-    	
+
     	victoryPoints += bonus;
     	score.setVictoryPoints(victoryPoints);
     	player.setScore(score);
     }
-    
+
     public static void twoVictoryPointsForEachPurpleCard(Player player){
     	int count = 0;
     	Score score = player.getScore();
@@ -160,12 +161,12 @@ public class ImmediateEffects {
     	VenturesCard[] ventures = pboard.getVentures();
     	for ( count = 0; ventures[count] != null; count++ );
     	int bonus = count*2;
-    	
+
     	victoryPoints += bonus;
     	score.setVictoryPoints(victoryPoints);
     	player.setScore(score);
     }
-    
+
     public static void twoVictoryPointsForEachYellowCard(Player player){
     	int count = 0;
     	PersonalBoard pboard = player.getPersonalBoardReference();
@@ -174,12 +175,12 @@ public class ImmediateEffects {
     	int victoryPoints = score.getVictoryPoints();
     	for ( count = 0; buildings[count] != null; count++ );
     	int bonus = count*2;
-    	
+
     	victoryPoints += bonus;
     	score.setVictoryPoints(victoryPoints);
     	player.setScore(score);
     }
-    
+
     public static void twoVictoryPointsForEachBlueCard(Player player){
     	int count = 0;
     	Score score = player.getScore();
@@ -188,13 +189,13 @@ public class ImmediateEffects {
     	CharacterCard[] characters = pboard.getCharacters();
     	for ( count = 0; characters[count] != null; count++ );
     	int bonus = count*2;
-    	
+
     	victoryPoints += bonus;
     	score.setVictoryPoints(victoryPoints);
     	player.setScore(score);
-    	
+
     }
-    
+
     //GET DISCOUNT
     
     public static TowerAction getDiscountForTowerAction(TrisIE effect, Player player, TowerAction towerA){
