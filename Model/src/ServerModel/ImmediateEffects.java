@@ -1,7 +1,8 @@
 package ServerModel;
 
 public class ImmediateEffects {
-
+	
+	private int x;
     public ImmediateEffects() {
     }
 
