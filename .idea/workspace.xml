@@ -24,31 +24,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="AddVicotryPoints.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java">
+      <file leaf-file-name="ImmediateEffects.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+            <state relative-caret-position="350">
+              <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddServants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddServants.java">
+      <file leaf-file-name="TrisIE.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TrisIE.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VictoryPointsForEachTwoMilitaryPoints.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+            <state relative-caret-position="175">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -59,6 +49,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="125">
               <caret line="5" column="64" lean-forward="false" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -114,7 +114,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BonusProductionHarvesterAction.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BonusProductionHarvesterAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusProductionHarvesterAction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
@@ -150,8 +150,6 @@
         <option value="$PROJECT_DIR$/Model/src/ServerModel/ControllerInterface.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/TakeRos.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/PointsForEachCardOrMP.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/Effects.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/AddStone.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/AddWood.java" />
@@ -166,6 +164,8 @@
         <option value="$PROJECT_DIR$/Model/src/ServerModel/GetDiscountForTowerActions.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/GetDIceValueForTowerActions.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionHarvesterAction.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
       </list>
     </option>
   </component>
@@ -640,14 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TrisIE.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/VenturesCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
@@ -712,26 +704,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PointsForEachCardOrMP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4750">
-          <caret line="190" column="28" lean-forward="true" selection-start-line="190" selection-start-column="28" selection-end-line="190" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -860,6 +836,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TrisIE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
           <folding />
         </state>
       </provider>

@@ -6,19 +6,19 @@ public class ImmediateEffects {
     public ImmediateEffects() {
     }
 
-    public static void SearchImmediateEffects (TrisIE effect, Player player){
+    public  void SearchImmediateEffects (TrisIE effect, Player player){
         TowerAction TA = new TowerAction();
         SearchImmediateEffects(effect,player,TA);
     }
 
-    public static void SearchImmediateEffects(TrisIE effect, Player player, TowerAction variableToFill) {
+    public  void SearchImmediateEffects(String type, String parameter, int quantity) {
     	
-        switch ( effect.getType() ){
+        switch ( type){
         	case "takeRos":
 
-        		switch ( effect.getParameter() ){
+        		switch (parameter){
         			case "wood":
-        				addWood( effect, player );
+        				return
         			case "stone":
         				addStone ( effect, player );
         			case "servants":
