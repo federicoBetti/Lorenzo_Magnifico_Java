@@ -12,13 +12,13 @@ public class ImmediateEffects {
     }
 
     public static void SearchImmediateEffects(TrisIE effect, Player player, TowerAction variableToFill) {
-    	
+    
         switch ( effect.getType() ){
         	case "takeRos":
         		switch ( effect.getParameter() ){
-        			case "ciaomiao":
+        			case "wood":
         				addWood( effect, player );
-        			case "ciaobellaciao":
+        			case "stone":
         				addStone ( effect, player );
         			case "servants":
         				addServants( effect, player );
