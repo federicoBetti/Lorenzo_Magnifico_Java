@@ -16,9 +16,9 @@ public class ImmediateEffects {
         switch ( effect.getType() ){
         	case "takeRos":
         		switch ( effect.getParameter() ){
-        			case "ciaomiao":
+        			case "wood":
         				addWood( effect, player );
-        			case "ciaobellaciao":
+        			case "stone":
         				addStone ( effect, player );
         			case "servants":
         				addServants( effect, player );
