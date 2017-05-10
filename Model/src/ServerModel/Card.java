@@ -12,28 +12,37 @@ public abstract class Card {
 
     private int period;
 
-    private ArrayList<TrisIE> Immediate_Effects;
+    private ArrayList<TrisIE> immediate_Effects;
 
-    private ArrayList<TrisIE> Permanent_Effects;
+    private ArrayList<PokerPE> permanent_Effects;
 
-    private ArrayList<Effects> cardEffects;
+    private ArrayList<Effects> immediateCardEffects;
+
+    private ArrayList<Effects> permanentCardEffects;
 
 
     // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
-    public Card(String name, ArrayList<TrisIE> Immediate_Effects){
+    public Card(String name, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects){
         ImmediateEffects Ie = new ImmediateEffects();
-        for (TrisIE x: Immediate_Effects){
+        for (TrisIE x: immediate_Effects){
             Effects e = Ie.SearchImmediateEffects(x.getType(), x.getParameter(), x.getQuantity());
-            cardEffects.add(e);
+            immediateCardEffects.add(e);
         }
+        PermanentEffects Pe = new PermanentEffects();
+        for ( PokerPE x: permanent_Effects){
+            Effects e = Pe.SearchPermanentEffects(x.getType(), x.getParameter(), x.getResourceEarned(),  x.getQuantity(), x.getEffectCost());
+            permanentCardEffects.add(e);
+        }
+        
     }
     public void MakeImmediateEffects(Player player) {
-        for (Effects x: cardEffects) {
+        for (Effects x: immediateCardEffects ) {
             x.doEffect(player);
         }
 	}
 
     public void MakePermannetEffects(Player player) {
+        // TO DO
 	}
 
 }

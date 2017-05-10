@@ -8,7 +8,7 @@ public class ImmediateEffects {
     public Effects SearchImmediateEffects(String type, String parameter, int quantity) {
 
         switch (type){
-        	case "takeRos":
+        	case "takeRop":
 
         		switch (parameter){
         			case "wood":
@@ -36,11 +36,11 @@ public class ImmediateEffects {
         			case "greenCard":
         				return new TwoVictoryPointsForEachGreenCard();
         			case "purpleCard":
-        				return new TwoVictoryPonitsForEachPurpleCard();
+        				return new VictoryPointsForEachPurpleCard(quantity);
         			case "yellowCard":
-        				return new TwoVictoryPonitsForEachYellowCard();
+        				return new TwoVictoryPointsForEachYellowCard();
         			case "blueCard":
-        				return new TwoVictoryPonitsForEachBlueCard();
+        				return new VictoryPointForEachBlueCard(quantity);
         		}
         	
         	case "BonusTowerActionWithDiscount":

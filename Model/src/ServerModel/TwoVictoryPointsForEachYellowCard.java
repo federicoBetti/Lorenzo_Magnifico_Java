@@ -1,7 +1,7 @@
 package ServerModel;
 
 
-public class TwoVictoryPonitsForEachYellowCard implements Effects {
+public class TwoVictoryPointsForEachYellowCard implements Effects {
     public BonusInteraction doEffect(Player player){
         int i = 0;
         while (player.getPersonalBoardReference().getBuildings()[i] != null){
