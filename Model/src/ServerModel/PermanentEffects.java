@@ -54,8 +54,17 @@ public class PermanentEffects {
                         return new FaithPointForTwoCoinsAndTwoVictoryPoints ();
                 }
 
-            case"EarnOneCoinForEachColouredCard":
+            case"earnOneCoinForEachColouredCard":
                 return new EarnOneCoinForEachColouredCard(parameter1);
+
+            case"bonusForHarvesterOrProduction":
+                return new IncreaseDiceValueForHoP(quantity, parameter1 ); //TO DO
+
+            case"discountForTakingCards":
+                return new DiscountForTakingCards( quantity, parameter1, parameter2 );
+
+            case"increaseDiceValueForTakingCards":
+                return new IncreaseDicevalueForTakingCards( quantity, parameter1 );  //TO DO
 
 
         }
