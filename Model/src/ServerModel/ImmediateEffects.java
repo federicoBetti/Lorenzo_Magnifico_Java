@@ -76,6 +76,7 @@ public class ImmediateEffects {
   		score.setFaithPoints(faithPoints);
   		player.setScore(score);
     }
+    
 
     public static void addWood(TrisIE effect, Player player){  //
     	PersonalBoard pboard = player.getPersonalBoardReference();

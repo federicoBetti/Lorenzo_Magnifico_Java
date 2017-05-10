@@ -9,11 +9,13 @@ import java.util.*;
  */
 public final class Board {
 
+    int caso;
     /**
      * Default constructor
      */
     public Board() {
     }
+
 
     /**
      * 
