@@ -1,7 +1,12 @@
 package ServerModel;
 
-/**
- * Created by Rita1 on 09/05/2017.
- */
 public class VictoryPointsForEachTwoMilitaryPoints implements Effects {
+
+    public BonusInteraction doEffect(Player player){
+        int bonus = player.getScore().getMilitaryPoints() / 2;
+        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + bonus);
+        OkOrNo Ok = new OkOrNo();
+        Ok.setOk(true);
+        return Ok;
+    }
 }

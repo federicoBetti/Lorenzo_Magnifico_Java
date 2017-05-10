@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="Merge branch 'master' of https://github.com/federicoBetti/Progetto&#10;&#10;# Conflicts:&#10;#&#9;.project">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddFaithPoints.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddServants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddStone.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddWood.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionHarvesterAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/Effects.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/GetDIceValueForTowerActions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/GetDiscountForTowerActions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Progetto.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.project" afterPath="$PROJECT_DIR$/.project" />
+    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="cambiamenti su immediate effect">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/BonusTowerAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/OkOrNo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/ProductionHarvesterAction.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionHarvesterAction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/GetDIceValueForTowerActions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/GetDiscountForTowerActions.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddFaithPoints.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddFaithPoints.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddServants.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddServants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddStone.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddStone.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddWood.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/AddWood.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Board.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionOrHarvesterAction.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionOrHarvesterAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Card.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ControllerInterface.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/ControllerInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Effects.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/Effects.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TowerAction.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TowerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +43,8 @@
       <file leaf-file-name="ImmediateEffects.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="133" column="55" lean-forward="false" selection-start-line="133" selection-start-column="55" selection-end-line="133" selection-end-column="55" />
+            <state relative-caret-position="80">
+              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -53,8 +53,18 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+            <state relative-caret-position="-533">
+              <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -86,30 +96,38 @@
         <option value="$PROJECT_DIR$/Model/src/ServerModel/ControllerInterface.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/TakeRos.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/PointsForEachCardOrMP.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/Effects.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddStone.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddWood.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddServants.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/GetDiscountForTowerActions.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/GetDIceValueForTowerActions.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionHarvesterAction.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/Board.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/Effects.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/OkOrNo.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddFaithPoints.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddServants.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddStone.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/AddWood.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/BonusTowerAction.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/TowerAction.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/ProductionHarvesterAction.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionOrHarvesterAction.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
-    <option name="width" value="1440" />
-    <option name="height" value="822" />
+    <option name="x" value="260" />
+    <option name="y" value="47" />
+    <option name="width" value="1400" />
+    <option name="height" value="983" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -129,9 +147,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -182,12 +197,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ServerModel" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Rita1\Documents\Progetto\Model\src\ServerModel" />
     </key>
@@ -477,7 +498,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="822" extended-state="6" />
+    <frame x="260" y="47" width="1400" height="983" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -518,7 +540,8 @@
     <MESSAGE value="ciao" />
     <MESSAGE value="cambiamento ritorno takeDevCard" />
     <MESSAGE value="aggiunta tutti effetti" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta tutti effetti" />
+    <MESSAGE value="cambiamenti su immediate effect" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambiamenti su immediate effect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -529,19 +552,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#144#145#0" expanded="true" />
+            <element signature="e#184#185#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -549,7 +567,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
-          <folding />
+          <folding>
+            <element signature="e#133#134#0" expanded="true" />
+            <element signature="e#173#174#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -597,7 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -605,7 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -613,7 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -629,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -687,7 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,27 +715,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusInteraction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ControllerInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-325">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PersonalBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1625">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -727,163 +726,255 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TakeRos.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PointsForEachCardOrMP.java" />
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PersonalBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+        <state relative-caret-position="20">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PointsForEachCardOrMP.java" />
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Effects.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="80">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddStone.java">
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusInteraction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="40">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddWood.java">
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/OkOrNo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-          <folding />
+        <state relative-caret-position="60">
+          <caret line="3" column="44" lean-forward="false" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+          <folding>
+            <element signature="e#128#129#0" expanded="true" />
+            <element signature="e#153#154#0" expanded="true" />
+            <element signature="e#190#191#0" expanded="true" />
+            <element signature="e#218#219#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java">
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="49" lean-forward="false" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        <state relative-caret-position="280">
+          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddFaithPoints.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        <state relative-caret-position="220">
+          <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java">
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="65" lean-forward="false" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="63" lean-forward="false" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="65" lean-forward="false" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="64" lean-forward="false" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+        <state relative-caret-position="260">
+          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddServants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        <state relative-caret-position="200">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/GetDiscountForTowerActions.java">
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddStone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+        <state relative-caret-position="200">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddWood.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusTowerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding>
+            <element signature="e#154#155#0" expanded="true" />
+            <element signature="e#210#211#0" expanded="true" />
+            <element signature="e#265#266#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TowerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="41" lean-forward="false" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/GetDIceValueForTowerActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
+        <state relative-caret-position="100">
           <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/GetDiscountForTowerActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusProductionHarvesterAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="100">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java">
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/NoMoreAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        <state relative-caret-position="40">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ProductionHarvesterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding>
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#351#352#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusProductionOrHarvesterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="133" column="55" lean-forward="false" selection-start-line="133" selection-start-column="55" selection-end-line="133" selection-end-column="55" />
+        <state relative-caret-position="80">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        <state relative-caret-position="-533">
+          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

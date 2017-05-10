@@ -1,6 +1,8 @@
 package ServerModel;
 
 import java.util.*;
+//bisogna fare che il meotod doEffect riitorna la rispooata a ritornare al client, che puo essere un oggetto che è ok, oppure un oggetto tipo tower action
+//ritorna una responde cioè bonusinterface
 
 public abstract class Card {
 
@@ -16,23 +18,21 @@ public abstract class Card {
 
     private ArrayList<Effects> cardEffects;
 
-    /**
-     * @param player 
-     * @return
-     */
-    public Card(){
 
+    // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
+    public Card(String name, ArrayList<TrisIE> Immediate_Effects){
+        ImmediateEffects Ie = new ImmediateEffects();
+        for (TrisIE x: Immediate_Effects){
+            Effects e = Ie.SearchImmediateEffects(x.getType(), x.getParameter(), x.getQuantity());
+            cardEffects.add(e);
+        }
     }
     public void MakeImmediateEffects(Player player) {
-        for (TrisIE x: Immediate_Effects) {
-            ImmediateEffects.SearchImmediateEffects(x, player);
+        for (Effects x: cardEffects) {
+            x.doEffect(player);
         }
 	}
 
-    /**
-     * @param player 
-     * @return
-     */
     public void MakePermannetEffects(Player player) {
 	}
 

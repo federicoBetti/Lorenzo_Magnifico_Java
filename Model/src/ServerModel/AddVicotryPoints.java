@@ -1,7 +1,18 @@
 package ServerModel;
 
-/**
- * Created by Rita1 on 09/05/2017.
- */
-public class AddVicotryPoints {
+
+public class AddVicotryPoints implements Effects {
+
+    private int quantity;
+
+    public AddVicotryPoints (int quantity){
+        this.quantity = quantity;
+    }
+
+    public BonusInteraction doEffect(Player player) {
+        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + quantity);
+        OkOrNo Ok = new OkOrNo();
+        Ok.setOk(true);
+        return Ok;
+    }
 }
