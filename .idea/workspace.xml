@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/ReduceValueOnAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/SetExcommunicationCardUseful.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedBonus.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Model/src/ServerModel/SetLeaderEffectsUseful.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/LeaderCardEffects.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Bonus.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/Bonus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BuildingBonus.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/BuildingBonus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Card.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/CharactersBonus.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/CharactersBonus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/DiscountForTakingCards.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/DiscountForTakingCards.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/LeaderCard.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/LeaderCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/PermanentEffects.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/PermanentEffects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Player.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/src/ServerModel/PlayerAdvanced.java" afterPath="$PROJECT_DIR$/Model/src/ServerModel/PlayerAdvanced.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -37,8 +23,18 @@
       <file leaf-file-name="ImmediateEffects.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-685">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="740">
+              <caret line="66" column="67" lean-forward="false" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExcommunitationTile.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunitationTile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -54,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LeaderCard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LeaderCard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/LeaderCard.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="940">
@@ -105,16 +101,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExcommunicationCardsEffects.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -139,7 +125,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedValue.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedBonus.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/SetLeaderEffectsUseful.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/PermanentEffects.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/BuildingBonus.java" />
@@ -155,6 +140,7 @@
         <option value="$PROJECT_DIR$/Model/src/ServerModel/ReduceValueOnAction.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
         <option value="$PROJECT_DIR$/Model/src/ServerModel/LeaderCard.java" />
+        <option value="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
       </list>
     </option>
   </component>
@@ -575,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494347189959</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="effetti carte scomunica e leader, elimino player advanced">
+      <created>1494522100926</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1494522100926</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -621,7 +614,8 @@
     <MESSAGE value="ciao" />
     <MESSAGE value="cambiamento ritorno takeDevCard" />
     <MESSAGE value="aggiunta tutti effetti" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta tutti effetti" />
+    <MESSAGE value="effetti carte scomunica e leader, elimino player advanced" />
+    <option name="LAST_COMMIT_MESSAGE" value="effetti carte scomunica e leader, elimino player advanced" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -674,13 +668,6 @@
         <state relative-caret-position="500">
           <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunitationTile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -939,14 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ReduceValueOnAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
@@ -959,14 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1800">
           <caret line="112" column="31" lean-forward="false" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-685">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -991,6 +962,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="940">
           <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="15" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="66" column="67" lean-forward="false" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunitationTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>

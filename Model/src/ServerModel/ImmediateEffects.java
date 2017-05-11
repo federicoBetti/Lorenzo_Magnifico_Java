@@ -60,6 +60,11 @@ public class ImmediateEffects {
             case "setLeaderEffectsUseful":
                 return new SetLeaderEffectsUseful(parameter);
 
+            case "reduceValueOfAction":
+                return new ReduceValueOnAction(parameter, quantity);
+
+            case "setExcommunicationCarduseful":
+                return new SetExcommunicationCardUseful(parameter);
 
         }
        return new AddCoin(quantity); // inutile
