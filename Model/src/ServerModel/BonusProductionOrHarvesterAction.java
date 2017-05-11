@@ -3,7 +3,12 @@ package ServerModel;
 public class BonusProductionOrHarvesterAction extends BonusInteraction{
 	private int diceValue;
 	private String kinfOfAction;
-	
+
+	public BonusProductionOrHarvesterAction(String parameter, int quantity){
+		this.kinfOfAction = parameter;
+		this.diceValue = quantity;
+	}
+
 	public int getDiceValue() {
 		return diceValue;
 	}

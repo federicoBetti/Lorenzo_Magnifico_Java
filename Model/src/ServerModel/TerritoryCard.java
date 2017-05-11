@@ -11,6 +11,7 @@ public class TerritoryCard extends Card {
      * Default constructor
      */
     public TerritoryCard() {
+        super();
     }
 
     /**

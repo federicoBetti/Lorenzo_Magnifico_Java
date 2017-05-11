@@ -49,7 +49,7 @@ public class TrisIE {
 	}
 
 	/** type of action: 1) takeRop ( take resource or point )	OK
-     * 					2) exchangeRes ( exchange resources )
+     * 					2) exchangeRes ( exchange resources )	OK
      * 					3) getDiscount ( get a discount )
      * 					4) performAct ( perform action )
      * 					5) pointsForEachCardOrMP ( receive coins or points )  OK
