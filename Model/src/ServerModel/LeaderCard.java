@@ -10,8 +10,6 @@ public class LeaderCard {
     /**
      * Default constructor
      */
-    public LeaderCard() {
-    }
 
     /**
      * 
@@ -25,9 +23,20 @@ public class LeaderCard {
 
 
     private boolean isPlayed = false;
-    /**
-     * @return
-     */
+
+
+    private ArrayList<Effects> immediateCardEffects;
+
+
+    public LeaderCard(ArrayList<TrisIE> immediate_Effects) {
+        ImmediateEffects Ie = new ImmediateEffects();
+        for (TrisIE x: immediate_Effects){
+            Effects e = Ie.SearchImmediateEffects(x.getType(), x.getParameter(), x.getQuantity());
+            immediateCardEffects.add(e);
+        }
+    }
+
+
     public void Discard() {
         // TODO implement here
     }
@@ -35,8 +44,10 @@ public class LeaderCard {
     /**
      * @return
      */
-    public void PlayCard() {
-        // TODO implement here
+    public void PlayCard(Player player) {
+        for (Effects x: immediateCardEffects ) {
+            x.doEffect(player);
+        }
     }
 
     /**

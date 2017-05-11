@@ -47,12 +47,24 @@ public class ImmediateEffects {
         	    return new BonusTowerAction (parameter, quantity);
 
         	
-        	case "harvOrProdAct":
-        		return new ProductionHarvesterAction(parameter,quantity);
+        	case "harvOrProdAct": {
+                return new ProductionHarvesterAction(parameter, quantity);
+            }
+
+            case "setFamiliarFixedValue":
+                return new SetFamiliarFixedValue (parameter, quantity);
+
+            case "setFamiliarFixedBonus":
+                return new SetFamiliarFixedBonus (parameter, quantity);
+
+            case "setLeaderEffectsUseful":
+                return new SetLeaderEffectsUseful(parameter);
+
 
         }
        return new AddCoin(quantity); // inutile
     }
+
 
 }
 

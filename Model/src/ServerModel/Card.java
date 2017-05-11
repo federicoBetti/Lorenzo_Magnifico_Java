@@ -12,9 +12,6 @@ public abstract class Card {
 
     private int period;
 
-    private ArrayList<TrisIE> immediate_Effects;
-
-    private ArrayList<PokerPE> permanent_Effects;
 
     private ArrayList<Effects> immediateCardEffects;
 

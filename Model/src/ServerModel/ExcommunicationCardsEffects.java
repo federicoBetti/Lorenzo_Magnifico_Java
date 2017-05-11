@@ -1,29 +1,22 @@
 package ServerModel;
 
-import java.util.*;
-import SERVER.Player;
-import SERVER.TrisIE;
-/**
- * 
- */
-public class ExcommunicationCardsEffects {
 
-    /**
-     * Default constructor
-     */
+public class ExcommunicationCardsEffects {
     public ExcommunicationCardsEffects() {
     }
 
 
+    public Effects SearchImmediateEffects(String type, String parameter, int quantity) {
+
+        switch (type) {
+            case "reduceValueOfAction":
+                return new ReduceValueOnAction(parameter, quantity);
+
+            case "setExcommunicationCarduseful":
+                return new SetExcommunicationCardUseful(parameter);
+        }
 
 
-    /**
-     * @param effect 
-     * @param player 
-     * @return
-     */
-    public void SearchExcommunicationEffects(TrisIE effect, Player player) {
-
+        return null;
     }
-
 }

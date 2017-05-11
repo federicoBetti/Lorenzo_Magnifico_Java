@@ -20,17 +20,19 @@ public class DiscountForTakingCards implements Effects {
     public BonusInteraction doEffect(Player player) {
 
         switch (kindOfCardDiscounted){
-            case"characters":
+            case"buildings":
             switch(kindOfReasourceDiscounted){
                 case"stone":
-                    player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setStoneBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getStoneBonus() + quantityDiscounted);
+                    player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setStoneBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getStoneBonus() + quantityDiscounted);
 
                 case"wood":
-                    player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setWoodBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getWoodBonus() + quantityDiscounted);
+                    player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setWoodBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getWoodBonus() + quantityDiscounted);
 
             }
-            case"buildings":
-                player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setCoinsBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getCoinsBonus() + quantityDiscounted);
+            case"characters":
+                player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setCoinsBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getCoinsBonus() + quantityDiscounted);
+
+            case "ventures":
 
         }
 

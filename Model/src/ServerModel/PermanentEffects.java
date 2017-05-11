@@ -67,6 +67,8 @@ public class PermanentEffects {
                 return new IncreaseDicevalueForTakingCards( quantity, parameter1 );  //TO DO
 
 
+
+
         }
         return null;
     }

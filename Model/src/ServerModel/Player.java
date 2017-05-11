@@ -87,7 +87,23 @@ public class Player {
     public void checkFinalPointResources() {
         // TODO implement here
     }
-    
-    
 
+	private LeaderEffectsUsefull leaderEffectsUsefull;
+	private ExcommunicationEffectsUseful excommunicationEffectsUseful;
+
+	public ExcommunicationEffectsUseful getExcommunicationEffectsUseful() {
+		return excommunicationEffectsUseful;
+	}
+
+	public void setExcommunicationEffectsUseful(ExcommunicationEffectsUseful excommunicationEffectsUseful) {
+		this.excommunicationEffectsUseful = excommunicationEffectsUseful;
+	}
+
+	public LeaderEffectsUsefull getLeaderEffectsUsefull() {
+		return leaderEffectsUsefull;
+	}
+
+	public void setLeaderEffectsUsefull(LeaderEffectsUsefull leaderEffectsUsefull) {
+		this.leaderEffectsUsefull = leaderEffectsUsefull;
+	}
 }

@@ -4,31 +4,22 @@ package ServerModel;
  * Created by raffaelebongo on 10/05/17.
  */
 public class CharactersBonus {
-    private int diceValue;
-    private int woodBonus;
-    private int stoneBonus;
+    int diceBonus;
+    int coinsBonus;
 
-    public int getDiceValue() {
-        return diceValue;
+    public int getDiceBonus() {
+        return diceBonus;
     }
 
-    public void setDiceValue(int diceValue) {
-        this.diceValue = diceValue;
+    public void setDiceBonus(int diceBonus) {
+        this.diceBonus = diceBonus;
     }
 
-    public int getWoodBonus() {
-        return woodBonus;
+    public int getCoinsBonus() {
+        return coinsBonus;
     }
 
-    public void setWoodBonus(int woodBonus) {
-        this.woodBonus = woodBonus;
-    }
-
-    public int getStoneBonus() {
-        return stoneBonus;
-    }
-
-    public void setStoneBonus(int stoneBonus) {
-        this.stoneBonus = stoneBonus;
+    public void setCoinsBonus(int coinsBonus) {
+        this.coinsBonus = coinsBonus;
     }
 }
