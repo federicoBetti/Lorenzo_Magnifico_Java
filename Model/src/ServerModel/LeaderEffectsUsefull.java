@@ -1,8 +1,7 @@
 package ServerModel;
 
 public class LeaderEffectsUsefull {
-
-
+	
     private boolean canPlaceInOccupiedPosition = false;
 
     private boolean haveToPayWhenTowerIsOccupied = true;
