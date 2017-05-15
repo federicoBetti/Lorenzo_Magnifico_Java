@@ -39,7 +39,7 @@ public abstract class Card {
 	}
 
     public void MakePermannetEffects(Player player) {
-        // TO DO
+       //TO DO: può essere scelto l'effetto permanente da attivare
+        }
 	}
 
-}

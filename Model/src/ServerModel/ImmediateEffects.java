@@ -15,23 +15,23 @@ public class ImmediateEffects {
         				return new AddWood(quantity);
         			case "stone":
         				return new AddStone(quantity);
-        			case "servants":
+        			case "servant":
         				return new AddServants(quantity);
-        			case "victoryPoints":
+        			case "victoryPoint":
         				return new AddVicotryPoints(quantity);
-        			case "faithPoints":
+        			case "faithPoint":
         				return new AddFaithPoints(quantity);
-        			case "militaryPoints":
+        			case "militaryPoint":
         				return new AddMilitaryPoints(quantity);
         			case "coins":
         				return new AddCoin(quantity);
         			case "privilege" :
         				//addPrivilege(effect, player);
         		}
-        	
+
         	case "pointsForEachCardOrMP":
         		switch (parameter){
-        			case "militaryPoints":
+        			case "militaryPoint":
         				return new VictoryPointsForEachTwoMilitaryPoints();
         			case "greenCard":
         				return new TwoVictoryPointsForEachGreenCard();
@@ -42,32 +42,26 @@ public class ImmediateEffects {
         			case "blueCard":
         				return new VictoryPointForEachBlueCard(quantity);
         		}
-        	
+
         	case "BonusTowerActionWithDiscount":
         	    return new BonusTowerAction (parameter, quantity);
-
-        	
-        	case "harvOrProdAct": {
+        	case "harvOrProdAct":
                 return new ProductionHarvesterAction(parameter, quantity);
-            }
-
             case "setFamiliarFixedValue":
                 return new SetFamiliarFixedValue (parameter, quantity);
-
             case "setFamiliarFixedBonus":
                 return new SetFamiliarFixedBonus (parameter, quantity);
-
             case "setLeaderEffectsUseful":
                 return new SetLeaderEffectsUseful(parameter);
-
             case "reduceValueOfAction":
                 return new ReduceValueOnAction(parameter, quantity);
-
-            case "setExcommunicationCarduseful":
+            case "setExcommunicationCardUseful":
                 return new SetExcommunicationCardUseful(parameter);
 
         }
-       return new AddCoin(quantity); // inutile
+
+       return null;
+
     }
 
 

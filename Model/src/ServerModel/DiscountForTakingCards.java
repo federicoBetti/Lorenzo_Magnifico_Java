@@ -21,19 +21,16 @@ public class DiscountForTakingCards implements Effects {
 
         switch (kindOfCardDiscounted){
             case"buildings":
-            switch(kindOfReasourceDiscounted){
-                case"stone":
+            switch(kindOfReasourceDiscounted) {
+                case "stone":
                     player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setStoneBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getStoneBonus() + quantityDiscounted);
 
-                case"wood":
+                case "wood":
                     player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setWoodBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getWoodBonus() + quantityDiscounted);
 
             }
             case"characters":
                 player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setCoinsBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getCoinsBonus() + quantityDiscounted);
-
-            case "ventures":
-
         }
 
         OkOrNo Ok = new OkOrNo();

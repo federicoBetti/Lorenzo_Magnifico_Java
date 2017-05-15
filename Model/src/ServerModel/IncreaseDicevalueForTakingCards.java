@@ -20,7 +20,7 @@ public class IncreaseDicevalueForTakingCards implements Effects {
 
         switch (kindOfCard){
             case"character":
-                player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus() + quantityIncreased);
+                player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getDiceBonus() + quantityIncreased);
 
             case"territory":
                 player.getPersonalBoardReference().getBonusOnActions().setTerritoryBonus(player.getPersonalBoardReference().getBonusOnActions().getTerritoryBonus() + quantityIncreased);
@@ -29,7 +29,7 @@ public class IncreaseDicevalueForTakingCards implements Effects {
                 player.getPersonalBoardReference().getBonusOnActions().setVenturesBonus(player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus() + quantityIncreased);
 
             case"building":
-                player.getPersonalBoardReference().getBonusOnActions().setBuildingsBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus() + quantityIncreased);
+                player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setDiceValue(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceValue() + quantityIncreased);
         }
 
         OkOrNo Ok = new OkOrNo();

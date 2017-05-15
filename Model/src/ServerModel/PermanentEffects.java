@@ -30,7 +30,7 @@ public class PermanentEffects {
                         return new UsePrivilege(); //TO DO
                     case"militaryPoints":
                         return new AddMilitaryPoints(quantity);
-                    case"coins":
+                    case"coin":
                         return  new AddCoin(quantity);
                 }
                 //QUI VA USATO ANCHE IL TOTALCOST PERCHè CI SONO GLI SCAMBI DI RISORSE. LE QUANTITY INDICANO LE RISORSE CHE SI RICEVONO DALLO
@@ -46,28 +46,25 @@ public class PermanentEffects {
                         return new ExchangeStoneFor ( quantity, effectCost, parameter2 );
                     case"servantsFor":
                         return new ExchangeServantsFor ( quantity, effectCost, parameter2 );
-                    case"servantsForThreeMilitaryPointsAndOneVictoryPoints":
+                    case"servantsForThreeMilitaryPointsAndOneVictoryPoint":
                         return new ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints( );
-                    case"servantWoodStoneForSixVictoryPoints":
+                    case"servantWoodStoneForSixVictoryPoint":
                         return new ServantWoodStoneForSixVictoryPoints();
-                    case"faithPointForTwoCoinsAndTwoVictoryPoints":
+                    case"faithPointForTwoCoinsAndTwoVictoryPoint":
                         return new FaithPointForTwoCoinsAndTwoVictoryPoints ();
                 }
 
             case"earnOneCoinForEachColouredCard":
                 return new EarnOneCoinForEachColouredCard(parameter1);
-
             case"bonusForHarvesterOrProduction":
                 return new IncreaseDiceValueForHoP(quantity, parameter1 ); //TO DO
-
-            case"discountForTakingCards":
+            case"discountForTakingCard":
                 return new DiscountForTakingCards( quantity, parameter1, parameter2 );
-
-            case"increaseDiceValueForTakingCards":
+            case"increaseDiceValueForTakingCard":
                 return new IncreaseDicevalueForTakingCards( quantity, parameter1 );  //TO DO
-
-
-
+            case"noImmediateEffectTwoHighestPositionsTower":
+                return new noImmediateEffectTwoHighestPositionsTower();
+                //TO DO
 
         }
         return null;

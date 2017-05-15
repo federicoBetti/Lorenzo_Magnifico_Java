@@ -3,7 +3,7 @@ package ServerModel;
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class CharactersBonus {
+public class BonusForTakingCharacter {
     int diceBonus;
     int coinsBonus;
 

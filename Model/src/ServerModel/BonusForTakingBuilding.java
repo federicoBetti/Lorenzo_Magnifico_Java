@@ -3,7 +3,7 @@ package ServerModel;
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class BuildingBonus {
+public class BonusForTakingBuilding {
 
 
     private int diceValue;

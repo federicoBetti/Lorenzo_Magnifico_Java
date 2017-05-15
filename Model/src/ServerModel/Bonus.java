@@ -6,45 +6,46 @@ package ServerModel;
 public class Bonus {
 
 
-    private int TerritoryBonus = 0;
+    private int bonusForTakingTerritory = 0;
 
     private int ProductionBonus = 0;
 
     private int HarvesterBonus = 0;
 
-    private CharactersBonus charactersBonus;
+    private BonusForTakingCharacter charactersBonus;
 
-    private int VenturesBonus = 0;
+    private BonusForTakingBuilding buildingsBonus;
 
-    private BuildingBonus buildingsBonus;
+    private int coinsBonusForTakingCharactersCard = 0;
 
-    private int coinsBonus = 0;
+    private int bonusForTakingVentures = 0;
 
-    private int militaryPointBonus = 0;
-
-    private int stoneBonus = 0;
-
-    private int woodBonus = 0;
-
-    private int servantsBonus = 0;
 
     public Bonus (){
-        this.charactersBonus = new CharactersBonus();
-        this.buildingsBonus = new BuildingBonus();
+        this.charactersBonus = new BonusForTakingCharacter();
+        this.buildingsBonus = new BonusForTakingBuilding();
 
     }
 
-    public Bonus(CharactersBonus charactersBonus) {
+    public Bonus(BonusForTakingCharacter charactersBonus) {
         this.charactersBonus = charactersBonus;
-        this.buildingsBonus = new BuildingBonus();
+        this.buildingsBonus = new BonusForTakingBuilding();
+    }
+
+    public int getVenturesBonus() {
+        return bonusForTakingVentures;
+    }
+
+    public void setVenturesBonus(int venturesBonus) {
+        this.bonusForTakingVentures = venturesBonus;
     }
 
     public int getTerritoryBonus() {
-        return TerritoryBonus;
+        return bonusForTakingTerritory;
     }
 
     public void setTerritoryBonus(int territoryBonus) {
-        TerritoryBonus = territoryBonus;
+        bonusForTakingTerritory = territoryBonus;
     }
 
     public int getProductionBonus() {
@@ -63,67 +64,29 @@ public class Bonus {
         HarvesterBonus = harvesterBonus;
     }
 
-    public int getVenturesBonus() {
-        return VenturesBonus;
-    }
-
-    public void setVenturesBonus(int venturesBonus) {
-        VenturesBonus = venturesBonus;
-    }
-
-    public void setCharactersBonus(CharactersBonus charactersBonus) {
+    public void setCharactersBonus(BonusForTakingCharacter charactersBonus) {
         this.charactersBonus = charactersBonus;
     }
 
-    public BuildingBonus getBuildingsBonus() {
+    public BonusForTakingBuilding getBuildingsBonus() {
         return buildingsBonus;
     }
 
-    public void setBuildingsBonus(BuildingBonus buildingsBonus) {
+    public void setBuildingsBonus(BonusForTakingBuilding buildingsBonus) {
         this.buildingsBonus = buildingsBonus;
     }
 
-    public CharactersBonus getCharactersBonus() {
+    public BonusForTakingCharacter getCharactersBonus() {
         return charactersBonus;
     }
 
     public int getCoinsBonus() {
-        return coinsBonus;
+        return coinsBonusForTakingCharactersCard;
     }
 
     public void setCoinsBonus(int coinsBonus) {
-        this.coinsBonus = coinsBonus;
+        this.coinsBonusForTakingCharactersCard = coinsBonus;
     }
 
-    public int getMilitaryPointBonus() {
-        return militaryPointBonus;
-    }
 
-    public void setMilitaryPointBonus(int militaryPointBonus) {
-        this.militaryPointBonus = militaryPointBonus;
-    }
-
-    public int getStoneBonus() {
-        return stoneBonus;
-    }
-
-    public void setStoneBonus(int stoneBonus) {
-        this.stoneBonus = stoneBonus;
-    }
-
-    public int getWoodBonus() {
-        return woodBonus;
-    }
-
-    public void setWoodBonus(int woodBonus) {
-        this.woodBonus = woodBonus;
-    }
-
-    public int getServantsBonus() {
-        return servantsBonus;
-    }
-
-    public void setServantsBonus(int servantsBonus) {
-        this.servantsBonus = servantsBonus;
-    }
 }
