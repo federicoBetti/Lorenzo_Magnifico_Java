@@ -1,7 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
+    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="Finiti effetti permanenti tranne effetti quelli sui privilegi e effetti immediati torre">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/src/Project/Configurations/Configuration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/Effects.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/ProductionResponse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/src/Project/Server.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Effects.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/LMSERVER.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Model.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/PlayerAdvanced.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ProductionResponse.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/Model.iml" afterPath="$PROJECT_DIR$/Game/Game.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddCoin.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddFaithPoints.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddFaithPoints.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddMilitaryPoints.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddServants.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddServants.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddStone.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddStone.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddVicotryPoints.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/AddWood.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddWood.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Board.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Board.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Bonus.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Bonus.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BonusForTakingBuilding.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/BonusForTakingBuilding.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BonusForTakingCharacter.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/BonusForTakingCharacter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BonusInteraction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/BonusInteraction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BonusProductionOrHarvesterAction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/BonusProductionOrHarvesterAction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BonusTowerAction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/BonusTowerAction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BuildingCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/BuildingCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/BuildingCost.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/BuildingCost.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Card.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Card.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/CharacterCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/CharacterCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/CharactersCost.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/CharactersCost.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ControllerInterface.java" afterPath="$PROJECT_DIR$/Game/src/Project/Network/ControllerInterface.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ControllerInterfaceRMI.java" afterPath="$PROJECT_DIR$/Game/src/Project/Network/ControllerInterfaceRMI.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ControllerInterfaceSoket.java" afterPath="$PROJECT_DIR$/Game/src/Project/Network/ControllerInterfaceSoket.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Cost.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/Cost.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Council.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Council.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/CouncilPrivileges.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/CouncilPrivileges.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Deck.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Deck.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/DiscountForTakingCards.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/DiscountForTakingCards.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/EarnOneCoinForEachColouredCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/EarnOneCoinForEachColouredCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExchangeCoinsFor.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeCoinsFor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExchangeServantsFor.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeServantsFor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExchangeStoneFor.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeStoneFor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExchangeWoodFor.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeWoodFor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationEffectsUseful.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/ExcommunicationEffectsUseful.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationZone.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/ExcommunicationZone.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ExcommunitationTile.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/FaithPointForTwoCoinsAndTwoVictoryPoints.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/FaithPointForTwoCoinsAndTwoVictoryPoints.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/FamilyMember.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/FamilyMember.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Harvester.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Harvester.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/IncreaseDiceValueForHoP.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/IncreaseDiceValueForHoP.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/IncreaseDicevalueForTakingCards.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/IncreaseDicevalueForTakingCards.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/LeaderCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/LeaderCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/LeaderCardRequirements.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/LeaderCardRequirements.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/LeaderEffectsUsefull.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/LeaderEffectsUsefull.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Market.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Market.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/NoMoreAction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/NoMoreAction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/OkOrNo.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/OkOrNo.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/PermanentEffects.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildPermanentEffects.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/PersonalBoard.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/PersonalBoard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Player.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Player.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/PokerPE.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/PokerPE.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Position.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Position.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Production.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Production.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ProductionHarvesterAction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/ProductionHarvesterAction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ReduceValueOnAction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ReduceValueOnAction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Request.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Request.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Score.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Score.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/ServantWoodStoneForSixVictoryPoints.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ServantWoodStoneForSixVictoryPoints.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/SetExcommunicationCardUseful.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetExcommunicationCardUseful.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedBonus.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetFamiliarFixedBonus.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedValue.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetFamiliarFixedValue.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/SetLeaderEffectsUseful.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetLeaderEffectsUseful.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/SetupMethods.java" afterPath="$PROJECT_DIR$/Game/src/Project/Configurations/SetupMethods.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/SupportFunction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Network/SupportFunction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TerritoryCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TerritoryCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TerritoryCost.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TerritoryCost.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Tile.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Tile.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TileBonus.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/TileBonus.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TotalCost.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TotalCost.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/Tower.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/Tower.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TowerAction.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/TowerAction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TrisIE.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/TrisIE.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/TwoVictoryPointsForEachGreenCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachYellowCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/TwoVictoryPointsForEachYellowCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/UsePrivilege.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/UsePrivilege.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/VenturesCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/VenturesCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/VenturesCost.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/VenturesCost.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointForEachBlueCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/VictoryPointForEachBlueCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachPurpleCard.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/VictoryPointsForEachPurpleCard.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/VictoryPointsForEachTwoMilitaryPoints.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/noImmediateEffectTwoHighestPositionsTower.java" afterPath="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/noImmediateEffectTwoHighestPositionsTower.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Model/src/ServerModel/package-info.java" afterPath="$PROJECT_DIR$/Game/src/Project/MODEL/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -17,26 +111,86 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
+      <file leaf-file-name="PokerPE.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/PokerPE.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bonus.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Bonus.java">
+      <file leaf-file-name="BuildPermanentEffects.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildPermanentEffects.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+            <state relative-caret-position="482">
+              <caret line="67" column="49" lean-forward="true" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuildImmediateEffects.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExchangeCoinsFor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeCoinsFor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="16" column="69" lean-forward="true" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrisIE.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/TrisIE.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
-                <element signature="e#746#747#0" expanded="true" />
-                <element signature="e#791#792#0" expanded="true" />
-                <element signature="e#846#847#0" expanded="true" />
-                <element signature="e#905#906#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1006#1007#0" expanded="true" />
+                <element signature="e#1043#1044#0" expanded="true" />
+                <element signature="e#1066#1067#0" expanded="true" />
+                <element signature="e#1099#1100#0" expanded="true" />
+                <element signature="e#1122#1123#0" expanded="true" />
+                <element signature="e#1169#1170#0" expanded="true" />
+                <element signature="e#1202#1203#0" expanded="true" />
+                <element signature="e#1231#1232#0" expanded="true" />
+                <element signature="e#1253#1254#0" expanded="true" />
+                <element signature="e#1295#1296#0" expanded="true" />
+                <element signature="e#1326#1327#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TotalCost.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TotalCost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuildingCard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/BuildingCard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,29 +217,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedValue.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedBonus.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/SetLeaderEffectsUseful.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/LossOnResource.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/PlayerAdvanced.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/Player.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/SetEcxommunicationCardUseful.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/SetExcommunicationCardUseful.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/ReduceValueOnAction.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/LeaderCard.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/IncreaseDicevalueForTakingCards.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/DiscountForTakingCards.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/NoEffectFound.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/noImmediateEffectTwoHighestPositionsTower.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/PermanentEffects.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/UsePrivilege.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/CharactersBonus.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/BuildingBonus.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/Bonus.java" />
-        <option value="$PROJECT_DIR$/Model/src/ServerModel/Card.java" />
+        <option value="$PROJECT_DIR$/Game/src/Controller/Effects/TrisIE.java" />
+        <option value="$PROJECT_DIR$/Game/src/Configuration.java" />
+        <option value="$PROJECT_DIR$/Game/src/Configurations/Configuration.java" />
+        <option value="$PROJECT_DIR$/Game/src/Server.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/BuildingCard.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Server.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/BuildImmediateEffects.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/BuildPermanentEffects.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectFactory/BuildPermanentEffects.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/BonusProductionOrHarvesterAction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/VictoryPointsForEachTwoMilitaryPoints.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/TotalCost.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/TerritoryCard.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/Effects.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddMilitaryPoints.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/Cost.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/LeaderCard.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/BonusInteraction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/ProductionResponse.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/SetLeaderEffectsUseful.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetLeaderEffectsUseful.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Configurations/SetupMethods.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TotalCost.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/VenturesCost.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/TowerAction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/LeaderEffectsUsefull.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/CouncilPrivileges.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/CouncilPrivileges.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Network/SupportFunction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/Player.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddFaithPoints.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/LeaderCardRequirements.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/ReduceValueOnAction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/BonusForTakingCharacter.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/BonusForTakingBuilding.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/BonusForTakingBuilding.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/BonusProductionOrHarvesterAction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ReduceValueOnAction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/Bonus.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ServantWoodStoneForSixVictoryPoints.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/BonusTowerAction.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/BuildingCard.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/CharacterCard.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TerritoryCard.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/VenturesCard.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/Card.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/TrisIE.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeCoinsFor.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/PokerPE.java" />
+        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildPermanentEffects.java" />
       </list>
     </option>
   </component>
@@ -93,10 +275,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="94" />
+    <option name="x" value="153" />
     <option name="y" value="22" />
     <option name="width" value="1239" />
-    <option name="height" value="805" />
+    <option name="height" value="814" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -116,8 +298,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -141,7 +321,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -155,7 +335,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -163,12 +343,138 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ServerModel" />
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Effects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Effects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEffects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Effects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EffectsFactory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -506,12 +812,21 @@
     <option name="localTasksCounter" value="11" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="94" y="22" width="1239" height="805" extended-state="0" />
+    <frame x="153" y="22" width="1239" height="814" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963988" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -524,7 +839,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24939467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25313282" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963988" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -535,8 +851,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -553,336 +869,443 @@
     <option name="LAST_COMMIT_MESSAGE" value="effetti carte scomunica e leader, elimino player advanced" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ControllerInterface.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/CouncilPrivileges.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-325">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TakeRos.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PointsForEachCardOrMP.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddStone.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/DiscountForTakingCards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddWood.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/Effects.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        <state relative-caret-position="75">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddMilitaryPoints.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="49" lean-forward="false" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddFaithPoints.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeStoneFor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        <state relative-caret-position="105">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddVicotryPoints.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeWoodFor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        <state relative-caret-position="105">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddServants.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/FaithPointForTwoCoinsAndTwoVictoryPoints.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/VictoryPointsForEachTwoMilitaryPoints.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/IncreaseDiceValueForHoP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPointsForEachGreenCard.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/IncreaseDicevalueForTakingCards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="64" lean-forward="false" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachPurpleCard.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachBlueCard.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TwoVictoryPonitsForEachYellowCard.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/GetDiscountForTowerActions.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/GetDIceValueForTowerActions.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusProductionHarvesterAction.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TrisIE.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/noImmediateEffectTwoHighestPositionsTower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
+        <state relative-caret-position="135">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeServantsFor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/EarnOneCoinForEachColouredCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ServantWoodStoneForSixVictoryPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="43" lean-forward="false" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/TwoVictoryPointsForEachGreenCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/TwoVictoryPointsForEachYellowCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/UsePrivilege.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/VictoryPointsForEachPurpleCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/VictoryPointForEachBlueCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/VictoryPointsForEachTwoMilitaryPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/BuildingCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/CharactersCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/Cost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/ExcommunicationEffectsUseful.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/ExcommunicationZone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/ExcommunitationTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/LeaderCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TerritoryCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/VenturesCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Network/SupportFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetFamiliarFixedValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ReduceValueOnAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-59">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetFamiliarFixedBonus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/TowerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/ProductionHarvesterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/BonusProductionOrHarvesterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/BonusTowerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#333#334#0" expanded="true" />
+            <element signature="e#398#399#0" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/SetLeaderEffectsUseful.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/BonusInteraction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/CharacterCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/VenturesCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TerritoryCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/MODEL/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Effects.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/MODEL/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        <state relative-caret-position="367">
+          <caret line="89" column="27" lean-forward="true" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/SetFamiliarFixedBonus.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/BuildingCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="53" lean-forward="false" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-          <folding />
+        <state relative-caret-position="285">
+          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/TotalCost.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/TrisIE.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-125">
+        <state relative-caret-position="357">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1043#1044#0" expanded="true" />
+            <element signature="e#1066#1067#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1122#1123#0" expanded="true" />
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1202#1203#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1253#1254#0" expanded="true" />
+            <element signature="e#1295#1296#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TotalCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/AddCoin.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/ExchangeCoinsFor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/LossOnResource.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PlayerAdvanced.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationEffectsUseful.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/SetExcommunicationCardUseful.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="60" lean-forward="false" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
-          <folding>
-            <element signature="e#158#159#0" expanded="false" />
-            <element signature="e#200#201#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ReduceValueOnAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="35" column="52" lean-forward="true" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
+        <state relative-caret-position="138">
+          <caret line="16" column="69" lean-forward="true" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/LeaderCardEffects.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/SetLeaderEffectsUseful.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/PokerPE.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="10" column="45" lean-forward="false" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        <state relative-caret-position="180">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/LeaderCard.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildPermanentEffects.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="940">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="482">
+          <caret line="67" column="49" lean-forward="true" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunicationCardsEffects.java" />
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExcommunitationTile.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusInteraction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/IncreaseDiceValueForHoP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/OkOrNo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/ImmediateEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="19" lean-forward="false" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/NoEffectFound.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/noImmediateEffectTwoHighestPositionsTower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#216#217#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PersonalBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="26" column="7" lean-forward="false" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusForTakingBuilding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/IncreaseDicevalueForTakingCards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="65" lean-forward="true" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/DiscountForTakingCards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/UsePrivilege.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/PermanentEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/BonusForTakingCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding>
-            <element signature="e#212#213#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/src/ServerModel/Bonus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
-          <folding>
-            <element signature="e#746#747#0" expanded="true" />
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
