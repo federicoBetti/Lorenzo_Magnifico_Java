@@ -7,6 +7,9 @@ import Project.Controller.CardsFactory.TotalCost;
  */
 public class PokerPE extends TrisIE {
 
+    private String resourceEarnedFromExchange;
+
+    private TotalCost effectCost;
     /**
      * Default constructor
      */
@@ -16,11 +19,6 @@ public class PokerPE extends TrisIE {
     /**
      * 
      */
-
-    private String resourceEarnedFromExchange;
-
-    private TotalCost effectCost;
-
 
 
     public String getResourceEarned() {

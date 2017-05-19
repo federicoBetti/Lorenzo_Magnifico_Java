@@ -16,8 +16,8 @@ public class CharacterCard extends Card {
     /**
      * Default constructor
      */
-    public CharacterCard(String name, CharactersCost cost, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects) {
-        super(name, immediate_Effects, permanent_Effects);
+    public CharacterCard(String name, int period, CharactersCost cost, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects) {
+        super(name, period, immediate_Effects, permanent_Effects);
         this.cardCost = cost;
     }
 

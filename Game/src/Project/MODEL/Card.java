@@ -27,8 +27,9 @@ public abstract class Card {
 
 
     // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
-    public Card(String name, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects){
+    public Card(String name, int period, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects){
         this.name = name;
+        this.period = period;
         immediateCardEffects = new ArrayList<Effects>();
         permanentCardEffects = new ArrayList<Effects>();
 

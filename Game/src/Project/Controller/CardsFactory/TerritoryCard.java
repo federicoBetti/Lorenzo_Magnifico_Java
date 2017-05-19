@@ -17,8 +17,8 @@ public class TerritoryCard extends Card {
     /**
      * Default constructor
      */
-    public TerritoryCard(String name, TerritoryCost cost, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects) {
-        super(name, immediate_Effects, permanent_Effects);
+    public TerritoryCard(String name, int period, TerritoryCost cost, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects) {
+        super(name, period, immediate_Effects, permanent_Effects);
         this.cardCost = cost;
     }
 
