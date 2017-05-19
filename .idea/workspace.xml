@@ -2,28 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/AllSupportFunction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/DontCheckPositionDecorator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/DontPayForTerritories.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/DontPayMoneyForTower.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/TakeRoPEffects.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/TakeRop.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/FivePointsMoreForPray.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SantaRita.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctionDecorator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/PicoDellaMirandola.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Project/Network/SupportFunction.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddCoin.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddCoin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddFaithPoints.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddFaithPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddMilitaryPoints.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddMilitaryPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddServants.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddServants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddStone.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddStone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddVicotryPoints.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddVicotryPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddWood.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddWood.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/AllSupportFunction.java" afterPath="$PROJECT_DIR$/src/Project/Controller/AllSupportFunction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/Cost.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/Cost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCard.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCost.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/DontCheckPositionDecorator.java" afterPath="$PROJECT_DIR$/src/Project/Controller/DontCheckPositionDecorator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/DontPayForTerritories.java" afterPath="$PROJECT_DIR$/src/Project/Controller/DontPayForTerritories.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/DontPayMoneyForTower.java" afterPath="$PROJECT_DIR$/src/Project/Controller/DontPayMoneyForTower.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/SetLeaderEffectsUseful.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/SetLeaderEffectsUseful.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/FivePointsMoreForPray.java" afterPath="$PROJECT_DIR$/src/Project/Controller/FivePointsMoreForPray.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SantaRita.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SantaRita.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunction.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Card.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/PersonalBoard.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/PersonalBoard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/FamilyMember.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/FamilyMember.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Player.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -38,14 +33,36 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Card.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Card.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="735">
-              <caret line="57" column="57" lean-forward="false" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
+              <caret line="61" column="31" lean-forward="false" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
               <folding>
+                <element signature="e#2034#2035#0" expanded="true" />
                 <element signature="e#2077#2078#0" expanded="true" />
+                <element signature="e#2141#2142#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetLeaderEffectsUseful.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/SetLeaderEffectsUseful.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="52" column="28" lean-forward="false" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SupportFunction.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,8 +72,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -72,16 +89,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/TotalCost.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/Controller/CardsFactory/VenturesCost.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/Controller/MessageObjects/TowerAction.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/LeaderEffectsUsefull.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/CouncilPrivileges.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/CouncilPrivileges.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/Network/SupportFunction.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/MODEL/Player.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/AddFaithPoints.java" />
-        <option value="$PROJECT_DIR$/Game/src/Project/Controller/LeaderCardRequirements.java" />
         <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/ReduceValueOnAction.java" />
         <option value="$PROJECT_DIR$/Game/src/Project/MODEL/BonusForTakingCharacter.java" />
         <option value="$PROJECT_DIR$/Game/src/Project/Controller/Effects/RealEffects/BonusForTakingBuilding.java" />
@@ -109,10 +116,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Game/src/Project/Controller/LoadCards.java" />
         <option value="$PROJECT_DIR$/src/Project/Server.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/AllSupportFunction.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/TakeRop.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/DontPayForTerritories.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/DontPayMoneyForTower.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/TakeRoPEffects.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddWood.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddVicotryPoints.java" />
@@ -121,8 +125,21 @@
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddMilitaryPoints.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddFaithPoints.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddCoin.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/Effects/SetLeaderEffectsUseful.java" />
+        <option value="$PROJECT_DIR$/src/Project/MODEL/FamilyMember.java" />
+        <option value="$PROJECT_DIR$/src/Project/MODEL/Player.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/CardsFactory/Cost.java" />
         <option value="$PROJECT_DIR$/src/Project/MODEL/Card.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCard.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCost.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/AllSupportFunction.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/PicoDellaMirandola.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunction.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/DontCheckPositionDecorator.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/DontPayForTerritories.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/DontPayMoneyForTower.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/SantaRita.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/FivePointsMoreForPray.java" />
       </list>
     </option>
   </component>
@@ -186,6 +203,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Network" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -281,11 +320,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Effects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEffects" />
+              <option name="myItemId" value="CardsFactory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -340,6 +375,7 @@
       <recent name="ServerModel" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Project/Controller/Effects" />
       <recent name="$PROJECT_DIR$/src/Project/MODEL" />
       <recent name="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects" />
       <recent name="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory" />
@@ -1156,11 +1192,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495195701178</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="creato decorator">
+      <created>1495206466623</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1495206466623</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="877000" />
+    <option name="totallyTimeSpent" value="2976000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1240,7 +1283,8 @@
     <MESSAGE value="aggiunta tutti effetti" />
     <MESSAGE value="effetti carte scomunica e leader, elimino player advanced" />
     <MESSAGE value="Finiti effetti permanenti tranne effetti quelli sui privilegi e effetti immediati torre" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finiti effetti permanenti tranne effetti quelli sui privilegi e effetti immediati torre" />
+    <MESSAGE value="creato decorator" />
+    <option name="LAST_COMMIT_MESSAGE" value="creato decorator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1253,76 +1297,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Project/Network/SupportFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/SetFamiliarFixedValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/ReduceValueOnAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-59">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/SetFamiliarFixedBonus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/MessageObjects/TowerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/MessageObjects/ProductionHarvesterAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/MessageObjects/BonusProductionOrHarvesterAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/BonusTowerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/SetLeaderEffectsUseful.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/MessageObjects/BonusInteraction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Board.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
@@ -1341,13 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1379,17 +1346,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/Cost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildPermanentEffects.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="43" column="33" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1397,13 +1360,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/BuildingCost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1462,6 +1418,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1484,14 +1441,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/AllSupportFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1546,21 +1495,6 @@
             <element signature="e#2412#2413#0" expanded="false" />
             <element signature="e#2454#2455#0" expanded="false" />
             <element signature="e#2485#2486#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/DontCheckPositionDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#253#254#0" expanded="false" />
-            <element signature="e#313#314#0" expanded="false" />
-            <element signature="e#808#809#0" expanded="false" />
-            <element signature="e#862#863#0" expanded="false" />
-            <element signature="e#1096#1097#0" expanded="false" />
-            <element signature="e#1156#1157#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1647,10 +1581,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SantaRita.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/Network/SupportFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="-731">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/FamilyMember.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="112" column="37" lean-forward="false" selection-start-line="112" selection-start-column="37" selection-end-line="112" selection-end-column="37" />
+          <folding>
+            <element signature="e#2245#2246#0" expanded="true" />
+            <element signature="e#2298#2299#0" expanded="true" />
+            <element signature="e#2332#2333#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/SetLeaderEffectsUseful.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="52" column="28" lean-forward="false" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/Cost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="61" column="31" lean-forward="false" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
+          <folding>
+            <element signature="e#2034#2035#0" expanded="true" />
+            <element signature="e#2077#2078#0" expanded="true" />
+            <element signature="e#2141#2142#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding>
+            <element signature="e#674#675#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding>
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#489#490#0" expanded="true" />
+            <element signature="e#525#526#0" expanded="true" />
+            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#588#589#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/VenturesCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/BuildingCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/CharactersCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/AllSupportFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="69" lean-forward="false" selection-start-line="17" selection-start-column="69" selection-end-line="17" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/DontCheckPositionDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="46" column="14" lean-forward="true" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/DontPayForTerritories.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="41" column="39" lean-forward="true" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1659,33 +1717,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Controller/DontPayMoneyForTower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="36" column="51" lean-forward="false" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
+        <state relative-caret-position="849">
+          <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
           <folding>
-            <element signature="e#954#955#0" expanded="true" />
-            <element signature="e#1014#1015#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/DontPayForTerritories.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/PicoDellaMirandola.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        <state relative-caret-position="129">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#1013#1014#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Card.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SantaRita.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="57" column="57" lean-forward="false" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
+        <state relative-caret-position="849">
+          <caret line="61" column="5" lean-forward="false" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
           <folding>
-            <element signature="e#2077#2078#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/FivePointsMoreForPray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="37" column="51" lean-forward="false" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
+          <folding>
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

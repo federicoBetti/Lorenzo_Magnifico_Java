@@ -14,7 +14,7 @@ public class FamilyMember {
     /**
      * 
      */
-    private int FamilyColour;
+    private String FamilyColour;
 
 
 
@@ -46,11 +46,11 @@ public class FamilyMember {
         // TODO implement here
     }
 
-    public int getFamilyColour() {
+    public String  getFamilyColour() {
         return FamilyColour;
     }
 
-    public void setFamilyColour(int familyColour) {
+    public void setFamilyColour(String  familyColour) {
         FamilyColour = familyColour;
     }
 

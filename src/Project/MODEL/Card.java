@@ -58,5 +58,9 @@ public abstract class Card {
     public ArrayList<Effects> getImmediateCardEffects() {
         return immediateCardEffects;
     }
+
+    public Cost getCardCost() {
+        return CardCost;
+    }
 }
 

@@ -1,6 +1,9 @@
 package Project.Controller;
 
+import Project.Controller.CardsFactory.BuildingCard;
+import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.TerritoryCard;
+import Project.Controller.CardsFactory.VenturesCard;
 import Project.MODEL.*;
 
 import java.util.*;
@@ -31,9 +34,30 @@ public class SupportFunction implements AllSupportFunction{
             return false;
     }
 
+    public boolean CheckCardCostTerritories (TerritoryCard card, Player player){
+        if (card.getCardCost().getStoneRequired() <= player.getPersonalBoardReference().getStone() &&
+                card.getCardCost().getWoodRequired() <= player.getPersonalBoardReference().getWood() &&
+                card.getCardCost().getDiceCost() <= // TODO guardare coe vengono passati i dice value
+        )
+            return true;
+        else
+            throw NotEnaughResource();
+        return false;
+    }
+
+    public boolean CheckCardCostCharacters (CharacterCard card, Player player){
+        // TODO da fare in base anche ai dice required
+    }
+    public boolean CheckCardCostBuildings (BuildingCard card, Player player){
+        // TODO da fare in base anche ai dice required
+    }
+    public boolean CheckCardCostVentures (VenturesCard card, Player player){
+        // TODO da fare in base anche ai dice required
+    }
     public boolean CheckCapabilityToTakeTerritory (Player player){
         int length = player.getPersonalBoardReference().getTerritories().size();
         if (player.getScore().getMilitaryPoints() >= //TODO quanti punti militari ci vogliono per carte verdi)
+                )
             return true;
         else
             return false;
@@ -41,7 +65,7 @@ public class SupportFunction implements AllSupportFunction{
 
     public boolean CheckTowerOccupiedByYou (Tower[] tower, Player player){
         for (Tower t: tower){
-            if (t.getFamiliarOnThisPosition().getFamilyColour() == player.getColour())
+            if (t.getFamiliarOnThisPosition().getFamilyColour() == player.getFamilyColour())
                 return true;
         }
         return false;

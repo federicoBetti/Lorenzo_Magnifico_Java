@@ -22,5 +22,8 @@ public class TerritoryCard extends Card {
         this.cardCost = cost;
     }
 
-
+    @Override
+    public TerritoryCost getCardCost() {
+        return cardCost;
+    }
 }

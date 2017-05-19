@@ -25,6 +25,8 @@ public class Player {
 
     private int finalPointBonus;
 
+    private String FamilyColour;
+
 
 
 
@@ -106,5 +108,13 @@ public class Player {
 
 	public void setLeaderEffectsUsefull(LeaderEffectsUsefull leaderEffectsUsefull) {
 		this.leaderEffectsUsefull = leaderEffectsUsefull;
+	}
+
+	public String getFamilyColour() {
+		return FamilyColour;
+	}
+
+	public void setFamilyColour(String familyColour) {
+		FamilyColour = familyColour;
 	}
 }

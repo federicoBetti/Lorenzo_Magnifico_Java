@@ -1,5 +1,8 @@
 package Project.Controller;
 
+import Project.Controller.CardsFactory.BuildingCard;
+import Project.Controller.CardsFactory.CharacterCard;
+import Project.Controller.CardsFactory.VenturesCard;
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.Controller.Effects.RealEffects.TakeRoPEffects;
 import Project.MODEL.*;
@@ -41,5 +44,20 @@ public class SantaRita implements SupportFunctionDecorator {
                 e.doEffect(player);
             }
         }
+    }
+
+    @Override
+    public boolean CheckCardCostCharacters(CharacterCard card, Player player) {
+        return allSupportFunction.CheckCardCostCharacters(card,player);
+    }
+
+    @Override
+    public boolean CheckCardCostBuildings(BuildingCard card, Player player) {
+        return allSupportFunction.CheckCardCostBuildings(card,player);
+    }
+
+    @Override
+    public boolean CheckCardCostVentures(VenturesCard card, Player player) {
+        return allSupportFunction.CheckCardCostVentures(card,player);
     }
 }

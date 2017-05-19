@@ -1,5 +1,7 @@
 package Project.Controller.CardsFactory;
 
+import Project.MODEL.Player;
+
 /**
  * 
  */
