@@ -16,10 +16,7 @@ public abstract class Card {
 
     private String name;
 
-    private Cost CardCost;
-
     private int period;
-
 
     private ArrayList<Effects> immediateCardEffects;
 

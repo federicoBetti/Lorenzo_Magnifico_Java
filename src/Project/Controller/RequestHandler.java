@@ -6,5 +6,5 @@ package Project.Controller;
  */
 public interface ConstructorHandler {
 
-    public ConstructorHandle();
+    public void ConstructorHandler();
 }

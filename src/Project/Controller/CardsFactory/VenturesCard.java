@@ -17,7 +17,7 @@ public class VenturesCard extends Card {
     private ArrayList<VenturesCost> possibleCost;
     private VenturesCost CardCost;
 
-    public VenturesCard(String name, int period, VenturesCost[] cost, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects) {
+    public VenturesCard(String name, int period, ArrayList<VenturesCost> cost, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects) {
 
         super(name, period, immediate_Effects, permanent_Effects);
         possibleCost = new ArrayList<VenturesCost>();

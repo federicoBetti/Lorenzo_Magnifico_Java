@@ -2,7 +2,9 @@ package Project.Configurations;
 
 import Project.Controller.CardsFactory.*;
 import Project.Controller.Constants;
+import Project.Controller.ConstructorHandler;
 import Project.Controller.LoadCards;
+import Project.Controller.RequestHandler;
 
 /**
  * Created by raffaelebongo on 18/05/17.
@@ -24,6 +26,6 @@ public class Configuration {
         loadCards = new LoadCards();
         constants = new Constants();
 
-        loadCards.getConstructorMap().put(constants.BUILDING_CARD, BuildingCard::new  );
+        RequestHandler put = loadCards.getMap().put(constants.BUILDING_CARD, BuildingCard::new);
     }
 }
