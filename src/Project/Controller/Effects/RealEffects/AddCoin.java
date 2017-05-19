@@ -7,7 +7,7 @@ import Project.MODEL.Player;
 /**
  * Created by Rita1 on 09/05/2017.
  */
-public class AddCoin implements Effects {
+public class AddCoin implements TakeRoPEffects {
     private int quantity;
 
     public AddCoin (int quantity){

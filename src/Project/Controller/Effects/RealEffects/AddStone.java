@@ -5,7 +5,7 @@ import Project.Controller.MessageObjects.BonusInteraction;
 import Project.Controller.MessageObjects.OkOrNo;
 import Project.MODEL.Player;
 
-public class AddStone implements Effects {
+public class AddStone implements TakeRoPEffects {
     private int quantity;
 
     public AddStone (int quantity){

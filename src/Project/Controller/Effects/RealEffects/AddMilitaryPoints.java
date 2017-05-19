@@ -7,7 +7,7 @@ import Project.MODEL.*;
 /**
  * Created by Rita1 on 09/05/2017.
  */
-public class AddMilitaryPoints implements Effects {
+public class AddMilitaryPoints implements TakeRoPEffects {
 
     private int quantity;
 

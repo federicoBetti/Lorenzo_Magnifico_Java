@@ -5,7 +5,7 @@ import Project.Controller.MessageObjects.OkOrNo;
 import Project.MODEL.*;
 
 
-public class AddFaithPoints implements Effects {
+public class AddFaithPoints implements TakeRoPEffects {
     private int quantity;
 
     public AddFaithPoints (int quantity){

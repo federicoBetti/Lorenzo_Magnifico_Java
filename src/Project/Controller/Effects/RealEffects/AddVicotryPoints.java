@@ -5,7 +5,7 @@ import Project.Controller.MessageObjects.BonusInteraction;
 import Project.Controller.MessageObjects.OkOrNo;
 import Project.MODEL.Player;
 
-public class AddVicotryPoints implements Effects {
+public class AddVicotryPoints implements TakeRoPEffects {
 
     private int quantity;
 

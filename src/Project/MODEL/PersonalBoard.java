@@ -6,6 +6,8 @@ import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.TerritoryCard;
 import Project.Controller.CardsFactory.VenturesCard;
 
+import java.util.LinkedList;
+
 /**
  * 
  */
@@ -20,7 +22,7 @@ public class PersonalBoard {
     /**
      * 
      */
-    private TerritoryCard[] territories;
+    private LinkedList<TerritoryCard>territories;
 
     /**
      * 
@@ -53,30 +55,30 @@ public class PersonalBoard {
     private int stone;
 
     /**
-     * 
+     *
      */
     private int wood;
 
     /**
-     * 
+     *
      */
     private int coins;
 
     /**
-     * 
+     *
      */
     private int servants;
 
     /**
-     * 
+     *
      */
     private int endBonus;
 
-	public TerritoryCard[] getTerritories() {
+	public LinkedList<TerritoryCard> getTerritories() {
 		return territories;
 	}
 
-	public void setTerritories(TerritoryCard[] territories) {
+	public void setTerritories(LinkedList<TerritoryCard> territories) {
 		this.territories = territories;
 	}
 

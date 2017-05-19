@@ -4,7 +4,7 @@ import Project.Controller.MessageObjects.BonusInteraction;
 import Project.Controller.MessageObjects.OkOrNo;
 import Project.MODEL.Player;
 
-public class AddWood implements Effects {
+public class AddWood implements TakeRoPEffects {
     private int quantity;
 
     public AddWood (int quantity){

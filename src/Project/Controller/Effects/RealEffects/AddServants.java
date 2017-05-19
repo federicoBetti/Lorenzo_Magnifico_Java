@@ -5,7 +5,7 @@ import Project.Controller.MessageObjects.BonusInteraction;
 import Project.Controller.MessageObjects.OkOrNo;
 import Project.MODEL.Player;
 
-public class AddServants implements Effects {
+public class AddServants implements TakeRoPEffects {
     private int quantity;
 
     public AddServants (int quantity){

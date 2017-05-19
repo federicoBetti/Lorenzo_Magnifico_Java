@@ -54,5 +54,9 @@ public abstract class Card {
     public void MakePermannetEffects(Player player) {
        //TODO: può essere scelto l'effetto permanente da attivare
         }
-	}
+
+    public ArrayList<Effects> getImmediateCardEffects() {
+        return immediateCardEffects;
+    }
+}
 
