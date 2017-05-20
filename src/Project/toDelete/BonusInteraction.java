@@ -1,4 +1,4 @@
-package Project.Controller.MessageObjects;
+package Project.toDelete;
 
 public abstract class BonusInteraction {
 

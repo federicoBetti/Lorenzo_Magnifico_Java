@@ -14,7 +14,7 @@ public class Tower extends Position {
     /**
      * 
      */
-    private int colour;
+    private String colour;
 
     /**
      * 

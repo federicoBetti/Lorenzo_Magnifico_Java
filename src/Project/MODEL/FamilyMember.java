@@ -5,43 +5,25 @@ package Project.MODEL;
  */
 public class FamilyMember {
 
-    /**
-     * Default constructor
-     */
-    public FamilyMember() {
-    }
 
-    /**
-     * 
-     */
     private String FamilyColour;
 
-
-
-    /**
-     * 
-     */
     private int FixedBonus;
-    private int fixedValue = 0;
-    /**
-     * 
-     */
-    private int MyColour;
 
-    /**
-     * 
-     */
+    private int fixedValue;
+
+    private String MyColour;
+
     private int MyValue;
 
-    /**
-     * 
-     */
     private boolean isPlayed;
 
 
-    /**
-     * @return
-     */
+    public FamilyMember(){
+        this.fixedValue = 0;
+        this.isPlayed = false;
+    }
+
     public void TakeValueFromDIce() {
         // TODO implement here
     }
@@ -62,11 +44,11 @@ public class FamilyMember {
         FixedBonus = fixedBonus;
     }
 
-    public int getMyColour() {
+    public String getMyColour() {
         return MyColour;
     }
 
-    public void setMyColour(int myColour) {
+    public void setMyColour(String myColour) {
         MyColour = myColour;
     }
 

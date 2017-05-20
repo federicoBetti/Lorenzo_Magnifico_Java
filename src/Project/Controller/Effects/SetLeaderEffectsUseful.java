@@ -3,7 +3,8 @@ package Project.Controller.Effects;
 
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.MODEL.*;
-import Project.Controller.MessageObjects.*;
+import Project.toDelete.BonusInteraction;
+import Project.toDelete.OkOrNo;
 
 public class SetLeaderEffectsUseful implements Effects {
     String parameter;

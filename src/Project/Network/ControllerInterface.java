@@ -1,6 +1,6 @@
 package Project.Network;
 
-import Project.Controller.MessageObjects.BonusInteraction;
+import Project.toDelete.BonusInteraction;
 import Project.MODEL.Card;
 import Project.MODEL.Card.Card;
 import Project.MODEL.FamilyMember;

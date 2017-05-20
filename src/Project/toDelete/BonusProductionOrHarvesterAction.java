@@ -1,6 +1,4 @@
-package Project.Controller.MessageObjects;
-
-import Project.Controller.MessageObjects.BonusInteraction;
+package Project.toDelete;
 
 public class BonusProductionOrHarvesterAction extends BonusInteraction {
 	private int diceValue;

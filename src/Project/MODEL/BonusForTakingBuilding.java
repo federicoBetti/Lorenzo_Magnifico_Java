@@ -1,7 +1,5 @@
 package Project.MODEL;
 
-import Project.Controller.MessageObjects.BonusInteraction;
-
 /**
  * Created by raffaelebongo on 10/05/17.
  */

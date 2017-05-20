@@ -3,6 +3,8 @@ package Project.MODEL;
 
 import Project.Controller.CardsFactory.ExcommunicationZone;
 
+import java.util.ArrayList;
+
 /**
  * 
  */
@@ -49,7 +51,7 @@ public final class Board {
     /**
      * 
      */
-    private List<Player> TurnOrder;
+    private ArrayList<Player> TurnOrder;
 
     /**
      * 

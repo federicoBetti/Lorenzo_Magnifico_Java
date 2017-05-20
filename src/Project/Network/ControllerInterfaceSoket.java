@@ -21,7 +21,7 @@ public class ControllerInterfaceSoket implements ControllerInterface {
      * @param position 
      * @param familyM
      */
-    public void TakeDevelopementCard(int position, FamilyMember familyM) {
+    public void TakeDevelopementCard(String TowerColor, int position, FamilyMember familyM) {
         // TODO implement here
     }
 
@@ -29,6 +29,8 @@ public class ControllerInterfaceSoket implements ControllerInterface {
      * @param position 
      * @param familyM 
      * @return
+     *
+     * Commento: serve la posizione? non si mette nella prima posizione libera?
      */
     public void Harvester(int position, FamilyMember familyM) {
         // TODO implement here
@@ -56,12 +58,17 @@ public class ControllerInterfaceSoket implements ControllerInterface {
         return null;
     }
 
+    @Override
+    public void GoTOMarket(int position, FamilyMember familyM) {
+
+    }
+
     /**
      * @param position 
      * @param familyM 
      * @return
      */
-    public void GoTOMarket(int position, FamilyMember familyM) {
+    public void GoToMarket(int position, FamilyMember familyM) {
         // TODO implement here
         return null;
     }
@@ -75,19 +82,21 @@ public class ControllerInterfaceSoket implements ControllerInterface {
     }
 
     /**
-     * @param LeaderCardIndex 
+     * @param leaderCardName
      * @return
+     *
+     * IO PASSEREI LA STRINGA CON IL NOME DELLA CARTA LEADER IN MODO DA FARE IL MAPPING FRA ENUM E NOME DELLA CARTA
      */
-    public void PlayLeaderCard(int LeaderCardIndex) {
+    public void PlayLeaderCard( String leaderCardName ) {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param LeaderCardIndex 
+     * @param leaderCardName
      * @return
      */
-    public void DiscardLeaderCard(int LeaderCardIndex) {
+    public void DiscardLeaderCard ( String leaderCardName ) {
         // TODO implement here
         return null;
     }

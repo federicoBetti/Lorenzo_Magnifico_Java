@@ -1,8 +1,10 @@
-package Project.Controller.MessageObjects;
+package Project.toDelete;
 
 
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.MODEL.Player;
+import Project.toDelete.BonusInteraction;
+import Project.toDelete.BonusProductionOrHarvesterAction;
 
 public class ProductionHarvesterAction implements Effects {
     BonusProductionOrHarvesterAction bph;

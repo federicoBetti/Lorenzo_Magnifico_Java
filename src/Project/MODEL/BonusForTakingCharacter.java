@@ -1,6 +1,6 @@
 package Project.MODEL;
 
-import Project.Controller.MessageObjects.BonusInteraction;
+import Project.toDelete.BonusInteraction;
 
 /**
  * Created by raffaelebongo on 10/05/17.

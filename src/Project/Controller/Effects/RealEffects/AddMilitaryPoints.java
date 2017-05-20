@@ -1,7 +1,7 @@
 package Project.Controller.Effects.RealEffects;
 
-import Project.Controller.MessageObjects.BonusInteraction;
-import Project.Controller.MessageObjects.OkOrNo;
+import Project.toDelete.BonusInteraction;
+import Project.toDelete.OkOrNo;
 import Project.MODEL.*;
 
 /**

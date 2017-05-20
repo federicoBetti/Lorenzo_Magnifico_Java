@@ -1,7 +1,7 @@
-package Project.Controller.MessageObjects;
+package Project.toDelete;
 
 
-import Project.Controller.MessageObjects.BonusInteraction;
+import Project.toDelete.BonusInteraction;
 
 public class OkOrNo extends BonusInteraction {
     private boolean ok = false;

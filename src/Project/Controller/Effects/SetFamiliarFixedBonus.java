@@ -1,8 +1,8 @@
 package Project.Controller.Effects;
 
 import Project.Controller.Effects.RealEffects.Effects;
-import Project.Controller.MessageObjects.BonusInteraction;
-import Project.Controller.MessageObjects.OkOrNo;
+import Project.toDelete.BonusInteraction;
+import Project.toDelete.OkOrNo;
 import Project.MODEL.Player;
 
 public class SetFamiliarFixedBonus implements Effects {

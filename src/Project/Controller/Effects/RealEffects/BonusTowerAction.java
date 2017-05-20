@@ -1,8 +1,8 @@
 package Project.Controller.Effects.RealEffects;
 
 
-import Project.Controller.MessageObjects.BonusInteraction;
-import Project.Controller.MessageObjects.TowerAction;
+import Project.toDelete.BonusInteraction;
+import Project.toDelete.TowerAction;
 import Project.MODEL.Player;
 
 public class BonusTowerAction implements Effects {

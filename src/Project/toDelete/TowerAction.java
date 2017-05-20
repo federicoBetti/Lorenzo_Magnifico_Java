@@ -1,6 +1,6 @@
-package Project.Controller.MessageObjects;
+package Project.toDelete;
 
-import Project.Controller.MessageObjects.BonusInteraction;
+import Project.toDelete.BonusInteraction;
 
 public class TowerAction extends BonusInteraction {
 	private int newCardDicevalue;
