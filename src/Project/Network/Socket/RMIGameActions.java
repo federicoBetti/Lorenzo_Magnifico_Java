@@ -7,30 +7,28 @@ import Project.MODEL.FamilyMember;
 import java.util.*;
 
 /**
- * 
+ *
  */
-public class ControllerInterfaceSoket implements ControllerInterface {
+public class RMIGameActions implements ControllerInterface {
 
     /**
      * Default constructor
      */
-    public ControllerInterfaceSoket() {
+    public ControllerInterfaceRMI() {
     }
 
     /**
-     * @param position 
+     * @param position
      * @param familyM
      */
-    public void TakeDevelopementCard(String TowerColor, int position, FamilyMember familyM) {
+    public void TakeDevelopementCard(int position, FamilyMember familyM) {
         // TODO implement here
     }
 
     /**
-     * @param position 
-     * @param familyM 
+     * @param position
+     * @param familyM
      * @return
-     *
-     * Commento: serve la posizione? non si mette nella prima posizione libera?
      */
     public void Harvester(int position, FamilyMember familyM) {
         // TODO implement here
@@ -38,8 +36,8 @@ public class ControllerInterfaceSoket implements ControllerInterface {
     }
 
     /**
-     * @param position 
-     * @param familyM 
+     * @param position
+     * @param familyM
      * @return
      */
     public void Production(int position, FamilyMember familyM) {
@@ -48,9 +46,9 @@ public class ControllerInterfaceSoket implements ControllerInterface {
     }
 
     /**
-     * @param position 
-     * @param familyM 
-     * @param CardToProduct 
+     * @param position
+     * @param familyM
+     * @param CardToProduct
      * @return
      */
     public void Production(int position, FamilyMember familyM, ArrayList<Card> CardToProduct) {
@@ -58,17 +56,12 @@ public class ControllerInterfaceSoket implements ControllerInterface {
         return null;
     }
 
-    @Override
-    public void GoTOMarket(int position, FamilyMember familyM) {
-
-    }
-
     /**
-     * @param position 
-     * @param familyM 
+     * @param position
+     * @param familyM
      * @return
      */
-    public void GoToMarket(int position, FamilyMember familyM) {
+    public void GoTOMarket(int position, FamilyMember familyM) {
         // TODO implement here
         return null;
     }
@@ -82,21 +75,19 @@ public class ControllerInterfaceSoket implements ControllerInterface {
     }
 
     /**
-     * @param leaderCardName
+     * @param LeaderCardIndex
      * @return
-     *
-     * IO PASSEREI LA STRINGA CON IL NOME DELLA CARTA LEADER IN MODO DA FARE IL MAPPING FRA ENUM E NOME DELLA CARTA
      */
-    public void PlayLeaderCard( String leaderCardName ) {
+    public void PlayLeaderCard(int LeaderCardIndex) {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param leaderCardName
+     * @param LeaderCardIndex
      * @return
      */
-    public void DiscardLeaderCard ( String leaderCardName ) {
+    public void DiscardLeaderCard(int LeaderCardIndex) {
         // TODO implement here
         return null;
     }
@@ -110,7 +101,7 @@ public class ControllerInterfaceSoket implements ControllerInterface {
     }
 
     /**
-     * @param PrivelgeNumber 
+     * @param PrivelgeNumber
      * @return
      */
     public void GoToCouncilPalace(int PrivelgeNumber) {

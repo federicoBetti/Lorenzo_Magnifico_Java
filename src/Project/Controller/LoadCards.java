@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import Project.Controller.CardsFactory.*;
 import com.google.gson.JsonStreamParser;
-import jdk.nashorn.internal.parser.JSONParser;
+
 
 //TODO Vedere se funziona davvero
 public class LoadCards {
@@ -89,7 +89,7 @@ public class LoadCards {
         return card;
     }
 
-    interface BuilderHandler {
+    private interface BuilderHandler {
 
         Card build( );
     }

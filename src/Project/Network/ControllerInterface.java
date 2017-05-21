@@ -16,7 +16,7 @@ public interface ControllerInterface {
      * @param position 
      * @param familyM
      */
-    public BonusInteraction TakeDevelopementCard(int position, FamilyMember familyM);
+    public BonusInteraction TakeDevelopementCard(String towerColor, int position, FamilyMember familyM);
 
     /**
      * @param position 
@@ -35,10 +35,10 @@ public interface ControllerInterface {
     /**
      * @param position 
      * @param familyM 
-     * @param CardToProduct 
+     * @param cardToProduct
      * @return
      */
-    public void Production(int position, FamilyMember familyM, ArrayList<Card> CardToProduct);
+    public void Production(int position, FamilyMember familyM, ArrayList<Card> cardToProduct);
 
     /**
      * @param position 
@@ -53,16 +53,16 @@ public interface ControllerInterface {
     public void JumpTurn();
 
     /**
-     * @param LeaderCardIndex 
+     * @param leaderName
      * @return
      */
-    public void PlayLeaderCard(int LeaderCardIndex);
+    public void PlayLeaderCard(String leaderName );
 
     /**
-     * @param LeaderCardIndex 
+     * @param leaderName
      * @return
      */
-    public void DiscardLeaderCard(int LeaderCardIndex);
+    public void DiscardLeaderCard(String leaderName);
 
     /**
      * @return
@@ -70,10 +70,10 @@ public interface ControllerInterface {
     public void RollDice();
 
     /**
-     * @param PrivelgeNumber 
+     * @param privelgeNumber
      * @return
      */
-    public void GoToCouncilPalace(int PrivelgeNumber);
+    public void GoToCouncilPalace(int privelgeNumber);
 
     /**
      * @return

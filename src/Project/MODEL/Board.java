@@ -10,38 +10,28 @@ import java.util.ArrayList;
  */
 public final class Board {
 
-    int caso;
-    /**
-     * Default constructor
-     */
-    public Board() {
-    }
 
-
-    /**
-     * 
-     */
     private Tower towers;
 
     /**
      * 
      */
-    private Set<Harvester> harvester_zone;
+    private ArrayList<Harvester> harvester_zone;
 
     /**
      * 
      */
-    private Set<Production> Production_zone;
+    private ArrayList<Production> Production_zone;
 
     /**
      * 
      */
-    private Set<Market> Market_zone;
+    private ArrayList<Market> Market_zone;
 
     /**
      * 
      */
-    private Set<Council> Council_zone;
+    private ArrayList<Council> Council_zone;
 
     /**
      * 
