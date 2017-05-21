@@ -7,9 +7,7 @@ import Project.toDelete.BonusInteraction;
 
 import java.util.ArrayList;
 
-/**
- * Created by raffaelebongo on 21/05/17.
- */
+
 public class SocketGameActions implements ControllerInterface{
 
     @Override

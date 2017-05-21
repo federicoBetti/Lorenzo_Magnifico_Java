@@ -1,8 +1,11 @@
-package Project.Network;
+package Project.Network.RMI;
 
+import Project.Client.Network.RMI.RMIServerToClientInterface;
 import Project.MODEL.Card;
 import Project.MODEL.Card.Card;
 import Project.MODEL.FamilyMember;
+import Project.Network.ControllerInterface;
+import Project.toDelete.BonusInteraction;
 
 import java.util.*;
 
@@ -12,9 +15,14 @@ import java.util.*;
 public class RMIGameActions implements ControllerInterface {
 
     /**
-     * Default constructor
+     * invocando metoi sul myClient chiamo cose sul client. è il modo per comunicare
      */
-    public ControllerInterfaceRMI() {
+    private RMIServerToClientInterface myClient;
+    /**
+     * dal costruttore prendo un riferimento al client cosi posso chiamare i metodi su di lui
+     */
+    public RMIGameActions(RMIServerToClientInterface rmiServerToClientInterface) {
+        this.myClient = rmiServerToClientInterface;
     }
 
     /**
@@ -23,6 +31,11 @@ public class RMIGameActions implements ControllerInterface {
      */
     public void TakeDevelopementCard(int position, FamilyMember familyM) {
         // TODO implement here
+    }
+
+    @Override
+    public BonusInteraction TakeDevelopementCard(String towerColor, int position, FamilyMember familyM) {
+        return null;
     }
 
     /**
@@ -72,6 +85,16 @@ public class RMIGameActions implements ControllerInterface {
     public void JumpTurn() {
         // TODO implement here
         return null;
+    }
+
+    @Override
+    public void PlayLeaderCard(String leaderName) {
+
+    }
+
+    @Override
+    public void DiscardLeaderCard(String leaderName) {
+
     }
 
     /**

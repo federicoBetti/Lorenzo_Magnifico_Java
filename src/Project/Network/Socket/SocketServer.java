@@ -1,20 +1,18 @@
 package Project.Network.Socket;
 
+import Project.Network.AbstractServer;
 import Project.Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 
-/**
- * Created by raffaelebongo on 20/05/17.
- */
-public class SocketServer {
 
-    Server server;
+public class SocketServer extends AbstractServer{
+
     private ServerSocket serverSocket;
 
     public SocketServer( Server server ){
-        this.server = server;
+        super(server);
     }
 
     public void startServerSocket(int socketPort) throws IOException {
