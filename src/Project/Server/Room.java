@@ -1,6 +1,6 @@
 package Project.Server;
 
-import Project.Controller.SupportFunctions.AllSupportFunction;
+import Project.Controller.SupportFunctions.AllSupportFunctions;
 import Project.MODEL.Board;
 import Project.MODEL.Player;
 import Project.Server.Network.ControllerInterface;
@@ -32,7 +32,7 @@ public class Room {
     ControllerInterface gameActions;
 
     //TODO chiedere a betti se l'idea è questa
-    AllSupportFunction allSupportFunction;
+    AllSupportFunctions allSupportFunctions;
 
 
 

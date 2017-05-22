@@ -12,7 +12,7 @@ import java.util.*;
 //bisogna fare che il meotod doEffect riitorna la rispooata a ritornare al client, che puo essere un oggetto che è ok, oppure un oggetto tipo tower action
 //ritorna una responde cioè bonusinterface
 
-public abstract class Card {
+public abstract class DevelopmentCard {
 
     private String name;
 
@@ -24,7 +24,7 @@ public abstract class Card {
 
 
     // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
-    public Card(String name, int period, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects){
+    public DevelopmentCard(String name, int period, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects){
         this.name = name;
         this.period = period;
         immediateCardEffects = new ArrayList<Effects>();

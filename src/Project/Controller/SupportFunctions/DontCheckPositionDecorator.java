@@ -6,11 +6,11 @@ import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
 import Project.MODEL.*;
 
-public class DontCheckPositionDecorator implements SupportFunctionDecorator {
-    AllSupportFunction allSupportFunction = null;
+public class DontCheckPositionDecorator implements SupportFunctionsDecorator {
+    AllSupportFunctions allSupportFunctions = null;
 
-    DontCheckPositionDecorator(AllSupportFunction allSupportFunction){
-        this.allSupportFunction = allSupportFunction;
+    DontCheckPositionDecorator(AllSupportFunctions allSupportFunctions){
+        this.allSupportFunctions = allSupportFunctions;
     }
 
     public boolean Check_Position(int position, Position[] zone, FamilyMember familyMember) {
@@ -18,42 +18,42 @@ public class DontCheckPositionDecorator implements SupportFunctionDecorator {
             return true;
         }
         else
-            return allSupportFunction.Check_Position(position,zone,familyMember);
+            return allSupportFunctions.Check_Position(position,zone,familyMember);
 
     }
 
     @Override
     public boolean CheckTowerOccupiedByYou(Tower[] tower, Player player) {
-        return allSupportFunction.CheckTowerOccupiedByYou(tower, player);
+        return allSupportFunctions.CheckTowerOccupiedByYou(tower, player);
     }
 
     @Override
     public int Pray(Player player) {
-        return allSupportFunction.Pray(player);
+        return allSupportFunctions.Pray(player);
     }
 
     @Override
     public boolean CheckCapabilityToTakeTerritory(Player player) {
-        return allSupportFunction.CheckCapabilityToTakeTerritory(player);
+        return allSupportFunctions.CheckCapabilityToTakeTerritory(player);
     }
 
     @Override
     public void ApplyEffects(Card card, Player player) {
-        allSupportFunction.ApplyEffects(card,player);
+        allSupportFunctions.ApplyEffects(card,player);
     }
 
     @Override
     public boolean CheckCardCostCharacters(CharacterCard card, Player player) {
-        return allSupportFunction.CheckCardCostCharacters(card,player);
+        return allSupportFunctions.CheckCardCostCharacters(card,player);
     }
 
     @Override
     public boolean CheckCardCostBuildings(BuildingCard card, Player player) {
-        return allSupportFunction.CheckCardCostBuildings(card,player);
+        return allSupportFunctions.CheckCardCostBuildings(card,player);
     }
 
     @Override
     public boolean CheckCardCostVentures(VenturesCard card, Player player) {
-        return allSupportFunction.CheckCardCostVentures(card,player);
+        return allSupportFunctions.CheckCardCostVentures(card,player);
     }
 }
