@@ -76,7 +76,7 @@ public class RMIGameActions implements ControllerInterface {
      */
     public void GoTOMarket(int position, FamilyMember familyM) {
         // TODO implement here
-        return null;
+        return;
     }
 
     /**
@@ -84,7 +84,7 @@ public class RMIGameActions implements ControllerInterface {
      */
     public void JumpTurn() {
         // TODO implement here
-        return null;
+        return;
     }
 
     @Override

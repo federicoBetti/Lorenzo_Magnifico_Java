@@ -23,10 +23,10 @@ public class Room {
 
     private Board board;
 
-    ArrayList<Player> players;
+    ArrayList<Player,ControllerInterface> players;
 
     /**
-     * Riferimento alla classe SocketGameActions
+     * Riferimento alla classe GameActions
      */
 
     ControllerInterface gameActions;

@@ -26,12 +26,13 @@ public class SetLeaderEffectsUseful implements Effects {
                 break;
             }
             case "Federico da Montefeltro": {
-                //questo deve ritornare il fatto che ogni famigliare puo essere usato come uno da sei
+                // TODO  allinizio del turno dici quale vuoi mettere da 6. è da mettere nelle function end turn.
+                // questo deve ritornare il fatto che ogni famigliare puo essere usato come uno da sei
                 player.getLeaderEffectsUsefull().setOneFamilyMemberIs6(true);
                 break;
             }
             case "Lorenzo de' Medici": {
-                //chiedi quale carta si vuole giocare tra quelle con isPlayed == true
+                // TODO chiedi quale carta si vuole giocare tra quelle con isPlayed == true
                 break;
             }
             case "Sisto IV": {
@@ -50,7 +51,7 @@ public class SetLeaderEffectsUseful implements Effects {
                 break;
             }
             case "Pico della Mirandola": {
-                //questo con un bell'if
+                //TODO cambiare costruttore support function
                 player.getLeaderEffectsUsefull().setDiscountOf3OnDevelepomentCard(true);
                 break;
             }

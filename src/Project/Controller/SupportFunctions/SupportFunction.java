@@ -10,7 +10,7 @@ import Project.MODEL.*;
 import java.util.*;
 
 /**
- * 
+ * attenzione forse devo mettere nell'interfaccia tutte le funzioni non solo quelle da decorare
  */
 public class SupportFunction implements AllSupportFunction {
 

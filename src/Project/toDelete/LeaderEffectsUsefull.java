@@ -1,4 +1,4 @@
-package Project.MODEL;
+package Project.toDelete;
 
 public class LeaderEffectsUsefull {
 	
