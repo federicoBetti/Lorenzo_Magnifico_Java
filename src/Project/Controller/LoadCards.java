@@ -18,7 +18,7 @@ public class LoadCards {
 
     Gson gson;
     CardFromJson cardFromJson;
-    HashMap< Object, BuilderHandler > map;
+    HashMap< String, BuilderHandler > map;
     BuilderHandler builderHandler;
 
 
@@ -27,7 +27,7 @@ public class LoadCards {
         this.loadMap();
     }
 
-    public HashMap< Object, BuilderHandler> getMap() {
+    public HashMap< String, BuilderHandler> getMap() {
         return map;
     }
 

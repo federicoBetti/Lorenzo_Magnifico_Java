@@ -5,6 +5,7 @@ package Project.Network.Socket;
  */
 
 import Project.Network.PlayerHandler;
+import Project.Network.SocketPlayerHandler;
 
 /**
  * Ha un riferimento al PlayerHandler. Dopo che il PlayerHandler ha ricevuto il primo paccjetto TCP con
@@ -16,5 +17,5 @@ import Project.Network.PlayerHandler;
 
 public class DataActionHandler {
 
-    PlayerHandler playerHandler;
+    SocketPlayerHandler socketPlayerHandler;
 }
