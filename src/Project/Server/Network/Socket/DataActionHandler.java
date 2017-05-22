@@ -1,11 +1,8 @@
-package Project.Network.Socket;
+package Project.Server.Network.Socket;
 
 /**
  * Created by raffaelebongo on 21/05/17.
  */
-
-import Project.Network.PlayerHandler;
-import Project.Network.SocketPlayerHandler;
 
 /**
  * Ha un riferimento al PlayerHandler. Dopo che il PlayerHandler ha ricevuto il primo paccjetto TCP con

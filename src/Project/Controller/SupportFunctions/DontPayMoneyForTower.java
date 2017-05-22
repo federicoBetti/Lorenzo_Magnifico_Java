@@ -1,30 +1,28 @@
-package Project.Controller;
-
+package Project.Controller.SupportFunctions;
 
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
 import Project.MODEL.*;
 
-public class DontCheckPositionDecorator implements SupportFunctionDecorator {
+
+public class DontPayMoneyForTower implements SupportFunctionDecorator {
+
     AllSupportFunction allSupportFunction = null;
 
-    DontCheckPositionDecorator(AllSupportFunction allSupportFunction){
+    DontPayMoneyForTower(AllSupportFunction allSupportFunction){
         this.allSupportFunction = allSupportFunction;
     }
 
-    public boolean Check_Position(int position, Position[] zone, FamilyMember familyMember) {
-        if (!(zone instanceof Tower[])){
-            return true;
-        }
-        else
-            return allSupportFunction.Check_Position(position,zone,familyMember);
 
+    @Override
+    public boolean Check_Position(int position, Position[] zone, FamilyMember familyMember) {
+        return allSupportFunction.Check_Position(position,zone,familyMember);
     }
 
     @Override
     public boolean CheckTowerOccupiedByYou(Tower[] tower, Player player) {
-        return allSupportFunction.CheckTowerOccupiedByYou(tower, player);
+        return false;
     }
 
     @Override

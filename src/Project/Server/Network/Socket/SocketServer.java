@@ -1,7 +1,7 @@
-package Project.Network.Socket;
+package Project.Server.Network.Socket;
 
-import Project.Network.AbstractServer;
-import Project.Server;
+import Project.Server.Network.AbstractServer;
+import Project.Server.Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;

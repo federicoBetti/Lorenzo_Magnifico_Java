@@ -2,9 +2,7 @@ package Project.Client.Network.RMI;
 
 
 import Project.Client.Network.AbstractClient;
-import Project.Network.RMI.RMIClientToServerInterface;
-
-import java.io.IOException;
+import Project.Server.Network.RMI.RMIClientToServerInterface;
 
 /**
  * qua devono essere implementati sia i metodi di AbstracClient (cioè tutti quelli che il client deve chiamare sul server, sia quelli della

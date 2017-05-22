@@ -3,7 +3,7 @@ package Project.Configurations;
 import Project.Controller.CardsFactory.*;
 import Project.Controller.Constants;
 import Project.Controller.ConstructorHandler;
-import Project.Controller.LoadCards;
+import Project.Controller.CardsFactory.LoadCards;
 import Project.Controller.RequestHandler;
 
 /**

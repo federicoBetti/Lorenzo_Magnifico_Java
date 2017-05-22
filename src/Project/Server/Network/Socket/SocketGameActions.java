@@ -1,8 +1,8 @@
-package Project.Network.Socket;
+package Project.Server.Network.Socket;
 
 import Project.MODEL.Card;
 import Project.MODEL.FamilyMember;
-import Project.Network.ControllerInterface;
+import Project.Server.Network.ControllerInterface;
 import Project.toDelete.BonusInteraction;
 
 import java.util.ArrayList;

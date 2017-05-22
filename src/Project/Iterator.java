@@ -4,7 +4,7 @@ import Project.Controller.Constants;
 import Project.MODEL.Deck;
 
 /**
- * Created by raffaelebongo on 19/05/17.
+ * TODO cambiarlo
  */
 public class Iterator implements IteratorInterface {
 

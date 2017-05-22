@@ -11,7 +11,7 @@ public enum  Constants {
     VENTURE_CARD ("ventureCard"),
     TERRITORY_CARD("territoryCard");
 
-     String name;
+    String name;
 
     private Constants(String s) {
         name = s;

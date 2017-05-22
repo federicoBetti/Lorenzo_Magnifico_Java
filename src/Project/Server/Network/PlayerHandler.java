@@ -1,7 +1,9 @@
-package Project.Network;
+package Project.Server.Network;
 
 import Project.MODEL.Card;
 import Project.MODEL.FamilyMember;
+import Project.MODEL.Player;
+import Project.Server.Room;
 import Project.toDelete.BonusInteraction;
 
 import java.util.ArrayList;
@@ -9,9 +11,11 @@ import java.util.ArrayList;
 /**
  * Created by raffaelebongo on 22/05/17.
  */
-public abstract class PlayerHandler {
+public class PlayerHandler extends Player {
 
     Room room;
+
+
 
     /**
      * @param position

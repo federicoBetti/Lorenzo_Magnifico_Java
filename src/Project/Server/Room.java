@@ -1,8 +1,9 @@
-package Project.Network;
+package Project.Server;
 
-import Project.Controller.AllSupportFunction;
+import Project.Controller.SupportFunctions.AllSupportFunction;
 import Project.MODEL.Board;
 import Project.MODEL.Player;
+import Project.Server.Network.ControllerInterface;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,8 @@ public class Room {
     /**
      * Stato della partita completo ad eccezione delle personalBoard che sono contenute nel player
      */
+
+
     private Board board;
 
     ArrayList<Player> players;
@@ -37,4 +40,7 @@ public class Room {
      * TODO devo poter arrivare ai metodi di check da qui
      */
 
+    public Board getBoard() {
+        return board;
+    }
 }

@@ -1,20 +1,17 @@
-package Project.Controller;
+package Project.Controller.SupportFunctions;
 
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
-import Project.Controller.Effects.RealEffects.Effects;
-import Project.Controller.Effects.RealEffects.TakeRoPEffects;
 import Project.MODEL.*;
 
 
-public class SantaRita implements SupportFunctionDecorator {
+public class DontPayForTerritories implements SupportFunctionDecorator {
     AllSupportFunction allSupportFunction = null;
 
-    SantaRita(AllSupportFunction allSupportFunction){
+    DontPayForTerritories(AllSupportFunction allSupportFunction){
         this.allSupportFunction = allSupportFunction;
     }
-
 
     @Override
     public boolean Check_Position(int position, Position[] zone, FamilyMember familyMember) {
@@ -33,17 +30,12 @@ public class SantaRita implements SupportFunctionDecorator {
 
     @Override
     public boolean CheckCapabilityToTakeTerritory(Player player) {
-        return allSupportFunction.CheckCapabilityToTakeTerritory(player);
+        return true;
     }
 
     @Override
     public void ApplyEffects(Card card, Player player) {
-        for (Effects e: card.getImmediateCardEffects()){
-            e.doEffect(player);
-            if (e instanceof TakeRoPEffects) {
-                e.doEffect(player);
-            }
-        }
+        allSupportFunction.ApplyEffects(card, player);
     }
 
     @Override

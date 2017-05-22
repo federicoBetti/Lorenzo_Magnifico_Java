@@ -1,10 +1,9 @@
-package Project.Network.RMI;
+package Project.Server.Network.RMI;
 
 import Project.MODEL.Card;
 import Project.MODEL.FamilyMember;
-import Project.Network.AbstractServer;
-import Project.Network.ControllerInterface;
-import Project.Server;
+import Project.Server.Network.AbstractServer;
+import Project.Server.Server;
 import Project.toDelete.BonusInteraction;
 
 import java.util.ArrayList;

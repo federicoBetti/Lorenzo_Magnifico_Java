@@ -1,15 +1,12 @@
-package Project;
+package Project.Server;
 import Project.Configurations.*;
-import Project.Network.RMI.ServerRMI;
-import Project.Network.Room;
-import Project.Network.Socket.ServerPlayer;
-import Project.Network.Socket.ServerSocket;
-import com.google.gson.Gson;
+import Project.Server.Network.PlayerHandler;
+import Project.Server.Network.RMI.ServerRMI;
+import Project.Server.Network.Socket.SocketServer;
 
-import javax.management.remote.rmi.RMIServer;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.SocketHandler;
 
 /**
  * Created by raffaelebongo on 18/05/17.
@@ -20,20 +17,20 @@ public class Server {
 
     private static final int RMI_PORT = 2;
 
-    private HashMap< String, ServerPlayer> playerMap;
+    private HashMap< String, PlayerHandler> playerMap;
 
     private ArrayList<Room> rooms;
 
-    private ServerSocket serverSocket;
+    private SocketServer serverSocket;
 
     private ServerRMI rmiServer;
 
     Configuration configuration;
 
     public Server(){
-        playerMap = new HashMap<String, ServerPlayer>();
+        playerMap = new HashMap<String, PlayerHandler>();
         rooms = new ArrayList<Room>();
-        serverSocket = new ServerSocket(this);
+        serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
         configuration = new Configuration();
         configuration.loadConfiguration();//TODO vanno implementate tutte i metodi di configurazione e chiamati da qui
@@ -47,7 +44,11 @@ public class Server {
     }
 
     private void startServer( int socketPort, int rmiPort ){
-        serverSocket.startServerSocket(socketPort);
+        try {
+            serverSocket.startServerSocket(socketPort);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         rmiServer.startServerRmi(rmiPort);
     }
 

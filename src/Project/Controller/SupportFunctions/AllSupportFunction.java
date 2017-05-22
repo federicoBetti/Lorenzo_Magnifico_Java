@@ -1,4 +1,4 @@
-package Project.Controller;
+package Project.Controller.SupportFunctions;
 
 
 import Project.Controller.CardsFactory.BuildingCard;

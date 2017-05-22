@@ -1,4 +1,4 @@
-package Project.Controller;
+package Project.Controller.SupportFunctions;
 
 import Project.MODEL.Card;
 import Project.MODEL.Player;
@@ -7,7 +7,7 @@ import SERVER.PlayerPackage.*;
 import Project.MODEL.Card.Card;
 
 /**
- * 
+ * TODO hashMap al posto dello switch e interfaccia funzionale
  */
 public class LeaderCardRequirements {
 

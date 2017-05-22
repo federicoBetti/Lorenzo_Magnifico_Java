@@ -1,4 +1,4 @@
-package Project.Network;
+package Project.Server.Network;
 
 import Project.toDelete.BonusInteraction;
 import Project.MODEL.Card;

@@ -1,9 +1,10 @@
-package Project.Controller;
+package Project.Controller.SupportFunctions;
 
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.TerritoryCard;
 import Project.Controller.CardsFactory.VenturesCard;
+import Project.Controller.SupportFunctions.AllSupportFunction;
 import Project.MODEL.*;
 
 import java.util.*;
@@ -11,7 +12,7 @@ import java.util.*;
 /**
  * 
  */
-public class SupportFunction implements AllSupportFunction{
+public class SupportFunction implements AllSupportFunction {
 
     /**
      * Default constructor

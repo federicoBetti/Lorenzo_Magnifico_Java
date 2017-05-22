@@ -1,6 +1,6 @@
-package Project.Network.RMI;
+package Project.Server.Network.RMI;
 
-import Project.Network.PlayerHandler;
+import Project.Server.Network.PlayerHandler;
 
 /**
  * Created by raffaelebongo on 22/05/17.
