@@ -32,6 +32,13 @@ public class BuildingCard extends DevelopmentCard {
     }
 
 
+    @Override
+    public void addToPersonalBoard(PersonalBoard personalBoardReference) {
+        personalBoardReference.getBuildings().add(this);
+    }
 
-
+    @Override
+    public BuildingCost getCost() {
+        return cardCost;
+    }
 }

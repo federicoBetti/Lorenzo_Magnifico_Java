@@ -1,11 +1,9 @@
 package Project.Controller.SupportFunctions;
 
-import Project.Controller.CardsFactory.BuildingCard;
-import Project.Controller.CardsFactory.CharacterCard;
-import Project.Controller.CardsFactory.VenturesCard;
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.Controller.Effects.RealEffects.TakeRoPEffects;
 import Project.MODEL.*;
+import Project.toDelete.BonusInteraction;
 
 
 public class SantaRita implements SupportFunctionsDecorator {
@@ -22,13 +20,14 @@ public class SantaRita implements SupportFunctionsDecorator {
 
 
     @Override
-    public void ApplyEffects(DevelopmentCard card, Player player) {
+    public BonusInteraction ApplyEffects(DevelopmentCard card, Player player) {
         for (Effects e: card.getImmediateCardEffects()){
             e.doEffect(player);
             if (e instanceof TakeRoPEffects) {
                 e.doEffect(player);
             }
         }
+        return null;
     }
 
 }

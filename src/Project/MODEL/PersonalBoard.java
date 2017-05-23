@@ -1,11 +1,9 @@
 package Project.MODEL;
 
 
-import Project.Controller.CardsFactory.BuildingCard;
-import Project.Controller.CardsFactory.CharacterCard;
-import Project.Controller.CardsFactory.TerritoryCard;
-import Project.Controller.CardsFactory.VenturesCard;
+import Project.Controller.CardsFactory.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -13,11 +11,6 @@ import java.util.LinkedList;
  */
 public class PersonalBoard {
 
-    /**
-     * Default constructor
-     */
-    public PersonalBoard() {
-    }
 
     /**
      * 
@@ -27,17 +20,17 @@ public class PersonalBoard {
     /**
      * 
      */
-    private BuildingCard[] buildings;
+    private LinkedList<BuildingCard> buildings;
 
     /**
      * 
      */
-    private VenturesCard[] ventures;
+    private LinkedList<VenturesCard> ventures;
 
     /**
      * 
      */
-    private CharacterCard[] characters;
+    private LinkedList<CharacterCard> characters;
 
     /**
      * 
@@ -74,37 +67,36 @@ public class PersonalBoard {
      */
     private int endBonus;
 
-	public LinkedList<TerritoryCard> getTerritories() {
+    private ArrayList<LeaderCard> myLeaderCard;
+
+    PersonalBoard(){
+    	territories = new LinkedList<>();
+    	buildings = new LinkedList<>();
+	}
+
+    public ArrayList<LeaderCard> getMyLeaderCard() {
+        return myLeaderCard;
+    }
+
+    public LinkedList<TerritoryCard> getTerritories() {
 		return territories;
 	}
 
-	public void setTerritories(LinkedList<TerritoryCard> territories) {
-		this.territories = territories;
-	}
 
-	public BuildingCard[] getBuildings() {
+	public LinkedList<BuildingCard> getBuildings() {
 		return buildings;
 	}
 
-	public void setBuildings(BuildingCard[] buildings) {
-		this.buildings = buildings;
-	}
 
-	public VenturesCard[] getVentures() {
+	public LinkedList<VenturesCard> getVentures() {
 		return ventures;
 	}
 
-	public void setVentures(VenturesCard[] ventures) {
-		this.ventures = ventures;
-	}
 
-	public CharacterCard[] getCharacters() {
+	public LinkedList<CharacterCard> getCharacters() {
 		return characters;
 	}
 
-	public void setCharacters(CharacterCard[] characters) {
-		this.characters = characters;
-	}
 
 	public Bonus getBonusOnActions() {
 		return bonusOnActions;

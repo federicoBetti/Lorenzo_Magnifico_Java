@@ -1,6 +1,7 @@
 package Project.Server.Network.Socket;
 
 import Project.Server.Network.PlayerHandler;
+import Project.toDelete.BonusInteraction;
 
 /**
  * questa classe rappresenta la casse ponte tra il model e la view. da qua ogni volta che vinee aggiornato qualcosa il player dice al suo
@@ -12,6 +13,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
 
     public SocketPlayerHandler(){
+
+    }
+
+    @Override
+    public void sendReturn(BonusInteraction returnFromEffect) {
 
     }
 

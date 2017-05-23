@@ -3,6 +3,7 @@ package Project.Controller.CardsFactory;
 import Project.Controller.Effects.EffectsFactory.PokerPE;
 import Project.Controller.Effects.EffectsFactory.TrisIE;
 import Project.MODEL.DevelopmentCard;
+import Project.MODEL.PersonalBoard;
 import Project.MODEL.Player;
 
 import java.util.*;
@@ -22,5 +23,13 @@ public class CharacterCard extends DevelopmentCard {
     }
 
 
+    @Override
+    public void addToPersonalBoard(PersonalBoard personalBoardReference) {
+        personalBoardReference.getCharacters().add(this);
+    }
 
+    @Override
+    public CharactersCost getCost() {
+        return cardCost;
+    }
 }

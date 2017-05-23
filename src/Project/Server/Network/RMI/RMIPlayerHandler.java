@@ -1,6 +1,7 @@
 package Project.Server.Network.RMI;
 
 import Project.Server.Network.PlayerHandler;
+import Project.toDelete.BonusInteraction;
 
 /**
  * questo esetende playerHandler, quindi deve fare un override dei metodi di ritorno. da qua passeranno i metodi di
@@ -12,4 +13,8 @@ import Project.Server.Network.PlayerHandler;
 public class RMIPlayerHandler extends PlayerHandler{
 
 
+    @Override
+    public void sendReturn(BonusInteraction returnFromEffect) {
+
+    }
 }

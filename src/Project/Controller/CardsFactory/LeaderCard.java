@@ -62,6 +62,10 @@ public class LeaderCard {
         // TODO implement here
     }
 
+    public String getName() {
+        return name;
+    }
+
     public boolean isPlayed() {
         return isPlayed;
     }

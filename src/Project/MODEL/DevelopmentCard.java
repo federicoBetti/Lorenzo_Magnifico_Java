@@ -1,11 +1,12 @@
 package Project.MODEL;
 
 import Project.Controller.CardsFactory.Cost;
+import Project.Controller.CardsFactory.TerritoryCost;
 import Project.Controller.Effects.EffectsFactory.PokerPE;
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.Controller.Effects.EffectsFactory.BuildImmediateEffects;
 import Project.Controller.Effects.EffectsFactory.*;
-
+import Project.toDelete.BonusInteraction;
 
 
 import java.util.*;
@@ -21,6 +22,8 @@ public abstract class DevelopmentCard {
     private ArrayList<Effects> immediateCardEffects;
 
     private ArrayList<Effects> permanentCardEffects;
+
+    private Cost cardCost;
 
 
     // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
@@ -42,10 +45,13 @@ public abstract class DevelopmentCard {
         }
         
     }
-    public void makeImmediateEffects(Player player) {
+    public BonusInteraction makeImmediateEffects(Player player) {
+        BonusInteraction bonusInteraction = null;
         for (Effects x: immediateCardEffects ) {
-            x.doEffect(player);
+            bonusInteraction = x.doEffect(player);
         }
+        //posso fare quest cosa di riscrivere e prendere l'ultimo tanto sono dello stesso tipo se gli effetti appartengono alla stessa carta
+        return bonusInteraction;
 	}
 
     public void makePermannetEffects(Player player) {
@@ -56,8 +62,9 @@ public abstract class DevelopmentCard {
         return immediateCardEffects;
     }
 
-    public Cost getCardCost() {
-        return CardCost;
-    }
+    public abstract void addToPersonalBoard(PersonalBoard personalBoardReference);
+
+    public abstract Cost getCost();
+
 }
 

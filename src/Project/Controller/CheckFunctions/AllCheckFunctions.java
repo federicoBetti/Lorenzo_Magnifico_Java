@@ -15,8 +15,7 @@ public interface AllCheckFunctions {
     boolean CheckCapabilityToTakeTerritory(Player player);
     boolean CheckCardCostCharacters (CharacterCard card, Player player);
     boolean CheckCardCostBuildings (BuildingCard card, Player player);
-    boolean CheckCardCostVentures (VenturesCard card, Player player);
+    int CheckCardCostVentures (VenturesCard card, Player player);
     boolean CheckCardCost (DevelopmentCard card, Player player);
-
-    boolean CheckAvaiabiltyToProduct(ArrayList<BuildingCard> cardToProduct, PlayerHandler playerHandler);
+    boolean CheckAvaiabiltyToProduct(ArrayList<BuildingCard> cardToProduct, int maxValueOfProduction);
 }

@@ -1,6 +1,9 @@
 package Project.Controller.SupportFunctions;
 
 import Project.MODEL.*;
+import Project.toDelete.BonusInteraction;
+
+import java.util.HashMap;
 
 /**
  * attenzione forse devo mettere nell'interfaccia tutte le funzioni non solo quelle da decorare
@@ -10,13 +13,28 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     /**
      * Default constructor
      */
+
+
     public BasicSupportFunctions() {
     }
 
 
-    public void ApplyEffects (DevelopmentCard card, Player player){
-        card.makeImmediateEffects(player);
+    public BonusInteraction ApplyEffects (DevelopmentCard card, Player player){
+        return card.makeImmediateEffects(player);
     }
+
+    @Override
+    public void setFamiliar(Position zone, FamilyMember familyMember) {
+        zone.setFamiliarOnThisPosition(familyMember);
+        zone.setOccupied(true);
+        return;
+    }
+
+    @Override
+    public void placeCardInPersonalBoard(DevelopmentCard card, Player player) {
+        card.addToPersonalBoard(player.getPersonalBoardReference());
+    }
+
     /**
      * @param position 
      * @param familiar 

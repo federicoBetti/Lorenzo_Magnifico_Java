@@ -16,4 +16,7 @@ public class CharactersCost extends Cost {
      */
     private int coinsRequired;
 
+    public int getCoinsRequired() {
+        return coinsRequired;
+    }
 }

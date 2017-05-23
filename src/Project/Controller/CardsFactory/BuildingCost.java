@@ -16,4 +16,7 @@ public class BuildingCost extends TerritoryCost {
      */
     private int coinsRequired;
 
+    public int getCoinsRequired() {
+        return coinsRequired;
+    }
 }

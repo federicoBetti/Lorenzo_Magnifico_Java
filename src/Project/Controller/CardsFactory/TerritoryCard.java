@@ -22,8 +22,14 @@ public class TerritoryCard extends DevelopmentCard {
         this.cardCost = cost;
     }
 
+
     @Override
-    public TerritoryCost getCardCost() {
+    public void addToPersonalBoard(PersonalBoard personalBoardReference) {
+        personalBoardReference.getTerritories().add(this);
+    }
+
+    @Override
+    public TerritoryCost getCost() {
         return cardCost;
     }
 }
