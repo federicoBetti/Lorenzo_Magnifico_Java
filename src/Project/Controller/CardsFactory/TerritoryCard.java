@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * 
  */
-public class TerritoryCard extends Card {
+public class TerritoryCard extends DevelopmentCard {
 
     private TerritoryCost cardCost;
 

@@ -2,8 +2,8 @@ package Project.Controller.CardsFactory;
 
 import Project.Controller.Constants;
 import Project.Iterator;
-import Project.MODEL.Card;
 import Project.MODEL.Deck;
+import Project.MODEL.DevelopmentCard;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
@@ -52,7 +52,7 @@ public class LoadCards {
                 this.cardFromJson = gson.fromJson(parser.next(), CardFromJson.class);
 
                 builderHandler =  map.get(cardFromJson.getAnagrafic().getType());
-                Card card = builderHandler.build();
+                DevelopmentCard card = builderHandler.build();
 
                 deck.getDevelopmentdeck()[ iterator.getPeriod1() ][ iterator.getPeriod2() ][ iterator.getPeriod3() ] = card;
                 iterator.next();
@@ -61,21 +61,21 @@ public class LoadCards {
         }
 
 
-    Card buildVentureCard( ) {
+    DevelopmentCard buildVentureCard( ) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         VentureCostArray cost = gson.fromJson(jsonCost, VentureCostArray.class);
         VenturesCard card = new VenturesCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cost.getCostArray(), cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
         return card;
     }
 
-    Card buildBuildingCard( ){
+    DevelopmentCard buildBuildingCard( ){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         BuildingCost cost = gson.fromJson(jsonCost, BuildingCost.class);
         BuildingCard card = new BuildingCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
         return card;
     }
 
-    Card buildCharacterCard( ){
+    DevelopmentCard buildCharacterCard( ){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         CharactersCost cost = gson.fromJson(jsonCost, CharactersCost.class);
         CharacterCard card = new CharacterCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
@@ -83,7 +83,7 @@ public class LoadCards {
     }
 
 
-    Card buildTerritoryCard(  ){
+    DevelopmentCard buildTerritoryCard(  ){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         TerritoryCost cost = gson.fromJson(jsonCost, TerritoryCost.class);
         TerritoryCard card = new TerritoryCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
@@ -92,7 +92,7 @@ public class LoadCards {
 
     private interface BuilderHandler {
 
-        Card build( );
+        DevelopmentCard build( );
     }
 
 }

@@ -2,7 +2,7 @@ package Project.Controller.CardsFactory;
 
 import Project.Controller.Effects.EffectsFactory.PokerPE;
 import Project.Controller.Effects.EffectsFactory.TrisIE;
-import Project.MODEL.Card;
+import Project.MODEL.DevelopmentCard;
 import Project.MODEL.Player;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 
  */
-public class VenturesCard extends Card {
+public class VenturesCard extends DevelopmentCard {
 
     private ArrayList<VenturesCost> possibleCost;
     private VenturesCost CardCost;

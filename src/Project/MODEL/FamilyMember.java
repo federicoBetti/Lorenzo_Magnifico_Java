@@ -8,7 +8,7 @@ public class FamilyMember {
 
     private String FamilyColour;
 
-    private int FixedBonus;
+    private int fixedBonus;
 
     private int fixedValue;
 
@@ -37,11 +37,11 @@ public class FamilyMember {
     }
 
     public int getFixedBonus() {
-        return FixedBonus;
+        return fixedBonus;
     }
 
     public void setFixedBonus(int fixedBonus) {
-        FixedBonus = fixedBonus;
+        this.fixedBonus = fixedBonus;
     }
 
     public String getMyColour() {
@@ -54,9 +54,9 @@ public class FamilyMember {
 
     public int getMyValue() {
         if (fixedValue == 0)
-            return MyValue;
+            return MyValue + fixedBonus;
         else
-            return fixedValue;
+            return fixedValue + fixedBonus;
     }
 
     public void setMyValue(int myValue) {
@@ -74,4 +74,5 @@ public class FamilyMember {
     public void setFixedValue(int fixedValue) {
         this.fixedValue = fixedValue;
     }
+
 }

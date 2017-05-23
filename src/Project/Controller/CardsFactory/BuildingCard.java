@@ -10,21 +10,28 @@ import java.util.*;
 /**
  * 
  */
-public class BuildingCard extends Card {
-
+public class BuildingCard extends DevelopmentCard {
+    /**
+     *
+     */
+    private BuildingCost cardCost;
+    private ArrayList<TotalCost> effectCost;
     /**
      * Default constructor
      */
     public BuildingCard(String name, int period, BuildingCost cost, ArrayList<TrisIE> immediate_Effects, ArrayList<PokerPE> permanent_Effects) {
         super(name, period, immediate_Effects, permanent_Effects);
+        effectCost = new ArrayList<>();
         this.cardCost = cost;
+        for (PokerPE p: permanent_Effects) {
+            if (p.getType() == "exchangeRes") {
+                effectCost.add(p.getEffectCost());
+            }
+        }
 
     }
 
-    /**
-     * 
-     */
-    private BuildingCost cardCost;
+
 
 
 }

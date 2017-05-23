@@ -3,13 +3,11 @@ package Project.Server;
 import Project.Controller.SupportFunctions.AllSupportFunctions;
 import Project.MODEL.Board;
 import Project.MODEL.Player;
-import Project.Server.Network.ControllerInterface;
+import Project.Server.Network.GameActions;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
-/**
- * Created by raffaelebongo on 20/05/17.
- */
+
 
 /**
  * TODO completare
@@ -23,18 +21,21 @@ public class Room {
 
     private Board board;
 
-    ArrayList<Player,ControllerInterface> players;
+    HashMap<Player,AllSupportFunctions> playerAllSupportFunctionsHashMap;
 
     /**
      * Riferimento alla classe GameActions
      */
 
-    ControllerInterface gameActions;
+    GameActions gameActions;
 
     //TODO chiedere a betti se l'idea è questa
     AllSupportFunctions allSupportFunctions;
 
 
+    Room (){
+
+    }
 
     /**
      * TODO devo poter arrivare ai metodi di check da qui
@@ -42,5 +43,13 @@ public class Room {
 
     public Board getBoard() {
         return board;
+    }
+
+    public AllSupportFunctions getMySupportFunction (Player player){
+        return playerAllSupportFunctionsHashMap.get(player);
+    }
+
+    public GameActions getGameActions() {
+        return gameActions;
     }
 }

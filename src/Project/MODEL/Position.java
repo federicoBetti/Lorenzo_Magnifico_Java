@@ -3,13 +3,9 @@ package Project.MODEL;
 /**
  * 
  */
-public class Position {
+public  abstract class Position {
 
-    /**
-     * Default constructor
-     */
-    public Position() {
-    }
+
 
     private boolean occupied = false;
 
@@ -30,4 +26,5 @@ public class Position {
     public void setFamiliarOnThisPosition(FamilyMember familiarOnThisPosition) {
         this.familiarOnThisPosition = familiarOnThisPosition;
     }
+
 }

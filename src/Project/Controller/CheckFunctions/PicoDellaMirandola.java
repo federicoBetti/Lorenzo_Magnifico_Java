@@ -1,43 +1,36 @@
-package Project.Controller.SupportFunctions;
+package Project.Controller.CheckFunctions;
 
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
+import Project.Controller.SupportFunctions.SupportFunctionsDecorator;
 import Project.MODEL.*;
 
 /**
  * Created by federico on 19/05/17.
  */
-public class PicoDellaMirandola implements SupportFunctionsDecorator {
-    AllSupportFunctions allSupportFunctions = null;
+public class PicoDellaMirandola implements CheckFunctionsDecorator {
+    AllCheckFunctions allCheckFunctions = null;
 
-    PicoDellaMirandola(AllSupportFunctions allSupportFunctions){
-        this.allSupportFunctions = allSupportFunctions;
+    PicoDellaMirandola(AllCheckFunctions allCheckFunctions){
+        this.allCheckFunctions = allCheckFunctions;
     }
 
     public boolean Check_Position(int position, Position[] zone, FamilyMember familyMember) {
-        return allSupportFunctions.Check_Position(position,zone,familyMember);
+        return allCheckFunctions.Check_Position(position,zone,familyMember);
     }
 
     @Override
     public boolean CheckTowerOccupiedByYou(Tower[] tower, Player player) {
-        return allSupportFunctions.CheckTowerOccupiedByYou(tower, player);
+        return allCheckFunctions.CheckTowerOccupiedByYou(tower, player);
     }
 
-    @Override
-    public int Pray(Player player) {
-        return allSupportFunctions.Pray(player);
-    }
 
     @Override
     public boolean CheckCapabilityToTakeTerritory(Player player) {
-        return allSupportFunctions.CheckCapabilityToTakeTerritory(player);
+        return allCheckFunctions.CheckCapabilityToTakeTerritory(player);
     }
 
-    @Override
-    public void ApplyEffects(DevelopmentCard card, Player player) {
-        allSupportFunctions.ApplyEffects(card,player);
-    }
 
     @Override
     public boolean CheckCardCostCharacters(CharacterCard card, Player player) {

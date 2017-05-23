@@ -24,11 +24,18 @@ public class Tower extends Position {
     /**
      * 
      */
-    private Card cardOnThisFloor;
+    private DevelopmentCard cardOnThisFloor;
 
     /**
      * 
      */
     private boolean used;
 
+    public DevelopmentCard getCardOnThisFloor() {
+        return cardOnThisFloor;
+    }
+
+    public void setCardOnThisFloor(DevelopmentCard cardOnThisFloor) {
+        this.cardOnThisFloor = cardOnThisFloor;
+    }
 }
