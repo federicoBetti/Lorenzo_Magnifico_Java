@@ -14,9 +14,5 @@
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-=======
-	</buildSpec>
-	<natures>
->>>>>>> ed8e3481fd1eb91b381206f51b7059f338445c3b
 	</natures>
 </projectDescription>
