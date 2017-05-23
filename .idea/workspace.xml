@@ -1,31 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="inizio costruzione player handler">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_17_0_37__Default_.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/AllCheckFunctions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/BasicCheckFunctions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/CheckFunctionsDecorator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontCheckPositionDecorator.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/DontCheckPositionDecorator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayForTerritories.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/DontPayForTerritories.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/PicoDellaMirandola.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/PicoDellaMirandola.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SupportFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java" />
+    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/BuildingCard.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/BuildingCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/CharacterCard.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/CharacterCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/LoadCards.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/LoadCards.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCard.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/TerritoryCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/VenturesCard.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/VenturesCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Board.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Deck.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Deck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/FamilyMember.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/FamilyMember.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Position.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Position.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Tower.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Tower.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Room.java" afterPath="$PROJECT_DIR$/src/Project/Server/Room.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -1429,11 +1406,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495461049522</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="inizio costruzione player handler">
+      <created>1495532780124</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1495532780124</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18543000" />
+    <option name="totallyTimeSpent" value="18722000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
