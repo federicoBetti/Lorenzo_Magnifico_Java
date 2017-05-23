@@ -21,7 +21,7 @@ public class Room {
 
     private Board board;
 
-    HashMap<Player,AllSupportFunctions> playerAllSupportFunctionsHashMap;
+    HashMap<Player,AllSupportFunctions> playerAllSupportFunctionsMap;
 
     /**
      * Riferimento alla classe GameActions
@@ -46,7 +46,7 @@ public class Room {
     }
 
     public AllSupportFunctions getMySupportFunction (Player player){
-        return playerAllSupportFunctionsHashMap.get(player);
+        return playerAllSupportFunctionsMap.get(player);
     }
 
     public GameActions getGameActions() {

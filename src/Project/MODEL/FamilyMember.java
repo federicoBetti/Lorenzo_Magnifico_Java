@@ -6,15 +6,15 @@ package Project.MODEL;
 public class FamilyMember {
 
 
-    private String FamilyColour;
+    private String familyColour;
+
+    private String myColour;
 
     private int fixedBonus;
 
     private int fixedValue;
 
-    private String MyColour;
-
-    private int MyValue;
+    private int myValue;
 
     private boolean isPlayed;
 
@@ -29,11 +29,11 @@ public class FamilyMember {
     }
 
     public String  getFamilyColour() {
-        return FamilyColour;
+        return familyColour;
     }
 
     public void setFamilyColour(String  familyColour) {
-        FamilyColour = familyColour;
+        this.familyColour = familyColour;
     }
 
     public int getFixedBonus() {
@@ -45,22 +45,22 @@ public class FamilyMember {
     }
 
     public String getMyColour() {
-        return MyColour;
+        return myColour;
     }
 
     public void setMyColour(String myColour) {
-        MyColour = myColour;
+        this.myColour = myColour;
     }
 
     public int getMyValue() {
         if (fixedValue == 0)
-            return MyValue + fixedBonus;
+            return myValue + fixedBonus;
         else
             return fixedValue + fixedBonus;
     }
 
     public void setMyValue(int myValue) {
-        MyValue = myValue;
+        this.myValue = myValue;
     }
 
     public boolean isPlayed() {

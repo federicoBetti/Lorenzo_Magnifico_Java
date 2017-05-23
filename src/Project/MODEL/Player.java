@@ -24,8 +24,6 @@ public class Player {
 
     private int turnOrder;
 
-    private int finalPointBonus;
-
     private String FamilyColour;
 
 
@@ -71,16 +69,7 @@ public class Player {
 		this.turnOrder = turnOrder;
 	}
 
-	public int getFinalPointBonus() {
-		return finalPointBonus;
-	}
-
-	public void setFinalPointBonus(int finalPointBonus) {
-		this.finalPointBonus = finalPointBonus;
-	}
-
-
-    public void checkFinalPointsterritory() {
+    public void checkFinalPointsTerritory() {
         // TODO implement here
     }
 
@@ -92,6 +81,7 @@ public class Player {
         // TODO implement here
     }
 
+    // TODO eliminare le cose qua sotto
 	private LeaderEffectsUsefull leaderEffectsUsefull;
 	private ExcommunicationEffectsUseful excommunicationEffectsUseful;
 

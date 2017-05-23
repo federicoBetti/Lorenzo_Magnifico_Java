@@ -1,6 +1,7 @@
 package Project.Server.Network.RMI;
 
 import Project.MODEL.Card;
+import Project.MODEL.DevelopmentCard;
 import Project.MODEL.FamilyMember;
 import Project.Server.Network.AbstractServer;
 import Project.Server.Server;
@@ -50,7 +51,7 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     }
 
     @Override
-    public void Production(int position, FamilyMember familyM, ArrayList<Card> cardToProduct) {
+    public void Production(int position, FamilyMember familyM, ArrayList<DevelopmentCard> cardToProduct) {
 
     }
 

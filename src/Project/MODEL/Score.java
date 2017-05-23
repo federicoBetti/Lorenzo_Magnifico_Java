@@ -14,39 +14,39 @@ public class Score {
     /**
      * 
      */
-    private int VictoryPoints;
+    private int victoryPoints;
 
     /**
      * 
      */
-    private int MilitaryPoints;
+    private int militaryPoints;
 
     /**
      * 
      */
-    private int FaithPoints;
+    private int faithPoints;
 
     public int getVictoryPoints() {
-        return VictoryPoints;
+        return victoryPoints;
     }
 
     public void setVictoryPoints(int victoryPoints) {
-        VictoryPoints = victoryPoints;
+        this.victoryPoints = victoryPoints;
     }
 
     public int getMilitaryPoints() {
-        return MilitaryPoints;
+        return militaryPoints;
     }
 
     public void setMilitaryPoints(int militaryPoints) {
-        MilitaryPoints = militaryPoints;
+        this.militaryPoints = militaryPoints;
     }
 
     public int getFaithPoints() {
-        return FaithPoints;
+        return faithPoints;
     }
 
     public void setFaithPoints(int faithPoints) {
-        FaithPoints = faithPoints;
+        this.faithPoints = faithPoints;
     }
 }

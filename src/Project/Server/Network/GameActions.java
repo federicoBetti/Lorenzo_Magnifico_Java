@@ -3,6 +3,7 @@ package Project.Server.Network;
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
+import Project.MODEL.Position;
 import Project.toDelete.BonusInteraction;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class GameActions {
      * TODO dedicate a ciascun player che possono essere personalizzate durante il corso della partita
      */
 
-    public BonusInteraction TakeDevelopementCard(String towerColor, int position, FamilyMember familyM, Player player){
+    public BonusInteraction takeDevelopementCard(Position zone, FamilyMember familyM, Player player){
 
         return null;
     };
@@ -29,7 +30,7 @@ public class GameActions {
      * @param servantsNumber
      *@param playerHandler @return
      */
-    public void Harvester(int position, FamilyMember familyM, int servantsNumber, Player playerHandler){
+    public void harvester(int position, FamilyMember familyM, int servantsNumber, Player player){
 
     };
 
@@ -39,7 +40,7 @@ public class GameActions {
      * @param cardToProduct
      *@param playerHandler @return
      */
-    public void Production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct, PlayerHandler playerHandler){
+    public void production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct, Player player){
 
     };
 
@@ -49,13 +50,13 @@ public class GameActions {
      * @param familyM
      * @return
      */
-    public void GoTOMarket(int position, FamilyMember familyM){
+    public void goToMarket(int position, FamilyMember familyM, Player player){
     };
 
     /**
      * @return
      */
-    public void JumpTurn(){
+    public void jumpTurn(){
 
     };
 
@@ -63,20 +64,20 @@ public class GameActions {
      * @param leaderName
      * @return
      */
-    public void PlayLeaderCard(String leaderName ){};
+    public void playLeaderCard(String leaderName, Player player ){};
 
     /**
      * @param leaderName
      * @return
      */
-    public void DiscardLeaderCard(String leaderName){
+    public void discardLeaderCard(String leaderName, Player player){
 
     };
 
     /**
      * @return
      */
-    public void RollDice(){
+    public void rollDice(){
 
     };
 
@@ -84,14 +85,14 @@ public class GameActions {
      * @param privelgeNumber
      * @return
      */
-    public void GoToCouncilPalace(int privelgeNumber){
+    public void goToCouncilPalace(int privelgeNumber){
 
     };
 
     /**
      * @return
      */
-    public void GoToCouncilPalace(){
+    public void goToCouncilPalace(){
 
     };
 

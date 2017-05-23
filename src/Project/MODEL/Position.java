@@ -1,5 +1,7 @@
 package Project.MODEL;
 
+import javafx.geometry.Pos;
+
 /**
  * 
  */
@@ -7,9 +9,13 @@ public  abstract class Position {
 
 
 
-    private boolean occupied = false;
+    private boolean occupied;
 
     private FamilyMember familiarOnThisPosition;
+
+    Position (){
+        this.occupied = false;
+    }
 
     public boolean isOccupied() {
         return occupied;

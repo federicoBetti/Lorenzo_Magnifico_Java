@@ -13,9 +13,4 @@ public abstract class Cost {
     public Cost() {
     }
 
-    /**
-     * 
-     */
-    private boolean done;
-
 }

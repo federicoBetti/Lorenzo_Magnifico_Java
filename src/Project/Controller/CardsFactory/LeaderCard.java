@@ -27,7 +27,7 @@ public class LeaderCard {
     private boolean onePerTurn;
 
 
-    private boolean isPlayed = false;
+    private boolean isPlayed;
 
 
     private ArrayList<Effects> immediateCardEffects;
@@ -49,7 +49,7 @@ public class LeaderCard {
     /**
      * @return
      */
-    public void PlayCard(Player player) {
+    public void playCard(Player player) {
         for (Effects x: immediateCardEffects ) {
             x.doEffect(player);
         }

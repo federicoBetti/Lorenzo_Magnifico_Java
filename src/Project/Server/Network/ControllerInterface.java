@@ -1,5 +1,6 @@
 package Project.Server.Network;
 
+import Project.MODEL.DevelopmentCard;
 import Project.toDelete.BonusInteraction;
 import Project.MODEL.Card;
 import Project.MODEL.Card.Card;
@@ -38,7 +39,7 @@ public interface ControllerInterface {
      * @param cardToProduct
      * @return
      */
-    public void Production(int position, FamilyMember familyM, ArrayList<Card> cardToProduct);
+    public void Production(int position, FamilyMember familyM, ArrayList<DevelopmentCard> cardToProduct);
 
     /**
      * @param position 

@@ -42,13 +42,13 @@ public abstract class DevelopmentCard {
         }
         
     }
-    public void MakeImmediateEffects(Player player) {
+    public void makeImmediateEffects(Player player) {
         for (Effects x: immediateCardEffects ) {
             x.doEffect(player);
         }
 	}
 
-    public void MakePermannetEffects(Player player) {
+    public void makePermannetEffects(Player player) {
        //TODO: può essere scelto l'effetto permanente da attivare
         }
 

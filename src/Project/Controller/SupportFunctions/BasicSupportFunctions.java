@@ -1,12 +1,6 @@
 package Project.Controller.SupportFunctions;
 
-import Project.Controller.CardsFactory.BuildingCard;
-import Project.Controller.CardsFactory.CharacterCard;
-import Project.Controller.CardsFactory.TerritoryCard;
-import Project.Controller.CardsFactory.VenturesCard;
 import Project.MODEL.*;
-
-import java.util.*;
 
 /**
  * attenzione forse devo mettere nell'interfaccia tutte le funzioni non solo quelle da decorare
@@ -21,7 +15,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
 
     public void ApplyEffects (DevelopmentCard card, Player player){
-        card.MakeImmediateEffects(player);
+        card.makeImmediateEffects(player);
     }
     /**
      * @param position 

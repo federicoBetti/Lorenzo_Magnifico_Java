@@ -12,7 +12,7 @@ import Project.toDelete.BonusInteraction;
 import java.util.ArrayList;
 
 
-public class PlayerHandler extends Player {
+public abstract class PlayerHandler extends Player {
 
     Room room;
     AllCheckFunctions checkFunctions;
@@ -25,14 +25,14 @@ public class PlayerHandler extends Player {
      * @param position
      * @param familyM
      */
-    public BonusInteraction TakeDevelopementCard(String towerColor, int position, FamilyMember familyM){
+    private BonusInteraction clientTakeDevelopementCard(String towerColor, int position, FamilyMember familyM){
         boolean canTakeCard = checkFunctions.Check_Position(position, room.getBoard().getTrueArrayList(towerColor), familyM);
         canTakeCard = canTakeCard && checkFunctions.CheckCardCost(room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(),this);
         if (towerColor == "green"){
             canTakeCard = canTakeCard && checkFunctions.CheckCapabilityToTakeTerritory(this);
         }
         if (canTakeCard){
-            BonusInteraction bonusInteraction = room.getGameActions().TakeDevelopementCard(towerColor, position, familyM, this);
+            BonusInteraction bonusInteraction = room.getGameActions().takeDevelopementCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this);
         }
         //TODO vedere come fare il ritorno
     };
@@ -44,10 +44,10 @@ public class PlayerHandler extends Player {
      */
 
     //TODO mi serve sapere o quanti servi voglio usare o in quali carte voglio l'harvester (direi la prima)
-    public void Harvester(int position, FamilyMember familyM, int servantsNumber){
+    private void Harvester(int position, FamilyMember familyM, int servantsNumber){
         boolean canTakeCard = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("harvester"),familyM);
         if (canTakeCard)
-            room.getGameActions().Harvester(position,familyM,servantsNumber,this);
+            room.getGameActions().harvester(position,familyM,servantsNumber,this);
     };
 
 
@@ -62,7 +62,7 @@ public class PlayerHandler extends Player {
         boolean canTakeCard = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("production"),familyM);
         canTakeCard = canTakeCard && checkFunctions.CheckAvaiabiltyToProduct(cardToProduct,this);
         if (canTakeCard)
-            room.getGameActions().Production(position,familyM,cardToProduct,this);
+            room.getGameActions().production(position,familyM,cardToProduct,this);
     };
 
     /**

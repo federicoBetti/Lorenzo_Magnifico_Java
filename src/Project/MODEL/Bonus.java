@@ -8,15 +8,13 @@ public class Bonus {
 
     private int bonusForTakingTerritory = 0;
 
-    private int ProductionBonus = 0;
+    private int productionBonus = 0;
 
-    private int HarvesterBonus = 0;
+    private int harvesterBonus = 0;
 
     private BonusForTakingCharacter charactersBonus;
 
     private BonusForTakingBuilding buildingsBonus;
-
-    private int coinsBonusForTakingCharactersCard = 0;
 
     private int bonusForTakingVentures = 0;
 
@@ -51,19 +49,19 @@ public class Bonus {
     }
 
     public int getProductionBonus() {
-        return ProductionBonus;
+        return productionBonus;
     }
 
     public void setProductionBonus(int productionBonus) {
-        ProductionBonus = productionBonus;
+        this.productionBonus = productionBonus;
     }
 
     public int getHarvesterBonus() {
-        return HarvesterBonus;
+        return harvesterBonus;
     }
 
     public void setHarvesterBonus(int harvesterBonus) {
-        HarvesterBonus = harvesterBonus;
+        this.harvesterBonus = harvesterBonus;
     }
 
     public void setCharactersBonus(BonusForTakingCharacter charactersBonus) {
@@ -81,14 +79,4 @@ public class Bonus {
     public BonusForTakingCharacter getCharactersBonus() {
         return charactersBonus;
     }
-
-    public int getCoinsBonus() {
-        return coinsBonusForTakingCharactersCard;
-    }
-
-    public void setCoinsBonus(int coinsBonus) {
-        this.coinsBonusForTakingCharactersCard = coinsBonus;
-    }
-
-
 }
