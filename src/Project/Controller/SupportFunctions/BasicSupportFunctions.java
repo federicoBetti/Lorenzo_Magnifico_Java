@@ -3,8 +3,6 @@ package Project.Controller.SupportFunctions;
 import Project.MODEL.*;
 import Project.toDelete.BonusInteraction;
 
-import java.util.HashMap;
-
 /**
  * attenzione forse devo mettere nell'interfaccia tutte le funzioni non solo quelle da decorare
  */
@@ -33,6 +31,12 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     @Override
     public void placeCardInPersonalBoard(DevelopmentCard card, Player player) {
         card.addToPersonalBoard(player.getPersonalBoardReference());
+    }
+
+    @Override
+    public void setDicesValue(int[] newDiceValue, Player p) {
+        for (int i = 0; i<newDiceValue.length; i++)
+            p.getPedone()[i].setMyValue(newDiceValue[i]);
     }
 
     /**

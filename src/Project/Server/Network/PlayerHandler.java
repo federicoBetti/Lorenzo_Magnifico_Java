@@ -136,7 +136,6 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     public void RollDice(){
-
     };
 
     /**

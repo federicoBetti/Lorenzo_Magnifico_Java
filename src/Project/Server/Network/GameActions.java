@@ -3,6 +3,7 @@ package Project.Server.Network;
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.TerritoryCard;
 import Project.Controller.SupportFunctions.AllSupportFunctions;
+import Project.Iterator;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
 import Project.MODEL.Position;
@@ -12,6 +13,7 @@ import Project.toDelete.BonusInteraction;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Map;
 
 /**
  * Created by raffaelebongo on 22/05/17.
@@ -109,7 +111,14 @@ public class GameActions {
      * @return
      */
     public void rollDice(){
-
+        int[] newDiceValue = new int[3];
+        newDiceValue[0] = (int)(Math.random() * 6);
+        newDiceValue[1] = (int)(Math.random() * 6);
+        newDiceValue[2] = (int)(Math.random() * 6);
+        room.getBoard().setDiceValue(newDiceValue);
+        for (Player p: room.getRoomPlayers()){
+            getRightSupportFunctions(p).setDicesValue(newDiceValue,p);
+        }
     };
 
     /**

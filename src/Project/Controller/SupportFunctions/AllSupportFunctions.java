@@ -12,4 +12,6 @@ public interface AllSupportFunctions {
     void setFamiliar(Position zone, FamilyMember familyMember);
 
     void placeCardInPersonalBoard(DevelopmentCard card, Player player);
+
+    void setDicesValue(int[] newDiceValue, Player p);
 }
