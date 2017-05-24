@@ -3,7 +3,6 @@ package Project.Controller.CheckFunctions;
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
-import Project.Controller.CheckFunctions.CheckFunctionsDecorator;
 import Project.MODEL.*;
 
 
@@ -32,13 +31,13 @@ public class DontPayForTerritories implements CheckFunctionsDecorator {
 
 
     @Override
-    public boolean CheckCardCostCharacters(CharacterCard card, Player player) {
-        return allCheckFunctions.CheckCardCostCharacters(card,player);
+    public boolean CheckCardCostCharacter(CharacterCard card, Player player) {
+        return allCheckFunctions.CheckCardCostCharacter(card,player);
     }
 
     @Override
-    public boolean CheckCardCostBuildings(BuildingCard card, Player player) {
-        return allCheckFunctions.CheckCardCostBuildings(card,player);
+    public boolean CheckCardCostBuilding(BuildingCard card, Player player) {
+        return allCheckFunctions.CheckCardCostBuilding(card,player);
     }
 
     @Override

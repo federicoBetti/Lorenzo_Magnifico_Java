@@ -12,4 +12,7 @@ public class Constants {
     public final static int CARD_FOR_EACH_PERIOD = 8;
     public final static int PERIOD_NUMBER = 3;
     public final static int CARD_TYPE_NUMBER = 4;
+    public final static int NNUMBER_OF_TOWERS = 4;
+    public final static int CARD_FOR_EACH_TOWER = 4;
+
 }

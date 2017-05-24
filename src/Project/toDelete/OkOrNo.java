@@ -4,7 +4,11 @@ package Project.toDelete;
 import Project.toDelete.BonusInteraction;
 
 public class OkOrNo extends BonusInteraction {
-    private boolean ok = false;
+    private boolean ok;
+
+    public OkOrNo(){
+        this.ok = false;
+    }
 
     public boolean isOk() {
         return ok;

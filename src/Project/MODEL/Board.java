@@ -22,12 +22,12 @@ public final class Board {
     /**
      * 
      */
-    private ArrayList<Production> productionZone;
+    private Production[] productionZone;
 
     /**
      * 
      */
-    private ArrayList<Market> marketZone;
+    private Market[] marketZone;
 
     /**
      * 
@@ -37,7 +37,7 @@ public final class Board {
     /**
      * 
      */
-    private ArrayList<ExcommunicationZone> excommunicationZone;
+    private ExcommunicationZone[] excommunicationZone;
 
     /**
      * 
@@ -72,22 +72,35 @@ public final class Board {
 
     private HashMap<String,Position[]> zones;
 
+    /**
+     * questa variabile rappresenta se siamo alla fine di un turno e aspettiamo il lancio dei dadi
+     */
+    private boolean endRound = false;
+
+    /**
+     * qiesto array di interi rappresenta i punti vittori ottenuti pregando per ognuno dei 15 posti del tracciato di punti fede
+     */
+    private int[] victoryPointsInFaithTrack;
+
+    private Deck deck;
+
 
     Board(int numberOfPlayer){
+        victoryPointsInFaithTrack = new int[15];
         if (numberOfPlayer == 4){
-            marketZone = new ArrayList<>(4);
+            marketZone = new Market[4]
         }
         else
-            marketZone = new ArrayList<>(2);
+            marketZone = new Market[2];
         if (numberOfPlayer >= 3){
             harvesterZone = new Harvester[4];
-            productionZone = new ArrayList<>(4);
+            productionZone = new Production[4];
         }
         else {
-            harvesterZone = new ArrayList<>(1);
-            productionZone = new ArrayList<>(1);
+            harvesterZone = new Harvester[1];
+            productionZone = new Production[1];
         }
-        excommunicationZone = new ArrayList<>(3);
+        excommunicationZone = new ExcommunicationZone[3];
         councilZone = new ArrayList<>(numberOfPlayer * 4);
         towers = new Tower[4][4];
         fillHashMap();
@@ -169,15 +182,12 @@ public final class Board {
     }
 
 
-    public Tower[] getTower (int i){
-        return towers[i];
-    }
-    public Tower getTowers() {
-        return towers;
+    public int[] getVictoryPointsInFaithTrack() {
+        return victoryPointsInFaithTrack;
     }
 
-    public void setTowers(Tower towers) {
-        this.towers = towers;
+    public Tower[] getTower (int i){
+        return towers[i];
     }
 
     public Harvester[] getHarvesterZone() {
@@ -188,19 +198,19 @@ public final class Board {
         this.harvesterZone = harvesterZone;
     }
 
-    public ArrayList<Production> getProduction_zone() {
+    public Production[] getProduction_zone() {
         return productionZone;
     }
 
-    public void setProduction_zone(ArrayList<Production> production_zone) {
+    public void setProduction_zone(Production[] production_zone) {
         productionZone = production_zone;
     }
 
-    public ArrayList<Market> getMarketZone() {
+    public Market[] getMarketZone() {
         return marketZone;
     }
 
-    public void setMarketZone(ArrayList<Market> marketZone) {
+    public void setMarketZone(Market[] marketZone) {
         this.marketZone = marketZone;
     }
 
@@ -212,11 +222,11 @@ public final class Board {
         this.councilZone = councilZone;
     }
 
-    public ArrayList<ExcommunicationZone> getExcommunicationZone() {
+    public ExcommunicationZone[] getExcommunicationZone() {
         return excommunicationZone;
     }
 
-    public void setExcommunicationZone(ArrayList<ExcommunicationZone> excommunicationZone) {
+    public void setExcommunicationZone(ExcommunicationZone[] excommunicationZone) {
         this.excommunicationZone = excommunicationZone;
     }
 
@@ -269,6 +279,22 @@ public final class Board {
     }
 
     public Tower[] getTrueArrayList(String whichZone){
-        return zones.get(whichZone);
+        return (Tower[])zones.get(whichZone);
+    }
+
+    public boolean getEndRound() {
+        return endRound;
+    }
+
+    public void setEndRound(boolean endRound) {
+        this.endRound = endRound;
+    }
+
+    public Tower[][] getAllTowers(){
+        return towers;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 }

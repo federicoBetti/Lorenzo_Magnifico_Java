@@ -26,35 +26,34 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         return true;
     }
 
-    public boolean CheckCardCostTerritories (TerritoryCard card, Player player){
-        if (card.getCost().getStoneRequired() <= player.getPersonalBoardReference().getStone() &&
-                card.getCost().getWoodRequired() <= player.getPersonalBoardReference().getWood() &&
-                card.getCost().getDiceCost() <= // TODO guardare coe vengono passati i dice value
-                )
-            return true;
-        else
-            throw NotEnaughResource();
-        return false;
-    }
 
-    public boolean CheckCardCost (DevelopmentCard card, Player player){
-
-    }
 
     public boolean CheckAvaiabiltyToProduct(ArrayList<BuildingCard> cardToProduct, int maxValueOfProduction) {
         for (BuildingCard b: cardToProduct){
             if (b.getCost().getDiceCost() > maxValueOfProduction)
-                return false
+                return false;
         }
         return true;
     }
 
-    public boolean CheckCardCostCharacters (CharacterCard card, Player player){
+    @Override
+    public boolean CheckCardCost(DevelopmentCard card, PlayerHandler playerHandler) {
+        if (card instanceof TerritoryCard)
+            return CheckCardCostTerritory((TerritoryCard)card,playerHandler);
+        if (card instanceof BuildingCard)
+            return CheckCardCostBuilding((BuildingCard)card,playerHandler);
+        if (card instanceof CharacterCard)
+            return CheckCardCostCharacter((CharacterCard)card,playerHandler);
+        return false;
+    }
+
+
+    public boolean CheckCardCostCharacter(CharacterCard card, Player player){
         if (card.getCost().getCoinsRequired() <= player.getPersonalBoardReference().getCoins())
             return true;
         return false;
     }
-    public boolean CheckCardCostBuildings (BuildingCard card, Player player){
+    public boolean CheckCardCostBuilding(BuildingCard card, Player player){
         if (card.getCost().getWoodRequired() <= player.getPersonalBoardReference().getWood() &&
                 card.getCost().getStoneRequired() <= player.getPersonalBoardReference().getStone() &&
                 card.getCost().getCoinsRequired() <= player.getPersonalBoardReference().getCoins()
@@ -62,7 +61,6 @@ public class BasicCheckFunctions implements AllCheckFunctions{
             return true;
         return false;
     }
-
     // questa torna int. 0=non posso prendere, 1=prendo per effetto 1, 2= prendo per effetto 2, 3 = posso predere per tutti e due gl effetti devo chiedere
     public int CheckCardCostVentures (VenturesCard card, Player player){
         boolean[] canTakeCardFromEffect = new boolean[2];
@@ -86,10 +84,10 @@ public class BasicCheckFunctions implements AllCheckFunctions{
             return 0;
 
     }
-    public boolean CheckCapabilityToTakeTerritory (TerritoryCard card, Player player){
+    public boolean CheckCardCostTerritory(TerritoryCard card, Player player){
         int length = player.getPersonalBoardReference().getTerritories().size();
         if (player.getScore().getMilitaryPoints() >= //TODO quanti punti militari ci vogliono per carte verdi)
-                )
+                &&
                 card.getCost().getWoodRequired() <= player.getPersonalBoardReference().getWood() &&
                 card.getCost().getStoneRequired() <= player.getPersonalBoardReference().getStone()
                 )

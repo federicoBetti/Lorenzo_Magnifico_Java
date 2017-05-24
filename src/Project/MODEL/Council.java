@@ -7,13 +7,11 @@ public class Council extends Position {
 
     /**
      * Default constructor
+     * @param familyMember
      */
-    public Council() {
+    public Council(FamilyMember familyMember) {
+        setFamiliarOnThisPosition(familyMember);
     }
 
-    /**
-     * 
-     */
-    private int numberOnTheCouncil;
 
 }

@@ -1,19 +1,111 @@
 package Project.Controller.SupportFunctions;
 
+import Project.Controller.Effects.RealEffects.*;
 import Project.MODEL.*;
+import Project.Server.Network.PlayerHandler;
 import Project.toDelete.BonusInteraction;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * attenzione forse devo mettere nell'interfaccia tutte le funzioni non solo quelle da decorare
  */
 public class BasicSupportFunctions implements AllSupportFunctions {
 
+    private PlayerHandler player;
+
+    private HashMap<Integer,PrivilegeTaker> privileges;
+
+    private HashMap<Integer,MarketTaker> takeFromMarket;
+
+
     /**
      * Default constructor
      */
 
 
-    public BasicSupportFunctions() {
+    public BasicSupportFunctions(PlayerHandler player) {
+        this.player = player;
+        privileges = new HashMap<>(5);
+        takeFromMarket = new HashMap<>(4);
+        fillHashMapPrivileges();
+        fillHashMapTakeFromMarket();
+    }
+
+
+    private void fillHashMapPrivileges (){
+        privileges.put(0,this::WoodStonePrivilege);
+        privileges.put(1,this::servantsPrivilege);
+        privileges.put(2,this::coinsPrivilege);
+        privileges.put(3,this::militaryPointsPrivilege);
+        privileges.put(4,this::faithPointsPrivilege);
+    }
+
+    private void fillHashMapTakeFromMarket() {
+        takeFromMarket.put(0,this::marketCoins);
+        takeFromMarket.put(1,this::marketServants);
+        takeFromMarket.put(2,this::marketMilitaryCoins);
+        takeFromMarket.put(3,this::marketPrivileges);
+    }
+
+    private interface PrivilegeTaker{
+        void takePrivilege();
+    }
+
+
+    void WoodStonePrivilege(){
+        Effects e;
+        e = new AddWood(1);
+        e.doEffect(player);
+        e = new AddCoin(1);
+        e.doEffect(player);
+    }
+
+    void faithPointsPrivilege(){
+        Effects e = new AddFaithPoints(1);
+        e.doEffect(player);
+    }
+
+    void servantsPrivilege(){
+        Effects e = new AddServants(2);
+        e.doEffect(player);
+    }
+
+    void coinsPrivilege(){
+        Effects e = new AddCoin(2);
+        e.doEffect(player);
+    }
+
+    void militaryPointsPrivilege(){
+        Effects e = new AddMilitaryPoints(2);
+        e.doEffect(player);
+    }
+
+
+    private interface MarketTaker{
+        void takeMarketAction();
+    }
+
+    void marketCoins(){
+        Effects e = new AddCoin(5);
+        e.doEffect(player);
+    }
+
+    void marketServants(){
+        Effects e = new AddServants(5);
+        e.doEffect(player);
+    }
+    void marketMilitaryCoins(){
+        Effects e = new AddCoin(2);
+        e.doEffect(player);
+        e = new AddMilitaryPoints(3);
+        e.doEffect(player);
+    }
+    void marketPrivileges(){
+        Effects e = new UsePrivilege(2);
+        BonusInteraction bonusInteraction = e.doEffect(player);
+        player.sendAnswer(bonusInteraction);
     }
 
 
@@ -39,49 +131,27 @@ public class BasicSupportFunctions implements AllSupportFunctions {
             p.getPedone()[i].setMyValue(newDiceValue[i]);
     }
 
-    /**
-     * @param position 
-     * @param familiar 
-     * @return
-     */
-    public boolean Check_Dice(Position position, FamilyMember familiar) {
-        // TODO implement here
-        return false;
+    @Override
+    public void setFamiliarInTheCouncilPalace(ArrayList<Council> councilZone, FamilyMember familyMember) {
+        councilZone.add(new Council(familyMember));
     }
 
-    /**
-     * @param player 
-     * @param resource 
-     * @param quantity 
-     * @return
-     */
-    public void Update_Resource(Player player, int resource, int quantity) {
-        // TODO implement here
+
+
+    @Override
+    public void takeCouncilPrivilege(int privilegeNumber) {
+        privileges.get((Integer)privilegeNumber).takePrivilege();
     }
 
-    /**
-     * @param player 
-     * @param point_type 
-     * @param quantity 
-     * @return
-     */
-    public void Update_Points(Player player, int point_type, int quantity) {
-        // TODO implement here
+    @Override
+    public void takeMarketAction(int position) {
+        takeFromMarket.get((Integer)position).takeMarketAction();
     }
 
-    /**
-     * @param player 
-     * @param PrivilegioBannato 
-     * @return
-     */
-    public int  Add_Privilege(Player player, int[] PrivilegioBannato) {
-        // TODO implement here
-        return 0 ;
-    }
 
 
     public int Pray(Player player){
-        // TODO bisogna importare da file quanti punti vittoria in ogni posto fede
+
         return  0;
     }
 

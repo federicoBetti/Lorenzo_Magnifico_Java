@@ -66,5 +66,8 @@ public abstract class DevelopmentCard {
 
     public abstract Cost getCost();
 
+    public String getName() {
+        return name;
+    }
 }
 

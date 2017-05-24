@@ -3,7 +3,6 @@ package Project.Controller.CheckFunctions;
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
-import Project.Controller.SupportFunctions.SupportFunctionsDecorator;
 import Project.MODEL.*;
 
 /**
@@ -28,18 +27,18 @@ public class PicoDellaMirandola implements CheckFunctionsDecorator {
 
     @Override
     public boolean CheckCapabilityToTakeTerritory(Player player) {
-        return allCheckFunctions.CheckCapabilityToTakeTerritory(player);
+        return allCheckFunctions.CheckCardCost(player);
     }
 
 
     @Override
-    public boolean CheckCardCostCharacters(CharacterCard card, Player player) {
+    public boolean CheckCardCostCharacter(CharacterCard card, Player player) {
         // TODO fare lo stesso che c'è nella support function normale con 3 di sconto sui coins required
         return false;
     }
 
     @Override
-    public boolean CheckCardCostBuildings(BuildingCard card, Player player) {
+    public boolean CheckCardCostBuilding(BuildingCard card, Player player) {
         // TODO fare lo stesso che c'è nella support function normale con 3 di sconto sui coins required
         return false;
     }

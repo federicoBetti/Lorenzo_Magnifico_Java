@@ -4,6 +4,7 @@ import Project.Controller.SupportFunctions.AllSupportFunctions;
 import Project.MODEL.Board;
 import Project.MODEL.Player;
 import Project.Server.Network.GameActions;
+import Project.Server.Network.PlayerHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,9 +23,9 @@ public class Room {
 
     private Board board;
 
-    HashMap<Player,AllSupportFunctions> playerAllSupportFunctionsMap;
+    private HashMap<Player,AllSupportFunctions> playerAllSupportFunctionsMap;
 
-    ArrayList<Player> roomPlayers;
+    private ArrayList<PlayerHandler> roomPlayers;
 
     /**
      * Riferimento alla classe GameActions
@@ -56,7 +57,7 @@ public class Room {
         return gameActions;
     }
 
-    public ArrayList<Player> getRoomPlayers() {
+    public ArrayList<PlayerHandler> getRoomPlayers() {
         return roomPlayers;
     }
 }

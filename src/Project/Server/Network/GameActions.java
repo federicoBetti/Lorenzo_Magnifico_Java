@@ -1,19 +1,22 @@
 package Project.Server.Network;
 
 import Project.Controller.CardsFactory.BuildingCard;
+import Project.Controller.CardsFactory.LeaderCard;
 import Project.Controller.CardsFactory.TerritoryCard;
+import Project.Controller.Constants;
+import Project.Controller.Effects.RealEffects.AddCoin;
+import Project.Controller.Effects.RealEffects.Effects;
+import Project.Controller.FakeFamiliar;
 import Project.Controller.SupportFunctions.AllSupportFunctions;
-import Project.Iterator;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
-import Project.MODEL.Position;
 import Project.MODEL.Tower;
 import Project.Server.Room;
 import Project.toDelete.BonusInteraction;
+import Project.toDelete.Notify;
+import Project.toDelete.OkOrNo;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
-import java.util.Map;
 
 /**
  * Created by raffaelebongo on 22/05/17.
@@ -36,16 +39,102 @@ public class GameActions {
         getRightSupportFunctions(player).setFamiliar(zone, familyM);
         getRightSupportFunctions(player).placeCardInPersonalBoard(zone.getCardOnThisFloor(), player);
         BonusInteraction returnFromEffect = getRightSupportFunctions(player).ApplyEffects(zone.getCardOnThisFloor(),player);
-        player.sendReturn(returnFromEffect);
-    };
+        player.sendAnswer(returnFromEffect);
+        if (returnFromEffect instanceof OkOrNo){
+            player.sendAnswer(new Notify("i have finished my turn"));
+            nextTurn(player);
+        }
+
+    }
 
     /**
+     *
+     * @param player
+     */
+    private void nextTurn(PlayerHandler playerHandler) {
+        PlayerHandler next;
+        int playerNumber = room.getRoomPlayers().size();
+        int indexOfMe = room.getBoard().getTurnOrder().indexOf(playerHandler);
+        int currentPeriod = room.getBoard().getPeriod();
+        int currentRound = room.getBoard().getRound();
+        if (indexOfMe != playerNumber){ //caso in mezzo al round
+            next = (PlayerHandler) room.getBoard().getTurnOrder().get(indexOfMe++);
+            broadcastNotifications(new Notify("it's " + next.getName() + " turn"));
+            next.itsMyTurn();
+        }
+        //ora siamo nel caso in cui è finito un round o un periodo
+        else if (currentRound == 2 && currentPeriod == 3){ //
+            endMatch(); //TODO
+        }
+        else if (currentRound == 2){
+            endPeriod();
+            setEndTurn(true);
+        }
+        else {
+            endRound();
+            setEndTurn(true);
+        }
+    }
+
+    private void endPeriod() {
+        changeCardInTowers();
+        askForPraying();
+    }
+
+    private void askForPraying() {
+        for (PlayerHandler p: room.getRoomPlayers()){
+            p.sendAskForPraying( );
+        }
+    }
+
+    private void setEndTurn(boolean choice) {
+        room.getBoard().setEndRound(choice);
+    }
+
+    private PlayerHandler nextPlayerToPlay(PlayerHandler playerHandler){
+        int indexOfMe = room.getBoard().getTurnOrder().indexOf(playerHandler);
+        int indexOfNext = room.getRoomPlayers().size() % indexOfMe;
+        return (PlayerHandler) room.getBoard().getTurnOrder().get(indexOfNext);
+    }
+
+    private void endRound(){
+        changeCardInTowers();
+    }
+
+    private void changeCardInTowers() {
+        int i = 0;
+        int j = 0;
+        FakeFamiliar fakeFamiliar = new FakeFamiliar();
+        int currentPeriod = room.getBoard().getPeriod();
+        int currentRound = room.getBoard().getRound();
+        Tower[][] tower = room.getBoard().getAllTowers();
+        int roundsAdd = 0;
+        if (currentRound == 1)
+            roundsAdd = 4;
+        else
+            currentPeriod++;
+        for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++){
+            for (j=0; j < Constants.CARD_FOR_EACH_TOWER; j++){
+                //ho fatto il ciclo passando per tutte le torri dal basso all'alto
+                tower[j][i].setOccupied(false);
+                tower[j][i].setFamiliarOnThisPosition(fakeFamiliar);
+                tower[j][i].setCardOnThisFloor(room.getBoard().getDeckCard().getDevelopmentdeck()[i][currentPeriod][roundsAdd + j]); //da testare
+            }
+        }
+    }
+
+    private void setFamilyMemberHome() {
+
+    }
+
+    /**
+     *
      * @param position
      * @param familyM
      * @param servantsNumber
-     *@param playerHandler @return
+     * @param player
      */
-    public void harvester(int position, FamilyMember familyM, int servantsNumber, Player player){
+    public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player){
         int malusByField;
         if (position == 0)
             malusByField = 0;
@@ -58,14 +147,16 @@ public class GameActions {
                     >= t.getCost().getDiceCost())
                 t.makePermannetEffects(player);
         }
+
         return;
     };
 
     /**
+     *
      * @param position
      * @param familyM
      * @param cardToProduct
-     *@param playerHandler @return
+     * @param player
      */
     public void production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct, Player player){
         getRightSupportFunctions(player).setFamiliar(room.getBoard().getTrueArrayList("production")[position], familyM);
@@ -83,28 +174,46 @@ public class GameActions {
      * @param familyM
      * @return
      */
-    public void goToMarket(int position, FamilyMember familyM, Player player){
-    };
+    public void goToMarket(int position, FamilyMember familyM, PlayerHandler player){
+        getRightSupportFunctions(player).setFamiliar(room.getBoard().getTrueArrayList("market")[position],familyM);
+        getRightSupportFunctions(player).takeMarketAction(position);
+    }
 
     /**
+     * questo metodo deve rappresnetare la fine del turno, deve usare un metodo che mi dici chi c'è dopo e notiicare al player giusto che è il suo
      * @return
      */
-    public void jumpTurn(){
+    public void endTurn(){
 
     };
 
     /**
+     *
      * @param leaderName
-     * @return
+     * @param player
      */
-    public void playLeaderCard(String leaderName, Player player ){};
+    public void playLeaderCard(String leaderName, PlayerHandler player ){
+        for (LeaderCard leaderCard: player.getPersonalBoardReference().getMyLeaderCard()) {
+            if (leaderCard.getName().equals(leaderName)) {
+                leaderCard.playCard(player);
+                leaderCard.setPlayed(true);
+            }
+        }
+    }
 
     /**
      * @param leaderName
      * @return
      */
     public void discardLeaderCard(String leaderName, Player player){
-
+        int numberToDelate = 0;
+        for (LeaderCard leaderCard: player.getPersonalBoardReference().getMyLeaderCard()) {
+            if (leaderCard.getName().equals(leaderName)) {
+                numberToDelate = player.getPersonalBoardReference().getMyLeaderCard().indexOf(leaderCard);
+                break;
+            }
+        }
+        player.getPersonalBoardReference().getMyLeaderCard().remove(numberToDelate);
     };
 
     /**
@@ -119,21 +228,35 @@ public class GameActions {
         for (Player p: room.getRoomPlayers()){
             getRightSupportFunctions(p).setDicesValue(newDiceValue,p);
         }
+        setEndTurn(false);
+        // TODO fare notifica a tutti
     };
 
     /**
-     * @param privelgeNumber
-     * @return
+     * @param privilegeNumber
+     * @param familyMember
+     *@param playerHandler @return
      */
-    public void goToCouncilPalace(int privelgeNumber){
-
+    public void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler playerHandler){
+        getRightSupportFunctions(playerHandler).setFamiliarInTheCouncilPalace(room.getBoard().getCouncilZone(), familyMember);
+        Effects e = new AddCoin(1);
+        e.doEffect(playerHandler);
+        takeCouncilPrivilege(privilegeNumber,playerHandler);
     };
 
     /**
-     * @return
+     *
+     * @param privilegeNumber
+     * @param playerHandler
      */
-    public void goToCouncilPalace(){
+    public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler playerHandler) {
+        getRightSupportFunctions(playerHandler).takeCouncilPrivilege(privilegeNumber);
+    }
 
-    };
+    public void broadcastNotifications(Notify notifications){
+        for (PlayerHandler p: room.getRoomPlayers()){
+            p.sendAnswer( notifications);
+        }
+    }
 
 }

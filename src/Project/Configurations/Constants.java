@@ -1,8 +1,6 @@
 package Project.Configurations;
 
-/**
- * Created by raffaelebongo on 20/05/17.
- */
+
 public enum  Constants {
 
 

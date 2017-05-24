@@ -4,8 +4,6 @@ package Project.Controller.CheckFunctions;
 import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
-import Project.Controller.CheckFunctions.AllCheckFunctions;
-import Project.Controller.SupportFunctions.SupportFunctionsDecorator;
 import Project.MODEL.*;
 
 public class DontCheckPositionDecorator implements CheckFunctionsDecorator {
@@ -32,18 +30,18 @@ public class DontCheckPositionDecorator implements CheckFunctionsDecorator {
 
     @Override
     public boolean CheckCapabilityToTakeTerritory(Player player) {
-        return allCheckFunctions.CheckCapabilityToTakeTerritory(player);
+        return allCheckFunctions.CheckCardCost(player);
     }
 
 
     @Override
-    public boolean CheckCardCostCharacters(CharacterCard card, Player player) {
-        return allCheckFunctions.CheckCardCostCharacters(card,player);
+    public boolean CheckCardCostCharacter(CharacterCard card, Player player) {
+        return allCheckFunctions.CheckCardCostCharacter(card,player);
     }
 
     @Override
-    public boolean CheckCardCostBuildings(BuildingCard card, Player player) {
-        return allCheckFunctions.CheckCardCostBuildings(card,player);
+    public boolean CheckCardCostBuilding(BuildingCard card, Player player) {
+        return allCheckFunctions.CheckCardCostBuilding(card,player);
     }
 
     @Override
