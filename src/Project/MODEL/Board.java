@@ -88,16 +88,23 @@ public final class Board {
 
     private ArrayList<Integer> finalPointsFromCharacterCards;
 
+    private int numberOfFamilyMemberPlayedInThisRound;
+
+    private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
+
 
     Board(int numberOfPlayer){
+        this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
+        this.numberOfFamilyMemberPlayedInThisRound = 1;
         victoryPointsInFaithTrack = new int[15];
         if (numberOfPlayer == 4){
-            marketZone = new Market[4]
+            marketZone = new Market[4];
         }
         else
             marketZone = new Market[2];
         if (numberOfPlayer >= 3){
-            harvesterZone = new Harvester[4];
+            harvesterZone = new Harvester[4]; //todo attenzione qua in verità al max ci possono essere 8 giocatori per ogni
+            // round di harv o prod, facciamo cosi con 8 giocatori (cioe numberofplayers * 2) oppure facciamo arraylist?
             productionZone = new Production[4];
         }
         else {
@@ -123,70 +130,6 @@ public final class Board {
         zones.put(Constants.PRODUCTION,getProduction_zone());
     }
 
-    /**
-     * @return
-     */
-    public void EndTunr() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public void EndGame() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public void FillTowers() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public void ResetFamilyMembers() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public void ThrowDice() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public void CheckFaithTruck() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public void CheckFinalPointsMilitary() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public void CheckWinner() {
-        // TODO implement here
-        return null;
-    }
-
 
     public int[] getVictoryPointsInFaithTrack() {
         return victoryPointsInFaithTrack;
@@ -200,24 +143,12 @@ public final class Board {
         return harvesterZone;
     }
 
-    public void setHarvesterZone(Harvester[] harvesterZone) {
-        this.harvesterZone = harvesterZone;
-    }
-
     public Production[] getProduction_zone() {
         return productionZone;
     }
 
-    public void setProduction_zone(Production[] production_zone) {
-        productionZone = production_zone;
-    }
-
     public Market[] getMarketZone() {
         return marketZone;
-    }
-
-    public void setMarketZone(Market[] marketZone) {
-        this.marketZone = marketZone;
     }
 
     public ArrayList<Council> getCouncilZone() {
@@ -232,10 +163,6 @@ public final class Board {
         return excommunicationZone;
     }
 
-    public void setExcommunicationZone(ExcommunicationZone[] excommunicationZone) {
-        this.excommunicationZone = excommunicationZone;
-    }
-
     public ArrayList<Player> getTurnOrder() {
         return TurnOrder;
     }
@@ -246,10 +173,6 @@ public final class Board {
 
     public int getPeriod() {
         return period;
-    }
-
-    public void setPeriod(int period) {
-        this.period = period;
     }
 
     public int getIsPlaying() {
@@ -264,20 +187,8 @@ public final class Board {
         return round;
     }
 
-    public void setRound(int round) {
-        this.round = round;
-    }
-
     public Deck getDeckCard() {
         return deckCard;
-    }
-
-    public void setDeckCard(Deck deckCard) {
-        this.deckCard = deckCard;
-    }
-
-    public int[] getDiceValue() {
-        return diceValue;
     }
 
     public void setDiceValue(int[] diceValue) {
@@ -300,10 +211,6 @@ public final class Board {
         return towers;
     }
 
-    public Deck getDeck() {
-        return deck;
-    }
-
     public void nextRound(){
         round ++;
         if (round == 3)
@@ -324,5 +231,17 @@ public final class Board {
 
     public ArrayList<Integer> getFinalPointsFromCharacterCards() {
         return finalPointsFromCharacterCards;
+    }
+
+    public void setNumberOfFamilyMemberPlayedInThisRound(int numberOfFamilyMemberPlayedInThisRound) {
+        this.numberOfFamilyMemberPlayedInThisRound = numberOfFamilyMemberPlayedInThisRound;
+    }
+
+    public int getNumberOfFamilyMemberPlayedInThisRound() {
+        return numberOfFamilyMemberPlayedInThisRound;
+    }
+
+    public int[] getFaithPointsRequiredEveryPeriod() {
+        return faithPointsRequiredEveryPeriod;
     }
 }

@@ -2,46 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/CantPlaceFamiliarInMarket.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/DoubleServantsValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/EffectsConstants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/DowngradeEffect.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/LoseFinalPointsFromResources.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/LoseResourceEffect.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/NoFinalPointsFromCards.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/SpecialExcommunicationEffects.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DoubleServantsPayment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/ExcommunicationZone.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/ExcommunicationZone.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/ExcommunitationTile.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/AllCheckFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/AllCheckFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/BasicCheckFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/BasicCheckFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Constants.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/Effects.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/Effects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/IncreaseDicevalueForTakingCards.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/IncreaseDicevalueForTakingCards.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/ReduceValueOnAction.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/ReduceValueOnAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayMoneyForTower.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayMoneyForTower.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/FivePointsMoreForPray.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/FivePointsMoreForPray.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SupportFunctionsDecorator.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SupportFunctionsDecorator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Board.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Bonus.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Bonus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/BonusForTakingBuilding.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/BonusForTakingBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/BonusForTakingCharacter.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/BonusForTakingCharacter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Council.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Council.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Room.java" afterPath="$PROJECT_DIR$/src/Project/Server/Room.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -57,38 +20,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="LoseFinalPointsFromResources.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/LoseFinalPointsFromResources.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="54" column="80" lean-forward="false" selection-start-line="54" selection-start-column="80" selection-end-line="54" selection-end-column="80" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#799#800#0" expanded="true" />
-                <element signature="e#871#872#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BuildExcommunicationEffects.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameActions.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/GameActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5680">
-              <caret line="309" column="39" lean-forward="false" selection-start-line="309" selection-start-column="39" selection-end-line="309" selection-end-column="39" />
+            <state relative-caret-position="191">
+              <caret line="113" column="107" lean-forward="false" selection-start-line="113" selection-start-column="107" selection-end-line="113" selection-end-column="107" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoseFinalPointsEveryResources.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="605">
+              <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="92" column="111" lean-forward="false" selection-start-line="92" selection-start-column="111" selection-end-line="92" selection-end-column="111" />
+              <folding>
+                <element signature="e#5007#5008#0" expanded="true" />
+                <element signature="e#5059#5060#0" expanded="true" />
+                <element signature="e#5441#5442#0" expanded="true" />
+                <element signature="e#5501#5502#0" expanded="true" />
+                <element signature="e#5557#5558#0" expanded="true" />
+                <element signature="e#5610#5611#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -173,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/SpecialExcommunicationEffects.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" />
-        <option value="$PROJECT_DIR$/src/Project/MODEL/Board.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java" />
@@ -189,6 +154,7 @@
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/LoseFinalPointsFromResources.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
+        <option value="$PROJECT_DIR$/src/Project/MODEL/Board.java" />
         <option value="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" />
       </list>
     </option>
@@ -1134,11 +1100,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495788726439</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="sviluppo player handler e game actions">
+      <created>1495814912021</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1495814912021</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83049000" />
+    <option name="totallyTimeSpent" value="86458000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1547,18 +1520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="320" column="66" lean-forward="false" selection-start-line="320" selection-start-column="66" selection-end-line="320" selection-end-column="66" />
-          <folding>
-            <element signature="e#6376#6377#0" expanded="true" />
-            <element signature="e#6444#6445#0" expanded="true" />
-            <element signature="e#6496#6497#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayMoneyForTower.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1685,26 +1646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="81" lean-forward="true" selection-start-line="12" selection-start-column="81" selection-end-line="105" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
-            <element signature="e#736#737#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#1763#1764#0" expanded="true" />
-            <element signature="e#1787#1788#0" expanded="true" />
-            <element signature="e#1882#1883#0" expanded="true" />
-            <element signature="e#1906#1907#0" expanded="true" />
-            <element signature="e#2071#2072#0" expanded="true" />
-            <element signature="e#2095#2096#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="725">
@@ -1799,18 +1740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/LoseFinalPointsFromResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="54" column="80" lean-forward="false" selection-start-line="54" selection-start-column="80" selection-end-line="54" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/MODEL/DevelopmentCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1833,6 +1762,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/LoseFinalPointsFromResources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="54" column="80" lean-forward="false" selection-start-line="54" selection-start-column="80" selection-end-line="54" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#871#872#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="665">
@@ -1843,10 +1784,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="92" column="111" lean-forward="false" selection-start-line="92" selection-start-column="111" selection-end-line="92" selection-end-column="111" />
+          <folding>
+            <element signature="e#5007#5008#0" expanded="true" />
+            <element signature="e#5059#5060#0" expanded="true" />
+            <element signature="e#5441#5442#0" expanded="true" />
+            <element signature="e#5501#5502#0" expanded="true" />
+            <element signature="e#5557#5558#0" expanded="true" />
+            <element signature="e#5610#5611#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/GameActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5680">
-          <caret line="309" column="39" lean-forward="false" selection-start-line="309" selection-start-column="39" selection-end-line="309" selection-end-column="39" />
+        <state relative-caret-position="191">
+          <caret line="113" column="107" lean-forward="false" selection-start-line="113" selection-start-column="107" selection-end-line="113" selection-end-column="107" />
           <folding />
         </state>
       </provider>

@@ -15,7 +15,9 @@ import Project.toDelete.BonusInteraction;
 import Project.toDelete.Notify;
 import Project.toDelete.OkOrNo;
 
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
+import java.util.SortedMap;
 
 /**
  * main game actions
@@ -63,8 +65,8 @@ public class GameActions {
 
 
     /**
-     *
-     * @param player
+     * todo check this method!!!
+     * @param playerHandler
      */
     public void nextTurn(PlayerHandler playerHandler) {
         PlayerHandler next;
@@ -72,31 +74,73 @@ public class GameActions {
         int indexOfMe = room.getBoard().getTurnOrder().indexOf(playerHandler);
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
-        if (indexOfMe != playerNumber){ //i'm not the last in turn order
-            next = (PlayerHandler) room.getBoard().getTurnOrder().get(indexOfMe++);
-            broadcastNotifications(new Notify("it's " + next.getName() + " turn"));
-            next.itsMyTurn();
+        if (room.getBoard().getNumberOfFamilyMemberPlayedInThisRound() < 5 ){ //it's not the end of a round
+            if (indexOfMe != playerNumber) {// i'm not the last
+                next = (PlayerHandler) room.getBoard().getTurnOrder().get(indexOfMe++);
+                broadcastNotifications(new Notify("it's " + next.getName() + " turn"));
+                next.itsMyTurn();
+            }
+            else{ //i'm the last
+                next = (PlayerHandler) room.getBoard().getTurnOrder().get(0);
+                broadcastNotifications(new Notify("it's " + next.getName() + " turn"));
+                next.itsMyTurn();
+                room.getBoard().setNumberOfFamilyMemberPlayedInThisRound(room.getBoard().getNumberOfFamilyMemberPlayedInThisRound() + 1);
+            }
         }
         //ora siamo nel caso in cui è finito un round o un periodo
-        else if (currentRound == 2 && currentPeriod == 3){ //
+        else if (currentRound == 2 && currentPeriod == 3){
+            endMatch();//
         }
         else if (currentRound == 2){
-            endPeriod();
+            endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
+            room.getBoard().setNumberOfFamilyMemberPlayedInThisRound(1);
             changePlayerOrder();
             setEndTurn(true);
         }
         else {
             endRound();
             nextRound();
+            room.getBoard().setNumberOfFamilyMemberPlayedInThisRound(1);
             changePlayerOrder();
             setEndTurn(true);
         }
     }
 
-    private void endMatch(PlayerHandler playerHandler) { //todo
-        getRightSupportFunctions(playerHandler).extraLostOfPoints(playerHandler); //questa funzione va fatta prima di aggiungere altri punti vittoria
+    private void endMatch() { //todo
+
+
+        //todo classifica dei military points SI PUO USARE UNA SORTED MAP! BISOGNA GUARDARE COME FUNZIONANO
+        for (PlayerHandler playerHandler: room.getRoomPlayers()){
+            int pointsToAdd = 0;
+            if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[Constants.PERIOD_NUMBER])
+                pray(playerHandler);
+            else{
+                takeExcommunication(playerHandler);
+            }
+            pointsToAdd += getRightSupportFunctions(playerHandler).extraLostOfPoints(playerHandler);
+            pointsToAdd += getRightSupportFunctions(playerHandler).finalPointsFromCharacterCard(room.getBoard().getFinalPointsFromCharacterCards());
+            pointsToAdd += getRightSupportFunctions(playerHandler).finalPointsFromTerritoryCard(room.getBoard().getFinalPointsFromTerritoryCards());
+            getRightSupportFunctions(playerHandler).finalPointsFromVenturesCard();
+            int numberOfResources;
+            numberOfResources = playerHandler.getPersonalBoardReference().getCoins();
+            numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getServants();
+            numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getStone();
+            numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getWood();
+            pointsToAdd += (numberOfResources/5);
+            //todo aggiungere punti relativi a classifica military points
+            playerHandler.getScore().setVictoryPoints(playerHandler.getScore().getVictoryPoints() + pointsToAdd);
+        }
+        PlayerHandler winner;
+        ArrayList<PlayerHandler> winnerSearcher = new ArrayList<>();
+        for (PlayerHandler playerHandler: room.getRoomPlayers()){
+            winnerSearcher.
+        }
+        //todo controllare chi ha vinto mettendo in ordine i player rispetto ai victory points
+        winner.YOUWIN();
+        broadcastNotifications(new Notify("the winner is + " + winner.getName()));
+
     }
 
     private void changePlayerOrder() { //todo controllare
@@ -124,14 +168,18 @@ public class GameActions {
         room.getBoard().nextRound();
     }
 
-    private void endPeriod() {
+    private void endPeriod(int period) {
         changeCardInTowers();
-        askForPraying();
+        askForPraying(period); //todo controllare che non ho fatto che si puo chiedere se pregare o no solo a quelli che possono
     }
 
-    private void askForPraying() {
+    private void askForPraying(int period) {
         for (PlayerHandler p: room.getRoomPlayers()){
-            p.sendAskForPraying( );
+            if (p.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[period])
+                p.sendAskForPraying( );
+            else{
+                takeExcommunication(p);
+            }
         }
     }
 
