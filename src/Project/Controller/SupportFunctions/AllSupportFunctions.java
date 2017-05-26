@@ -1,7 +1,6 @@
 package Project.Controller.SupportFunctions;
 
 
-import Project.Controller.CardsFactory.TerritoryCard;
 import Project.Controller.CardsFactory.VenturesCard;
 import Project.MODEL.*;
 import Project.Server.Network.PlayerHandler;
@@ -10,6 +9,9 @@ import Project.toDelete.BonusInteraction;
 import java.util.ArrayList;
 
 public interface AllSupportFunctions {
+
+
+
     int Pray(Player player);
     BonusInteraction ApplyEffects(DevelopmentCard card, Player player);
 
@@ -26,7 +28,20 @@ public interface AllSupportFunctions {
 
     void takeMarketAction(int position);
 
-    void payCard(DevelopmentCard cardOnThisFloor, boolean towerIsOccupied);
+    void payCard(DevelopmentCard cardOnThisFloor, boolean towerIsOccupied, int zoneDiceCost, int valueOfFamilyMember);
 
-    public void payVenturesCard(VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen);
+    void payVenturesCard(VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen);
+
+    void pray(int victoryPointsToAdd);
+
+    int payServants(int cost, int value);
+
+    int finalPointsFromTerritoryCard(ArrayList<Integer> victoryPoints);
+
+    void finalPointsFromVenturesCard();
+
+    int finalPointsFromCharacterCard(ArrayList<Integer> victoryPoints);
+
+    int extraLostOfPoints(PlayerHandler playerHandler);
+
 }

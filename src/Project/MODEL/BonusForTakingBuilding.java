@@ -6,16 +6,16 @@ package Project.MODEL;
 public class BonusForTakingBuilding {
 
 
-    private int diceValue;
+    private int diceBonus;
     private int woodBonus;
     private int stoneBonus;
 
-    public int getDiceValue() {
-        return diceValue;
+    public int getDiceBonus() {
+        return diceBonus;
     }
 
-    public void setDiceValue(int diceValue) {
-        this.diceValue = diceValue;
+    public void setDiceBonus(int diceBonus) {
+        this.diceBonus = diceBonus;
     }
 
     public int getWoodBonus() {

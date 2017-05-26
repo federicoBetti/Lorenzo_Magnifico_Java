@@ -9,6 +9,9 @@ import Project.Server.Network.PlayerHandler;
 
 import java.util.ArrayList;
 
+/**
+ * todo mettere qua tutte le funzioni che sono implementare in basi functions
+ */
 
 public interface AllCheckFunctions {
     boolean Check_Position(int position, Position[] zone, FamilyMember familyMember);
@@ -21,4 +24,5 @@ public interface AllCheckFunctions {
     boolean CheckCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
 
     boolean CheckTowerOccupied(Tower[] zone);
+    int getServants(Player player);
 }

@@ -29,6 +29,11 @@ public class FivePointsMoreForPray implements SupportFunctionsDecorator {
     }
 
     @Override
+    public int finalPointsFromTerritoryCard() {
+        return 0;
+    }
+
+    @Override
     public boolean CheckCapabilityToTakeTerritory(Player player) {
         return allSupportFunctions.CheckCapabilityToTakeTerritory(player);
     }

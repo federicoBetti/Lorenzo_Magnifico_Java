@@ -30,4 +30,9 @@ public class SantaRita implements SupportFunctionsDecorator {
         return null;
     }
 
+    @Override
+    public int finalPointsFromTerritoryCard() {
+        return 0;
+    }
+
 }

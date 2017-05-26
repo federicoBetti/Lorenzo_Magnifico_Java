@@ -81,7 +81,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     public boolean CheckCardCostBuilding(BuildingCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
-        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceValue();
+        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus();
         int woodBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getWoodBonus();
         int stoneBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getStoneBonus();
         if (coinsFee)

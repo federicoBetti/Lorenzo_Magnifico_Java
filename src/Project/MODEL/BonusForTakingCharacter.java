@@ -5,7 +5,7 @@ import Project.toDelete.BonusInteraction;
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class BonusForTakingCharacter extends BonusInteraction {
+public class BonusForTakingCharacter  {
     int diceBonus;
     int coinsBonus;
 

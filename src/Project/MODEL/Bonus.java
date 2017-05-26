@@ -18,6 +18,19 @@ public class Bonus {
 
     private int bonusForTakingVentures = 0;
 
+
+    //todo mettere lo 0 nella creazione della carta, togliere il todo quando sono stati messi anche negli effetti
+
+    private int militaryPointsBonus = 0;
+
+    private int coinsBonus = 0;
+
+    private int servantsBonus = 0;
+
+    private int stoneBonus = 0;
+
+    private int woodBonus = 0;
+
     //Aggiustare per ReduceValueOnAction
 
 
@@ -78,5 +91,45 @@ public class Bonus {
 
     public BonusForTakingCharacter getCharactersBonus() {
         return charactersBonus;
+    }
+
+    public int getMilitaryPointsBonus() {
+        return militaryPointsBonus;
+    }
+
+    public void setMilitaryPointsBonus(int militaryPointsBonus) {
+        this.militaryPointsBonus = militaryPointsBonus;
+    }
+
+    public int getCoinsBonus() {
+        return coinsBonus;
+    }
+
+    public void setCoinsBonus(int coinsBonus) {
+        this.coinsBonus = coinsBonus;
+    }
+
+    public int getServantsBonus() {
+        return servantsBonus;
+    }
+
+    public void setServantsBonus(int servantsBonus) {
+        this.servantsBonus = servantsBonus;
+    }
+
+    public int getStoneBonus() {
+        return stoneBonus;
+    }
+
+    public void setStoneBonus(int stoneBonus) {
+        this.stoneBonus = stoneBonus;
+    }
+
+    public int getWoodBonus() {
+        return woodBonus;
+    }
+
+    public void setWoodBonus(int woodBonus) {
+        this.woodBonus = woodBonus;
     }
 }

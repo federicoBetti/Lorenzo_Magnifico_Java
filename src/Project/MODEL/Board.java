@@ -1,7 +1,6 @@
 package Project.MODEL;
 
 
-import Project.Controller.CardsFactory.ExcommunicationZone;
 import Project.Controller.Constants;
 
 import java.util.ArrayList;
@@ -84,6 +83,10 @@ public final class Board {
     private int[] victoryPointsInFaithTrack;
 
     private Deck deck;
+
+    private ArrayList<Integer> finalPointsFromTerritoryCards;
+
+    private ArrayList<Integer> finalPointsFromCharacterCards;
 
 
     Board(int numberOfPlayer){
@@ -313,5 +316,13 @@ public final class Board {
 
     public void setTowers(Tower[][] towers) {
         this.towers = towers;
+    }
+
+    public ArrayList<Integer> getFinalPointsFromTerritoryCards() {
+        return finalPointsFromTerritoryCards;
+    }
+
+    public ArrayList<Integer> getFinalPointsFromCharacterCards() {
+        return finalPointsFromCharacterCards;
     }
 }

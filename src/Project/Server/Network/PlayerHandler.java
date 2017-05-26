@@ -185,6 +185,13 @@ public abstract class PlayerHandler extends Player {
         room.getGameActions().takeCouncilPrivilege(privilegeNumber, this);
     }
 
+    public void clientPray(){
+        room.getGameActions().pray(this);
+    }
+
+    public void clientDontPray(){
+        room.getGameActions().takeExcommunication(this);
+    }
     /**
      * da qua iniziano a comparire i metodi di ritorno al client. che poi potrebbero essere anche lo stesso dove cambia solo il coso che mandi
      * in rmi però è più comodo avere metodi diversi
@@ -204,4 +211,21 @@ public abstract class PlayerHandler extends Player {
      * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto
      */
     public abstract void sendAskForPraying(); //
+
+
+    /*
+    questi getter e setter che ci sono qua sotto servono per modificare la check function di un giocatoe con il decorato
+     */
+
+    public AllCheckFunctions getCheckFunctions() {
+        return checkFunctions;
+    }
+
+    public void setCheckFunctions(AllCheckFunctions checkFunctions) {
+        this.checkFunctions = checkFunctions;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
 }

@@ -29,7 +29,7 @@ public class ReduceValueOnAction implements Effects {
                 player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getDiceBonus() + quantity);
                 break;
             case "buildings":
-                player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setDiceValue(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceValue() + quantity);
+                player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus() + quantity);
                 break;
             case "ventures":
                 player.getPersonalBoardReference().getBonusOnActions().setVenturesBonus(player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus() + quantity);

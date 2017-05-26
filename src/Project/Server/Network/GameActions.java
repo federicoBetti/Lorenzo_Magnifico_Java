@@ -6,6 +6,7 @@ import Project.Controller.Effects.RealEffects.AddCoin;
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.Controller.FakeFamiliar;
 import Project.Controller.SupportFunctions.AllSupportFunctions;
+import Project.MODEL.Council;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
 import Project.MODEL.Tower;
@@ -31,8 +32,15 @@ public class GameActions {
         return room.getMySupportFunction(player);
     }
 
+    /**
+     * ho fatto due passaggi diversi per le carte venutres, che possono avere più tipi di pagamento e qundi voglo avere come paramentro quale pagamento usare
+     * @param zone
+     * @param familyM
+     * @param player
+     * @param towerIsOccupied
+     */
     public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
-        getRightSupportFunctions(player).payCard(zone.getCardOnThisFloor(), towerIsOccupied);
+        getRightSupportFunctions(player).payCard(zone.getCardOnThisFloor(), towerIsOccupied, zone.getDiceValueOfThisFloor(), familyM.getMyValue());
         takeDevelopementCard(zone,familyM,player);
     }
 
@@ -71,19 +79,41 @@ public class GameActions {
         }
         //ora siamo nel caso in cui è finito un round o un periodo
         else if (currentRound == 2 && currentPeriod == 3){ //
-            endMatch(); //TODO
         }
         else if (currentRound == 2){
             endPeriod();
             nextRound();
             nextPeriod();
+            changePlayerOrder();
             setEndTurn(true);
         }
         else {
             endRound();
             nextRound();
+            changePlayerOrder();
             setEndTurn(true);
         }
+    }
+
+    private void endMatch(PlayerHandler playerHandler) { //todo
+        getRightSupportFunctions(playerHandler).extraLostOfPoints(playerHandler); //questa funzione va fatta prima di aggiungere altri punti vittoria
+    }
+
+    private void changePlayerOrder() { //todo controllare
+        //devo controllare il palazzo del consiglio, metto in ordine quelli in un nuovo arrayList e poi prendo da quello vecchio.
+        // ogni volta devo controlare che non metta due volte lo stesso player
+        ArrayList<Player> newTurnOrder = new ArrayList<>();
+        for (Council council: room.getBoard().getCouncilZone()){
+            if (!newTurnOrder.contains(council.getPlayer())){
+                newTurnOrder.add(council.getPlayer());
+            }
+        }
+        for (Player player: room.getBoard().getTurnOrder()){
+            if (!newTurnOrder.contains(player)){
+                newTurnOrder.add(player);
+            }
+        }
+        room.getBoard().setTurnOrder(newTurnOrder);
     }
 
     private void nextPeriod() {
@@ -270,4 +300,13 @@ public class GameActions {
         }
     }
 
+    public void pray(PlayerHandler playerHandler) {
+        int victoryPointsToAdd = room.getBoard().getVictoryPointsInFaithTrack()[playerHandler.getScore().getFaithPoints()];
+        getRightSupportFunctions(playerHandler).pray(victoryPointsToAdd);
+    }
+
+    public void takeExcommunication(PlayerHandler playerHandler) {
+        ExcommunitationTile card = room.getBoard().getExcommunicationZone()[room.getBoard().getPeriod()].getCardForThisPeriod();
+        card.makeEffect(playerHandler);
+    }
 }

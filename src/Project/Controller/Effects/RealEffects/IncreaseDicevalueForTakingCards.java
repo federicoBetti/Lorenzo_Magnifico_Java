@@ -31,7 +31,7 @@ public class IncreaseDicevalueForTakingCards implements Effects {
                 player.getPersonalBoardReference().getBonusOnActions().setVenturesBonus(player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus() + quantityIncreased);
 
             case"building":
-                player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setDiceValue(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceValue() + quantityIncreased);
+                player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus() + quantityIncreased);
         }
 
         OkOrNo Ok = new OkOrNo(false);

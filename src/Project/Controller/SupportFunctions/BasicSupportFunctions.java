@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 /**
  * attenzione forse devo mettere nell'interfaccia tutte le funzioni non solo quelle da decorare
+ * non ho usato come parametro il player perchè ho gia il riferimento al giusto player all'interno della classe
  */
 public class BasicSupportFunctions implements AllSupportFunctions {
 
@@ -45,7 +46,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         payments.put(CharacterCard.class.toString(),this::payCharacterCard);
     }
 
-    public void payVenturesCard(VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen){
+    public void payVenturesCard(VenturesCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen){
         int coinsMore = 0;
         int i=0;
         if (coinsFee)
@@ -59,7 +60,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
     }
 
-    private void payTerritoryCard(DevelopmentCard DevCard, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private void payTerritoryCard(DevelopmentCard DevCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         TerritoryCard card = (TerritoryCard)DevCard;
         int coinsMore = 0;
         if (coinsFee)
@@ -74,10 +75,10 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     //TODO CONTROLLARE CHE I COSTI VADANO BENE, AD ESEMPIO CONTROLLARE CHE SE I BONUS O VALORI DEI DADI SONO MAGGIORI DEI COSTI NON MI VADA AD AGGIUNGERE RISORSE, MA E NE TOLGA 0
 
-    private void payBuildingCard(DevelopmentCard DevCard, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private void payBuildingCard(DevelopmentCard DevCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         BuildingCard card = (BuildingCard)DevCard;
         int coinsMore = 0;
-        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceValue();
+        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus();
         int woodBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getWoodBonus();
         int stoneBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getStoneBonus();
         if (coinsFee)
@@ -89,7 +90,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
     }
 
-    private void payCharacterCard(DevelopmentCard DevCard, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private void payCharacterCard(DevelopmentCard DevCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         CharacterCard card = (CharacterCard)DevCard;
         int coinsMore = 0;
         int coinsBonus = player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getCoinsBonus();
@@ -110,11 +111,37 @@ public class BasicSupportFunctions implements AllSupportFunctions {
      * @param value
      * @return
      */
-    private int payServants(int cost, int value) {
+    public int payServants(int cost, int value) {
         if ((cost - value) < 0)
             return 0;
         else
             return cost - value;
+    }
+
+    @Override
+    public int finalPointsFromTerritoryCard(ArrayList<Integer> victoryPoints) {
+        int cardNumber = player.getPersonalBoardReference().getTerritories().size();
+        return victoryPoints.get(cardNumber);
+
+    }
+
+    @Override
+    public int finalPointsFromCharacterCard(ArrayList<Integer> victoryPoints) {
+        int cardNumber = player.getPersonalBoardReference().getCharacters().size();
+        return victoryPoints.get(cardNumber);
+
+    }
+
+    @Override
+    public int extraLostOfPoints(PlayerHandler playerHandler) {
+        return 0;
+    }
+
+    @Override
+    public void finalPointsFromVenturesCard() {
+        for (VenturesCard venturesCard: player.getPersonalBoardReference().getVentures()){
+            venturesCard.makeImmediateEffects(player);
+        }
     }
 
 
@@ -218,7 +245,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @Override
     public void setFamiliarInTheCouncilPalace(ArrayList<Council> councilZone, FamilyMember familyMember) {
-        councilZone.add(new Council(familyMember));
+        councilZone.add(new Council(familyMember,player));
     }
 
 
@@ -234,13 +261,13 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
     @Override
-    public void payCard(DevelopmentCard cardOnThisFloor,  PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember) {
-        payments.get(cardOnThisFloor.getClass().toString()).pay(cardOnThisFloor,playerHandler, coinsFee, zoneDiceCost, valueOfFamilyMember);
+    public void payCard(DevelopmentCard cardOnThisFloor, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember) {
+        payments.get(cardOnThisFloor.getClass().toString()).pay(cardOnThisFloor, coinsFee, zoneDiceCost, valueOfFamilyMember);
     }
     private HashMap<String,CardPayment> payments;
 
     private interface CardPayment{
-        void pay(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+        void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
     }
 
 
@@ -248,9 +275,11 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
 
 
-    public int Pray(Player player){
+    public void pray(int victoryPointsToAdd){
+        //devo prendere i giusti punti vittoria e faccio tornare indietro il pedone, quindi metto punti fede = 0;
+        player.getScore().setVictoryPoints(0);
+        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsToAdd);
 
-        return  0;
     }
 
 }

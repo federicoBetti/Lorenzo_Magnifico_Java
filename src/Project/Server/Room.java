@@ -1,5 +1,6 @@
 package Project.Server;
 
+import Project.Controller.Effects.EffectsFactory.BuildExcommunicationEffects;
 import Project.Controller.SupportFunctions.AllSupportFunctions;
 import Project.MODEL.Board;
 import Project.MODEL.Player;
@@ -27,6 +28,8 @@ public class Room {
 
     private ArrayList<PlayerHandler> roomPlayers;
 
+    private BuildExcommunicationEffects buildExcommunicationEffects;
+
     /**
      * Riferimento alla classe GameActions
      */
@@ -53,11 +56,19 @@ public class Room {
         return playerAllSupportFunctionsMap.get(player);
     }
 
+    public void setMySupportFunction(AllSupportFunctions allSupportFunctions, PlayerHandler player){
+        playerAllSupportFunctionsMap.put(player,allSupportFunctions);
+    }
+
     public GameActions getGameActions() {
         return gameActions;
     }
 
     public ArrayList<PlayerHandler> getRoomPlayers() {
         return roomPlayers;
+    }
+
+    public BuildExcommunicationEffects getBuildExcommunicationEffects() {
+        return buildExcommunicationEffects;
     }
 }
