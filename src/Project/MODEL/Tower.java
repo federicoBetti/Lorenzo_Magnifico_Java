@@ -9,6 +9,7 @@ public class Tower extends Position {
      * Default constructor
      */
     public Tower() {
+        setOccupied(false);
     }
 
     /**
@@ -19,7 +20,7 @@ public class Tower extends Position {
     /**
      * 
      */
-    private int floor;
+    private int diceValueOfThisFloor;
 
     /**
      * 
@@ -37,5 +38,9 @@ public class Tower extends Position {
 
     public void setCardOnThisFloor(DevelopmentCard cardOnThisFloor) {
         this.cardOnThisFloor = cardOnThisFloor;
+    }
+
+    public int getDiceValueOfThisFloor() {
+        return diceValueOfThisFloor;
     }
 }

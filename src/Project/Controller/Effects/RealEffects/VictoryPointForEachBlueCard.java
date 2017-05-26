@@ -22,7 +22,7 @@ public class VictoryPointForEachBlueCard implements Effects {
 
         player.getScore().setVictoryPoints( player.getScore().getVictoryPoints() + this.quantity*i);
 
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

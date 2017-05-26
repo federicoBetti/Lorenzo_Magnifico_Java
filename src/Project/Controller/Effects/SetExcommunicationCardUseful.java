@@ -50,7 +50,7 @@ public class SetExcommunicationCardUseful implements Effects {
                 break;
         }
 
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

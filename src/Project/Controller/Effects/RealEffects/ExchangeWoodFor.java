@@ -40,7 +40,7 @@ public class ExchangeWoodFor implements Effects {
                 player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + resourceEarned);
         }
 
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

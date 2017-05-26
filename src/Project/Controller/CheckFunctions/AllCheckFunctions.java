@@ -13,11 +13,12 @@ import java.util.ArrayList;
 public interface AllCheckFunctions {
     boolean Check_Position(int position, Position[] zone, FamilyMember familyMember);
     boolean CheckTowerOccupiedByYou(Tower[] tower, Player player);
-    boolean CheckCardCostTerritory(TerritoryCard card, Player player);
-    boolean CheckCardCostCharacter(CharacterCard card, Player player);
-    boolean CheckCardCostBuilding(BuildingCard card, Player player);
-    int CheckCardCostVentures (VenturesCard card, Player player);
+    boolean CheckCardCostTerritory(TerritoryCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+    boolean CheckCardCostCharacter(CharacterCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+    boolean CheckCardCostBuilding(BuildingCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+    int CheckCardCostVentures (VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
     boolean CheckAvaiabiltyToProduct(ArrayList<BuildingCard> cardToProduct, int maxValueOfProduction);
+    boolean CheckCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
 
-    boolean CheckCardCost(DevelopmentCard card, PlayerHandler playerHandler);
+    boolean CheckTowerOccupied(Tower[] zone);
 }

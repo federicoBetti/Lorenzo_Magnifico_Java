@@ -20,7 +20,7 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    protected void cantDoActionException(OkOrNo okOrNo) {
+    protected void cantDoAction(OkOrNo okOrNo) {
 
     }
 

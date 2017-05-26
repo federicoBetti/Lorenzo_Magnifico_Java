@@ -25,7 +25,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    protected void cantDoActionException(OkOrNo okOrNo) {
+    protected void cantDoAction(OkOrNo okOrNo) {
 
     }
 

@@ -15,7 +15,7 @@ public class AddFaithPoints implements TakeRoPEffects {
 
     public BonusInteraction doEffect(Player player) {
         player.getScore().setFaithPoints(player.getScore().getFaithPoints() + quantity);
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

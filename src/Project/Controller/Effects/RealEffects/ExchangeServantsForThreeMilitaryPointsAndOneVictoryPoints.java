@@ -24,7 +24,7 @@ public class ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints implement
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() - victoryPointsEarned);
         player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() - militaryPointsEarned);
 
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

@@ -1,8 +1,6 @@
 package Project.Server.Network;
 
-import Project.Controller.CardsFactory.BuildingCard;
-import Project.Controller.CardsFactory.LeaderCard;
-import Project.Controller.CardsFactory.TerritoryCard;
+import Project.Controller.CardsFactory.*;
 import Project.Controller.Constants;
 import Project.Controller.Effects.RealEffects.AddCoin;
 import Project.Controller.Effects.RealEffects.Effects;
@@ -19,7 +17,7 @@ import Project.toDelete.OkOrNo;
 import java.util.ArrayList;
 
 /**
- * Created by raffaelebongo on 22/05/17.
+ * main game actions
  */
 public class GameActions {
 
@@ -33,31 +31,40 @@ public class GameActions {
         return room.getMySupportFunction(player);
     }
 
-    public void takeDevelopementCard(Tower zone, FamilyMember familyM, PlayerHandler player){
-        //deve mettere la pedina nel posto giusto, mettere la carta nella board giocatore, prendere effetti imeddiati.
-        // in base alla bonus interaction che ritronano gli effetti manderà una rispsota
-        getRightSupportFunctions(player).setFamiliar(zone, familyM);
-        getRightSupportFunctions(player).placeCardInPersonalBoard(zone.getCardOnThisFloor(), player);
+    public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
+        getRightSupportFunctions(player).payCard(zone.getCardOnThisFloor(), towerIsOccupied);
+        takeDevelopementCard(zone,familyM,player);
+    }
+
+
+    public void takeVenturesCard (Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment){
+        getRightSupportFunctions(player).payVenturesCard((VenturesCard)zone.getCardOnThisFloor(),player,towerIsOccupied,zone.getDiceValueOfThisFloor(),familyM.getMyValue(),numberOfPayment);
+        takeDevelopementCard(zone,familyM,player);
+    }
+
+    private void takeDevelopementCard(Tower zone, FamilyMember familyMember, PlayerHandler player){
+        getRightSupportFunctions(player).setFamiliar(zone, familyMember);
+        getRightSupportFunctions(player).placeCardInPersonalBoard(zone.getCardOnThisFloor());
         BonusInteraction returnFromEffect = getRightSupportFunctions(player).ApplyEffects(zone.getCardOnThisFloor(),player);
         player.sendAnswer(returnFromEffect);
         if (returnFromEffect instanceof OkOrNo){
             player.sendAnswer(new Notify("i have finished my turn"));
             nextTurn(player);
         }
-
     }
+
 
     /**
      *
      * @param player
      */
-    private void nextTurn(PlayerHandler playerHandler) {
+    public void nextTurn(PlayerHandler playerHandler) {
         PlayerHandler next;
         int playerNumber = room.getRoomPlayers().size();
         int indexOfMe = room.getBoard().getTurnOrder().indexOf(playerHandler);
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
-        if (indexOfMe != playerNumber){ //caso in mezzo al round
+        if (indexOfMe != playerNumber){ //i'm not the last in turn order
             next = (PlayerHandler) room.getBoard().getTurnOrder().get(indexOfMe++);
             broadcastNotifications(new Notify("it's " + next.getName() + " turn"));
             next.itsMyTurn();
@@ -68,12 +75,23 @@ public class GameActions {
         }
         else if (currentRound == 2){
             endPeriod();
+            nextRound();
+            nextPeriod();
             setEndTurn(true);
         }
         else {
             endRound();
+            nextRound();
             setEndTurn(true);
         }
+    }
+
+    private void nextPeriod() {
+        room.getBoard().nextPeriod();
+    }
+
+    private void nextRound() {
+        room.getBoard().nextRound();
     }
 
     private void endPeriod() {
@@ -102,8 +120,7 @@ public class GameActions {
     }
 
     private void changeCardInTowers() {
-        int i = 0;
-        int j = 0;
+        int i,j;
         FakeFamiliar fakeFamiliar = new FakeFamiliar();
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
@@ -121,6 +138,7 @@ public class GameActions {
                 tower[j][i].setCardOnThisFloor(room.getBoard().getDeckCard().getDevelopmentdeck()[i][currentPeriod][roundsAdd + j]); //da testare
             }
         }
+        room.getBoard().setTowers(tower);
     }
 
     private void setFamilyMemberHome() {
@@ -179,13 +197,6 @@ public class GameActions {
         getRightSupportFunctions(player).takeMarketAction(position);
     }
 
-    /**
-     * questo metodo deve rappresnetare la fine del turno, deve usare un metodo che mi dici chi c'è dopo e notiicare al player giusto che è il suo
-     * @return
-     */
-    public void endTurn(){
-
-    };
 
     /**
      *

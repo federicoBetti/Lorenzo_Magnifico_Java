@@ -12,7 +12,7 @@ public class TwoVictoryPointsForEachYellowCard implements Effects {
             i++;
         }
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + 2*i);
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

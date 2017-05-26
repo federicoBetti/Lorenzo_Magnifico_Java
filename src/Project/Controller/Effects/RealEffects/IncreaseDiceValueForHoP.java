@@ -20,7 +20,7 @@ public class IncreaseDiceValueForHoP implements Effects {
     @Override
     public BonusInteraction doEffect(Player player) {
 
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

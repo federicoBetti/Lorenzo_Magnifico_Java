@@ -31,13 +31,13 @@ public class DontPayForTerritories implements CheckFunctionsDecorator {
 
 
     @Override
-    public boolean CheckCardCostCharacter(CharacterCard card, Player player) {
-        return allCheckFunctions.CheckCardCostCharacter(card,player);
+    public boolean CheckCardCostCharacter(CharacterCard card, Player player, boolean coinsFee, int zoneDiceCost) {
+        return allCheckFunctions.CheckCardCostCharacter(card,player, coinsFee, zoneDiceCost);
     }
 
     @Override
-    public boolean CheckCardCostBuilding(BuildingCard card, Player player) {
-        return allCheckFunctions.CheckCardCostBuilding(card,player);
+    public boolean CheckCardCostBuilding(BuildingCard card, Player player, boolean coinsFee, int zoneDiceCost) {
+        return allCheckFunctions.CheckCardCostBuilding(card,player, coinsFee, zoneDiceCost);
     }
 
     @Override

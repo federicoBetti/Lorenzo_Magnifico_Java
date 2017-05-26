@@ -1,10 +1,12 @@
 package Project.toDelete;
 
 
-import Project.toDelete.BonusInteraction;
-
 public class OkOrNo extends BonusInteraction {
     private boolean ok;
+
+    public OkOrNo(boolean b){
+        this.ok = b;
+    }
 
     public OkOrNo(){
         this.ok = false;

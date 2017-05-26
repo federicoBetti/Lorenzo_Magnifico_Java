@@ -32,13 +32,13 @@ public class PicoDellaMirandola implements CheckFunctionsDecorator {
 
 
     @Override
-    public boolean CheckCardCostCharacter(CharacterCard card, Player player) {
+    public boolean CheckCardCostCharacter(CharacterCard card, Player player, boolean coinsFee, int zoneDiceCost) {
         // TODO fare lo stesso che c'è nella support function normale con 3 di sconto sui coins required
         return false;
     }
 
     @Override
-    public boolean CheckCardCostBuilding(BuildingCard card, Player player) {
+    public boolean CheckCardCostBuilding(BuildingCard card, Player player, boolean coinsFee, int zoneDiceCost) {
         // TODO fare lo stesso che c'è nella support function normale con 3 di sconto sui coins required
         return false;
     }

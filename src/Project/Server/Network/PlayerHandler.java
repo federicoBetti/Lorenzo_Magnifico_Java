@@ -5,8 +5,8 @@ import Project.Controller.CardsFactory.LeaderCard;
 import Project.Controller.CardsFactory.VenturesCard;
 import Project.Controller.CheckFunctions.AllCheckFunctions;
 import Project.Controller.CheckFunctions.BasicCheckFunctions;
+import Project.Controller.Constants;
 import Project.Controller.SupportFunctions.LeaderCardRequirements;
-import Project.MODEL.Card;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
 import Project.Server.Room;
@@ -14,6 +14,7 @@ import Project.toDelete.BonusInteraction;
 import Project.toDelete.BothCostCanBeSatisfied;
 import Project.toDelete.Notify;
 import Project.toDelete.OkOrNo;
+import Project.Server.NetworkException.*;
 
 import java.util.ArrayList;
 
@@ -38,28 +39,37 @@ public abstract class PlayerHandler extends Player {
      * @param position
      * @param familyM
      */
-    private void clientTakeDevelopementCard(String towerColor, int position, FamilyMember familyM){
+    private void clientTakeDevelopementCard(String towerColor, int position, FamilyMember familyM) throws cantDoActionException, canUseBothPaymentMethodException {
         boolean canTakeCard = checkFunctions.Check_Position(position, room.getBoard().getTrueArrayList(towerColor), familyM);
         int canTakeVenturesCard;
+        boolean towerOccupied = checkFunctions.CheckTowerOccupied(room.getBoard().getTrueArrayList(towerColor));
         if (towerColor == "purple") {
-            canTakeVenturesCard = checkFunctions.CheckCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(), this);
-            if (canTakeVenturesCard == 0) canTakeCard = false;
+            canTakeVenturesCard = checkFunctions.CheckCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[position].getDiceValueOfThisFloor(), familyM.getMyValue());
+            if (canTakeVenturesCard == 0 || !canTakeCard)
+                throw new cantDoActionException(this, "no action can be done");
             else if (canTakeVenturesCard == 3)
-                possoUsareEntrambiIPagamentException(new BothCostCanBeSatisfied());
+                throw new canUseBothPaymentMethodException(this, "both costs can be satisfied");
+            else
+                room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this, towerOccupied, canTakeVenturesCard);
+        } else {
+            canTakeCard = canTakeCard && checkFunctions.CheckCardCost(room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[position].getDiceValueOfThisFloor(), familyM.getMyValue());
+            if (canTakeCard) {
+                room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this, towerOccupied);
+                room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor().getName()));
+            } else throw new cantDoActionException(this, "no action can be done");
         }
-        else
-            canTakeCard = canTakeCard && checkFunctions.CheckCardCost(room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(),this);
-        if (canTakeCard){
-            room.getGameActions().takeDevelopementCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this);
-            room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor().getName() ));
-        }
-        else
-             cantDoActionException(new OkOrNo());
     }
 
-
-
-    ;
+    /**
+     * this method is used when the system ask to the client which of VenturesCard payment he wants to use
+     * @param position
+     * @param familyMember
+     * @param paymentChoosen
+     */
+    private void clientChoosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen){
+        boolean towerOccupied = checkFunctions.CheckTowerOccupied(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD));
+        room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)[position], familyMember, this, towerOccupied, paymentChoosen);
+    }
 
     /**
      *
@@ -68,12 +78,12 @@ public abstract class PlayerHandler extends Player {
      * @param servantsNumber
      */
 
-    private void Harvester(int position, FamilyMember familyM, int servantsNumber){
+    private void Harvester(int position, FamilyMember familyM, int servantsNumber) throws cantDoActionException {
         boolean canTakeCard = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("harvester"),familyM);
         if (canTakeCard)
             room.getGameActions().harvester(position,familyM,servantsNumber,this);
         else
-             cantDoActionException(new OkOrNo());
+            throw new cantDoActionException(this,"no action can be done");
     };
 
 
@@ -84,7 +94,7 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
 
-    public void Production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct){
+    public void Production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct) throws cantDoActionException {
         int maxValueOfProduction;
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
         if (position > 0)
@@ -94,7 +104,7 @@ public abstract class PlayerHandler extends Player {
         if (canTakeCard)
             room.getGameActions().production(position,familyM,cardToProduct,this);
         else
-             cantDoActionException(new OkOrNo());
+            throw new cantDoActionException(this,"no action can be done");
     };
 
     /**
@@ -102,44 +112,44 @@ public abstract class PlayerHandler extends Player {
      * @param familyM
      * @return
      */
-    public void GoTOMarket(int position, FamilyMember familyM){
+    public void GoTOMarket(int position, FamilyMember familyM) throws cantDoActionException {
         boolean canGoToMarket = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("market"),familyM);
         if (canGoToMarket)
             room.getGameActions().goToMarket(position,familyM,this);
         else
-             cantDoActionException(new OkOrNo());
+            throw new cantDoActionException(this,"no action can be done");
     };
 
     /**
      * @return
      */
     public void JumpTurn(){
-
-    };
+        room.getGameActions().nextTurn(this);
+    }
 
     /**
      * @param leaderName
      * @return
      */
-    public void PlayLeaderCard(String leaderName){
+    public void PlayLeaderCard(String leaderName) throws cantDoActionException {
         LeaderCardRequirements leaderCardRequirements = new LeaderCardRequirements();
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
                 if (leaderCardRequirements.CheckRequirements(leaderName,this))
                     room.getGameActions().playLeaderCard(leaderName,this);
                 else
-                     cantDoActionException(new OkOrNo());
+                     cantDoAction(new OkOrNo(false));
             }
         }
 
-         cantDoActionException(new OkOrNo());
+        throw new cantDoActionException(this,"no action can be done");
     };
 
     /**
      * @param leaderName
      * @return
      */
-    public void DiscardLeaderCard(String leaderName){
+    public void DiscardLeaderCard(String leaderName) throws cantDoActionException {
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
                 room.getGameActions().discardLeaderCard(leaderName,this);
@@ -147,7 +157,7 @@ public abstract class PlayerHandler extends Player {
         }
         //arriva qua in caso non ha trovato la leader card nel proprio mazzo, forse è un controllo inutile se presuppongo che mi arrivano
         //carte solo che ho
-         cantDoActionException(new OkOrNo());
+        throw new cantDoActionException(this,"no action can be done");
     };
 
     /**
@@ -184,9 +194,9 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void sendAnswer(BonusInteraction returnFromEffect);
 
-    protected abstract void cantDoActionException(OkOrNo okOrNo);
+    public abstract void cantDoAction(OkOrNo okOrNo);
 
-    protected abstract void possoUsareEntrambiIPagamentException(BothCostCanBeSatisfied bothCostCanBeSatisfied);
+    public abstract void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCostCanBeSatisfied);
 
     public abstract void itsMyTurn(); //non saprei che parametri passare
 

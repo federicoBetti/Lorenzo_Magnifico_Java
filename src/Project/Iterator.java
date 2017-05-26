@@ -4,7 +4,7 @@ import Project.Controller.Constants;
 import Project.MODEL.Deck;
 
 /**
- * TODO cambiarlo
+ * TODO cambiarlo perchè bisgpa randomizzare le carte
  */
 public class Iterator implements IteratorInterface {
 

@@ -16,7 +16,7 @@ public class AddStone implements TakeRoPEffects {
     @Override
     public BonusInteraction doEffect(Player player) {
         player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + quantity);
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }

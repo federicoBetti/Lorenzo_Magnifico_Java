@@ -2,6 +2,7 @@ package Project.MODEL;
 
 
 import Project.Controller.CardsFactory.ExcommunicationZone;
+import Project.Controller.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,17 +105,19 @@ public final class Board {
         councilZone = new ArrayList<>(numberOfPlayer * 4);
         towers = new Tower[4][4];
         fillHashMap();
+        round = 1;
+        period = 1;
 
     }
 
 
     private void fillHashMap() {
-        zones.put("green",getTower(0));
-        zones.put("blue",getTower(1));
-        zones.put("yellow",getTower(2));
-        zones.put("purple",getTower(3));
-        zones.put("harvester",getHarvesterZone());
-        zones.put("pruction",getProduction_zone());
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD,getTower(0));
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD,getTower(1));
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD,getTower(2));
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD,getTower(3));
+        zones.put(Constants.HARVESTER,getHarvesterZone());
+        zones.put(Constants.PRODUCTION,getProduction_zone());
     }
 
     /**
@@ -296,5 +299,19 @@ public final class Board {
 
     public Deck getDeck() {
         return deck;
+    }
+
+    public void nextRound(){
+        round ++;
+        if (round == 3)
+            round = 1;
+    }
+
+    public void nextPeriod(){
+        period ++;
+    }
+
+    public void setTowers(Tower[][] towers) {
+        this.towers = towers;
     }
 }

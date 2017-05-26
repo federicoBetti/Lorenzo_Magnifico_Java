@@ -42,7 +42,7 @@ public class ExchangeStoneFor implements Effects {
                 player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() + resourceEarned);
         }
 
-        OkOrNo Ok = new OkOrNo();
+        OkOrNo Ok = new OkOrNo(false);
         Ok.setOk(true);
         return Ok;
     }
