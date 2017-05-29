@@ -1,7 +1,7 @@
 package Project.Controller.Effects.RealEffects;
 
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.OkOrNo;
+import Project.Messages.BonusInteraction;
+import Project.Messages.OkOrNo;
 import Project.Controller.CardsFactory.TotalCost;
 import Project.MODEL.Player;
 

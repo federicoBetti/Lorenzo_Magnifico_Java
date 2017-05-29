@@ -1,10 +1,9 @@
-package Project.toDelete;
+package Project.Messages;
 
 
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.MODEL.Player;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.BonusProductionOrHarvesterAction;
+import Project.Server.Network.PlayerHandler;
 
 public class ProductionHarvesterAction implements Effects {
     BonusProductionOrHarvesterAction bph;
@@ -12,7 +11,8 @@ public class ProductionHarvesterAction implements Effects {
         bph = new BonusProductionOrHarvesterAction(parameter,quantity);
     }
 
-    public BonusInteraction doEffect(Player player){
+    @Override
+    public BonusInteraction doEffect(PlayerHandler player) {
         return bph;
     }
 }

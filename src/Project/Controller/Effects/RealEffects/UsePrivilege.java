@@ -1,9 +1,8 @@
 package Project.Controller.Effects.RealEffects;
 
-import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 import Project.MODEL.Player;
-import Project.toDelete.TakePrivilegesAction;
+import Project.Messages.TakePrivilegesAction;
 
 /**
  * ho considato questa calasse cme quella che bisogna mettere come effetto delle carte. negli effetti delle carte

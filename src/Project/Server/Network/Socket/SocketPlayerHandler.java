@@ -6,10 +6,9 @@ import Project.MODEL.FamilyMember;
 import Project.Server.Network.PlayerHandler;
 import Project.Server.NetworkException.canUseBothPaymentMethodException;
 import Project.Server.NetworkException.cantDoActionException;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.BothCostCanBeSatisfied;
-import Project.toDelete.Notify;
-import Project.toDelete.OkOrNo;
+import Project.Messages.BonusInteraction;
+import Project.Messages.Notify;
+import Project.Messages.OkOrNo;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

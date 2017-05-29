@@ -3,7 +3,7 @@ package Project.Controller.SupportFunctions;
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.Controller.Effects.RealEffects.TakeRoPEffects;
 import Project.MODEL.*;
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 
 
 public class SantaRita implements SupportFunctionsDecorator {

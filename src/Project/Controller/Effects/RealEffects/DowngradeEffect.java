@@ -4,8 +4,8 @@ import Project.Controller.Constants;
 import Project.Controller.Effects.EffectsFactory.EffectsConstants;
 import Project.MODEL.FamilyMember;
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.OkOrNo;
+import Project.Messages.BonusInteraction;
+import Project.Messages.OkOrNo;
 
 import java.util.HashMap;
 

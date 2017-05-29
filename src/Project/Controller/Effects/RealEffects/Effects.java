@@ -1,8 +1,7 @@
 package Project.Controller.Effects.RealEffects;
 
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
-import Project.MODEL.*;
+import Project.Messages.BonusInteraction;
 
 
 public interface Effects {

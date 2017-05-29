@@ -1,4 +1,4 @@
-package Project.toDelete;
+package Project.Messages;
 
 
 public class OkOrNo extends BonusInteraction {

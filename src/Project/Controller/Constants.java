@@ -49,4 +49,5 @@ public class Constants {
     public static String DONT_PRAY ="dont-pray";
     public static String ASK_FOR_PRAYING ="do-you-want-to-pray?";
     public static String BOTH_PAYMENT_METHODS_AVAILABLE="both-payment-methods-available";
+    public static String LOCAL_ADDRESS = "127.0.0.1";
 }

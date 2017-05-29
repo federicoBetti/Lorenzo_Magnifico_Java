@@ -1,15 +1,13 @@
 package Project.Server;
 import Project.Configurations.*;
 import Project.Controller.Constants;
-import Project.MODEL.Player;
 import Project.Server.Network.PlayerHandler;
 import Project.Server.Network.RMI.ServerRMI;
 import Project.Server.Network.Socket.SocketServer;
-import Project.toDelete.Notify;
+import Project.Messages.Notify;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by raffaelebongo on 18/05/17.

@@ -1,7 +1,7 @@
 package Project.Server.Network;
 
 import Project.MODEL.DevelopmentCard;
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 import Project.MODEL.Card;
 import Project.MODEL.Card.Card;
 import Project.MODEL.FamilyMember;

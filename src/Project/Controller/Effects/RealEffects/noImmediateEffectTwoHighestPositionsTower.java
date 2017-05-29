@@ -1,6 +1,6 @@
 package Project.Controller.Effects.RealEffects;
 
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 import Project.MODEL.Player;
 
 /**

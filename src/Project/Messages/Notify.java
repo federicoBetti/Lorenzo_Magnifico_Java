@@ -1,4 +1,4 @@
-package Project.toDelete;
+package Project.Messages;
 
 /**
  * questa classe la usiamo per notificare a tutti una certa cosa da mettere sulla chat di gioco.

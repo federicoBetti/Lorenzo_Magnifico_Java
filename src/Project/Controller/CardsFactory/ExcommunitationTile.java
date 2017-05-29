@@ -3,9 +3,8 @@ package Project.Controller.CardsFactory;
 import Project.Controller.Effects.EffectsFactory.BuildExcommunicationEffects;
 import Project.Controller.Effects.EffectsFactory.TrisIE;
 import Project.Controller.Effects.RealEffects.Effects;
-import Project.MODEL.Player;
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 
 /**
  * 

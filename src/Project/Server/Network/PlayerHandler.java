@@ -10,10 +10,9 @@ import Project.Controller.SupportFunctions.LeaderCardRequirements;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
 import Project.Server.Room;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.BothCostCanBeSatisfied;
-import Project.toDelete.Notify;
-import Project.toDelete.OkOrNo;
+import Project.Messages.BonusInteraction;
+import Project.Messages.Notify;
+import Project.Messages.OkOrNo;
 import Project.Server.NetworkException.*;
 
 import java.util.ArrayList;
