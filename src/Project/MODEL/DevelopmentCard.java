@@ -6,6 +6,7 @@ import Project.Controller.Effects.EffectsFactory.PokerPE;
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.Controller.Effects.EffectsFactory.BuildImmediateEffects;
 import Project.Controller.Effects.EffectsFactory.*;
+import Project.Server.Network.PlayerHandler;
 import Project.toDelete.BonusInteraction;
 
 
@@ -45,7 +46,7 @@ public abstract class DevelopmentCard {
         }
         
     }
-    public BonusInteraction makeImmediateEffects(Player player) {
+    public BonusInteraction makeImmediateEffects(PlayerHandler player) {
         BonusInteraction bonusInteraction = null;
         for (Effects x: immediateCardEffects ) {
             bonusInteraction = x.doEffect(player);

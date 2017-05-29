@@ -5,6 +5,7 @@ package Project.toDelete;
  */
 public class Notify extends BonusInteraction {
     String notification;
+
     public Notify (String notification){
         this.notification = notification;
     }

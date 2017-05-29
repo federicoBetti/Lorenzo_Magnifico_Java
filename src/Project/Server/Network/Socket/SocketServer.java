@@ -5,28 +5,49 @@ import Project.Server.Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 
-public class SocketServer extends AbstractServer{
+public class SocketServer extends AbstractServer {
+    SocketServer socketServer;
+    ServerSocket serverSocket;
+    Server server;
 
-    private ServerSocket serverSocket;
 
-    public SocketServer( Server server ){
+    public SocketServer(Server server) throws IOException {
         super(server);
+        this.server = server;
+        this.socketServer = this;
     }
 
-    public void startServerSocket(int socketPort) throws IOException {
-        serverSocket = new ServerSocket( socketPort );
-        //TODO completare se necessario
+    public void startServer(int serverPort) throws IOException {
+        serverSocket = new ServerSocket(serverPort);
+        System.out.println("Server Socket Started!");
+        new RequestHandler().start();
     }
 
-    /**
-     * TODO ciclo in ascolto di altri client che instaura la connessione
-     * TODO e crea un classe dedicata per quel client "PLAYER HANDLER"
-     */
-    public void run(){
-        while(true){
+    private class RequestHandler extends Thread {
 
+        @Override
+        public void run() {
+            System.out.println("i'm waiting for another client...");
+
+            while (true) {
+                try {
+
+                    Socket socket = serverSocket.accept();
+                    System.out.println("new Socket Request!");
+                    SocketPlayerHandler socketPlayerHandler = new SocketPlayerHandler(socketServer, socket);
+                    new Thread(socketPlayerHandler).start();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+    }
+
+    public void loginRequest(String nickname, SocketPlayerHandler player) throws IOException {
+        server.loginRequest(nickname, player);
     }
 }

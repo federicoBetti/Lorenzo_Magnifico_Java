@@ -18,14 +18,13 @@ import Project.Server.NetworkException.*;
 
 import java.util.ArrayList;
 
-
 public abstract class PlayerHandler extends Player {
 
     Room room;
     AllCheckFunctions checkFunctions;
 
 
-    PlayerHandler(){
+    public PlayerHandler(){
         checkFunctions = new BasicCheckFunctions();
     }
     /**
@@ -36,26 +35,26 @@ public abstract class PlayerHandler extends Player {
     /**
      * controllare se si puo fare una check functions che si chiamauguale CheckIfCanTakeCard che prendere come parametr una volta buildingCard una volta TerritoryCard e cosi via
      * @param towerColor
-     * @param position
+     * @param floor
      * @param familyM
      */
-    private void clientTakeDevelopementCard(String towerColor, int position, FamilyMember familyM) throws cantDoActionException, canUseBothPaymentMethodException {
-        boolean canTakeCard = checkFunctions.Check_Position(position, room.getBoard().getTrueArrayList(towerColor), familyM);
+    protected void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws cantDoActionException, canUseBothPaymentMethodException {
+        boolean canTakeCard = checkFunctions.Check_Position(floor, room.getBoard().getTrueArrayList(towerColor), familyM);
         int canTakeVenturesCard;
         boolean towerOccupied = checkFunctions.CheckTowerOccupied(room.getBoard().getTrueArrayList(towerColor));
         if (towerColor == "purple") {
-            canTakeVenturesCard = checkFunctions.CheckCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[position].getDiceValueOfThisFloor(), familyM.getMyValue());
+            canTakeVenturesCard = checkFunctions.CheckCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
             if (canTakeVenturesCard == 0 || !canTakeCard)
                 throw new cantDoActionException(this, "no action can be done");
             else if (canTakeVenturesCard == 3)
                 throw new canUseBothPaymentMethodException(this, "both costs can be satisfied");
             else
-                room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this, towerOccupied, canTakeVenturesCard);
+                room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied, canTakeVenturesCard);
         } else {
-            canTakeCard = canTakeCard && checkFunctions.CheckCardCost(room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[position].getDiceValueOfThisFloor(), familyM.getMyValue());
+            canTakeCard = canTakeCard && checkFunctions.CheckCardCost(room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
             if (canTakeCard) {
-                room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this, towerOccupied);
-                room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor().getName()));
+                room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied);
+                room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor().getName()));
             } else throw new cantDoActionException(this, "no action can be done");
         }
     }
@@ -66,7 +65,7 @@ public abstract class PlayerHandler extends Player {
      * @param familyMember
      * @param paymentChoosen
      */
-    private void clientChoosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen){
+    protected void clientChoosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen){
         boolean towerOccupied = checkFunctions.CheckTowerOccupied(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD));
         room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)[position], familyMember, this, towerOccupied, paymentChoosen);
     }
@@ -78,7 +77,7 @@ public abstract class PlayerHandler extends Player {
      * @param servantsNumber
      */
 
-    private void Harvester(int position, FamilyMember familyM, int servantsNumber) throws cantDoActionException {
+    protected void harvester(int position, FamilyMember familyM, int servantsNumber) throws cantDoActionException {
         boolean canTakeCard = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("harvester"),familyM);
         if (canTakeCard)
             room.getGameActions().harvester(position,familyM,servantsNumber,this);
@@ -94,7 +93,7 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
 
-    public void Production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct) throws cantDoActionException {
+    public void production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct) throws cantDoActionException {
         int maxValueOfProduction;
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
         if (position > 0)
@@ -112,7 +111,7 @@ public abstract class PlayerHandler extends Player {
      * @param familyM
      * @return
      */
-    public void GoTOMarket(int position, FamilyMember familyM) throws cantDoActionException {
+    public void goToMarket(int position, FamilyMember familyM) throws cantDoActionException {
         boolean canGoToMarket = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("market"),familyM);
         if (canGoToMarket)
             room.getGameActions().goToMarket(position,familyM,this);
@@ -123,7 +122,7 @@ public abstract class PlayerHandler extends Player {
     /**
      * @return
      */
-    public void JumpTurn(){
+    public void jumpTurn(){
         room.getGameActions().nextTurn(this);
     }
 
@@ -131,7 +130,7 @@ public abstract class PlayerHandler extends Player {
      * @param leaderName
      * @return
      */
-    public void PlayLeaderCard(String leaderName) throws cantDoActionException {
+    public void playLeaderCard(String leaderName) throws cantDoActionException {
         LeaderCardRequirements leaderCardRequirements = new LeaderCardRequirements();
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
@@ -149,7 +148,7 @@ public abstract class PlayerHandler extends Player {
      * @param leaderName
      * @return
      */
-    public void DiscardLeaderCard(String leaderName) throws cantDoActionException {
+    public void discardLeaderCard(String leaderName) throws cantDoActionException {
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
                 room.getGameActions().discardLeaderCard(leaderName,this);
@@ -163,16 +162,16 @@ public abstract class PlayerHandler extends Player {
     /**
      * @return
      */
-    public void clientRollDice(){
+    public void rollDices(){
         //controllare se è corretto con un test, il secondo controllo indica se io sono il primo di turno e quindi ho la facoltà di tirare i dadi
-        if (room.getBoard().getEndRound() && room.getBoard().getTurnOrder().get(0).equals(this))
+        if (room.getBoard().getEndRound() && room.getBoard().getTurn().getPlayerTurn().get(0).equals(this))
             room.getGameActions().rollDice();
     };
 
     /**
      * @param privelgeNumber
      */
-    public void clientGoToCouncilPalace(int privelgeNumber, FamilyMember familyMember){
+    public void goToCouncilPalace(int privelgeNumber, FamilyMember familyMember){
         // ho supposto che posso andare nel palazzo del consiglio anche se c'è gia un altro del mio colore
         room.getGameActions().goToCouncilPalace(privelgeNumber,familyMember,this);
     };
@@ -181,15 +180,15 @@ public abstract class PlayerHandler extends Player {
      *
      * @param privilegeNumber
      */
-    public void clientTakePrivilege(int privilegeNumber){
+    public void takePrivilege(int privilegeNumber){
         room.getGameActions().takeCouncilPrivilege(privilegeNumber, this);
     }
 
-    public void clientPray(){
+    public void pray(){
         room.getGameActions().pray(this);
     }
 
-    public void clientDontPray(){
+    public void dontPray(){
         room.getGameActions().takeExcommunication(this);
     }
     /**
@@ -203,7 +202,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void cantDoAction(OkOrNo okOrNo);
 
-    public abstract void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCostCanBeSatisfied);
+    public abstract void canUseBothPaymentMethod();
 
     public abstract void itsMyTurn(); //non saprei che parametri passare
 
@@ -211,6 +210,8 @@ public abstract class PlayerHandler extends Player {
      * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto
      */
     public abstract void sendAskForPraying(); //
+
+
 
 
     /*
@@ -228,4 +229,6 @@ public abstract class PlayerHandler extends Player {
     public Room getRoom() {
         return room;
     }
+
+
 }

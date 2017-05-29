@@ -17,6 +17,7 @@ import Project.toDelete.OkOrNo;
 
 import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.SortedMap;
 
 /**
@@ -70,18 +71,18 @@ public class GameActions {
      */
     public void nextTurn(PlayerHandler playerHandler) {
         PlayerHandler next;
-        int playerNumber = room.getRoomPlayers().size();
-        int indexOfMe = room.getBoard().getTurnOrder().indexOf(playerHandler);
+        int playerNumber = room.getRoomPlayers();
+        int indexOfMe = room.getBoard().getTurn().getPlayerTurn().indexOf(playerHandler);
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
         if (room.getBoard().getNumberOfFamilyMemberPlayedInThisRound() < 5 ){ //it's not the end of a round
             if (indexOfMe != playerNumber) {// i'm not the last
-                next = (PlayerHandler) room.getBoard().getTurnOrder().get(indexOfMe++);
+                next = (PlayerHandler) room.getBoard().getTurn().getPlayerTurn().get(indexOfMe++);
                 broadcastNotifications(new Notify("it's " + next.getName() + " turn"));
                 next.itsMyTurn();
             }
             else{ //i'm the last
-                next = (PlayerHandler) room.getBoard().getTurnOrder().get(0);
+                next = (PlayerHandler) room.getBoard().getTurn().getPlayerTurn().get(0);
                 broadcastNotifications(new Notify("it's " + next.getName() + " turn"));
                 next.itsMyTurn();
                 room.getBoard().setNumberOfFamilyMemberPlayedInThisRound(room.getBoard().getNumberOfFamilyMemberPlayedInThisRound() + 1);
@@ -112,7 +113,8 @@ public class GameActions {
 
 
         //todo classifica dei military points SI PUO USARE UNA SORTED MAP! BISOGNA GUARDARE COME FUNZIONANO
-        for (PlayerHandler playerHandler: room.getRoomPlayers()){
+        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+            PlayerHandler playerHandler = entry.getValue();
             int pointsToAdd = 0;
             if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[Constants.PERIOD_NUMBER])
                 pray(playerHandler);
@@ -134,11 +136,12 @@ public class GameActions {
         }
         PlayerHandler winner;
         ArrayList<PlayerHandler> winnerSearcher = new ArrayList<>();
-        for (PlayerHandler playerHandler: room.getRoomPlayers()){
-            winnerSearcher.
+        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+            PlayerHandler player = entry.getValue();
+            winnerSearcher. //todo completare
         }
         //todo controllare chi ha vinto mettendo in ordine i player rispetto ai victory points
-        winner.YOUWIN();
+       // winner.YOUWIN();
         broadcastNotifications(new Notify("the winner is + " + winner.getName()));
 
     }
@@ -152,12 +155,12 @@ public class GameActions {
                 newTurnOrder.add(council.getPlayer());
             }
         }
-        for (Player player: room.getBoard().getTurnOrder()){
+        for (Player player: room.getBoard().getTurn().getPlayerTurn()){
             if (!newTurnOrder.contains(player)){
                 newTurnOrder.add(player);
             }
         }
-        room.getBoard().setTurnOrder(newTurnOrder);
+        room.getBoard().getTurn().setPlayerTurn(newTurnOrder);
     }
 
     private void nextPeriod() {
@@ -174,11 +177,12 @@ public class GameActions {
     }
 
     private void askForPraying(int period) {
-        for (PlayerHandler p: room.getRoomPlayers()){
-            if (p.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[period])
-                p.sendAskForPraying( );
+        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+            PlayerHandler player = entry.getValue();
+            if (player.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[period])
+                player.sendAskForPraying();
             else{
-                takeExcommunication(p);
+                takeExcommunication(player);
             }
         }
     }
@@ -188,9 +192,9 @@ public class GameActions {
     }
 
     private PlayerHandler nextPlayerToPlay(PlayerHandler playerHandler){
-        int indexOfMe = room.getBoard().getTurnOrder().indexOf(playerHandler);
-        int indexOfNext = room.getRoomPlayers().size() % indexOfMe;
-        return (PlayerHandler) room.getBoard().getTurnOrder().get(indexOfNext);
+        int indexOfMe = room.getBoard().getTurn().getPlayerTurn().indexOf(playerHandler);
+        int indexOfNext = room.getRoomPlayers() % indexOfMe;
+        return (PlayerHandler) room.getBoard().getTurn().getPlayerTurn().get(indexOfNext);
     }
 
     private void endRound(){
@@ -314,8 +318,9 @@ public class GameActions {
         newDiceValue[1] = (int)(Math.random() * 6);
         newDiceValue[2] = (int)(Math.random() * 6);
         room.getBoard().setDiceValue(newDiceValue);
-        for (Player p: room.getRoomPlayers()){
-            getRightSupportFunctions(p).setDicesValue(newDiceValue,p);
+        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+            PlayerHandler player = entry.getValue();
+            getRightSupportFunctions(player).setDicesValue(newDiceValue, player);
         }
         setEndTurn(false);
         // TODO fare notifica a tutti
@@ -343,8 +348,9 @@ public class GameActions {
     }
 
     public void broadcastNotifications(Notify notifications){
-        for (PlayerHandler p: room.getRoomPlayers()){
-            p.sendAnswer( notifications);
+        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+            PlayerHandler player = entry.getValue();
+            player.sendAnswer( notifications );
         }
     }
 

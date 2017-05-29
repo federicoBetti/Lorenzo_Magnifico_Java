@@ -6,14 +6,14 @@ import Project.MODEL.Deck;
 /**
  * TODO cambiarlo perchè bisgpa randomizzare le carte
  */
-public class Iterator implements IteratorInterface {
+public class DeckIterator implements IteratorInterface {
 
     int period1;
     int period2;
     int period3;
     Constants constants;
 
-    public Iterator(){
+    public DeckIterator(){
         this.period1 = 0;
         this.period2 = 0;
         this.period3 = 0;
