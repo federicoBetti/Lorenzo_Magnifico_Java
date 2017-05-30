@@ -2,9 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/DontPayMoneyForTower.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayMoneyForTower.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/MODEL/Board.java" afterPath="$PROJECT_DIR$/src/Project/MODEL/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddCoin.java" afterPath="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddCoin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DoubleServantsPayment.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DoubleServantsPayment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/FivePointsMoreForPray.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/FivePointsMoreForPray.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LeaderCardRequirements.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LeaderCardRequirements.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SupportFunctionsDecorator.java" afterPath="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SupportFunctionsDecorator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/RMI/RMIPlayerHandler.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/RMI/RMIPlayerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/Server/Network/Socket/SocketPlayerHandler.java" afterPath="$PROJECT_DIR$/src/Project/Server/Network/Socket/SocketPlayerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/toDelete/Notify.java" afterPath="$PROJECT_DIR$/src/Project/toDelete/Notify.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Project/toDelete/Updates.java" afterPath="$PROJECT_DIR$/src/Project/toDelete/Updates.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -20,21 +42,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="GameActions.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/GameActions.java">
+      <file leaf-file-name="BasicSupportFunctions.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="113" column="107" lean-forward="false" selection-start-line="113" selection-start-column="107" selection-end-line="113" selection-end-column="107" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoseFinalPointsEveryResources.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+            <state relative-caret-position="380">
+              <caret line="19" column="50" lean-forward="true" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,19 +54,74 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Board.java">
+      <file leaf-file-name="GameActions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/GameActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="92" column="111" lean-forward="false" selection-start-line="92" selection-start-column="111" selection-end-line="92" selection-end-column="111" />
+            <state relative-caret-position="420">
+              <caret line="119" column="50" lean-forward="false" selection-start-line="119" selection-start-column="50" selection-end-line="119" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Room.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Server/Room.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notify.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/toDelete/Notify.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Updates.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/toDelete/Updates.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="54" lean-forward="false" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3209">
+              <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
               <folding>
-                <element signature="e#5007#5008#0" expanded="true" />
-                <element signature="e#5059#5060#0" expanded="true" />
-                <element signature="e#5441#5442#0" expanded="true" />
-                <element signature="e#5501#5502#0" expanded="true" />
-                <element signature="e#5557#5558#0" expanded="true" />
-                <element signature="e#5610#5611#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DevelopmentCard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/MODEL/DevelopmentCard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AllSupportFunctions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,6 +147,8 @@
       <find>Coins</find>
       <find>Player</find>
       <find>Character</find>
+      <find>broadcas</find>
+      <find>getRight</find>
     </findStrings>
     <replaceStrings>
       <replace>allCheckFunction</replace>
@@ -105,19 +174,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/UsePrivilege.java" />
-        <option value="$PROJECT_DIR$/src/Project/Configurations/Constants.java" />
-        <option value="$PROJECT_DIR$/src/Project/toDelete/Notify.java" />
-        <option value="$PROJECT_DIR$/src/Project/MODEL/DevelopmentCard.java" />
-        <option value="$PROJECT_DIR$/src/Project/Server/Network/NetworkException.java" />
-        <option value="$PROJECT_DIR$/src/Project/toDelete/BothCostCanBeSatisfied.java" />
-        <option value="$PROJECT_DIR$/src/Project/MODEL/Deck.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/FakeFamiliar.java" />
-        <option value="$PROJECT_DIR$/src/Project/Server/Network/Socket/SocketPlayerHandler.java" />
-        <option value="$PROJECT_DIR$/src/Project/toDelete/OkOrNo.java" />
         <option value="$PROJECT_DIR$/src/Project/Server/NetworkException/cantDoActionException.java" />
         <option value="$PROJECT_DIR$/src/Project/Server/NetworkException/canUseBothPaymentMethodException.java" />
-        <option value="$PROJECT_DIR$/src/Project/toDelete/Updates.java" />
         <option value="$PROJECT_DIR$/src/Project/MODEL/Tower.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/BasicCheckFunctions.java" />
         <option value="$PROJECT_DIR$/src/Project/Iterator.java" />
@@ -134,28 +192,39 @@
         <option value="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/CantPlaceFamiliarInMarket.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/AllCheckFunctions.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/DoubleServantsValue.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DoubleServantsPayment.java" />
         <option value="$PROJECT_DIR$/src/Project/Server/Room.java" />
-        <option value="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/SpecialExcommunicationEffects.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/NoFinalPointFromCards.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/NoFinalPointsFromCards.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/EffectsConstants.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/LoseFinalPointsFromResources.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java" />
         <option value="$PROJECT_DIR$/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
         <option value="$PROJECT_DIR$/src/Project/MODEL/Board.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/MilitaryPointsComparator.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayMoneyForTower.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/CheckFunctions/DontPayMoneyForTower.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SupportFunctionsDecorator.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DoubleServantsPayment.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/FivePointsMoreForPray.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LeaderCardRequirements.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddCoin.java" />
+        <option value="$PROJECT_DIR$/src/Project/toDelete/UpdateTakeCad.java" />
+        <option value="$PROJECT_DIR$/src/Project/toDelete/Notify.java" />
+        <option value="$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java" />
         <option value="$PROJECT_DIR$/src/Project/Server/Network/GameActions.java" />
+        <option value="$PROJECT_DIR$/src/Project/Server/Network/Socket/SocketPlayerHandler.java" />
+        <option value="$PROJECT_DIR$/src/Project/toDelete/Updates.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java" />
       </list>
     </option>
   </component>
@@ -176,10 +245,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="-4" />
-    <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="x" value="64" />
+    <option name="y" value="-11" />
+    <option name="width" value="1857" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -199,8 +268,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -311,7 +378,63 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="NetworkException" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Network" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Network" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Socket" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -356,32 +479,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Progetto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Progetto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SupportFunctions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -463,20 +560,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CheckFunctions" />
+              <option name="myItemId" value="CardsFactory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="excomm&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
+    <property name="SearchEverywhereHistoryKey" value="leader&#9;PSI&#9;JAVA://Project.Controller.SupportFunctions.LeaderCardRequirements&#10;excomm&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -938,6 +1037,9 @@
       <workItem from="1495617287272" duration="68000" />
       <workItem from="1495627388554" duration="30614000" />
       <workItem from="1495788070618" duration="10000" />
+      <workItem from="1496046890740" duration="1776000" />
+      <workItem from="1496048699675" duration="4100000" />
+      <workItem from="1496141449964" duration="3164000" />
     </task>
     <task id="LOCAL-00001" summary="Primo commit direttamente da IntelliJ">
       <created>1494278036573</created>
@@ -1107,11 +1209,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495814912021</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="sviluppo player handler e game actions">
+      <created>1495818316618</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1495818316618</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86458000" />
+    <option name="totallyTimeSpent" value="98796000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1123,7 +1232,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1142,7 +1251,6 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19407009" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1155,6 +1263,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1218,174 +1327,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Project/Server/NetworkException/cantDoActionException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Server/NetworkException/canUseBothPaymentMethodException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="76" lean-forward="false" selection-start-line="6" selection-start-column="76" selection-end-line="6" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/CharacterCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Tower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Iterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="6" column="53" lean-forward="false" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/toDelete/Updates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="103" lean-forward="false" selection-start-line="3" selection-start-column="103" selection-end-line="3" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Council.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-          <folding>
-            <element signature="e#382#383#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/ExcommunicationZone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-          <folding>
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#722#723#0" expanded="true" />
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/LoadCards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-          <folding>
-            <element signature="e#703#704#0" expanded="false" />
-            <element signature="e#729#730#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/Bonus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="95" column="41" lean-forward="false" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
-          <folding>
-            <element signature="e#2293#2294#0" expanded="true" />
-            <element signature="e#2360#2361#0" expanded="true" />
-            <element signature="e#2422#2423#0" expanded="true" />
-            <element signature="e#2456#2457#0" expanded="true" />
-            <element signature="e#2489#2490#0" expanded="true" />
-            <element signature="e#2538#2539#0" expanded="true" />
-            <element signature="e#2582#2583#0" expanded="true" />
-            <element signature="e#2619#2620#0" expanded="true" />
-            <element signature="e#2655#2656#0" expanded="true" />
-            <element signature="e#2710#2711#0" expanded="true" />
-            <element signature="e#2760#2761#0" expanded="true" />
-            <element signature="e#2794#2795#0" expanded="true" />
-            <element signature="e#2827#2828#0" expanded="true" />
-            <element signature="e#2876#2877#0" expanded="true" />
-            <element signature="e#2920#2921#0" expanded="true" />
-            <element signature="e#2953#2954#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3032#3033#0" expanded="true" />
-            <element signature="e#3074#3075#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/BonusTowerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/BonusForTakingCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/BonusForTakingBuilding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="51" lean-forward="false" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/ExchangeCoinsFor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/Effects.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1393,11 +1338,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="78" column="5" lean-forward="true" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3626#3627#0" expanded="true" />
-            <element signature="e#3698#3699#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1405,11 +1345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#837#838#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1417,7 +1352,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1425,7 +1359,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1433,23 +1366,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1079#1080#0" expanded="true" />
-            <element signature="e#1107#1108#0" expanded="true" />
-            <element signature="e#2240#2241#0" expanded="true" />
-            <element signature="e#2268#2269#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CheckFunctions/BasicCheckFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="77" column="42" lean-forward="true" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="42" />
-          <folding>
-            <element signature="method#CheckAvaiabiltyToProduct#0;class#BasicCheckFunctions#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1457,19 +1373,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="805">
           <caret line="70" column="67" lean-forward="false" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
-            <element signature="e#706#707#0" expanded="true" />
-            <element signature="e#816#817#0" expanded="true" />
-            <element signature="e#844#845#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#2095#2096#0" expanded="true" />
-            <element signature="e#2123#2124#0" expanded="true" />
-            <element signature="e#2182#2183#0" expanded="true" />
-            <element signature="e#2257#2258#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1477,121 +1380,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Server/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
-          <folding>
-            <element signature="e#1718#1719#0" expanded="true" />
-            <element signature="e#1768#1769#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="227" column="27" lean-forward="false" selection-start-line="227" selection-start-column="27" selection-end-line="227" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8239#8240#0" expanded="true" />
-            <element signature="e#8302#8303#0" expanded="true" />
-            <element signature="e#9386#9387#0" expanded="true" />
-            <element signature="e#9423#9424#0" expanded="true" />
-            <element signature="e#9494#9495#0" expanded="true" />
-            <element signature="e#9546#9547#0" expanded="true" />
-            <element signature="e#9602#9603#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="17" />
-          <folding>
-            <element signature="e#951#952#0" expanded="true" />
-            <element signature="e#975#976#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayMoneyForTower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="8" column="72" lean-forward="true" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="72" />
-          <folding>
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="845">
-          <caret line="98" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="e#587#588#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
-            <element signature="e#1709#1710#0" expanded="true" />
-            <element signature="e#1733#1734#0" expanded="true" />
-            <element signature="e#1829#1830#0" expanded="true" />
-            <element signature="e#1853#1854#0" expanded="true" />
-            <element signature="e#2057#2058#0" expanded="true" />
-            <element signature="e#2081#2082#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="94" column="32" lean-forward="false" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#588#589#0" expanded="true" />
-            <element signature="e#683#684#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#1710#1711#0" expanded="true" />
-            <element signature="e#1734#1735#0" expanded="true" />
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1854#1855#0" expanded="true" />
-            <element signature="e#1917#1918#0" expanded="true" />
-            <element signature="e#1938#1939#0" expanded="true" />
-            <element signature="e#2034#2035#0" expanded="true" />
-            <element signature="e#2073#2074#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="84" column="32" lean-forward="false" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#589#590#0" expanded="true" />
-            <element signature="e#684#685#0" expanded="true" />
-            <element signature="e#711#712#0" expanded="true" />
-            <element signature="e#1711#1712#0" expanded="true" />
-            <element signature="e#1735#1736#0" expanded="true" />
-            <element signature="e#1831#1832#0" expanded="true" />
-            <element signature="e#1870#1871#0" expanded="true" />
-            <element signature="e#1933#1934#0" expanded="true" />
-            <element signature="e#1955#1956#0" expanded="true" />
-            <element signature="e#2051#2052#0" expanded="true" />
-            <element signature="e#2075#2076#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1599,11 +1387,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1611,7 +1394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1619,70 +1401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="25" column="54" lean-forward="false" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/FivePointsMoreForPray.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="8" column="73" lean-forward="true" selection-start-line="8" selection-start-column="73" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="e#1025#1026#0" expanded="true" />
-            <element signature="e#1049#1050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DoubleServantsPayment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="84" column="8" lean-forward="false" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1883#1884#0" expanded="true" />
-            <element signature="e#1907#1908#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="100" column="35" lean-forward="false" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#663#664#0" expanded="true" />
-            <element signature="e#687#688#0" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#809#810#0" expanded="true" />
-            <element signature="e#1809#1810#0" expanded="true" />
-            <element signature="e#1833#1834#0" expanded="true" />
-            <element signature="e#1928#1929#0" expanded="true" />
-            <element signature="e#1952#1953#0" expanded="true" />
-            <element signature="e#2117#2118#0" expanded="true" />
-            <element signature="e#2141#2142#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="785">
-          <caret line="100" column="38" lean-forward="false" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#735#736#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#1762#1763#0" expanded="true" />
-            <element signature="e#1786#1787#0" expanded="true" />
-            <element signature="e#1881#1882#0" expanded="true" />
-            <element signature="e#1905#1906#0" expanded="true" />
-            <element signature="e#2070#2071#0" expanded="true" />
-            <element signature="e#2094#2095#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1690,61 +1408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="784">
           <caret line="60" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1142#1143#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="99" column="59" lean-forward="false" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#636#637#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#1758#1759#0" expanded="true" />
-            <element signature="e#1782#1783#0" expanded="true" />
-            <element signature="e#1877#1878#0" expanded="true" />
-            <element signature="e#1901#1902#0" expanded="true" />
-            <element signature="e#2066#2067#0" expanded="true" />
-            <element signature="e#2090#2091#0" expanded="true" />
-            <element signature="e#2169#2170#0" expanded="true" />
-            <element signature="e#2235#2236#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-720">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7059#7060#0" expanded="true" />
-            <element signature="e#7083#7084#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/DevelopmentCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1752,13 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1068#1069#0" expanded="true" />
-            <element signature="e#1098#1099#0" expanded="true" />
-            <element signature="e#1127#1128#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1766,21 +1422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="54" column="80" lean-forward="false" selection-start-line="54" selection-start-column="80" selection-end-line="54" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1788,32 +1429,260 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="92" column="111" lean-forward="false" selection-start-line="92" selection-start-column="111" selection-end-line="92" selection-end-column="111" />
-          <folding>
-            <element signature="e#5007#5008#0" expanded="true" />
-            <element signature="e#5059#5060#0" expanded="true" />
-            <element signature="e#5441#5442#0" expanded="true" />
-            <element signature="e#5501#5502#0" expanded="true" />
-            <element signature="e#5557#5558#0" expanded="true" />
-            <element signature="e#5610#5611#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Scaricati/jdk1.8.0_131/src.zip!/java/util/SortedSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1880">
+          <caret line="117" column="26" lean-forward="false" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Scaricati/jdk1.8.0_131/src.zip!/java/util/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="149" column="8" lean-forward="false" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/MilitaryPointsComparator.java" />
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DontPayMoneyForTower.java" />
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CheckFunctions/BasicCheckFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="77" column="42" lean-forward="true" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CheckFunctions/DontPayMoneyForTower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="68" lean-forward="false" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SupportFunctionsDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="7" column="72" lean-forward="false" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/DoubleServantsPayment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/SantaRita.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-475">
+          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="29" column="76" lean-forward="false" selection-start-line="29" selection-start-column="76" selection-end-line="29" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="29" column="76" lean-forward="false" selection-start-line="29" selection-start-column="76" selection-end-line="29" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+        <state relative-caret-position="520">
+          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/PersonalBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/FivePointsMoreForPray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Server/NetworkException/cantDoActionException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="9" column="47" lean-forward="true" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/toDelete/UpdateTakeCad.java" />
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/RealEffects/AddCoin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="26" column="63" lean-forward="false" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/Socket/SocketPlayerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1800">
+          <caret line="92" column="7" lean-forward="false" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/PlayerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3209">
+          <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/toDelete/Updates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="54" lean-forward="false" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/toDelete/Notify.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Client/MessageObject/LeaderCardsName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/toDelete/LeaderEffectsUsefull.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-335">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/CardsFactory/LeaderCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-335">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/LeaderCardRequirements.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-320">
+          <caret line="75" column="38" lean-forward="true" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="27" column="75" lean-forward="false" selection-start-line="27" selection-start-column="75" selection-end-line="27" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/MODEL/DevelopmentCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/AllSupportFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Server/Network/GameActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="113" column="107" lean-forward="false" selection-start-line="113" selection-start-column="107" selection-end-line="113" selection-end-column="107" />
+        <state relative-caret-position="420">
+          <caret line="119" column="50" lean-forward="false" selection-start-line="119" selection-start-column="50" selection-end-line="119" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Server/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controller/SupportFunctions/BasicSupportFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="50" lean-forward="true" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

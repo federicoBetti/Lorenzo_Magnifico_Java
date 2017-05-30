@@ -21,11 +21,11 @@ public class BuildExcommunicationEffects {
     }
 
     private void fillHashMapTypeEffects() {
-        typeEffect.put(EffectsConstants.LOSE_RESOURCE,this::loseResource);
-        typeEffect.put(EffectsConstants.DOWNGRADE,this::downgrade);
-        typeEffect.put(EffectsConstants.SPECIAL,this::special);
-        typeEffect.put(EffectsConstants.NO_FINAL_POINTS_FROM_CARDS,this::noFinalPointsFromCards);
-        typeEffect.put(EffectsConstants.LOSE_FINAL_POINTS,this::loseFinalPoints);
+        typeEffect.put(EffectsConstants.LOSE_RESOURCE,              this::loseResource);
+        typeEffect.put(EffectsConstants.DOWNGRADE,                  this::downgrade);
+        typeEffect.put(EffectsConstants.SPECIAL,                    this::special);
+        typeEffect.put(EffectsConstants.NO_FINAL_POINTS_FROM_CARDS, this::noFinalPointsFromCards);
+        typeEffect.put(EffectsConstants.LOSE_FINAL_POINTS,          this::loseFinalPoints);
     }
 
     private Effects loseFinalPoints(String parameter, int quantity) {
@@ -54,13 +54,6 @@ public class BuildExcommunicationEffects {
     private interface ExcommunicationBuilder{
         Effects searchEffectParameter(String parameter, int quantity);
     }
-
-    //TODO qua cominciano gli effetti, ne comincio a implementare uno a uno
-
-
-
-
-
 
 
 }

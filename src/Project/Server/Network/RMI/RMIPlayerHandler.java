@@ -15,7 +15,7 @@ public class RMIPlayerHandler extends PlayerHandler{
 
 
     @Override
-    public void sendAnswer(BonusInteraction returnFromEffect) {
+    public void sendAnswerFromCard(BonusInteraction returnFromEffect) {
 
     }
 

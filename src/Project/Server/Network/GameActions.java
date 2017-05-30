@@ -15,9 +15,7 @@ import Project.toDelete.BonusInteraction;
 import Project.toDelete.Notify;
 import Project.toDelete.OkOrNo;
 
-import java.lang.management.PlatformLoggingMXBean;
-import java.util.ArrayList;
-import java.util.SortedMap;
+import java.util.*;
 
 /**
  * main game actions
@@ -56,9 +54,9 @@ public class GameActions {
         getRightSupportFunctions(player).setFamiliar(zone, familyMember);
         getRightSupportFunctions(player).placeCardInPersonalBoard(zone.getCardOnThisFloor());
         BonusInteraction returnFromEffect = getRightSupportFunctions(player).ApplyEffects(zone.getCardOnThisFloor(),player);
-        player.sendAnswer(returnFromEffect);
+        player.sendAnswerFromCard(returnFromEffect);
         if (returnFromEffect instanceof OkOrNo){
-            player.sendAnswer(new Notify("i have finished my turn"));
+            player.sendAnswerFromCard(new Notify("i have finished my turn"));
             nextTurn(player);
         }
     }
@@ -110,10 +108,10 @@ public class GameActions {
 
     private void endMatch() { //todo
 
-
         //todo classifica dei military points SI PUO USARE UNA SORTED MAP! BISOGNA GUARDARE COME FUNZIONANO
         for (PlayerHandler playerHandler: room.getRoomPlayers()){
             int pointsToAdd = 0;
+            int numberOfResources;
             if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[Constants.PERIOD_NUMBER])
                 pray(playerHandler);
             else{
@@ -123,7 +121,6 @@ public class GameActions {
             pointsToAdd += getRightSupportFunctions(playerHandler).finalPointsFromCharacterCard(room.getBoard().getFinalPointsFromCharacterCards());
             pointsToAdd += getRightSupportFunctions(playerHandler).finalPointsFromTerritoryCard(room.getBoard().getFinalPointsFromTerritoryCards());
             getRightSupportFunctions(playerHandler).finalPointsFromVenturesCard();
-            int numberOfResources;
             numberOfResources = playerHandler.getPersonalBoardReference().getCoins();
             numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getServants();
             numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getStone();
@@ -217,6 +214,7 @@ public class GameActions {
             }
         }
         room.getBoard().setTowers(tower);
+        //todo invia le carte a tutti
     }
 
     private void setFamilyMemberHome() {
@@ -243,6 +241,7 @@ public class GameActions {
                     >= t.getCost().getDiceCost())
                 t.makePermannetEffects(player);
         }
+        broadcastNotifications(new Notify("il giocatore" + player.getName() + " ha fatto l'harvester"));
 
         return;
     };
@@ -344,7 +343,7 @@ public class GameActions {
 
     public void broadcastNotifications(Notify notifications){
         for (PlayerHandler p: room.getRoomPlayers()){
-            p.sendAnswer( notifications);
+            p.sendUpdate( notifications);
         }
     }
 

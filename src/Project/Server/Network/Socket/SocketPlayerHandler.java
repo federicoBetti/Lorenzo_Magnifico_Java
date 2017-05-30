@@ -18,7 +18,54 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendAnswer(BonusInteraction returnFromEffect) {
+    public void sendAnswerFromCard(BonusInteraction returnFromEffect) {
+        switch (returnFromEffect.getClass()){
+            case OKo:
+        }
+    }
+
+    @Override
+    protected void cantDoAction(
+    }
+
+    @Override
+    public void sendAnswerFromCard(BonusInteraction returnFromEffect) {
+        switch (returnFromEffect.getClass()){
+            case OKo:
+        }
+    }
+
+    }
+
+    @Override
+    public void sendAnswerFromCard(BonusInteraction returnFromEffect) {
+        switch (returnFromEffect.getClass()){
+            case OKo:
+        }
+    }
+
+    }
+
+    @Override
+    public void sendAnswerFromCard(BonusInteraction returnFromEffect) {
+        switch (returnFromEffect.getClass()){
+            case OKo:
+        }
+    }
+
+    }
+
+    @Override
+    public void sendAnswerFromCard(BonusInteraction returnFromEffect) {
+        switch (returnFromEffect.getClass()){
+            case OKo:
+        }
+    }
+
+    }
+
+    @Override
+    public void sendAnswerFromCard(BonusInteraction returnFromEffect) {
         switch (returnFromEffect.getClass()){
             case OKo:
         }
@@ -44,4 +91,108 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     /**
      * TODO metodi di risposta
      */
+    @Override
+    protected void cantDoAction(OkOrNo okOrNo) {
+
+    }
+
+    @Override
+    public void sendAskForPraying() {
+
+    }
+
+    @Override
+    public void run() {
+
+
+    }
+
+    @Override
+    /**
+     * TODO metodi di risposta
+     */
+    @Override
+    protected void cantDoAction(OkOrNo okOrNo) {
+
+    }
+
+    @Override
+    public void sendAskForPraying() {
+
+    }
+
+    @Override
+    public void run() {
+
+
+    }
+
+    @Override
+    /**
+     * TODO metodi di risposta
+     */
+    @Override
+    protected void cantDoAction(OkOrNo okOrNo) {
+
+    }
+
+    @Override
+    public void sendAskForPraying() {
+
+    }
+
+    @Override
+    public void run() {
+
+
+    }
+
+    @Override
+    /**
+     * TODO metodi di risposta
+     */
+    @Override
+    protected void cantDoAction(OkOrNo okOrNo) {
+
+    }
+
+    @Override
+    public void sendAskForPraying() {
+
+    }
+
+    @Override
+    public void run() {
+
+
+    }
+
+    @Override
+    /**
+     * TODO metodi di risposta
+     */OkOrNo okOrNo) {
+
+    }
+
+    @Override
+    public void sendAskForPraying() {
+
+    }
+
+    @Override
+    public void run() {
+
+
+    }
+
+    @Override
+    /**
+     * TODO metodi di risposta
+     */
+
+    takeDevCard(){
+        String familyColour;
+        getRoom().getBoard()
+
+    }
 }

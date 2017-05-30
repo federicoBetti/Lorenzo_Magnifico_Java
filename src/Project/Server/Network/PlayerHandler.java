@@ -10,10 +10,7 @@ import Project.Controller.SupportFunctions.LeaderCardRequirements;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
 import Project.Server.Room;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.BothCostCanBeSatisfied;
-import Project.toDelete.Notify;
-import Project.toDelete.OkOrNo;
+import Project.toDelete.*;
 import Project.Server.NetworkException.*;
 
 import java.util.ArrayList;
@@ -36,26 +33,26 @@ public abstract class PlayerHandler extends Player {
     /**
      * controllare se si puo fare una check functions che si chiamauguale CheckIfCanTakeCard che prendere come parametr una volta buildingCard una volta TerritoryCard e cosi via
      * @param towerColor
-     * @param position
+     * @param floor
      * @param familyM
      */
-    private void clientTakeDevelopementCard(String towerColor, int position, FamilyMember familyM) throws cantDoActionException, canUseBothPaymentMethodException {
-        boolean canTakeCard = checkFunctions.Check_Position(position, room.getBoard().getTrueArrayList(towerColor), familyM);
+    private void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws cantDoActionException, canUseBothPaymentMethodException {
+        boolean canTakeCard = checkFunctions.Check_Position(floor, room.getBoard().getTrueArrayList(towerColor), familyM);
         int canTakeVenturesCard;
         boolean towerOccupied = checkFunctions.CheckTowerOccupied(room.getBoard().getTrueArrayList(towerColor));
         if (towerColor == "purple") {
-            canTakeVenturesCard = checkFunctions.CheckCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[position].getDiceValueOfThisFloor(), familyM.getMyValue());
+            canTakeVenturesCard = checkFunctions.CheckCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
             if (canTakeVenturesCard == 0 || !canTakeCard)
                 throw new cantDoActionException(this, "no action can be done");
             else if (canTakeVenturesCard == 3)
                 throw new canUseBothPaymentMethodException(this, "both costs can be satisfied");
             else
-                room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this, towerOccupied, canTakeVenturesCard);
+                room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied, canTakeVenturesCard);
         } else {
-            canTakeCard = canTakeCard && checkFunctions.CheckCardCost(room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[position].getDiceValueOfThisFloor(), familyM.getMyValue());
+            canTakeCard = canTakeCard && checkFunctions.CheckCardCost(room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
             if (canTakeCard) {
-                room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[position], familyM, this, towerOccupied);
-                room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[position].getCardOnThisFloor().getName()));
+                room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied);
+                room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor().getName()));
             } else throw new cantDoActionException(this, "no action can be done");
         }
     }
@@ -199,13 +196,36 @@ public abstract class PlayerHandler extends Player {
      * stringa BOTH_COST_CAN_BE_SATISFIED
      */
 
-    public abstract void sendAnswer(BonusInteraction returnFromEffect);
+    /**
+     * this method asnwers from the method take developmeent card
+     * @param returnFromEffect
+     */
+    public abstract void sendAnswerFromCard(BonusInteraction returnFromEffect);
 
-    public abstract void cantDoAction(OkOrNo okOrNo);
+    /**
+     * chiamato qua c'è l'eccezzione che non puo fare l'azione
+     * @param okOrNo
+     */
+
+    public abstract void cantDoAction(OkOrNo okOrNo); //sarà no
+
+    /**
+     * questo metodo viene chiamato se vuoi prendere una carta ventures ma puoi pagarla con entrambi i costi
+     * @param bothCostCanBeSatisfied
+     */
 
     public abstract void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCostCanBeSatisfied);
 
+    /**
+     * dice al player che è il suo turno
+     */
     public abstract void itsMyTurn(); //non saprei che parametri passare
+
+    /**
+     * metodo che farà gli update sulle UI di tutti i giocatori sulla giocata di qualcuno
+     * @param updates
+     */
+    public abstract void sendUpdate(Updates updates);
 
     /**
      * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto

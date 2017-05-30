@@ -1,13 +1,18 @@
 package Project.Controller.SupportFunctions;
 
 import Project.MODEL.Card;
+import Project.MODEL.DevelopmentCard;
 import Project.MODEL.Player;
 import SERVER.Card;
 import SERVER.PlayerPackage.*;
 import Project.MODEL.Card.Card;
 
+import java.util.LinkedList;
+
 /**
  * TODO hashMap al posto dello switch e interfaccia funzionale
+ * attenzione, dobbiamo prendere da file anche i requirements della carta leader o dobbiamo inserirli gia nel sistema cosi?
+ * devo dire che una classe LeaderCardCost ci potrebbe stare anche perche sono tutti simili e parametrizzabili
  */
 public class LeaderCardRequirements {
 
@@ -146,12 +151,8 @@ public class LeaderCardRequirements {
         return false;
     }
 
-    private int CountCard(Card[] cards){
-        int number = 0;
-        for (int i = 0; cards[i] != null; i++){
-            number++;
-        }
-        return number;
+    private int CountCard(LinkedList<DevelopmentCard> cards){
+        return cards.size();
     }
 
 }

@@ -22,4 +22,8 @@ public class AddCoin implements TakeRoPEffects {
         Ok.setOk(true);
         return Ok;
     }
+
+    public String toString(){
+        return "Aggiungere soldi al giocatore che è molto ricco" + quantity;
+    }
 }

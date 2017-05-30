@@ -4,24 +4,19 @@ import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.CharacterCard;
 import Project.Controller.CardsFactory.VenturesCard;
 import Project.MODEL.*;
+import Project.Server.Network.PlayerHandler;
+import Project.toDelete.BonusInteraction;
+
+import java.util.ArrayList;
 
 
 public class FivePointsMoreForPray implements SupportFunctionsDecorator {
     AllSupportFunctions allSupportFunctions = null;
 
-    FivePointsMoreForPray(AllSupportFunctions allSupportFunctions){
+    public FivePointsMoreForPray(AllSupportFunctions allSupportFunctions){
         this.allSupportFunctions = allSupportFunctions;
     }
 
-    @Override
-    public boolean Check_Position(int position, Position[] zone, FamilyMember familyMember) {
-        return allSupportFunctions.Check_Position(position,zone,familyMember);
-    }
-
-    @Override
-    public boolean CheckTowerOccupiedByYou(Tower[] tower, Player player) {
-        return allSupportFunctions.CheckTowerOccupiedByYou(tower,player);
-    }
 
     @Override
     public int Pray(Player player) {
@@ -29,32 +24,79 @@ public class FivePointsMoreForPray implements SupportFunctionsDecorator {
     }
 
     @Override
-    public int finalPointsFromTerritoryCard() {
-        return 0;
+    public BonusInteraction ApplyEffects(DevelopmentCard card, PlayerHandler player) {
+        return allSupportFunctions.ApplyEffects(card,player);
     }
 
     @Override
-    public boolean CheckCapabilityToTakeTerritory(Player player) {
-        return allSupportFunctions.CheckCapabilityToTakeTerritory(player);
+    public void setFamiliar(Position zone, FamilyMember familyMember) {
+        allSupportFunctions.setFamiliar(zone,familyMember);
     }
 
     @Override
-    public void ApplyEffects(Card card, Player player) {
-        allSupportFunctions.ApplyEffects(card,player);
+    public void placeCardInPersonalBoard(DevelopmentCard card) {
+        allSupportFunctions.placeCardInPersonalBoard(card);
     }
 
     @Override
-    public boolean CheckCardCostCharacters(CharacterCard card, Player player) {
-        return allSupportFunctions.CheckCardCostCharacters(card,player);
+    public void setDicesValue(int[] newDiceValue, Player p) {
+        allSupportFunctions.setDicesValue(newDiceValue,p);
     }
 
     @Override
-    public boolean CheckCardCostBuildings(BuildingCard card, Player player) {
-        return allSupportFunctions.CheckCardCostBuildings(card,player);
+    public void setFamiliarInTheCouncilPalace(ArrayList<Council> councilZone, FamilyMember familyMember) {
+        allSupportFunctions.setFamiliarInTheCouncilPalace(councilZone,familyMember);
     }
 
     @Override
-    public boolean CheckCardCostVentures(VenturesCard card, Player player) {
-        return allSupportFunctions.CheckCardCostVentures(card,player);
+    public void takeCouncilPrivilege(int privelgeNumber) {
+        allSupportFunctions.takeCouncilPrivilege(privelgeNumber);
     }
+
+    @Override
+    public void takeMarketAction(int position) {
+        allSupportFunctions.takeMarketAction(position);
+    }
+
+    @Override
+    public void payCard(DevelopmentCard cardOnThisFloor, boolean towerIsOccupied, int zoneDiceCost, int valueOfFamilyMember) {
+        allSupportFunctions.payCard(cardOnThisFloor,towerIsOccupied,zoneDiceCost,valueOfFamilyMember);
+    }
+
+    @Override
+    public void payVenturesCard(VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen) {
+        allSupportFunctions.payVenturesCard(card,player,coinsFee,zoneDiceCost,valueOfFamilyMember,paymentChoosen);
+    }
+
+    @Override
+    public void pray(int victoryPointsToAdd) {
+        allSupportFunctions.pray(victoryPointsToAdd);
+    }
+
+    @Override
+    public int payServants(int cost, int value) {
+        return allSupportFunctions.payServants(cost,value);
+    }
+
+    @Override
+    public int finalPointsFromTerritoryCard(ArrayList<Integer> victoryPoints) {
+        return allSupportFunctions.finalPointsFromTerritoryCard(victoryPoints);
+    }
+
+
+    @Override
+    public int finalPointsFromCharacterCard(ArrayList<Integer> victoryPoints) {
+        return allSupportFunctions.finalPointsFromCharacterCard(victoryPoints);
+    }
+
+    @Override
+    public void finalPointsFromVenturesCard() {
+        allSupportFunctions.finalPointsFromVenturesCard();
+    }
+
+    @Override
+    public int extraLostOfPoints(PlayerHandler playerHandler) {
+        return allSupportFunctions.extraLostOfPoints(playerHandler);
+    }
+
 }

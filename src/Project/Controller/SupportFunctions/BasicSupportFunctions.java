@@ -25,6 +25,8 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     private HashMap<Integer,MarketTaker> takeFromMarket;
 
+    private HashMap<String,CardPayment> payments;
+
 
     /**
      * Default constructor
@@ -33,6 +35,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     public BasicSupportFunctions(PlayerHandler player) {
         this.player = player;
+        this.payments = new HashMap<>();
         privileges = new HashMap<>(5);
         takeFromMarket = new HashMap<>(4);
         fillHashMapPrivileges();
@@ -44,6 +47,34 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         payments.put(TerritoryCard.class.toString(),this::payTerritoryCard);
         payments.put(BuildingCard.class.toString(),this::payBuildingCard);
         payments.put(CharacterCard.class.toString(),this::payCharacterCard);
+    }
+
+    private void fillHashMapPrivileges (){
+        privileges.put(0,this::WoodStonePrivilege);
+        privileges.put(1,this::servantsPrivilege);
+        privileges.put(2,this::coinsPrivilege);
+        privileges.put(3,this::militaryPointsPrivilege);
+        privileges.put(4,this::faithPointsPrivilege);
+    }
+
+    private void fillHashMapTakeFromMarket() {
+        takeFromMarket.put(0,this::marketCoins);
+        takeFromMarket.put(1,this::marketServants);
+        takeFromMarket.put(2,this::marketMilitaryCoins);
+        takeFromMarket.put(3,this::marketPrivileges);
+    }
+
+
+    private interface PrivilegeTaker{
+        void takePrivilege();
+    }
+
+    private interface CardPayment{
+        void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+    }
+
+    private interface MarketTaker{
+        void takeMarketAction();
     }
 
     public void payVenturesCard(VenturesCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen){
@@ -106,7 +137,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
     /**
-     * to decorate in case of excommunication tile
      * @param cost
      * @param value
      * @return
@@ -145,24 +175,8 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
 
-    private void fillHashMapPrivileges (){
-        privileges.put(0,this::WoodStonePrivilege);
-        privileges.put(1,this::servantsPrivilege);
-        privileges.put(2,this::coinsPrivilege);
-        privileges.put(3,this::militaryPointsPrivilege);
-        privileges.put(4,this::faithPointsPrivilege);
-    }
 
-    private void fillHashMapTakeFromMarket() {
-        takeFromMarket.put(0,this::marketCoins);
-        takeFromMarket.put(1,this::marketServants);
-        takeFromMarket.put(2,this::marketMilitaryCoins);
-        takeFromMarket.put(3,this::marketPrivileges);
-    }
 
-    private interface PrivilegeTaker{
-        void takePrivilege();
-    }
 
 
     void WoodStonePrivilege(){
@@ -194,9 +208,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
 
-    private interface MarketTaker{
-        void takeMarketAction();
-    }
 
     void marketCoins(){
         Effects e = new AddCoin(5);
@@ -216,13 +227,14 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     void marketPrivileges(){
         Effects e = new UsePrivilege(2);
         BonusInteraction bonusInteraction = e.doEffect(player);
-        player.sendAnswer(bonusInteraction);
+        player.sendAnswerFromCard(bonusInteraction);
     }
 
 
-    public BonusInteraction ApplyEffects (DevelopmentCard card, Player player){
+    public BonusInteraction ApplyEffects (DevelopmentCard card, PlayerHandler player){
         return card.makeImmediateEffects(player);
     }
+
 
     @Override
     public void setFamiliar(Position zone, FamilyMember familyMember) {
@@ -264,19 +276,9 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     public void payCard(DevelopmentCard cardOnThisFloor, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember) {
         payments.get(cardOnThisFloor.getClass().toString()).pay(cardOnThisFloor, coinsFee, zoneDiceCost, valueOfFamilyMember);
     }
-    private HashMap<String,CardPayment> payments;
-
-    private interface CardPayment{
-        void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
-    }
-
-
-
-
 
 
     public void pray(int victoryPointsToAdd){
-        //devo prendere i giusti punti vittoria e faccio tornare indietro il pedone, quindi metto punti fede = 0;
         player.getScore().setVictoryPoints(0);
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsToAdd);
 

@@ -10,11 +10,7 @@ import java.util.ArrayList;
 
 public interface AllSupportFunctions {
 
-
-
-    int Pray(Player player);
-    BonusInteraction ApplyEffects(DevelopmentCard card, Player player);
-
+    BonusInteraction ApplyEffects(DevelopmentCard card, PlayerHandler player);
 
     void setFamiliar(Position zone, FamilyMember familyMember);
 
