@@ -1,5 +1,7 @@
 package Project.Messages;
 
-public abstract class BonusInteraction {
+import java.io.Serializable;
+
+public abstract class BonusInteraction implements Serializable {
 
 }

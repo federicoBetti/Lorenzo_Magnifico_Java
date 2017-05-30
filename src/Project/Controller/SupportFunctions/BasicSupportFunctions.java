@@ -227,7 +227,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     void marketPrivileges(){
         Effects e = new UsePrivilege(2);
         BonusInteraction bonusInteraction = e.doEffect(player);
-        player.sendAnswerFromCard(bonusInteraction);
+        player.sendAnswer(bonusInteraction);
     }
 
 
@@ -252,7 +252,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     @Override
     public void setDicesValue(int[] newDiceValue, Player p) {
         for (int i = 0; i<newDiceValue.length; i++)
-            p.getPedone()[i].setMyValue(newDiceValue[i]);
+            p.getAllFamilyMembers()[i].setMyValue(newDiceValue[i]);
     }
 
     @Override

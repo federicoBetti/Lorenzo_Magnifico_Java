@@ -50,4 +50,25 @@ public class Constants {
     public static String ASK_FOR_PRAYING ="do-you-want-to-pray?";
     public static String BOTH_PAYMENT_METHODS_AVAILABLE="both-payment-methods-available";
     public static String LOCAL_ADDRESS = "127.0.0.1";
+
+    public static String FRANCESCO_SFORZA = "francesco-sforza";
+    public static String LUDVICO_ARIOSTO = "ludovico-ariosto";
+    public static String FILIPPO_BRUNELLESCHI = "filippo-brunelleschi";
+    public static String SIGISMONDO_MALATESTA = "sigismondo-malatesta";
+    public static String GIROLAMO_SAVONAROLA = "girolamo-savonarola";
+    public static String MICHELANGELO_BUONARROTI = "michelangelo-buonarroti";
+    public static String GIOVANNI_DALLE_BANDE_NERE = "giovanni-dalle-bande-nere";
+    public static String LEONARDO_DA_VINCI = "leonardo-da-vinci";
+    public static String SANDRO_BOTTICELLI = "sandro-botticelli";
+    public static String LUDOVICO_IL_MORO = "ludovico-il-moro";
+    public static String LUCREZIA_BORGIA = "lucrezia-borgia";
+    public static String FEDERICO_DA_MONTEFELTRO = "federico-da-montefeltro";
+    public static String LORENZO_DE_MEDICI = "lorenzo-de-medici";
+    public static String SISTO_IV = "sisto-iv";
+    public static String CESARE_BORGIA = "cesare-borgia";
+    public static String SANTA_RITA = "santa-rita";
+    public static String COSIMO_DE_MEDICI = "cosimo-de-medici";
+    public static String BARTOLOMEO_CORLEONI = "bartolomeo-corleoni";
+    public static String LUDOVICO_III_GONZAGA = "ludovico-iii-gonzaga";
+    public static String PICO_DELLA_MIRANDOLA = "pico-della-mirandola";
 }

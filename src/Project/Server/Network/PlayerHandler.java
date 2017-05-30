@@ -130,17 +130,10 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     public void playLeaderCard(String leaderName) throws cantDoActionException {
-        LeaderCardRequirements leaderCardRequirements = new LeaderCardRequirements();
-        for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
-            if (l.getName().equals(leaderName)){
-                if (leaderCardRequirements.CheckRequirements(leaderName,this))
-                    room.getGameActions().playLeaderCard(leaderName,this);
-                else
-                     cantDoAction(new OkOrNo(false));
-            }
-        }
-
-        throw new cantDoActionException(this,"no action can be done");
+        if (LeaderCardRequirements.checkRequirements(leaderName,this))
+            room.getGameActions().playLeaderCard(leaderName,this);
+        else
+            throw new cantDoActionException(this,"no action can be done");
     };
 
     /**

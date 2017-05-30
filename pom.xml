@@ -7,6 +7,10 @@
     <groupId>it.polimi.ingsw</groupId>
     <artifactId>LM43</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+    <name>LM43</name>
+    <url>http://maven.apache.org</url>
     <build>
         <plugins>
             <plugin>
@@ -34,6 +38,12 @@
         </dependency>
 
     </dependencies>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.language>java</sonar.language>
+        <sonar.host.url> http://localhost:9000/ </sonar.host.url>
+    </properties>
 
 
 </project>
