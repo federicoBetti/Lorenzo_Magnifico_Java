@@ -1,4 +1,4 @@
-package Project.toDelete;
+package Project.Messages;
 
 /**
  * questa classe la usiamo per notificare a tutti una certa cosa da mettere sulla chat di gioco.
@@ -6,6 +6,7 @@ package Project.toDelete;
  */
 public class Notify extends Updates {
     String notification;
+
     public Notify (String notification){
         this.notification = notification;
     }

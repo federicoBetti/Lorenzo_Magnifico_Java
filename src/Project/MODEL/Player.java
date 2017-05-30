@@ -1,7 +1,7 @@
 package Project.MODEL;
 
 import Project.Controller.CardsFactory.*;
-import Project.toDelete.LeaderEffectsUsefull;
+import Project.Messages.LeaderEffectsUsefull;
 
 /**
  * 
@@ -20,7 +20,7 @@ public class Player {
 
     private Score score;
 
-    private FamilyMember[] pedone;
+    private FamilyMember[] allFamilyMembers;
 
     private int turnOrder;
 
@@ -53,12 +53,12 @@ public class Player {
 		this.score = score;
 	}
 
-	public FamilyMember[] getPedone() {
-		return pedone;
+	public FamilyMember[] getAllFamilyMembers() {
+		return allFamilyMembers;
 	}
 
-	public void setPedone(FamilyMember[] pedone) {
-		this.pedone = pedone;
+	public void setAllFamilyMembers(FamilyMember[] allFamilyMembers) {
+		this.allFamilyMembers = allFamilyMembers;
 	}
 
 	public int getTurnOrder() {
@@ -108,4 +108,6 @@ public class Player {
 	public void setFamilyColour(String familyColour) {
 		FamilyColour = familyColour;
 	}
+
+
 }

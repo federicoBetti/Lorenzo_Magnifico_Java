@@ -42,7 +42,7 @@ public final class Board {
     /**
      * 
      */
-    private ArrayList<Player> TurnOrder;
+    private Turn turn;
 
     /**
      * 
@@ -163,13 +163,14 @@ public final class Board {
         return excommunicationZone;
     }
 
-    public ArrayList<Player> getTurnOrder() {
+    /*public ArrayList<Player> getTurnOrder() {
         return TurnOrder;
     }
 
     public void setTurnOrder(ArrayList<Player> turnOrder) {
         TurnOrder = turnOrder;
     }
+    */
 
     public int getPeriod() {
         return period;
@@ -243,5 +244,9 @@ public final class Board {
 
     public int[] getFaithPointsRequiredEveryPeriod() {
         return faithPointsRequiredEveryPeriod;
+    }
+
+    public Turn getTurn() {
+        return turn;
     }
 }

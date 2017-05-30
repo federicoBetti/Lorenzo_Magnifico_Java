@@ -10,11 +10,12 @@ import Project.Controller.SupportFunctions.LeaderCardRequirements;
 import Project.MODEL.FamilyMember;
 import Project.MODEL.Player;
 import Project.Server.Room;
-import Project.toDelete.*;
+import Project.Messages.BonusInteraction;
+import Project.Messages.Notify;
+import Project.Messages.OkOrNo;
 import Project.Server.NetworkException.*;
 
 import java.util.ArrayList;
-
 
 public abstract class PlayerHandler extends Player {
 
@@ -22,7 +23,7 @@ public abstract class PlayerHandler extends Player {
     AllCheckFunctions checkFunctions;
 
 
-    PlayerHandler(){
+    public PlayerHandler(){
         checkFunctions = new BasicCheckFunctions();
     }
     /**
@@ -36,7 +37,7 @@ public abstract class PlayerHandler extends Player {
      * @param floor
      * @param familyM
      */
-    private void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws cantDoActionException, canUseBothPaymentMethodException {
+    protected void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws cantDoActionException, canUseBothPaymentMethodException {
         boolean canTakeCard = checkFunctions.Check_Position(floor, room.getBoard().getTrueArrayList(towerColor), familyM);
         int canTakeVenturesCard;
         boolean towerOccupied = checkFunctions.CheckTowerOccupied(room.getBoard().getTrueArrayList(towerColor));
@@ -63,7 +64,7 @@ public abstract class PlayerHandler extends Player {
      * @param familyMember
      * @param paymentChoosen
      */
-    private void clientChoosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen){
+    protected void clientChoosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen){
         boolean towerOccupied = checkFunctions.CheckTowerOccupied(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD));
         room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)[position], familyMember, this, towerOccupied, paymentChoosen);
     }
@@ -75,7 +76,7 @@ public abstract class PlayerHandler extends Player {
      * @param servantsNumber
      */
 
-    private void Harvester(int position, FamilyMember familyM, int servantsNumber) throws cantDoActionException {
+    protected void harvester(int position, FamilyMember familyM, int servantsNumber) throws cantDoActionException {
         boolean canTakeCard = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("harvester"),familyM);
         if (canTakeCard)
             room.getGameActions().harvester(position,familyM,servantsNumber,this);
@@ -91,7 +92,7 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
 
-    public void Production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct) throws cantDoActionException {
+    public void production(int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct) throws cantDoActionException {
         int maxValueOfProduction;
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
         if (position > 0)
@@ -109,7 +110,7 @@ public abstract class PlayerHandler extends Player {
      * @param familyM
      * @return
      */
-    public void GoTOMarket(int position, FamilyMember familyM) throws cantDoActionException {
+    public void goToMarket(int position, FamilyMember familyM) throws cantDoActionException {
         boolean canGoToMarket = checkFunctions.Check_Position(position,room.getBoard().getTrueArrayList("market"),familyM);
         if (canGoToMarket)
             room.getGameActions().goToMarket(position,familyM,this);
@@ -120,7 +121,7 @@ public abstract class PlayerHandler extends Player {
     /**
      * @return
      */
-    public void JumpTurn(){
+    public void jumpTurn(){
         room.getGameActions().nextTurn(this);
     }
 
@@ -128,7 +129,7 @@ public abstract class PlayerHandler extends Player {
      * @param leaderName
      * @return
      */
-    public void PlayLeaderCard(String leaderName) throws cantDoActionException {
+    public void playLeaderCard(String leaderName) throws cantDoActionException {
         LeaderCardRequirements leaderCardRequirements = new LeaderCardRequirements();
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
@@ -146,7 +147,7 @@ public abstract class PlayerHandler extends Player {
      * @param leaderName
      * @return
      */
-    public void DiscardLeaderCard(String leaderName) throws cantDoActionException {
+    public void discardLeaderCard(String leaderName) throws cantDoActionException {
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
                 room.getGameActions().discardLeaderCard(leaderName,this);
@@ -160,16 +161,16 @@ public abstract class PlayerHandler extends Player {
     /**
      * @return
      */
-    public void clientRollDice(){
+    public void rollDices(){
         //controllare se è corretto con un test, il secondo controllo indica se io sono il primo di turno e quindi ho la facoltà di tirare i dadi
-        if (room.getBoard().getEndRound() && room.getBoard().getTurnOrder().get(0).equals(this))
+        if (room.getBoard().getEndRound() && room.getBoard().getTurn().getPlayerTurn().get(0).equals(this))
             room.getGameActions().rollDice();
     };
 
     /**
      * @param privelgeNumber
      */
-    public void clientGoToCouncilPalace(int privelgeNumber, FamilyMember familyMember){
+    public void goToCouncilPalace(int privelgeNumber, FamilyMember familyMember){
         // ho supposto che posso andare nel palazzo del consiglio anche se c'è gia un altro del mio colore
         room.getGameActions().goToCouncilPalace(privelgeNumber,familyMember,this);
     };
@@ -178,15 +179,15 @@ public abstract class PlayerHandler extends Player {
      *
      * @param privilegeNumber
      */
-    public void clientTakePrivilege(int privilegeNumber){
+    public void takePrivilege(int privilegeNumber){
         room.getGameActions().takeCouncilPrivilege(privilegeNumber, this);
     }
 
-    public void clientPray(){
+    public void pray(){
         room.getGameActions().pray(this);
     }
 
-    public void clientDontPray(){
+    public void dontPray(){
         room.getGameActions().takeExcommunication(this);
     }
     /**
@@ -196,41 +197,20 @@ public abstract class PlayerHandler extends Player {
      * stringa BOTH_COST_CAN_BE_SATISFIED
      */
 
-    /**
-     * this method asnwers from the method take developmeent card
-     * @param returnFromEffect
-     */
-    public abstract void sendAnswerFromCard(BonusInteraction returnFromEffect);
+    public abstract void sendAnswer(BonusInteraction returnFromEffect);
 
-    /**
-     * chiamato qua c'è l'eccezzione che non puo fare l'azione
-     * @param okOrNo
-     */
+    public abstract void cantDoAction(OkOrNo okOrNo);
 
-    public abstract void cantDoAction(OkOrNo okOrNo); //sarà no
+    public abstract void canUseBothPaymentMethod();
 
-    /**
-     * questo metodo viene chiamato se vuoi prendere una carta ventures ma puoi pagarla con entrambi i costi
-     * @param bothCostCanBeSatisfied
-     */
-
-    public abstract void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCostCanBeSatisfied);
-
-    /**
-     * dice al player che è il suo turno
-     */
     public abstract void itsMyTurn(); //non saprei che parametri passare
-
-    /**
-     * metodo che farà gli update sulle UI di tutti i giocatori sulla giocata di qualcuno
-     * @param updates
-     */
-    public abstract void sendUpdate(Updates updates);
 
     /**
      * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto
      */
     public abstract void sendAskForPraying(); //
+
+
 
 
     /*
@@ -248,4 +228,6 @@ public abstract class PlayerHandler extends Player {
     public Room getRoom() {
         return room;
     }
+
+
 }

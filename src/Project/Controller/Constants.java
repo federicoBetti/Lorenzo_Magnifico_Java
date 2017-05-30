@@ -26,4 +26,28 @@ public class Constants {
     public static String FAMILY_MEMBER_COLOUR_BLACK = "black";
     public static String FAMILY_MEMBER_COLOUR_ORANGE = "orange";
     public static String FAMILY_MEMBER_COLOUR_WHITE = "white";
+
+    public final static int SOCKET_PORT = 1337;
+    public final static int RMI_PORT = 1338;
+
+    public static final String LOGIN_SUCCEDED = "login-succeded";
+    public static final String YOUR_TURN = "your-turn";
+
+    //Network constants
+    public static final String LOGIN_REQUEST = "login-request";
+    public static final String TAKE_DEV_CARD = "client-Take-Developement-Card";
+    public static String CHOOSE_PAYMENT_FOR_VENTURE_CARD = "choose-Payment-Venture-card";
+    public static String STOP = "stop";
+    public static String GO_TO_MARKET ="go-to-market";
+    public static String JUMP_TURN ="jump-turn";
+    public static String PLAY_LEADER_CARD ="play-leader-card";
+    public static String DISCARD_LEADER_CARD = "discard-leader-card";
+    public static String ROLL_DICES = "roll-dices";
+    public static String GO_TO_COUNCIL_PALACE ="go-to-council-palace-request";
+    public static String TAKE_PRIVILEDGE ="take-priviledge";
+    public static String PRAY ="pray";
+    public static String DONT_PRAY ="dont-pray";
+    public static String ASK_FOR_PRAYING ="do-you-want-to-pray?";
+    public static String BOTH_PAYMENT_METHODS_AVAILABLE="both-payment-methods-available";
+    public static String LOCAL_ADDRESS = "127.0.0.1";
 }

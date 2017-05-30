@@ -26,6 +26,6 @@ public class Configuration {
         loadCards = new LoadCards();
         constants = new Constants();
 
-        RequestHandler put = loadCards.getMap().put(constants.BUILDING_CARD, BuildingCard::new);
+
     }
 }

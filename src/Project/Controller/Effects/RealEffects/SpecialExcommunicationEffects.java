@@ -5,8 +5,8 @@ import Project.Controller.CheckFunctions.DoubleServantsValue;
 import Project.Controller.Effects.EffectsFactory.EffectsConstants;
 import Project.Controller.SupportFunctions.DoubleServantsPayment;
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.OkOrNo;
+import Project.Messages.BonusInteraction;
+import Project.Messages.OkOrNo;
 
 import java.util.HashMap;
 

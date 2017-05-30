@@ -1,7 +1,5 @@
 package Project.MODEL;
 
-import Project.toDelete.BonusInteraction;
-
 /**
  * Created by raffaelebongo on 10/05/17.
  */

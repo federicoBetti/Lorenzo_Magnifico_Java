@@ -1,8 +1,6 @@
 package Project.Controller.Effects.EffectsFactory;
 
 import Project.Controller.Effects.RealEffects.*;
-import Project.MODEL.Player;
-import Project.toDelete.BonusInteraction;
 
 import java.util.HashMap;
 

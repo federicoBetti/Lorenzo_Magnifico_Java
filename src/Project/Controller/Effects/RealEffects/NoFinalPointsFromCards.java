@@ -1,15 +1,12 @@
 package Project.Controller.Effects.RealEffects;
 
-import Project.Controller.CheckFunctions.CantPlaceFamiliarInMarket;
-import Project.Controller.CheckFunctions.DoubleServantsValue;
 import Project.Controller.Effects.EffectsFactory.EffectsConstants;
-import Project.Controller.SupportFunctions.DoubleServantsPayment;
 import Project.Controller.SupportFunctions.NoFinalPointsFromCharacter;
 import Project.Controller.SupportFunctions.NoFinalPointsFromTerritory;
 import Project.Controller.SupportFunctions.NoFinalPointsFromVentures;
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.OkOrNo;
+import Project.Messages.BonusInteraction;
+import Project.Messages.OkOrNo;
 
 import java.util.HashMap;
 

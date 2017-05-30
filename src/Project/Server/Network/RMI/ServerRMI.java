@@ -5,7 +5,7 @@ import Project.MODEL.DevelopmentCard;
 import Project.MODEL.FamilyMember;
 import Project.Server.Network.AbstractServer;
 import Project.Server.Server;
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 
 import java.util.ArrayList;
 import java.util.HashMap;

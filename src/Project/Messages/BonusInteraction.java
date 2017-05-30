@@ -1,4 +1,4 @@
-package Project.toDelete;
+package Project.Messages;
 
 public abstract class BonusInteraction {
 

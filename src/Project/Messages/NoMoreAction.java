@@ -1,6 +1,4 @@
-package Project.toDelete;
-
-import Project.toDelete.BonusInteraction;
+package Project.Messages;
 
 public class NoMoreAction extends BonusInteraction {
 	int OkOrNot;

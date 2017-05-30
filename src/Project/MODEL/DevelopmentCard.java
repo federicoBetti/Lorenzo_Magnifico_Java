@@ -1,12 +1,12 @@
 package Project.MODEL;
 
 import Project.Controller.CardsFactory.Cost;
-import Project.Controller.CardsFactory.TerritoryCost;
 import Project.Controller.Effects.EffectsFactory.PokerPE;
 import Project.Controller.Effects.RealEffects.Effects;
 import Project.Controller.Effects.EffectsFactory.BuildImmediateEffects;
 import Project.Controller.Effects.EffectsFactory.*;
-import Project.toDelete.BonusInteraction;
+import Project.Server.Network.PlayerHandler;
+import Project.Messages.BonusInteraction;
 
 
 import java.util.*;
@@ -45,7 +45,7 @@ public abstract class DevelopmentCard {
         }
         
     }
-    public BonusInteraction makeImmediateEffects(Player player) {
+    public BonusInteraction makeImmediateEffects(PlayerHandler player) {
         BonusInteraction bonusInteraction = null;
         for (Effects x: immediateCardEffects ) {
             bonusInteraction = x.doEffect(player);

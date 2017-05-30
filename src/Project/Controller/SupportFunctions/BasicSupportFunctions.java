@@ -8,7 +8,7 @@ import Project.Controller.Constants;
 import Project.Controller.Effects.RealEffects.*;
 import Project.MODEL.*;
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 
 import java.util.ArrayList;
 import java.util.HashMap;

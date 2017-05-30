@@ -1,4 +1,4 @@
-package Project.toDelete;
+package Project.Messages;
 
 public class BonusProductionOrHarvesterAction extends BonusInteraction {
 	private int diceValue;

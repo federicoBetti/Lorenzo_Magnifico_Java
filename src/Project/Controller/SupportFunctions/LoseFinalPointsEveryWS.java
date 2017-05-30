@@ -4,7 +4,7 @@ import Project.Controller.CardsFactory.BuildingCard;
 import Project.Controller.CardsFactory.VenturesCard;
 import Project.MODEL.*;
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
+import Project.Messages.BonusInteraction;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
 package Project.Server.Network.RMI;
 
 import Project.Server.Network.PlayerHandler;
-import Project.toDelete.BonusInteraction;
-import Project.toDelete.OkOrNo;
+import Project.Messages.BonusInteraction;
+import Project.Messages.OkOrNo;
 
 /**
  * questo esetende playerHandler, quindi deve fare un override dei metodi di ritorno. da qua passeranno i metodi di
