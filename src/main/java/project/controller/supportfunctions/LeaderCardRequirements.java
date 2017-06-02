@@ -22,26 +22,26 @@ public class LeaderCardRequirements {
     }
 
     private void fillHashMapRequirements() {
-        requirements.put(Constants.FRANCESCO_SFORZA,            this::francescoSforza);
-        requirements.put(Constants.LUDVICO_ARIOSTO,             this::ludovicoAriosto);
-        requirements.put(Constants.FILIPPO_BRUNELLESCHI,        this::filippoBrunelleschi);
-        requirements.put(Constants.SIGISMONDO_MALATESTA,        this::sigismondoMalatesta);
-        requirements.put(Constants.GIROLAMO_SAVONAROLA,         this::girolamoSavonarola);
-        requirements.put(Constants.MICHELANGELO_BUONARROTI,     this::michelangeloBuonarroti);
-        requirements.put(Constants.GIOVANNI_DALLE_BANDE_NERE,   this::giovanniDalleBandeNere);
-        requirements.put(Constants.LEONARDO_DA_VINCI,           this::leonardoDaVinci);
-        requirements.put(Constants.SANDRO_BOTTICELLI,           this::sandroBotticelli);
-        requirements.put(Constants.LUDOVICO_IL_MORO,            this::ludovicoIlMoro);
-        requirements.put(Constants.LUCREZIA_BORGIA,             this::lucreziaBorgia);
-        requirements.put(Constants.FEDERICO_DA_MONTEFELTRO,     this::federicoDaMontefeltro);
-        requirements.put(Constants.LORENZO_DE_MEDICI,           this::lorenzoDeMedici);
-        requirements.put(Constants.SISTO_IV,                    this::sistoIV);
-        requirements.put(Constants.CESARE_BORGIA,               this::cesareBorgia);
-        requirements.put(Constants.SANTA_RITA,                  this::santaRita);
-        requirements.put(Constants.COSIMO_DE_MEDICI,            this::cosimoDeMedici);
-        requirements.put(Constants.BARTOLOMEO_CORLEONI,         this::bartolometoColleoni);
-        requirements.put(Constants.LUDOVICO_III_GONZAGA,        this::ludovicoIIIGonzaga);
-        requirements.put(Constants.PICO_DELLA_MIRANDOLA,        this::picoDellaMiradola);
+        requirements.put(Constants.FRANCESCO_SFORZA,this::francescoSforza);
+        requirements.put(Constants.LUDVICO_ARIOSTO,this::ludovicoAriosto);
+        requirements.put(Constants.FILIPPO_BRUNELLESCHI,this::filippoBrunelleschi);
+        requirements.put(Constants.SIGISMONDO_MALATESTA,this::sigismondoMalatesta);
+        requirements.put(Constants.GIROLAMO_SAVONAROLA,this::girolamoSavonarola);
+        requirements.put(Constants.MICHELANGELO_BUONARROTI,this::michelangeloBuonarroti);
+        requirements.put(Constants.GIOVANNI_DALLE_BANDE_NERE,this::giovanniDalleBandeNere);
+        requirements.put(Constants.LEONARDO_DA_VINCI,this::leonardoDaVinci);
+        requirements.put(Constants.SANDRO_BOTTICELLI,this::sandroBotticelli);
+        requirements.put(Constants.LUDOVICO_IL_MORO,this::ludovicoIlMoro);
+        requirements.put(Constants.LUCREZIA_BORGIA,this::lucreziaBorgia);
+        requirements.put(Constants.FEDERICO_DA_MONTEFELTRO,this::federicoDaMontefeltro);
+        requirements.put(Constants.LORENZO_DE_MEDICI,this::lorenzoDeMedici);
+        requirements.put(Constants.SISTO_IV,this::sistoIV);
+        requirements.put(Constants.CESARE_BORGIA,this::cesareBorgia);
+        requirements.put(Constants.SANTA_RITA,this::santaRita);
+        requirements.put(Constants.COSIMO_DE_MEDICI,this::cosimoDeMedici);
+        requirements.put(Constants.BARTOLOMEO_CORLEONI,this::bartolometoColleoni);
+        requirements.put(Constants.LUDOVICO_III_GONZAGA,this::ludovicoIIIGonzaga);
+        requirements.put(Constants.PICO_DELLA_MIRANDOLA,this::picoDellaMiradola);
     }
 
 

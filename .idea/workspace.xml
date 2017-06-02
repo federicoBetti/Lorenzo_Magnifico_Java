@@ -2,163 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/project/client/Cli.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/AbstractUI.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/AbstractUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/Launcer.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/Launcer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/MessageObject/FamiliarColor.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/message/FamiliarColor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/MessageObject/KindOfAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/message/KindOfAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/MessageObject/LeaderCardsName.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/message/LeaderCardsName.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/MessageObject/MarketPlace.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/message/MarketPlace.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/MessageObject/PriviledgeName.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/message/PriviledgeName.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/MessageObject/TowerColor.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/message/TowerColor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/MessageObject/TowerFloor.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/message/TowerFloor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/Network/AbstractClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/Network/RMI/RMIClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/Network/RMI/RMIServerToClientInterface.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/Network/Socket/SocketClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Client/Network/Socket/SocketClientAnswerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClientAnswerHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Configurations/Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/project/configurations/Configuration.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Configurations/SetupMethods.java" afterPath="$PROJECT_DIR$/src/main/java/project/configurations/SetupMethods.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/Anagrafic.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Anagrafic.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/BuildingCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/BuildingCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/CardFromJson.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CardFromJson.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/CharacterCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharacterCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/CharactersCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharactersCost.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/Cost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Cost.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/ExcommunicationEffectsUseful.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/ExcommunicationEffectsUseful.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/ExcommunitationTile.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/ExcommunitationTile.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/ImmediateEffectsFromJson.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/ImmediateEffectsFromJson.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/LeaderCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/LeaderCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/LoadCards.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/LoadCards.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/PermanentEffectFromJson.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/PermanentEffectFromJson.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/TerritoryCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/TerritoryCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/TotalCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TotalCost.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/VentureCostArray.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VentureCostArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/VenturesCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CardsFactory/VenturesCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCost.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/AllCheckFunctions.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/AllCheckFunctions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/BasicCheckFunctions.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/BasicCheckFunctions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/CantPlaceFamiliarInMarket.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/CantPlaceFamiliarInMarket.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/CheckFunctionsDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/CheckFunctionsDecorator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/DontCheckPositionDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontCheckPositionDecorator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/DontPayForTerritories.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontPayForTerritories.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/DontPayMoneyForTower.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontPayMoneyForTower.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/DoubleServantsValue.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DoubleServantsValue.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/CheckFunctions/PicoDellaMirandola.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandola.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/EffectsFactory/BuildExcommunicationEffects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildExcommunicationEffects.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/EffectsFactory/BuildImmediateEffects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildImmediateEffects.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/EffectsFactory/BuildPermanentEffects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildPermanentEffects.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/EffectsFactory/EffectsConstants.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/EffectsConstants.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/EffectsFactory/PokerPE.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/PokerPE.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/EffectsFactory/TrisIE.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/TrisIE.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/AddCoin.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddCoin.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/AddFaithPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddFaithPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/AddMilitaryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddMilitaryPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/AddServants.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddServants.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/AddStone.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddStone.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/AddVicotryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddVicotryPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/AddWood.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddWood.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/BonusTowerAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/BonusTowerAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/DiscountForTakingCards.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/DiscountForTakingCards.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/DowngradeEffect.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/DowngradeEffect.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/EarnOneCoinForEachColouredCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/EarnOneCoinForEachColouredCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/Effects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/Effects.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/ExchangeCoinsFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeCoinsFor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/ExchangeServantsFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeServantsFor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/ExchangeStoneFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeStoneFor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/ExchangeWoodFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeWoodFor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/FaithPointForTwoCoinsAndTwoVictoryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/FaithPointForTwoCoinsAndTwoVictoryPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/IncreaseDiceValueForHoP.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/IncreaseDiceValueForHoP.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/IncreaseDicevalueForTakingCards.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/IncreaseDicevalueForTakingCards.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/LoseFinalPointsFromResources.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/LoseFinalPointsFromResources.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/LoseResourceEffect.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/LoseResourceEffect.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/NoFinalPointsFromCards.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/NoFinalPointsFromCards.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/ReduceValueOnAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ReduceValueOnAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/ServantWoodStoneForSixVictoryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ServantWoodStoneForSixVictoryPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/SpecialExcommunicationEffects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/SpecialExcommunicationEffects.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/TakeRoPEffects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/TakeRoPEffects.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/TakeRop.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/TakeRop.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/TwoVictoryPointsForEachGreenCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/TwoVictoryPointsForEachGreenCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/TwoVictoryPointsForEachYellowCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/TwoVictoryPointsForEachYellowCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/UsePrivilege.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/UsePrivilege.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/VictoryPointForEachBlueCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/VictoryPointForEachBlueCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/VictoryPointsForEachPurpleCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/VictoryPointsForEachPurpleCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/VictoryPointsForEachTwoMilitaryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/VictoryPointsForEachTwoMilitaryPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/RealEffects/noImmediateEffectTwoHighestPositionsTower.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/NoImmediateEffectTwoHighestPositionsTower.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/SetExcommunicationCardUseful.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/SetExcommunicationCardUseful.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/SetFamiliarFixedBonus.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/SetFamiliarFixedBonus.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/SetFamiliarFixedValue.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/SetFamiliarFixedValue.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/Effects/SetLeaderEffectsUseful.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/SetLeaderEffectsUseful.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/FakeFamiliar.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/FakeFamiliar.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/AllSupportFunctions.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/AllSupportFunctions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/BasicSupportFunctions.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/CouncilPrivileges.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/CouncilPrivileges.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/DoubleServantsPayment.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/DoubleServantsPayment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/FivePointsMoreForPray.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/FivePointsMoreForPray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/LeaderCardRequirements.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/LoseFinalPointsEveryFive.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryFive.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/LoseFinalPointsEveryMilitary.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryMilitary.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/LoseFinalPointsEveryResources.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryResources.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/LoseFinalPointsEveryWS.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryWS.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/NoFinalPointsFromCharacter.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/NoFinalPointsFromCharacter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/NoFinalPointsFromTerritory.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/NoFinalPointsFromTerritory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/NoFinalPointsFromVentures.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/NoFinalPointsFromVentures.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/SantaRita.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/SantaRita.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Controller/SupportFunctions/SupportFunctionsDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/SupportFunctionsDecorator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/DeckIterator.java" afterPath="$PROJECT_DIR$/src/main/java/project/DeckIterator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/IteratorInterface.java" afterPath="$PROJECT_DIR$/src/main/java/project/IteratorInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Board.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Board.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Bonus.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Bonus.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/BonusForTakingBuilding.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/BonusForTakingBuilding.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/BonusForTakingCharacter.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/BonusForTakingCharacter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Council.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Council.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Deck.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Deck.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/DevelopmentCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/DevelopmentCard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/ExcommunicationZone.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/ExcommunicationZone.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/FamilyMember.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/FamilyMember.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Harvester.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Harvester.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Market.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Market.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/PersonalBoard.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/PersonalBoard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Player.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Player.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Position.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Position.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Production.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Production.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Score.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Score.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Tile.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Tile.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/TileBonus.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/TileBonus.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Tower.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Tower.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/Turn.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Turn.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/MODEL/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/package-info.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/BonusInteraction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/BonusInteraction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/BonusProductionOrHarvesterAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/BonusProductionOrHarvesterAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/BothCostCanBeSatisfied.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/BothCostCanBeSatisfied.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/LeaderEffectsUsefull.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/LeaderEffectsUsefull.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/NoMoreAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/NoMoreAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/Notify.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/Notify.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/OkOrNo.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/OkOrNo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/ProductionHarvesterAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/ProductionHarvesterAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/ProductionResponse.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/ProductionResponse.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/TakePrivilegesAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/TowerAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Messages/Updates.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/Updates.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/AbstractServer.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/AbstractServer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/ControllerInterface.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/ControllerInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/GameActions.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/PlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/RMI/RMIClientToServerInterface.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIClientToServerInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/RMI/RMIPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/RMI/ServerRMI.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/Socket/ServerDataHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/ServerDataHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/Socket/SocketPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Network/Socket/SocketServer.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketServer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/NetworkException/canUseBothPaymentMethodException.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/exception/CanUseBothPaymentMethodException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/NetworkException/cantDoActionException.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/exception/CantDoActionException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Room.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/Room.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Project/Server/Server.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -174,25 +19,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="LoseFinalPointsEveryMilitary.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryMilitary.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-347">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LoseFinalPointsEveryResources.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryResources.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-497">
+            <state relative-caret-position="105">
               <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1052#1053#0" expanded="false" />
+                <element signature="e#1118#1119#0" expanded="false" />
+                <element signature="e#1195#1196#0" expanded="false" />
+                <element signature="e#1260#1261#0" expanded="false" />
+                <element signature="e#1542#1543#0" expanded="false" />
+                <element signature="e#1614#1615#0" expanded="false" />
+                <element signature="e#1678#1679#0" expanded="false" />
+                <element signature="e#1740#1741#0" expanded="false" />
+                <element signature="e#2338#2339#0" expanded="false" />
+                <element signature="e#2398#2399#0" expanded="false" />
+                <element signature="e#2463#2464#0" expanded="false" />
+                <element signature="e#2529#2530#0" expanded="false" />
+                <element signature="e#2768#2769#0" expanded="false" />
+                <element signature="e#2833#2834#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -201,10 +47,23 @@
       <file leaf-file-name="LoseFinalPointsEveryWS.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryWS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-467">
+            <state relative-caret-position="105">
               <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1086#1087#0" expanded="false" />
+                <element signature="e#1152#1153#0" expanded="false" />
+                <element signature="e#1229#1230#0" expanded="false" />
+                <element signature="e#1294#1295#0" expanded="false" />
+                <element signature="e#1576#1577#0" expanded="false" />
+                <element signature="e#1648#1649#0" expanded="false" />
+                <element signature="e#1712#1713#0" expanded="false" />
+                <element signature="e#1774#1775#0" expanded="false" />
+                <element signature="e#2372#2373#0" expanded="false" />
+                <element signature="e#2432#2433#0" expanded="false" />
+                <element signature="e#2497#2498#0" expanded="false" />
+                <element signature="e#2563#2564#0" expanded="false" />
+                <element signature="e#2802#2803#0" expanded="false" />
+                <element signature="e#2867#2868#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -213,9 +72,21 @@
       <file leaf-file-name="NoFinalPointsFromCharacter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/NoFinalPointsFromCharacter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
+            <state relative-caret-position="1005">
               <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#683#684#0" expanded="false" />
+                <element signature="e#710#711#0" expanded="false" />
+                <element signature="e#2041#2042#0" expanded="false" />
+                <element signature="e#2065#2066#0" expanded="false" />
+                <element signature="e#2128#2129#0" expanded="false" />
+                <element signature="e#2150#2151#0" expanded="false" />
+                <element signature="e#2241#2242#0" expanded="false" />
+                <element signature="e#2280#2281#0" expanded="false" />
+                <element signature="e#2359#2360#0" expanded="false" />
+                <element signature="e#2383#2384#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -224,10 +95,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/SantaRita.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+              <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
               <folding>
-                <element signature="e#2243#2244#0" expanded="true" />
-                <element signature="e#2267#2268#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#522#523#0" expanded="false" />
+                <element signature="e#584#585#0" expanded="false" />
+                <element signature="e#2357#2358#0" expanded="false" />
+                <element signature="e#2381#2382#0" expanded="false" />
+                <element signature="e#2563#2564#0" expanded="false" />
+                <element signature="e#2587#2588#0" expanded="false" />
+                <element signature="e#2666#2667#0" expanded="false" />
+                <element signature="e#2690#2691#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -246,9 +124,17 @@
       <file leaf-file-name="PicoDellaMirandola.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandola.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
+            <state relative-caret-position="225">
               <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#601#602#0" expanded="false" />
+                <element signature="e#659#660#0" expanded="false" />
+                <element signature="e#2331#2332#0" expanded="false" />
+                <element signature="e#2359#2360#0" expanded="false" />
+                <element signature="e#2418#2419#0" expanded="false" />
+                <element signature="e#2442#2443#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -266,18 +152,36 @@
       <file leaf-file-name="DontPayForTerritories.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontPayForTerritories.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
+            <state relative-caret-position="1065">
               <caret line="84" column="6" lean-forward="false" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="6" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#536#537#0" expanded="false" />
+                <element signature="e#594#595#0" expanded="false" />
+                <element signature="e#2208#2209#0" expanded="false" />
+                <element signature="e#2236#2237#0" expanded="false" />
+                <element signature="e#2295#2296#0" expanded="false" />
+                <element signature="e#2319#2320#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DontCheckPositionDecorator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontCheckPositionDecorator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="55">
+              <caret line="23" column="9" lean-forward="false" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DontCheckPositionDecorator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontCheckPositionDecorator.java">
+      <file leaf-file-name="LeaderCardRequirements.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+            <state relative-caret-position="510">
+              <caret line="43" column="56" lean-forward="false" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -353,7 +257,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/project/model/Production.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/model/Score.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/model/Tile.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/model/Tower.java" />
@@ -404,6 +307,7 @@
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/SantaRita.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandola.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java" />
       </list>
     </option>
   </component>
@@ -449,8 +353,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="814" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -470,9 +375,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -511,8 +414,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="supportfunctions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -526,7 +495,6 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -1021,7 +989,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496153762108</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Correzioni per Sonar">
+      <created>1496416423261</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1496416423261</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1037,13 +1012,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="814" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32825485" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1055,7 +1029,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13590844" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13733906" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1067,6 +1041,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32825485" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32686982" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1154,7 +1129,8 @@
     <MESSAGE value="sviluppo player handler e game actions" />
     <MESSAGE value="implementato network Socket lato server. Aggiunta classe Turn alla bord" />
     <MESSAGE value="prova sonar" />
-    <option name="LAST_COMMIT_MESSAGE" value="prova sonar" />
+    <MESSAGE value="Correzioni per Sonar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correzioni per Sonar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1171,7 +1147,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="12" column="53" lean-forward="false" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1179,7 +1154,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="21" column="69" lean-forward="false" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1187,7 +1161,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1195,7 +1168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="61" lean-forward="false" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1203,7 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="47" column="17" lean-forward="false" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,10 +1182,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-          <folding>
-            <element signature="e#301#302#0" expanded="false" />
-            <element signature="e#349#350#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1222,17 +1189,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#616#617#0" expanded="false" />
-            <element signature="e#644#645#0" expanded="false" />
-            <element signature="e#741#742#0" expanded="false" />
-            <element signature="e#769#770#0" expanded="false" />
-            <element signature="e#1925#1926#0" expanded="false" />
-            <element signature="e#1953#1954#0" expanded="false" />
-            <element signature="e#2012#2013#0" expanded="false" />
-            <element signature="e#2036#2037#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1240,7 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1248,7 +1203,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="38" lean-forward="false" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1256,7 +1210,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1264,10 +1217,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-          <folding>
-            <marker date="1496412769000" expanded="false" signature="670:681" ph=" { " />
-            <marker date="1496412769000" expanded="false" signature="692:698" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1275,7 +1224,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1283,7 +1231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1291,7 +1238,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="757">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1299,7 +1245,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="72" column="63" lean-forward="false" selection-start-line="72" selection-start-column="63" selection-end-line="72" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1307,7 +1252,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
           <caret line="161" column="39" lean-forward="true" selection-start-line="161" selection-start-column="39" selection-end-line="161" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1315,11 +1259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1335,7 +1274,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1343,7 +1281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1351,7 +1288,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1359,9 +1295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1369,9 +1302,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-667">
           <caret line="81" column="13" lean-forward="false" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1379,10 +1309,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-          <folding>
-            <element signature="e#2254#2255#0" expanded="false" />
-            <element signature="e#2278#2279#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1390,7 +1316,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-547">
           <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,7 +1323,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="749">
           <caret line="56" column="41" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1406,7 +1330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-113">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1414,7 +1337,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="39" column="22" lean-forward="true" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1422,7 +1344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1430,7 +1351,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1438,7 +1358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1446,7 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="259" column="63" lean-forward="true" selection-start-line="259" selection-start-column="63" selection-end-line="259" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1462,9 +1380,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-44">
           <caret line="38" column="22" lean-forward="false" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1472,7 +1387,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="553">
           <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1480,7 +1394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1962">
           <caret line="259" column="13" lean-forward="false" selection-start-line="259" selection-start-column="13" selection-end-line="259" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1488,7 +1401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1496,7 +1408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1504,15 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-377">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1684">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1520,55 +1422,114 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-332">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryMilitary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-347">
+        <state relative-caret-position="105">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="false" />
+            <element signature="e#1126#1127#0" expanded="false" />
+            <element signature="e#1203#1204#0" expanded="false" />
+            <element signature="e#1268#1269#0" expanded="false" />
+            <element signature="e#1550#1551#0" expanded="false" />
+            <element signature="e#1622#1623#0" expanded="false" />
+            <element signature="e#1686#1687#0" expanded="false" />
+            <element signature="e#1748#1749#0" expanded="false" />
+            <element signature="e#2346#2347#0" expanded="false" />
+            <element signature="e#2406#2407#0" expanded="false" />
+            <element signature="e#2471#2472#0" expanded="false" />
+            <element signature="e#2537#2538#0" expanded="false" />
+            <element signature="e#2776#2777#0" expanded="false" />
+            <element signature="e#2841#2842#0" expanded="false" />
+            <element signature="e#3096#3097#0" expanded="false" />
+            <element signature="e#3163#3164#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryResources.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-497">
+        <state relative-caret-position="105">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1052#1053#0" expanded="false" />
+            <element signature="e#1118#1119#0" expanded="false" />
+            <element signature="e#1195#1196#0" expanded="false" />
+            <element signature="e#1260#1261#0" expanded="false" />
+            <element signature="e#1542#1543#0" expanded="false" />
+            <element signature="e#1614#1615#0" expanded="false" />
+            <element signature="e#1678#1679#0" expanded="false" />
+            <element signature="e#1740#1741#0" expanded="false" />
+            <element signature="e#2338#2339#0" expanded="false" />
+            <element signature="e#2398#2399#0" expanded="false" />
+            <element signature="e#2463#2464#0" expanded="false" />
+            <element signature="e#2529#2530#0" expanded="false" />
+            <element signature="e#2768#2769#0" expanded="false" />
+            <element signature="e#2833#2834#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LoseFinalPointsEveryWS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-467">
+        <state relative-caret-position="105">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1086#1087#0" expanded="false" />
+            <element signature="e#1152#1153#0" expanded="false" />
+            <element signature="e#1229#1230#0" expanded="false" />
+            <element signature="e#1294#1295#0" expanded="false" />
+            <element signature="e#1576#1577#0" expanded="false" />
+            <element signature="e#1648#1649#0" expanded="false" />
+            <element signature="e#1712#1713#0" expanded="false" />
+            <element signature="e#1774#1775#0" expanded="false" />
+            <element signature="e#2372#2373#0" expanded="false" />
+            <element signature="e#2432#2433#0" expanded="false" />
+            <element signature="e#2497#2498#0" expanded="false" />
+            <element signature="e#2563#2564#0" expanded="false" />
+            <element signature="e#2802#2803#0" expanded="false" />
+            <element signature="e#2867#2868#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/NoFinalPointsFromCharacter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
+        <state relative-caret-position="1005">
           <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#683#684#0" expanded="false" />
+            <element signature="e#710#711#0" expanded="false" />
+            <element signature="e#2041#2042#0" expanded="false" />
+            <element signature="e#2065#2066#0" expanded="false" />
+            <element signature="e#2128#2129#0" expanded="false" />
+            <element signature="e#2150#2151#0" expanded="false" />
+            <element signature="e#2241#2242#0" expanded="false" />
+            <element signature="e#2280#2281#0" expanded="false" />
+            <element signature="e#2359#2360#0" expanded="false" />
+            <element signature="e#2383#2384#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/SantaRita.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
           <folding>
-            <element signature="e#2243#2244#0" expanded="true" />
-            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#522#523#0" expanded="false" />
+            <element signature="e#584#585#0" expanded="false" />
+            <element signature="e#2357#2358#0" expanded="false" />
+            <element signature="e#2381#2382#0" expanded="false" />
+            <element signature="e#2563#2564#0" expanded="false" />
+            <element signature="e#2587#2588#0" expanded="false" />
+            <element signature="e#2666#2667#0" expanded="false" />
+            <element signature="e#2690#2691#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1583,9 +1544,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandola.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
+        <state relative-caret-position="225">
           <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#601#602#0" expanded="false" />
+            <element signature="e#659#660#0" expanded="false" />
+            <element signature="e#2331#2332#0" expanded="false" />
+            <element signature="e#2359#2360#0" expanded="false" />
+            <element signature="e#2418#2419#0" expanded="false" />
+            <element signature="e#2442#2443#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1599,16 +1568,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontPayForTerritories.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
+        <state relative-caret-position="1065">
           <caret line="84" column="6" lean-forward="false" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="6" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#536#537#0" expanded="false" />
+            <element signature="e#594#595#0" expanded="false" />
+            <element signature="e#2208#2209#0" expanded="false" />
+            <element signature="e#2236#2237#0" expanded="false" />
+            <element signature="e#2295#2296#0" expanded="false" />
+            <element signature="e#2319#2320#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontCheckPositionDecorator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+        <state relative-caret-position="55">
+          <caret line="23" column="9" lean-forward="false" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="43" column="56" lean-forward="false" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
           <folding />
         </state>
       </provider>
