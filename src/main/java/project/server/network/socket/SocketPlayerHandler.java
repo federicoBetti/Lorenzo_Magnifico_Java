@@ -210,7 +210,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             int currentCard = 0;
             while ( iterator.hasNext() ){
-                if ( myBuildings.get(currentCard).equals(messReceived))
+                if ( myBuildings.get(currentCard).toString().equals(messReceived))
                     cardsForProduction.add(myBuildings.get(currentCard));
                 currentCard++;
             }

@@ -51,6 +51,7 @@ public class GameActions {
     }
 
     private void takeDevelopementCard(Tower zone, FamilyMember familyMember, PlayerHandler player){
+        zone.makeEffect(player);
         getRightSupportFunctions(player).setFamiliar(zone, familyMember);
         getRightSupportFunctions(player).placeCardInPersonalBoard(zone.getCardOnThisFloor());
         BonusInteraction returnFromEffect = getRightSupportFunctions(player).applyEffects(zone.getCardOnThisFloor(),player);

@@ -89,6 +89,8 @@ public final class Board {
 
     private List<Integer> finalPointsFromCharacterCards;
 
+    private List<Integer> militaryPointsRequiredForTerritories;
+
     private int numberOfFamilyMemberPlayedInThisRound;
 
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5

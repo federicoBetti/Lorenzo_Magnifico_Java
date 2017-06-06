@@ -1,5 +1,8 @@
 package project.model;
 
+import project.controller.effects.realeffects.Effects;
+import project.server.network.PlayerHandler;
+
 /**
  * 
  */
@@ -13,6 +16,8 @@ public class Tower extends Position {
     private DevelopmentCard cardOnThisFloor;
 
     private boolean used;
+
+    private Effects bonusThisPosition;
 
 
     public Tower() {
@@ -30,5 +35,9 @@ public class Tower extends Position {
 
     public int getDiceValueOfThisFloor() {
         return diceValueOfThisFloor;
+    }
+
+    public void makeEffect(PlayerHandler player){
+        bonusThisPosition.doEffect(player);
     }
 }
