@@ -1,30 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/project/client/clientexceptions/ClientConnectionException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/project/client/clientexceptions/NotALlowedSelection.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/clientexceptions/NotAllowedSelection.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/project/messages/ProductionHarvesterAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ProductionHarvesterAction.java" />
+    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="implementazione RMI">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/Launcer.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/Launcer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildImmediateEffects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildImmediateEffects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/BonusInteraction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/BonusInteraction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/ProductionResponse.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/ProductionResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/AbstractServer.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/AbstractServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIClientToServerInterface.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIClientToServerInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketServer.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketServer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -44,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
-              <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+              <caret line="86" column="5" lean-forward="false" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
               <folding>
                 <element signature="e#3300#3301#0" expanded="true" />
                 <element signature="e#3360#3361#0" expanded="true" />
@@ -56,8 +34,8 @@
       <file leaf-file-name="RMIPlayerHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="37" column="131" lean-forward="false" selection-start-line="37" selection-start-column="131" selection-end-line="37" selection-end-column="131" />
+            <state relative-caret-position="400">
+              <caret line="36" column="76" lean-forward="true" selection-start-line="36" selection-start-column="76" selection-end-line="36" selection-end-column="76" />
               <folding>
                 <element signature="e#1839#1840#0" expanded="true" />
                 <element signature="e#1862#1863#0" expanded="true" />
@@ -71,8 +49,8 @@
       <file leaf-file-name="TowerAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+            <state relative-caret-position="351">
+              <caret line="21" column="55" lean-forward="false" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -82,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="520">
-              <caret line="26" column="59" lean-forward="false" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
+              <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -102,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="722">
-              <caret line="74" column="23" lean-forward="true" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
+              <caret line="74" column="23" lean-forward="false" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
               <folding>
                 <element signature="e#2163#2164#0" expanded="true" />
                 <element signature="e#2218#2219#0" expanded="true" />
@@ -119,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="460">
-              <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+              <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
-              <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
               <folding>
                 <element signature="e#403#404#0" expanded="true" />
                 <element signature="e#457#458#0" expanded="true" />
@@ -724,11 +702,21 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/Launcer.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/MessagesFromServerHandler.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/AbstractContext.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/CouncilContext.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/LoginContext.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/MainContext.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ProductionContext.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TowersContext.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildImmediateEffects.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -736,23 +724,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/clientexceptions/NotALlowedSelection.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/MessagesFromServerHandler.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/AbstractContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/CouncilContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ExcomunicationContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/HarvesterContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/LeaderCardContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/LoginContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/MainContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/MarketContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ProductionContext.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TowersContext.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BonusTowerActionBlue.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/BonusTowerActionYellow.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -760,8 +733,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/AbstractUI.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/Cli.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1510,11 +1481,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496754679079</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="implementazione RMI">
+      <created>1496771679562</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1496771679562</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114566000" />
+    <option name="totallyTimeSpent" value="114820000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1635,7 +1613,8 @@
     <MESSAGE value="implementato network Socket lato server. Aggiunta classe Turn alla bord" />
     <MESSAGE value="prova sonar" />
     <MESSAGE value="Correzioni per Sonar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correzioni per Sonar" />
+    <MESSAGE value="implementazione RMI" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementazione RMI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1652,6 +1631,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1699,8 +1681,6 @@
           <caret line="34" column="25" lean-forward="false" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#1502#1503#0" expanded="false" />
-            <element signature="e#1551#1552#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1993,7 +1973,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
-          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+          <caret line="86" column="5" lean-forward="false" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
           <folding>
             <element signature="e#3300#3301#0" expanded="true" />
             <element signature="e#3360#3361#0" expanded="true" />
@@ -2028,7 +2008,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
-          <caret line="26" column="59" lean-forward="false" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
+          <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -2044,7 +2024,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
-          <caret line="74" column="23" lean-forward="true" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
+          <caret line="74" column="23" lean-forward="false" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
           <folding>
             <element signature="e#2163#2164#0" expanded="true" />
             <element signature="e#2218#2219#0" expanded="true" />
@@ -2067,7 +2047,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
-          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2077,7 +2057,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
-          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="e#403#404#0" expanded="true" />
             <element signature="e#457#458#0" expanded="true" />
@@ -2087,16 +2067,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+        <state relative-caret-position="351">
+          <caret line="21" column="55" lean-forward="false" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="37" column="131" lean-forward="false" selection-start-line="37" selection-start-column="131" selection-end-line="37" selection-end-column="131" />
+        <state relative-caret-position="400">
+          <caret line="36" column="76" lean-forward="true" selection-start-line="36" selection-start-column="76" selection-end-line="36" selection-end-column="76" />
           <folding>
             <element signature="e#1839#1840#0" expanded="true" />
             <element signature="e#1862#1863#0" expanded="true" />
