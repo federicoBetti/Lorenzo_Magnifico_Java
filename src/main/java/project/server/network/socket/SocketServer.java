@@ -2,6 +2,7 @@ package project.server.network.socket;
 
 import project.server.network.AbstractServer;
 import project.server.Server;
+import project.server.network.PlayerHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,12 +12,10 @@ import java.net.Socket;
 public class SocketServer extends AbstractServer {
     SocketServer socketServer;
     ServerSocket serverSocket;
-    Server server;
 
 
     public SocketServer(Server server) throws IOException {
         super(server);
-        this.server = server;
         this.socketServer = this;
     }
 
@@ -50,8 +49,4 @@ public class SocketServer extends AbstractServer {
         }
     }
 
-    @Override
-    public void loginRequest(String nickname, SocketPlayerHandler player) throws IOException {
-        server.loginRequest(nickname, player);
-    }
 }

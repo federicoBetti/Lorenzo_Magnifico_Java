@@ -73,5 +73,9 @@ public class Constants {
     public static final String PICO_DELLA_MIRANDOLA = "pico-della-mirandola";
 
 
+
+    public static String TAKE_PRIVILEGE_ACTION = "take-privilege-action";
+
+
     private Constants(){}
 }

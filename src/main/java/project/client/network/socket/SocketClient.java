@@ -1,6 +1,6 @@
 package project.client.network.socket;
 
-import project.client.ui.AbstractUI;
+import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
@@ -22,22 +22,14 @@ public class SocketClient extends AbstractClient {
     ObjectInputStream objectInputStream;
 
     // cosi si collega con la user interface scelta e creata appositamente
-    public SocketClient(ClientSetter clientSetter) {
+    public SocketClient(ClientSetter clientSetter) throws ClientConnectionException {
         this.clientSetter = clientSetter;
         try {
             socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ClientConnectionException(e);
         }
     }
 

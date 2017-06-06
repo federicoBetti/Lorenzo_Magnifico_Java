@@ -24,4 +24,5 @@ public class CliConstants {
     public static final String LOGIN = "login";
 
     public static final String EXIT = "exit";
+    public static final String TOWER_ACTION = "tower-action";
 }

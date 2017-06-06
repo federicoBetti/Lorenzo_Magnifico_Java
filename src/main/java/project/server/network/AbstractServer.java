@@ -9,11 +9,15 @@ import java.io.IOException;
 // sia dal server rmi sia dal server socket. sono le chiamate che il client puo fare sul server
 public abstract class AbstractServer {
 
-    Server server;
+    protected Server server;
 
     public AbstractServer( Server server ){
         this.server = server;
     }
 
-    public abstract void loginRequest(String nickname, SocketPlayerHandler socketPlayerHandler) throws IOException;
+    //ci potrebbe essere anche lo startServer da essere scritto qua
+
+    public void loginRequest(String nickname, PlayerHandler playerHandler) throws IOException{
+        server.loginRequest(nickname,playerHandler);
+    }
 }

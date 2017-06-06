@@ -1,7 +1,9 @@
-package project.messages;
+package project.controller.effects.realeffects;
 
 
 import project.controller.effects.realeffects.Effects;
+import project.messages.BonusInteraction;
+import project.messages.BonusProductionOrHarvesterAction;
 import project.server.network.PlayerHandler;
 
 public class ProductionHarvesterAction implements Effects {

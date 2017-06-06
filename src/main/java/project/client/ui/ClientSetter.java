@@ -1,10 +1,15 @@
 package project.client.ui;
 
-import project.client.clientexceptions.NotALlowedSelection;
+import project.client.clientexceptions.NotAllowedSelection;
 import project.client.network.AbstractClient;
+import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.rmi.RMIClient;
 import project.client.network.socket.SocketClient;
 import project.client.ui.cli.Cli;
+import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.Notify;
+import project.messages.TakePrivilegesAction;
+import project.messages.TowerAction;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -32,13 +37,25 @@ public class ClientSetter {
 
         switch (connectionType) {
             case 1:
-                client = new SocketClient(this);
+                try {
+                    client = new SocketClient(this);
+                } catch (ClientConnectionException e) {
+                    // errore nella conessione socket
+                }
                 break;
             case 2:
-                client = new RMIClient(this);
+                try {
+                    client = new RMIClient(this);
+                } catch (ClientConnectionException e) {
+                   // errore nella conessione RMI
+                }
                 break;
             default:
-                new NotALlowedSelection();
+                try {
+                    throw new NotAllowedSelection();
+                } catch (NotAllowedSelection notAllowedSelection) {
+                    //scelta non voluta
+                }
                 break;
         }
     }
@@ -55,5 +72,24 @@ public class ClientSetter {
     //va su verso la UI
     public void handleMessage(String message) throws IOException, ClassNotFoundException {
         ui.handleMessage(message);
+    }
+
+    public void takeBonusCard(TowerAction towerAction) {
+
+    }
+
+    public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
+
+    }
+
+    public void notifyClient(Notify notify) {
+
+    }
+
+    public void endTurn() {
+    }
+
+    public void takePrivilege(TakePrivilegesAction takePrivilegesAction) {
+
     }
 }

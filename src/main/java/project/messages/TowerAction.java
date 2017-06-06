@@ -1,5 +1,7 @@
 package project.messages;
 
+import project.client.ui.cli.CliConstants;
+
 public class TowerAction extends BonusInteraction {
 	private int newCardDicevalue;
 	private String kindOfCard;
@@ -56,5 +58,10 @@ public class TowerAction extends BonusInteraction {
 	}
 	public void setQuantityDiscounted2(int quantityDiscounted2) {
 		this.quantityDiscounted2 = quantityDiscounted2;
+	}
+
+	@Override
+	public String toString() {
+		return CliConstants.TOWER_ACTION;
 	}
 }

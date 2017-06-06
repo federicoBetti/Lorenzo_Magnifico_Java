@@ -43,21 +43,19 @@ public abstract class PlayerHandler extends Player {
         boolean canTakeCard = checkFunctions.checkPosition(floor, room.getBoard().getTrueArrayList(towerColor), familyM);
         int canTakeVenturesCard;
         boolean towerOccupied = checkFunctions.checkTowerOccupied(room.getBoard().getTrueArrayList(towerColor));
-        if (towerColor == "purple") {
-            canTakeVenturesCard = checkFunctions.checkCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
-            if (canTakeVenturesCard == 0 || !canTakeCard)
-                throw new CantDoActionException(this, NO_ACTION_CAN_BE_DONE);
-            else if (canTakeVenturesCard == 3)
-                throw new CanUseBothPaymentMethodException(this, "both costs can be satisfied");
-            else
-                room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied, canTakeVenturesCard);
-        } else {
-            canTakeCard = canTakeCard && checkFunctions.checkCardCost(room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
-            if (canTakeCard) {
-                room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied);
-                room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor().getName()));
-            } else throw new CantDoActionException(this, NO_ACTION_CAN_BE_DONE);
-        }
+            if (towerColor == "purple") {
+                canTakeVenturesCard = checkFunctions.checkCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
+                if (canTakeVenturesCard == 0 || !canTakeCard) throw new CantDoActionException(this, NO_ACTION_CAN_BE_DONE);
+                else if (canTakeVenturesCard == 3) throw new CanUseBothPaymentMethodException(this, "both costs can be satisfied");
+                else room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied, canTakeVenturesCard);
+            } else {
+                canTakeCard = canTakeCard && checkFunctions.checkCardCost(room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
+                if (canTakeCard) {
+                    room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied);
+                    room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor().getName()));
+                } else throw new CantDoActionException(NO_ACTION_CAN_BE_DONE);
+            }
+
     }
 
     /**
@@ -66,7 +64,7 @@ public abstract class PlayerHandler extends Player {
      * @param familyMember
      * @param paymentChoosen
      */
-    protected void clientChoosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen){
+    protected void clientChosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen){
         boolean towerOccupied = checkFunctions.checkTowerOccupied(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD));
         room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)[position], familyMember, this, towerOccupied, paymentChoosen);
     }
@@ -184,6 +182,14 @@ public abstract class PlayerHandler extends Player {
 
     public void dontPray(){
         room.getGameActions().takeExcommunication(this);
+    }
+
+    protected FamilyMember findFamilyMember(String colour) {
+        for (FamilyMember familyMember : getAllFamilyMembers())
+            if (familyMember.getMyColour().equals(colour))
+                return familyMember;
+
+        return null;
     }
     /**
      * da qua iniziano a comparire i metodi di ritorno al client. che poi potrebbero essere anche lo stesso dove cambia solo il coso che mandi

@@ -1,6 +1,6 @@
 package project.client;
 
-import project.client.clientexceptions.NotALlowedSelection;
+import project.client.clientexceptions.NotAllowedSelection;
 import project.client.ui.ClientSetter;
 
 import java.util.Scanner;
@@ -31,7 +31,7 @@ public class Launcer {
                 new ClientSetter("GUI");
                 break;
             default:
-                new NotALlowedSelection();
+                new NotAllowedSelection();
                 break;
         }
     }

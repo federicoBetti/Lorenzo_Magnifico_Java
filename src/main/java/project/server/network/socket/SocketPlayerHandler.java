@@ -16,10 +16,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.logging.Logger;
 
 /**
  * questa classe rappresenta la casse ponte tra il model e la view. da qua ogni volta che vinee aggiornato qualcosa il player dice al suo
@@ -74,22 +72,28 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    public void takeDevCard() throws IOException, ClassNotFoundException, CantDoActionException, CanUseBothPaymentMethodException {
+    public void takeDevCard() throws IOException, ClassNotFoundException {
         String towerColour = (String) objectInputStream.readObject();
         int floor = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
-        clientTakeDevelopementCard(towerColour, floor, familyMember);
+        try {
+            clientTakeDevelopementCard(towerColour, floor, familyMember);
+        } catch (CantDoActionException e) {
+            cantDoAction(new OkOrNo(false));
+        } catch (CanUseBothPaymentMethodException e) {
+            canUseBothPaymentMethod(new BothCostCanBeSatisfied());
+        }
     }
 
     public void choosePaymentForVentureCard() throws IOException, ClassNotFoundException {
         int position = (int)objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
-        int paymentChoosen = (int)objectInputStream.readObject();
+        int paymentChosen = (int)objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
-        clientChoosenPaymentForVenturesCard(position, familyMember, paymentChoosen );
+        clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen );
     }
 
     public void harvesterRequest() throws IOException, ClassNotFoundException, CantDoActionException {
@@ -136,17 +140,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     //int privelgeNumber, FamilyMember familyMember
     public void goToCouncilPalaceRequest() throws IOException, ClassNotFoundException {
-        int priviledgeNumber = (int) objectInputStream.readObject();
+        int privilegeNumber = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
-
-        goToCouncilPalace(priviledgeNumber, familyMember);
+        goToCouncilPalace(privilegeNumber, familyMember);
     }
 
     public void takePrivilegeRequest() throws IOException, ClassNotFoundException {
-        int priviledgeNumber = (int) objectInputStream.readObject();
+        int privilegeNumber = (int) objectInputStream.readObject();
 
-        takePrivilege(priviledgeNumber);
+        takePrivilege(privilegeNumber);
     }
 
 
@@ -157,6 +160,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void sendAnswer(BonusInteraction returnFromEffect) {
         try {
+            objectOutputStream.writeObject(returnFromEffect.toString());
             Object object = returnFromEffect;
             objectOutputStream.writeObject(object);
             objectOutputStream.flush();
@@ -189,15 +193,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         Notify notify = new Notify(Constants.ASK_FOR_PRAYING);
         sendAnswer(notify);
     }
-
-
-    public FamilyMember findFamilyMember(String colour) {
-        for (FamilyMember familyMember : getAllFamilyMembers())
-            if (familyMember.getMyColour().equals(colour))
-                return familyMember;
-
-        return null;
-    }
+    
 
     private ArrayList<BuildingCard> receiveListOfBuildingCard() throws IOException, ClassNotFoundException {
         String messReceived = null;

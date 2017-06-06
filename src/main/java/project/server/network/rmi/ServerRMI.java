@@ -1,16 +1,18 @@
 package project.server.network.rmi;
 
-import project.model.DevelopmentCard;
-import project.model.FamilyMember;
+import project.client.network.rmi.RMIServerToClientInterface;
 import project.server.network.AbstractServer;
 import project.server.Server;
-import project.messages.BonusInteraction;
-import project.server.network.socket.SocketPlayerHandler;
+import project.server.network.exception.CanUseBothPaymentMethodException;
+import project.server.network.exception.CantDoActionException;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.rmi.RemoteException;
+import java.rmi.ServerException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.*;
 
 //questa classe prende tutte le connessioni e i metodi chamti con rmi.
 // poi in base a chi l'ha chiamato, invoca i meotid giusti sull'rmiGameActions corretto
@@ -27,74 +29,109 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
      * Internal cache that maps all logged used with an unique session token that identify the single player.
      * This is required in order to identify the rmi player when he is making a new request to the server.
      */
-    private final Map<String, String> mSessionTokens;
+    private final Map<String, RMIPlayerHandler> mapUniqueIdPlayer;
 
     public ServerRMI( Server server ){
         super(server);
-        mSessionTokens = new HashMap<>();
+        mapUniqueIdPlayer = new HashMap<>();
     }
 
-    @Override
-    public void loginRequest(String nickname, SocketPlayerHandler socketPlayerHandler) throws IOException {
-        //to implement
+    /**
+     * Start the RMIServer connection.
+     * @param port number of the port to use.
+     * @throws ServerException if some error occurs.
+     */
+
+    public void startServer(int port) throws RemoteException {
+        Registry registry = LocateRegistry.createRegistry(port);
+        try {
+            registry.rebind("RMIClientToServerInterface", this);
+            UnicastRemoteObject.exportObject(this, port);
+            //Debug.verbose("Server successfully initialized");
+        } catch (RemoteException e) {
+            throw new ServerException("Server interface not loaded", e);
+        }
+    }
+/*
+    /**
+     * Create or load registry in a specified port number.
+     * @param port number of the port to use.
+     * @return the created or retrieved registry.
+     * @throws ServerException if some error occurs.
+     *
+    private Registry createOrLoadRegistry(int port) throws ServerException {
+        try {
+            return LocateRegistry.createRegistry(port);
+        } catch (RemoteException e) {
+            Debug.debug("RMI Registry already exists", e);
+        }
+        try {
+            return LocateRegistry.getRegistry(port);
+        } catch (RemoteException e) {
+            Debug.debug("RMI Registry not found", e);
+        }
+        throw new ServerException("Cannot initialize RMI registry");
     }
 
-    public void startServerRmi(int rmiPort) {
-        // to implement
+
+    */
+
+    /**
+     * questo metodo è il primo che viene eseguito per connettersi che restituisce la stringa per identificare il client
+     * @return
+     */
+    public String connect(RMIServerToClientInterface player){
+        String clientUniqueId = UUID.randomUUID().toString();
+        mapUniqueIdPlayer.put(clientUniqueId, new RMIPlayerHandler(player));
+        return clientUniqueId;
     }
 
-    @Override
-    public BonusInteraction takeDevelopementCard(String towerColor, int position, FamilyMember familyM) {
-        return null;
+    private RMIPlayerHandler getPlayerHandler(String clientUniqueId){
+        return mapUniqueIdPlayer.get(clientUniqueId);
     }
 
-    @Override
-    public void harvester(int position, FamilyMember familyM) {
-        // to implement
+
+    public void loginRequest(String clientUniqueId, String nickname) throws IOException {
+        server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
     }
 
-    @Override
-    public void production(int position, FamilyMember familyM) {
-        // to implement
+    public void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) {
+        getPlayerHandler(clientUniqueId).takeDevCard(towerColour, floor, familyMemberColour);
     }
 
-    @Override
-    public void production(int position, FamilyMember familyM, List<DevelopmentCard> cardToProduct) {
-        // to implement
+    public void choosePaymentForVentureCard(String clientUniqueId, int position, int paymentChoosen, String familyMemberColour) {
+        getPlayerHandler(clientUniqueId).choosePaymentForVenturesCard(position,paymentChoosen,familyMemberColour);
+
     }
 
-    @Override
-    public void goTOMarket(int position, FamilyMember familyM) {
-        // to implement
+    public void harvesterRequest(String clientUniqueId, int position, String familyMemberColour, int servantsNumber) {
+        getPlayerHandler(clientUniqueId).harvesterRequest(position,familyMemberColour, servantsNumber);
     }
 
-    @Override
-    public void jumpTurn() {
-        // to implement
+    public void productionRequest(String clientUniqueId, int position, String familyMemberColour, List<String> cards ){
+        getPlayerHandler(clientUniqueId).productionRequest(position,familyMemberColour, cards);
     }
 
-    @Override
-    public void playLeaderCard(String leaderName) {
-        // to implement
+    public void goToMarketRequest(String clientUniqueId,int position, String familyMemberColour)  {
+        getPlayerHandler(clientUniqueId).goToMarketRequest(position,familyMemberColour);
     }
 
-    @Override
-    public void discardLeaderCard(String leaderName) {
-        // to implement
+    public void playLeaderCardRequest(String clientUniqueId, String leaderCardName)  {
+        getPlayerHandler(clientUniqueId).playLeaderCardRequest(leaderCardName);
     }
 
-    @Override
-    public void rollDice() {
-        // to implement
+    public void discardLeaderCardRequest(String clientUniqueId, String leaderCardName) {
+        getPlayerHandler(clientUniqueId).discardLeaderCardRequest(leaderCardName);
     }
 
-    @Override
-    public void goToCouncilPalace(int privelgeNumber) {
-        // to implement
+    public void goToCouncilPalaceRequest(String clientUniqueId, int privilegeNumber, String familyMemberColour)  {
+        getPlayerHandler(clientUniqueId).goToCouncilPalaceRequest(privilegeNumber, familyMemberColour);
     }
 
-    @Override
-    public void goToCouncilPalace() {
-        // to implement
+    public void takePrivilegeRequest(String clientUniqueId, int privilegeNumber){
+        getPlayerHandler(clientUniqueId).takePrivilegeRequest(privilegeNumber);
     }
+
+
+
 }
