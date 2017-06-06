@@ -1,7 +1,8 @@
 package project.client.network.socket;
 
-import project.client.AbstractUI;
+import project.client.ui.AbstractUI;
 import project.client.network.AbstractClient;
+import project.client.ui.ClientSetter;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -14,17 +15,15 @@ import java.net.Socket;
  */
 public class SocketClient extends AbstractClient {
 
-    AbstractUI abstractUI;
-    SocketClientAnswerHandler answerHandler;
+    ClientSetter clientSetter;
     String nickname;
     Socket socket;
     ObjectOutputStream objectOutputStream;
     ObjectInputStream objectInputStream;
 
     // cosi si collega con la user interface scelta e creata appositamente
-    public SocketClient(AbstractUI abstractUI) {
-        this.abstractUI = abstractUI;
-        answerHandler = new SocketClientAnswerHandler(this);
+    public SocketClient(ClientSetter clientSetter) {
+        this.clientSetter = clientSetter;
         try {
             socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
         } catch (IOException e) {
@@ -42,9 +41,22 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-        private void waitingForInput(){
-            //todo aspetta input dalla UI e demanda letture successive o chiamate a metodi vari all'AnswerHandler
+    @Override
+    public void waitingForTheNewInteraction() throws IOException, ClassNotFoundException {
+        String message = (String)objectInputStream.readObject();
+        clientSetter.handleMessage(message);
+    }
 
-          //  answerHandler.handleReturn( );
+    @Override
+    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
+
+        objectOutputStream.writeObject(Constants.LOGIN_REQUEST);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        objectOutputStream.writeObject(loginParameter);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
     }
 }
+

@@ -1,7 +1,9 @@
 package project.client.network.rmi;
 
 
+import project.client.ui.AbstractUI;
 import project.client.network.AbstractClient;
+import project.client.ui.ClientSetter;
 import project.server.network.rmi.RMIClientToServerInterface;
 
 /**
@@ -16,4 +18,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     RMIClientToServerInterface server;
     String myUniqueId;
 
+    public RMIClient(ClientSetter ui) {
+        super();
+    }
 }
