@@ -1,5 +1,6 @@
 package project.client.ui.cli;
 
+import project.client.network.socket.SocketClient;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -11,27 +12,33 @@ import java.util.Map;
  */
 public class MessagesFromServerHandler {
 
-    Cli cli;
     Map<String, ContextCreator> map;
     ContextCreator contextCreator;
+    SocketClient client;
 
-    public MessagesFromServerHandler( Cli cli ){
+
+    public MessagesFromServerHandler(SocketClient client ){
         map = new HashMap<>();
-        this.cli = cli;
+        this.client = client;
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: waitingForNewInteraction );
+        map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
+    }
+
+    private void takeBonusCard() {
+        client.takeBonusCard();
     }
 
     private void waitingForNewInteraction() throws IOException, ClassNotFoundException {
-        cli.waitingForNewInteraction();
+        client.waitingForTheNewInteraction();
     }
 
-    void handleMessage(String message) throws IOException, ClassNotFoundException {
+    public void handleMessage(String message) throws IOException, ClassNotFoundException {
         contextCreator = map.get(message);
         contextCreator.build();
     }
     private void mainContext() {
-        cli.mainContext();
+        client.mainContext();
     }
 
     @FunctionalInterface

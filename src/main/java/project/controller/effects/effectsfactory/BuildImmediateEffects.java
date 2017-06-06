@@ -28,8 +28,14 @@ public class BuildImmediateEffects {
         		}
 
         		//Riguardare questo metodo
-			case "bonusTowerActionWithDiscount":
+			case "bonusTowerAction":
 				return new BonusTowerAction (parameter, quantity);
+			case "yellowBonustowerActionValue6WithDiscount":
+				return new BonusTowerActionYellow(parameter,quantity);
+			case"bluBonustowerActionValue6WithDiscount":
+				return new BonusTowerActionBlue(parameter, quantity);
+
+
 			case "harvOrProdAct":
 				return new ProductionHarvesterAction(parameter, quantity);
 

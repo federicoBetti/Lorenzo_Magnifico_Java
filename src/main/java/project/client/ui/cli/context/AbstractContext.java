@@ -12,22 +12,16 @@ import java.util.Map;
  */
 public abstract class AbstractContext {
     Cli cli;
-    Map<String, Actioner> map;
-
-    public AbstractContext(){
-        map = new HashMap<>();
-        map.put(CliConstants.EXIT, this::exit );
-    }
-
-    public void exit() {
-        cli.mainContext();
-    }
 
     public void doAction(String action) throws IOException, ClassNotFoundException {
     }
 
+    void exit() {
+        cli.mainContext();
+    }
+
     @FunctionalInterface
     public interface Actioner{
-        void action() throws IOException, ClassNotFoundException;
+         void action() throws IOException, ClassNotFoundException;
     }
 }

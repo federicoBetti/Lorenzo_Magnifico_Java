@@ -4,6 +4,7 @@ import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.controller.Constants;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +31,12 @@ public class MainContext extends AbstractContext {
         map.put(CliConstants.SHOW_LEADER_CARDS, this:: showLeaderCards );
         map.put(CliConstants.SHOW_DICES_VALUE, this::showDicesValue );
         map.put(CliConstants.JUMP_TURN, this::jumpTurn );
-        map.put(Constants.TAKE_DEV_CARD, this::takeDevCard );
+        map.put(CliConstants.TAKE_DEV_CARD, this::takeDevCard );
+        //todo creare costanti che chiamano metodi che aggiornano i contesti
 
     }
 
-    private void takeDevCard() {
+    private void takeDevCard() throws IOException, ClassNotFoundException {
         cli.takeDevCard();
     }
 

@@ -5,6 +5,7 @@ import project.client.network.AbstractClient;
 import project.client.network.rmi.RMIClient;
 import project.client.network.socket.SocketClient;
 import project.client.ui.cli.Cli;
+import project.messages.TowerAction;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -52,8 +53,15 @@ public class ClientSetter {
         client.waitingForTheNewInteraction();
     }
 
-    //va su verso la UI
-    public void handleMessage(String message) throws IOException, ClassNotFoundException {
-        ui.handleMessage(message);
+    public void takeBonusCard(TowerAction towerAction ){
+        ui.takeBonusCard(towerAction);
+    }
+
+    public void takeDevCard(String[] parameters) throws IOException {
+        client.takeDevCard(parameters);
+    }
+
+    public void mainContext() {
+        ui.mainContext();
     }
 }
