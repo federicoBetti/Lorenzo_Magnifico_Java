@@ -10,6 +10,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.TowerAction;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -69,9 +70,16 @@ public class ClientSetter {
         client.waitingForTheNewInteraction();
     }
 
-    //va su verso la UI
-    public void handleMessage(String message) throws IOException, ClassNotFoundException {
-        ui.handleMessage(message);
+    public void takeBonusCard(TowerAction towerAction ){
+        ui.takeBonusCard(towerAction);
+    }
+
+    public void takeDevCard(String[] parameters) throws IOException {
+        client.takeDevCard(parameters);
+    }
+
+    public void mainContext() {
+        ui.mainContext();
     }
 
     public void takeBonusCard(TowerAction towerAction) {

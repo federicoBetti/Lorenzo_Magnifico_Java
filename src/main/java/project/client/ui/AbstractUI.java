@@ -1,5 +1,7 @@
 package project.client.ui;
 
+import project.messages.TowerAction;
+
 import java.io.IOException;
 
 /**
@@ -13,6 +15,7 @@ public abstract class AbstractUI {
         //to implement
     }
 
+    public abstract void takeBonusCard(TowerAction towerAction);
 
-    public void handleMessage(String message ) throws IOException, ClassNotFoundException {}
+    public abstract void mainContext();
 }

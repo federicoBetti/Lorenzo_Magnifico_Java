@@ -6,6 +6,7 @@ import project.client.ui.cli.context.AbstractContext;
 import project.client.ui.cli.context.LoginContext;
 import project.client.ui.cli.context.MainContext;
 import project.client.ui.cli.context.TowersContext;
+import project.messages.TowerAction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,14 +17,13 @@ import java.io.InputStreamReader;
  */
 public class Cli extends AbstractUI {
 
+    public String lineFromKeyBoard = null;
     ClientSetter clientSetter; //all the operation have to pass across this class
     AbstractContext context;
-    MessagesFromServerHandler messageHandler;
 
 
     public Cli(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
-        messageHandler = new MessagesFromServerHandler(this);
         context = new LoginContext(this);
     }
 
@@ -32,13 +32,9 @@ public class Cli extends AbstractUI {
         new Keyboard().start();
     }
 
-    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
-        clientSetter.loginRequest(loginParameter);
-    }
-
     @Override
-    public void handleMessage(String message) throws IOException, ClassNotFoundException {
-        messageHandler.handleMessage(message);
+    public void takeBonusCard(TowerAction towerAction) {
+
     }
 
     public void mainContext() {
@@ -49,9 +45,27 @@ public class Cli extends AbstractUI {
         clientSetter.waitingForNewIntraction();
     }
 
-    public void takeDevCard() {
+    public void takeDevCard() throws IOException, ClassNotFoundException {
         context = new TowersContext(this);
     }
+
+    public void loginRequest() throws IOException, ClassNotFoundException {
+        clientSetter.loginRequest(lineFromKeyBoard);
+    }
+
+    public void choseAndTakeDevCard() throws IOException, ClassNotFoundException {
+        //insert these parameters for taking the card: [towerColour-floor(int)-familyColour];
+
+        String[] parameters = lineFromKeyBoard.split("-");
+        if( parameters.length == 3 )
+            clientSetter.takeDevCard(parameters);
+    }
+
+    public void chooseProductionParameters() throws IOException, ClassNotFoundException {
+
+    }
+
+
 
     //todo fare mappa con help per la schemata iniziale con i vari contesti disponibili ( all'inizio solo login )
 
@@ -63,10 +77,10 @@ public class Cli extends AbstractUI {
 
             while (true) {
                 try {
-                    String line = null;
-                    line = keyboard.readLine();
+
+                    lineFromKeyBoard = keyboard.readLine();
                     if (context != null) {
-                        context.doAction(line);
+                        context.doAction(lineFromKeyBoard);
                     }
                 } catch (IOException e) {
                         e.printStackTrace();

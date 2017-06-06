@@ -3,7 +3,9 @@ package project.client.network.socket;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
+import project.client.ui.cli.MessagesFromServerHandler;
 import project.controller.Constants;
+import project.messages.TowerAction;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,6 +18,7 @@ import java.net.Socket;
 public class SocketClient extends AbstractClient {
 
     ClientSetter clientSetter;
+    MessagesFromServerHandler messageHandler;
     String nickname;
     Socket socket;
     ObjectOutputStream objectOutputStream;
@@ -24,6 +27,7 @@ public class SocketClient extends AbstractClient {
     // cosi si collega con la user interface scelta e creata appositamente
     public SocketClient(ClientSetter clientSetter) throws ClientConnectionException {
         this.clientSetter = clientSetter;
+        this.messageHandler = new MessagesFromServerHandler(this);
         try {
             socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -36,19 +40,44 @@ public class SocketClient extends AbstractClient {
     @Override
     public void waitingForTheNewInteraction() throws IOException, ClassNotFoundException {
         String message = (String)objectInputStream.readObject();
-        clientSetter.handleMessage(message);
+        messageHandler.handleMessage(message);
     }
 
     @Override
     public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
-
-        objectOutputStream.writeObject(Constants.LOGIN_REQUEST);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
+        sendKindOfRequest(Constants.LOGIN_REQUEST);
 
         objectOutputStream.writeObject(loginParameter);
         objectOutputStream.flush();
         objectOutputStream.reset();
+    }
+
+    public void takeDevCard(String[] parameters) throws IOException {
+        sendKindOfRequest(Constants.TAKE_DEV_CARD);
+        sendParameters(parameters);
+    }
+
+    void sendParameters(Object[] parameters ) throws IOException {
+        for (Object ob : parameters) {
+            objectOutputStream.writeObject(ob);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        }
+    }
+
+    void sendKindOfRequest(String kindOfRequest ) throws IOException {
+        objectOutputStream.writeObject(kindOfRequest);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+    }
+
+    public void mainContext() {
+        clientSetter.mainContext();
+    }
+
+    public void takeBonusCard() throws IOException, ClassNotFoundException {
+        TowerAction towerAction = (TowerAction) objectInputStream.readObject();
+        clientSetter.takeBonusCard(towerAction);
     }
 }
 
