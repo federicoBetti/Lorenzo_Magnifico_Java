@@ -1,5 +1,7 @@
 package project.messages;
 
+import project.controller.Constants;
+
 public class BonusProductionOrHarvesterAction extends BonusInteraction {
 	private int diceValue;
 	private String kinfOfAction;
@@ -20,5 +22,10 @@ public class BonusProductionOrHarvesterAction extends BonusInteraction {
 	}
 	public void setKinfOfAction(String kinfOfAction) {
 		this.kinfOfAction = kinfOfAction;
+	}
+
+	@Override
+	public String toString() {
+		return Constants.BONUS_PRODUCTION_HARVESTER_ACTION;
 	}
 }
