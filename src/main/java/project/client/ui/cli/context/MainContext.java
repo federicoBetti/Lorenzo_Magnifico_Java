@@ -2,6 +2,7 @@ package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
+import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class MainContext extends AbstractContext {
 
     }
 
-    private void takeDevCard() throws IOException, ClassNotFoundException {
+    private void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         cli.takeDevCard();
     }
 
@@ -96,5 +97,10 @@ public class MainContext extends AbstractContext {
     }
 
     public void login(){};
+
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
 
 }

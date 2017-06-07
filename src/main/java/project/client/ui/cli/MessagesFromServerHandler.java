@@ -26,7 +26,13 @@ public class MessagesFromServerHandler {
     }
 
     private void takeBonusCard() {
-        client.takeBonusCard();
+        try {
+            client.takeBonusCard();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void waitingForNewInteraction() throws IOException, ClassNotFoundException {

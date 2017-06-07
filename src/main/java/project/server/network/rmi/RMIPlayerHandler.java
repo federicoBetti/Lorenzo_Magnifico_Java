@@ -41,7 +41,7 @@ public class RMIPlayerHandler extends PlayerHandler{
 
     @Override
     public void sendAnswer(BonusInteraction returnFromEffect) {
-        myClient
+        //myClient;
     }
 
     @Override

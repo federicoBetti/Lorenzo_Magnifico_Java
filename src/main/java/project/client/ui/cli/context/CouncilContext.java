@@ -2,6 +2,7 @@ package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
+import project.client.ui.cli.InputException;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,4 +21,8 @@ public class CouncilContext extends AbstractContext {
         map.put(CliConstants.EXIT, this::exit);
     }
 
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
 }

@@ -45,7 +45,7 @@ public class Cli extends AbstractUI {
         clientSetter.waitingForNewIntraction();
     }
 
-    public void takeDevCard() throws IOException, ClassNotFoundException {
+    public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         context = new TowersContext(this);
     }
 
@@ -53,13 +53,15 @@ public class Cli extends AbstractUI {
         clientSetter.loginRequest(lineFromKeyBoard);
     }
 
-    public void choseAndTakeDevCard() throws IOException, ClassNotFoundException {
+    public void choseAndTakeDevCard() throws IOException, ClassNotFoundException, InputException {
         //insert these parameters for taking the card: [towerColour-floor(int)-familyColour];
 
+        context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        if( parameters.length == 3 )
-            clientSetter.takeDevCard(parameters);
+        clientSetter.takeDevCard(parameters);
+
     }
+
 
     public void chooseProductionParameters() throws IOException, ClassNotFoundException {
 
@@ -86,7 +88,10 @@ public class Cli extends AbstractUI {
                         e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
+                } catch ( InputException e ){
+                    context.printHelp();
                 }
+
             }
         }
     }

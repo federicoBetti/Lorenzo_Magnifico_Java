@@ -1,7 +1,7 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
-
+import project.client.ui.cli.InputException;
 
 
 import java.util.Map;
@@ -14,5 +14,10 @@ public class MarketContext extends AbstractContext {
 
     public MarketContext( Cli cli ){
         this.cli = cli;
+    }
+
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
     }
 }

@@ -12,11 +12,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
- public interface RMIClientToServerInterface extends ControllerInterface, Remote{
+ public interface RMIClientToServerInterface extends  Remote{
 
      String connect(RMIServerToClientInterface player) throws RemoteException;
      
-     void loginRequest(String clientUniqueId, String nickname) ;
+     void loginRequest(String clientUniqueId, String nickname) throws IOException;
 
      void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) throws RemoteException;
 

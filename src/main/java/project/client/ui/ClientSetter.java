@@ -65,11 +65,6 @@ public class ClientSetter {
         client.loginRequest(loginParameter);
     }
 
-    //va giu verso il client che manda
-    public void waitingForNewIntraction() throws IOException, ClassNotFoundException {
-        client.waitingForTheNewInteraction();
-    }
-
     public void takeBonusCard(TowerAction towerAction ){
         ui.takeBonusCard(towerAction);
     }
@@ -82,22 +77,20 @@ public class ClientSetter {
         ui.mainContext();
     }
 
-    public void takeBonusCard(TowerAction towerAction) {
-
-    }
-
     public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
-
     }
 
     public void notifyClient(Notify notify) {
-
     }
 
     public void endTurn() {
     }
 
     public void takePrivilege(TakePrivilegesAction takePrivilegesAction) {
+    }
 
+    //va giu verso il client che manda
+    public void waitingForNewIntraction() throws IOException, ClassNotFoundException {
+        client.waitingForTheNewInteraction();
     }
 }
