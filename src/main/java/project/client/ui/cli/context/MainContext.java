@@ -16,8 +16,7 @@ public class MainContext extends AbstractContext {
     Map<String,Actioner> map;
 
     public MainContext(Cli cli){
-        this.cli = cli;
-        map = new HashMap<>();
+        super(cli);
         map.put(CliConstants.CHAT, this::chat );
         map.put(CliConstants.SHOW_ALL_PLAYERS, this::showAllPlayers );
         map.put(CliConstants.GAME_REPORT, this::gameReport);
@@ -37,7 +36,13 @@ public class MainContext extends AbstractContext {
 
     }
 
+    @Override
+    public void printHelp() {
+
+    }
+
     private void takeDevCard() throws IOException, ClassNotFoundException, InputException {
+        cli.validInput = false;
         cli.takeDevCard();
     }
 

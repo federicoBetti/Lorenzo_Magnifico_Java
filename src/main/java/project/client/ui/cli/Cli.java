@@ -17,10 +17,9 @@ import java.io.InputStreamReader;
  */
 public class Cli extends AbstractUI {
 
-    public String lineFromKeyBoard = null;
+    public volatile String lineFromKeyBoard = null;
     ClientSetter clientSetter; //all the operation have to pass across this class
     AbstractContext context;
-
 
     public Cli(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
@@ -53,8 +52,8 @@ public class Cli extends AbstractUI {
         clientSetter.loginRequest(lineFromKeyBoard);
     }
 
+    //ok
     public void choseAndTakeDevCard() throws IOException, ClassNotFoundException, InputException {
-        //insert these parameters for taking the card: [towerColour-floor(int)-familyColour];
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
@@ -62,14 +61,9 @@ public class Cli extends AbstractUI {
 
     }
 
-
     public void chooseProductionParameters() throws IOException, ClassNotFoundException {
-
     }
 
-
-
-    //todo fare mappa con help per la schemata iniziale con i vari contesti disponibili ( all'inizio solo login )
 
     private class Keyboard extends Thread {
 

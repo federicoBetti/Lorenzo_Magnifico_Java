@@ -16,9 +16,13 @@ public class ProductionContext extends AbstractContext {
     Map<String, Actioner> map;
 
     public ProductionContext(Cli cli ){
-        this.cli = cli;
-        map = new HashMap<>();
+        super(cli);
         map.put(CliConstants.CHOOSE_PARAMETERS, this::choseProductionParameters );
+    }
+
+    @Override
+    public void printHelp() {
+
     }
 
     private void choseProductionParameters() throws IOException, ClassNotFoundException {

@@ -43,6 +43,7 @@ public class SocketClient extends AbstractClient {
         messageHandler.handleMessage(message);
     }
 
+    //send requests
     @Override
     public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.LOGIN_REQUEST);
@@ -52,17 +53,18 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.reset();
     }
 
-    public void takeDevCard(String[] parameters) throws IOException {
+    public void takeDevCard(String[] parameters) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.TAKE_DEV_CARD);
         sendParameters(parameters);
     }
 
-    void sendParameters(Object[] parameters ) throws IOException {
+    void sendParameters(Object[] parameters ) throws IOException, ClassNotFoundException {
         for (Object ob : parameters) {
             objectOutputStream.writeObject(ob);
             objectOutputStream.flush();
             objectOutputStream.reset();
         }
+        waitingForTheNewInteraction();
     }
 
     void sendKindOfRequest(String kindOfRequest ) throws IOException {
@@ -75,6 +77,8 @@ public class SocketClient extends AbstractClient {
         clientSetter.mainContext();
     }
 
+
+    //receive answers
     public void takeBonusCard() throws IOException, ClassNotFoundException {
         TowerAction towerAction = (TowerAction) objectInputStream.readObject();
         clientSetter.takeBonusCard(towerAction);

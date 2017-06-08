@@ -1,7 +1,6 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
-import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 
 import java.io.IOException;
@@ -16,19 +15,28 @@ public abstract class AbstractContext {
     Actioner actioner;
     Map<String, Actioner> map;
 
+    public AbstractContext( Cli cli ){
+        this.cli = cli;
+        map = new HashMap<>();
+    }
 
     void exit() {
         cli.mainContext();
     }
 
-    public void printHelp(){
+    public abstract void printHelp();
+
+    public void checkValidInput( String input ) throws InputException{
     }
 
-    public abstract void checkValidInput( String input ) throws InputException;
+    public void defaultContextMethod(String action) throws InputException, IOException, ClassNotFoundException{}
 
     public void doAction(String action) throws IOException, ClassNotFoundException, InputException {
-        actioner = map.get(action);
-        actioner.action();
+        if( map.get(action) != null ) {
+            actioner = map.get(action);
+            actioner.action();
+        } else
+            defaultContextMethod(action);
     }
 
     @FunctionalInterface

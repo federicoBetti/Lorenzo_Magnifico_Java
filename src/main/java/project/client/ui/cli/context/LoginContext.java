@@ -14,20 +14,15 @@ import java.util.Map;
 public class LoginContext extends AbstractContext {
 
     public LoginContext( Cli cli ){
-        map = new HashMap<>();
-        this.cli = cli;
+        super(cli);
         System.out.println("You are in the Login Context. Write your nickname");
         map.put(CliConstants.LOGIN, this::login );
+        map.put(CliConstants.HELP, this::printHelp);
     }
 
     @Override
     public void printHelp() {
-
-    }
-
-    @Override
-    public void checkValidInput(String input) throws InputException {
-
+        //to implement
     }
 
     public void login() throws IOException, ClassNotFoundException {

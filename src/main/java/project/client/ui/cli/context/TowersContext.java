@@ -4,6 +4,7 @@ import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
+import project.server.network.PlayerHandler;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,13 +15,11 @@ import java.util.Map;
  * Created by raffaelebongo on 05/06/17.
  */
 public class TowersContext extends AbstractContext {
-    Cli cli;
 
     public TowersContext ( Cli cli ) throws IOException, ClassNotFoundException, InputException {
-        this.cli = cli;
-        map = new HashMap<>();
+        super(cli);
         map.put(CliConstants.EXIT, this::exit);
-        map.put(cli.lineFromKeyBoard.split("-")[0], cli::choseAndTakeDevCard);
+        map.put(CliConstants.HELP, this::printHelp );
     }
 
     @Override
@@ -31,7 +30,13 @@ public class TowersContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-
+        System.out.println("the available actions are:");
+        for (Map.Entry<String, Actioner> entry: map.entrySet())
+            if ( entry.getKey() != cli.lineFromKeyBoard) {
+                System.out.println(entry.getKey());
+            }
+            else System.out.println("[towerColour-floor-familiarColour] \n towerColour: green, yellow, purple, blue " +
+                    "\nfloor: 0, 1, 2, 3 \n familiarColour: black, neutral, orange, white ");
     }
 
     @Override
@@ -58,6 +63,11 @@ public class TowersContext extends AbstractContext {
                 parameters[2].equals(Constants.FAMILY_MEMBER_COLOUR_ORANGE) ||
                 parameters[2].equals(Constants.FAMILY_MEMBER_COLOUR_WHITE))
             throw new InputException();
+    }
+
+    @Override
+    public void defaultContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+        cli.choseAndTakeDevCard();
     }
 }
 
