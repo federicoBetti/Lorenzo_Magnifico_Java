@@ -57,7 +57,7 @@ public class Cli extends AbstractUI {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.takeDevCard(parameters);
+        clientSetter.takeDevCard(parameters[0], parameters[1], parameters[2]);
 
     }
 

@@ -14,6 +14,6 @@ public class AbstractClient {
     public void waitingForTheNewInteraction() throws IOException, ClassNotFoundException {
     }
 
-    public void takeDevCard(String[] parameters) throws IOException, ClassNotFoundException {
+    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException{
     }
 }

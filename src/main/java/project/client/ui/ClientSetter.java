@@ -69,8 +69,8 @@ public class ClientSetter {
         ui.takeBonusCard(towerAction);
     }
 
-    public void takeDevCard(String[] parameters) throws IOException {
-        client.takeDevCard(parameters);
+    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
+        client.takeDevCard(towerColour, floor, familiarColour);
     }
 
     public void mainContext() {
