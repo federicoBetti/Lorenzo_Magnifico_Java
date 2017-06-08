@@ -2,6 +2,7 @@ package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.InputException;
+import project.controller.Constants;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -37,6 +38,22 @@ public abstract class AbstractContext {
             actioner.action();
         } else
             defaultContextMethod(action);
+    }
+
+    public void checkFamilyMemberColour( String colour ) throws InputException {
+        if ( !(colour.equals(Constants.FAMILY_MEMBER_COLOUR_BLACK) ||
+                colour.equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL) ||
+                colour.equals(Constants.FAMILY_MEMBER_COLOUR_ORANGE) ||
+                colour.equals(Constants.FAMILY_MEMBER_COLOUR_WHITE)))
+            throw new InputException();
+    }
+    
+    public void checkTowerColour( String towerColour ) throws InputException {
+        if(!(towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD) ||
+                towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD) ||
+                towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD) ||
+                towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD)))
+            throw new InputException();
     }
 
     @FunctionalInterface

@@ -46,23 +46,14 @@ public class TowersContext extends AbstractContext {
         if(!( parameters.length == 3 ))
             throw new InputException();
 
-        if(!(parameters[0].equals(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD) ||
-                parameters[0].equals(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD) ||
-                parameters[0].equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD) ||
-                parameters[0].equals(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD)))
-            throw new InputException();
+        checkTowerColour(parameters[0]);
 
         if( parameters[1].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
             throw new InputException();
-
         if (Integer.parseInt(parameters[1]) > 0 && Integer.parseInt(parameters[1]) < 3 )
             throw new InputException();
 
-        if ( parameters[2].equals(Constants.FAMILY_MEMBER_COLOUR_BLACK) ||
-                parameters[2].equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL) ||
-                parameters[2].equals(Constants.FAMILY_MEMBER_COLOUR_ORANGE) ||
-                parameters[2].equals(Constants.FAMILY_MEMBER_COLOUR_WHITE))
-            throw new InputException();
+        checkFamilyMemberColour( parameters[2] );
     }
 
     @Override

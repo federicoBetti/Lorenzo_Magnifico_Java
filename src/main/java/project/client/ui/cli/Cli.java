@@ -64,6 +64,13 @@ public class Cli extends AbstractUI {
     public void chooseProductionParameters() throws IOException, ClassNotFoundException {
     }
 
+    public void chooseHarversterParameters() throws InputException {
+
+        context.checkValidInput(lineFromKeyBoard);
+        String[] parameters = lineFromKeyBoard.split("-");
+        //methodOnClientSetter
+    }
+
 
     private class Keyboard extends Thread {
 

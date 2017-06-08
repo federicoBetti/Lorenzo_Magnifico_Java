@@ -93,4 +93,5 @@ public class ClientSetter {
     public void waitingForNewIntraction() throws IOException, ClassNotFoundException {
         client.waitingForTheNewInteraction();
     }
+
 }
