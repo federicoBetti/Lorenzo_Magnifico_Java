@@ -73,8 +73,25 @@ public class ClientSetter {
         ui.mainContext();
     }
 
+    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {
+        client.harvesterAction(parameter1, parameter2, parameter3);
+    }
 
+    public void marketAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
+        client.marketAction(parameter1, parameter2);
+    }
 
+    public void councilAction(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException {
+        client.councilAction( parameter1, parameter2);
+    }
+
+    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
+        client.productionAction(parameters);
+    }
+
+    public void waitingForNewIntraction() throws IOException, ClassNotFoundException {
+        client.waitingForTheNewInteraction();
+    }
     //metodi di ritorno
 
     public void takeBonusCard(TowerAction towerAction ){
@@ -98,5 +115,12 @@ public class ClientSetter {
         //to implement
     }
 
+
+    public void playLeaderCard(String action) throws IOException, ClassNotFoundException {
+        client.playLeaderCard(action);
+    }
+
+    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+        client.discardLeaderCard(name);
     }
 }

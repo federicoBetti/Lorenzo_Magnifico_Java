@@ -1,6 +1,7 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
+import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
@@ -19,6 +20,8 @@ public abstract class AbstractContext {
     public AbstractContext( Cli cli ){
         this.cli = cli;
         map = new HashMap<>();
+        map.put(CliConstants.EXIT, this::exit);
+        map.put(CliConstants.HELP, this::printHelp);
     }
 
     void exit() {
@@ -30,15 +33,9 @@ public abstract class AbstractContext {
     public void checkValidInput( String input ) throws InputException{
     }
 
-    public void defaultContextMethod(String action) throws InputException, IOException, ClassNotFoundException{}
+    public abstract void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException;
 
-    public void doAction(String action) throws IOException, ClassNotFoundException, InputException {
-        if( map.get(action) != null ) {
-            actioner = map.get(action);
-            actioner.action();
-        } else
-            defaultContextMethod(action);
-    }
+
 
     public void checkFamilyMemberColour( String colour ) throws InputException {
         if ( !(colour.equals(Constants.FAMILY_MEMBER_COLOUR_BLACK) ||
@@ -56,6 +53,14 @@ public abstract class AbstractContext {
             throw new InputException();
     }
 
+    public void doAction(String action) throws IOException, ClassNotFoundException, InputException {
+        if( map.get(action) != null ) {
+            actioner = map.get(action);
+            actioner.action();
+        } else
+            mainContextMethod(action);
+    }
+
     @FunctionalInterface
     public interface Actioner{
          void action() throws IOException, ClassNotFoundException, InputException;
@@ -63,3 +68,16 @@ public abstract class AbstractContext {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

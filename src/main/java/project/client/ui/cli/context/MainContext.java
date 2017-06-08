@@ -6,7 +6,6 @@ import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,9 +30,34 @@ public class MainContext extends AbstractContext {
         map.put(CliConstants.SHOW_LEADER_CARDS, this:: showLeaderCards );
         map.put(CliConstants.SHOW_DICES_VALUE, this::showDicesValue );
         map.put(CliConstants.JUMP_TURN, this::jumpTurn );
-        map.put(CliConstants.TAKE_DEV_CARD, this::takeDevCard );
+        map.put(Constants.TAKE_DEV_CARD, this::takeDevCard );
+        map.put(Constants.GO_TO_COUNCIL_PALACE, this::goToCouncil);
+        map.put(Constants.PRODUCTION, this::production );
+        map.put(Constants.HARVESTER, this::harvester);
+        map.put(Constants.PLAY_LEADER_CARD, this:: leaderCard );
+        map.put(Constants.DISCARD_LEADER_CARD, this:: dLeaderCard );
         //todo creare costanti che chiamano metodi che aggiornano i contesti
 
+    }
+
+    private void dLeaderCard() {
+        cli.discardLeaderCardContext();
+    }
+
+    private void leaderCard() {
+        cli.leaderCardContext();
+    }
+
+    private void harvester() {
+        cli.harvester();
+    }
+
+    private void production() {
+        cli.production();
+    }
+
+    private void goToCouncil() {
+        cli.goToCouncil();
     }
 
     @Override
@@ -42,7 +66,6 @@ public class MainContext extends AbstractContext {
     }
 
     private void takeDevCard() throws IOException, ClassNotFoundException, InputException {
-        cli.validInput = false;
         cli.takeDevCard();
     }
 
@@ -105,6 +128,11 @@ public class MainContext extends AbstractContext {
 
     @Override
     public void checkValidInput(String input) throws InputException {
+
+    }
+
+    @Override
+    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
 
     }
 

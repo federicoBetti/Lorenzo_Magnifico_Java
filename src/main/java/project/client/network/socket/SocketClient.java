@@ -19,7 +19,6 @@ public class SocketClient extends AbstractClient {
 
     ClientSetter clientSetter;
     MessagesFromServerHandler messageHandler;
-    String nickname;
     Socket socket;
     ObjectOutputStream objectOutputStream;
     ObjectInputStream objectInputStream;
@@ -51,14 +50,69 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.writeObject(loginParameter);
         objectOutputStream.flush();
         objectOutputStream.reset();
+
+        waitingForTheNewInteraction();
     }
 
     public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.TAKE_DEV_CARD);
-        sendParameters(towerColour, floor, familiarColour);
+        send3Parameters(towerColour, floor, familiarColour);
     }
 
-    void sendParameters( String parameter1, String parameter2, String parameter3 ) throws IOException, ClassNotFoundException {
+    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(Constants.HARVESTER);
+        send3Parameters(parameter1, parameter2, parameter3);
+    }
+
+    public void marketAction( String parameter1, String parameter2 ) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(Constants.GO_TO_MARKET);
+        send2Parameters(parameter1, parameter2);
+    }
+
+    public void councilAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(Constants.GO_TO_COUNCIL_PALACE);
+        send2Parameters(parameter1, parameter2);
+    }
+
+    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(Constants.PRODUCTION);
+        sendAllParameters(parameters);
+    }
+
+    public void playLeaderCard(String name ) throws IOException, ClassNotFoundException {
+
+        sendKindOfRequest(Constants.PLAY_LEADER_CARD);
+
+        objectOutputStream.writeObject(name);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        waitingForTheNewInteraction();
+    }
+
+    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(Constants.DISCARD_LEADER_CARD);
+
+        objectOutputStream.writeObject(name);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        waitingForTheNewInteraction();
+    }
+
+    void send2Parameters(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException{
+        objectOutputStream.writeObject(parameter1);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        objectOutputStream.writeObject(parameter2);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        waitingForTheNewInteraction();
+    }
+
+    void send3Parameters(String parameter1, String parameter2, String parameter3 ) throws IOException, ClassNotFoundException {
 
         objectOutputStream.writeObject(parameter1);
         objectOutputStream.flush();
@@ -71,6 +125,17 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.writeObject(parameter3);
         objectOutputStream.flush();
         objectOutputStream.reset();
+
+        waitingForTheNewInteraction();
+    }
+
+    void sendAllParameters(String[] parameters ) throws IOException, ClassNotFoundException {
+
+        for( String elem: parameters ){
+            objectOutputStream.writeObject(elem);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        }
 
         waitingForTheNewInteraction();
     }

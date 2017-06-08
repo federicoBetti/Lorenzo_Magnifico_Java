@@ -18,8 +18,6 @@ public class TowersContext extends AbstractContext {
 
     public TowersContext ( Cli cli ) throws IOException, ClassNotFoundException, InputException {
         super(cli);
-        map.put(CliConstants.EXIT, this::exit);
-        map.put(CliConstants.HELP, this::printHelp );
     }
 
     @Override
@@ -32,11 +30,10 @@ public class TowersContext extends AbstractContext {
     public void printHelp() {
         System.out.println("the available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            if ( entry.getKey() != cli.lineFromKeyBoard) {
-                System.out.println(entry.getKey());
-            }
-            else System.out.println("[towerColour-floor-familiarColour] \n towerColour: green, yellow, purple, blue " +
-                    "\nfloor: 0, 1, 2, 3 \n familiarColour: black, neutral, orange, white ");
+            System.out.println(entry.getKey());
+
+        System.out.println("[towerColour-floor-familiarColour] \n towerColour: green, yellow, purple, blue " +
+                "\nfloor: 0, 1, 2, 3 \n familiarColour: black, neutral, orange, white ");
     }
 
     @Override
@@ -50,15 +47,15 @@ public class TowersContext extends AbstractContext {
 
         if( parameters[1].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
             throw new InputException();
-        if (Integer.parseInt(parameters[1]) > 0 && Integer.parseInt(parameters[1]) < 3 )
+        if (Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3 )
             throw new InputException();
 
         checkFamilyMemberColour( parameters[2] );
     }
 
     @Override
-    public void defaultContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
-        cli.choseAndTakeDevCard();
+    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+        cli.choseAndTakeDevCard(action);
     }
 }
 

@@ -5,6 +5,9 @@ import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
+import java.io.IOException;
+import java.util.Map;
+
 /**
  * Created by raffaelebongo on 05/06/17.
  */
@@ -18,7 +21,12 @@ public class HarvesterContext extends AbstractContext {
 
     @Override
     public void printHelp() {
+        System.out.println("the available actions are:");
+        for (Map.Entry<String, Actioner> entry: map.entrySet())
+            System.out.println(entry.getKey());
 
+        System.out.println("[position(int)-familiarColour-servantsNumber(int)] \n position: 0, 1, 2, 3 " +
+                "\n towerColour: green, yellow, purple, blue \n servantsNumber: any number ");
     }
 
     @Override
@@ -30,7 +38,7 @@ public class HarvesterContext extends AbstractContext {
 
         if( parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))
             throw new InputException();
-        if (Integer.parseInt(parameters[0]) > 0 && Integer.parseInt(parameters[0]) < 3 )
+        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 )
             throw new InputException();
 
         checkFamilyMemberColour(parameters[1]);
@@ -39,9 +47,8 @@ public class HarvesterContext extends AbstractContext {
             throw new InputException();
     }
 
-
     @Override
-    public void defaultContextMethod(String action) throws InputException {
-        cli.chooseHarversterParameters();
+    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+        cli.chooseHarversterParameters(action);
     }
 }

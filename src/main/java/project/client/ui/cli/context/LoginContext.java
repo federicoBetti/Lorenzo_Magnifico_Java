@@ -16,8 +16,6 @@ public class LoginContext extends AbstractContext {
     public LoginContext( Cli cli ){
         super(cli);
         System.out.println("You are in the Login Context. Write your nickname");
-        map.put(CliConstants.LOGIN, this::login );
-        map.put(CliConstants.HELP, this::printHelp);
     }
 
     @Override
@@ -25,9 +23,9 @@ public class LoginContext extends AbstractContext {
         //to implement
     }
 
-    public void login() throws IOException, ClassNotFoundException {
-        cli.loginRequest();
-        cli.waitingForNewInteraction();
+    @Override
+    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+        cli.loginRequest(action);
     }
 
 }

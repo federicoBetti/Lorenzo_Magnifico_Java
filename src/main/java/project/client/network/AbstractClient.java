@@ -16,4 +16,22 @@ public class AbstractClient {
 
     public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException{
     }
+
+    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {
+    }
+
+    public void marketAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
+    }
+
+    public void councilAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
+    }
+
+    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
+    }
+
+    public void playLeaderCard(String action) throws IOException, ClassNotFoundException {
+    }
+
+    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+    }
 }
