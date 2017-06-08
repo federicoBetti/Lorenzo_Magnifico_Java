@@ -23,7 +23,7 @@ import java.util.List;
 public class RMIPlayerHandler extends PlayerHandler{
 
     RMIServerToClientInterface myClient;
-    HashMap<String,sendAnswer> bonusType;
+    HashMap<String,talker> bonusType;
 
     RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface){
         this.myClient = rmiServerToClientInterface;
@@ -31,13 +31,16 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     private void fillHashMapBonusType() {
-        bonusType.put(TowerAction.toString(), this::takeAnotherCard);
-        bonusType.put(BonusProductionOrHarvesterAction.toString(), this::takeAnotherCard);
-        bonusType.put(OkOrNo.toString(), this::takeAnotherCard);
+        bonusType.put(Constants.TOWER_ACTION, myClient::takeAnotherCard);
+        bonusType.put(Constants.BONUS_PRODUCTION_HARVESTER_ACTION, this::takeAnotherCard);
+        bonusType.put(Constants.OK_OR_NO, this::takeAnotherCard);
         bonusType.put(Constants.TAKE_PRIVILEGE_ACTION, this::takeAnotherCard);
         //todo finire di mettere le cose nella mappa e fare l'interfaccia e fare le chiamate di metodo diverse in base alla stringa
     }
 
+    private interface talker{
+        void sendEffectAnswer(BonusInteraction bonusInteraction);
+    }
 
     @Override
     public void sendAnswer(BonusInteraction returnFromEffect) {
@@ -71,9 +74,9 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             clientTakeDevelopementCard(towerColour,floor,familyMember);
         } catch (CantDoActionException e) {
-            e.printStackTrace();
+            cantDoAction(new OkOrNo(false));
         } catch (CanUseBothPaymentMethodException e) {
-            e.printStackTrace();
+            canUseBothPaymentMethod(new BothCostCanBeSatisfied());
         }
     }
 
@@ -90,7 +93,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             harvester(position, familyMember, servantsNumber);
         } catch (CantDoActionException e) {
-            e.printStackTrace();
+            cantDoAction(new OkOrNo(false));
         }
     }
 
@@ -105,7 +108,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             production(position, familyMember, buildingCards );
         } catch (CantDoActionException e) {
-            e.printStackTrace();
+            cantDoAction(new OkOrNo(false));
         }
     }
 
@@ -114,7 +117,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             goToMarket(position, familyMember);
         } catch (CantDoActionException e) {
-            e.printStackTrace();
+            cantDoAction(new OkOrNo(false));
         }
     }
 
@@ -122,7 +125,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             playLeaderCard(leaderCardName);
         } catch (CantDoActionException e) {
-            e.printStackTrace();
+            cantDoAction(new OkOrNo(false));
         }
     }
 
@@ -130,7 +133,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             discardLeaderCard(leaderCardName);
         } catch (CantDoActionException e) {
-            e.printStackTrace();
+            cantDoAction(new OkOrNo(false));
         }
     }
 

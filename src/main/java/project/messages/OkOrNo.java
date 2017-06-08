@@ -1,6 +1,8 @@
 package project.messages;
 
 
+import project.controller.Constants;
+
 public class OkOrNo extends BonusInteraction {
     private boolean ok;
 
@@ -18,5 +20,10 @@ public class OkOrNo extends BonusInteraction {
 
     public void setOk(boolean ok) {
         this.ok = ok;
+    }
+
+    @Override
+    public String toString() {
+        return Constants.OK_OR_NO;
     }
 }

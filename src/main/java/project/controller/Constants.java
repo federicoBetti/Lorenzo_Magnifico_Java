@@ -75,6 +75,9 @@ public class Constants {
 
 
     public static final String TAKE_PRIVILEGE_ACTION = "take-privilege-action";
+    public static final String TOWER_ACTION = "tower-action";
+    public static final String BONUS_PRODUCTION_HARVESTER_ACTION = "bonus-production-harvester-action";
+    public static final String OK_OR_NO = "ok-or-no";
 
 
     private Constants(){}
