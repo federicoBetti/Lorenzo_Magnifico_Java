@@ -22,8 +22,8 @@ import java.util.List;
  */
 public class RMIPlayerHandler extends PlayerHandler{
 
-    RMIServerToClientInterface myClient;
-    HashMap<String,talker> bonusType;
+    private RMIServerToClientInterface myClient;
+    private HashMap<String,Talker> bonusType;
 
     RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface){
         this.myClient = rmiServerToClientInterface;
@@ -32,39 +32,39 @@ public class RMIPlayerHandler extends PlayerHandler{
 
     private void fillHashMapBonusType() {
         bonusType.put(Constants.TOWER_ACTION, myClient::takeAnotherCard);
-        bonusType.put(Constants.BONUS_PRODUCTION_HARVESTER_ACTION, this::takeAnotherCard);
-        bonusType.put(Constants.OK_OR_NO, this::takeAnotherCard);
-        bonusType.put(Constants.TAKE_PRIVILEGE_ACTION, this::takeAnotherCard);
-        //todo finire di mettere le cose nella mappa e fare l'interfaccia e fare le chiamate di metodo diverse in base alla stringa
+        bonusType.put(Constants.BONUS_PRODUCTION_HARVESTER_ACTION, myClient::doProductionHarvester);
+        bonusType.put(Constants.OK_OR_NO, myClient::ok);
+        bonusType.put(Constants.TAKE_PRIVILEGE_ACTION, myClient::takePrivilege);
     }
 
-    private interface talker{
+    private interface Talker{
         void sendEffectAnswer(BonusInteraction bonusInteraction);
     }
 
     @Override
     public void sendAnswer(BonusInteraction returnFromEffect) {
-        myClient
+        // chiama il metodo giusto sul client
+        bonusType.get(returnFromEffect.toString()).sendEffectAnswer(returnFromEffect);
     }
 
     @Override
     public void cantDoAction(OkOrNo okOrNo) {
-        // to implement
+        myClient.cantDoAction();
     }
 
     @Override
     public void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) {
-        // to implement
+        myClient.canUseBothPaymentMethod();
     }
 
     @Override
     public void itsMyTurn() {
-        // to implement
+        myClient.itMyTurn();
     }
 
     @Override
     public void sendAskForPraying() {
-        // to implement
+        myClient.askForPraying();
     }
 
     // qua inizia la parte delle chiamate del client sul server

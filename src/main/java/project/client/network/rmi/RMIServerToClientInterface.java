@@ -1,11 +1,9 @@
 package project.client.network.rmi;
 
-import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.Notify;
-import project.messages.TakePrivilegesAction;
-import project.messages.TowerAction;
+import project.messages.*;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  * questi sono i metodi che il server puo chiamare sul client,
@@ -13,13 +11,23 @@ import java.rmi.Remote;
  */
 public interface RMIServerToClientInterface extends Remote{
 
-    public void takeAnotherCard(TowerAction towerAction);
+    void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    public void doProductionHarvester (BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction);
+    void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
 
     void notify (Notify notify);
 
     void endTurn();
 
-    void takePrivilege(TakePrivilegesAction takePrivilegesAction);
+    void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
+
+    void askForPraying() throws RemoteException;
+
+    void ok(BonusInteraction bonusInteraction) throws RemoteException;
+
+    void cantDoAction() throws RemoteException;
+
+    void canUseBothPaymentMethod() throws RemoteException;
+
+    void itMyTurn() throws RemoteException;
 }

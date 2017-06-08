@@ -16,7 +16,7 @@ import java.util.List;
 
      String connect(RMIServerToClientInterface player) throws RemoteException;
      
-     void loginRequest(String clientUniqueId, String nickname) ;
+     void loginRequest(String clientUniqueId, String nickname) throws RemoteException;
 
      void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) throws RemoteException;
 

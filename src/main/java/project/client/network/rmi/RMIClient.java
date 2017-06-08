@@ -5,12 +5,10 @@ import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
-import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.Notify;
-import project.messages.TakePrivilegesAction;
-import project.messages.TowerAction;
+import project.messages.*;
 import project.server.network.rmi.RMIClientToServerInterface;
 
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -26,9 +24,9 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
 
-    RMIClientToServerInterface myServer;
-    String myUniqueId;
-    ClientSetter clientSetter;
+    private RMIClientToServerInterface myServer;
+    private String myUniqueId;
+    private ClientSetter clientSetter;
 
     public RMIClient(ClientSetter clientSetter) throws ClientConnectionException {
         super();
@@ -50,14 +48,20 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
 
-    //QUA CI SONO I METODI DI RITORNO DA SERVER A CLIENT
-
-    public void takeAnotherCard(TowerAction towerAction){
-        clientSetter.takeBonusCard(towerAction);
+    @Override
+    public void takeDevCard(String[] parameters) throws IOException {
+        //myServer.takeDevCard(myUniqueId);
     }
 
-    public void doProductionHarvester (BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction){
-        clientSetter.doProductionHarvester(bonusProductionOrHarvesterAction);
+
+    //QUA CI SONO I METODI DI RITORNO DA SERVER A CLIENT
+
+    public void takeAnotherCard(BonusInteraction towerAction){
+        clientSetter.takeBonusCard((TowerAction)towerAction);
+    }
+
+    public void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction){
+        clientSetter.doProductionHarvester((BonusProductionOrHarvesterAction)bonusProductionOrHarvesterAction);
     }
 
     @Override
@@ -71,8 +75,34 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public void takePrivilege(TakePrivilegesAction takePrivilegesAction) {
-        clientSetter.takePrivilege(takePrivilegesAction);
+    public void takePrivilege(BonusInteraction takePrivilegesAction) {
+        clientSetter.takePrivilege((TakePrivilegesAction)takePrivilegesAction);
     }
+
+    @Override
+    public void askForPraying() {
+        clientSetter.askForPraying();
+    }
+
+    @Override
+    public void ok(BonusInteraction bonusInteraction) {
+        clientSetter.actionOk();
+    }
+
+    @Override
+    public void cantDoAction() {
+        clientSetter.cantDoAction();
+    }
+
+    @Override
+    public void canUseBothPaymentMethod() {
+        clientSetter.canUseBothPaymentMethod();
+    }
+
+    @Override
+    public void itMyTurn() {
+        clientSetter.itsMyTurn();
+    }
+
 
 }

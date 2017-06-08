@@ -42,7 +42,7 @@ public class Cli extends AbstractUI {
     }
 
     public void waitingForNewInteraction() throws IOException, ClassNotFoundException {
-        clientSetter.waitingForNewIntraction();
+        clientSetter.waitingForNewInteraction();
     }
 
     public void takeDevCard() throws IOException, ClassNotFoundException {

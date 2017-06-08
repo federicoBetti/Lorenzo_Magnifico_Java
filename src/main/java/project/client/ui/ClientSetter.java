@@ -10,7 +10,6 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.messages.TowerAction;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -66,12 +65,8 @@ public class ClientSetter {
     }
 
     //va giu verso il client che manda
-    public void waitingForNewIntraction() throws IOException, ClassNotFoundException {
+    public void waitingForNewInteraction() throws IOException, ClassNotFoundException {
         client.waitingForTheNewInteraction();
-    }
-
-    public void takeBonusCard(TowerAction towerAction ){
-        ui.takeBonusCard(towerAction);
     }
 
     public void takeDevCard(String[] parameters) throws IOException {
@@ -82,22 +77,48 @@ public class ClientSetter {
         ui.mainContext();
     }
 
-    public void takeBonusCard(TowerAction towerAction) {
 
+
+    //metodi di ritorno
+
+    public void takeBonusCard(TowerAction towerAction ){
+        ui.takeBonusCard(towerAction);
     }
 
-    public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
 
+    public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
+        //to implement
     }
 
     public void notifyClient(Notify notify) {
-
+        //to implement
     }
 
     public void endTurn() {
+        //to implement
     }
 
     public void takePrivilege(TakePrivilegesAction takePrivilegesAction) {
+        //to implement
+    }
 
+    public void askForPraying() {
+        //to implement
+    }
+
+    public void actionOk() {
+        //to implement
+    }
+
+    public void cantDoAction() {
+        //to implement
+    }
+
+    public void canUseBothPaymentMethod() {
+        // to implement
+    }
+
+    public void itsMyTurn() {
+        //to implement
     }
 }
