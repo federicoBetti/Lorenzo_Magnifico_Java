@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/AbstractContext.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/AbstractContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/HarvesterContext.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/HarvesterContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/LoginContext.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/LoginContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/MainContext.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/MainContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ProductionContext.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ProductionContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TowersContext.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TowersContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/Room.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/Room.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -54,7 +43,7 @@
       <file leaf-file-name="SocketPlayerHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
+            <state relative-caret-position="386">
               <caret line="102" column="73" lean-forward="true" selection-start-line="102" selection-start-column="73" selection-end-line="102" selection-end-column="73" />
               <folding />
             </state>
@@ -1229,7 +1218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496846165536</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="lavoro sulla Cli">
+      <created>1496912827249</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1496912827249</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1333,7 +1329,8 @@
     <MESSAGE value="Correzioni per Sonar" />
     <MESSAGE value="varie" />
     <MESSAGE value="Aggiornamenti sulla CLI ed effetti immediati TowerActions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiornamenti sulla CLI ed effetti immediati TowerActions" />
+    <MESSAGE value="lavoro sulla Cli" />
+    <option name="LAST_COMMIT_MESSAGE" value="lavoro sulla Cli" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1555,6 +1552,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding>
+            <element signature="e#1850#1851#0" expanded="true" />
+            <element signature="e#1886#1887#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1656,6 +1657,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
           <caret line="111" column="88" lean-forward="true" selection-start-line="111" selection-start-column="7" selection-end-line="111" selection-end-column="88" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1763,7 +1765,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
+        <state relative-caret-position="386">
           <caret line="102" column="73" lean-forward="true" selection-start-line="102" selection-start-column="73" selection-end-line="102" selection-end-column="73" />
           <folding />
         </state>
