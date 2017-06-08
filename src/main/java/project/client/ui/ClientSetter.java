@@ -64,9 +64,6 @@ public class ClientSetter {
         client.loginRequest(loginParameter);
     }
 
-    public void takeBonusCard(TowerAction towerAction ){
-        ui.takeBonusCard(towerAction);
-    }
 
     public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
         client.takeDevCard(towerColour, floor, familiarColour);
