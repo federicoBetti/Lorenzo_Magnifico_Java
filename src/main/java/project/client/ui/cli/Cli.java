@@ -17,10 +17,9 @@ import java.io.InputStreamReader;
  */
 public class Cli extends AbstractUI {
 
-    public String lineFromKeyBoard = null;
+    public volatile String lineFromKeyBoard = null;
     ClientSetter clientSetter; //all the operation have to pass across this class
     AbstractContext context;
-
 
     public Cli(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
@@ -45,7 +44,7 @@ public class Cli extends AbstractUI {
         clientSetter.waitingForNewInteraction();
     }
 
-    public void takeDevCard() throws IOException, ClassNotFoundException {
+    public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         context = new TowersContext(this);
     }
 
@@ -53,21 +52,25 @@ public class Cli extends AbstractUI {
         clientSetter.loginRequest(lineFromKeyBoard);
     }
 
-    public void choseAndTakeDevCard() throws IOException, ClassNotFoundException {
-        //insert these parameters for taking the card: [towerColour-floor(int)-familyColour];
+    //ok
+    public void choseAndTakeDevCard() throws IOException, ClassNotFoundException, InputException {
 
+        context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        if( parameters.length == 3 )
-            clientSetter.takeDevCard(parameters);
+        clientSetter.takeDevCard(parameters[0], parameters[1], parameters[2]);
+
     }
 
     public void chooseProductionParameters() throws IOException, ClassNotFoundException {
-
     }
 
+    public void chooseHarversterParameters() throws InputException {
 
+        context.checkValidInput(lineFromKeyBoard);
+        String[] parameters = lineFromKeyBoard.split("-");
+        //methodOnClientSetter
+    }
 
-    //todo fare mappa con help per la schemata iniziale con i vari contesti disponibili ( all'inizio solo login )
 
     private class Keyboard extends Thread {
 
@@ -86,7 +89,10 @@ public class Cli extends AbstractUI {
                         e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
+                } catch ( InputException e ){
+                    context.printHelp();
                 }
+
             }
         }
     }

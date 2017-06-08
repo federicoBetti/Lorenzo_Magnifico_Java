@@ -27,4 +27,5 @@ public class CliConstants {
     public static final String TAKE_DEV_CARD = "take-development-card" ;
     public static final String CHOOSE_PARAMETERS = "choose-parameters";
     public static final String TAKE_BONUS_CARD = "take-bonus-card" ;
+    public static final String HELP = "help" ;
 }

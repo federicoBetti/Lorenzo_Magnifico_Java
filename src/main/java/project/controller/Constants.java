@@ -22,7 +22,7 @@ public class Constants {
     public static final String COLOUR_OF_TOWER_WITH_CHARACTER_CARD = "blue";
     public static final String PRODUCTION = "production";
     public static final String HARVESTER = "harvester";
-    public static final String FAMILY_MEMBER_COLOUR_NONE = "none";
+    public static final String FAMILY_MEMBER_COLOUR_NEUTRAL = "neutral";
     public static final String FAMILY_MEMBER_COLOUR_BLACK = "black";
     public static final String FAMILY_MEMBER_COLOUR_ORANGE = "orange";
     public static final String FAMILY_MEMBER_COLOUR_WHITE = "white";

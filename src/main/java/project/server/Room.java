@@ -32,10 +32,6 @@ public class Room {
 
     private BuildExcommunicationEffects buildExcommunicationEffects;
 
-    /**
-     * Riferimento alla classe GameActions
-     */
-
     GameActions gameActions;
 
     AllSupportFunctions allSupportFunctions;

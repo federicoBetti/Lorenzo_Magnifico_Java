@@ -43,6 +43,7 @@ public class SocketClient extends AbstractClient {
         messageHandler.handleMessage(message);
     }
 
+    //send requests
     @Override
     public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.LOGIN_REQUEST);
@@ -52,20 +53,30 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.reset();
     }
 
-    public void takeDevCard(String[] parameters) throws IOException {
+    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.TAKE_DEV_CARD);
-        sendParameters(parameters);
+        sendParameters(towerColour, floor, familiarColour);
     }
 
-    void sendParameters(Object[] parameters ) throws IOException {
-        for (Object ob : parameters) {
-            objectOutputStream.writeObject(ob);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        }
+    void sendParameters( String parameter1, String parameter2, String parameter3 ) throws IOException, ClassNotFoundException {
+
+        objectOutputStream.writeObject(parameter1);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        objectOutputStream.writeObject(parameter2);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        objectOutputStream.writeObject(parameter3);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        waitingForTheNewInteraction();
     }
 
     void sendKindOfRequest(String kindOfRequest ) throws IOException {
+
         objectOutputStream.writeObject(kindOfRequest);
         objectOutputStream.flush();
         objectOutputStream.reset();
@@ -75,6 +86,8 @@ public class SocketClient extends AbstractClient {
         clientSetter.mainContext();
     }
 
+
+    //receive answers
     public void takeBonusCard() throws IOException, ClassNotFoundException {
         TowerAction towerAction = (TowerAction) objectInputStream.readObject();
         clientSetter.takeBonusCard(towerAction);

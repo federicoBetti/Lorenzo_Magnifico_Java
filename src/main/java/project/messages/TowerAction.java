@@ -9,7 +9,6 @@ public class TowerAction extends BonusInteraction {
 	private int quantityDiscounted1;
 	private String discountedResource2;
 	private int quantityDiscounted2;
-	int numberOfResourcesDiscounted;
 
 	public TowerAction(){
 		newCardDicevalue = 0;

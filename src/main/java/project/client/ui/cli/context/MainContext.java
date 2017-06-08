@@ -2,6 +2,7 @@ package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
+import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -15,8 +16,7 @@ public class MainContext extends AbstractContext {
     Map<String,Actioner> map;
 
     public MainContext(Cli cli){
-        this.cli = cli;
-        map = new HashMap<>();
+        super(cli);
         map.put(CliConstants.CHAT, this::chat );
         map.put(CliConstants.SHOW_ALL_PLAYERS, this::showAllPlayers );
         map.put(CliConstants.GAME_REPORT, this::gameReport);
@@ -36,7 +36,13 @@ public class MainContext extends AbstractContext {
 
     }
 
-    private void takeDevCard() throws IOException, ClassNotFoundException {
+    @Override
+    public void printHelp() {
+
+    }
+
+    private void takeDevCard() throws IOException, ClassNotFoundException, InputException {
+        cli.validInput = false;
         cli.takeDevCard();
     }
 
@@ -96,5 +102,10 @@ public class MainContext extends AbstractContext {
     }
 
     public void login(){};
+
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
 
 }

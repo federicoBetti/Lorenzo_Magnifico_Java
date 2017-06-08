@@ -64,13 +64,12 @@ public class ClientSetter {
         client.loginRequest(loginParameter);
     }
 
-    //va giu verso il client che manda
-    public void waitingForNewInteraction() throws IOException, ClassNotFoundException {
-        client.waitingForTheNewInteraction();
+    public void takeBonusCard(TowerAction towerAction ){
+        ui.takeBonusCard(towerAction);
     }
 
-    public void takeDevCard(String[] parameters) throws IOException {
-        client.takeDevCard(parameters);
+    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
+        client.takeDevCard(towerColour, floor, familiarColour);
     }
 
     public void mainContext() {
@@ -102,23 +101,5 @@ public class ClientSetter {
         //to implement
     }
 
-    public void askForPraying() {
-        //to implement
-    }
-
-    public void actionOk() {
-        //to implement
-    }
-
-    public void cantDoAction() {
-        //to implement
-    }
-
-    public void canUseBothPaymentMethod() {
-        // to implement
-    }
-
-    public void itsMyTurn() {
-        //to implement
     }
 }
