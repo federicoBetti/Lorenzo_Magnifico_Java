@@ -3,6 +3,9 @@ package project.client;
 import project.client.clientexceptions.NotAllowedSelection;
 import project.client.ui.ClientSetter;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
@@ -16,24 +19,28 @@ public class Launcer {
         this.x = x;
     }
 
+    private static String selectUi() {
+        BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+            System.out.println("1 -> CLI");
+            System.out.println("2 -> GUI");
+            try {
+                int choice = Integer.parseInt(keyboard.readLine());
+                switch (choice) {
+                    case 1:
+                        return "CLI";
+                    case 2:
+                        return "GUI";
+                    default:
+                        throw new NumberFormatException("Not a valid choice");
+                }
+            } catch (IOException | NumberFormatException e) {
+            }
+        }
+    }
 
     public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Select the UserInterface's type: 1-CLI, 2-GUI");
-
-        int connectionType = input.nextInt();
-
-        switch (connectionType){
-            case 1:
-                new ClientSetter("CLI");
-                break;
-            case 2:
-                new ClientSetter("GUI");
-                break;
-            default:
-                new NotAllowedSelection();
-                break;
-        }
+        new ClientSetter(selectUi());
     }
 
 }

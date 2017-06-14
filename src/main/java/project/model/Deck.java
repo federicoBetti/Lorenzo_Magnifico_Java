@@ -10,7 +10,7 @@ import project.controller.Constants;
 public class Deck {
 
 
-    private DevelopmentCard[][][] developmentDeck; // va cotruito con le carte
+    private DevelopmentCard[][][] developmentDeck; // va cotruito con le carte: colore, periodo, carte
 
     private LeaderCard [] leaderCardeck; //va costruito con le LeaderCard
 

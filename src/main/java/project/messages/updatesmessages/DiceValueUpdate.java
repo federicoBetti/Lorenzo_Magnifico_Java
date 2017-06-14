@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.Board;
 
 /**
@@ -15,7 +16,7 @@ public class DiceValueUpdate extends Updates {
 
     @Override
     public String toString() {
-        return null;
+        return Constants.DICE_VALUE_UPDATE;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.Board;
 import project.model.Tower;
 
@@ -16,7 +17,7 @@ public class TowersUpdate extends Updates {
 
     @Override
     public String toString() {
-        return null;
+        return Constants.TOWERS_UPDATE;
     }
 
     @Override

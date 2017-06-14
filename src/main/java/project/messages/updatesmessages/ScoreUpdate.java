@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.Score;
 import project.server.network.PlayerHandler;
 
@@ -19,6 +20,6 @@ public class ScoreUpdate extends Updates {
 
     @Override
     public String toString() {
-        return null;
+        return Constants.SCORE_UPDATE;
     }
 }

@@ -1,5 +1,6 @@
 package project.controller.cardsfactory;
 
+import project.DeckIterator;
 import project.controller.Constants;
 import project.model.Deck;
 import project.model.DevelopmentCard;
@@ -12,9 +13,6 @@ import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
 
-
-
-//TODO Iteratore
 public class LoadCards {
 
     Gson gson;
@@ -42,8 +40,8 @@ public class LoadCards {
 
 
     void loadingCardsFromJson( Deck deck ) throws FileNotFoundException {
-/*
-        Iterator iterator = new Iterator();
+
+        DeckIterator iterator = new DeckIterator();
 
 
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/Users/raffaelebongo/Desktop/cardToUpload.Json"));
@@ -55,11 +53,9 @@ public class LoadCards {
                 builderHandler =  map.get(cardFromJson.getAnagrafic().getType());
                 DevelopmentCard card = builderHandler.build();
 
-                deck.getDevelopmentdeck()[ iterator.getPeriod1() ][ iterator.getPeriod2() ][ iterator.getPeriod3() ] = card;
+                deck.getDevelopmentdeck()[ iterator.getColor() ][ iterator.getPeriod() ][ iterator.getCards() ] = card;
                 iterator.next();
             }
-            */
-
         }
 
 

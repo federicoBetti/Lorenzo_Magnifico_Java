@@ -43,6 +43,8 @@ public class ClientSetter {
         ui.startUI();
     }
 
+
+    //todo pensare dove chiamarlo
     private void setConnectionType(String connectionType) {
 
         switch (connectionType) {

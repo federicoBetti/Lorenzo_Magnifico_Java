@@ -1,5 +1,6 @@
 package project.messages;
 
+import project.controller.Constants;
 import project.messages.updatesmessages.Updates;
 
 /**
@@ -15,6 +16,6 @@ public class Notify extends Updates {
 
     @Override
     public String toString() {
-        return null;
+        return Constants.NOTIFY;
     }
 }

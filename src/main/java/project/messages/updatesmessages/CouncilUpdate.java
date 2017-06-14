@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.Board;
 import project.model.Council;
 
@@ -17,7 +18,7 @@ public class CouncilUpdate extends Updates {
     }
     @Override
     public String toString() {
-        return null;
+        return Constants.COUNCIL_UPDATE;
     }
 
     @Override

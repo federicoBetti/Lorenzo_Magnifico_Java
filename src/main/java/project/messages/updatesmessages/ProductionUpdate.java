@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.Board;
 import project.model.Production;
 
@@ -16,7 +17,7 @@ public class ProductionUpdate extends Updates {
 
     @Override
     public String toString() {
-        return null;
+        return Constants.PRODUCTION_UPDATE;
     }
 
     @Override

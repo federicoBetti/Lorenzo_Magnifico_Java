@@ -9,6 +9,7 @@ import project.server.network.PlayerHandler;
 import project.server.network.exception.CanUseBothPaymentMethodException;
 import project.server.network.exception.CantDoActionException;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -43,24 +44,27 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            try {
+        try {
+            while (true) {
                 System.out.println("waiting for Request...");
                 Object object = objectInputStream.readObject();
 
                 System.out.println("the client wants to do " + object);
-                try {
                     serverDataHandler.handleRequest(object);
-                } catch (CantDoActionException e) {
-                    e.printStackTrace();
-                } catch (CanUseBothPaymentMethodException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+
             }
+        } catch (CantDoActionException e) {
+             e.printStackTrace();
+        } catch (CanUseBothPaymentMethodException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            closeSocket(objectInputStream );
+            closeSocket(objectOutputStream );
+            closeSocket(socket );
         }
     }
 
@@ -246,12 +250,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
 
     private ArrayList<BuildingCard> receiveListOfBuildingCard() throws IOException, ClassNotFoundException {
-        String messReceived = null;
+        String messReceived = "start";
         List<BuildingCard> myBuildings = takeMyProductionCards();
         ListIterator<BuildingCard> iterator = myBuildings.listIterator();
         ArrayList<BuildingCard> cardsForProduction = new ArrayList<>();
 
-        while (!messReceived.equals(Constants.STOP)){
+        while (!messReceived.equals(Constants.STOP) ){
             messReceived = (String)objectInputStream.readObject();
 
             int currentCard = 0;
@@ -262,5 +266,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             }
         }
         return cardsForProduction;
+    }
+
+    private void closeSocket(Closeable closeable ) {
+        try {
+            closeable.close();
+        } catch (IOException e) {
+        }
     }
 }

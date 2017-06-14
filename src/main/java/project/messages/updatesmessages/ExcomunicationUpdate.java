@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.Board;
 import project.model.ExcommunicationZone;
 import project.server.network.PlayerHandler;
@@ -21,6 +22,6 @@ public class ExcomunicationUpdate extends Updates {
 
     @Override
     public String toString() {
-        return null;
+        return Constants.EXCOMUNICATION_UPDATE;
     }
 }

@@ -1,5 +1,7 @@
 package project.messages;
 
+import project.controller.Constants;
+
 public class NoMoreAction extends BonusInteraction {
 	int okOrNot;
 	
@@ -7,8 +9,10 @@ public class NoMoreAction extends BonusInteraction {
 		this.okOrNot = 0;
 	}
 
+
+	//todo forse altra stringa
 	@Override
 	public String toString() {
-		return null;
+		return Constants.OK_OR_NO;
 	}
 }

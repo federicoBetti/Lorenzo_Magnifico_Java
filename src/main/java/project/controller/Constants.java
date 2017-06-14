@@ -79,6 +79,17 @@ public class Constants {
     public static final String BONUS_PRODUCTION_HARVESTER_ACTION = "bonus-production-harvester-action";
     public static final String OK_OR_NO = "ok-or-no";
     public static final String CHOICE_PE = "choice-pe";
+    public static final String NOTIFY = "notify" ;
+    public static final String COUNCIL_UPDATE = "council-update";
+    public static final String DICE_VALUE_UPDATE = "dice-value-update";
+    public static final String EXCOMUNICATION_UPDATE = "excomunication-update";
+    public static final String FAMILY_MEMBER_UPDATE = "family-member-update";
+    public static final String HARVESTER_UPDATE = "harvester-update";
+    public static final String MARKET_UPDATE = "market-update";
+    public static final String PERSONAL_BOARD_UPDATE = "personal-board-update";
+    public static final String PRODUCTION_UPDATE = "production-update";
+    public static final String SCORE_UPDATE = "score-update";
+    public static final String TOWERS_UPDATE = "towers-update";
 
 
     private Constants(){}

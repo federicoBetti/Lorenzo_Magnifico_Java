@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.FamilyMember;
 import project.server.network.PlayerHandler;
 
@@ -20,6 +21,6 @@ public class FamilyMemberUpdate extends Updates {
 
     @Override
     public String toString() {
-        return null;
+        return Constants.FAMILY_MEMBER_UPDATE;
     }
 }

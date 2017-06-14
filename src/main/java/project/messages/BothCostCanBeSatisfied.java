@@ -1,9 +1,11 @@
 package project.messages;
 
 
+import project.controller.Constants;
+
 public class BothCostCanBeSatisfied extends BonusInteraction {
     @Override
     public String toString() {
-        return null;
+        return Constants.BOTH_PAYMENT_METHODS_AVAILABLE;
     }
 }

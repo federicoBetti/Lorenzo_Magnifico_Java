@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.controller.Constants;
 import project.model.PersonalBoard;
 import project.server.network.PlayerHandler;
 
@@ -15,8 +16,7 @@ public class PersonalBoardUpdate extends Updates {
 
     @Override
     public String toString() {
-        //todo
-        return null;
+        return Constants.PERSONAL_BOARD_UPDATE;
     }
 
     @Override
