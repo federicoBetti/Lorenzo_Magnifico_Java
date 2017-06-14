@@ -99,7 +99,7 @@ public class TowersMainGameController extends AbstractController{
     }
 
 
-    public void showCardGreen3(MouseEvent mouseEvent) {
+    public void showCardGreen3() {
         mainController.showCardZoomed(green3.getImage());
         /**
          *todo dire che carta scelta è quella di green 3. magari prendendo il riferiemtno alla board sul cliente prendendo il nome da mandare poi
@@ -109,129 +109,129 @@ public class TowersMainGameController extends AbstractController{
 
     }
 
-    public void showCardGreen2(MouseEvent mouseEvent) {
+    public void showCardGreen2() {
         mainController.showCardZoomed(green2.getImage());
     }
 
-    public void showCardGreen1(MouseEvent mouseEvent) {
+    public void showCardGreen1() {
         mainController.showCardZoomed(green1.getImage());
     }
 
-    public void showCardGreen0(MouseEvent mouseEvent) {
+    public void showCardGreen0() {
         mainController.showCardZoomed(green0.getImage());
     }
 
-    public void showCardBlue3(MouseEvent mouseEvent) {
+    public void showCardBlue3() {
         mainController.showCardZoomed(blue3.getImage());
     }
 
-    public void showCardBlue2(MouseEvent mouseEvent) {
+    public void showCardBlue2() {
         mainController.showCardZoomed(blue2.getImage());
     }
 
-    public void showCardBlue1(MouseEvent mouseEvent) {
+    public void showCardBlue1() {
         mainController.showCardZoomed(blue1.getImage());
     }
 
-    public void showCardBlue0(MouseEvent mouseEvent) {
+    public void showCardBlue0() {
         mainController.showCardZoomed(blue0.getImage());
     }
 
-    public void showCardYellow0(MouseEvent mouseEvent) {
+    public void showCardYellow0() {
         mainController.showCardZoomed(yellow0.getImage());
     }
 
-    public void showCardYellow1(MouseEvent mouseEvent) {
+    public void showCardYellow1() {
         mainController.showCardZoomed(yellow1.getImage());
     }
 
-    public void showCardYellow2(MouseEvent mouseEvent) {
+    public void showCardYellow2() {
         mainController.showCardZoomed(yellow2.getImage());
     }
 
-    public void showCardYellow3(MouseEvent mouseEvent) {
+    public void showCardYellow3() {
         mainController.showCardZoomed(yellow3.getImage());
     }
 
-    public void showCardPurple0(MouseEvent mouseEvent) {
+    public void showCardPurple0() {
         mainController.showCardZoomed(purple0.getImage());
     }
 
-    public void showCardPurple1(MouseEvent mouseEvent) {
+    public void showCardPurple1() {
         mainController.showCardZoomed(purple1.getImage());
     }
 
-    public void showCardPurple2(MouseEvent mouseEvent) {
+    public void showCardPurple2() {
         mainController.showCardZoomed(purple2.getImage());
     }
 
-    public void showCardPurple3(MouseEvent mouseEvent) {
+    public void showCardPurple3() {
         mainController.showCardZoomed(purple3.getImage());
     }
 
 
-    public void takeCardGreen3(MouseEvent mouseEvent) {
+    public void takeCardGreen3() {
         familiarGreen3.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardGreen2(MouseEvent mouseEvent) {
+    public void takeCardGreen2() {
         familiarGreen2.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardGreen1(MouseEvent mouseEvent) {
+    public void takeCardGreen1() {
         familiarGreen1.setImage(getTrueFamiliarImage());
    }
 
-    public void takeCardGreen0(MouseEvent mouseEvent) {
+    public void takeCardGreen0() {
         familiarGreen0.setImage(getTrueFamiliarImage());
     }
 
 
-    public void takeCardBlue3(MouseEvent mouseEvent) {
+    public void takeCardBlue3() {
         familiarBlue3.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardBlue2(MouseEvent mouseEvent) {
+    public void takeCardBlue2() {
         familiarBlue2.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardBlue1(MouseEvent mouseEvent) {
+    public void takeCardBlue1() {
         familiarBlue1.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardBlue0(MouseEvent mouseEvent) {
+    public void takeCardBlue0() {
         familiarBlue0.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardYellow0(MouseEvent mouseEvent) {
+    public void takeCardYellow0() {
         familiarYellow0.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardYellow1(MouseEvent mouseEvent) {
+    public void takeCardYellow1() {
         familiarYellow1.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardYellow2(MouseEvent mouseEvent) {
+    public void takeCardYellow2() {
         familiarYellow2.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardYellow3(MouseEvent mouseEvent) {
+    public void takeCardYellow3() {
         familiarYellow3.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardPurple0(MouseEvent mouseEvent) {
+    public void takeCardPurple0() {
         familiarPurple0.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardPurple1(MouseEvent mouseEvent) {
+    public void takeCardPurple1() {
         familiarPurple1.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardPurple2(MouseEvent mouseEvent) {
+    public void takeCardPurple2() {
         familiarPurple2.setImage(getTrueFamiliarImage());
     }
 
-    public void takeCardPurple3(MouseEvent mouseEvent) {
+    public void takeCardPurple3() {
         familiarPurple3.setImage(getTrueFamiliarImage());
     }
 
@@ -239,17 +239,17 @@ public class TowersMainGameController extends AbstractController{
 
 
 
-    public void showPersonalBoard(ActionEvent actionEvent){
+    public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.TOWERS);
     }
 
 
-    public void takeCard(ActionEvent actionEvent) {
+    public void takeCard() {
 
 
     }
 
-    public void imageGreen1Clicked(MouseEvent mouseEvent) {
+    public void imageGreen1Clicked() {
         familiarGreen1.setImage(getTrueFamiliarImage());
     }
 }

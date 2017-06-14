@@ -11,16 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaMainGame.GeneralMainGameController">
+<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.maingame.GeneralMainGameController">
    <children>
       <ImageView fitHeight="923.0" fitWidth="422.0" layoutX="648.0" layoutY="0">
          <image>
             <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="923.0" fitWidth="648.0" layoutX="0">
-         <image>
-            <Image url="@../images/gameboard.png" />
          </image>
       </ImageView>
       <ImageView fx:id="towerGreen_3" fitHeight="107.0" fitWidth="72.0" layoutX="45.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
@@ -47,7 +42,7 @@
          <children>
             <ImageView fitHeight="352.0" fitWidth="356.0" layoutX="-5.0" layoutY="-2.0" opacity="0.74">
                <image>
-                  <Image url="@../images/finestraPiccola.png" />
+                  <Image url="/images/finestraPiccola.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="57.0" fitWidth="69.0" layoutX="114.0" layoutY="26.0" style="-fx-alignment: center">
@@ -177,5 +172,6 @@
          </children>
       </Pane>
       <Button fx:id="goToCouncilButton" layoutX="293.0" layoutY="498.0" mnemonicParsing="false" onAction="#goToCouncil" prefHeight="121.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+      <Pane prefHeight="923.0" prefWidth="648.0" style="-fx-background-image: url(&quot;/images/gameboard.png&quot;);" />
    </children>
 </AnchorPane>

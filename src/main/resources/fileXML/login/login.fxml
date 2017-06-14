@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaSceneBuilder.ciao.PrimoController">
+<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" style="-fx-background-image: url('/images/login.jpg'); -fx-background-repeat: stretch; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.login.InitialLogin">
    <children>
       <ImageView id="cornicedestra" fitHeight="157.0" fitWidth="200.0" layoutX="50.0" layoutY="768.0" style="-fx-rotate: 0;">
          <image>
@@ -24,11 +24,11 @@
       </ImageView>
       <VBox layoutX="99.0" layoutY="807.0" prefHeight="76.0" prefWidth="100.0" spacing="20.0">
          <children>
-            <TextField id="username" fx:id="username" prefHeight="59.0" prefWidth="100.0" promptText="Username" />
-            <TextField id="password" fx:id="password" promptText="Password" />
+            <TextField id="username" fx:id="username" prefHeight="59.0" prefWidth="100.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
+            <TextField id="password" fx:id="password" promptText="Password" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
          </children>
       </VBox>
-      <Button id="connect" fx:id="connect" layoutX="244.0" layoutY="829.0" mnemonicParsing="false" onAction="#doConnection" text="connect">
+      <Button id="connect" fx:id="connect" layoutX="244.0" layoutY="829.0" mnemonicParsing="false" onAction="#doConnection" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="connect">
          <font>
             <Font name="Lucida Blackletter" size="21.0" />
          </font></Button>

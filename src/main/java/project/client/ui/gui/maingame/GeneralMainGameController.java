@@ -117,46 +117,46 @@ public class GeneralMainGameController extends AbstractController{
     }
 
 
-    public void goToTowers(ActionEvent actionEvent) {
+    public void goToTowers() {
         mainController.setScene(SceneType.TOWERS,SceneType.MAIN);
     }
 
-    public void goToProduction(ActionEvent actionEvent) {
+    public void goToProduction() {
         mainController.setScene(SceneType.PRODUCTION,SceneType.MAIN);
     }
 
-    public void goToMarket(ActionEvent actionEvent) {
+    public void goToMarket() {
         mainController.setScene(SceneType.MARKET,SceneType.MAIN);
     }
 
-    public void goToCouncliPalace(ActionEvent actionEvent) {
+    public void goToCouncliPalace() {
 
     }
 
 
-    public void showPoints(ActionEvent actionEvent) {
+    public void showPoints() {
 
     }
 
-    public void showLeaderCard(ActionEvent actionEvent) {
+    public void showLeaderCard() {
         mainController.setScene(SceneType.LEADER, SceneType.MAIN);
 
     }
 
-    public void skipTurn(ActionEvent actionEvent) {
+    public void skipTurn() {
     }
 
 
-    public void goToHarvester(ActionEvent actionEvent) {
+    public void goToHarvester() {
         mainController.setScene(SceneType.HARVESTER,SceneType.MAIN);
     }
 
-    public void goToCouncil(ActionEvent actionEvent) {
+    public void goToCouncil() {
         mainController.setScene(SceneType.COUNCIL,SceneType.MAIN);
     }
 
 
-    public void showPersonalBoard(ActionEvent actionEvent){
+    public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.MAIN);
     }
 }

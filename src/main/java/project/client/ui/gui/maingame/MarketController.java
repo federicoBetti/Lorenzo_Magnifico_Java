@@ -42,27 +42,27 @@ public class MarketController extends AbstractController {
         LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
     }
 
-    public void goToMarket(ActionEvent actionEvent) {
+    public void goToMarket() {
     }
 
 
     
-    public void placeFamiliarOnMarket0(MouseEvent mouseEvent) {
+    public void placeFamiliarOnMarket0() {
         imageMarket0.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnMarket1(MouseEvent mouseEvent) {
+    public void placeFamiliarOnMarket1() {
         imageMarket1.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnMarket2(MouseEvent mouseEvent) {
+    public void placeFamiliarOnMarket2() {
         imageMarket2.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnMarket3(MouseEvent mouseEvent) {
+    public void placeFamiliarOnMarket3() {
         imageMarket3.setImage(getTrueFamiliarImage());
     }
 
 
 
-    public void showPersonalBoard(ActionEvent actionEvent){
+    public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.MARKET);
     }
 }

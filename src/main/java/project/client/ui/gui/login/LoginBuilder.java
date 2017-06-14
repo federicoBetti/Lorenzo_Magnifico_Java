@@ -6,32 +6,44 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import project.client.ui.ClientSetter;
 
 import java.io.IOException;
 
 public class LoginBuilder extends Application {
 
-    BorderPane rootLayout;
-    Stage primaryStage;
-    AnchorPane primoScene;
-    AnchorPane secondoScene;
+    private BorderPane rootLayout;
+    private Stage primaryStage;
+    private AnchorPane initialLoginScene;
+    private AnchorPane waitingLoginScene;
+    private static ClientSetter clientSetter;
+
+    private InitialLogin initialLogin;
+    private WaitingLogin waitingLogin;
 
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("Login");
 
         initRootLayout();
 
-        inizializzaPrimo();
-        inizializzaSecondo();
-        showPrimo();
-        System.out.println("sono in start");
+        initializeInitialLogin();
+        initializeWaitingLogin();
+        showFirstPage();
+    }
+
+    public static ClientSetter getClientSetter() {
+        return clientSetter;
+    }
+
+    public static void setClientSetter(ClientSetter clientSetter) {
+        LoginBuilder.clientSetter = clientSetter;
     }
 
     /**
      * Initializes the root layout.
      */
-    public void initRootLayout() {
+    private void initRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/login/rootLayout.fxml"));
@@ -50,67 +62,55 @@ public class LoginBuilder extends Application {
     /**
      * Shows the person overview inside the root layout.
      */
-    public void inizializzaPrimo() {
+    private void initializeInitialLogin() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/login.fxml"));
-            primoScene = (AnchorPane) loader.load();
+            initialLoginScene = (AnchorPane) loader.load();
 
-            primoScene.getStylesheets().add(("fileXML/login/primoCSS.css"));
-            // Set person overview into the center of root layout.
-            //rootLayout.setCenter(primoScene);
-
-            // Give the controller access to the main app.
-            LoginIniziale controller = loader.getController();
-            controller.setMainController(this);
+            this.initialLogin = loader.getController();
+            initialLogin.setMainController(this);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void inizializzaSecondo() {
+    private void initializeWaitingLogin() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/attesaInizioPartita.fxml"));
-            secondoScene = (AnchorPane) loader.load();
+            waitingLoginScene = (AnchorPane) loader.load();
 
-            secondoScene.getStylesheets().add(("fileXML/login/secondoCSS.css"));
-
-
-            // Set person overview into the center of root layout.
-            //rootLayout.setCenter(primoScene);
-
-            // Give the controller access to the main app.
-            LoginAttesa controller = loader.getController();
-            controller.setMainController(this);
+            this.waitingLogin = loader.getController();
+            waitingLogin.setMainController(this);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-    public void setScene(Finestre finestre) {
-        if (finestre.equals(Finestre.PRIMO)) {
-            showPrimo();
-        } else if (finestre.equals(Finestre.SECONDO)) {
-            showSecondo();
-        }
+    public void switchScene() {
+        rootLayout.setCenter(waitingLoginScene);
         return;
     }
 
-    private void showPrimo(){
-        rootLayout.setCenter(primoScene);
+    private void showFirstPage(){
+        rootLayout.setCenter(initialLoginScene);
     }
 
-    private void showSecondo(){
-        rootLayout.setCenter(secondoScene);
-    }
-
-    public static void avvia(String[] args) {
+    public static void main(String[] args) {
         launch(args);
     }
 
+    void connect(String username, String password) {
+        clientSetter.connect(username,password);
+    }
+
+    void setConnectionType(String connectionType) {
+        clientSetter.setConnectionType(connectionType);
+    }
 }

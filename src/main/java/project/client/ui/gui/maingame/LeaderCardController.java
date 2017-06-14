@@ -79,43 +79,43 @@ public class LeaderCardController extends AbstractController {
         }
     }
 
-    public void leaderCardChosen0(MouseEvent mouseEvent) {
+    public void leaderCardChosen0() {
         int indexOfLeaderCard = 0;
         selectLeaderCard(indexOfLeaderCard);
     }
 
 
-    public void leaderCardChosen1(MouseEvent mouseEvent) {
+    public void leaderCardChosen1() {
         int indexOfLeaderCard = 1;
         selectLeaderCard(indexOfLeaderCard);
     }
 
-    public void leaderCardChosen2(MouseEvent mouseEvent) {
+    public void leaderCardChosen2() {
         int indexOfLeaderCard = 2;
         selectLeaderCard(indexOfLeaderCard);
     }
 
-    public void leaderCardChosen3(MouseEvent mouseEvent) {
+    public void leaderCardChosen3() {
         int indexOfLeaderCard = 3;
         selectLeaderCard(indexOfLeaderCard);
     }
 
-    public void leaderCardChosen4(MouseEvent mouseEvent) {
+    public void leaderCardChosen4() {
         int indexOfLeaderCard = 4;
         selectLeaderCard(indexOfLeaderCard);
     }
 
-    public void goBack(ActionEvent actionEvent) {
+    public void goBack() {
         mainController.setScene(SceneType.MAIN,SceneType.LEADER);
     }
 
-    public void playCard(ActionEvent actionEvent) {
+    public void playCard() {
     }
 
-    public void discardCard(ActionEvent actionEvent) {
+    public void discardCard() {
     }
 
-    public void showPersonalBoard(ActionEvent actionEvent) {
+    public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.LEADER);
     }
 }

@@ -10,7 +10,6 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.messages.updatesmessages.*;
 import project.model.Board;
 import project.model.FamilyMember;
 import project.model.PersonalBoard;
@@ -44,9 +43,7 @@ public class ClientSetter {
         ui.startUI();
     }
 
-
-    //todo pensare dove chiamarlo
-    private void setConnectionType(String connectionType) {
+    public void setConnectionType(String connectionType) {
 
         switch (connectionType) {
             case "socket":
@@ -167,5 +164,9 @@ public class ClientSetter {
 
     public void familyMemberUpdate(Updates update) {
         update.doUpdate(uiFamilyMembers);
+    }
+
+    public void connect(String username, String password) {
+        System.out.println(username + " " + password);
     }
 }

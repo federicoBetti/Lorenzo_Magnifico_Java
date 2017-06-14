@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaMainGame.TowersMainGameController">
+<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.maingame.TowersMainGameController">
    <children>
       <ImageView fitHeight="709.0" fitWidth="806.0" layoutX="25.0" layoutY="22.0">
          <image>
-            <Image url="@../images/torriGande.png" />
+            <Image url="/images/torriGande.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="752.0" fitWidth="863.0" layoutX="-2.0">
          <image>
-            <Image url="@../images/cornici/cornice25x27.png" />
+            <Image url="/images/cornici/cornice25x27.png" />
          </image>
       </ImageView>
 
@@ -85,7 +85,7 @@
       </Pane>
       <ImageView fitHeight="170.0" fitWidth="1076.0" layoutY="753.0">
          <image>
-            <Image url="@../images/cornici/cornice37x5.png" />
+            <Image url="/images/cornici/cornice37x5.png" />
          </image>
       </ImageView>
       <ImageView fx:id="green3" fitHeight="163.0" fitWidth="106.0" layoutX="34.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardGreen3" />
@@ -123,7 +123,7 @@
       <ImageView fx:id="familiarPurple0" fitHeight="42.0" fitWidth="42.0" layoutX="760.0" layoutY="619.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#takeCardPurple0" />
       <ImageView fitHeight="752.0" fitWidth="218.0" layoutX="857.0" layoutY="1.0">
          <image>
-            <Image url="@../images/cornici/cornice5x27.png" />
+            <Image url="/images/cornici/cornice5x27.png" />
          </image>
       </ImageView>
       <Pane layoutX="886.0" layoutY="32.0" prefHeight="693.0" prefWidth="159.0">

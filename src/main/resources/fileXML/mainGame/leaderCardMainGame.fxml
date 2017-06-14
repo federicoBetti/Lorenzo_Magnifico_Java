@@ -11,23 +11,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaMainGame.LeaderCardController">
+<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.maingame.LeaderCardController">
     <children>
         <ImageView fitHeight="923.0" fitWidth="422.0" layoutX="648.0">
             <image>
-                <Image url="@../images/cornici/ritaglioCornice10Quadretti.png" />
+                <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="923.0" fitWidth="648.0">
             <image>
-                <Image url="@../images/cornici/ritaglioCornice.png" />
+                <Image url="/images/cornici/ritaglioCornice.png" />
             </image>
         </ImageView>
         <Pane layoutX="680.0" layoutY="30.0" prefHeight="854.0" prefWidth="361.0">
             <children>
             <ImageView fitHeight="415.0" fitWidth="360.0" opacity="0.64">
                <image>
-                  <Image url="@../images/finestraPiccola.png" />
+                  <Image url="/images/finestraPiccola.png" />
                </image>
             </ImageView>
                 <VBox alignment="BOTTOM_LEFT" prefHeight="861.0" prefWidth="363.0">
@@ -87,7 +87,7 @@
          <children>
             <ImageView fitHeight="861.0" fitWidth="589.0" opacity="0.64">
                <image>
-                  <Image url="@../images/finestra.png" />
+                  <Image url="/images/finestra.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imageLeaderCard0" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#leaderCardChosen0"/>

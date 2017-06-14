@@ -70,7 +70,7 @@ public class councilPalaceController extends AbstractController {
         return number;
     }
 
-    public void takeStoneWood(ActionEvent actionEvent) {
+    public void takeStoneWood() {
         if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[0])
             return;
         if (!privilegeChoosen[0]){
@@ -84,7 +84,7 @@ public class councilPalaceController extends AbstractController {
         }
     }
 
-    public void takeTwoServants(ActionEvent actionEvent) {
+    public void takeTwoServants() {
         if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[1])
             return;
         if (!privilegeChoosen[1]){
@@ -98,7 +98,7 @@ public class councilPalaceController extends AbstractController {
         }
     }
 
-    public void takeTwoCoins(ActionEvent actionEvent) {
+    public void takeTwoCoins() {
         if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[2])
             return;
         if (!privilegeChoosen[2]){
@@ -112,7 +112,7 @@ public class councilPalaceController extends AbstractController {
         }
     }
 
-    public void takeTwoMiliaryPoints(ActionEvent actionEvent) {
+    public void takeTwoMiliaryPoints() {
         if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[3])
             return;
         if (!privilegeChoosen[3]){
@@ -126,7 +126,7 @@ public class councilPalaceController extends AbstractController {
         }
     }
 
-    public void takeOneFaithPoint(ActionEvent actionEvent) {
+    public void takeOneFaithPoint() {
         if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[4])
             return;
         if (!privilegeChoosen[4]){
@@ -140,7 +140,7 @@ public class councilPalaceController extends AbstractController {
         }
     }
 
-    public void placeFamiliarInCouncil(ActionEvent actionEvent) {
+    public void placeFamiliarInCouncil() {
         ImageView spotToMoveFamiliar = findFirstFreePlace();
         spotToMoveFamiliar.setImage(getTrueFamiliarImage());
     }
@@ -153,11 +153,11 @@ public class councilPalaceController extends AbstractController {
         return imageInTheCouncil5; //attenzione
     }
 
-    public void goToCouncil(ActionEvent actionEvent) {
+    public void goToCouncil() {
 
     }
 
-    public void showPersonalBoard(ActionEvent actionEvent){
+    public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.COUNCIL);
     }
 }

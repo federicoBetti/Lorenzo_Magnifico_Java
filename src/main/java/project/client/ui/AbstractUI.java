@@ -9,8 +9,6 @@ import java.io.IOException;
  */
 public abstract class AbstractUI {
 
-    int ciao;
-
     public void startUI() {
         //to implement
     }

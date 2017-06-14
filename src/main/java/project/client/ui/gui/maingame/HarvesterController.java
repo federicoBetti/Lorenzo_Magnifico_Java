@@ -72,50 +72,50 @@ public class HarvesterController extends AbstractController {
 
 
 
-    public void doHarvester(ActionEvent actionEvent) {
+    public void doHarvester() {
     }
 
 
-    public void zoomTerritoryCard0(MouseEvent mouseEvent) {
+    public void zoomTerritoryCard0() {
         mainController.showCardZoomed(territoryCard0.getImage());
     }
 
-    public void zoomTerritoryCard1(MouseEvent mouseEvent) {
+    public void zoomTerritoryCard1() {
         mainController.showCardZoomed(territoryCard1.getImage());
     }
 
-    public void zoomTerritoryCard2(MouseEvent mouseEvent) {
+    public void zoomTerritoryCard2() {
         mainController.showCardZoomed(territoryCard2.getImage());
     }
 
-    public void zoomTerritoryCard3(MouseEvent mouseEvent) {
+    public void zoomTerritoryCard3() {
         mainController.showCardZoomed(territoryCard3.getImage());
     }
 
-    public void zoomTerritoryCard4(MouseEvent mouseEvent) {
+    public void zoomTerritoryCard4() {
         mainController.showCardZoomed(territoryCard4.getImage());
     }
 
-    public void zoomTerritoryCard5(MouseEvent mouseEvent) {
+    public void zoomTerritoryCard5() {
         mainController.showCardZoomed(territoryCard5.getImage());
     }
 
 
-    public void placeFamiliarOnHarvester0(MouseEvent mouseEvent) {
+    public void placeFamiliarOnHarvester0() {
         imageHarvester0.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnHarvester1(MouseEvent mouseEvent) {
+    public void placeFamiliarOnHarvester1() {
         imageHarvester1.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnHarvester2(MouseEvent mouseEvent) {
+    public void placeFamiliarOnHarvester2() {
         imageHarvester2.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnHarvester3(MouseEvent mouseEvent) {
+    public void placeFamiliarOnHarvester3() {
         imageHarvester3.setImage(getTrueFamiliarImage());
     }
 
 
-    public void showPersonalBoard(ActionEvent actionEvent){
+    public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.HARVESTER);
     }
 }

@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaSceneBuilder.ciao.SecondoController">
+<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" style="-fx-background-image: url('/images/login.jpg'); -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.login.WaitingLogin">
    <children>
-      <Label layoutX="141.0" layoutY="793.0" text="attendere">
+      <Label layoutX="141.0" layoutY="793.0" text="waiting..">
          <font>
             <Font name="Lucida Blackletter" size="71.0" />
          </font>

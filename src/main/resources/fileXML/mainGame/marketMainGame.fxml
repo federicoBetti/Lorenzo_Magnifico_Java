@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaMainGame.MarketController">
+<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.maingame.MarketController">
     <children>
         <Pane layoutX="28.0" layoutY="26.0" prefHeight="466.0" prefWidth="805.0">
             <children>
                         <ImageView fitHeight="466.0" fitWidth="802.0">
                             <image>
-                                <Image url="@../images/mercato2Giocatori.png" />
+                                <Image url="/images/mercato2Giocatori.png" />
                             </image>
                         </ImageView>
                 <ImageView fx:id="imageMarket0" fitHeight="86.0" fitWidth="94.0" layoutX="260.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnMarket0"/>
@@ -31,7 +31,7 @@
 
         <ImageView fitHeight="516.0" fitWidth="863.0">
             <image>
-                <Image url="@../images/cornici/cornice18x27.png" />
+                <Image url="/images/cornici/cornice18x27.png" />
             </image>
         </ImageView>
 
@@ -39,7 +39,7 @@
             <children>
                 <ImageView fitHeight="653.0" fitWidth="159.0" layoutX="-4.0" opacity="0.58">
                     <image>
-                        <Image url="@../images/finestra.png" />
+                        <Image url="/images/finestra.png" />
                     </image>
                 </ImageView>
                 <VBox alignment="TOP_CENTER" layoutY="92.0" prefHeight="496.0" prefWidth="159.0" spacing="8.0">
@@ -64,7 +64,7 @@
             <children>
                 <ImageView fitHeight="361.0" fitWidth="218.0" layoutX="578.0" layoutY="-2.0" opacity="0.58">
                     <image>
-                        <Image url="@../images/finestra.png" />
+                        <Image url="/images/finestra.png" />
                     </image>
                 </ImageView>
                 <SplitPane dividerPositions="0.9080779944289693" orientation="VERTICAL" prefHeight="361.0" prefWidth="363.0">
@@ -96,7 +96,7 @@
                 </SplitPane>
                 <ImageView fitHeight="361.0" fitWidth="218.0" layoutX="362.0" opacity="0.58">
                     <image>
-                        <Image url="@../images/finestra.png" />
+                        <Image url="/images/finestra.png" />
                     </image>
                 </ImageView>
                 <VBox layoutX="363.0" prefHeight="361.0" prefWidth="215.0">
@@ -173,12 +173,12 @@
         </Pane>
         <ImageView fitHeight="713.0" fitWidth="218.0" layoutX="857.0">
             <image>
-                <Image url="@../images/cornici/cornice5x27.png" />
+                <Image url="/images/cornici/cornice5x27.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="412.0" fitWidth="860.0" layoutY="516.0">
             <image>
-                <Image url="@../images/cornici/cornice14x27.png" />
+                <Image url="/images/cornici/cornice14x27.png" />
             </image>
         </ImageView>
         <ImageView fx:id="LorenzoMagnifico" fitHeight="215.0" fitWidth="215.0" layoutX="860.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">

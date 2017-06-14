@@ -87,7 +87,7 @@ public class ProductionController extends AbstractController{
     }
 
 
-    public void doProduction(ActionEvent actionEvent) {
+    public void doProduction() {
     }
 
     private void selectCard(int index){
@@ -127,21 +127,21 @@ public class ProductionController extends AbstractController{
 
 
 
-    public void placeFamiliarOnProduction0(MouseEvent mouseEvent) {
+    public void placeFamiliarOnProduction0() {
         imageProduction0.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnProduction1(MouseEvent mouseEvent) {
+    public void placeFamiliarOnProduction1() {
         imageProduction1.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnProduction2(MouseEvent mouseEvent) {
+    public void placeFamiliarOnProduction2() {
         imageProduction2.setImage(getTrueFamiliarImage());
     }
-    public void placeFamiliarOnProduction3(MouseEvent mouseEvent) {
+    public void placeFamiliarOnProduction3() {
         imageProduction3.setImage(getTrueFamiliarImage());
     }
 
 
-    public void showPersonalBoard(ActionEvent actionEvent){
+    public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.PRODUCTION);
     }
 }

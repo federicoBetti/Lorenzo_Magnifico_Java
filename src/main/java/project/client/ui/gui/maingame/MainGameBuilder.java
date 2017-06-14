@@ -162,7 +162,7 @@ public class MainGameBuilder extends Application {
             harvesterScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
-             harvesterController = loader.getController();
+            harvesterController = loader.getController();
             harvesterController.setMainController(this);
             harvesterController.inizializeWithMain();
             harvesterController.uploadImages();

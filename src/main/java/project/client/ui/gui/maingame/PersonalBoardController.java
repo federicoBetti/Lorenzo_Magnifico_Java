@@ -42,22 +42,22 @@ public class PersonalBoardController extends AbstractController {
         imageFamiliarOrange = new ImageView();
     }
 
-    public void goBack(ActionEvent actionEvent) {
+    public void goBack() {
         SceneType lastScene = mainController.getLastScene();
         mainController.setScene(lastScene, SceneType.PERSONAL_BOARD);
     }
 
 
-    public void zoomOnTerritory0(MouseEvent mouseEvent) {
+    public void zoomOnTerritory0() {
         mainController.showCardZoomed(territory0.getImage());
     }
-    public void zoomOnTerritory1(MouseEvent mouseEvent) {
+    public void zoomOnTerritory1() {
         mainController.showCardZoomed(territory1.getImage());
     }
-    public void zoomOnTerritory2(MouseEvent mouseEvent) {
+    public void zoomOnTerritory2() {
         mainController.showCardZoomed(territory2.getImage());
     }
-    public void zoomOnTerritory3(MouseEvent mouseEvent) {
+    public void zoomOnTerritory3() {
         mainController.showCardZoomed(territory3.getImage());
         /**
          *todo dire che carta scelta è quella di territory 3. magari prendendo il riferiemtno alla board sul cliente prendendo il nome da mandare poi
@@ -66,70 +66,70 @@ public class PersonalBoardController extends AbstractController {
          */
 
     }
-    public void zoomOnTerritory4(MouseEvent mouseEvent) {
+    public void zoomOnTerritory4() {
         mainController.showCardZoomed(territory4.getImage());
     }
-    public void zoomOnTerritory5(MouseEvent mouseEvent) {
+    public void zoomOnTerritory5() {
         mainController.showCardZoomed(territory5.getImage());
     }
 
 
-    public void zoomOnCharacter0(MouseEvent mouseEvent) {
+    public void zoomOnCharacter0() {
         mainController.showCardZoomed(character0.getImage());
     }
-    public void zoomOnCharacter1(MouseEvent mouseEvent) {
+    public void zoomOnCharacter1() {
         mainController.showCardZoomed(character1.getImage());
     }
-    public void zoomOnCharacter2(MouseEvent mouseEvent) {
+    public void zoomOnCharacter2() {
         mainController.showCardZoomed(character2.getImage());
     }
-    public void zoomOnCharacter3(MouseEvent mouseEvent) {
+    public void zoomOnCharacter3() {
         mainController.showCardZoomed(character3.getImage());
     }
-    public void zoomOnCharacter4(MouseEvent mouseEvent) {
+    public void zoomOnCharacter4() {
         mainController.showCardZoomed(character4.getImage());
     }
-    public void zoomOnCharacter5(MouseEvent mouseEvent) {
+    public void zoomOnCharacter5() {
         mainController.showCardZoomed(character5.getImage());
     }
 
 
-    public void zoomOnBuilding0(MouseEvent mouseEvent) {
+    public void zoomOnBuilding0() {
         mainController.showCardZoomed(building0.getImage());
     }
-    public void zoomOnBuilding1(MouseEvent mouseEvent) {
+    public void zoomOnBuilding1() {
         mainController.showCardZoomed(building1.getImage());
     }
-    public void zoomOnBuilding2(MouseEvent mouseEvent) {
+    public void zoomOnBuilding2() {
         mainController.showCardZoomed(building2.getImage());
     }
-    public void zoomOnBuilding3(MouseEvent mouseEvent) {
+    public void zoomOnBuilding3() {
         mainController.showCardZoomed(building3.getImage());
     }
-    public void zoomOnBuilding4(MouseEvent mouseEvent) {
+    public void zoomOnBuilding4() {
         mainController.showCardZoomed(building4.getImage());
     }
-    public void zoomOnBuilding5(MouseEvent mouseEvent) {
+    public void zoomOnBuilding5() {
         mainController.showCardZoomed(building5.getImage());
     }
 
 
-    public void zoomOnVentures0(MouseEvent mouseEvent) {
+    public void zoomOnVentures0() {
         mainController.showCardZoomed(ventures0.getImage());
     }
-    public void zoomOnVentures1(MouseEvent mouseEvent) {
+    public void zoomOnVentures1() {
         mainController.showCardZoomed(ventures1.getImage());
     }
-    public void zoomOnVentures2(MouseEvent mouseEvent) {
+    public void zoomOnVentures2() {
         mainController.showCardZoomed(ventures2.getImage());
     }
-    public void zoomOnVentures3(MouseEvent mouseEvent) {
+    public void zoomOnVentures3() {
         mainController.showCardZoomed(ventures3.getImage());
     }
-    public void zoomOnVentures4(MouseEvent mouseEvent) {
+    public void zoomOnVentures4() {
         mainController.showCardZoomed(ventures4.getImage());
     }
-    public void zoomOnVentures5(MouseEvent mouseEvent) {
+    public void zoomOnVentures5() {
         mainController.showCardZoomed(ventures5.getImage());
     }
 
