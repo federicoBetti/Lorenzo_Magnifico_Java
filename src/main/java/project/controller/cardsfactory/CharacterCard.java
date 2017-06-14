@@ -16,8 +16,8 @@ public class CharacterCard extends DevelopmentCard {
     /**
      * Default constructor
      */
-    public CharacterCard(String name, int period, CharactersCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
-        super(name, period, immediateEffects, permanentEffects);
+    public CharacterCard(String name, int period, boolean choicePe, CharactersCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
+        super(name, period, choicePe, immediateEffects, permanentEffects);
         this.cardCost = cost;
     }
 

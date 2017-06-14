@@ -6,15 +6,13 @@ import project.controller.effects.realeffects.AddCoin;
 import project.controller.effects.realeffects.Effects;
 import project.controller.FakeFamiliar;
 import project.controller.supportfunctions.AllSupportFunctions;
-import project.model.Council;
-import project.model.FamilyMember;
-import project.model.Player;
-import project.model.Tower;
+import project.messages.updatesmessages.*;
+import project.model.*;
 import project.server.Room;
-import project.messages.BonusInteraction;
 import project.messages.Notify;
-import project.messages.OkOrNo;
 
+import javax.sql.rowset.BaseRowSet;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -39,26 +37,30 @@ public class GameActions {
      * @param player
      * @param towerIsOccupied
      */
+
+    private void takeDevelopementCard(Tower zone, FamilyMember familyMember, PlayerHandler player){
+
+        getRightSupportFunctions(player).setFamiliar(zone, familyMember);
+        getRightSupportFunctions(player).placeCardInPersonalBoard(zone.getCardOnThisFloor());
+        TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers());
+
+        makeImmediateEffects( player, zone.getCardOnThisFloor() );
+
+        broadcastUpdates(towersUpdate);
+        player.sendUpdates(new PersonalBoardUpdate(player));
+        player.sendUpdates( new ScoreUpdate(player));
+
+        nextTurn(player);
+    }
+
     public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
         getRightSupportFunctions(player).payCard(zone.getCardOnThisFloor(), towerIsOccupied, zone.getDiceValueOfThisFloor(), familyM.getMyValue());
         takeDevelopementCard(zone,familyM,player);
     }
 
-
     public void takeVenturesCard (Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment){
         getRightSupportFunctions(player).payVenturesCard((VenturesCard)zone.getCardOnThisFloor(),player,towerIsOccupied,zone.getDiceValueOfThisFloor(),familyM.getMyValue(),numberOfPayment);
         takeDevelopementCard(zone,familyM,player);
-    }
-
-    private void takeDevelopementCard(Tower zone, FamilyMember familyMember, PlayerHandler player){
-        getRightSupportFunctions(player).setFamiliar(zone, familyMember);
-        getRightSupportFunctions(player).placeCardInPersonalBoard(zone.getCardOnThisFloor());
-        BonusInteraction returnFromEffect = getRightSupportFunctions(player).applyEffects(zone.getCardOnThisFloor(),player);
-        player.sendAnswer(returnFromEffect);
-        if (returnFromEffect instanceof OkOrNo){
-            player.sendAnswer(new Notify("i have finished my turn"));
-            nextTurn(player);
-        }
     }
 
 
@@ -223,7 +225,7 @@ public class GameActions {
     }
 
     private void setFamilyMemberHome() {
-
+        //todo
     }
 
     /**
@@ -233,22 +235,25 @@ public class GameActions {
      * @param servantsNumber
      * @param player
      */
-    public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player){
+    public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player) throws IOException, ClassNotFoundException {
         int malusByField;
         if (position == 0)
             malusByField = 0;
         else
             malusByField = 3;
         getRightSupportFunctions(player).setFamiliar(room.getBoard().getTrueArrayList("harvester")[position], familyM);
+
+        HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone());
+
         player.getPersonalBoardReference().getMyTile().takeHarvesterResource();
-        for (TerritoryCard t: player.getPersonalBoardReference().getTerritories()){
-            if (familyM.getMyValue() + servantsNumber - malusByField + player.getPersonalBoardReference().getBonusOnActions().getHarvesterBonus()
-                    >= t.getCost().getDiceCost())
-                t.makePermannetEffects(player);
+        for (TerritoryCard card: player.getPersonalBoardReference().getTerritories()){
+            if (familyM.getMyValue() + servantsNumber - malusByField + player.getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() >= card.getCost().getDiceCost())
+                makePermannetEffects(player, card);
         }
 
-        return;
-    };
+        broadcastUpdates(harvesterUpdate);
+        player.sendUpdates(new PersonalBoardUpdate(player));
+    }
 
     /**
      *
@@ -257,15 +262,19 @@ public class GameActions {
      * @param cardToProduct
      * @param player
      */
-    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, Player player){
+    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, PlayerHandler player) throws IOException, ClassNotFoundException {
         getRightSupportFunctions(player).setFamiliar(room.getBoard().getTrueArrayList("production")[position], familyM);
+        ProductionUpdate productionUpdate = new ProductionUpdate(room.getBoard().getProductionZone());
+
         player.getPersonalBoardReference().getMyTile().takeProductionResource();
-        for (BuildingCard b: cardToProduct){
-            b.makePermannetEffects(player);
-            //qua il controllo se puo essere fatto va fatto nel player handler
+
+        for (BuildingCard card: cardToProduct){
+            makePermannetEffects(player, card );
         }
-        return;
-    };
+
+        broadcastUpdates(productionUpdate);
+        player.sendUpdates(new PersonalBoardUpdate(player));
+    }
 
 
     /**
@@ -275,7 +284,12 @@ public class GameActions {
      */
     public void goToMarket(int position, FamilyMember familyM, PlayerHandler player){
         getRightSupportFunctions(player).setFamiliar(room.getBoard().getTrueArrayList("market")[position],familyM);
+        MarketUpdate marketUpdate = new MarketUpdate(room.getBoard().getMarketZone());
+
         getRightSupportFunctions(player).takeMarketAction(position);
+
+        broadcastUpdates(marketUpdate);
+        player.sendUpdates(new PersonalBoardUpdate(player));
     }
 
 
@@ -291,6 +305,8 @@ public class GameActions {
                 leaderCard.setPlayed(true);
             }
         }
+
+        player.sendUpdates(new PersonalBoardUpdate(player));
     }
 
     /**
@@ -305,8 +321,9 @@ public class GameActions {
                 break;
             }
         }
+
         player.getPersonalBoardReference().getMyLeaderCard().remove(numberToDelate);
-    };
+    }
 
     /**
      * @return
@@ -322,20 +339,24 @@ public class GameActions {
             getRightSupportFunctions(player).setDicesValue(newDiceValue, player);
         }
         setEndTurn(false);
-        // TODO fare notifica a tutti
-    };
+
+        broadcastUpdates(new DiceValueUpdate(room.getBoard().getDiceValue()));
+    }
 
     /**
      * @param privilegeNumber
      * @param familyMember
-     *@param playerHandler @return
+     *@param player @return
      */
-    public void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler playerHandler){
-        getRightSupportFunctions(playerHandler).setFamiliarInTheCouncilPalace(room.getBoard().getCouncilZone(), familyMember);
+    public void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler player){
+        getRightSupportFunctions(player).setFamiliarInTheCouncilPalace(room.getBoard().getCouncilZone(), familyMember);
         Effects e = new AddCoin(1);
-        e.doEffect(playerHandler);
-        takeCouncilPrivilege(privilegeNumber,playerHandler);
-    };
+        e.doEffect(player);
+        takeCouncilPrivilege(privilegeNumber,player);
+
+        broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
+        player.sendUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
+    }
 
     /**
      *
@@ -349,17 +370,45 @@ public class GameActions {
     public void broadcastNotifications(Notify notifications){
         for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
-            player.sendAnswer( notifications );
+            player.sendNotification( notifications );
         }
     }
 
     public void pray(PlayerHandler playerHandler) {
         int victoryPointsToAdd = room.getBoard().getVictoryPointsInFaithTrack()[playerHandler.getScore().getFaithPoints()];
         getRightSupportFunctions(playerHandler).pray(victoryPointsToAdd);
+
     }
 
     public void takeExcommunication(PlayerHandler playerHandler) {
         ExcommunitationTile card = room.getBoard().getExcommunicationZone()[room.getBoard().getPeriod()].getCardForThisPeriod();
         card.makeEffect(playerHandler);
+    }
+
+    private void broadcastUpdates( Updates updates ){
+        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+            PlayerHandler player = entry.getValue();
+            player.sendUpdates(updates);
+        }
+    }
+
+    public void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
+        for (Effects effect : card.getImmediateCardEffects())
+            player.sendAnswer(effect.doEffect(player));
+    }
+
+    public void makePermannetEffects(PlayerHandler player, DevelopmentCard card ) throws IOException, ClassNotFoundException {
+
+        if ( card.isChoicePe() ) {
+            int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
+            card.getPermanentCardEffects().get(choice).doEffect(player);
+        }
+
+        else {
+            for (Effects effect : card.getPermanentCardEffects()) {
+                effect.doEffect(player);
+            }
+        }
+
     }
 }

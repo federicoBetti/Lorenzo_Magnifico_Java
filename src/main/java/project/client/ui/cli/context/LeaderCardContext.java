@@ -16,6 +16,8 @@ public class LeaderCardContext extends AbstractContext {
     public LeaderCardContext( Cli cli ){
         super(cli);
         map.put(CliConstants.SHOW_LEADER_CARDS, this::showLeaderCards );
+        map.put(CliConstants.EXIT, this::exit);
+        map.put(CliConstants.HELP, this::printHelp);
     }
 
     @Override

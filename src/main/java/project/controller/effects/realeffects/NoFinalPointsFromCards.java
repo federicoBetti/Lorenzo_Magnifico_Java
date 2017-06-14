@@ -38,17 +38,17 @@ public class NoFinalPointsFromCards implements Effects {
 
     private BonusInteraction noPointsFromCharacter(PlayerHandler player){
         player.getRoom().setMySupportFunction(new NoFinalPointsFromCharacter(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction noPointsFromVentures(PlayerHandler player){
         player.getRoom().setMySupportFunction(new NoFinalPointsFromVentures(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction noPointsFromTerritory(PlayerHandler player){
         player.getRoom().setMySupportFunction(new NoFinalPointsFromTerritory(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
 

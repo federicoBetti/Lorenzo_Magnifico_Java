@@ -16,8 +16,7 @@ public class AddVicotryPoints implements TakeRoPEffects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + quantity);
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+        return new OkOrNo();
+
     }
 }

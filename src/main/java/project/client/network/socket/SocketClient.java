@@ -3,7 +3,6 @@ package project.client.network.socket;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
-import project.client.ui.cli.MessagesFromServerHandler;
 import project.controller.Constants;
 import project.messages.TowerAction;
 
@@ -98,6 +97,17 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.reset();
 
         waitingForTheNewInteraction();
+    }
+
+    public void prayOrNot(String action) throws IOException, ClassNotFoundException {
+
+        if ( action.equals("yes"))
+            sendKindOfRequest(Constants.PRAY);
+        else
+            sendKindOfRequest(Constants.DONT_PRAY);
+
+        waitingForTheNewInteraction();
+
     }
 
     void send2Parameters(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException{

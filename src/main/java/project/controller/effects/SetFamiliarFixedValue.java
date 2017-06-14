@@ -34,8 +34,6 @@ public class SetFamiliarFixedValue implements Effects {
                 return null;
         }
 
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+       return new OkOrNo();
     }
 }

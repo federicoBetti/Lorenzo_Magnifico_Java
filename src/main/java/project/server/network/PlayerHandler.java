@@ -7,15 +7,14 @@ import project.controller.checkfunctions.AllCheckFunctions;
 import project.controller.checkfunctions.BasicCheckFunctions;
 import project.controller.Constants;
 import project.controller.supportfunctions.LeaderCardRequirements;
-import project.messages.BothCostCanBeSatisfied;
+import project.messages.*;
+import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
 import project.model.Player;
 import project.server.Room;
-import project.messages.BonusInteraction;
-import project.messages.Notify;
-import project.messages.OkOrNo;
 import project.server.network.exception.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,14 +38,18 @@ public abstract class PlayerHandler extends Player {
      * @param floor
      * @param familyM
      */
-    protected void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException, CanUseBothPaymentMethodException {
+    protected void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException, CanUseBothPaymentMethodException, IOException, ClassNotFoundException {
         boolean canTakeCard = checkFunctions.checkPosition(floor, room.getBoard().getTrueArrayList(towerColor), familyM);
         int canTakeVenturesCard;
         boolean towerOccupied = checkFunctions.checkTowerOccupied(room.getBoard().getTrueArrayList(towerColor));
             if (towerColor == "purple") {
                 canTakeVenturesCard = checkFunctions.checkCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
-                if (canTakeVenturesCard == 0 || !canTakeCard) throw new CantDoActionException(this, NO_ACTION_CAN_BE_DONE);
-                else if (canTakeVenturesCard == 3) throw new CanUseBothPaymentMethodException(this, "both costs can be satisfied");
+                if (canTakeVenturesCard == 0 || !canTakeCard)
+                    throw new CantDoActionException(this, NO_ACTION_CAN_BE_DONE);
+                else if (canTakeVenturesCard == 3){
+                    int answer = canUseBothPaymentMethod(new BothCostCanBeSatisfied());
+                    //anser è la risposta su che pagamento vuoi usare
+                }
                 else room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied, canTakeVenturesCard);
             } else {
                 canTakeCard = canTakeCard && checkFunctions.checkCardCost(room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
@@ -198,11 +201,11 @@ public abstract class PlayerHandler extends Player {
      * stringa BOTH_COST_CAN_BE_SATISFIED
      */
 
-    public abstract void sendAnswer(BonusInteraction returnFromEffect);
+
 
     public abstract void cantDoAction(OkOrNo okOrNo);
 
-    public abstract void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts);
+    public abstract int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) throws IOException, ClassNotFoundException;
 
     public abstract void itsMyTurn(); //non saprei che parametri passare
 
@@ -231,4 +234,13 @@ public abstract class PlayerHandler extends Player {
     }
 
 
+
+
+    public abstract void sendAnswer(Object returnFromEffect);
+
+    public abstract void sendNotification(Notify notifications);
+
+    public abstract void sendUpdates(Updates updates);
+
+    public abstract int sendPossibleChoice(String kindOfChoice) throws IOException, ClassNotFoundException;
 }

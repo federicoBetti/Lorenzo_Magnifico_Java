@@ -1,6 +1,7 @@
-package project.client.ui.cli;
+package project.client.network.socket;
 
 import project.client.network.socket.SocketClient;
+import project.client.ui.cli.CliConstants;
 import project.controller.Constants;
 
 import java.io.IOException;

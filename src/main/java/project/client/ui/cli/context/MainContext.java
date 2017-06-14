@@ -36,8 +36,18 @@ public class MainContext extends AbstractContext {
         map.put(Constants.HARVESTER, this::harvester);
         map.put(Constants.PLAY_LEADER_CARD, this:: leaderCard );
         map.put(Constants.DISCARD_LEADER_CARD, this:: dLeaderCard );
+        map.put(Constants.ASK_FOR_PRAYING, this:: excomunicationContext );
+        map.put(Constants.GO_TO_MARKET, this::marketContext );
         //todo creare costanti che chiamano metodi che aggiornano i contesti
 
+    }
+
+    private void marketContext() {
+        cli.marketContext();
+    }
+
+    private void excomunicationContext() {
+        cli.excomunicationContext();
     }
 
     private void dLeaderCard() {

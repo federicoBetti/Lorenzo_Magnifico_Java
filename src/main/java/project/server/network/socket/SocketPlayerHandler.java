@@ -2,14 +2,12 @@ package project.server.network.socket;
 
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
-import project.messages.BothCostCanBeSatisfied;
+import project.messages.*;
+import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CanUseBothPaymentMethodException;
 import project.server.network.exception.CantDoActionException;
-import project.messages.BonusInteraction;
-import project.messages.Notify;
-import project.messages.OkOrNo;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -67,11 +65,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
+    //ok
     public void loginRequestAnswer(String nickname) throws IOException, ClassNotFoundException {
         socketServer.loginRequest(nickname, this);
     }
 
 
+    //ok
     public void takeDevCard() throws IOException, ClassNotFoundException {
         String towerColour = (String) objectInputStream.readObject();
         int floor = (int) objectInputStream.readObject();
@@ -81,7 +81,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         try {
             clientTakeDevelopementCard(towerColour, floor, familyMember);
         } catch (CantDoActionException e) {
-            cantDoAction(new OkOrNo(false));
+            cantDoAction(new OkOrNo());
         } catch (CanUseBothPaymentMethodException e) {
             canUseBothPaymentMethod(new BothCostCanBeSatisfied());
         }
@@ -96,6 +96,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen );
     }
 
+    //ok
     public void harvesterRequest() throws IOException, ClassNotFoundException, CantDoActionException {
         int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
@@ -105,6 +106,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         harvester(position, familyMember, servantsNumber);
     }
 
+    //ok
     //int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct
     public void productionRequest() throws IOException, ClassNotFoundException, CantDoActionException {
         int position = (int) objectInputStream.readObject();
@@ -116,8 +118,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     }
 
+    //ok
     //int position, FamilyMember familyM
-
     public void goToMarketRequest() throws IOException, ClassNotFoundException, CantDoActionException {
         int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
@@ -126,18 +128,21 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         goToMarket(position, familyMember);
     }
 
+    //ok
     public void playLeaderCardRequest() throws IOException, ClassNotFoundException, CantDoActionException {
         String leaderCardName =(String)objectInputStream.readObject();
 
         playLeaderCard(leaderCardName);
     }
 
+    //ok
     public void discardLeaderCardRequest() throws IOException, ClassNotFoundException, CantDoActionException {
         String leaderCardName =(String)objectInputStream.readObject();
 
         discardLeaderCard(leaderCardName);
     }
 
+    //ok
     //int privelgeNumber, FamilyMember familyMember
     public void goToCouncilPalaceRequest() throws IOException, ClassNotFoundException {
         int privilegeNumber = (int) objectInputStream.readObject();
@@ -145,6 +150,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         goToCouncilPalace(privilegeNumber, familyMember);
     }
+
 
     public void takePrivilegeRequest() throws IOException, ClassNotFoundException {
         int privilegeNumber = (int) objectInputStream.readObject();
@@ -158,11 +164,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendAnswer(BonusInteraction returnFromEffect) {
+    public void sendAnswer(Object returnFromEffect) {
         try {
             objectOutputStream.writeObject(returnFromEffect.toString());
-            Object object = returnFromEffect;
-            objectOutputStream.writeObject(object);
+
+            objectOutputStream.writeObject(returnFromEffect);
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
@@ -170,15 +176,23 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+
     @Override
     public void cantDoAction(OkOrNo okOrNo) {
         sendAnswer(okOrNo);
     }
 
     @Override
-    public void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) {
+    public int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) throws IOException, ClassNotFoundException {
         Notify notify = new Notify(Constants.BOTH_PAYMENT_METHODS_AVAILABLE);
-        sendAnswer(notify);
+
+        objectOutputStream.writeObject(bothCosts.toString());
+
+        objectOutputStream.writeObject(notify);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        return Integer.parseInt((String) objectInputStream.readObject());
     }
 
 
@@ -193,7 +207,27 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         Notify notify = new Notify(Constants.ASK_FOR_PRAYING);
         sendAnswer(notify);
     }
-    
+
+    @Override
+    public void sendNotification(Notify notifications) {
+        sendAnswer(notifications);
+    }
+
+    @Override
+    public void sendUpdates(Updates updates) {
+        sendAnswer(updates);
+    }
+
+    @Override
+    public int sendPossibleChoice(String kindOfChoice) throws IOException, ClassNotFoundException {
+
+        objectOutputStream.writeObject(kindOfChoice);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+
+        return (int)objectInputStream.readObject();
+    }
+
 
     private ArrayList<BuildingCard> receiveListOfBuildingCard() throws IOException, ClassNotFoundException {
         String messReceived = null;

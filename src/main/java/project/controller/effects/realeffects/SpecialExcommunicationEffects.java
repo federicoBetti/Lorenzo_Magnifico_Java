@@ -38,17 +38,17 @@ public class SpecialExcommunicationEffects implements Effects {
     private BonusInteraction skipMyFirstTurn (PlayerHandler player){
 
         //TODO
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
     private BonusInteraction doubleServantsValue(PlayerHandler player) { //ho decorato sia la check sia la support function
         player.setCheckFunctions(new DoubleServantsValue(player.getCheckFunctions()));
         player.getRoom().setMySupportFunction(new DoubleServantsPayment(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction cantPlaceFamiliarInMarket(PlayerHandler player){
         player.setCheckFunctions(new CantPlaceFamiliarInMarket(player.getCheckFunctions()));
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
 

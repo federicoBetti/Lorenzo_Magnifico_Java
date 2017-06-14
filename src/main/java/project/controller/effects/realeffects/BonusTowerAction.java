@@ -11,6 +11,7 @@ public class BonusTowerAction implements Effects {
 
     public BonusTowerAction(String parameter, int quantity) {
         towerAction = new TowerAction(parameter,quantity);
+
     }
 
     @Override

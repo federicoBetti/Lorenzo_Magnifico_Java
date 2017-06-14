@@ -28,8 +28,6 @@ public class ServantWoodStoneForSixVictoryPoints implements Effects {
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - stoneRequired);
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned);
 
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+        return new OkOrNo();
     }
 }

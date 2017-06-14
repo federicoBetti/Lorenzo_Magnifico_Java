@@ -36,23 +36,23 @@ public class LoseResourceEffect implements Effects {
 
     private BonusInteraction loseMilitaryPoints(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setMilitaryPointsBonus(player.getPersonalBoardReference().getBonusOnActions().getMilitaryPointsBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction loseCoins(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setCoinsBonus(player.getPersonalBoardReference().getBonusOnActions().getCoinsBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction loseServants(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setServantsBonus(player.getPersonalBoardReference().getBonusOnActions().getServantsBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
     
     private BonusInteraction loseWoodStone(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setWoodBonus(player.getPersonalBoardReference().getBonusOnActions().getWoodBonus() - quantity);
         player.getPersonalBoardReference().getBonusOnActions().setStoneBonus(player.getPersonalBoardReference().getBonusOnActions().getStoneBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
 

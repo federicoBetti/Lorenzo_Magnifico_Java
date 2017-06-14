@@ -1,6 +1,7 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
+import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 
 
@@ -15,6 +16,8 @@ public class MarketContext extends AbstractContext {
 
     public MarketContext( Cli cli ){
         super(cli);
+        map.put(CliConstants.EXIT, this::exit);
+        map.put(CliConstants.HELP, this::printHelp);
     }
 
     @Override

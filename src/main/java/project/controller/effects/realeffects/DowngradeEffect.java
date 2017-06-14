@@ -37,32 +37,32 @@ public class DowngradeEffect implements Effects {
 
     private BonusInteraction downgradeOnProduction(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setProductionBonus(player.getPersonalBoardReference().getBonusOnActions().getProductionBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction downgradeOnHarvester(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setHarvesterBonus(player.getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction downgradeOnTerritoryCard(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setTerritoryBonus(player.getPersonalBoardReference().getBonusOnActions().getTerritoryBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction downgradeOnVenturesCard(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().setVenturesBonus(player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction downgradeOnCharacterCard(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getDiceBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction downgradeOnBuildingCard(PlayerHandler player) {
         player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus() - quantity);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction downgradeOnDices(PlayerHandler player){
@@ -70,7 +70,7 @@ public class DowngradeEffect implements Effects {
             if (familyMember.getMyColour() != Constants.FAMILY_MEMBER_COLOUR_NEUTRAL)
                 familyMember.setFixedBonus(familyMember.getFixedBonus() - quantity);
         }
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     @Override

@@ -14,8 +14,6 @@ public class TwoVictoryPointsForEachGreenCard implements Effects {
             i++;
         }
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + 2*i);
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+        return new OkOrNo();
     }
 }

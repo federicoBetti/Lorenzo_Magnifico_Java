@@ -19,8 +19,7 @@ public class AddMilitaryPoints implements TakeRoPEffects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() + quantity);
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+        return new OkOrNo();
+
     }
 }

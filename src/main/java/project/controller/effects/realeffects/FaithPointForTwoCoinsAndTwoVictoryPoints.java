@@ -25,8 +25,6 @@ public class FaithPointForTwoCoinsAndTwoVictoryPoints implements Effects {
         player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsEarned);
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned );
 
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+        return new OkOrNo();
     }
 }

@@ -20,8 +20,6 @@ public abstract class AbstractContext {
     public AbstractContext( Cli cli ){
         this.cli = cli;
         map = new HashMap<>();
-        map.put(CliConstants.EXIT, this::exit);
-        map.put(CliConstants.HELP, this::printHelp);
     }
 
     void exit() {

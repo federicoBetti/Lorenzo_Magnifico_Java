@@ -15,6 +15,8 @@ public class CouncilContext extends AbstractContext {
 
     public CouncilContext( Cli cli ){
         super(cli);
+        map.put(CliConstants.EXIT, this::exit);
+        map.put(CliConstants.HELP, this::printHelp);
     }
 
     @Override
@@ -23,7 +25,8 @@ public class CouncilContext extends AbstractContext {
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             System.out.println(entry.getKey());
 
-        System.out.println("[priviledgeNumber(int)-familiarColour] \n priviledgeNumber: 0, 1, 2, 3, 4, 5 " +
+        System.out.println("[priviledgeNumber(int)-familiarColour] " +
+                "\n priviledgeNumber: 0, 1, 2, 3, 4, 5 " +
                 "\n familiarColour: black, neutral, orange, white  ");
     }
 
@@ -43,7 +46,7 @@ public class CouncilContext extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String action ) throws InputException {
+    public void mainContextMethod(String action ) throws InputException, IOException, ClassNotFoundException {
         cli.chooseCouncilParameters(action);
     }
 

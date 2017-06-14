@@ -34,4 +34,7 @@ public class AbstractClient {
 
     public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
     }
+
+    public void prayOrNot(String action) throws IOException, ClassNotFoundException {
+    }
 }

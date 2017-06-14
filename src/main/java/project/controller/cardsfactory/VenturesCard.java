@@ -13,9 +13,9 @@ public class VenturesCard extends DevelopmentCard {
 
     private List<VenturesCost> possibleCost;
 
-    public VenturesCard(String name, int period, List<VenturesCost> cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
+    public VenturesCard(String name, int period, boolean choicePe, List<VenturesCost> cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
 
-        super(name, period, immediateEffects, permanentEffects);
+        super(name, period, choicePe, immediateEffects, permanentEffects);
         possibleCost = new ArrayList<>();
 
         for ( VenturesCost venturesCost : cost ){

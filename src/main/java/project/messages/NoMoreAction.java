@@ -6,4 +6,9 @@ public class NoMoreAction extends BonusInteraction {
 	public NoMoreAction () {
 		this.okOrNot = 0;
 	}
+
+	@Override
+	public String toString() {
+		return null;
+	}
 }

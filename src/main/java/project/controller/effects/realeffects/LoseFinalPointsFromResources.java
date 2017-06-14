@@ -38,22 +38,22 @@ public class LoseFinalPointsFromResources implements Effects {
 
     private BonusInteraction loseFinalPointsEveryFiveVictory(PlayerHandler player){
         player.getRoom().setMySupportFunction(new LoseFinalPointsEveryFive(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction loseFinalPointsEveryMilitaryPoints(PlayerHandler player){
         player.getRoom().setMySupportFunction(new LoseFinalPointsEveryMilitary(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction loseFinalPointsEveryWoodStone(PlayerHandler player){
         player.getRoom().setMySupportFunction(new LoseFinalPointsEveryWS(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
     private BonusInteraction loseFinalPointsEveryResources(PlayerHandler player){
         player.getRoom().setMySupportFunction(new LoseFinalPointsEveryResources(player.getRoom().getMySupportFunction(player)),player);
-        return new OkOrNo(true);
+        return new OkOrNo();
     }
 
 

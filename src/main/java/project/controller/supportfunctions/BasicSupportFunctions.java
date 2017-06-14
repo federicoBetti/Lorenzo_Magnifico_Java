@@ -226,7 +226,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
 
-
     @Override
     public void takeCouncilPrivilege(int privilegeNumber) {
         privileges.get((Integer)privilegeNumber).takePrivilege();
@@ -261,7 +260,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     public void pray(int victoryPointsToAdd){
         player.getScore().setVictoryPoints(0);
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsToAdd);
-
     }
 
     @FunctionalInterface

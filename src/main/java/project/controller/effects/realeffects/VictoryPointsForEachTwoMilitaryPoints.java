@@ -10,8 +10,6 @@ public class VictoryPointsForEachTwoMilitaryPoints implements Effects {
     public BonusInteraction doEffect(PlayerHandler player) {
         int bonus = player.getScore().getMilitaryPoints() / 2;
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + bonus);
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+        return new OkOrNo();
     }
 }

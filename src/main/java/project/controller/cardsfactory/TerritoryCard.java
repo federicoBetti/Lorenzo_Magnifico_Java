@@ -14,8 +14,8 @@ public class TerritoryCard extends DevelopmentCard {
 
     private TerritoryCost cardCost;
 
-    public TerritoryCard(String name, int period, TerritoryCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
-        super(name, period, immediateEffects, permanentEffects);
+    public TerritoryCard(String name, int period, boolean choicePe, TerritoryCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
+        super(name, period, choicePe, immediateEffects, permanentEffects);
         this.cardCost = cost;
     }
 

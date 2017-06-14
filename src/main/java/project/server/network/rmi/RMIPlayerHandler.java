@@ -53,8 +53,9 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public void canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) {
+    public int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) {
         myClient.canUseBothPaymentMethod();
+        return 0;
     }
 
     @Override
@@ -65,6 +66,11 @@ public class RMIPlayerHandler extends PlayerHandler{
     @Override
     public void sendAskForPraying() {
         myClient.askForPraying();
+    }
+
+    @Override
+    public void sendNotification(Notify notifications) {
+
     }
 
     // qua inizia la parte delle chiamate del client sul server

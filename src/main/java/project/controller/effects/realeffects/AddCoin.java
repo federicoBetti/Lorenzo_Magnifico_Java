@@ -23,8 +23,7 @@ public class AddCoin implements TakeRoPEffects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + quantity);
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
+        OkOrNo ok = new OkOrNo();
         return ok;
     }
 }

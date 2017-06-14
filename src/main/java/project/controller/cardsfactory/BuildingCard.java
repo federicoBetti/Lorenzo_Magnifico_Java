@@ -7,20 +7,16 @@ import project.model.*;
 
 import java.util.*;
 
-/**
- * 
- */
+
 public class BuildingCard extends DevelopmentCard {
-    /**
-     *
-     */
+
+
     private BuildingCost cardCost;
     private ArrayList<TotalCost> effectCost;
-    /**
-     * Default constructor
-     */
-    public BuildingCard(String name, int period, BuildingCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
-        super(name, period, immediateEffects, permanentEffects);
+
+
+    public BuildingCard(String name, int period, boolean choicePe, BuildingCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
+        super(name, period, choicePe, immediateEffects, permanentEffects);
         effectCost = new ArrayList<>();
         this.cardCost = cost;
         for (PokerPE p: permanentEffects) {

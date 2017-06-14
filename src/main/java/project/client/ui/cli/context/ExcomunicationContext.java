@@ -4,28 +4,32 @@ import project.client.ui.cli.Cli;
 import project.client.ui.cli.InputException;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by raffaelebongo on 05/06/17.
  */
-public class ExcomunicationContext extends AbstractContext {
+public class ExcomunicationContext extends AbstractContext{
 
     public ExcomunicationContext (Cli cli ){
         super(cli);
+        System.out.print("Available actions:" +
+                "\nDo you want to pray? [yes/no]");
     }
 
-    @Override
     public void printHelp() {
-
+        System.out.print("Available actions:" +
+                    "\nDo you want to pray? [yes/no]");
     }
 
     @Override
     public void checkValidInput(String input) throws InputException {
-
+        if ( !(input == "yes" || input == "no") )
+            throw new InputException();
     }
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
-
+        cli.prayOrNot(action);
     }
 }

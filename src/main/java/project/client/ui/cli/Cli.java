@@ -21,7 +21,7 @@ public class Cli extends AbstractUI {
 
     public Cli(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
-        context = new LoginContext(this);
+        context = new ConnectionContext(this);
     }
 
     @Override
@@ -61,11 +61,19 @@ public class Cli extends AbstractUI {
     public void discardLeaderCardContext(){
         context = new DiscardLeaderCardContext(this);
     }
+
+    public void excomunicationContext() {
+        context = new ExcomunicationContext(this);
+    }
+
+    public void marketContext() {
+        context = new MarketContext(this);
+    }
+
     public void loginRequest( String lineFromKeyBoard ) throws IOException, ClassNotFoundException {
         clientSetter.loginRequest(lineFromKeyBoard);
     }
 
-    //ok
     public void choseAndTakeDevCard( String lineFromKeyBoard ) throws IOException, ClassNotFoundException, InputException {
 
         context.checkValidInput(lineFromKeyBoard);
@@ -74,6 +82,8 @@ public class Cli extends AbstractUI {
 
     }
 
+
+    //todo aggiustare come parametri giusti la chiamata
     public void chooseProductionParameters(String lineFromKeyBoard) throws IOException, ClassNotFoundException, InputException {
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
@@ -105,9 +115,13 @@ public class Cli extends AbstractUI {
         clientSetter.playLeaderCard(action);
     }
 
-
     public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
         clientSetter.discardLeaderCard(name);
+    }
+
+    public void prayOrNot( String action ) throws InputException, IOException, ClassNotFoundException {
+        context.checkValidInput(action);
+        clientSetter.prayOrNot(action);
     }
 
 

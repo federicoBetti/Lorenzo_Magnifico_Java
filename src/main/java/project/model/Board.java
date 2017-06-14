@@ -60,14 +60,7 @@ public final class Board {
      */
     private int round;
 
-    /**
-     * 
-     */
-    private Deck deckCard;
 
-    /**
-     * 
-     */
     private int[] diceValue;
 
 
@@ -94,7 +87,7 @@ public final class Board {
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
 
 
-    Board(int numberOfPlayer){
+    public Board(int numberOfPlayer){
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
         this.numberOfFamilyMemberPlayedInThisRound = 1;
         victoryPointsInFaithTrack = new int[15];
@@ -115,10 +108,14 @@ public final class Board {
         excommunicationZone = new ExcommunicationZone[3];
         councilZone = new ArrayList<>(numberOfPlayer * 4);
         towers = new Tower[4][4];
+        zones = new HashMap<>();
         fillHashMap();
         round = 1;
         period = 1;
+    }
 
+    public Board() {
+        //ui construcutor
     }
 
 
@@ -131,6 +128,23 @@ public final class Board {
         zones.put(Constants.PRODUCTION, getProductionZone());
     }
 
+    public void nextRound(){
+        round ++;
+        if (round == 3)
+            round = 1;
+    }
+
+    public void setHarvesterZone(Harvester[] harvesterZone) {
+        this.harvesterZone = harvesterZone;
+    }
+
+    public void setProductionZone(Production[] productionZone) {
+        this.productionZone = productionZone;
+    }
+
+    public void setMarketZone(Market[] marketZone) {
+        this.marketZone = marketZone;
+    }
 
     public int[] getVictoryPointsInFaithTrack() {
         return victoryPointsInFaithTrack;
@@ -183,10 +197,6 @@ public final class Board {
         return round;
     }
 
-    public Deck getDeckCard() {
-        return deckCard;
-    }
-
     public void setDiceValue(int[] diceValue) {
         this.diceValue = diceValue;
     }
@@ -205,12 +215,6 @@ public final class Board {
 
     public Tower[][] getAllTowers(){
         return towers;
-    }
-
-    public void nextRound(){
-        round ++;
-        if (round == 3)
-            round = 1;
     }
 
     public void nextPeriod(){
@@ -243,5 +247,9 @@ public final class Board {
 
     public Turn getTurn() {
         return turn;
+    }
+
+    public int[] getDiceValue() {
+        return diceValue;
     }
 }

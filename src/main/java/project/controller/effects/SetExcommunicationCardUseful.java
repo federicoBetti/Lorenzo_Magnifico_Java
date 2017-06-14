@@ -55,8 +55,6 @@ public class SetExcommunicationCardUseful implements Effects {
         }
 
         //todo controllare qui l'ok or no
-        OkOrNo ok = new OkOrNo(false);
-        ok.setOk(true);
-        return ok;
+        return new OkOrNo();
     }
 }

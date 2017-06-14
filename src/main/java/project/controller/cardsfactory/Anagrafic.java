@@ -7,6 +7,7 @@ public class Anagrafic {
     private String type;
     private String name;
     private int period;
+    private boolean choicePe;
     private Object cost;
 
     public Object getCost() {
@@ -21,10 +22,6 @@ public class Anagrafic {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getName() {
         return name;
     }
@@ -37,9 +34,7 @@ public class Anagrafic {
         return period;
     }
 
-    public void setPeriod(int period) {
-        this.period = period;
+    public boolean isChoicePe() {
+        return choicePe;
     }
-
-
 }

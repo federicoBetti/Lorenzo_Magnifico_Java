@@ -25,11 +25,14 @@ public abstract class DevelopmentCard {
 
     private Cost cardCost;
 
+    private boolean choicePe;
+
 
     // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
-    public DevelopmentCard(String name, int period, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects){
+    public DevelopmentCard(String name, int period, boolean choicePe, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects){
         this.name = name;
         this.period = period;
+        this.choicePe = choicePe;
         immediateCardEffects = new ArrayList<>();
         permanentCardEffects = new ArrayList<>();
 
@@ -43,20 +46,15 @@ public abstract class DevelopmentCard {
             Effects e = pe.searchPermanentEffects(x.getType(), x.getParameter(), x.getResourceEarned(),  x.getQuantity(), x.getEffectCost());
             permanentCardEffects.add(e);
         }
-        
     }
-    public BonusInteraction makeImmediateEffects(PlayerHandler player) {
-        BonusInteraction bonusInteraction = null;
-        for (Effects x: immediateCardEffects ) {
-            bonusInteraction = x.doEffect(player);
-        }
-        //posso fare quest cosa di riscrivere e prendere l'ultimo tanto sono dello stesso tipo se gli effetti appartengono alla stessa carta
-        return bonusInteraction;
-	}
 
-    public void makePermannetEffects(Player player) {
-       //TODO: può essere scelto l'effetto permanente da attivare
-        }
+    public boolean isChoicePe() {
+        return choicePe;
+    }
+
+    public List<Effects> getPermanentCardEffects() {
+        return permanentCardEffects;
+    }
 
     public List<Effects> getImmediateCardEffects() {
         return immediateCardEffects;

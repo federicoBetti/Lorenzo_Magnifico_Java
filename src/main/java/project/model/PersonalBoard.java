@@ -46,7 +46,7 @@ public class PersonalBoard {
 
     private List<LeaderCard> myLeaderCard;
 
-    PersonalBoard(){
+    public PersonalBoard(){
     	territories = new LinkedList<>();
     	buildings = new LinkedList<>();
     	myLeaderCard = new ArrayList<>();

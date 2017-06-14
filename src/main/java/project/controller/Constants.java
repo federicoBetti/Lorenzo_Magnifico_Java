@@ -78,6 +78,7 @@ public class Constants {
     public static final String TOWER_ACTION = "tower-action";
     public static final String BONUS_PRODUCTION_HARVESTER_ACTION = "bonus-production-harvester-action";
     public static final String OK_OR_NO = "ok-or-no";
+    public static final String CHOICE_PE = "choice-pe";
 
 
     private Constants(){}

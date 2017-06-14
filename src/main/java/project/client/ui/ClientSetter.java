@@ -10,9 +10,12 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.model.Board;
+import project.model.FamilyMember;
+import project.model.PersonalBoard;
+import project.model.Score;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * this class is the "bridge" between user interface and client.
@@ -21,29 +24,36 @@ public class ClientSetter {
     AbstractClient client;
     AbstractUI ui;
 
+    Board uiBoard;
+    PersonalBoard uiPersonalBoard;
+    Score uiScore;
+    FamilyMember[] uiFamilyMembers;
+
+    //todo creare board
     public ClientSetter(String kindOfUI ) {
+        uiBoard = new Board();
+        uiPersonalBoard = new PersonalBoard();
+        uiScore = new Score();
+        uiFamilyMembers = new FamilyMember[4];
+
         if ( kindOfUI.equals("CLI"))
             ui = new Cli(this);
         else
             ui = new Gui(this);
-        setConnectionType();
         ui.startUI();
     }
 
-    private void setConnectionType() {
-        System.out.println("Select kind of connection: 1-Socket, 2-RMI ");
-        Scanner input = new Scanner(System.in);
-        int connectionType = input.nextInt();
+    private void setConnectionType(String connectionType) {
 
         switch (connectionType) {
-            case 1:
+            case "socket":
                 try {
                     client = new SocketClient(this);
                 } catch (ClientConnectionException e) {
                     // errore nella conessione socket
                 }
                 break;
-            case 2:
+            case "rmi":
                 try {
                     client = new RMIClient(this);
                 } catch (ClientConnectionException e) {
@@ -63,7 +73,6 @@ public class ClientSetter {
     public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
         client.loginRequest(loginParameter);
     }
-
 
     public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
         client.takeDevCard(towerColour, floor, familiarColour);
@@ -122,5 +131,9 @@ public class ClientSetter {
 
     public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
         client.discardLeaderCard(name);
+    }
+
+    public void prayOrNot(String action) throws IOException, ClassNotFoundException {
+        client.prayOrNot(action);
     }
 }
