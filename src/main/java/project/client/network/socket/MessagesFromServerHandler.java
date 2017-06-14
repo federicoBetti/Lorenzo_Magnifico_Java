@@ -17,7 +17,7 @@ public class MessagesFromServerHandler {
     SocketClient client;
 
 
-    public MessagesFromServerHandler(SocketClient client ){
+    public MessagesFromServerHandler( SocketClient client ){
         map = new HashMap<>();
         this.client = client;
         map.put(Constants.YOUR_TURN, this::mainContext );
@@ -28,6 +28,18 @@ public class MessagesFromServerHandler {
         map.put(Constants.PERSONAL_BOARD_UPDATE, this:: personalBoardUpdate );
         map.put(Constants.FAMILY_MEMBER_UPDATE, this:: familyMemberUpdate );
         map.put(Constants.BOARD_UPDATE, this:: boardUpdate );
+        map.put(Constants.CANT_DO_ACTION, this::cantDoAction );
+        map.put(Constants.BOTH_PAYMENT_METHODS_AVAILABLE, this::bothPaymentsAvailable );
+    }
+
+    private void bothPaymentsAvailable() {
+        client.bothPaymentsAvailable();
+    }
+
+    private void cantDoAction() throws IOException, ClassNotFoundException {
+        System.out.println("you have not the minimun requirements for acting the action.\n " +
+                "please try to act another action");
+        client.waitingForTheNewInteraction();
     }
 
     private void boardUpdate() throws IOException, ClassNotFoundException {

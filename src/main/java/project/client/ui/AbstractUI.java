@@ -1,6 +1,9 @@
 package project.client.ui;
 
+import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 
 import java.io.IOException;
 
@@ -15,5 +18,13 @@ public abstract class AbstractUI {
 
     public abstract void takeBonusCard(TowerAction towerAction);
 
-    public abstract void mainContext();
+    public abstract void bothPaymentsAvailable();
+
+    public abstract void loginRequest(String loginParameter) throws IOException, ClassNotFoundException;
+
+    public abstract void discardLeaderCard(String name) throws IOException, ClassNotFoundException;
+
+    public abstract void prayOrNot(String action) throws IOException, ClassNotFoundException;
+
+    public void mainContext(){}
 }

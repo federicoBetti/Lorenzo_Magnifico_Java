@@ -4,7 +4,10 @@ import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
 import project.controller.Constants;
+import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,14 +27,10 @@ public class Cli extends AbstractUI {
         context = new ConnectionContext(this);
     }
 
+    //context methods
     @Override
-    public void startUI() {
-        new Keyboard().start();
-    }
-
-    @Override
-    public void takeBonusCard(TowerAction towerAction) {
-
+    public void bothPaymentsAvailable() {
+        context = new BothPaymentsVentureCards(this);
     }
 
     public void mainContext() {
@@ -70,8 +69,20 @@ public class Cli extends AbstractUI {
         context = new MarketContext(this);
     }
 
+    @Override
     public void loginRequest( String lineFromKeyBoard ) throws IOException, ClassNotFoundException {
         clientSetter.loginRequest(lineFromKeyBoard);
+    }
+
+    @Override
+    public void startUI() {
+        new Keyboard().start();
+    }
+
+    @Override
+    public void takeBonusCard(TowerAction towerAction) {
+        context = new TakeBonusCard(this, towerAction);
+        context.printHelp();
     }
 
     public void choseAndTakeDevCard( String lineFromKeyBoard ) throws IOException, ClassNotFoundException, InputException {
@@ -81,7 +92,6 @@ public class Cli extends AbstractUI {
         clientSetter.takeDevCard(parameters[0], parameters[1], parameters[2]);
 
     }
-
 
     //todo aggiustare come parametri giusti la chiamata
     public void chooseProductionParameters(String lineFromKeyBoard) throws IOException, ClassNotFoundException, InputException {
@@ -119,11 +129,28 @@ public class Cli extends AbstractUI {
         clientSetter.discardLeaderCard(name);
     }
 
-    public void prayOrNot( String action ) throws InputException, IOException, ClassNotFoundException {
-        context.checkValidInput(action);
+    public void prayOrNot( String action ) throws IOException, ClassNotFoundException {
+        try {
+            context.checkValidInput(action);
+        } catch (InputException e) {
+            e.printStackTrace();
+        }
         clientSetter.prayOrNot(action);
     }
 
+    public void choosePayment(String action) {
+        try {
+            context.checkValidInput(action);
+        } catch (InputException e) {
+            context.printHelp();
+        }
+
+    }
+
+    public void showTowers() {
+        //todo fare il metodo di print per le varie caratteristiche delle carte e per gli effetti
+        //clientSetter.getUiBoard().getAllTowers().printTowers();
+    }
 
     private class Keyboard extends Thread {
 

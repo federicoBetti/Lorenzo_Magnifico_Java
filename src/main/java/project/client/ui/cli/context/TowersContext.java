@@ -18,8 +18,13 @@ public class TowersContext extends AbstractContext {
 
     public TowersContext ( Cli cli ) throws IOException, ClassNotFoundException, InputException {
         super(cli);
+        map.put(CliConstants.SHOW_TOWERS, this:: showTowers );
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+    }
+
+    private void showTowers() {
+        //todo
     }
 
     @Override

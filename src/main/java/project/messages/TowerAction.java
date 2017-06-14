@@ -61,6 +61,16 @@ public class TowerAction extends BonusInteraction {
 	}
 
 
+	public void printBonusAction(){
+    	System.out.println("Bonus tower action:\n" +
+						   "Dice value: " +newCardDicevalue +"\n" +
+						   "Kind of card" + kindOfCard +"\n" +
+						   "Resource discounted:"+ discountedResource1 + "\n" +
+						   "Quantity discounted"+quantityDiscounted1 + "\n");
+    	if ( discountedResource2 != "empty")
+    		System.out.println("Second resource discounted" + discountedResource2 +"\n" +
+							   "Second resource discounted" + quantityDiscounted2);
+	}
 	@Override
 	public String toString() {
 		return Constants.TOWER_ACTION;

@@ -84,6 +84,7 @@ public class Constants {
     public static final String PERSONAL_BOARD_UPDATE = "personal-board-update";
     public static final String SCORE_UPDATE = "score-update";
     public static final String BOARD_UPDATE = "board-update";
+    public static final String CANT_DO_ACTION = "cant-do-action";
 
 
     private Constants(){}

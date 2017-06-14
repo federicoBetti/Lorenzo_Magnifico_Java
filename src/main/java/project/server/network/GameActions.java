@@ -6,6 +6,8 @@ import project.controller.effects.realeffects.AddCoin;
 import project.controller.effects.realeffects.Effects;
 import project.controller.FakeFamiliar;
 import project.controller.supportfunctions.AllSupportFunctions;
+import project.messages.BonusInteraction;
+import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.Room;
@@ -407,8 +409,17 @@ public class GameActions {
     }
 
     public void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
-        for (Effects effect : card.getImmediateCardEffects())
-            player.sendAnswer(effect.doEffect(player));
+        for (Effects effect : card.getImmediateCardEffects()) {
+            BonusInteraction returnFromEffect = effect.doEffect(player);
+            if ( returnFromEffect instanceof TowerAction ){
+                try {
+                    player.sendBonusTowerAction(returnFromEffect);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            player.sendAnswer(returnFromEffect);
+        }
     }
 
     public void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {

@@ -109,9 +109,6 @@ public class ClientSetter {
         //to implement
     }
 
-    public void notifyClient(Notify notify) {
-        //to implement
-    }
 
     public void endTurn() {
         //to implement
@@ -169,5 +166,44 @@ public class ClientSetter {
 
     public void connect(String username, String password) {
         System.out.println(username + " " + password);
+    }
+
+    public void bothPaymentsAvailable() {
+        ui.bothPaymentsAvailable();
+    }
+
+    public void notifyClient(Notify notify) {
+    }
+
+    public Board getUiBoard() {
+        return uiBoard;
+    }
+
+    public void setUiBoard(Board uiBoard) {
+        this.uiBoard = uiBoard;
+    }
+
+    public PersonalBoard getUiPersonalBoard() {
+        return uiPersonalBoard;
+    }
+
+    public void setUiPersonalBoard(PersonalBoard uiPersonalBoard) {
+        this.uiPersonalBoard = uiPersonalBoard;
+    }
+
+    public Score getUiScore() {
+        return uiScore;
+    }
+
+    public void setUiScore(Score uiScore) {
+        this.uiScore = uiScore;
+    }
+
+    public FamilyMember[] getUiFamilyMembers() {
+        return uiFamilyMembers;
+    }
+
+    public void setUiFamilyMembers(FamilyMember[] uiFamilyMembers) {
+        this.uiFamilyMembers = uiFamilyMembers;
     }
 }

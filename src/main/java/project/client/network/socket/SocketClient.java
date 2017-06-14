@@ -117,7 +117,6 @@ public class SocketClient extends AbstractClient {
         clientSetter.mainContext();
     }
 
-
     //receive answers
     public void takeBonusCard() throws IOException, ClassNotFoundException {
         TowerAction towerAction = (TowerAction) objectInputStream.readObject();
@@ -222,6 +221,10 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.writeObject(kindOfRequest);
         objectOutputStream.flush();
         objectOutputStream.reset();
+    }
+
+    public void bothPaymentsAvailable() {
+        clientSetter.bothPaymentsAvailable();
     }
 }
 

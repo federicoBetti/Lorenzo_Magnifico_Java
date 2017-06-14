@@ -56,7 +56,7 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public void cantDoAction(OkOrNo okOrNo) {
+    public void cantDoAction() {
         try {
             myClient.cantDoAction();
         } catch (RemoteException e) {
@@ -65,7 +65,7 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts)  {
+    public int canUseBothPaymentMethod()  {
         try {
             myClient.canUseBothPaymentMethod();
         } catch (RemoteException e) {
@@ -93,6 +93,11 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
+    public void sendString(String message) {
+        //todo uaglio
+    }
+
+    @Override
     public void sendNotification(Notify notifications) {
 
     }
@@ -107,6 +112,11 @@ public class RMIPlayerHandler extends PlayerHandler{
         return 0;
     }
 
+    @Override
+    public void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException {
+
+    }
+
     // qua inizia la parte delle chiamate del client sul server
 
     void takeDevCard(String towerColour, int floor, String familyMemberColour) throws RemoteException {
@@ -114,9 +124,9 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             clientTakeDevelopementCard(towerColour,floor,familyMember);
         } catch (CantDoActionException e) {
-            cantDoAction(new OkOrNo());
+            cantDoAction();
         } catch (CanUseBothPaymentMethodException e) {
-            canUseBothPaymentMethod(new BothCostCanBeSatisfied());
+            canUseBothPaymentMethod();
         }
     }
 
@@ -133,7 +143,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             harvester(position, familyMember, servantsNumber);
         } catch (CantDoActionException e) {
-            cantDoAction(new OkOrNo());
+            cantDoAction();
         }
     }
 
@@ -148,7 +158,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             production(position, familyMember, buildingCards );
         } catch (CantDoActionException e) {
-            cantDoAction(new OkOrNo());
+            cantDoAction();
         }
     }
 
@@ -157,7 +167,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             goToMarket(position, familyMember);
         } catch (CantDoActionException e) {
-            cantDoAction(new OkOrNo());
+            cantDoAction();
         }
     }
 
@@ -165,7 +175,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             playLeaderCard(leaderCardName);
         } catch (CantDoActionException e) {
-            cantDoAction(new OkOrNo());
+            cantDoAction();
         }
     }
 
@@ -173,7 +183,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         try {
             discardLeaderCard(leaderCardName);
         } catch (CantDoActionException e) {
-            cantDoAction(new OkOrNo());
+            cantDoAction();
         }
     }
 

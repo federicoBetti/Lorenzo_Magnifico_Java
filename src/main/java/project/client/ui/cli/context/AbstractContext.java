@@ -35,8 +35,6 @@ public abstract class AbstractContext {
 
     public abstract void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException;
 
-
-
     public void checkFamilyMemberColour( String colour ) throws InputException {
         if ( !(colour.equals(Constants.FAMILY_MEMBER_COLOUR_BLACK) ||
                 colour.equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL) ||

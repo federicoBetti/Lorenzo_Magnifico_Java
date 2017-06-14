@@ -46,9 +46,9 @@ public abstract class PlayerHandler extends Player {
             if (towerColor == "purple") {
                 canTakeVenturesCard = checkFunctions.checkCardCostVentures((VenturesCard) room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor(), this, towerOccupied, room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor(), familyM.getMyValue());
                 if (canTakeVenturesCard == 0 || !canTakeCard)
-                    throw new CantDoActionException(this, NO_ACTION_CAN_BE_DONE);
+                    throw new CantDoActionException();
                 else if (canTakeVenturesCard == 3){
-                    int answer = canUseBothPaymentMethod(new BothCostCanBeSatisfied());
+                    int answer = canUseBothPaymentMethod();
                     //anser è la risposta su che pagamento vuoi usare
                 }
                 else room.getGameActions().takeVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied, canTakeVenturesCard);
@@ -57,7 +57,7 @@ public abstract class PlayerHandler extends Player {
                 if (canTakeCard) {
                     room.getGameActions().takeNoVenturesCard(room.getBoard().getTrueArrayList(towerColor)[floor], familyM, this, towerOccupied);
                     room.getGameActions().broadcastNotifications(new Notify(getName() + " has taken " + room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor().getName()));
-                } else throw new CantDoActionException(NO_ACTION_CAN_BE_DONE);
+                } else throw new CantDoActionException();
             }
 
     }
@@ -85,7 +85,7 @@ public abstract class PlayerHandler extends Player {
         if (canTakeCard)
             room.getGameActions().harvester(position,familyM,servantsNumber,this);
         else
-            throw new CantDoActionException(this,NO_ACTION_CAN_BE_DONE);
+            throw new CantDoActionException();
     };
 
 
@@ -106,7 +106,7 @@ public abstract class PlayerHandler extends Player {
         if (canTakeCard)
             room.getGameActions().production(position,familyM, (ArrayList<BuildingCard>) cardToProduct,this);
         else
-            throw new CantDoActionException(this,NO_ACTION_CAN_BE_DONE);
+            throw new CantDoActionException();
     };
 
     /**
@@ -119,7 +119,7 @@ public abstract class PlayerHandler extends Player {
         if (canGoToMarket)
             room.getGameActions().goToMarket(position,familyM,this);
         else
-            throw new CantDoActionException(this,NO_ACTION_CAN_BE_DONE);
+            throw new CantDoActionException();
     };
 
     /**
@@ -137,7 +137,7 @@ public abstract class PlayerHandler extends Player {
         if (LeaderCardRequirements.checkRequirements(leaderName,this))
             room.getGameActions().playLeaderCard(leaderName,this);
         else
-            throw new CantDoActionException(this,NO_ACTION_CAN_BE_DONE);
+            throw new CantDoActionException();
     };
 
     /**
@@ -152,7 +152,7 @@ public abstract class PlayerHandler extends Player {
         }
         //arriva qua in caso non ha trovato la leader card nel proprio mazzo, forse è un controllo inutile se presuppongo che mi arrivano
         //carte solo che ho
-        throw new CantDoActionException(this,NO_ACTION_CAN_BE_DONE);
+        throw new CantDoActionException();
     };
 
     /**
@@ -204,9 +204,9 @@ public abstract class PlayerHandler extends Player {
 
 
 
-    public abstract void cantDoAction(OkOrNo okOrNo);
+    public abstract void cantDoAction();
 
-    public abstract int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) ;
+    public abstract int canUseBothPaymentMethod() ;
 
     public abstract void itsMyTurn(); //non saprei che parametri passare
 
@@ -236,6 +236,7 @@ public abstract class PlayerHandler extends Player {
 
 
 
+    public abstract void sendString( String message );
 
     public abstract void sendAnswer(Object returnFromEffect);
 
@@ -244,4 +245,6 @@ public abstract class PlayerHandler extends Player {
     public abstract void sendUpdates(Updates updates);
 
     public abstract int sendPossibleChoice(String kindOfChoice);
+
+    public abstract void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException;
 }
