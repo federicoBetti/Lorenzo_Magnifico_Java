@@ -21,7 +21,7 @@ public class CliConstants {
     public static final String JUMP_TURN ="jump-turn";
 
     //Login-Context
-    public static final String LOGIN = "login";
+    public static final String LOGIN = "fileXML/login";
 
     public static final String EXIT = "exit";
     public static final String TAKE_DEV_CARD = "take-development-card" ;

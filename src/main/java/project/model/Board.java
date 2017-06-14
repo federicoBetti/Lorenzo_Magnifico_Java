@@ -85,6 +85,7 @@ public final class Board {
     private int numberOfFamilyMemberPlayedInThisRound;
 
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
+    private Deck deckCard;
 
 
     public Board(int numberOfPlayer){
@@ -251,6 +252,10 @@ public final class Board {
 
     public int[] getDiceValue() {
         return diceValue;
+    }
+
+    public Deck getDeckCard() {
+        return deckCard;
     }
 
     public void setExcommunicationZone(ExcommunicationZone[] excommunicationZone) {

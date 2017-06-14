@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaSceneBuilder.ciao.SecondoController">
+   <children>
+      <Label layoutX="141.0" layoutY="793.0" text="attendere">
+         <font>
+            <Font name="Lucida Blackletter" size="71.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

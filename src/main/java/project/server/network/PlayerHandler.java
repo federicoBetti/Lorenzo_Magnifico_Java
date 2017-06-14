@@ -15,6 +15,7 @@ import project.server.Room;
 import project.server.network.exception.*;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public abstract class PlayerHandler extends Player {
      * @param floor
      * @param familyM
      */
-    protected void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException, CanUseBothPaymentMethodException, IOException, ClassNotFoundException {
+    protected void clientTakeDevelopementCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException, CanUseBothPaymentMethodException{
         boolean canTakeCard = checkFunctions.checkPosition(floor, room.getBoard().getTrueArrayList(towerColor), familyM);
         int canTakeVenturesCard;
         boolean towerOccupied = checkFunctions.checkTowerOccupied(room.getBoard().getTrueArrayList(towerColor));
@@ -205,7 +206,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void cantDoAction(OkOrNo okOrNo);
 
-    public abstract int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) throws IOException, ClassNotFoundException;
+    public abstract int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) ;
 
     public abstract void itsMyTurn(); //non saprei che parametri passare
 
@@ -242,5 +243,5 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void sendUpdates(Updates updates);
 
-    public abstract int sendPossibleChoice(String kindOfChoice) throws IOException, ClassNotFoundException;
+    public abstract int sendPossibleChoice(String kindOfChoice);
 }

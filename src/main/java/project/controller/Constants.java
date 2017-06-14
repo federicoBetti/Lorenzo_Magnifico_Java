@@ -30,11 +30,11 @@ public class Constants {
     public static final int SOCKET_PORT = 1337;
     public static final int RMI_PORT = 1338;
 
-    public static final String LOGIN_SUCCEDED = "login-succeded";
+    public static final String LOGIN_SUCCEDED = "fileXML.login-succeded";
     public static final String YOUR_TURN = "your-turn";
 
     //network constants
-    public static final String LOGIN_REQUEST = "login-request";
+    public static final String LOGIN_REQUEST = "fileXML.login-request";
     public static final String TAKE_DEV_CARD = "client-Take-Developement-Card";
     public static final String CHOOSE_PAYMENT_FOR_VENTURE_CARD = "choose-Payment-Venture-card";
     public static final String STOP = "stop";

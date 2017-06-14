@@ -48,7 +48,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
 
-    @Override
     public void takeDevCard(String[] parameters) throws IOException {
         //myServer.takeDevCard(myUniqueId);
     }

@@ -183,16 +183,25 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) throws IOException, ClassNotFoundException {
+    public int canUseBothPaymentMethod(BothCostCanBeSatisfied bothCosts) {
         Notify notify = new Notify(Constants.BOTH_PAYMENT_METHODS_AVAILABLE);
 
-        objectOutputStream.writeObject(bothCosts.toString());
+        try {
+            objectOutputStream.writeObject(bothCosts.toString());
+
 
         objectOutputStream.writeObject(notify);
         objectOutputStream.flush();
         objectOutputStream.reset();
 
-        return Integer.parseInt((String) objectInputStream.readObject());
+
+            return Integer.parseInt((String) objectInputStream.readObject());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 
@@ -219,13 +228,20 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public int sendPossibleChoice(String kindOfChoice) throws IOException, ClassNotFoundException {
+    public int sendPossibleChoice(String kindOfChoice) {
 
+        int readObject = -1;
+        try {
         objectOutputStream.writeObject(kindOfChoice);
         objectOutputStream.flush();
         objectOutputStream.reset();
-
-        return (int)objectInputStream.readObject();
+        readObject =  (int)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return readObject;
     }
 
 

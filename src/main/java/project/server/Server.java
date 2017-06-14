@@ -42,12 +42,12 @@ public class Server {
 
     private void startServer( int socketPort, int rmiPort ) throws IOException {
         serverSocket.startServer(socketPort);
-        rmiServer.startServerRmi(rmiPort);
+        rmiServer.startServer(rmiPort);
     }
 
 
     /**
-     * TODO implemetare tutti i metodi che si occupano della gestione delle room e del login dei giocatori
+     * TODO implemetare tutti i metodi che si occupano della gestione delle room e del fileXML.login dei giocatori
      */
 
     public void loginRequest(String nickname, PlayerHandler player) throws IOException {

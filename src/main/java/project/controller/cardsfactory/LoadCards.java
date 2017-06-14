@@ -42,7 +42,7 @@ public class LoadCards {
 
 
     void loadingCardsFromJson( Deck deck ) throws FileNotFoundException {
-
+/*
         Iterator iterator = new Iterator();
 
 
@@ -58,6 +58,7 @@ public class LoadCards {
                 deck.getDevelopmentdeck()[ iterator.getPeriod1() ][ iterator.getPeriod2() ][ iterator.getPeriod3() ] = card;
                 iterator.next();
             }
+            */
 
         }
 

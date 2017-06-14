@@ -138,7 +138,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     @Override
     public void finalPointsFromVenturesCard() {
         for (VenturesCard venturesCard: player.getPersonalBoardReference().getVentures()){
-            venturesCard.makeImmediateEffects(player);
+            applyEffects(venturesCard,player);
         }
     }
 
@@ -194,12 +194,18 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         player.sendAnswer(bonusInteraction);
     }
 
-
+/*
     @Override
     public BonusInteraction applyEffects(DevelopmentCard card, PlayerHandler player){
         return card.makeImmediateEffects(player);
     }
+    */
 
+
+    @Override
+    public BonusInteraction applyEffects(DevelopmentCard card, PlayerHandler player) {
+        return null;
+    }
 
     @Override
     public void setFamiliar(Position zone, FamilyMember familyMember) {

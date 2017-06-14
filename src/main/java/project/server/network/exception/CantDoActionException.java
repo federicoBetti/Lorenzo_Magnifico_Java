@@ -7,7 +7,7 @@ import project.messages.OkOrNo;
 public class CantDoActionException extends Exception {
     public CantDoActionException(PlayerHandler playerHandler, String s){
         super(s);
-        playerHandler.cantDoAction(new OkOrNo(false));
+        playerHandler.cantDoAction(new OkOrNo());
     }
     public CantDoActionException(String s){
         super(s);

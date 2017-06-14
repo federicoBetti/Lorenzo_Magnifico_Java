@@ -136,4 +136,20 @@ public class ClientSetter {
     public void prayOrNot(String action) throws IOException, ClassNotFoundException {
         client.prayOrNot(action);
     }
+
+    public void askForPraying() {
+    }
+
+    public void actionOk() {
+    }
+
+    public void cantDoAction() {
+    }
+
+    public void canUseBothPaymentMethod() {
+    }
+
+    public void itsMyTurn() {
+
+    }
 }

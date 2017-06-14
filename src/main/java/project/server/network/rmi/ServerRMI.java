@@ -95,7 +95,7 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
         server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
     }
 
-    public void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) {
+    public void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) throws RemoteException {
         getPlayerHandler(clientUniqueId).takeDevCard(towerColour, floor, familyMemberColour);
     }
 

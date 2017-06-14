@@ -237,7 +237,7 @@ public class GameActions {
      * @param servantsNumber
      * @param player
      */
-    public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player) throws IOException, ClassNotFoundException {
+    public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player)  {
         int malusByField;
         if (position == 0)
             malusByField = 0;
@@ -264,7 +264,7 @@ public class GameActions {
      * @param cardToProduct
      * @param player
      */
-    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, PlayerHandler player) throws IOException, ClassNotFoundException {
+    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, PlayerHandler player) {
         getRightSupportFunctions(player).setFamiliar(room.getBoard().getTrueArrayList("production")[position], familyM);
         ProductionUpdate productionUpdate = new ProductionUpdate(room.getBoard().getProductionZone());
 
@@ -411,7 +411,7 @@ public class GameActions {
             player.sendAnswer(effect.doEffect(player));
     }
 
-    public void makePermannetEffects(PlayerHandler player, DevelopmentCard card ) throws IOException, ClassNotFoundException {
+    public void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {
 
         if ( card.isChoicePe() ) {
             int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
