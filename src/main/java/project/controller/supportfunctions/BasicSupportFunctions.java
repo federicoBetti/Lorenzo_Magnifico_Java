@@ -258,7 +258,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @Override
     public void pray(int victoryPointsToAdd){
-        player.getScore().setVictoryPoints(0);
+        player.getScore().setFaithPoints(0);
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsToAdd);
     }
 

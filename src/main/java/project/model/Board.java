@@ -252,4 +252,8 @@ public final class Board {
     public int[] getDiceValue() {
         return diceValue;
     }
+
+    public void setExcommunicationZone(ExcommunicationZone[] excommunicationZone) {
+        this.excommunicationZone = excommunicationZone;
+    }
 }

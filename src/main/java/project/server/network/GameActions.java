@@ -30,14 +30,6 @@ public class GameActions {
         return room.getMySupportFunction(player);
     }
 
-    /**
-     * ho fatto due passaggi diversi per le carte venutres, che possono avere più tipi di pagamento e qundi voglo avere come paramentro quale pagamento usare
-     * @param zone
-     * @param familyM
-     * @param player
-     * @param towerIsOccupied
-     */
-
     private void takeDevelopementCard(Tower zone, FamilyMember familyMember, PlayerHandler player){
 
         getRightSupportFunctions(player).setFamiliar(zone, familyMember);
@@ -49,10 +41,18 @@ public class GameActions {
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
         player.sendUpdates( new ScoreUpdate(player));
+        player.sendUpdates( new FamilyMemberUpdate(player));
 
         nextTurn(player);
     }
 
+    /**
+     * ho fatto due passaggi diversi per le carte venutres, che possono avere più tipi di pagamento e qundi voglo avere come paramentro quale pagamento usare
+     * @param zone
+     * @param familyM
+     * @param player
+     * @param towerIsOccupied
+     */
     public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
         getRightSupportFunctions(player).payCard(zone.getCardOnThisFloor(), towerIsOccupied, zone.getDiceValueOfThisFloor(), familyM.getMyValue());
         takeDevelopementCard(zone,familyM,player);
@@ -180,8 +180,10 @@ public class GameActions {
     private void askForPraying(int period) {
         for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
-            if (player.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[period])
+            if (player.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[period]) {
                 player.sendAskForPraying();
+                player.sendUpdates( new ScoreUpdate(player));
+            }
             else{
                 takeExcommunication(player);
             }
@@ -313,7 +315,7 @@ public class GameActions {
      * @param leaderName
      * @return
      */
-    public void discardLeaderCard(String leaderName, Player player){
+    public void discardLeaderCard(String leaderName, PlayerHandler player){
         int numberToDelate = 0;
         for (LeaderCard leaderCard: player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
@@ -323,6 +325,7 @@ public class GameActions {
         }
 
         player.getPersonalBoardReference().getMyLeaderCard().remove(numberToDelate);
+        player.sendUpdates(new PersonalBoardUpdate(player));
     }
 
     /**
@@ -355,16 +358,25 @@ public class GameActions {
         takeCouncilPrivilege(privilegeNumber,player);
 
         broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
-        player.sendUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
+        player.sendUpdates(new PersonalBoardUpdate(player));
     }
 
     /**
      *
      * @param privilegeNumber
-     * @param playerHandler
+     * @param player
      */
-    public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler playerHandler) {
-        getRightSupportFunctions(playerHandler).takeCouncilPrivilege(privilegeNumber);
+    public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player ) {
+        getRightSupportFunctions(player).takeCouncilPrivilege(privilegeNumber);
+
+        if ( privilegeNumber > 0 && privilegeNumber < 2 ){
+            player.sendUpdates(new PersonalBoardUpdate(player));
+        }
+        else {
+            player.sendUpdates(new ScoreUpdate(player));
+        }
+
+        broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
     }
 
     public void broadcastNotifications(Notify notifications){
@@ -374,15 +386,17 @@ public class GameActions {
         }
     }
 
-    public void pray(PlayerHandler playerHandler) {
-        int victoryPointsToAdd = room.getBoard().getVictoryPointsInFaithTrack()[playerHandler.getScore().getFaithPoints()];
-        getRightSupportFunctions(playerHandler).pray(victoryPointsToAdd);
-
+    public void pray(PlayerHandler player) {
+        int victoryPointsToAdd = room.getBoard().getVictoryPointsInFaithTrack()[player.getScore().getFaithPoints()];
+        getRightSupportFunctions(player).pray(victoryPointsToAdd);
+        player.sendUpdates( new ScoreUpdate(player));
     }
 
     public void takeExcommunication(PlayerHandler playerHandler) {
         ExcommunitationTile card = room.getBoard().getExcommunicationZone()[room.getBoard().getPeriod()].getCardForThisPeriod();
         card.makeEffect(playerHandler);
+
+        broadcastUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone()));
     }
 
     private void broadcastUpdates( Updates updates ){
