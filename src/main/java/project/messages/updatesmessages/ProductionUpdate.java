@@ -17,7 +17,7 @@ public class ProductionUpdate extends Updates {
 
     @Override
     public String toString() {
-        return Constants.PRODUCTION_UPDATE;
+        return Constants.BOARD_UPDATE;
     }
 
     @Override

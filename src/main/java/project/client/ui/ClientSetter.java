@@ -10,6 +10,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.*;
 import project.model.Board;
 import project.model.FamilyMember;
 import project.model.PersonalBoard;
@@ -100,11 +101,7 @@ public class ClientSetter {
         client.productionAction(parameters);
     }
 
-    public void waitingForNewIntraction() throws IOException, ClassNotFoundException {
-        client.waitingForTheNewInteraction();
-    }
     //metodi di ritorno
-
     public void takeBonusCard(TowerAction towerAction ){
         ui.takeBonusCard(towerAction);
     }
@@ -152,6 +149,23 @@ public class ClientSetter {
     }
 
     public void itsMyTurn() {
+    }
 
+    //updates
+
+    public void boardUpdate(Updates update) {
+        update.doUpdate(uiBoard);
+    }
+
+    public void scoreUpdate(Updates update) {
+        update.doUpdate(uiScore);
+    }
+
+    public void personalBoardUpdate(Updates update) {
+        update.doUpdate(uiPersonalBoard);
+    }
+
+    public void familyMemberUpdate(Updates update) {
+        update.doUpdate(uiFamilyMembers);
     }
 }

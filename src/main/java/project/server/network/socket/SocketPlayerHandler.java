@@ -231,6 +231,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         sendAnswer(updates);
     }
 
+
+    //todo controllare il -1 che è brutto
     @Override
     public int sendPossibleChoice(String kindOfChoice) {
 

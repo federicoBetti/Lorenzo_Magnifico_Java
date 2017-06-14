@@ -1,6 +1,5 @@
 package project.client.network.socket;
 
-import project.client.network.socket.SocketClient;
 import project.client.ui.cli.CliConstants;
 import project.controller.Constants;
 
@@ -24,6 +23,27 @@ public class MessagesFromServerHandler {
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: waitingForNewInteraction );
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
+        //updates
+        map.put(Constants.SCORE_UPDATE, this:: scoreUpdate );
+        map.put(Constants.PERSONAL_BOARD_UPDATE, this:: personalBoardUpdate );
+        map.put(Constants.FAMILY_MEMBER_UPDATE, this:: familyMemberUpdate );
+        map.put(Constants.BOARD_UPDATE, this:: boardUpdate );
+    }
+
+    private void boardUpdate() throws IOException, ClassNotFoundException {
+        client.boardUpdate();
+    }
+
+    private void familyMemberUpdate() throws IOException, ClassNotFoundException {
+        client.familyMemberUpdate();
+    }
+
+    private void personalBoardUpdate() throws IOException, ClassNotFoundException {
+        client.personalBoardUpdate();
+    }
+
+    private void scoreUpdate() throws IOException, ClassNotFoundException {
+        client.scoreUpdate();
     }
 
     private void takeBonusCard() {

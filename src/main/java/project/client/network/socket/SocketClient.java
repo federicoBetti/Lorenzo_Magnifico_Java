@@ -5,6 +5,7 @@ import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -110,6 +111,72 @@ public class SocketClient extends AbstractClient {
 
     }
 
+
+
+    public void mainContext() {
+        clientSetter.mainContext();
+    }
+
+
+    //receive answers
+    public void takeBonusCard() throws IOException, ClassNotFoundException {
+        TowerAction towerAction = (TowerAction) objectInputStream.readObject();
+        clientSetter.takeBonusCard(towerAction);
+    }
+
+    //updates
+
+    public void scoreUpdate() throws IOException, ClassNotFoundException {
+        Updates update = (ScoreUpdate)objectInputStream.readObject();
+        clientSetter.scoreUpdate(update);
+        try {
+            waitingForTheNewInteraction();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void personalBoardUpdate() throws IOException, ClassNotFoundException {
+        Updates update = (PersonalBoardUpdate)objectInputStream.readObject();
+        clientSetter.personalBoardUpdate(update);
+        try {
+            waitingForTheNewInteraction();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void familyMemberUpdate() throws IOException, ClassNotFoundException {
+        Updates update = (FamilyMemberUpdate)objectInputStream.readObject();
+        clientSetter.familyMemberUpdate(update);
+        try {
+            waitingForTheNewInteraction();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void boardUpdate() throws IOException, ClassNotFoundException {
+        Updates update = (DiceValueUpdate)objectInputStream.readObject();
+        clientSetter.boardUpdate(update);
+        try {
+            waitingForTheNewInteraction();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //sending methods
     void send2Parameters(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException{
         objectOutputStream.writeObject(parameter1);
         objectOutputStream.flush();
@@ -155,17 +222,6 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.writeObject(kindOfRequest);
         objectOutputStream.flush();
         objectOutputStream.reset();
-    }
-
-    public void mainContext() {
-        clientSetter.mainContext();
-    }
-
-
-    //receive answers
-    public void takeBonusCard() throws IOException, ClassNotFoundException {
-        TowerAction towerAction = (TowerAction) objectInputStream.readObject();
-        clientSetter.takeBonusCard(towerAction);
     }
 }
 

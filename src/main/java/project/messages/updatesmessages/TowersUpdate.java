@@ -17,7 +17,7 @@ public class TowersUpdate extends Updates {
 
     @Override
     public String toString() {
-        return Constants.TOWERS_UPDATE;
+        return Constants.BOARD_UPDATE;
     }
 
     @Override

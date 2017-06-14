@@ -22,6 +22,6 @@ public class ExcomunicationUpdate extends Updates {
 
     @Override
     public String toString() {
-        return Constants.EXCOMUNICATION_UPDATE;
+        return Constants.BOARD_UPDATE;
     }
 }

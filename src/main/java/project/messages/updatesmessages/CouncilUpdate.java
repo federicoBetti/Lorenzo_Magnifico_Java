@@ -18,7 +18,7 @@ public class CouncilUpdate extends Updates {
     }
     @Override
     public String toString() {
-        return Constants.COUNCIL_UPDATE;
+        return Constants.BOARD_UPDATE;
     }
 
     @Override

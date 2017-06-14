@@ -16,7 +16,7 @@ public class DiceValueUpdate extends Updates {
 
     @Override
     public String toString() {
-        return Constants.DICE_VALUE_UPDATE;
+        return Constants.BOARD_UPDATE;
     }
 
     @Override

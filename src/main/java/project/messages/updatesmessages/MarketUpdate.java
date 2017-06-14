@@ -17,7 +17,7 @@ public class MarketUpdate extends Updates {
 
     @Override
     public String toString() {
-        return Constants.MARKET_UPDATE;
+        return Constants.BOARD_UPDATE;
     }
 
     @Override

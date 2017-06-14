@@ -16,7 +16,7 @@ public class HarvesterUpdate extends Updates {
 
     @Override
     public String toString() {
-        return Constants.HARVESTER_UPDATE;
+        return Constants.BOARD_UPDATE;
     }
 
     @Override
