@@ -10,6 +10,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 import project.model.Board;
 import project.model.FamilyMember;
 import project.model.PersonalBoard;
