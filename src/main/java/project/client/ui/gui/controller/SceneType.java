@@ -1,4 +1,4 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
 /**
  * Created by federico on 10/06/17.

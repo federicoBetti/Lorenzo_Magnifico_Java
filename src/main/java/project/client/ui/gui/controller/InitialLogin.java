@@ -1,4 +1,4 @@
-package project.client.ui.gui.login;
+package project.client.ui.gui.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,7 +22,8 @@ public class InitialLogin {
     private String usernameChosen;
     private String passwordChosen;
 
-    private LoginBuilder mainController;
+    private MainController mainController;
+    private LoginBuilder loginBuilder;
 
 
     public InitialLogin(){
@@ -34,7 +35,11 @@ public class InitialLogin {
     private void initialize(){
     }
 
-    public void setMainController(LoginBuilder mainController) {
+    public void setLoginBuilder(LoginBuilder loginBuilder) {
+        this.loginBuilder = loginBuilder;
+    }
+
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
@@ -47,14 +52,13 @@ public class InitialLogin {
     }
 
     public void doConnection() {
+        loginBuilder.switchScene();
         usernameChosen = username.getText();
         passwordChosen = password.getText();
         username.setText("ciaovecchio");
         password.setText("ciaomerda");
         mainController.setConnectionType(connectionType);
         mainController.connect(usernameChosen,passwordChosen);
-        mainController.switchScene();
-        //connectClient(usernameChosen,passwordChosen,connectionType);
     }
 
 

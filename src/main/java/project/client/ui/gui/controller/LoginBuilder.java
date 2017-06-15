@@ -1,6 +1,4 @@
-package project.client.ui.gui.maingame;/**
- * Created by federico on 10/06/17.
- */
+package project.client.ui.gui.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,19 +13,27 @@ import project.client.ui.ClientSetter;
 
 import java.io.IOException;
 
-public class MainGameBuilder extends Application {
+public class LoginBuilder extends Application {
+
+    private BorderPane rootLayout;
+    protected Stage primaryStage;
+    private AnchorPane initialLoginScene;
+    private AnchorPane waitingLoginScene;
+    private ClientSetter clientSetter;
+    private MainController mainController;
+
+    private InitialLogin initialLogin;
+    private WaitingLogin waitingLogin;
 
 
-    private static BorderPane rootLayout;
-    private Stage primaryStage;
-    private static AnchorPane generalScene;
-    private static AnchorPane towersScene;
-    private static AnchorPane marketScene;
-    private static AnchorPane harvesterScene;
-    private static AnchorPane personalBoardScene;
-    private static AnchorPane productionScene;
-    private static AnchorPane councilScene;
-    private static AnchorPane leaderScene;
+    private  AnchorPane generalScene;
+    private  AnchorPane towersScene;
+    private  AnchorPane marketScene;
+    private  AnchorPane harvesterScene;
+    private  AnchorPane personalBoardScene;
+    private  AnchorPane productionScene;
+    private  AnchorPane councilScene;
+    private  AnchorPane leaderScene;
 
     private HarvesterController harvesterController;
 
@@ -37,35 +43,98 @@ public class MainGameBuilder extends Application {
     private String colour;
     private int faithPoints;
     private int turnOrder;
+    private BorderPane rootLayoutMainGame;
 
 
-    private static ClientSetter clientSetter;
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Login");
+        this.primaryStage.setResizable(false);
+        mainController = MainController.getInstance();
+        mainController.setLoginBuilder(this);
 
-    public static void main(String[] args) {
+        initRootLayout();
+
+        initializeInitialLogin();
+        initializeWaitingLogin();
+        showFirstPage();
+    }
+
+    /**
+     * Initializes the root layout.
+     */
+    private void initRootLayout() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/login/rootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.out.print("qua prendo l'eccezzione di chiusura");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Shows the person overview inside the root layout.
+     */
+    private void initializeInitialLogin() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/login/login.fxml"));
+            initialLoginScene = (AnchorPane) loader.load();
+
+            this.initialLogin = loader.getController();
+            initialLogin.setMainController(mainController);
+            initialLogin.setLoginBuilder(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initializeWaitingLogin() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/login/attesaInizioPartita.fxml"));
+            waitingLoginScene = (AnchorPane) loader.load();
+
+            this.waitingLogin = loader.getController();
+            waitingLogin.setMainController(mainController);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void switchScene() {
+        rootLayout.setCenter(waitingLoginScene);
+        return;
+    }
+
+    private void showFirstPage() {
+        rootLayout.setCenter(initialLoginScene);
+    }
+
+    public void main(String[] args) {
         launch(args);
     }
 
-    public static void setClientSetter(ClientSetter clientSetter) {
-        MainGameBuilder.clientSetter = clientSetter;
-    }
 
-    private Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+    public void startMainGame() {
         chatText = new TextField();
         colour = "rosso";
         faithPoints = 3;
         turnOrder = 2;
 
-        initRootLayout();
-    }
-
-    public static void initializeMainGame(int numberOfPlayer){
+        initRootLayoutMainGame();
         inizializzaGeneralMainGame();
         showPrimo();
 
@@ -80,24 +149,22 @@ public class MainGameBuilder extends Application {
         System.out.println("sono in start");
     }
 
-    private static void showPrimo() {
-        rootLayout.setCenter(generalScene);
+    private  void showPrimo() {
+        rootLayoutMainGame.setCenter(generalScene);
+        System.out.print("faccio vedere il primo");
     }
 
-    private static void inizializzaGeneralMainGame() {
+    private  void inizializzaGeneralMainGame() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/generalMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/generalMainGame.fxml"));
             generalScene = (AnchorPane) loader.load();
-
-            //generalScene.getStylesheets().add(("fileXML.login/primoCSS.css"));
-            // Set person overview into the center of root layout.
-            //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
             GeneralMainGameController controller = loader.getController();
-            //controller.setMainController(this);
+            controller.setLoginBuilder(this);
+            controller.setMainController(mainController);
             controller.uploadImages();
 
         } catch (IOException e) {
@@ -105,20 +172,21 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    private static void inizializzaTowers() {
+    private  void inizializzaTowers() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/towersMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/towersMainGame.fxml"));
             towersScene = (AnchorPane) loader.load();
 
-            //generalScene.getStylesheets().add(("fileXML.login/primoCSS.css"));
+            //generalScene.getStylesheets().add(("fileXML.controller/primoCSS.css"));
             // Set person overview into the center of root layout.
             //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
             TowersMainGameController controller = loader.getController();
-            //controller.setMainController(this);
+            controller.setLoginBuilder(this);
+            controller.setMainController(mainController);
             controller.uploadImages();
 
         } catch (IOException e) {
@@ -126,16 +194,17 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    private static void inizializzaMarket() {
+    private  void inizializzaMarket() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/marketMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/marketMainGame.fxml"));
             marketScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
             MarketController controller = loader.getController();
-            //controller.setMainController(this);
+            controller.setLoginBuilder(this);
+            controller.setMainController(mainController);
             controller.uploadImages();
 
         } catch (IOException e) {
@@ -143,20 +212,21 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    private static void inizializzaPersonalBoard() {
+    private  void inizializzaPersonalBoard() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/personalBoardMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/personalBoardMainGame.fxml"));
             personalBoardScene = (AnchorPane) loader.load();
 
-            //generalScene.getStylesheets().add(("fileXML.login/primoCSS.css"));
+            //generalScene.getStylesheets().add(("fileXML.controller/primoCSS.css"));
             // Set person overview into the center of root layout.
             //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
             PersonalBoardController controller = loader.getController();
-            //controller.setMainController(this);
+            controller.setLoginBuilder(this);
+            controller.setMainController(mainController);
             controller.uploadImages();
 
         } catch (IOException e) {
@@ -164,16 +234,16 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    private static void inizializzaHarvester() {
+    private  void inizializzaHarvester() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/harvesterMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/harvesterMainGame.fxml"));
             harvesterScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
             //harvesterController = loader.getController();
-            //harvesterController.setMainController(this);
+            //harvesterController.setLoginBuilder(this);
             //harvesterController.inizializeWithMain();
             //harvesterController.uploadImages();
 
@@ -182,16 +252,17 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    private static void inizializzaProduction() {
+    private  void inizializzaProduction() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/productionMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/productionMainGame.fxml"));
             productionScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
             ProductionController controller = loader.getController();
-            //controller.setMainController(this);
+            controller.setLoginBuilder(this);
+            controller.setMainController(mainController);
             controller.uploadImages();
 
         } catch (IOException e) {
@@ -202,14 +273,14 @@ public class MainGameBuilder extends Application {
     /**
      * Initializes the root layout.
      */
-    private void initRootLayout() {
+    private void initRootLayoutMainGame() {
         try {
             // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader(MainGameBuilder.class.getResource("/fileXML/mainGame/rootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/mainGame/rootLayout.fxml"));
+            rootLayoutMainGame = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
+            Scene scene = new Scene(rootLayoutMainGame);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -218,20 +289,21 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    private static void inizializzaCouncil() {
+    private  void inizializzaCouncil() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/councilPalaceMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/councilPalaceMainGame.fxml"));
             councilScene = (AnchorPane) loader.load();
 
-            //generalScene.getStylesheets().add(("fileXML.login/primoCSS.css"));
+            //generalScene.getStylesheets().add(("fileXML.controller/primoCSS.css"));
             // Set person overview into the center of root layout.
             //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
             councilPalaceController controller = loader.getController();
-            //controller.setMainController(this);
+            controller.setLoginBuilder(this);
+            controller.setMainController(mainController);
             controller.uploadImages();
 
         } catch (IOException e) {
@@ -239,16 +311,17 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    private static void inizializzaLeaderCard() {
+    private  void inizializzaLeaderCard() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGameBuilder.class.getResource("/fileXML/mainGame/leaderCardMainGame.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/leaderCardMainGame.fxml"));
             leaderScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
             LeaderCardController controller = loader.getController();
-            //controller.setMainController(this);
+            controller.setLoginBuilder(this);
+            controller.setMainController(mainController);
             controller.uploadImages();
 
         } catch (IOException e) {
@@ -256,40 +329,45 @@ public class MainGameBuilder extends Application {
         }
     }
 
-    void setScene(SceneType nextScene, SceneType lastScene) {
+    public void setLastScene(SceneType lastScene) {
+        this.lastScene = lastScene;
+    }
+
+
+    public void setScene(SceneType nextScene, SceneType lastScene) {
         this.lastScene = lastScene;
         switch (nextScene) {
             case MAIN: {
-                rootLayout.setCenter(generalScene);
+                rootLayoutMainGame.setCenter(generalScene);
                 break;
             }
             case TOWERS: {
-                rootLayout.setCenter(towersScene);
+                rootLayoutMainGame.setCenter(towersScene);
                 break;
             }
             case MARKET:{
-                rootLayout.setCenter(marketScene);
+                rootLayoutMainGame.setCenter(marketScene);
                 break;
             }
             case HARVESTER:{
                 harvesterController.aggiornaChat();
-                rootLayout.setCenter(harvesterScene);
+                rootLayoutMainGame.setCenter(harvesterScene);
                 break;
             }
             case PERSONAL_BOARD:{
-                rootLayout.setCenter(personalBoardScene);
+                rootLayoutMainGame.setCenter(personalBoardScene);
                 break;
             }
             case PRODUCTION:{
-                rootLayout.setCenter(productionScene);
+                rootLayoutMainGame.setCenter(productionScene);
                 break;
             }
             case COUNCIL:{
-                rootLayout.setCenter(councilScene);
+                rootLayoutMainGame.setCenter(councilScene);
                 break;
             }
             case LEADER:{
-                rootLayout.setCenter(leaderScene);
+                rootLayoutMainGame.setCenter(leaderScene);
                 break;
             }
             default:
@@ -302,7 +380,7 @@ public class MainGameBuilder extends Application {
         chatText.appendText(text);
     }
 
-    SceneType getLastScene() {
+    public SceneType getLastScene() {
         return lastScene;
     }
 
@@ -310,11 +388,11 @@ public class MainGameBuilder extends Application {
         return "commercialHub";
     }
 
-    void showCardZoomed(Image imageView) {
+    public void showCardZoomed(Image imageView) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/finestreSupporto/cardZoom.fxml"));
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/cardZoom.fxml"));
             AnchorPane card = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
@@ -345,7 +423,7 @@ public class MainGameBuilder extends Application {
         return chatText;
     }
 
-    String getColour() {
+    public String getColour() {
         return colour;
     }
 
@@ -353,7 +431,13 @@ public class MainGameBuilder extends Application {
         return faithPoints;
     }
 
-    int getTurnOrder() {
+    public int getTurnOrder() {
         return turnOrder;
     }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 }
+
+

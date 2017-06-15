@@ -11,8 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.maingame.GeneralMainGameController">
+<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.GeneralMainGameController">
    <children>
+      <Pane prefHeight="923.0" prefWidth="648.0" style="-fx-background-image: url(&quot;/images/gameboard.png&quot;);">
+         <children>
+            <Button fx:id="goToTowersButton" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="482.0" prefWidth="519.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToProductionButton" layoutX="36.0" layoutY="732.0" mnemonicParsing="false" onAction="#goToProduction" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToMarketButton" layoutX="331.0" layoutY="727.0" mnemonicParsing="false" onAction="#goToMarket" prefHeight="121.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToCouncilPalaceButton" layoutX="280.0" layoutY="500.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="84.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToHarvesterButton" layoutX="38.0" layoutY="809.0" mnemonicParsing="false" onAction="#goToHarvester" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+         </children></Pane>
       <ImageView fitHeight="923.0" fitWidth="422.0" layoutX="648.0" layoutY="0">
          <image>
             <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
@@ -34,10 +42,6 @@
       <ImageView fx:id="towerPurple_1" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="towerPurple_2" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="towerPurple_3" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="goToTowersButton" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="482.0" prefWidth="519.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-      <Button fx:id="goToProductionButton" layoutX="36.0" layoutY="732.0" mnemonicParsing="false" onAction="#goToProduction" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-      <Button fx:id="goToMarketButton" layoutX="331.0" layoutY="727.0" mnemonicParsing="false" onAction="#goToMarket" prefHeight="121.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-      <Button fx:id="goToCouncilPalaceButton" layoutX="280.0" layoutY="500.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="84.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
       <Pane layoutX="687.0" layoutY="32.0" prefHeight="851.0" prefWidth="350.0">
          <children>
             <ImageView fitHeight="352.0" fitWidth="356.0" layoutX="-5.0" layoutY="-2.0" opacity="0.74">
@@ -142,7 +146,6 @@
             <ImageView fx:id="imageFamiliarWhite" fitHeight="84.0" fitWidth="85.0" layoutX="192.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Button fx:id="goToHarvesterButton" layoutX="38.0" layoutY="809.0" mnemonicParsing="false" onAction="#goToHarvester" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
       <Pane layoutX="43.0" layoutY="666.0" prefHeight="34.0" prefWidth="504.0">
          <children>
             <ImageView fx:id="faithPoint0" fitHeight="22.0" fitWidth="21.0" layoutX="4.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
@@ -172,6 +175,5 @@
          </children>
       </Pane>
       <Button fx:id="goToCouncilButton" layoutX="293.0" layoutY="498.0" mnemonicParsing="false" onAction="#goToCouncil" prefHeight="121.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-      <Pane prefHeight="923.0" prefWidth="648.0" style="-fx-background-image: url(&quot;/images/gameboard.png&quot;);" />
    </children>
 </AnchorPane>

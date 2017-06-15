@@ -29,4 +29,8 @@ public abstract class AbstractUI {
     public abstract void choicePe();
 
     public abstract void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException;
+
+    public void startGame(int i) {
+
+    }
 }

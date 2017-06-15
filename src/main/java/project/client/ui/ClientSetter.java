@@ -190,6 +190,7 @@ public class ClientSetter {
     //DA QUA SOTTO FACCIO LE PROVE IO PER VEDERE SE VA LA GUI
     public void connect(String username, String password) {
         System.out.println(username + " " + password);
+        ui.startGame(3);
         //startGame(2);
     }
 
