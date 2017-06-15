@@ -32,6 +32,7 @@ public class GameActions {
 
         getSupportFunctions(player).setFamiliar(zone, familyMember);
         getSupportFunctions(player).placeCardInPersonalBoard(card);
+        //todo bonus da posizione torre
         TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers());
 
         makeImmediateEffects( player, zone.getCardOnThisFloor() );
@@ -106,7 +107,7 @@ public class GameActions {
         return true;
     }
 
-    class militaryComparator extends Comparator<PlayerHandler>{
+    class militaryComparator implements Comparator<PlayerHandler> {
 
         @Override
         public int compare(PlayerHandler o1, PlayerHandler o2) {

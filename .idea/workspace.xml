@@ -3,21 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/LoadCards.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/LoadCards.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/BasicCheckFunctions.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/BasicCheckFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeCoinsFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeCoinsFor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeServantsFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeServantsFor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeStoneFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeStoneFor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeWoodFor.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ExchangeWoodFor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/FaithPointForTwoCoinsAndTwoVictoryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/FaithPointForTwoCoinsAndTwoVictoryPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ServantWoodStoneForSixVictoryPoints.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/ServantWoodStoneForSixVictoryPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/Board.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/Deck.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Deck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/Room.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/Room.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -46,10 +31,10 @@
       <file leaf-file-name="GameActions.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="107" column="4" lean-forward="false" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+            <state relative-caret-position="196">
+              <caret line="109" column="29" lean-forward="false" selection-start-line="109" selection-start-column="29" selection-end-line="109" selection-end-column="29" />
               <folding>
-                <element signature="e#4485#4500#0" expanded="true" />
+                <element signature="e#4525#4540#0" expanded="true" />
                 <element signature="method#changePlayerOrder#0;class#GameActions#0" expanded="false" />
               </folding>
             </state>
@@ -1278,7 +1263,7 @@
       <workItem from="1497009068736" duration="748000" />
       <workItem from="1497451099923" duration="3344000" />
       <workItem from="1497454477115" duration="65000" />
-      <workItem from="1497454619441" duration="38821000" />
+      <workItem from="1497454619441" duration="39056000" />
     </task>
     <task id="LOCAL-00001" summary="Primo commit direttamente da IntelliJ">
       <created>1494278036573</created>
@@ -1553,7 +1538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497541781795</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="refactor delle gameactions">
+      <created>1497552735515</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1497552735515</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1583,7 +1575,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163210000" />
+    <option name="totallyTimeSpent" value="163445000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1719,7 +1711,8 @@
     <MESSAGE value="imlementazione GUI" />
     <MESSAGE value="miglioramento player handler" />
     <MESSAGE value="ora la gui va" />
-    <option name="LAST_COMMIT_MESSAGE" value="ora la gui va" />
+    <MESSAGE value="refactor delle gameactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor delle gameactions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2228,10 +2221,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="107" column="4" lean-forward="false" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+        <state relative-caret-position="196">
+          <caret line="109" column="29" lean-forward="false" selection-start-line="109" selection-start-column="29" selection-end-line="109" selection-end-column="29" />
           <folding>
-            <element signature="e#4485#4500#0" expanded="true" />
+            <element signature="e#4525#4540#0" expanded="true" />
             <element signature="method#changePlayerOrder#0;class#GameActions#0" expanded="false" />
           </folding>
         </state>
