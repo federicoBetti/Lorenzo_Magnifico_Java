@@ -79,4 +79,9 @@ public class Gui extends AbstractUI {
     public void bonusProductionParameters(String action) throws  IOException, ClassNotFoundException {
 
     }
+
+    @Override
+    public void takeBonusCardParameters(String action) throws InputException, IOException, ClassNotFoundException {
+
+    }
 }

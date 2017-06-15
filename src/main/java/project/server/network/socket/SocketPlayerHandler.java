@@ -277,9 +277,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException {
+    public void sendBonusTowerAction( TowerAction returnFromEffect ) throws IOException, ClassNotFoundException {
 
         while ( true ){
+
             sendAnswer(returnFromEffect);
             String answer = (String)objectInputStream.readObject();
 
@@ -344,14 +345,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    private void takeBonusDevCard(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException, CantDoActionException {
-        String towerColour = (String) objectInputStream.readObject();
-        int floor = (int) objectInputStream.readObject();
-        String familyMemberColour = (String) objectInputStream.readObject();
-        FamilyMember familyMember = findFamilyMember(familyMemberColour);
+    private void takeBonusDevCard(TowerAction returnFromEffect) throws IOException, ClassNotFoundException, CantDoActionException {
 
-        clientTakeBonusDevelopementCard(towerColour, floor, familyMember);
-        // oppure questo modificato clientTakeDevelopementCard(towerColour, floor, familyMember);
+        int floor = Integer.parseInt((String)objectInputStream.readObject());
+        clientTakeBonusDevelopementCard(returnFromEffect, floor);
+
     }
 
 

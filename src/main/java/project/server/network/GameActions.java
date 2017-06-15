@@ -413,7 +413,7 @@ public class GameActions {
             BonusInteraction returnFromEffect = effect.doEffect(player);
             try {
                 if ( returnFromEffect instanceof TowerAction ){
-                    player.sendBonusTowerAction(returnFromEffect);
+                    player.sendBonusTowerAction((TowerAction) returnFromEffect);
                 }
 
                 else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){

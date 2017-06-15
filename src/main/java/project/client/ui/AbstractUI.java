@@ -38,4 +38,6 @@ public abstract class AbstractUI {
     public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException;
 
     public abstract void bonusProductionParameters(String action) throws InputException, IOException, ClassNotFoundException;
+
+    public abstract void takeBonusCardParameters(String action) throws InputException, IOException, ClassNotFoundException;
 }

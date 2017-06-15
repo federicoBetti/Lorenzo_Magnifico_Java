@@ -74,6 +74,13 @@ public class Cli extends AbstractUI {
         clientSetter.bonusProductionAction(parameters);
     }
 
+    @Override
+    public void takeBonusCardParameters(String input) throws InputException, IOException, ClassNotFoundException {
+        context.checkValidInput(input);
+        String[] parameters = input.split("-");
+        clientSetter.takeBonusCardAction(parameters[0], parameters[1] );
+    }
+
     public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         context = new TowersContext(this);
     }

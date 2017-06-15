@@ -13,22 +13,11 @@ import java.util.Map;
  */
 public class TakeBonusCard extends AbstractContext {
     TowerAction towerAction;
-    TowersContext supportContext;
 
     public TakeBonusCard(Cli cli, TowerAction towerAction) {
         super(cli);
         this.towerAction = towerAction;
         map.put(CliConstants.EXIT, this::exitFromBonus );
-
-        try {
-            supportContext = new TowersContext(cli);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InputException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -45,13 +34,34 @@ public class TakeBonusCard extends AbstractContext {
     public void printHelp() {
         System.out.println("the available actions are: \ntake the bonus card with these characteristics:");
         towerAction.printBonusAction();
+        System.out.println("type: \n" +
+                "floor: 0, 1, 2, 3 \n" +
+                "tower colour: green, yellow, purple, blue");
 
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             System.out.println(entry.getKey());
     }
 
     @Override
+    public void checkValidInput(String input) throws InputException {
+        String[] parameters = input.split("-");
+
+        if( parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))
+            throw new InputException();
+        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 )
+            throw new InputException();
+
+        if(!( parameters.length == 2 ))
+            throw new InputException();
+
+        checkTowerColour(parameters[1]);
+
+
+
+    }
+
+    @Override
     public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
-        supportContext.mainContextMethod(action);
+        cli.takeBonusCardParameters(action);
     }
 }

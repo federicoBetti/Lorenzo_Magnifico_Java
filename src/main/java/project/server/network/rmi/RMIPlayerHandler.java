@@ -113,7 +113,7 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException {
+    public void sendBonusTowerAction(TowerAction returnFromEffect) throws IOException, ClassNotFoundException {
 
     }
 

@@ -57,4 +57,7 @@ public class AbstractClient {
 
     public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException {
     }
+
+    public void takeBonusCardAction(String floor, String input) throws IOException, ClassNotFoundException {
+    }
 }

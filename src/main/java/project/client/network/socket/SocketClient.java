@@ -62,12 +62,16 @@ public class SocketClient extends AbstractClient {
         send3Parameters(towerColour, floor, familiarColour);
     }
 
+    public void takeBonusCardAction(String floor, String towerColour ) throws IOException, ClassNotFoundException {
+        send2Parameters(floor, towerColour);
+        waitingForTheNewInteraction();
+    }
+
     @Override
     public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.HARVESTER);
         send3Parameters(parameter1, parameter2, parameter3);
     }
-
 
 
     @Override

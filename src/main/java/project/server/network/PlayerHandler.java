@@ -62,8 +62,8 @@ public abstract class PlayerHandler extends Player {
 
     }
 
-    protected void clientTakeBonusDevelopementCard(String towerColour, int floor, FamilyMember familyMember) throws CantDoActionException{
-        //todo oppure modificare quello di sopra
+    protected void clientTakeBonusDevelopementCard(TowerAction kindOfCard, int floor) throws CantDoActionException{
+        //todo ricordarsi il caso della carta arcobaleno: mettere ad esempio costante "all" che poi nel controllo autorizza a prendere una carda da qualunque torre
     }
 
     /**
@@ -251,7 +251,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int sendPossibleChoice(String kindOfChoice);
 
-    public abstract void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException;
+    public abstract void sendBonusTowerAction(TowerAction returnFromEffect) throws IOException, ClassNotFoundException;
 
     public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException;
 

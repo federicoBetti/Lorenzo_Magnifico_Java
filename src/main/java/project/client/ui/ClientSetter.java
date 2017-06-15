@@ -99,11 +99,14 @@ public class ClientSetter {
         client.productionAction(parameters);
     }
 
+    public void takeBonusCardAction(String floor, String towerColour ) throws IOException, ClassNotFoundException {
+        client.takeBonusCardAction(floor, towerColour);
+    }
+
     //metodi di ritorno
     public void takeBonusCard(TowerAction towerAction ){
         ui.takeBonusCard(towerAction);
     }
-
 
     public void endTurn() {
         //to implement

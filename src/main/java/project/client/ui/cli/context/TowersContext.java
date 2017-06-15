@@ -47,17 +47,12 @@ public class TowersContext extends AbstractContext {
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length == 3 ))
+        if(!( parameters.length == 1 ))
             throw new InputException();
 
-        checkTowerColour(parameters[0]);
-
-        if( parameters[1].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
-            throw new InputException();
-        if (Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3 )
+        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 )
             throw new InputException();
 
-        checkFamilyMemberColour( parameters[2] );
     }
 
     @Override
