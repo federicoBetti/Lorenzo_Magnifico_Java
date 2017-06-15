@@ -19,11 +19,11 @@ public abstract class AbstractUI {
 
     public abstract void bothPaymentsAvailable();
 
-    public abstract void loginRequest(String loginParameter) throws IOException, ClassNotFoundException;
+    public abstract void loginRequest(String loginParameter) throws IOException, ClassNotFoundException, InputException;
 
-    public abstract void discardLeaderCard(String name) throws IOException, ClassNotFoundException;
+    public abstract void discardLeaderCard(String name) throws IOException, ClassNotFoundException, InputException;
 
-    public abstract void prayOrNot(String action) throws IOException, ClassNotFoundException;
+    public abstract void prayOrNot(String action) throws IOException, ClassNotFoundException, InputException;
 
     public void mainContext(){}
 
@@ -35,7 +35,7 @@ public abstract class AbstractUI {
 
     public abstract void bonusHarvesterParameters(String input) throws InputException, IOException, ClassNotFoundException;
 
-    public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws InputException, IOException, ClassNotFoundException;
+    public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException;
 
     public abstract void bonusProductionParameters(String action) throws InputException, IOException, ClassNotFoundException;
 }

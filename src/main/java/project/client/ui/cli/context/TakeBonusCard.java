@@ -32,7 +32,7 @@ public class TakeBonusCard extends AbstractContext {
 
     }
 
-    private void exitFromBonus() throws IOException, ClassNotFoundException {
+    private void exitFromBonus() throws IOException, ClassNotFoundException, InputException {
         exit();
         cli.sendExitToBonusAction();
     }

@@ -6,7 +6,6 @@ import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.rmi.RMIClient;
 import project.client.network.socket.SocketClient;
 import project.client.ui.cli.Cli;
-import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
@@ -72,7 +71,7 @@ public class ClientSetter {
         }
     }
 
-    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
+    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException  {
         client.loginRequest(loginParameter);
     }
 
@@ -96,7 +95,7 @@ public class ClientSetter {
         client.councilAction( parameter1, parameter2);
     }
 
-    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
+    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException  {
         client.productionAction(parameters);
     }
 
@@ -115,19 +114,19 @@ public class ClientSetter {
     }
 
 
-    public void playLeaderCard(String action) throws IOException, ClassNotFoundException {
+    public void playLeaderCard(String action) throws IOException, ClassNotFoundException  {
         client.playLeaderCard(action);
     }
 
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException  {
         client.discardLeaderCard(name);
     }
 
-    public void prayOrNot(String action) throws IOException, ClassNotFoundException {
+    public void prayOrNot(String action) throws IOException, ClassNotFoundException  {
         client.prayOrNot(action);
     }
 
-    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+    public void sendExitToBonusAction() throws IOException, ClassNotFoundException  {
         client.sendExitToBonusAction();
     }
 
@@ -135,11 +134,11 @@ public class ClientSetter {
         ui.choicePe();
     }
 
-    public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
+    public void sendChoicePe(String input) throws IOException, ClassNotFoundException  {
         client.sendChoicePe(input);
     }
 
-    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException {
+    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException  {
         client.bonusHarvesterAction( servantsNumber );
     }
 
@@ -147,11 +146,11 @@ public class ClientSetter {
         ui.bonusHarvester(bonusHarv);
     }
 
-    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException, InputException {
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException  {
         ui.bonusProduction(bonusProd);
     }
 
-    public void bonusProductionAction(String[] parameters) {
+    public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException  {
         client.bonusProductionAction(parameters);
     }
 
@@ -232,4 +231,6 @@ public class ClientSetter {
     }
 
 
+    public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
+    }
 }

@@ -3,7 +3,6 @@ package project.client.network.socket;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
-import project.client.ui.cli.InputException;
 import project.controller.Constants;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TowerAction;
@@ -58,13 +57,13 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
+    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.TAKE_DEV_CARD);
         send3Parameters(towerColour, floor, familiarColour);
     }
 
     @Override
-    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {
+    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.HARVESTER);
         send3Parameters(parameter1, parameter2, parameter3);
     }
@@ -77,18 +76,18 @@ public class SocketClient extends AbstractClient {
         clientSetter.bonusHarvester(bonusHarv);
     }
 
-    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException {
+    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.BONUS_HARVESTER);
         sendKindOfRequest(servantsNumber);
         waitingForTheNewInteraction();
     }
 
-    public void bonusProduction() throws IOException, ClassNotFoundException, InputException {
+    public void bonusProduction() throws IOException, ClassNotFoundException  {
         BonusProductionOrHarvesterAction bonusProd = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
         clientSetter.bonusProduction(bonusProd);
     }
 
-    public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException {
+    public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.BONUS_PRODUCTION);
         sendAllParameters(parameters);
         waitingForTheNewInteraction();
@@ -101,20 +100,20 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void councilAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
+    public void councilAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.GO_TO_COUNCIL_PALACE);
         send2Parameters(parameter1, parameter2);
     }
 
     @Override
-    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
+    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.PRODUCTION);
         sendAllParameters(parameters);
         waitingForTheNewInteraction();
     }
 
     @Override
-    public void playLeaderCard(String name ) throws IOException, ClassNotFoundException {
+    public void playLeaderCard(String name ) throws IOException, ClassNotFoundException  {
 
         sendKindOfRequest(Constants.PLAY_LEADER_CARD);
 
@@ -126,7 +125,7 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.DISCARD_LEADER_CARD);
 
         objectOutputStream.writeObject(name);
@@ -137,7 +136,7 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void prayOrNot(String action) throws IOException, ClassNotFoundException {
+    public void prayOrNot(String action) throws IOException, ClassNotFoundException  {
 
         if ( action.equals("yes"))
             sendKindOfRequest(Constants.PRAY);
@@ -149,7 +148,7 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+    public void sendExitToBonusAction() throws IOException, ClassNotFoundException  {
         try {
             objectOutputStream.writeObject(Constants.EXIT);
             objectOutputStream.flush();
@@ -178,7 +177,7 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
+    public void sendChoicePe(String input) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(input);
         waitingForTheNewInteraction();
     }
@@ -218,7 +217,7 @@ public class SocketClient extends AbstractClient {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        } 
     }
 
 
@@ -231,12 +230,12 @@ public class SocketClient extends AbstractClient {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        } 
     }
 
 
     //sending methods
-    void send2Parameters(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException{
+    void send2Parameters(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException  {
         objectOutputStream.writeObject(parameter1);
         objectOutputStream.flush();
         objectOutputStream.reset();
@@ -248,7 +247,7 @@ public class SocketClient extends AbstractClient {
         waitingForTheNewInteraction();
     }
 
-    void send3Parameters(String parameter1, String parameter2, String parameter3 ) throws IOException, ClassNotFoundException {
+    void send3Parameters(String parameter1, String parameter2, String parameter3 ) throws IOException, ClassNotFoundException  {
 
         objectOutputStream.writeObject(parameter1);
         objectOutputStream.flush();
@@ -265,7 +264,7 @@ public class SocketClient extends AbstractClient {
         waitingForTheNewInteraction();
     }
 
-    void sendAllParameters(String[] parameters ) throws IOException, ClassNotFoundException {
+    void sendAllParameters(String[] parameters ) throws IOException, ClassNotFoundException  {
 
         for( String elem: parameters ){
             objectOutputStream.writeObject(elem);

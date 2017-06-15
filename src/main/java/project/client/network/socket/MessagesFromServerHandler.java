@@ -1,6 +1,7 @@
 package project.client.network.socket;
 
 import project.client.ui.cli.CliConstants;
+import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class MessagesFromServerHandler {
         client.bonusHarvester();
     }
 
-    private void bonusProduction() {
+    private void bonusProduction() throws IOException, ClassNotFoundException {
         client.bonusProduction();
     }
 

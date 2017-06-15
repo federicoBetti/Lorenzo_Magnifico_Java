@@ -4,6 +4,7 @@ import javafx.application.Application;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.login.LoginBuilder;
 import project.client.ui.gui.maingame.MainGameBuilder;
+import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TowerAction;
 
 import java.io.IOException;
@@ -55,7 +56,27 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException {
+    public void sendChoicePe(String input) throws  IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
+
+    }
+
+    @Override
+    public void bonusHarvesterParameters(String input) throws  IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void bonusProductionParameters(String action) throws  IOException, ClassNotFoundException {
 
     }
 }

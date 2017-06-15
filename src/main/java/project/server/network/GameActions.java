@@ -417,7 +417,7 @@ public class GameActions {
                 }
 
                 else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){
-                    player.sendBonusProdOrHarv(returnFromEffect);
+                    player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
                 }
             }catch (IOException e) {
                 e.printStackTrace();

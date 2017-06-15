@@ -1,5 +1,7 @@
 package project.client.network;
 
+import project.client.ui.cli.InputException;
+
 import java.io.IOException;
 
 /**
@@ -11,10 +13,10 @@ public class AbstractClient {
     public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
     }
 
-    public void waitingForTheNewInteraction() throws IOException, ClassNotFoundException {
+    public void waitingForTheNewInteraction() throws IOException, ClassNotFoundException, InputException {
     }
 
-    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException{
+    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
     }
 
     public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {

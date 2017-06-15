@@ -51,7 +51,7 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void bonusHarvesterParameters(String input) throws InputException, IOException, ClassNotFoundException {
+    public void bonusHarvesterParameters(String input) throws IOException, ClassNotFoundException, InputException {
         context.checkValidInput(input);
         String[] parameters = input.split("-");
         clientSetter.bonusHarvesterAction(parameters[0]);
@@ -59,13 +59,17 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws InputException, IOException, ClassNotFoundException {
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException {
         context = new BonusProductionContext(bonusProd, this);
     }
 
     @Override
-    public void bonusProductionParameters(String lineFromKeyBoard) throws InputException, IOException, ClassNotFoundException {
-        context.checkValidInput(lineFromKeyBoard);
+    public void bonusProductionParameters(String lineFromKeyBoard) throws IOException, ClassNotFoundException {
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            e.printStackTrace();
+        }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.bonusProductionAction(parameters);
     }
@@ -103,7 +107,7 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void loginRequest( String lineFromKeyBoard ) throws IOException, ClassNotFoundException {
+    public void loginRequest( String lineFromKeyBoard ) throws IOException, ClassNotFoundException, InputException {
         clientSetter.loginRequest(lineFromKeyBoard);
     }
 
@@ -154,29 +158,21 @@ public class Cli extends AbstractUI {
         clientSetter.councilAction(parameters[0], parameters[1]);
     }
 
-    public void chooseLeaderCardToPlay(String action) throws IOException, ClassNotFoundException {
+    public void chooseLeaderCardToPlay(String action) throws IOException, ClassNotFoundException, InputException {
         clientSetter.playLeaderCard(action);
     }
 
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException, InputException {
         clientSetter.discardLeaderCard(name);
     }
 
-    public void prayOrNot( String action ) throws IOException, ClassNotFoundException {
-        try {
-            context.checkValidInput(action);
-        } catch (InputException e) {
-            e.printStackTrace();
-        }
+    public void prayOrNot( String action ) throws IOException, ClassNotFoundException, InputException {
+        context.checkValidInput(action);
         clientSetter.prayOrNot(action);
     }
 
-    public void choosePayment(String action) {
-        try {
-            context.checkValidInput(action);
-        } catch (InputException e) {
-            context.printHelp();
-        }
+    public void choosePayment(String action) throws InputException {
+        context.checkValidInput(action);
 
     }
 
@@ -185,7 +181,7 @@ public class Cli extends AbstractUI {
         //clientSetter.getUiBoard().getAllTowers().printTowers();
     }
 
-    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+    public void sendExitToBonusAction() throws IOException, ClassNotFoundException, InputException {
         clientSetter.sendExitToBonusAction();
     }
 

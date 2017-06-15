@@ -117,6 +117,11 @@ public class RMIPlayerHandler extends PlayerHandler{
 
     }
 
+    @Override
+    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException {
+
+    }
+
     // qua inizia la parte delle chiamate del client sul server
 
     void takeDevCard(String towerColour, int floor, String familyMemberColour) throws RemoteException {
