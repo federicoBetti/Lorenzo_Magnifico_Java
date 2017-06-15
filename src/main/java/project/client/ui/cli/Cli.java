@@ -3,11 +3,8 @@ package project.client.ui.cli;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
-import project.controller.Constants;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.messages.updatesmessages.Updates;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +27,7 @@ public class Cli extends AbstractUI {
     //context methods
     @Override
     public void bothPaymentsAvailable() {
-        context = new BothPaymentsVentureCards(this);
+        context = new BothPaymentsVentureCardsContext(this);
     }
 
     public void mainContext() {
@@ -46,6 +43,11 @@ public class Cli extends AbstractUI {
     public void sendChoicePe( String input ) throws InputException, IOException, ClassNotFoundException {
         context.checkValidInput(input);
         clientSetter.sendChoicePe(input);
+    }
+
+    @Override
+    public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
+        context = new BonusHarvesterContext(bonusHarv, this);
     }
 
     public void takeDevCard() throws IOException, ClassNotFoundException, InputException {

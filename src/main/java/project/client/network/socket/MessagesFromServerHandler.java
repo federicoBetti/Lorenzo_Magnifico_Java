@@ -32,6 +32,15 @@ public class MessagesFromServerHandler {
         map.put(Constants.CANT_DO_ACTION, this::cantDoAction );
         map.put(Constants.BOTH_PAYMENT_METHODS_AVAILABLE, this::bothPaymentsAvailable );
         map.put(Constants.CHOICE_PE, this:: choicePe );
+        map.put(Constants.BONUS_PRODUCTION, this:: bonusProduction );
+        map.put(Constants.BONUS_HARVESTER, this:: bonusHarvester );
+    }
+
+    private void bonusHarvester() throws IOException, ClassNotFoundException {
+        client.bonusHarvester();
+    }
+
+    private void bonusProduction() {
     }
 
     private void notEnoughResources() throws IOException, ClassNotFoundException {

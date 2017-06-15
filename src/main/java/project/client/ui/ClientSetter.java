@@ -105,11 +105,6 @@ public class ClientSetter {
     }
 
 
-    public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
-        //to implement
-    }
-
-
     public void endTurn() {
         //to implement
     }
@@ -141,6 +136,10 @@ public class ClientSetter {
 
     public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
         client.sendChoicePe(input);
+    }
+
+    public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
+        ui.bonusHarvester(bonusHarv);
     }
 
     public void askForPraying() {

@@ -46,4 +46,9 @@ public class AbstractClient {
 
     public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
     }
+
+    public void bonusHarvester() throws IOException, ClassNotFoundException {
+    }
+
+
 }

@@ -72,8 +72,6 @@ public class Constants {
     public static final String LUDOVICO_III_GONZAGA = "ludovico-iii-gonzaga";
     public static final String PICO_DELLA_MIRANDOLA = "pico-della-mirandola";
 
-
-
     public static final String TAKE_PRIVILEGE_ACTION = "take-privilege-action";
     public static final String TOWER_ACTION = "tower-action";
     public static final String BONUS_PRODUCTION_HARVESTER_ACTION = "bonus-production-harvester-action";
@@ -87,6 +85,9 @@ public class Constants {
     public static final String CANT_DO_ACTION = "cant-do-action";
     public static final String EXIT = "exit";
     public static final String NOT_ENOUGH_RESOURCES = "not-enough-resources";
+    public static final String BONUS_PRODUCTION = "bonus.production";
+    public static final String BONUS_HARVESTER = "bonus-harvester" ;
+    public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
 
 
     private Constants(){}

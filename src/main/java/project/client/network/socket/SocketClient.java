@@ -4,6 +4,7 @@ import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
+import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
 
@@ -54,31 +55,43 @@ public class SocketClient extends AbstractClient {
         waitingForTheNewInteraction();
     }
 
+    @Override
     public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.TAKE_DEV_CARD);
         send3Parameters(towerColour, floor, familiarColour);
     }
 
+    @Override
     public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.HARVESTER);
         send3Parameters(parameter1, parameter2, parameter3);
     }
 
+    @Override
+    public void bonusHarvester() throws IOException, ClassNotFoundException {
+        BonusProductionOrHarvesterAction bonusHarv = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
+        clientSetter.bonusHarvester(bonusHarv);
+    }
+
+    @Override
     public void marketAction( String parameter1, String parameter2 ) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.GO_TO_MARKET);
         send2Parameters(parameter1, parameter2);
     }
 
+    @Override
     public void councilAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.GO_TO_COUNCIL_PALACE);
         send2Parameters(parameter1, parameter2);
     }
 
+    @Override
     public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.PRODUCTION);
         sendAllParameters(parameters);
     }
 
+    @Override
     public void playLeaderCard(String name ) throws IOException, ClassNotFoundException {
 
         sendKindOfRequest(Constants.PLAY_LEADER_CARD);
@@ -90,6 +103,7 @@ public class SocketClient extends AbstractClient {
         waitingForTheNewInteraction();
     }
 
+    @Override
     public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.DISCARD_LEADER_CARD);
 
@@ -100,6 +114,7 @@ public class SocketClient extends AbstractClient {
         waitingForTheNewInteraction();
     }
 
+    @Override
     public void prayOrNot(String action) throws IOException, ClassNotFoundException {
 
         if ( action.equals("yes"))
@@ -111,6 +126,7 @@ public class SocketClient extends AbstractClient {
 
     }
 
+    @Override
     public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
         try {
             objectOutputStream.writeObject(Constants.EXIT);
@@ -139,6 +155,7 @@ public class SocketClient extends AbstractClient {
         clientSetter.choicePe();
     }
 
+    @Override
     public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
         sendKindOfRequest(input);
         waitingForTheNewInteraction();

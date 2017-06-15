@@ -1,6 +1,7 @@
 package project.controller.effects.realeffects;
 
 import javafx.scene.effect.Effect;
+import project.controller.Constants;
 import project.messages.BonusInteraction;
 import project.messages.TowerAction;
 import project.server.network.PlayerHandler;
@@ -33,10 +34,8 @@ public class BonusTowerActionYellow implements Effects {
         return  towerAction;
     }
 
-    /*@Override
+@Override
     public String toString(){
-        return "ciao" ;
+        return Constants.TOWER_ACTION_YELLOW;
     }
-
-
-    */}
+}

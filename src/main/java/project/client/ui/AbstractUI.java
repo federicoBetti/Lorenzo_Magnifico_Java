@@ -2,9 +2,7 @@ package project.client.ui;
 
 import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.messages.updatesmessages.Updates;
 
 import java.io.IOException;
 
@@ -32,4 +30,6 @@ public abstract class AbstractUI {
     public abstract void choicePe();
 
     public abstract void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException;
+
+    public abstract void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv);
 }
