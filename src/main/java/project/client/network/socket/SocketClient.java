@@ -3,6 +3,7 @@ package project.client.network.socket;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
+import project.client.ui.cli.InputException;
 import project.controller.Constants;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TowerAction;
@@ -52,6 +53,7 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.flush();
         objectOutputStream.reset();
 
+        //si puo migliorare con un pool di thread??
         waitingForTheNewInteraction();
     }
 
@@ -67,10 +69,29 @@ public class SocketClient extends AbstractClient {
         send3Parameters(parameter1, parameter2, parameter3);
     }
 
+
+
     @Override
     public void bonusHarvester() throws IOException, ClassNotFoundException {
         BonusProductionOrHarvesterAction bonusHarv = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
         clientSetter.bonusHarvester(bonusHarv);
+    }
+
+    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(Constants.BONUS_HARVESTER);
+        sendKindOfRequest(servantsNumber);
+        waitingForTheNewInteraction();
+    }
+
+    public void bonusProduction() throws IOException, ClassNotFoundException, InputException {
+        BonusProductionOrHarvesterAction bonusProd = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
+        clientSetter.bonusProduction(bonusProd);
+    }
+
+    public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(Constants.BONUS_PRODUCTION);
+        sendAllParameters(parameters);
+        waitingForTheNewInteraction();
     }
 
     @Override
@@ -89,6 +110,7 @@ public class SocketClient extends AbstractClient {
     public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
         sendKindOfRequest(Constants.PRODUCTION);
         sendAllParameters(parameters);
+        waitingForTheNewInteraction();
     }
 
     @Override
@@ -264,5 +286,6 @@ public class SocketClient extends AbstractClient {
     public void bothPaymentsAvailable() {
         clientSetter.bothPaymentsAvailable();
     }
+
 }
 

@@ -7,6 +7,7 @@ import project.controller.effects.realeffects.Effects;
 import project.controller.FakeFamiliar;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.BonusInteraction;
+import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
 import project.model.*;
@@ -45,7 +46,6 @@ public class GameActions {
         player.sendUpdates( new ScoreUpdate(player));
         player.sendUpdates( new FamilyMemberUpdate(player));
 
-        nextTurn(player);
     }
 
     /**
@@ -294,6 +294,8 @@ public class GameActions {
 
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
+
+        nextTurn(player);
     }
 
 
@@ -409,14 +411,18 @@ public class GameActions {
     public void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
-            if ( returnFromEffect instanceof TowerAction ){
-                try {
+            try {
+                if ( returnFromEffect instanceof TowerAction ){
                     player.sendBonusTowerAction(returnFromEffect);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
                 }
+
+                else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){
+                    player.sendBonusProdOrHarv(returnFromEffect);
+                }
+            }catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
             player.sendAnswer(returnFromEffect);
         }

@@ -207,6 +207,7 @@ public abstract class PlayerHandler extends Player {
      */
 
 
+    public  void doBonusHarv(BonusInteraction returnFromEffect, int position) throws CantDoActionException{}
 
     public abstract void cantDoAction();
 
@@ -251,4 +252,9 @@ public abstract class PlayerHandler extends Player {
     public abstract int sendPossibleChoice(String kindOfChoice);
 
     public abstract void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException;
+
+    public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException;
+
+    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
+    }
 }

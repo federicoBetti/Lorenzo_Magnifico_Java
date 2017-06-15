@@ -31,8 +31,18 @@ public class BonusHarvesterContext extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+    public void checkValidInput(String input) throws InputException {
+        String[] parameters = input.split("-");
 
-        //todo completare la funzionalità
+        if(!( parameters.length == 1 ))
+            throw new InputException();
+
+        if( parameters[1].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
+            throw new InputException();
+    }
+
+    @Override
+    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+        cli.bonusHarvesterParameters(action);
     }
 }

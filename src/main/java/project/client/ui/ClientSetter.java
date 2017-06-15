@@ -6,6 +6,7 @@ import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.rmi.RMIClient;
 import project.client.network.socket.SocketClient;
 import project.client.ui.cli.Cli;
+import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
@@ -83,8 +84,8 @@ public class ClientSetter {
         ui.mainContext();
     }
 
-    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {
-        client.harvesterAction(parameter1, parameter2, parameter3);
+    public void harvesterAction(String position, String familyMemberColour, String servantsNumber) throws IOException, ClassNotFoundException {
+        client.harvesterAction(position, familyMemberColour, servantsNumber);
     }
 
     public void marketAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
@@ -138,8 +139,20 @@ public class ClientSetter {
         client.sendChoicePe(input);
     }
 
+    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException {
+        client.bonusHarvesterAction( servantsNumber );
+    }
+
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
         ui.bonusHarvester(bonusHarv);
+    }
+
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException, InputException {
+        ui.bonusProduction(bonusProd);
+    }
+
+    public void bonusProductionAction(String[] parameters) {
+        client.bonusProductionAction(parameters);
     }
 
     public void askForPraying() {
@@ -217,7 +230,6 @@ public class ClientSetter {
     public void setUiFamilyMembers(FamilyMember[] uiFamilyMembers) {
         this.uiFamilyMembers = uiFamilyMembers;
     }
-
 
 
 }

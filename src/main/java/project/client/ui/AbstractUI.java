@@ -32,4 +32,10 @@ public abstract class AbstractUI {
     public abstract void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException;
 
     public abstract void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv);
+
+    public abstract void bonusHarvesterParameters(String input) throws InputException, IOException, ClassNotFoundException;
+
+    public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws InputException, IOException, ClassNotFoundException;
+
+    public abstract void bonusProductionParameters(String action) throws InputException, IOException, ClassNotFoundException;
 }

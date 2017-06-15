@@ -50,5 +50,9 @@ public class AbstractClient {
     public void bonusHarvester() throws IOException, ClassNotFoundException {
     }
 
+    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException {
+    }
 
+    public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException {
+    }
 }

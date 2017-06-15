@@ -41,6 +41,7 @@ public class MessagesFromServerHandler {
     }
 
     private void bonusProduction() {
+        client.bonusProduction();
     }
 
     private void notEnoughResources() throws IOException, ClassNotFoundException {

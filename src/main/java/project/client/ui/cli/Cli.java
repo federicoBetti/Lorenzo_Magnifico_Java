@@ -50,6 +50,26 @@ public class Cli extends AbstractUI {
         context = new BonusHarvesterContext(bonusHarv, this);
     }
 
+    @Override
+    public void bonusHarvesterParameters(String input) throws InputException, IOException, ClassNotFoundException {
+        context.checkValidInput(input);
+        String[] parameters = input.split("-");
+        clientSetter.bonusHarvesterAction(parameters[0]);
+
+    }
+
+    @Override
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws InputException, IOException, ClassNotFoundException {
+        context = new BonusProductionContext(bonusProd, this);
+    }
+
+    @Override
+    public void bonusProductionParameters(String lineFromKeyBoard) throws InputException, IOException, ClassNotFoundException {
+        context.checkValidInput(lineFromKeyBoard);
+        String[] parameters = lineFromKeyBoard.split("-");
+        clientSetter.bonusProductionAction(parameters);
+    }
+
     public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         context = new TowersContext(this);
     }
