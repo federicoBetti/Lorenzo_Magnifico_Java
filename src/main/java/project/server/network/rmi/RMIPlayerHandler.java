@@ -122,11 +122,9 @@ public class RMIPlayerHandler extends PlayerHandler{
     void takeDevCard(String towerColour, int floor, String familyMemberColour) throws RemoteException {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         try {
-            clientTakeDevelopementCard(towerColour,floor,familyMember);
+            clientTakeDevelopmentCard(towerColour,floor,familyMember);
         } catch (CantDoActionException e) {
             cantDoAction();
-        } catch (CanUseBothPaymentMethodException e) {
-            canUseBothPaymentMethod();
         }
     }
 

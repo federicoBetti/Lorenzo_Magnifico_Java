@@ -87,6 +87,10 @@ public class Constants {
     public static final String CANT_DO_ACTION = "cant-do-action";
     public static final String EXIT = "exit";
     public static final String NOT_ENOUGH_RESOURCES = "not-enough-resources";
+    public static final int CANT_USE_ANY_PAYMENT = 0;
+    public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;
+    public static final int MALUS_PROD_HARV = 3;
+    public static final String MARKET = "market";
 
 
     private Constants(){}

@@ -84,11 +84,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
         try {
-            clientTakeDevelopementCard(towerColour, floor, familyMember);
+            clientTakeDevelopmentCard(towerColour, floor, familyMember);
         } catch (CantDoActionException e) {
             cantDoAction();
-        } catch (CanUseBothPaymentMethodException e) {
-            canUseBothPaymentMethod();
         }
     }
 
@@ -313,7 +311,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
         clientTakeBonusDevelopementCard(towerColour, floor, familyMember);
-        // oppure questo modificato clientTakeDevelopementCard(towerColour, floor, familyMember);
+        // oppure questo modificato clientTakeDevelopmentCard(towerColour, floor, familyMember);
     }
 
 

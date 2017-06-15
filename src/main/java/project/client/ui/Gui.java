@@ -13,10 +13,14 @@ import java.io.IOException;
  */
 public class Gui extends AbstractUI {
     LoginBuilder loginBuilder;
+    ClientSetter clientSetter;
 
     public Gui(ClientSetter clientSetter) {
-        super();
-        LoginBuilder.setClientSetter(clientSetter);
+        this.clientSetter = clientSetter;
+    }
+
+    @Override
+    public void startUI() {
         Application.launch(LoginBuilder.class);
     }
 
@@ -57,5 +61,13 @@ public class Gui extends AbstractUI {
     @Override
     public void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException {
 
+    }
+
+    public void startGame(int numberOfPlayer) {
+
+
+        Application.launch(MainGameBuilder.class);
+        MainGameBuilder.setClientSetter(clientSetter);
+        MainGameBuilder.initializeMainGame(numberOfPlayer);
     }
 }

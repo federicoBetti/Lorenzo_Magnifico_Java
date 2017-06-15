@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import project.client.ui.gui.login.LoginBuilder;
 
 /**
  * Created by federico on 13/06/17.
@@ -63,11 +64,6 @@ public abstract class AbstractController {
     }
 
     public void uploadImages(){
-        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Zero.png"))));
-        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Nero.png"))));
-        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Bianco.png"))));
-        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Arancio.png"))));
-
     }
 
     protected Image getTrueFamiliarImage(){

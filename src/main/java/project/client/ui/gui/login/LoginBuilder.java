@@ -1,12 +1,18 @@
 package project.client.ui.gui.login;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
+import project.client.ui.gui.maingame.*;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 
@@ -16,14 +22,16 @@ public class LoginBuilder extends Application {
     private Stage primaryStage;
     private AnchorPane initialLoginScene;
     private AnchorPane waitingLoginScene;
-    private static ClientSetter clientSetter;
+    private ClientSetter clientSetter;
 
     private InitialLogin initialLogin;
     private WaitingLogin waitingLogin;
 
+
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Login");
+        this.primaryStage.setResizable(false);
 
         initRootLayout();
 
@@ -32,12 +40,12 @@ public class LoginBuilder extends Application {
         showFirstPage();
     }
 
-    public static ClientSetter getClientSetter() {
+    public ClientSetter getClientSetter() {
         return clientSetter;
     }
 
-    public static void setClientSetter(ClientSetter clientSetter) {
-        LoginBuilder.clientSetter = clientSetter;
+    public void setClientSetter(ClientSetter clientSetter) {
+        this.clientSetter = clientSetter;
     }
 
     /**
@@ -98,19 +106,26 @@ public class LoginBuilder extends Application {
         return;
     }
 
-    private void showFirstPage(){
+    private void showFirstPage() {
         rootLayout.setCenter(initialLoginScene);
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         launch(args);
     }
 
     void connect(String username, String password) {
-        clientSetter.connect(username,password);
+        clientSetter.connect(username, password);
     }
 
     void setConnectionType(String connectionType) {
         clientSetter.setConnectionType(connectionType);
     }
+
+    public void close() {
+        System.out.println("devo chiudere");
+        //startMainGame();
+
+    }
+
 }

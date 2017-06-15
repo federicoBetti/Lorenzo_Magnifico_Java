@@ -22,13 +22,14 @@ import java.io.IOException;
  * this class is the "bridge" between user interface and client.
  */
 public class ClientSetter {
-    AbstractClient client;
-    AbstractUI ui;
 
-    Board uiBoard;
-    PersonalBoard uiPersonalBoard;
-    Score uiScore;
-    FamilyMember[] uiFamilyMembers;
+    private AbstractClient client;
+    private AbstractUI ui;
+
+    private Board uiBoard;
+    private PersonalBoard uiPersonalBoard;
+    private Score uiScore;
+    private FamilyMember[] uiFamilyMembers;
 
     //todo creare board
     public ClientSetter(String kindOfUI ) {
@@ -38,9 +39,9 @@ public class ClientSetter {
         uiFamilyMembers = new FamilyMember[4];
 
         if ( kindOfUI.equals("CLI"))
-            ui = new Cli(this);
+            this.ui = new Cli(this);
         else
-            ui = new Gui(this);
+            this.ui = new Gui(this);
         ui.startUI();
     }
 
@@ -100,6 +101,11 @@ public class ClientSetter {
     }
 
     //metodi di ritorno
+    /*
+    public void startGame(int numberOfPlayer){
+        ui.startGame(numberOfPlayer);
+    }
+    */
     public void takeBonusCard(TowerAction towerAction ){
         ui.takeBonusCard(towerAction);
     }
@@ -176,8 +182,15 @@ public class ClientSetter {
         update.doUpdate(uiFamilyMembers);
     }
 
+
+
+
+
+
+    //DA QUA SOTTO FACCIO LE PROVE IO PER VEDERE SE VA LA GUI
     public void connect(String username, String password) {
         System.out.println(username + " " + password);
+        //startGame(2);
     }
 
     public void bothPaymentsAvailable() {
@@ -185,10 +198,6 @@ public class ClientSetter {
     }
 
     public void notifyClient(Notify notify) {
-    }
-
-    public Board getUiBoard() {
-        return uiBoard;
     }
 
     public void setUiBoard(Board uiBoard) {

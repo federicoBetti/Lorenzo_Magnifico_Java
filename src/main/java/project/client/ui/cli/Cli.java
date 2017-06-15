@@ -48,6 +48,10 @@ public class Cli extends AbstractUI {
         clientSetter.sendChoicePe(input);
     }
 
+    public void startGame(int numberOfPlayer) {
+
+    }
+
     public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         context = new TowersContext(this);
     }
