@@ -37,4 +37,13 @@ public class AbstractClient {
 
     public void prayOrNot(String action) throws IOException, ClassNotFoundException {
     }
+
+    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+    }
+
+    public void choicePe() {
+    }
+
+    public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
+    }
 }

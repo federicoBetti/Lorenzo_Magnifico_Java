@@ -77,6 +77,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     //ok
     public void takeDevCard() throws IOException, ClassNotFoundException {
+
         String towerColour = (String) objectInputStream.readObject();
         int floor = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
@@ -259,40 +260,60 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    //todo controllare il -1 che è brutto
+    //todo controllare il -1 che è feo
     @Override
     public int sendPossibleChoice(String kindOfChoice) {
 
-        int readObject = -1;
+        int choice = -1;
         try {
         objectOutputStream.writeObject(kindOfChoice);
         objectOutputStream.flush();
         objectOutputStream.reset();
-        readObject =  (int)objectInputStream.readObject();
+
+        String choiceS = (String)objectInputStream.readObject();
+        choice = Integer.parseInt(choiceS);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return readObject;
+        return choice;
     }
 
     @Override
-    public void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException {
-        String answer = "start";
-        while ( !answer.equals("finish") ){
-            objectOutputStream.writeObject(returnFromEffect.toString());
-            objectOutputStream.writeObject(returnFromEffect);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
+    public void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException {
 
-            //ricevo le stringhe che identificano la carta
+        while ( true ){
+            sendAnswer(returnFromEffect);
+            String answer = (String)objectInputStream.readObject();
 
-            //check con gli sconti
+            if( answer.equals(Constants.EXIT))
+                return;
 
-            //if check ok, break e chiama il metodo takeDevCard modificato per lo sconto
-            //altriment richiedo
+            try {
+                takeBonusDevCard();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (CantDoActionException e) {
+                objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+                continue;
+            }
+            break;
         }
+    }
+
+    private void takeBonusDevCard() throws IOException, ClassNotFoundException, CantDoActionException {
+        String towerColour = (String) objectInputStream.readObject();
+        int floor = (int) objectInputStream.readObject();
+        String familyMemberColour = (String) objectInputStream.readObject();
+        FamilyMember familyMember = findFamilyMember(familyMemberColour);
+
+        clientTakeBonusDevelopementCard(towerColour, floor, familyMember);
+        // oppure questo modificato clientTakeDevelopementCard(towerColour, floor, familyMember);
     }
 
 

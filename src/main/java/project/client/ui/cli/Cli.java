@@ -37,6 +37,17 @@ public class Cli extends AbstractUI {
         context = new MainContext(this);
     }
 
+    @Override
+    public void choicePe() {
+        context = new ChoicePeContext(this);
+    }
+
+    @Override
+    public void sendChoicePe( String input ) throws InputException, IOException, ClassNotFoundException {
+        context.checkValidInput(input);
+        clientSetter.sendChoicePe(input);
+    }
+
     public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         context = new TowersContext(this);
     }
@@ -150,6 +161,10 @@ public class Cli extends AbstractUI {
     public void showTowers() {
         //todo fare il metodo di print per le varie caratteristiche delle carte e per gli effetti
         //clientSetter.getUiBoard().getAllTowers().printTowers();
+    }
+
+    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+        clientSetter.sendExitToBonusAction();
     }
 
     private class Keyboard extends Thread {

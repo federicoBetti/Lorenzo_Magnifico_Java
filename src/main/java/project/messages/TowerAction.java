@@ -39,38 +39,23 @@ public class TowerAction extends BonusInteraction {
         this.quantityDiscounted2 = quantityDiscounted2;
     }
 
-
-
-	public int getNewCardDicevalue() {
-		return newCardDicevalue;
-	}
-	public String getKindOfCard() {
-		return kindOfCard;
-	}
-	public String getDiscountedResource1() {
-		return discountedResource1;
-	}
-	public int getQuantityDiscounted1() {
-		return quantityDiscounted1;
-	}
-	public String getDiscountedResource2() {
-		return discountedResource2;
-	}
-	public int getQuantityDiscounted2() {
-		return quantityDiscounted2;
-	}
-
-
 	public void printBonusAction(){
+
     	System.out.println("Bonus tower action:\n" +
-						   "Dice value: " +newCardDicevalue +"\n" +
-						   "Kind of card" + kindOfCard +"\n" +
-						   "Resource discounted:"+ discountedResource1 + "\n" +
-						   "Quantity discounted"+quantityDiscounted1 + "\n");
-    	if ( discountedResource2 != "empty")
+						   "kindOfCard" + kindOfCard+"\n"+
+                           "Bonus dice value: " +newCardDicevalue+"\n");
+
+    	if ( discountedResource1 != "empty") {
+			System.out.println("Resource discounted:" + discountedResource1 + "\n" +
+					           "Quantity discounted" + quantityDiscounted1 + "\n");
+		}
+
+    	if ( discountedResource2 != "empty"){
     		System.out.println("Second resource discounted" + discountedResource2 +"\n" +
-							   "Second resource discounted" + quantityDiscounted2);
-	}
+                               "Quantity discounted" + quantityDiscounted2);
+		}
+    }
+
 	@Override
 	public String toString() {
 		return Constants.TOWER_ACTION;

@@ -23,6 +23,7 @@ public class MessagesFromServerHandler {
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: waitingForNewInteraction );
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
+        map.put(Constants.NOT_ENOUGH_RESOURCES, this:: notEnoughResources );
         //updates
         map.put(Constants.SCORE_UPDATE, this:: scoreUpdate );
         map.put(Constants.PERSONAL_BOARD_UPDATE, this:: personalBoardUpdate );
@@ -30,6 +31,16 @@ public class MessagesFromServerHandler {
         map.put(Constants.BOARD_UPDATE, this:: boardUpdate );
         map.put(Constants.CANT_DO_ACTION, this::cantDoAction );
         map.put(Constants.BOTH_PAYMENT_METHODS_AVAILABLE, this::bothPaymentsAvailable );
+        map.put(Constants.CHOICE_PE, this:: choicePe );
+    }
+
+    private void notEnoughResources() throws IOException, ClassNotFoundException {
+        System.out.println("Not enough resources available for doing the action");
+        client.waitingForTheNewInteraction();
+    }
+
+    private void choicePe() {
+        client.choicePe();
     }
 
     private void bothPaymentsAvailable() {

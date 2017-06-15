@@ -111,6 +111,16 @@ public class SocketClient extends AbstractClient {
 
     }
 
+    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+        try {
+            objectOutputStream.writeObject(Constants.EXIT);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        waitingForTheNewInteraction();
+    }
 
 
     public void mainContext() {
@@ -118,9 +128,20 @@ public class SocketClient extends AbstractClient {
     }
 
     //receive answers
+
     public void takeBonusCard() throws IOException, ClassNotFoundException {
         TowerAction towerAction = (TowerAction) objectInputStream.readObject();
         clientSetter.takeBonusCard(towerAction);
+    }
+
+    @Override
+    public void choicePe(){
+        clientSetter.choicePe();
+    }
+
+    public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
+        sendKindOfRequest(input);
+        waitingForTheNewInteraction();
     }
 
     //updates

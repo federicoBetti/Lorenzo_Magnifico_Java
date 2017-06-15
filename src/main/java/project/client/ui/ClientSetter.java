@@ -131,6 +131,18 @@ public class ClientSetter {
         client.prayOrNot(action);
     }
 
+    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+        client.sendExitToBonusAction();
+    }
+
+    public void choicePe() {
+        ui.choicePe();
+    }
+
+    public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
+        client.sendChoicePe(input);
+    }
+
     public void askForPraying() {
     }
 
@@ -206,4 +218,7 @@ public class ClientSetter {
     public void setUiFamilyMembers(FamilyMember[] uiFamilyMembers) {
         this.uiFamilyMembers = uiFamilyMembers;
     }
+
+
+
 }

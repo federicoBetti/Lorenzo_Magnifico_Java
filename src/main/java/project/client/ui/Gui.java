@@ -1,6 +1,7 @@
 package project.client.ui;
 
 import javafx.application.Application;
+import project.client.ui.cli.InputException;
 import project.client.ui.gui.login.LoginBuilder;
 import project.client.ui.gui.maingame.MainGameBuilder;
 import project.messages.TowerAction;
@@ -46,5 +47,15 @@ public class Gui extends AbstractUI {
 
     @Override
     public void mainContext() {
+    }
+
+    @Override
+    public void choicePe() {
+
+    }
+
+    @Override
+    public void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException {
+
     }
 }

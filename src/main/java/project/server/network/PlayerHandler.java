@@ -62,6 +62,10 @@ public abstract class PlayerHandler extends Player {
 
     }
 
+    protected void clientTakeBonusDevelopementCard(String towerColour, int floor, FamilyMember familyMember) throws CantDoActionException{
+        //todo oppure modificare quello di sopra
+    }
+
     /**
      * this method is used when the system ask to the client which of VenturesCard payment he wants to use
      * @param position
@@ -246,5 +250,5 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int sendPossibleChoice(String kindOfChoice);
 
-    public abstract void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException;
+    public abstract void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException;
 }

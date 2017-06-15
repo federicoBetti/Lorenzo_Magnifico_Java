@@ -18,6 +18,7 @@ public class TakeBonusCard extends AbstractContext {
     public TakeBonusCard(Cli cli, TowerAction towerAction) {
         super(cli);
         this.towerAction = towerAction;
+        map.put(CliConstants.EXIT, this::exitFromBonus );
 
         try {
             supportContext = new TowersContext(cli);
@@ -29,6 +30,11 @@ public class TakeBonusCard extends AbstractContext {
             e.printStackTrace();
         }
 
+    }
+
+    private void exitFromBonus() throws IOException, ClassNotFoundException {
+        exit();
+        cli.sendExitToBonusAction();
     }
 
     private void showTowers() {

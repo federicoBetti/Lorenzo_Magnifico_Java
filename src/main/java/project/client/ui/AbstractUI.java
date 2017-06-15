@@ -1,5 +1,6 @@
 package project.client.ui;
 
+import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -27,4 +28,8 @@ public abstract class AbstractUI {
     public abstract void prayOrNot(String action) throws IOException, ClassNotFoundException;
 
     public void mainContext(){}
+
+    public abstract void choicePe();
+
+    public abstract void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException;
 }

@@ -377,8 +377,6 @@ public class GameActions {
         else {
             player.sendUpdates(new ScoreUpdate(player));
         }
-
-        broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
     }
 
     public void broadcastNotifications(Notify notifications){
@@ -415,6 +413,8 @@ public class GameActions {
                 try {
                     player.sendBonusTowerAction(returnFromEffect);
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }

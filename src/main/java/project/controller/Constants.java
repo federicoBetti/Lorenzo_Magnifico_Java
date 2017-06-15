@@ -85,6 +85,8 @@ public class Constants {
     public static final String SCORE_UPDATE = "score-update";
     public static final String BOARD_UPDATE = "board-update";
     public static final String CANT_DO_ACTION = "cant-do-action";
+    public static final String EXIT = "exit";
+    public static final String NOT_ENOUGH_RESOURCES = "not-enough-resources";
 
 
     private Constants(){}
