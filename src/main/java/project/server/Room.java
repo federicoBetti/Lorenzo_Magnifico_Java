@@ -1,5 +1,7 @@
 package project.server;
 
+import com.sun.javafx.collections.ObservableListWrapper;
+import javafx.collections.ObservableList;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.model.Board;
@@ -8,6 +10,8 @@ import project.server.network.GameActions;
 import project.server.network.PlayerHandler;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -86,5 +90,13 @@ public class Room {
             count++;
         }
         return count;
+    }
+
+    public ObservableList<PlayerHandler> getListOfPlayers(){
+        ObservableList<PlayerHandler> list = new ObservableListWrapper<>(getBoard().getTurn().getPlayerTurn());
+        for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet()) {
+            list.add(entry.getValue());
+        }
+        return list;
     }
 }

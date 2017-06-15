@@ -21,4 +21,8 @@ public class BuildingCost extends TerritoryCost {
     public int getCoinsRequired() {
         return coinsRequired;
     }
+
+    public void setCoinsRequired(int coinsRequired) {
+        this.coinsRequired = coinsRequired;
+    }
 }

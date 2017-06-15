@@ -20,9 +20,11 @@ public class ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints implement
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsRequired);
-        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() - victoryPointsEarned);
-        player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() - militaryPointsEarned);
+        if (player.getPersonalBoardReference().getServants() >= servantsRequired) {
+            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsRequired);
+            player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned);
+            player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() + militaryPointsEarned);
+        }
 
         return new OkOrNo();
     }

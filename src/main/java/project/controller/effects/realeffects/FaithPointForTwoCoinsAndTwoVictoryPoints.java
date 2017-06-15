@@ -21,9 +21,11 @@ public class FaithPointForTwoCoinsAndTwoVictoryPoints implements Effects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        player.getScore().setFaithPoints(player.getScore().getFaithPoints() - faithPointsrequired );
-        player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsEarned);
-        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned );
+        if ((player.getScore().getFaithPoints() >= faithPointsrequired )) {
+            player.getScore().setFaithPoints(player.getScore().getFaithPoints() - faithPointsrequired);
+            player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsEarned);
+            player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned);
+        }
 
         return new OkOrNo();
     }

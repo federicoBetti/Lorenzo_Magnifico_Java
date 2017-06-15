@@ -24,29 +24,31 @@ public class ExchangeServantsFor implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
-        player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - servantsRequired);
+        if (player.getPersonalBoardReference().getStone() >= servantsRequired) {
+            player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - servantsRequired);
 
-        switch ( resourceRewardered ){
-            case "woods":
-                player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
-                break;
-            case "stones":
-                player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + resourceEarned);
-                break;
-            case "servants":
-                player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + resourceEarned);
-                break;
-            case "victoryPoints":
-                player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + resourceEarned);
-                break;
-            case"faithPoints":
-                player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
-                break;
-            case"coins":
-                player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + resourceEarned);
-                break;
-            default:
-                return null;
+            switch (resourceRewardered) {
+                case "woods":
+                    player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
+                    break;
+                case "stones":
+                    player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + resourceEarned);
+                    break;
+                case "servants":
+                    player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + resourceEarned);
+                    break;
+                case "victoryPoints":
+                    player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + resourceEarned);
+                    break;
+                case "faithPoints":
+                    player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
+                    break;
+                case "coins":
+                    player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + resourceEarned);
+                    break;
+                default:
+                    return null;
+            }
         }
 
         return new OkOrNo();

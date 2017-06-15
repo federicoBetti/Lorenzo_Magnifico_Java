@@ -9,7 +9,7 @@ import project.server.network.PlayerHandler;
  * Created by raffaelebongo on 10/05/17.
  */
 
-//todo HashMap
+//todo HashMap, si potrebbe mettere le cose sotto come un addWood, addoStone e cose cosi
 public class ExchangeWoodFor implements Effects {
 
     int woodRequired;
@@ -25,9 +25,10 @@ public class ExchangeWoodFor implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
+        if (player.getPersonalBoardReference().getWood() >= woodRequired) {
             player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - woodRequired);
 
-            switch ( resourceRewardered ){
+            switch (resourceRewardered) {
                 case "woods":
                     player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
                     break;
@@ -40,15 +41,16 @@ public class ExchangeWoodFor implements Effects {
                 case "victoryPoints":
                     player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + resourceEarned);
                     break;
-                case"faithPoints":
+                case "faithPoints":
                     player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
                     break;
-                case"coins":
+                case "coins":
                     player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + resourceEarned);
                     break;
                 default:
                     return null;
             }
+        }
 
             return new OkOrNo();
         }

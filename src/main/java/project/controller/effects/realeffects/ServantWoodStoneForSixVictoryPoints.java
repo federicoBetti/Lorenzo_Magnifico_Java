@@ -22,11 +22,14 @@ public class ServantWoodStoneForSixVictoryPoints implements Effects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() -  servantsRequired);
-        player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - woodrequired);
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - stoneRequired);
-        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned);
+        if (player.getPersonalBoardReference().getServants() >=  servantsRequired &&
+                player.getPersonalBoardReference().getWood() >= woodrequired &&
+                player.getPersonalBoardReference().getServants() >= stoneRequired) {
+            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsRequired);
+            player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - woodrequired);
+            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - stoneRequired);
+            player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned);
+        }
 
         return new OkOrNo();
     }
