@@ -122,6 +122,16 @@ public class RMIPlayerHandler extends PlayerHandler{
 
     }
 
+    @Override
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+
+    }
+
     // qua inizia la parte delle chiamate del client sul server
 
     void takeDevCard(String towerColour, int floor, String familyMemberColour) throws RemoteException {

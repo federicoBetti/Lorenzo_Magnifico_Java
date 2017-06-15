@@ -38,7 +38,7 @@ public class MessagesFromServerHandler {
         map.put(Constants.TAKE_PRIVILEGE_ACTION, this:: takeImmediatePriviledge );
     }
 
-    private void takeImmediatePriviledge() {
+    private void takeImmediatePriviledge() throws IOException, ClassNotFoundException {
         client.takeImmediatePrivilege();
     }
 
