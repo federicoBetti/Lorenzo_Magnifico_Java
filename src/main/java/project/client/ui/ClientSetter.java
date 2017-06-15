@@ -91,8 +91,8 @@ public class ClientSetter {
         client.marketAction(parameter1, parameter2);
     }
 
-    public void councilAction(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException {
-        client.councilAction( parameter1, parameter2);
+    public void councilAction(String priviledgeNumber, String familiarColour ) throws IOException, ClassNotFoundException {
+        client.councilAction( priviledgeNumber, familiarColour);
     }
 
     public void productionAction(String[] parameters) throws IOException, ClassNotFoundException  {
@@ -143,6 +143,10 @@ public class ClientSetter {
 
     public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException  {
         client.bonusHarvesterAction( servantsNumber );
+    }
+
+    public void immediatePriviledgeAction(String[] privileges) throws IOException, ClassNotFoundException {
+        client.immediatePriviledgeAction( privileges );
     }
 
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
@@ -235,5 +239,9 @@ public class ClientSetter {
 
 
     public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
+    }
+
+    public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) throws IOException, ClassNotFoundException {
+        ui.takeImmediatePrivilege(privilegesAction);
     }
 }

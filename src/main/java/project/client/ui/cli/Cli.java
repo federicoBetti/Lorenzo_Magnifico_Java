@@ -4,6 +4,7 @@ import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
 import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 
 import java.io.BufferedReader;
@@ -79,6 +80,17 @@ public class Cli extends AbstractUI {
         context.checkValidInput(input);
         String[] parameters = input.split("-");
         clientSetter.takeBonusCardAction(parameters[0], parameters[1] );
+    }
+
+    @Override
+    public void immediatePriviledgeAction( String input ) throws InputException, IOException, ClassNotFoundException {
+        String[] privileges = input.split("-");
+        clientSetter.immediatePriviledgeAction( privileges );
+    }
+
+    @Override
+    public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) {
+        context = new ImmediatePriviledgesContext(this, privilegesAction );
     }
 
     public void takeDevCard() throws IOException, ClassNotFoundException, InputException {

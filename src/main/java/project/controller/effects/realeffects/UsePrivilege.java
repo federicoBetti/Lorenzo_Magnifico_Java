@@ -1,5 +1,6 @@
 package project.controller.effects.realeffects;
 
+import project.controller.Constants;
 import project.messages.BonusInteraction;
 import project.messages.TakePrivilegesAction;
 import project.server.network.PlayerHandler;
@@ -19,5 +20,10 @@ public class UsePrivilege implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         return new TakePrivilegesAction(quantityOfDifferentPrivilege);
+    }
+
+    @Override
+    public String toString(){
+        return Constants.TAKE_PRIVILEDGE;
     }
 }

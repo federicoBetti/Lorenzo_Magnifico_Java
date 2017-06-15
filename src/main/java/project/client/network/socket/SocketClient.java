@@ -5,6 +5,7 @@ import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
 import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
 
@@ -80,6 +81,11 @@ public class SocketClient extends AbstractClient {
         clientSetter.bonusHarvester(bonusHarv);
     }
 
+    public void takeImmediatePrivilege() throws IOException, ClassNotFoundException {
+        TakePrivilegesAction privilegesAction = (TakePrivilegesAction)objectInputStream.readObject();
+        clientSetter.takeImmediatePrivilege(privilegesAction);
+    }
+
     public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException  {
         sendKindOfRequest(Constants.BONUS_HARVESTER);
         sendKindOfRequest(servantsNumber);
@@ -114,6 +120,11 @@ public class SocketClient extends AbstractClient {
         sendKindOfRequest(Constants.PRODUCTION);
         sendAllParameters(parameters);
         waitingForTheNewInteraction();
+    }
+
+    @Override
+    public void immediatePriviledgeAction(String[] privileges) throws IOException, ClassNotFoundException {
+        sendAllParameters(privileges);
     }
 
     @Override

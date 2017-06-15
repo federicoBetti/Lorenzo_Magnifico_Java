@@ -2,6 +2,7 @@ package project.client.ui;
 
 import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 
 import java.io.IOException;
@@ -40,4 +41,8 @@ public abstract class AbstractUI {
     public abstract void bonusProductionParameters(String action) throws InputException, IOException, ClassNotFoundException;
 
     public abstract void takeBonusCardParameters(String action) throws InputException, IOException, ClassNotFoundException;
+
+    public abstract void immediatePriviledgeAction(String action) throws InputException, IOException, ClassNotFoundException;
+
+    public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
 }

@@ -60,4 +60,10 @@ public class AbstractClient {
 
     public void takeBonusCardAction(String floor, String input) throws IOException, ClassNotFoundException {
     }
+
+    public void immediatePriviledgeAction(String[] privileges) throws IOException, ClassNotFoundException {
+    }
+
+    public void takeImmediatePrivilege() throws IOException, ClassNotFoundException {
+    }
 }

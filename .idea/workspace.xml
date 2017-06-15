@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ImmediatePriviledgesContext.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TakeBonusCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TakeBonusCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TowersContext.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TowersContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/UsePrivilege.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/UsePrivilege.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/socket/ServerDataHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/ServerDataHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -31,31 +31,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameActions.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="429" column="0" lean-forward="true" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TowerAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SocketClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="84" column="36" lean-forward="true" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
+            <state relative-caret-position="213">
+              <caret line="84" column="30" lean-forward="true" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,79 +43,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SocketPlayerHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java">
+      <file leaf-file-name="MessagesFromServerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="350" column="8" lean-forward="false" selection-start-line="350" selection-start-column="8" selection-end-line="350" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cli.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="77" column="28" lean-forward="false" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TakeBonusCard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TakeBonusCard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientSetter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="101" column="26" lean-forward="true" selection-start-line="101" selection-start-column="26" selection-end-line="101" selection-end-column="26" />
+            <state relative-caret-position="472">
+              <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2569#2570#0" expanded="true" />
-                <element signature="e#2601#2602#0" expanded="true" />
-                <element signature="e#3591#3592#0" expanded="true" />
-                <element signature="e#3636#3637#0" expanded="true" />
-                <element signature="e#4369#4370#0" expanded="true" />
-                <element signature="e#4398#4399#0" expanded="true" />
-                <element signature="e#4776#4777#0" expanded="true" />
-                <element signature="e#4820#4821#0" expanded="true" />
-                <marker date="1497548451000" expanded="false" signature="5416:5427" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="5452:5458" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="5503:5514" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="5539:5545" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="5598:5609" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="5642:5648" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="5700:5711" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="5744:5750" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="5809:5820" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="5866:5872" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="5913:5924" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="5951:5957" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6041:6052" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6067:6073" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6116:6127" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6150:6156" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6203:6214" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6237:6243" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6310:6321" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6360:6366" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6397:6408" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6423:6429" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6472:6483" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6506:6512" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6560:6571" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6594:6600" ph=" }" />
-                <marker date="1497548451000" expanded="false" signature="6668:6679" ph=" { " />
-                <marker date="1497548451000" expanded="false" signature="6718:6724" ph=" }" />
+                <element signature="e#1614#1615#0" expanded="true" />
+                <element signature="e#1661#1662#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,10 +60,82 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="537">
-              <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+              <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TakePrivilegesAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SocketPlayerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="357" column="43" lean-forward="true" selection-start-line="357" selection-start-column="43" selection-end-line="357" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cli.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="64" column="5" lean-forward="true" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerDataHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/ServerDataHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="54" column="61" lean-forward="false" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientSetter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="244" column="42" lean-forward="false" selection-start-line="244" selection-start-column="42" selection-end-line="244" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="46" column="24" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2415">
+              <caret line="181" column="16" lean-forward="false" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,10 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dobo</find>
-      <find>dobonus</find>
-      <find>do</find>
-      <find>doBonu</find>
       <find>takeBon</find>
       <find>bonusHar</find>
       <find>sendBonu</find>
@@ -193,9 +176,13 @@
       <find>sendKind</find>
       <find>bonus</find>
       <find>choi</find>
-      <find>choice</find>
       <find>tower</find>
       <find>harvest</find>
+      <find>choice</find>
+      <find>make</find>
+      <find>privi</find>
+      <find>privile</find>
+      <find>privil</find>
     </findStrings>
     <replaceStrings>
       <replace>allCheckFunction</replace>
@@ -224,11 +211,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/Updates.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/model/Board.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/model/Deck.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/DeckIterator.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/LoadCards.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/MainContext.java" />
@@ -260,21 +242,26 @@
         <option value="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/BonusProductionContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/BonusHarvesterContext.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TowersContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/messages/BonusInteraction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TakeBonusCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/UsePrivilege.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/CouncilContext.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ImmediatePriviledgesContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/server/network/socket/ServerDataHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" />
       </list>
     </option>
   </component>
@@ -610,6 +597,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="effects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Progetto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -683,48 +704,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cli" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Progetto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Progetto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cli" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="context" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -809,7 +788,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="consta&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/controller/Constants.java&#10;Input&#9;PSI&#9;JAVA://project.client.ui.cli.InputException&#10;bonus&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/messages/BonusProductionOrHarvesterAction.java&#10;Consta&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/controller/Constants.java&#10;bonushar&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/client/ui/cli/context/BonusHarvesterContext.java&#10;login&#9;PSI&#9;JAVA://project.server.Server#loginRequest&#10;nextturn&#9;PSI&#9;JAVA://project.server.network.GameActions#nextTurn&#10;nexttu&#9;PSI&#9;JAVA://project.server.network.GameActions#nextTurn&#10;towerA&#9;PSI&#9;JAVA://project.messages.TowerAction&#10;noti&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/messages/Notify.java&#10;notify&#9;PSI&#9;JAVA://project.messages.Notify&#10;de&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/model/DevelopmentCard.java&#10;develop&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/model/DevelopmentCard.java&#10;game&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/server/network/GameActions.java&#10;towera&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/messages/TowerAction.java&#10;const&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/controller/Constants.java&#10;searc&#9;PSI&#9;JAVA://project.controller.effects.effectsfactory.BuildImmediateEffects#SearchImmediateEffects&#10;tri&#9;PSI&#9;JAVA://project.controller.effects.effectsfactory.TrisIE&#10;tower&#9;PSI&#9;JAVA://project.messages.TowerAction&#10;leade&#9;PSI&#9;JAVA://Project.Controller.SupportFunctions.LeaderCardRequirements&#10;excomm&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
+    <property name="SearchEverywhereHistoryKey" value="take&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/messages/TakePrivilegesAction.java&#10;consta&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/controller/Constants.java&#10;Input&#9;PSI&#9;JAVA://project.client.ui.cli.InputException&#10;bonus&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/messages/BonusProductionOrHarvesterAction.java&#10;Consta&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/controller/Constants.java&#10;bonushar&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/client/ui/cli/context/BonusHarvesterContext.java&#10;login&#9;PSI&#9;JAVA://project.server.Server#loginRequest&#10;nextturn&#9;PSI&#9;JAVA://project.server.network.GameActions#nextTurn&#10;nexttu&#9;PSI&#9;JAVA://project.server.network.GameActions#nextTurn&#10;towerA&#9;PSI&#9;JAVA://project.messages.TowerAction&#10;noti&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/messages/Notify.java&#10;notify&#9;PSI&#9;JAVA://project.messages.Notify&#10;de&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/model/DevelopmentCard.java&#10;develop&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/model/DevelopmentCard.java&#10;game&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/server/network/GameActions.java&#10;towera&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/messages/TowerAction.java&#10;const&#9;FILE&#9;file:///Users/raffaelebongo/Desktop/Progetto/src/main/java/project/controller/Constants.java&#10;searc&#9;PSI&#9;JAVA://project.controller.effects.effectsfactory.BuildImmediateEffects#SearchImmediateEffects&#10;tri&#9;PSI&#9;JAVA://project.controller.effects.effectsfactory.TrisIE&#10;tower&#9;PSI&#9;JAVA://project.messages.TowerAction&#10;leade&#9;PSI&#9;JAVA://Project.Controller.SupportFunctions.LeaderCardRequirements&#10;excomm&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="SONARLINT_ANALYSIS_RESULTS_SCOPE" value="All project files" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
@@ -1465,7 +1444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497543645823</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="upgrade Cli and socket">
+      <created>1497548995358</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1497548995358</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1587,27 +1573,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/PersonalBoardUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/MarketUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/HarvesterUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/DiceValueUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1626,14 +1591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="23" column="45" lean-forward="false" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/ServerDataHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="106" column="24" lean-forward="false" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1666,13 +1623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/CouncilContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="49" column="23" lean-forward="false" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ChoicePeContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1691,13 +1641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddCoin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="20" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1822,14 +1765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="31" column="43" lean-forward="false" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/AbstractContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -1853,14 +1788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="41" column="24" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1889,78 +1816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="101" column="26" lean-forward="true" selection-start-line="101" selection-start-column="26" selection-end-line="101" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2569#2570#0" expanded="true" />
-            <element signature="e#2601#2602#0" expanded="true" />
-            <element signature="e#3591#3592#0" expanded="true" />
-            <element signature="e#3636#3637#0" expanded="true" />
-            <element signature="e#4369#4370#0" expanded="true" />
-            <element signature="e#4398#4399#0" expanded="true" />
-            <element signature="e#4776#4777#0" expanded="true" />
-            <element signature="e#4820#4821#0" expanded="true" />
-            <marker date="1497548451000" expanded="false" signature="5416:5427" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="5452:5458" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="5503:5514" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="5539:5545" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="5598:5609" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="5642:5648" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="5700:5711" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="5744:5750" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="5809:5820" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="5866:5872" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="5913:5924" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="5951:5957" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6041:6052" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6067:6073" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6116:6127" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6150:6156" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6203:6214" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6237:6243" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6310:6321" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6360:6366" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6397:6408" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6423:6429" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6472:6483" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6506:6512" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6560:6571" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6594:6600" ph=" }" />
-            <marker date="1497548451000" expanded="false" signature="6668:6679" ph=" { " />
-            <marker date="1497548451000" expanded="false" signature="6718:6724" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="77" column="28" lean-forward="false" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TakeBonusCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1985,36 +1840,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TakeBonusCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="84" column="36" lean-forward="true" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
+        <state relative-caret-position="443">
+          <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddCoin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/UsePrivilege.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/CouncilContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="350" column="8" lean-forward="false" selection-start-line="350" selection-start-column="8" selection-end-line="350" selection-end-column="8" />
+        <state relative-caret-position="511">
+          <caret line="45" column="5" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="45" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ImmediatePriviledgesContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="421" column="75" lean-forward="false" selection-start-line="421" selection-start-column="75" selection-end-line="421" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="65" column="163" lean-forward="false" selection-start-line="65" selection-start-column="163" selection-end-line="65" selection-end-column="163" />
+        <state relative-caret-position="2415">
+          <caret line="181" column="16" lean-forward="false" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="429" column="0" lean-forward="true" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
+        <state relative-caret-position="301">
+          <caret line="357" column="43" lean-forward="true" selection-start-line="357" selection-start-column="43" selection-end-line="357" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/ServerDataHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="54" column="61" lean-forward="false" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+          <folding>
+            <element signature="e#1614#1615#0" expanded="true" />
+            <element signature="e#1661#1662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="84" column="30" lean-forward="true" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="46" column="24" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="244" column="42" lean-forward="false" selection-start-line="244" selection-start-column="42" selection-end-line="244" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="64" column="5" lean-forward="true" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
           <folding />
         </state>
       </provider>

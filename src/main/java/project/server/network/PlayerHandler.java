@@ -15,7 +15,6 @@ import project.server.Room;
 import project.server.network.exception.*;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -257,4 +256,8 @@ public abstract class PlayerHandler extends Player {
 
     public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
     }
+
+    public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
+
+    public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
 }

@@ -345,6 +345,20 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    @Override
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+        sendAnswer(returnFromEffect);
+        takePriviledgesInArow(returnFromEffect);
+    }
+
+    @Override
+    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+        for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
+            int privilegeNumber = (int) objectInputStream.readObject();
+            takePrivilege(privilegeNumber);
+        }
+    }
+
     private void takeBonusDevCard(TowerAction returnFromEffect) throws IOException, ClassNotFoundException, CantDoActionException {
 
         int floor = Integer.parseInt((String)objectInputStream.readObject());

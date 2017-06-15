@@ -35,6 +35,11 @@ public class MessagesFromServerHandler {
         map.put(Constants.CHOICE_PE, this:: choicePe );
         map.put(Constants.BONUS_PRODUCTION, this:: bonusProduction );
         map.put(Constants.BONUS_HARVESTER, this:: bonusHarvester );
+        map.put(Constants.TAKE_PRIVILEGE_ACTION, this:: takeImmediatePriviledge );
+    }
+
+    private void takeImmediatePriviledge() {
+        client.takeImmediatePrivilege();
     }
 
     private void bonusHarvester() throws IOException, ClassNotFoundException {

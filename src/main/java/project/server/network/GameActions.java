@@ -5,14 +5,12 @@ import project.controller.Constants;
 import project.controller.effects.realeffects.AddCoin;
 import project.controller.effects.realeffects.Effects;
 import project.controller.FakeFamiliar;
+import project.controller.effects.realeffects.UsePrivilege;
 import project.controller.supportfunctions.AllSupportFunctions;
-import project.messages.BonusInteraction;
-import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.TowerAction;
+import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.Room;
-import project.messages.Notify;
 
 import javax.sql.rowset.BaseRowSet;
 import java.io.IOException;
@@ -408,7 +406,7 @@ public class GameActions {
         }
     }
 
-    public void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
+    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
             try {
@@ -419,6 +417,10 @@ public class GameActions {
                 else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){
                     player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
                 }
+
+                else if ( returnFromEffect instanceof TakePrivilegesAction )
+                    player.sendRequestForPriviledges((TakePrivilegesAction)returnFromEffect);
+
             }catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -428,7 +430,7 @@ public class GameActions {
         }
     }
 
-    public void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {
+    private void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {
 
         if ( card.isChoicePe() ) {
             int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
