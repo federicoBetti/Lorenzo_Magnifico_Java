@@ -34,6 +34,11 @@ public class MessagesFromServerHandler {
         map.put(Constants.BONUS_PRODUCTION, this:: bonusProduction );
         map.put(Constants.BONUS_HARVESTER, this:: bonusHarvester );
         map.put(Constants.TAKE_PRIVILEGE_ACTION, this:: takeImmediatePriviledge );
+        map.put(Constants.ASK_FOR_PRAYING, this::askForPraying);
+    }
+
+    private void askForPraying() {
+        client.askForPraying();
     }
 
     private void takeImmediatePriviledge() throws IOException, ClassNotFoundException {

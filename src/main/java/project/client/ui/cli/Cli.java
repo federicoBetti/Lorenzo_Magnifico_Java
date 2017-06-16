@@ -35,6 +35,14 @@ public class Cli extends AbstractUI {
         context = new MainContext(this);
     }
 
+    public void actionOk(){
+
+    }
+
+    public void cantDoAction(){
+
+    }
+
     @Override
     public void choicePe() {
         context = new ChoicePeContext(this);
@@ -117,7 +125,7 @@ public class Cli extends AbstractUI {
         context = new DiscardLeaderCardContext(this);
     }
 
-    public void excomunicationContext() {
+    public void askForPraying() {
         context = new ExcomunicationContext(this);
     }
 

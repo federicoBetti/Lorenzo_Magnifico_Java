@@ -253,6 +253,7 @@ public class GameActions {
                 makePermannetEffects(player, card);
         }
 
+        player.sendActionOk(Constants.OK_OR_NO);
         broadcastUpdates(harvesterUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -426,19 +427,19 @@ public class GameActions {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            player.sendAnswer(returnFromEffect);
         }
+        player.sendActionOk(Constants.OK_OR_NO);
     }
 
     private void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {
 
-        if ( card.isChoicePe() ) {
-            int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
-            card.getPermanentCardEffects().get(choice).doEffect(player);
-        }
+        for (Effects effect : card.getPermanentCardEffects()) {
+            if ( card.isChoicePe() ) {
+                int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
+                card.getPermanentCardEffects().get(choice).doEffect(player);
+            }
 
-        else {
-            for (Effects effect : card.getPermanentCardEffects()) {
+            else {
                 effect.doEffect(player);
             }
         }

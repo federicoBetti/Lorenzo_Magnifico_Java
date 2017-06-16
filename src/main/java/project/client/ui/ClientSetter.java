@@ -142,7 +142,6 @@ public class ClientSetter {
     }
 
 
-
     //these methods call other methods on the ui
 
     public void itsMyTurn() {
@@ -166,15 +165,15 @@ public class ClientSetter {
     }
 
     public void askForPraying(){
-        //todo
+        ui.askForPraying();
     }
 
     public void actionOk() {
-        //todo
+        ui.actionOk();
     }
 
     public void cantDoAction() {
-        //todo
+        ui.cantDoAction();
     }
 
 

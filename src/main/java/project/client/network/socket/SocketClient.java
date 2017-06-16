@@ -124,6 +124,10 @@ public class SocketClient extends AbstractClient {
 
     }
 
+    public void askForPraying() {
+        clientSetter.askForPraying();
+    }
+
     public void itsMyTurn() {
         clientSetter.itsMyTurn();
     }

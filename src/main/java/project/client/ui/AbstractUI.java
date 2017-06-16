@@ -43,4 +43,11 @@ public abstract class AbstractUI {
     public abstract void immediatePriviledgeAction(String action) throws InputException;
 
     public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
+
+    public abstract void askForPraying();
+
+    public void actionOk() {
+    }
+
+    public abstract void cantDoAction();
 }
