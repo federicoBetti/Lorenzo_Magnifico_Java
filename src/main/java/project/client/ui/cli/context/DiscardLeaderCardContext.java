@@ -35,7 +35,7 @@ public class DiscardLeaderCardContext extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String name) throws InputException, IOException, ClassNotFoundException {
+    public void mainContextMethod(String name) throws InputException, IOException {
         cli.discardLeaderCard(name);
     }
 }

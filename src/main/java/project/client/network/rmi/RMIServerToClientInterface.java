@@ -2,6 +2,7 @@ package project.client.network.rmi;
 
 import project.messages.*;
 
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -19,7 +20,7 @@ public interface RMIServerToClientInterface extends Remote{
 
     void endTurn();
 
-    void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
+    void takePrivilege(BonusInteraction takePrivilegesAction);
 
     void askForPraying() throws RemoteException;
 

@@ -245,6 +245,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    //todo check utility
     @Override
     public void sendNotification(Notify notifications) {
         sendAnswer(notifications);
@@ -354,7 +355,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
         for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
-            int privilegeNumber = (int) objectInputStream.readObject();
+            int privilegeNumber = Integer.parseInt((String) objectInputStream.readObject());
             takePrivilege(privilegeNumber);
         }
     }

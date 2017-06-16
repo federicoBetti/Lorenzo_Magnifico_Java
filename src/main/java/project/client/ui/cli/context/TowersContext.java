@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class TowersContext extends AbstractContext {
 
-    public TowersContext ( Cli cli ) throws IOException, ClassNotFoundException, InputException {
+    public TowersContext ( Cli cli ) throws InputException {
         super(cli);
         map.put(CliConstants.SHOW_TOWERS, this:: showTowers );
         map.put(CliConstants.EXIT, this::exit);
@@ -28,7 +28,7 @@ public class TowersContext extends AbstractContext {
     }
 
     @Override
-    public void doAction(String action) throws IOException, ClassNotFoundException, InputException {
+    public void doAction(String action) throws IOException, InputException {
         actioner = map.get(action);
         actioner.action();
     }
@@ -56,7 +56,7 @@ public class TowersContext extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+    public void mainContextMethod(String action) throws InputException, IOException{
         cli.choseAndTakeDevCard(action);
     }
 }

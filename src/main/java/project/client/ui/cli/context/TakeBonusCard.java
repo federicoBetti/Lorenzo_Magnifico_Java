@@ -21,7 +21,7 @@ public class TakeBonusCard extends AbstractContext {
 
     }
 
-    private void exitFromBonus() throws IOException, ClassNotFoundException, InputException {
+    private void exitFromBonus() throws IOException, InputException {
         exit();
         cli.sendExitToBonusAction();
     }
@@ -61,7 +61,7 @@ public class TakeBonusCard extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+    public void mainContextMethod(String action) throws InputException, IOException {
         cli.takeBonusCardParameters(action);
     }
 }

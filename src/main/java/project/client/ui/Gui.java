@@ -33,17 +33,17 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
+    public void loginRequest(String loginParameter)  {
 
     }
 
     @Override
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+    public void discardLeaderCard(String name)  {
 
     }
 
     @Override
-    public void prayOrNot(String action) throws IOException, ClassNotFoundException {
+    public void prayOrNot(String action)  {
 
     }
 
@@ -57,7 +57,7 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void sendChoicePe(String input) throws  IOException, ClassNotFoundException {
+    public void sendChoicePe(String input)  {
 
     }
 
@@ -67,27 +67,27 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void bonusHarvesterParameters(String input) throws  IOException, ClassNotFoundException {
+    public void bonusHarvesterParameters(String input)  {
 
     }
 
     @Override
-    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException {
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd)  {
 
     }
 
     @Override
-    public void bonusProductionParameters(String action) throws  IOException, ClassNotFoundException {
+    public void bonusProductionParameters(String action)  {
 
     }
 
     @Override
-    public void takeBonusCardParameters(String action) throws InputException, IOException, ClassNotFoundException {
+    public void takeBonusCardParameters(String action)  {
 
     }
 
     @Override
-    public void immediatePriviledgeAction(String action) throws InputException, IOException, ClassNotFoundException {
+    public void immediatePriviledgeAction(String action)  {
 
     }
 

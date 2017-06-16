@@ -39,119 +39,81 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void waitingForTheNewInteraction() throws IOException, ClassNotFoundException {
-        String message = (String)objectInputStream.readObject();
-        messageHandler.handleMessage(message);
+    public void waitingForTheNewInteraction() {
+        String message = null;
+        try {
+            message = (String)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            messageHandler.handleMessage(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     //send requests
     @Override
-    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
+    public void loginRequest(String loginParameter)  {
         sendKindOfRequest(Constants.LOGIN_REQUEST);
-
-        objectOutputStream.writeObject(loginParameter);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
-        //si puo migliorare con un pool di thread??
+        sendKindOfRequest(loginParameter);
         waitingForTheNewInteraction();
     }
 
     @Override
-    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException  {
+    public void takeDevCard(String towerColour, String floor, String familiarColour )   {
         sendKindOfRequest(Constants.TAKE_DEV_CARD);
         send3Parameters(towerColour, floor, familiarColour);
     }
 
-    public void takeBonusCardAction(String floor, String towerColour ) throws IOException, ClassNotFoundException {
-        send2Parameters(floor, towerColour);
-        waitingForTheNewInteraction();
-    }
-
-    @Override
-    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException  {
-        sendKindOfRequest(Constants.HARVESTER);
-        send3Parameters(parameter1, parameter2, parameter3);
-    }
 
 
     @Override
-    public void bonusHarvester() throws IOException, ClassNotFoundException {
-        BonusProductionOrHarvesterAction bonusHarv = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
-        clientSetter.bonusHarvester(bonusHarv);
-    }
-
-    public void takeImmediatePrivilege() throws IOException, ClassNotFoundException {
-        TakePrivilegesAction privilegesAction = (TakePrivilegesAction)objectInputStream.readObject();
-        clientSetter.takeImmediatePrivilege(privilegesAction);
-    }
-
-    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException  {
-        sendKindOfRequest(Constants.BONUS_HARVESTER);
-        sendKindOfRequest(servantsNumber);
-        waitingForTheNewInteraction();
-    }
-
-    public void bonusProduction() throws IOException, ClassNotFoundException  {
-        BonusProductionOrHarvesterAction bonusProd = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
-        clientSetter.bonusProduction(bonusProd);
-    }
-
-    public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException  {
-        sendKindOfRequest(Constants.BONUS_PRODUCTION);
-        sendAllParameters(parameters);
-        waitingForTheNewInteraction();
-    }
-
-    @Override
-    public void marketAction( String parameter1, String parameter2 ) throws IOException, ClassNotFoundException {
+    public void marketAction( String parameter1, String parameter2 )  {
         sendKindOfRequest(Constants.GO_TO_MARKET);
         send2Parameters(parameter1, parameter2);
     }
 
     @Override
-    public void councilAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException  {
+    public void councilAction(String parameter1, String parameter2)   {
         sendKindOfRequest(Constants.GO_TO_COUNCIL_PALACE);
         send2Parameters(parameter1, parameter2);
     }
 
     @Override
-    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException  {
+    public void productionAction(String[] parameters)   {
         sendKindOfRequest(Constants.PRODUCTION);
         sendAllParameters(parameters);
         waitingForTheNewInteraction();
     }
 
     @Override
-    public void immediatePriviledgeAction(String[] privileges) throws IOException, ClassNotFoundException {
+    public void immediatePriviledgeAction(String[] privileges)  {
         sendAllParameters(privileges);
     }
 
     @Override
-    public void playLeaderCard(String name ) throws IOException, ClassNotFoundException  {
+    public void playLeaderCard(String name )   {
 
         sendKindOfRequest(Constants.PLAY_LEADER_CARD);
-
-        objectOutputStream.writeObject(name);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
+        sendKindOfRequest(name);
         waitingForTheNewInteraction();
     }
 
     @Override
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException  {
+    public void discardLeaderCard(String name)   {
         sendKindOfRequest(Constants.DISCARD_LEADER_CARD);
-
-        objectOutputStream.writeObject(name);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
+        sendKindOfRequest(name);
         waitingForTheNewInteraction();
     }
 
     @Override
-    public void prayOrNot(String action) throws IOException, ClassNotFoundException  {
+    public void prayOrNot(String action)   {
 
         if ( action.equals("yes"))
             sendKindOfRequest(Constants.PRAY);
@@ -162,8 +124,13 @@ public class SocketClient extends AbstractClient {
 
     }
 
+    public void itsMyTurn() {
+        clientSetter.itsMyTurn();
+    }
+
+    //receive answers: bonus interaction
     @Override
-    public void sendExitToBonusAction() throws IOException, ClassNotFoundException  {
+    public void sendExitToBonusAction()   {
         try {
             objectOutputStream.writeObject(Constants.EXIT);
             objectOutputStream.flush();
@@ -174,15 +141,76 @@ public class SocketClient extends AbstractClient {
         waitingForTheNewInteraction();
     }
 
-
-    public void mainContext() {
-        clientSetter.mainContext();
+    public void takeBonusCardAction(String floor, String towerColour )  {
+        send2Parameters(floor, towerColour);
+        waitingForTheNewInteraction();
     }
 
-    //receive answers
+    @Override
+    public void harvesterAction(String parameter1, String parameter2, String parameter3)   {
+        sendKindOfRequest(Constants.HARVESTER);
+        send3Parameters(parameter1, parameter2, parameter3);
+    }
 
-    public void takeBonusCard() throws IOException, ClassNotFoundException {
-        TowerAction towerAction = (TowerAction) objectInputStream.readObject();
+
+    @Override
+    public void bonusHarvester()  {
+        BonusProductionOrHarvesterAction bonusHarv = null;
+        try {
+            bonusHarv = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.bonusHarvester(bonusHarv);
+    }
+
+    public void takeImmediatePrivilege()  {
+        TakePrivilegesAction privilegesAction = null;
+        try {
+            privilegesAction = (TakePrivilegesAction)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.takeImmediatePrivilege(privilegesAction);
+    }
+
+    public void bonusHarvesterAction(String servantsNumber)   {
+        sendKindOfRequest(Constants.BONUS_HARVESTER);
+        sendKindOfRequest(servantsNumber);
+        waitingForTheNewInteraction();
+    }
+
+    public void bonusProduction()   {
+        BonusProductionOrHarvesterAction bonusProd = null;
+        try {
+            bonusProd = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.bonusProduction(bonusProd);
+    }
+
+    public void bonusProductionAction(String[] parameters)   {
+        sendKindOfRequest(Constants.BONUS_PRODUCTION);
+        sendAllParameters(parameters);
+        waitingForTheNewInteraction();
+    }
+
+    public void takeBonusCard()  {
+        TowerAction towerAction = null;
+        try {
+            towerAction = (TowerAction) objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         clientSetter.takeBonusCard(towerAction);
     }
 
@@ -192,114 +220,140 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void sendChoicePe(String input) throws IOException, ClassNotFoundException  {
+    public void sendChoicePe(String input)   {
         sendKindOfRequest(input);
         waitingForTheNewInteraction();
-    }
-
-    //updates
-
-    public void scoreUpdate() throws IOException, ClassNotFoundException {
-        Updates update = (ScoreUpdate)objectInputStream.readObject();
-        clientSetter.scoreUpdate(update);
-        try {
-            waitingForTheNewInteraction();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void personalBoardUpdate() throws IOException, ClassNotFoundException {
-        Updates update = (PersonalBoardUpdate)objectInputStream.readObject();
-        clientSetter.personalBoardUpdate(update);
-        try {
-            waitingForTheNewInteraction();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void familyMemberUpdate() throws IOException, ClassNotFoundException {
-        Updates update = (FamilyMemberUpdate)objectInputStream.readObject();
-        clientSetter.familyMemberUpdate(update);
-        try {
-            waitingForTheNewInteraction();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } 
-    }
-
-
-    public void boardUpdate() throws IOException, ClassNotFoundException {
-        Updates update = (DiceValueUpdate)objectInputStream.readObject();
-        clientSetter.boardUpdate(update);
-        try {
-            waitingForTheNewInteraction();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } 
-    }
-
-
-    //sending methods
-    void send2Parameters(String parameter1, String parameter2 ) throws IOException, ClassNotFoundException  {
-        objectOutputStream.writeObject(parameter1);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
-        objectOutputStream.writeObject(parameter2);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
-        waitingForTheNewInteraction();
-    }
-
-    void send3Parameters(String parameter1, String parameter2, String parameter3 ) throws IOException, ClassNotFoundException  {
-
-        objectOutputStream.writeObject(parameter1);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
-        objectOutputStream.writeObject(parameter2);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
-        objectOutputStream.writeObject(parameter3);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
-
-        waitingForTheNewInteraction();
-    }
-
-    void sendAllParameters(String[] parameters ) throws IOException, ClassNotFoundException  {
-
-        for( String elem: parameters ){
-            objectOutputStream.writeObject(elem);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        }
-
-        waitingForTheNewInteraction();
-    }
-
-    void sendKindOfRequest(String kindOfRequest ) throws IOException {
-
-        objectOutputStream.writeObject(kindOfRequest);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
     }
 
     public void bothPaymentsAvailable() {
         clientSetter.bothPaymentsAvailable();
     }
 
+    @Override
+    public void sendChoicePaymentVc(String payment)  {
+        sendKindOfRequest(payment);
+        waitingForTheNewInteraction();
+    }
+
+    //updates
+
+    public void scoreUpdate()  {
+        Updates update = null;
+        try {
+            update = (ScoreUpdate)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.scoreUpdate(update);
+        waitingForTheNewInteraction();
+    }
+
+    public void personalBoardUpdate() {
+        Updates update = null;
+        try {
+            update = (PersonalBoardUpdate)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.personalBoardUpdate(update);
+   
+            waitingForTheNewInteraction();
+    }
+
+    public void familyMemberUpdate() {
+        Updates update = null;
+        try {
+            update = (FamilyMemberUpdate)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.familyMemberUpdate(update);
+            waitingForTheNewInteraction();
+    }
+
+
+    public void boardUpdate()  {
+        Updates update = null;
+        try {
+            update = (DiceValueUpdate)objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.boardUpdate(update);
+        waitingForTheNewInteraction();
+    }
+
+
+    //sending methods
+    void send2Parameters(String parameter1, String parameter2 )   {
+        try {
+            objectOutputStream.writeObject(parameter1);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+
+            objectOutputStream.writeObject(parameter2);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        waitingForTheNewInteraction();
+    }
+
+    void send3Parameters(String parameter1, String parameter2, String parameter3 )   {
+
+        try {
+            objectOutputStream.writeObject(parameter1);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+
+            objectOutputStream.writeObject(parameter2);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+
+            objectOutputStream.writeObject(parameter3);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        waitingForTheNewInteraction();
+    }
+
+    void sendAllParameters(String[] parameters )   {
+
+        for( String elem: parameters ){
+            try {
+                objectOutputStream.writeObject(elem);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        waitingForTheNewInteraction();
+    }
+
+    void sendKindOfRequest(String kindOfRequest ) {
+
+        try {
+            objectOutputStream.writeObject(kindOfRequest);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

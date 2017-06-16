@@ -75,7 +75,7 @@ public class MainContext extends AbstractContext {
 
     }
 
-    private void takeDevCard() throws IOException, ClassNotFoundException, InputException {
+    private void takeDevCard() throws IOException, InputException {
         cli.takeDevCard();
     }
 
@@ -142,7 +142,7 @@ public class MainContext extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+    public void mainContextMethod(String action) throws InputException, IOException {
 
     }
 

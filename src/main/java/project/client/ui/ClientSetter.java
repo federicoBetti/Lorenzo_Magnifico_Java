@@ -15,12 +15,12 @@ import project.model.Board;
 import project.model.FamilyMember;
 import project.model.PersonalBoard;
 import project.model.Score;
-
 import java.io.IOException;
 
 /**
  * this class is the "bridge" between user interface and client.
  */
+
 public class ClientSetter {
     AbstractClient client;
     AbstractUI ui;
@@ -71,112 +71,114 @@ public class ClientSetter {
         }
     }
 
-    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException  {
+    //these methods call other methods on the client
+
+    public void loginRequest(String loginParameter)   {
         client.loginRequest(loginParameter);
     }
 
-    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException {
+    public void takeDevCard(String towerColour, String floor, String familiarColour )  {
         client.takeDevCard(towerColour, floor, familiarColour);
     }
 
-    public void mainContext() {
-        ui.mainContext();
-    }
-
-    public void harvesterAction(String position, String familyMemberColour, String servantsNumber) throws IOException, ClassNotFoundException {
+    public void harvesterAction(String position, String familyMemberColour, String servantsNumber)  {
         client.harvesterAction(position, familyMemberColour, servantsNumber);
     }
 
-    public void marketAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
-        client.marketAction(parameter1, parameter2);
+    public void marketAction(String position, String familyColour)  {
+        client.marketAction(position, familyColour);
     }
 
-    public void councilAction(String priviledgeNumber, String familiarColour ) throws IOException, ClassNotFoundException {
+    public void councilAction(String priviledgeNumber, String familiarColour )  {
         client.councilAction( priviledgeNumber, familiarColour);
     }
 
-    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException  {
+    public void productionAction(String[] parameters)   {
         client.productionAction(parameters);
     }
 
-    public void takeBonusCardAction(String floor, String towerColour ) throws IOException, ClassNotFoundException {
+    public void takeBonusCardAction(String floor, String towerColour )  {
         client.takeBonusCardAction(floor, towerColour);
     }
 
-    //metodi di ritorno
-    public void takeBonusCard(TowerAction towerAction ){
-        ui.takeBonusCard(towerAction);
-    }
-
-    public void endTurn() {
-        //to implement
-    }
-
-    public void takePrivilege(TakePrivilegesAction takePrivilegesAction) {
-        //to implement
-    }
-
-
-    public void playLeaderCard(String action) throws IOException, ClassNotFoundException  {
+    public void playLeaderCard(String action)   {
         client.playLeaderCard(action);
     }
 
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException  {
+    public void discardLeaderCard(String name)   {
         client.discardLeaderCard(name);
     }
 
-    public void prayOrNot(String action) throws IOException, ClassNotFoundException  {
+    public void prayOrNot(String action)   {
         client.prayOrNot(action);
     }
 
-    public void sendExitToBonusAction() throws IOException, ClassNotFoundException  {
+    public void sendExitToBonusAction()   {
         client.sendExitToBonusAction();
+    }
+
+    public void sendChoicePe(String input)   {
+        client.sendChoicePe(input);
+    }
+
+    public void bonusHarvesterAction(String servantsNumber)   {
+        client.bonusHarvesterAction( servantsNumber );
+    }
+
+    public void immediatePriviledgeAction(String[] privileges)  {
+        client.immediatePriviledgeAction( privileges );
+    }
+
+    public void bonusProductionAction(String[] parameters)   {
+        client.bonusProductionAction(parameters);
+    }
+
+    public void sendChoicePaymentVc(String payment)  {
+        client.sendChoicePaymentVc(payment);
+    }
+
+    public void skipTurn() {
+        //todo
+    }
+
+
+
+    //these methods call other methods on the ui
+
+    public void itsMyTurn() {
+        ui.mainContext();
+    }
+
+    public void takeBonusCard(TowerAction towerAction ){
+        ui.takeBonusCard(towerAction);
     }
 
     public void choicePe() {
         ui.choicePe();
     }
 
-    public void sendChoicePe(String input) throws IOException, ClassNotFoundException  {
-        client.sendChoicePe(input);
-    }
-
-    public void bonusHarvesterAction(String servantsNumber) throws IOException, ClassNotFoundException  {
-        client.bonusHarvesterAction( servantsNumber );
-    }
-
-    public void immediatePriviledgeAction(String[] privileges) throws IOException, ClassNotFoundException {
-        client.immediatePriviledgeAction( privileges );
-    }
-
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
         ui.bonusHarvester(bonusHarv);
     }
 
-    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) throws IOException, ClassNotFoundException  {
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) {
         ui.bonusProduction(bonusProd);
     }
 
-    public void bonusProductionAction(String[] parameters) throws IOException, ClassNotFoundException  {
-        client.bonusProductionAction(parameters);
-    }
-
-    public void askForPraying() {
+    public void askForPraying(){
+        //todo
     }
 
     public void actionOk() {
+        //todo
     }
 
     public void cantDoAction() {
+        //todo
     }
 
-    public void canUseBothPaymentMethod() {
-    }
 
-    public void itsMyTurn() {
-    }
-
-    //updates
+    //updates methods
 
     public void boardUpdate(Updates update) {
         update.doUpdate(uiBoard);
@@ -202,46 +204,16 @@ public class ClientSetter {
         ui.bothPaymentsAvailable();
     }
 
-    public void notifyClient(Notify notify) {
-    }
-
-    public Board getUiBoard() {
-        return uiBoard;
-    }
-
-    public void setUiBoard(Board uiBoard) {
-        this.uiBoard = uiBoard;
-    }
-
-    public PersonalBoard getUiPersonalBoard() {
-        return uiPersonalBoard;
-    }
-
-    public void setUiPersonalBoard(PersonalBoard uiPersonalBoard) {
-        this.uiPersonalBoard = uiPersonalBoard;
-    }
-
-    public Score getUiScore() {
-        return uiScore;
-    }
-
-    public void setUiScore(Score uiScore) {
-        this.uiScore = uiScore;
-    }
-
-    public FamilyMember[] getUiFamilyMembers() {
-        return uiFamilyMembers;
-    }
-
-    public void setUiFamilyMembers(FamilyMember[] uiFamilyMembers) {
-        this.uiFamilyMembers = uiFamilyMembers;
-    }
-
-
     public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
     }
 
-    public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) throws IOException, ClassNotFoundException {
+    public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction)  {
         ui.takeImmediatePrivilege(privilegesAction);
+    }
+
+
+
+    //todo check utility
+    public void notifyClient(Notify notify) {
     }
 }

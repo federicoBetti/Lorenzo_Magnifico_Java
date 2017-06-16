@@ -1,7 +1,6 @@
 package project.client.network.socket;
 
 import project.client.ui.cli.CliConstants;
-import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -24,7 +23,6 @@ public class MessagesFromServerHandler {
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: waitingForNewInteraction );
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
-        map.put(Constants.NOT_ENOUGH_RESOURCES, this:: notEnoughResources );
         //updates
         map.put(Constants.SCORE_UPDATE, this:: scoreUpdate );
         map.put(Constants.PERSONAL_BOARD_UPDATE, this:: personalBoardUpdate );
@@ -50,10 +48,6 @@ public class MessagesFromServerHandler {
         client.bonusProduction();
     }
 
-    private void notEnoughResources() throws IOException, ClassNotFoundException {
-        System.out.println("Not enough resources available for doing the action");
-        client.waitingForTheNewInteraction();
-    }
 
     private void choicePe() {
         client.choicePe();
@@ -64,9 +58,8 @@ public class MessagesFromServerHandler {
     }
 
     private void cantDoAction() throws IOException, ClassNotFoundException {
-        System.out.println("you have not the minimun requirements for acting the action.\n " +
-                "please try to act another action");
-        client.waitingForTheNewInteraction();
+        //todo farla passare per il client setter e fargli fare questo nella ui: stamapre messaggio generale non posso fare azione
+        waitingForNewInteraction();
     }
 
     private void boardUpdate() throws IOException, ClassNotFoundException {
@@ -86,13 +79,7 @@ public class MessagesFromServerHandler {
     }
 
     private void takeBonusCard() {
-        try {
-            client.takeBonusCard();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        client.takeBonusCard();
     }
 
     private void waitingForNewInteraction() throws IOException, ClassNotFoundException {
@@ -104,7 +91,7 @@ public class MessagesFromServerHandler {
         contextCreator.build();
     }
     private void mainContext() {
-        client.mainContext();
+        client.itsMyTurn();
     }
 
     @FunctionalInterface
