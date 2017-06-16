@@ -3,11 +3,9 @@ package project.client.ui.cli;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
-import project.controller.Constants;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.messages.updatesmessages.Updates;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +28,7 @@ public class Cli extends AbstractUI {
     //context methods
     @Override
     public void bothPaymentsAvailable() {
-        context = new BothPaymentsVentureCards(this);
+        context = new BothPaymentsVentureCardsContext(this);
     }
 
     public void mainContext() {
@@ -48,6 +46,54 @@ public class Cli extends AbstractUI {
         clientSetter.sendChoicePe(input);
     }
 
+    @Override
+    public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
+        context = new BonusHarvesterContext(bonusHarv, this);
+    }
+
+    @Override
+    public void bonusHarvesterParameters(String input) throws InputException {
+        context.checkValidInput(input);
+        String[] parameters = input.split("-");
+        clientSetter.bonusHarvesterAction(parameters[0]);
+
+    }
+
+    @Override
+    public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) {
+        context = new BonusProductionContext(bonusProd, this);
+    }
+
+    @Override
+    public void bonusProductionParameters(String lineFromKeyBoard) {
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            e.printStackTrace();
+        }
+        String[] parameters = lineFromKeyBoard.split("-");
+        clientSetter.bonusProductionAction(parameters);
+    }
+
+    @Override
+    public void takeBonusCardParameters(String input) throws InputException {
+        context.checkValidInput(input);
+        String[] parameters = input.split("-");
+        clientSetter.takeBonusCardAction(parameters[0], parameters[1]);
+    }
+
+    @Override
+    public void immediatePriviledgeAction(String input) throws InputException {
+        String[] privileges = input.split("-");
+        clientSetter.immediatePriviledgeAction(privileges);
+    }
+
+    @Override
+    public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) {
+        context = new ImmediatePriviledgesContext(this, privilegesAction);
+    }
+
+    public void takeDevCard() throws InputException {
     public void startGame(int numberOfPlayer) {
 
     }
@@ -72,7 +118,7 @@ public class Cli extends AbstractUI {
         context = new LeaderCardContext(this);
     }
 
-    public void discardLeaderCardContext(){
+    public void discardLeaderCardContext() {
         context = new DiscardLeaderCardContext(this);
     }
 
@@ -85,7 +131,7 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void loginRequest( String lineFromKeyBoard ) throws IOException, ClassNotFoundException {
+    public void loginRequest(String lineFromKeyBoard) throws InputException {
         clientSetter.loginRequest(lineFromKeyBoard);
     }
 
@@ -100,7 +146,7 @@ public class Cli extends AbstractUI {
         context.printHelp();
     }
 
-    public void choseAndTakeDevCard( String lineFromKeyBoard ) throws IOException, ClassNotFoundException, InputException {
+    public void choseAndTakeDevCard(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
@@ -109,66 +155,59 @@ public class Cli extends AbstractUI {
     }
 
     //todo aggiustare come parametri giusti la chiamata
-    public void chooseProductionParameters(String lineFromKeyBoard) throws IOException, ClassNotFoundException, InputException {
+    public void chooseProductionParameters(String lineFromKeyBoard) throws InputException {
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.productionAction(parameters);
     }
 
-    public void chooseHarversterParameters( String lineFromKeyBoard ) throws InputException, IOException, ClassNotFoundException {
+    public void chooseHarversterParameters(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.harvesterAction(parameters[0], parameters[1], parameters[2]);
     }
 
-    public void chooseMarketActionParameters( String lineFromKeyBoard ) throws InputException, IOException, ClassNotFoundException {
+    public void chooseMarketActionParameters(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.marketAction(parameters[0], parameters[1]);
     }
 
-    public void chooseCouncilParameters( String lineFromKeyBoard ) throws InputException, IOException, ClassNotFoundException {
+    public void chooseCouncilParameters(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.councilAction(parameters[0], parameters[1]);
     }
 
-    public void chooseLeaderCardToPlay(String action) throws IOException, ClassNotFoundException {
+    public void chooseLeaderCardToPlay(String action) throws InputException {
         clientSetter.playLeaderCard(action);
     }
 
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+    public void discardLeaderCard(String name) throws InputException {
         clientSetter.discardLeaderCard(name);
     }
 
-    public void prayOrNot( String action ) throws IOException, ClassNotFoundException {
-        try {
-            context.checkValidInput(action);
-        } catch (InputException e) {
-            e.printStackTrace();
-        }
+    public void prayOrNot(String action) throws InputException {
+        context.checkValidInput(action);
         clientSetter.prayOrNot(action);
     }
 
-    public void choosePayment(String action) {
-        try {
-            context.checkValidInput(action);
-        } catch (InputException e) {
-            context.printHelp();
-        }
-
+    public void choosePayment(String payment) throws InputException {
+        context.checkValidInput(payment);
+        clientSetter.sendChoicePaymentVc(payment);
     }
 
+    public void sendExitToBonusAction() throws InputException {
+        clientSetter.sendExitToBonusAction();
+    }
+
+    //todo show methods
     public void showTowers() {
         //todo fare il metodo di print per le varie caratteristiche delle carte e per gli effetti
         //clientSetter.getUiBoard().getAllTowers().printTowers();
-    }
-
-    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
-        clientSetter.sendExitToBonusAction();
     }
 
     private class Keyboard extends Thread {
@@ -177,20 +216,19 @@ public class Cli extends AbstractUI {
         public void run() {
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
-                try {
+                String lineFromKeyBoard;
 
-                    String lineFromKeyBoard = keyboard.readLine();
+                try {
+                    lineFromKeyBoard = keyboard.readLine();
                     if (context != null) {
                         context.doAction(lineFromKeyBoard);
                     }
-                } catch (IOException e) {
-                        e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch ( InputException e ){
+                } catch (InputException e) {
                     context.printHelp();
-                }
+                } catch (IOException e) {
+                    e.printStackTrace();
 
+                }
             }
         }
     }

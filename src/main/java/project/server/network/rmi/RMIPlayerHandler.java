@@ -113,7 +113,22 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException {
+    public void sendBonusTowerAction(TowerAction returnFromEffect) throws IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
 
     }
 

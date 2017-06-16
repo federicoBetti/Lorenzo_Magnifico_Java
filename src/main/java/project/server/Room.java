@@ -49,15 +49,9 @@ public class Room {
     }
 
     public boolean isFull() {
-        int count = 0;
-        for (Map.Entry<String, PlayerHandler> entry: nicknamePlayersMap.entrySet()) {
-            count++;
-        }
-        if ( count == maxPlayers )
-            return true;
-
-        return false;
+        return nicknamePlayersMap.size() == maxPlayers;
     }
+
     /**
      * TODO devo poter arrivare ai metodi di check da qui
      */
@@ -85,11 +79,7 @@ public class Room {
 
 
     public int getRoomPlayers() {
-        int count = 0;
-        for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet()) {
-            count++;
-        }
-        return count;
+        return nicknamePlayersMap.size();
     }
 
     public ObservableList<PlayerHandler> getListOfPlayers(){

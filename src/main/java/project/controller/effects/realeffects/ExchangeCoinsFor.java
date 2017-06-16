@@ -28,29 +28,27 @@ public class ExchangeCoinsFor implements Effects {
         if (player.getPersonalBoardReference().getCoins() >= coinsRequired) {
             player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - coinsRequired);
 
-            switch (resourceRewardered) {
-                case "woods":
-                    player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
-                    break;
-                case "stones":
-                    player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + resourceEarned);
-                    break;
-                case "servants":
-                    player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + resourceEarned);
-                    break;
-                case "victoryPoints":
-                    player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + resourceEarned);
-                    break;
-                case "faithPoints":
-                    player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
-                    break;
-                case "privilege":
-                    //UsePrivilege p = new UsePrivilege();
-                    // BonusInteraction response =  p.doEffect(player); //todo completare Use prviledge
-                    break;
-                default:
-                    return null;
-            }
+        switch ( resourceRewardered ){
+            case "woods":
+                player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
+                break;
+            case "stones":
+                player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + resourceEarned);
+                break;
+            case "servants":
+                player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + resourceEarned);
+                break;
+            case "victoryPoints":
+                player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + resourceEarned);
+                break;
+            case"faithPoints":
+                player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
+                break;
+            case"privilege":
+                UsePrivilege p = new UsePrivilege(resourceEarned); //resource earned is the quantity of priviledges
+                return p.doEffect(player); //todo controllare
+            default:
+                return null;
         }
 
         return new OkOrNo();

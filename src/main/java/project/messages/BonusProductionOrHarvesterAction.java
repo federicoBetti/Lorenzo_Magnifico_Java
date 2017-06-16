@@ -1,31 +1,28 @@
 package project.messages;
 
-import project.controller.Constants;
-
 public class BonusProductionOrHarvesterAction extends BonusInteraction {
 	private int diceValue;
-	private String kinfOfAction;
+	private String kindOfAction;
 
 	public BonusProductionOrHarvesterAction(String parameter, int quantity){
-		this.kinfOfAction = parameter;
+		this.kindOfAction = parameter;
 		this.diceValue = quantity;
 	}
 
 	public int getDiceValue() {
 		return diceValue;
 	}
-	public void setDiceValue(int diceValue) {
-		this.diceValue = diceValue;
-	}
-	public String getKinfOfAction() {
-		return kinfOfAction;
-	}
-	public void setKinfOfAction(String kinfOfAction) {
-		this.kinfOfAction = kinfOfAction;
+	public String getKindOfAction() {
+		return kindOfAction;
 	}
 
 	@Override
-	public String toString() {
-		return Constants.BONUS_PRODUCTION_HARVESTER_ACTION;
+	public String toString(){
+		return "bonus" + "-" + getKindOfAction();
+	}
+
+	public void printAction(){
+		System.out.println("you can do one " + getKindOfAction() + "with the " +
+                           "starting dice value of " + getDiceValue());
 	}
 }

@@ -1,6 +1,7 @@
 package project.controller.effects.realeffects;
 
 
+import project.controller.Constants;
 import project.controller.effects.realeffects.Effects;
 import project.messages.BonusInteraction;
 import project.messages.BonusProductionOrHarvesterAction;
@@ -16,4 +17,5 @@ public class ProductionHarvesterAction implements Effects {
     public BonusInteraction doEffect(PlayerHandler player) {
         return bph;
     }
+
 }

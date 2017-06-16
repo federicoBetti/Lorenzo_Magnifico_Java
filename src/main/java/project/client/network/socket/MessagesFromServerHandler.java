@@ -23,7 +23,6 @@ public class MessagesFromServerHandler {
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: waitingForNewInteraction );
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
-        map.put(Constants.NOT_ENOUGH_RESOURCES, this:: notEnoughResources );
         //updates
         map.put(Constants.SCORE_UPDATE, this:: scoreUpdate );
         map.put(Constants.PERSONAL_BOARD_UPDATE, this:: personalBoardUpdate );
@@ -32,12 +31,23 @@ public class MessagesFromServerHandler {
         map.put(Constants.CANT_DO_ACTION, this::cantDoAction );
         map.put(Constants.BOTH_PAYMENT_METHODS_AVAILABLE, this::bothPaymentsAvailable );
         map.put(Constants.CHOICE_PE, this:: choicePe );
+        map.put(Constants.BONUS_PRODUCTION, this:: bonusProduction );
+        map.put(Constants.BONUS_HARVESTER, this:: bonusHarvester );
+        map.put(Constants.TAKE_PRIVILEGE_ACTION, this:: takeImmediatePriviledge );
     }
 
-    private void notEnoughResources() throws IOException, ClassNotFoundException {
-        System.out.println("Not enough resources available for doing the action");
-        client.waitingForTheNewInteraction();
+    private void takeImmediatePriviledge() throws IOException, ClassNotFoundException {
+        client.takeImmediatePrivilege();
     }
+
+    private void bonusHarvester() throws IOException, ClassNotFoundException {
+        client.bonusHarvester();
+    }
+
+    private void bonusProduction() throws IOException, ClassNotFoundException {
+        client.bonusProduction();
+    }
+
 
     private void choicePe() {
         client.choicePe();
@@ -48,9 +58,8 @@ public class MessagesFromServerHandler {
     }
 
     private void cantDoAction() throws IOException, ClassNotFoundException {
-        System.out.println("you have not the minimun requirements for acting the action.\n " +
-                "please try to act another action");
-        client.waitingForTheNewInteraction();
+        //todo farla passare per il client setter e fargli fare questo nella ui: stamapre messaggio generale non posso fare azione
+        waitingForNewInteraction();
     }
 
     private void boardUpdate() throws IOException, ClassNotFoundException {
@@ -70,13 +79,7 @@ public class MessagesFromServerHandler {
     }
 
     private void takeBonusCard() {
-        try {
-            client.takeBonusCard();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        client.takeBonusCard();
     }
 
     private void waitingForNewInteraction() throws IOException, ClassNotFoundException {
@@ -88,7 +91,7 @@ public class MessagesFromServerHandler {
         contextCreator.build();
     }
     private void mainContext() {
-        client.mainContext();
+        client.itsMyTurn();
     }
 
     @FunctionalInterface

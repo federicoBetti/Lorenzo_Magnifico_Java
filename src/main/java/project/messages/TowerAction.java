@@ -56,6 +56,10 @@ public class TowerAction extends BonusInteraction {
 		}
     }
 
+	public String getKindOfCard() {
+		return kindOfCard;
+	}
+
 	@Override
 	public String toString() {
 		return Constants.TOWER_ACTION;

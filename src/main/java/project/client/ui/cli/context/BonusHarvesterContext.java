@@ -1,8 +1,8 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
-import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.messages.BonusProductionOrHarvesterAction;
 
 import java.io.IOException;
 import java.util.Map;
@@ -10,39 +10,39 @@ import java.util.Map;
 /**
  * Created by raffaelebongo on 15/06/17.
  */
-public class ChoicePeContext extends AbstractContext {
 
-    public ChoicePeContext(Cli cli) {
+
+//serve oppure non va scelto nulla??? cioè non si possono aggiungere schiavi in sostanza? chiedere
+public class BonusHarvesterContext extends AbstractContext {
+    BonusProductionOrHarvesterAction bonusHarv;
+
+    public BonusHarvesterContext(BonusProductionOrHarvesterAction bonusHarv, Cli cli) {
         super(cli);
-        map.put(CliConstants.HELP, this::printHelp );
-        System.out.println("Choose the cost typing:" +
-                "\n 0 for the first cost;" +
-                "\n 1 for the second cost");
+        this.bonusHarv = bonusHarv;
     }
 
     @Override
     public void printHelp() {
+        bonusHarv.printAction();
         System.out.println("the available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             System.out.println(entry.getKey());
+
     }
 
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length > 1 ))
+        if(!( parameters.length == 1 ))
             throw new InputException();
 
-        if( !(Character.isDigit(parameters[0].charAt(0))))
+        if( parameters[1].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
             throw new InputException();
-        if (Integer.parseInt(parameters[0]) < 0 && Integer.parseInt(parameters[0]) > 1 )
-            throw new InputException();
-
     }
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-        cli.sendChoicePe(action);
+        cli.bonusHarvesterParameters(action);
     }
 }

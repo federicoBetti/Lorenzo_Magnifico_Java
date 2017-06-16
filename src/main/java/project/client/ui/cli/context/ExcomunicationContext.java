@@ -29,7 +29,7 @@ public class ExcomunicationContext extends AbstractContext{
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+    public void mainContextMethod(String action) throws InputException, IOException {
         cli.prayOrNot(action);
     }
 }

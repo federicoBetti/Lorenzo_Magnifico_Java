@@ -5,13 +5,13 @@ import project.controller.cardsfactory.*;
 import project.controller.Constants;
 import project.controller.effects.realeffects.AddCoin;
 import project.controller.effects.realeffects.Effects;
+import project.controller.FakeFamiliar;
+import project.controller.effects.realeffects.UsePrivilege;
 import project.controller.supportfunctions.AllSupportFunctions;
-import project.messages.BonusInteraction;
-import project.messages.TowerAction;
+import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.Room;
-import project.messages.Notify;
 
 import java.io.IOException;
 import java.util.*;
@@ -472,18 +472,25 @@ public class GameActions {
         }
     }
 
-    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card) {
+    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
-            if ( returnFromEffect instanceof TowerAction ){
-                try {
-                    player.sendBonusTowerAction(returnFromEffect);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                    //todo non vanno presi qua ma più sotto le eccezioni relative alla conessione
+            try {
+                if ( returnFromEffect instanceof TowerAction ){
+                    player.sendBonusTowerAction((TowerAction) returnFromEffect);
                 }
+
+                else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){
+                    player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
+                }
+
+                else if ( returnFromEffect instanceof TakePrivilegesAction )
+                    player.sendRequestForPriviledges((TakePrivilegesAction)returnFromEffect);
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
             player.sendAnswer(returnFromEffect);
         }

@@ -9,17 +9,20 @@ import project.controller.Constants;
 import project.controller.supportfunctions.LeaderCardRequirements;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
-import project.model.*;
+import project.model.FamilyMember;
+import project.model.Player;
 import project.server.Room;
 import project.server.network.exception.*;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class PlayerHandler extends Player {
 
-    private Room room;
-    private AllCheckFunctions checkFunctions;
+    Room room;
+    AllCheckFunctions checkFunctions;
     final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
 
     public PlayerHandler(){
@@ -83,8 +86,8 @@ public abstract class PlayerHandler extends Player {
             return canTakeVenturesCard;
     }
 
-    protected void clientTakeBonusDevelopementCard(String towerColour, int floor, FamilyMember familyMember) throws CantDoActionException{
-        //todo oppure modificare quello di sopra
+    protected void clientTakeBonusDevelopementCard(TowerAction kindOfCard, int floor) throws CantDoActionException{
+        //todo ricordarsi il caso della carta arcobaleno: mettere ad esempio costante "all" che poi nel controllo autorizza a prendere una carda da qualunque torre
     }
 
     /**

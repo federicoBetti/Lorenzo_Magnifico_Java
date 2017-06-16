@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class TowersContext extends AbstractContext {
 
-    public TowersContext ( Cli cli ) throws IOException, ClassNotFoundException, InputException {
+    public TowersContext ( Cli cli ) throws InputException {
         super(cli);
         map.put(CliConstants.SHOW_TOWERS, this:: showTowers );
         map.put(CliConstants.EXIT, this::exit);
@@ -28,7 +28,7 @@ public class TowersContext extends AbstractContext {
     }
 
     @Override
-    public void doAction(String action) throws IOException, ClassNotFoundException, InputException {
+    public void doAction(String action) throws IOException, InputException {
         actioner = map.get(action);
         actioner.action();
     }
@@ -47,21 +47,16 @@ public class TowersContext extends AbstractContext {
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length == 3 ))
+        if(!( parameters.length == 1 ))
             throw new InputException();
 
-        checkTowerColour(parameters[0]);
-
-        if( parameters[1].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
-            throw new InputException();
-        if (Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3 )
+        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 )
             throw new InputException();
 
-        checkFamilyMemberColour( parameters[2] );
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+    public void mainContextMethod(String action) throws InputException, IOException{
         cli.choseAndTakeDevCard(action);
     }
 }

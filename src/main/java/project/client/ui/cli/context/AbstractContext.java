@@ -33,7 +33,7 @@ public abstract class AbstractContext {
     public void checkValidInput( String input ) throws InputException{
     }
 
-    public abstract void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException;
+    public abstract void mainContextMethod(String action) throws InputException, IOException;
 
     public void checkFamilyMemberColour( String colour ) throws InputException {
         if ( !(colour.equals(Constants.FAMILY_MEMBER_COLOUR_BLACK) ||
@@ -51,7 +51,7 @@ public abstract class AbstractContext {
             throw new InputException();
     }
 
-    public void doAction(String action) throws IOException, ClassNotFoundException, InputException {
+    public void doAction(String action) throws InputException, IOException {
         if( map.get(action) != null ) {
             actioner = map.get(action);
             actioner.action();
@@ -61,7 +61,7 @@ public abstract class AbstractContext {
 
     @FunctionalInterface
     public interface Actioner{
-         void action() throws IOException, ClassNotFoundException, InputException;
+         void action() throws InputException, IOException;
     }
 
 

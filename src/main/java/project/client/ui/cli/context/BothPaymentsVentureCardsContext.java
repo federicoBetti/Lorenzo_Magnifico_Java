@@ -8,9 +8,9 @@ import java.io.IOException;
 /**
  * Created by raffaelebongo on 14/06/17.
  */
-public class BothPaymentsVentureCards extends AbstractContext {
+public class BothPaymentsVentureCardsContext extends AbstractContext {
 
-    public BothPaymentsVentureCards(Cli cli) {
+    public BothPaymentsVentureCardsContext(Cli cli) {
         super(cli);
     }
 
@@ -27,7 +27,7 @@ public class BothPaymentsVentureCards extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException, ClassNotFoundException {
+    public void mainContextMethod(String action) throws InputException, IOException {
         cli.choosePayment(action);
     }
 }

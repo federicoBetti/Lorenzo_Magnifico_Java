@@ -30,11 +30,11 @@ public class Constants {
     public static final int SOCKET_PORT = 1337;
     public static final int RMI_PORT = 1338;
 
-    public static final String LOGIN_SUCCEDED = "fileXML.controller-succeded";
+    public static final String LOGIN_SUCCEDED = "fileXML.login-succeded";
     public static final String YOUR_TURN = "your-turn";
 
     //network constants
-    public static final String LOGIN_REQUEST = "fileXML.controller-request";
+    public static final String LOGIN_REQUEST = "fileXML.login-request";
     public static final String TAKE_DEV_CARD = "client-Take-Developement-Card";
     public static final String CHOOSE_PAYMENT_FOR_VENTURE_CARD = "choose-Payment-Venture-card";
     public static final String STOP = "stop";
@@ -72,8 +72,6 @@ public class Constants {
     public static final String LUDOVICO_III_GONZAGA = "ludovico-iii-gonzaga";
     public static final String PICO_DELLA_MIRANDOLA = "pico-della-mirandola";
 
-
-
     public static final String TAKE_PRIVILEGE_ACTION = "take-privilege-action";
     public static final String TOWER_ACTION = "tower-action";
     public static final String BONUS_PRODUCTION_HARVESTER_ACTION = "bonus-production-harvester-action";
@@ -87,6 +85,9 @@ public class Constants {
     public static final String CANT_DO_ACTION = "cant-do-action";
     public static final String EXIT = "exit";
     public static final String NOT_ENOUGH_RESOURCES = "not-enough-resources";
+    public static final String BONUS_PRODUCTION = "bonus-production";
+    public static final String BONUS_HARVESTER = "bonus-harvester" ;
+    public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;
     public static final int MALUS_PROD_HARV = 3;

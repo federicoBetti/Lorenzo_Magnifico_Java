@@ -70,12 +70,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void endTurn() {
-        clientSetter.endTurn();
+        clientSetter.skipTurn();
     }
 
     @Override
     public void takePrivilege(BonusInteraction takePrivilegesAction) {
-        clientSetter.takePrivilege((TakePrivilegesAction)takePrivilegesAction);
+        clientSetter.takeImmediatePrivilege((TakePrivilegesAction)takePrivilegesAction);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void canUseBothPaymentMethod() {
-        clientSetter.canUseBothPaymentMethod();
+        clientSetter.bothPaymentsAvailable();
     }
 
     @Override

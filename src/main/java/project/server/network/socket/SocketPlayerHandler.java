@@ -84,9 +84,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
         try {
-            clientTakeDevelopmentCard(towerColour, floor, familyMember);
+            clientTakeDevelopementCard(towerColour, floor, familyMember);
         } catch (CantDoActionException e) {
             cantDoAction();
+        } catch (CanUseBothPaymentMethodException e) {
+            canUseBothPaymentMethod();
         }
     }
 
@@ -199,9 +201,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-
-
-
     @Override
     public void cantDoAction() {
         sendString(Constants.CANT_DO_ACTION);
@@ -212,7 +211,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         sendString(Constants.BOTH_PAYMENT_METHODS_AVAILABLE);
         int choice = - 1;
         try {
-            choice =  (int)objectInputStream.readObject();
+            choice =  Integer.parseInt((String)objectInputStream.readObject());
             return choice;
         } catch (IOException e) {
             e.printStackTrace();
@@ -226,8 +225,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void itsMyTurn() {
-        Notify notify = new Notify(Constants.YOUR_TURN);
-        sendAnswer(notify);
+        sendAnswer(Constants.YOUR_TURN);
     }
 
     @Override
@@ -247,6 +245,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    //todo check utility
     @Override
     public void sendNotification(Notify notifications) {
         sendAnswer(notifications);
@@ -279,9 +278,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException {
+    public void sendBonusTowerAction( TowerAction returnFromEffect ) throws IOException, ClassNotFoundException {
 
         while ( true ){
+
             sendAnswer(returnFromEffect);
             String answer = (String)objectInputStream.readObject();
 
@@ -289,7 +289,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 return;
 
             try {
-                takeBonusDevCard();
+                //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
+                takeBonusDevCard(returnFromEffect);
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -304,14 +306,65 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    private void takeBonusDevCard() throws IOException, ClassNotFoundException, CantDoActionException {
-        String towerColour = (String) objectInputStream.readObject();
-        int floor = (int) objectInputStream.readObject();
-        String familyMemberColour = (String) objectInputStream.readObject();
-        FamilyMember familyMember = findFamilyMember(familyMemberColour);
+    @Override
+    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException {
+        while ( true ) {
+            try {
 
-        clientTakeBonusDevelopementCard(towerColour, floor, familyMember);
-        // oppure questo modificato clientTakeDevelopmentCard(towerColour, floor, familyMember);
+                sendAnswer(returnFromEffect);
+                String answer = (String)objectInputStream.readObject();
+                int intServantsNumber;
+
+                switch (answer){
+                    case Constants.EXIT:
+                    return;
+
+                    case Constants.BONUS_PRODUCTION:
+                        intServantsNumber = Integer.parseInt((String)objectInputStream.readObject());
+                        ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
+                        doBonusProduct(returnFromEffect, intServantsNumber, cards);
+                        break;
+
+                    case Constants.BONUS_HARVESTER:
+                        intServantsNumber = Integer.parseInt((String) objectInputStream.readObject());
+                        doBonusHarv(returnFromEffect, intServantsNumber);
+                        break;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (CantDoActionException e) {
+                objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+                continue;
+            }
+            break;
+
+        }
+    }
+
+    @Override
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+        sendAnswer(returnFromEffect);
+        takePriviledgesInArow(returnFromEffect);
+    }
+
+    @Override
+    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+        for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
+            int privilegeNumber = Integer.parseInt((String) objectInputStream.readObject());
+            takePrivilege(privilegeNumber);
+        }
+    }
+
+    private void takeBonusDevCard(TowerAction returnFromEffect) throws IOException, ClassNotFoundException, CantDoActionException {
+
+        int floor = Integer.parseInt((String)objectInputStream.readObject());
+        clientTakeBonusDevelopementCard(returnFromEffect, floor);
+
     }
 
 

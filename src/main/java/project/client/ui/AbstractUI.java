@@ -1,7 +1,10 @@
 package project.client.ui;
 
 import project.client.ui.cli.InputException;
+import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 
 import java.io.IOException;
 
@@ -28,6 +31,21 @@ public abstract class AbstractUI {
 
     public abstract void choicePe();
 
+    public abstract void sendChoicePe(String input) throws InputException;
+
+    public abstract void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv);
+
+    public abstract void bonusHarvesterParameters(String input) throws InputException;
+
+    public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd);
+
+    public abstract void bonusProductionParameters(String action) throws InputException;
+
+    public abstract void takeBonusCardParameters(String action) throws InputException;
+
+    public abstract void immediatePriviledgeAction(String action) throws InputException;
+
+    public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
     public abstract void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException;
 
     public void startGame(int i) {

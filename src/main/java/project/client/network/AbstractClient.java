@@ -1,5 +1,7 @@
 package project.client.network;
 
+import project.client.ui.cli.InputException;
+
 import java.io.IOException;
 
 /**
@@ -8,42 +10,63 @@ import java.io.IOException;
 public class AbstractClient {
 
 
-    public void loginRequest(String loginParameter) throws IOException, ClassNotFoundException {
+    public void loginRequest(String loginParameter)  {
     }
 
-    public void waitingForTheNewInteraction() throws IOException, ClassNotFoundException {
+    public void waitingForTheNewInteraction() {
     }
 
-    public void takeDevCard(String towerColour, String floor, String familiarColour ) throws IOException, ClassNotFoundException{
+    public void takeDevCard(String towerColour, String floor, String familiarColour )  {
     }
 
-    public void harvesterAction(String parameter1, String parameter2, String parameter3) throws IOException, ClassNotFoundException {
+    public void harvesterAction(String parameter1, String parameter2, String parameter3)  {
     }
 
-    public void marketAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
+    public void marketAction(String parameter1, String parameter2)  {
     }
 
-    public void councilAction(String parameter1, String parameter2) throws IOException, ClassNotFoundException {
+    public void councilAction(String parameter1, String parameter2)  {
     }
 
-    public void productionAction(String[] parameters) throws IOException, ClassNotFoundException {
+    public void productionAction(String[] parameters)  {
     }
 
-    public void playLeaderCard(String action) throws IOException, ClassNotFoundException {
+    public void playLeaderCard(String action)  {
     }
 
-    public void discardLeaderCard(String name) throws IOException, ClassNotFoundException {
+    public void discardLeaderCard(String name)  {
     }
 
-    public void prayOrNot(String action) throws IOException, ClassNotFoundException {
+    public void prayOrNot(String action)  {
     }
 
-    public void sendExitToBonusAction() throws IOException, ClassNotFoundException {
+    public void sendExitToBonusAction()  {
     }
 
     public void choicePe() {
     }
 
-    public void sendChoicePe(String input) throws IOException, ClassNotFoundException {
+    public void sendChoicePe(String input)  {
+    }
+
+    public void bonusHarvester()  {
+    }
+
+    public void bonusHarvesterAction(String servantsNumber)  {
+    }
+
+    public void bonusProductionAction(String[] parameters)  {
+    }
+
+    public void takeBonusCardAction(String floor, String input)  {
+    }
+
+    public void immediatePriviledgeAction(String[] privileges)  {
+    }
+
+    public void takeImmediatePrivilege()  {
+    }
+
+    public void sendChoicePaymentVc(String payment)  {
     }
 }
