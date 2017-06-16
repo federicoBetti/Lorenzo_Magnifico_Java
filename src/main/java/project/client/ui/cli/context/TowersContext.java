@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class TowersContext extends AbstractContext {
 
-    public TowersContext ( Cli cli ) throws InputException {
+    public TowersContext ( Cli cli ) {
         super(cli);
         map.put(CliConstants.SHOW_TOWERS, this:: showTowers );
         map.put(CliConstants.EXIT, this::exit);

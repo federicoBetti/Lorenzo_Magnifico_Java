@@ -54,6 +54,7 @@ public class ExchangeCoinsFor implements Effects {
             return new OkOrNo();
 
         }
+        return new OkOrNo();
     }
 }
 

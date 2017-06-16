@@ -4,6 +4,8 @@ import javafx.application.Application;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
+import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 
 import java.io.IOException;
@@ -98,6 +100,16 @@ public class Gui extends AbstractUI {
 
     @Override
     public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) {
+
+    }
+
+    @Override
+    public void askForPraying() {
+
+    }
+
+    @Override
+    public void cantDoAction() {
 
     }
 

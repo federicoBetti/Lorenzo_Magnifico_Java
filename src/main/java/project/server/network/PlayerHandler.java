@@ -305,13 +305,26 @@ public abstract class PlayerHandler extends Player {
 
     protected FamilyMember findFamilyMember(String colour) {
         for (FamilyMember familyMember : getAllFamilyMembers())
-            if (familyMember.getMyColour().equals(colour))
-                return familyMember;
-
-    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
+            if (familyMember.getMyColour().equals(colour)) return familyMember;
+        return null;
     }
+
+    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) throws CantDoActionException {
+    }
+    public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) {
+    }
+
+    public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException;
 
     public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
 
     public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
+
+    public abstract void sendActionOk(String okOrNo);
+
+
+
+
+    protected void clientTakeDevelopementCard(String towerColour, int floor, FamilyMember familyMember) throws CantDoActionException, CanUseBothPaymentMethodException{
+    }
 }

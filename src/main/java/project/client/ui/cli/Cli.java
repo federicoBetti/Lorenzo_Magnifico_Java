@@ -49,7 +49,7 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void sendChoicePe( String input ) throws InputException, IOException, ClassNotFoundException {
+    public void sendChoicePe( String input ) throws InputException {
         context.checkValidInput(input);
         clientSetter.sendChoicePe(input);
     }
@@ -102,7 +102,7 @@ public class Cli extends AbstractUI {
     }
 
 
-    public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
+    public void takeDevCard() {
         context = new TowersContext(this);
     }
 

@@ -50,4 +50,8 @@ public abstract class AbstractUI {
     }
 
     public abstract void cantDoAction();
+
+    public void startGame(int i) {
+
+    }
 }

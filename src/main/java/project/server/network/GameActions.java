@@ -88,12 +88,20 @@ public class GameActions {
             nextRound();
             nextPeriod();
             setEndTurn(true);
+            firstPlayerTurn();
         }
         else {//fine round
             endRound();
             nextRound();
             setEndTurn(true);
+            firstPlayerTurn();
         }
+    }
+
+    private void firstPlayerTurn() {
+        PlayerHandler firstPlayer;
+        firstPlayer = room.getBoard().getTurn().getPlayerTurn().get(0);
+        firstPlayer.itsMyTurn();
     }
 
     private boolean allFamiliarPlayed(PlayerHandler playerHandler) {
@@ -165,7 +173,7 @@ public class GameActions {
         }
 
         PlayerHandler winner = findWinner();
-        winner.YOUWIN();
+        //winner.YOUWIN();
         broadcastNotifications(new Notify("the winner is + " + winner.getName()));
 
     }
@@ -532,7 +540,7 @@ public class GameActions {
         player.sendActionOk(Constants.OK_OR_NO);
     }
 
-    private void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {
+    private void makePermanentEffects(PlayerHandler player, DevelopmentCard card )  {
 
         for (Effects effect : card.getPermanentCardEffects()) {
             if ( card.isChoicePe() ) {

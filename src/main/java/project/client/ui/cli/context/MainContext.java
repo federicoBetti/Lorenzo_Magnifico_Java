@@ -70,7 +70,7 @@ public class MainContext extends AbstractContext {
 
     }
 
-    private void takeDevCard() throws IOException, InputException {
+    private void takeDevCard() {
         cli.takeDevCard();
     }
 
