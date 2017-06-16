@@ -87,6 +87,7 @@ public class Constants {
     public static final String NOT_ENOUGH_RESOURCES = "not-enough-resources";
     public static final String BONUS_PRODUCTION = "bonus-production";
     public static final String BONUS_HARVESTER = "bonus-harvester" ;
+    public static final String SKIP_TURN = "skip-turn" ;
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
 
 

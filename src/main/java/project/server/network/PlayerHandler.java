@@ -240,7 +240,7 @@ public abstract class PlayerHandler extends Player {
 
 
 
-    public abstract void sendActionOk( String ok );
+    public abstract void sendActionOk();
 
     public abstract void sendString( String message );
 
@@ -258,7 +258,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards);
 
-    public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException{}
 
     public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
 }

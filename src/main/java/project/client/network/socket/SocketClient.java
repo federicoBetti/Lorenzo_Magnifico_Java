@@ -71,7 +71,10 @@ public class SocketClient extends AbstractClient {
         send3Parameters(towerColour, floor, familiarColour);
     }
 
-
+    @Override
+    public void actionOk(){
+        clientSetter.actionOk();
+    }
 
     @Override
     public void marketAction( String parameter1, String parameter2 )  {

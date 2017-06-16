@@ -95,4 +95,14 @@ public class Gui extends AbstractUI {
     public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) {
 
     }
+
+    @Override
+    public void askForPraying() {
+
+    }
+
+    @Override
+    public void cantDoAction() {
+
+    }
 }

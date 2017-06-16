@@ -202,9 +202,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendActionOk( String ok ){
+    public void sendActionOk(){
         try {
-            objectOutputStream.writeObject(ok);
+            objectOutputStream.writeObject(Constants.OK_OR_NO);
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
@@ -354,6 +354,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             break;
 
         }
+    }
+
+    @Override
+    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
+
     }
 
     @Override

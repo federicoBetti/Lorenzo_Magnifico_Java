@@ -20,6 +20,7 @@ public class MessagesFromServerHandler {
     public MessagesFromServerHandler( SocketClient client ){
         map = new HashMap<>();
         this.client = client;
+
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: waitingForNewInteraction );
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
@@ -35,6 +36,11 @@ public class MessagesFromServerHandler {
         map.put(Constants.BONUS_HARVESTER, this:: bonusHarvester );
         map.put(Constants.TAKE_PRIVILEGE_ACTION, this:: takeImmediatePriviledge );
         map.put(Constants.ASK_FOR_PRAYING, this::askForPraying);
+        map.put(Constants.OK_OR_NO, this::actionOk );
+    }
+
+    private void actionOk() {
+        client.actionOk();
     }
 
     private void askForPraying() {

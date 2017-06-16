@@ -93,6 +93,11 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
+    public void sendActionOk() {
+
+    }
+
+    @Override
     public void sendString(String message) {
         //todo uaglio
     }
@@ -119,6 +124,11 @@ public class RMIPlayerHandler extends PlayerHandler{
 
     @Override
     public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
 
     }
 

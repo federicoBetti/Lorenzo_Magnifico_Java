@@ -69,4 +69,7 @@ public class AbstractClient {
 
     public void sendChoicePaymentVc(String payment)  {
     }
+
+    public void actionOk() {
+    }
 }

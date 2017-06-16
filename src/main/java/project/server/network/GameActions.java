@@ -194,6 +194,7 @@ public class GameActions {
         room.getBoard().setEndRound(choice);
     }
 
+    //todo check
     private PlayerHandler nextPlayerToPlay(PlayerHandler playerHandler){
         int indexOfMe = room.getBoard().getTurn().getPlayerTurn().indexOf(playerHandler);
         int indexOfNext = room.getRoomPlayers() % indexOfMe;
@@ -253,7 +254,7 @@ public class GameActions {
                 makePermannetEffects(player, card);
         }
 
-        player.sendActionOk(Constants.OK_OR_NO);
+        player.sendActionOk();
         broadcastUpdates(harvesterUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -291,6 +292,7 @@ public class GameActions {
 
         getRightSupportFunctions(player).takeMarketAction(position);
 
+        player.sendActionOk();
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
 
@@ -311,6 +313,7 @@ public class GameActions {
             }
         }
 
+        player.sendActionOk();
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
 
@@ -327,6 +330,7 @@ public class GameActions {
             }
         }
 
+        player.sendActionOk();
         player.getPersonalBoardReference().getMyLeaderCard().remove(numberToDelate);
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -360,6 +364,7 @@ public class GameActions {
         e.doEffect(player);
         takeCouncilPrivilege(privilegeNumber,player);
 
+        player.sendActionOk();
         broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -428,7 +433,7 @@ public class GameActions {
                 e.printStackTrace();
             }
         }
-        player.sendActionOk(Constants.OK_OR_NO);
+        player.sendActionOk();
     }
 
     private void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {
