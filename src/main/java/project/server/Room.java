@@ -9,10 +9,7 @@ import project.model.Player;
 import project.server.network.GameActions;
 import project.server.network.PlayerHandler;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -28,7 +25,7 @@ public class Room {
 
     private Board board;
 
-    int maxPlayers; //todo da definire: bisogna farla scegliere allo user
+    int maxPlayers;
 
     private Map<Player,AllSupportFunctions> playerAllSupportFunctionsMap;
 
@@ -52,9 +49,8 @@ public class Room {
         return nicknamePlayersMap.size() == maxPlayers;
     }
 
-    /**
-     * TODO devo poter arrivare ai metodi di check da qui
-     */
+
+
 
 
     public Board getBoard() {
@@ -82,8 +78,8 @@ public class Room {
         return nicknamePlayersMap.size();
     }
 
-    public ObservableList<PlayerHandler> getListOfPlayers(){
-        ObservableList<PlayerHandler> list = new ObservableListWrapper<>(getBoard().getTurn().getPlayerTurn());
+    public List<PlayerHandler> getListOfPlayers(){
+        List<PlayerHandler> list = new ArrayList<>();
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet()) {
             list.add(entry.getValue());
         }

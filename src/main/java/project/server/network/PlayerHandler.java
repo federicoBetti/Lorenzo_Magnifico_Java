@@ -9,8 +9,7 @@ import project.controller.Constants;
 import project.controller.supportfunctions.LeaderCardRequirements;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
-import project.model.FamilyMember;
-import project.model.Player;
+import project.model.*;
 import project.server.Room;
 import project.server.network.exception.*;
 
@@ -21,8 +20,8 @@ import java.util.List;
 
 public abstract class PlayerHandler extends Player {
 
-    Room room;
-    AllCheckFunctions checkFunctions;
+    private Room room;
+    private AllCheckFunctions checkFunctions;
     final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
 
     public PlayerHandler(){
@@ -311,4 +310,6 @@ public abstract class PlayerHandler extends Player {
 
         return null;
     }
+
+    public abstract void YOUWIN();
 }

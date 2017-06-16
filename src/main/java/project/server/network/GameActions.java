@@ -5,8 +5,6 @@ import project.controller.cardsfactory.*;
 import project.controller.Constants;
 import project.controller.effects.realeffects.AddCoin;
 import project.controller.effects.realeffects.Effects;
-import project.controller.FakeFamiliar;
-import project.controller.effects.realeffects.UsePrivilege;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.*;
 import project.messages.updatesmessages.*;
@@ -32,7 +30,7 @@ public class GameActions {
 
         getSupportFunctions(player).setFamiliar(zone, familyMember);
         getSupportFunctions(player).placeCardInPersonalBoard(card);
-        //todo bonus da posizione torre
+        zone.getTowerZoneEffect().doEffect(player);
         TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers());
 
         makeImmediateEffects( player, zone.getCardOnThisFloor() );
@@ -107,7 +105,7 @@ public class GameActions {
         return true;
     }
 
-    class militaryComparator implements Comparator<PlayerHandler> {
+    class MilitaryComparator implements Comparator<PlayerHandler> {
 
         @Override
         public int compare(PlayerHandler o1, PlayerHandler o2) {
@@ -119,52 +117,94 @@ public class GameActions {
                 return -1;
         }
     }
+    class WinnerComparator implements Comparator<PlayerHandler> {
+        @Override
+        public int compare(PlayerHandler o1, PlayerHandler o2) {
+            if (o1.getScore().getVictoryPoints() > o2.getScore().getVictoryPoints())
+                return 1;
+            else if (o1.getScore().getVictoryPoints() == o2.getScore().getVictoryPoints()) {
+                if (o1.getTurnOrder() < o2.getTurnOrder()) return 1;
+                else return -1;
+            }
+            else
+                return -1;
+        }
+    }
 
+    private int getMilitaryPoints(PlayerHandler playerHandler){
+        return playerHandler.getScore().getMilitaryPoints();
+    }
 
-    private void endMatch() { //todo
-        militaryComparator comparator = new militaryComparator();
-        SortedList<PlayerHandler> militaryStandings = new SortedList<PlayerHandler>(room.getListOfPlayers(),comparator);
+    private void endMatch() {
+        MilitaryComparator comparator = new MilitaryComparator();
+        List<PlayerHandler> militaryStandings = room.getListOfPlayers();
+        Collections.sort(militaryStandings,comparator);
+
+        int victoryPointsToWinner = 5;
+        int victoryPointsToRunnerUp = 2;
         PlayerHandler militaryStandingsWinner = militaryStandings.get(0);
         PlayerHandler militaryStandingsRunnerUp = militaryStandings.get(1);
-
-
-        //todo classifica dei military points SI PUO USARE UNA SORTED MAP! BISOGNA GUARDARE COME FUNZIONANO, quella di sopra forse funziona ma non mi va internet e non posso vedere bene la doc di SortedList
+        if (getMilitaryPoints(militaryStandingsWinner) == getMilitaryPoints(militaryStandingsRunnerUp)) {
+            victoryPointsToWinner = 2;
+        }
 
         for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
             PlayerHandler playerHandler = entry.getValue();
-            //todo aggiungere che se hai vinto military points ricevi bonus
             int pointsToAdd = 0;
-            if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[Constants.PERIOD_NUMBER])
-                pray(playerHandler);
-            else{
-                takeExcommunication(playerHandler);
-            }
-            pointsToAdd += getSupportFunctions(playerHandler).extraLostOfPoints(playerHandler);
-            pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromCharacterCard(room.getBoard().getFinalPointsFromCharacterCards());
-            pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromTerritoryCard(room.getBoard().getFinalPointsFromTerritoryCards());
-            getSupportFunctions(playerHandler).finalPointsFromVenturesCard();
 
-            int numberOfResources;
-            numberOfResources = playerHandler.getPersonalBoardReference().getCoins();
-            numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getServants();
-            numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getStone();
-            numberOfResources = numberOfResources + playerHandler.getPersonalBoardReference().getWood();
-            pointsToAdd += (numberOfResources/5);
-            //todo aggiungere punti relativi a classifica military points
+            finalPray(playerHandler);
+
+            if (playerHandler.equals(militaryStandingsWinner))
+                pointsToAdd += victoryPointsToWinner;
+            else if (playerHandler.equals(militaryStandingsRunnerUp))
+                pointsToAdd += victoryPointsToRunnerUp;
+
+            pointsToAdd += getExtraFinalPoints(playerHandler);
+            pointsToAdd += pointsFromResources(playerHandler);
+
             playerHandler.getScore().setVictoryPoints(playerHandler.getScore().getVictoryPoints() + pointsToAdd);
         }
-        PlayerHandler winner;
-        ArrayList<PlayerHandler> winnerSearcher = new ArrayList<>();
-        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
-            PlayerHandler player = entry.getValue();
-           // winnerSearcher.
-            // todo completare
-        }
-        //todo controllare chi ha vinto mettendo in ordine i player rispetto ai victory points
-       // winner.YOUWIN();
-        broadcastNotifications(new Notify("the winner is + " ));
 
-        //todo complete on with + winnerName
+        PlayerHandler winner = findWinner();
+        winner.YOUWIN();
+        broadcastNotifications(new Notify("the winner is + " + winner.getName()));
+
+    }
+
+    private void finalPray(PlayerHandler playerHandler) {
+        if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[Constants.PERIOD_NUMBER])
+            pray(playerHandler);
+        else{
+            takeExcommunication(playerHandler);
+        }
+    }
+
+    private int pointsFromResources(PlayerHandler playerHandler) {
+        int numberOfResources;
+        numberOfResources = playerHandler.getPersonalBoardReference().getCoins();
+        numberOfResources += playerHandler.getPersonalBoardReference().getServants();
+        numberOfResources += playerHandler.getPersonalBoardReference().getStone();
+        numberOfResources += playerHandler.getPersonalBoardReference().getWood();
+        return  (numberOfResources/5);
+    }
+
+    private int getExtraFinalPoints(PlayerHandler playerHandler) {
+        int pointsToAdd = 0;
+
+        pointsToAdd += getSupportFunctions(playerHandler).extraLostOfPoints(playerHandler);
+        pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromCharacterCard(room.getBoard().getFinalPointsFromCharacterCards());
+        pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromTerritoryCard(room.getBoard().getFinalPointsFromTerritoryCards());
+        getSupportFunctions(playerHandler).finalPointsFromVenturesCard();
+
+        return pointsToAdd;
+    }
+
+    private PlayerHandler findWinner() {
+        WinnerComparator comparator = new WinnerComparator();
+        List<PlayerHandler> finalStandings = room.getListOfPlayers();
+        Collections.sort(finalStandings,comparator);
+        return finalStandings.get(0);
+
     }
 
     private void changePlayerOrder() {
@@ -230,7 +270,8 @@ public class GameActions {
     }
 
     private void refactorTowers() {
-        int i,j;
+        int j;
+        int i;
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
         Tower[][] tower = room.getBoard().getAllTowers();
@@ -271,13 +312,6 @@ public class GameActions {
                 takeExcommunication(player);
             }
         }
-    }
-
-
-    private PlayerHandler nextPlayerToPlay(PlayerHandler playerHandler){
-        int indexOfMe = room.getBoard().getTurn().getPlayerTurn().indexOf(playerHandler);
-        int indexOfNext = room.getRoomPlayers() % indexOfMe;
-        return (PlayerHandler) room.getBoard().getTurn().getPlayerTurn().get(indexOfNext);
     }
 
 
@@ -395,10 +429,13 @@ public class GameActions {
      */
     void rollDice(){
         int[] newDiceValue = new int[3];
-        newDiceValue[0] = (int)(Math.random() * 6);
-        newDiceValue[1] = (int)(Math.random() * 6);
-        newDiceValue[2] = (int)(Math.random() * 6);
+        Random r = new Random();
+        newDiceValue[0] = r.nextInt(5) + 1;
+        newDiceValue[1] = r.nextInt(5) + 1;
+        newDiceValue[2] = r.nextInt(5) + 1;
+
         room.getBoard().setDiceValue(newDiceValue);
+
         for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
             getSupportFunctions(player).setDicesValue(newDiceValue, player);
@@ -472,25 +509,15 @@ public class GameActions {
         }
     }
 
-    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
+    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card) {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
-            try {
-                if ( returnFromEffect instanceof TowerAction ){
-                    player.sendBonusTowerAction((TowerAction) returnFromEffect);
+            if ( returnFromEffect instanceof TowerAction ){
+                try {
+                    player.sendBonusTowerAction(returnFromEffect);
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
-
-                else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){
-                    player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
-                }
-
-                else if ( returnFromEffect instanceof TakePrivilegesAction )
-                    player.sendRequestForPriviledges((TakePrivilegesAction)returnFromEffect);
-
-            }catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
             player.sendAnswer(returnFromEffect);
         }

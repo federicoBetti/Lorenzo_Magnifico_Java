@@ -1,5 +1,7 @@
 package project.model;
 
+import project.controller.effects.realeffects.Effects;
+
 /**
  * 
  */
@@ -13,6 +15,8 @@ public class Tower extends Position {
     private DevelopmentCard cardOnThisFloor;
 
     private boolean used;
+
+    private Effects towerZoneEffect;
 
 
     public Tower() {
@@ -30,5 +34,9 @@ public class Tower extends Position {
 
     public int getDiceValueOfThisFloor() {
         return diceValueOfThisFloor;
+    }
+
+    public Effects getTowerZoneEffect() {
+        return towerZoneEffect;
     }
 }

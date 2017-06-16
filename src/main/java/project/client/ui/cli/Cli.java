@@ -93,10 +93,6 @@ public class Cli extends AbstractUI {
         context = new ImmediatePriviledgesContext(this, privilegesAction);
     }
 
-    public void takeDevCard() throws InputException {
-    public void startGame(int numberOfPlayer) {
-
-    }
 
     public void takeDevCard() throws IOException, ClassNotFoundException, InputException {
         context = new TowersContext(this);
