@@ -301,15 +301,17 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int sendPossibleChoice(String kindOfChoice);
 
-    public abstract void sendBonusTowerAction(BonusInteraction returnFromEffect) throws IOException, ClassNotFoundException;
+    public abstract void sendBonusTowerAction(TowerAction returnFromEffect) throws IOException, ClassNotFoundException;
 
     protected FamilyMember findFamilyMember(String colour) {
         for (FamilyMember familyMember : getAllFamilyMembers())
             if (familyMember.getMyColour().equals(colour))
                 return familyMember;
 
-        return null;
+    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
     }
 
-    public abstract void YOUWIN();
+    public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
+
+    public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
 }

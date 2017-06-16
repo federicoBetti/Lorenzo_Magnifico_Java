@@ -4,9 +4,6 @@ import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.messages.updatesmessages.Updates;
-
-import java.io.IOException;
 
 /**
  * Created by raffaelebongo on 29/05/17.
@@ -21,11 +18,11 @@ public abstract class AbstractUI {
 
     public abstract void bothPaymentsAvailable();
 
-    public abstract void loginRequest(String loginParameter) throws IOException, ClassNotFoundException;
+    public abstract void loginRequest(String loginParameter) throws  InputException;
 
-    public abstract void discardLeaderCard(String name) throws IOException, ClassNotFoundException;
+    public abstract void discardLeaderCard(String name) throws  InputException;
 
-    public abstract void prayOrNot(String action) throws IOException, ClassNotFoundException;
+    public abstract void prayOrNot(String action) throws  InputException;
 
     public void mainContext(){}
 
@@ -46,9 +43,11 @@ public abstract class AbstractUI {
     public abstract void immediatePriviledgeAction(String action) throws InputException;
 
     public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
-    public abstract void sendChoicePe(String input) throws InputException, IOException, ClassNotFoundException;
 
-    public void startGame(int i) {
+    public abstract void askForPraying();
 
+    public void actionOk() {
     }
+
+    public abstract void cantDoAction();
 }

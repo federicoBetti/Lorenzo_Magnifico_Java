@@ -40,7 +40,6 @@ public class GameActions {
         player.sendUpdates( new ScoreUpdate(player));
         player.sendUpdates( new FamilyMemberUpdate(player));
 
-        nextTurn(player);
     }
 
     void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
@@ -509,29 +508,39 @@ public class GameActions {
         }
     }
 
-    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card) {
+    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
-            if ( returnFromEffect instanceof TowerAction ){
-                try {
-                    player.sendBonusTowerAction(returnFromEffect);
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+            try {
+                if ( returnFromEffect instanceof TowerAction ){
+                    player.sendBonusTowerAction((TowerAction) returnFromEffect);
                 }
+
+                else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){
+                    player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
+                }
+
+                else if ( returnFromEffect instanceof TakePrivilegesAction )
+                    player.sendRequestForPriviledges((TakePrivilegesAction)returnFromEffect);
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-            player.sendAnswer(returnFromEffect);
         }
+        player.sendActionOk(Constants.OK_OR_NO);
     }
 
-    private void makePermanentEffects(PlayerHandler player, DevelopmentCard card)  {
+    private void makePermannetEffects(PlayerHandler player, DevelopmentCard card )  {
 
-        if ( card.isChoicePe() ) {
-            int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
-            card.getPermanentCardEffects().get(choice).doEffect(player);
-        }
+        for (Effects effect : card.getPermanentCardEffects()) {
+            if ( card.isChoicePe() ) {
+                int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
+                card.getPermanentCardEffects().get(choice).doEffect(player);
+            }
 
-        else {
-            for (Effects effect : card.getPermanentCardEffects()) {
+            else {
                 effect.doEffect(player);
             }
         }

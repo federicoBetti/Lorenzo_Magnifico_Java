@@ -202,6 +202,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
+    public void sendActionOk( String ok ){
+        try {
+            objectOutputStream.writeObject(ok);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
     public void cantDoAction() {
         sendString(Constants.CANT_DO_ACTION);
     }
@@ -366,7 +376,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         clientTakeBonusDevelopementCard(returnFromEffect, floor);
 
     }
-
 
     private ArrayList<BuildingCard> receiveListOfBuildingCard() throws IOException, ClassNotFoundException {
         String messReceived = "start";
