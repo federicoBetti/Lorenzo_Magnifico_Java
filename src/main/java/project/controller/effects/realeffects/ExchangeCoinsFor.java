@@ -44,9 +44,8 @@ public class ExchangeCoinsFor implements Effects {
                 player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
                 break;
             case"privilege":
-                //UsePrivilege p = new UsePrivilege();
-               // BonusInteraction response =  p.doEffect(player); //todo completare Use prviledge
-                break;
+                UsePrivilege p = new UsePrivilege(resourceEarned); //resource earned is the quantity of priviledges
+                return p.doEffect(player); //todo controllare
             default:
                 return null;
         }
