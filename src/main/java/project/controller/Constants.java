@@ -88,6 +88,8 @@ public class Constants {
     public static final String BONUS_PRODUCTION = "bonus-production";
     public static final String BONUS_HARVESTER = "bonus-harvester" ;
     public static final String SKIP_TURN = "skip-turn" ;
+    public static final String PLAY_LEADER_CARD_AMA = "play-leader-card-ama";
+    public static final String DISCARD_LEADER_CARD_AMA = "discard-leader-card-ama";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

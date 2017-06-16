@@ -35,6 +35,7 @@ public class GameActions {
 
         makeImmediateEffects(player, zone.getCardOnThisFloor());
 
+        player.sendActionOk();
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
         player.sendUpdates(new ScoreUpdate(player));
@@ -330,6 +331,7 @@ public class GameActions {
             if (actionValue >= card.getCost().getDiceCost()) makePermanentEffects(player, card);
         }
 
+        player.sendActionOk();
         HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone());
         broadcastUpdates(harvesterUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
@@ -354,6 +356,7 @@ public class GameActions {
             makePermanentEffects(player, card);
         }
 
+        player.sendActionOk();
         broadcastUpdates(productionUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -372,6 +375,7 @@ public class GameActions {
 
         getSupportFunctions(player).takeMarketAction(position);
 
+        player.sendActionOk();
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -444,6 +448,7 @@ public class GameActions {
         e.doEffect(player);
         takeCouncilPrivilege(privilegeNumber, player);
 
+        player.sendActionOk();
         broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
