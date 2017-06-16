@@ -1,13 +1,11 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 /**
  * Created by federico on 10/06/17.
@@ -100,73 +98,73 @@ public class TowersMainGameController extends AbstractController{
 
 
     public void showCardGreen3() {
-        mainController.showCardZoomed(green3.getImage());
+        loginBuilder.showCardZoomed(green3.getImage());
         /**
          *todo dire che carta scelta è quella di green 3. magari prendendo il riferiemtno alla board sul cliente prendendo il nome da mandare poi
          * al client setter. poi ogni volta che si vuole psizionare un prosnaggio bisogna controllare la board che quel posto sia vuoto altriemnti non lo fa fare
-         * poi bisogna far si che il mainController.showCardZoomed(e posizioanto è uno solo, e non posso metterne tanti
+         * poi bisogna far si che il MainController.showCardZoomed(e posizioanto è uno solo, e non posso metterne tanti
          */
 
     }
 
     public void showCardGreen2() {
-        mainController.showCardZoomed(green2.getImage());
+        loginBuilder.showCardZoomed(green2.getImage());
     }
 
     public void showCardGreen1() {
-        mainController.showCardZoomed(green1.getImage());
+        loginBuilder.showCardZoomed(green1.getImage());
     }
 
     public void showCardGreen0() {
-        mainController.showCardZoomed(green0.getImage());
+        loginBuilder.showCardZoomed(green0.getImage());
     }
 
     public void showCardBlue3() {
-        mainController.showCardZoomed(blue3.getImage());
+        loginBuilder.showCardZoomed(blue3.getImage());
     }
 
     public void showCardBlue2() {
-        mainController.showCardZoomed(blue2.getImage());
+        loginBuilder.showCardZoomed(blue2.getImage());
     }
 
     public void showCardBlue1() {
-        mainController.showCardZoomed(blue1.getImage());
+        loginBuilder.showCardZoomed(blue1.getImage());
     }
 
     public void showCardBlue0() {
-        mainController.showCardZoomed(blue0.getImage());
+        loginBuilder.showCardZoomed(blue0.getImage());
     }
 
     public void showCardYellow0() {
-        mainController.showCardZoomed(yellow0.getImage());
+        loginBuilder.showCardZoomed(yellow0.getImage());
     }
 
     public void showCardYellow1() {
-        mainController.showCardZoomed(yellow1.getImage());
+        loginBuilder.showCardZoomed(yellow1.getImage());
     }
 
     public void showCardYellow2() {
-        mainController.showCardZoomed(yellow2.getImage());
+        loginBuilder.showCardZoomed(yellow2.getImage());
     }
 
     public void showCardYellow3() {
-        mainController.showCardZoomed(yellow3.getImage());
+        loginBuilder.showCardZoomed(yellow3.getImage());
     }
 
     public void showCardPurple0() {
-        mainController.showCardZoomed(purple0.getImage());
+        loginBuilder.showCardZoomed(purple0.getImage());
     }
 
     public void showCardPurple1() {
-        mainController.showCardZoomed(purple1.getImage());
+        loginBuilder.showCardZoomed(purple1.getImage());
     }
 
     public void showCardPurple2() {
-        mainController.showCardZoomed(purple2.getImage());
+        loginBuilder.showCardZoomed(purple2.getImage());
     }
 
     public void showCardPurple3() {
-        mainController.showCardZoomed(purple3.getImage());
+        loginBuilder.showCardZoomed(purple3.getImage());
     }
 
 
@@ -245,11 +243,5 @@ public class TowersMainGameController extends AbstractController{
 
 
     public void takeCard() {
-
-
-    }
-
-    public void imageGreen1Clicked() {
-        familiarGreen1.setImage(getTrueFamiliarImage());
     }
 }

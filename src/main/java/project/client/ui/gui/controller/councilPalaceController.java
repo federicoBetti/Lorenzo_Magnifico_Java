@@ -1,6 +1,5 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -58,7 +57,7 @@ public class councilPalaceController extends AbstractController {
 
     public void uploadImages(){
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + loginBuilder.getColour() + ".png"))));
     }
 
     private int numberOfPrivilegeSelected(){

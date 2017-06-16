@@ -2,8 +2,8 @@ package project.client.ui;
 
 import javafx.application.Application;
 import project.client.ui.cli.InputException;
-import project.client.ui.gui.login.LoginBuilder;
-import project.client.ui.gui.maingame.MainGameBuilder;
+import project.client.ui.gui.controller.LoginBuilder;
+import project.client.ui.gui.controller.MainController;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -15,10 +15,17 @@ import java.io.IOException;
  */
 public class Gui extends AbstractUI {
     LoginBuilder loginBuilder;
+    ClientSetter clientSetter;
+    MainController mainController;
 
     public Gui(ClientSetter clientSetter) {
-        super();
-        LoginBuilder.setClientSetter(clientSetter);
+        this.clientSetter = clientSetter;
+    }
+
+    @Override
+    public void startUI() {
+        mainController = MainController.getInstance();
+        mainController.setClientSetter(clientSetter);
         Application.launch(LoginBuilder.class);
     }
 
@@ -104,5 +111,9 @@ public class Gui extends AbstractUI {
     @Override
     public void cantDoAction() {
 
+    }
+
+    public void startGame(int numberOfPlayer) {
+        mainController.showMainGame();
     }
 }

@@ -1,12 +1,10 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 /**
  * Created by federico on 11/06/17.
@@ -56,17 +54,17 @@ public class HarvesterController extends AbstractController {
 
     public void uploadImages(){
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + loginBuilder.getColour() + ".png"))));
     }
 
 
 
     public void inizializeWithMain() {
-        chatText = mainController.getChat();
+        chatText = loginBuilder.getChat();
     }
 
     public void aggiornaChat(){
-        chatText.setText(mainController.getChat().getText());
+        chatText.setText(loginBuilder.getChat().getText());
     }
 
 
@@ -77,27 +75,27 @@ public class HarvesterController extends AbstractController {
 
 
     public void zoomTerritoryCard0() {
-        mainController.showCardZoomed(territoryCard0.getImage());
+        loginBuilder.showCardZoomed(territoryCard0.getImage());
     }
 
     public void zoomTerritoryCard1() {
-        mainController.showCardZoomed(territoryCard1.getImage());
+        loginBuilder.showCardZoomed(territoryCard1.getImage());
     }
 
     public void zoomTerritoryCard2() {
-        mainController.showCardZoomed(territoryCard2.getImage());
+        loginBuilder.showCardZoomed(territoryCard2.getImage());
     }
 
     public void zoomTerritoryCard3() {
-        mainController.showCardZoomed(territoryCard3.getImage());
+        loginBuilder.showCardZoomed(territoryCard3.getImage());
     }
 
     public void zoomTerritoryCard4() {
-        mainController.showCardZoomed(territoryCard4.getImage());
+        loginBuilder.showCardZoomed(territoryCard4.getImage());
     }
 
     public void zoomTerritoryCard5() {
-        mainController.showCardZoomed(territoryCard5.getImage());
+        loginBuilder.showCardZoomed(territoryCard5.getImage());
     }
 
 

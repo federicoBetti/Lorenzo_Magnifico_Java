@@ -53,7 +53,7 @@ public class LoadCards {
                 builderHandler =  map.get(cardFromJson.getAnagrafic().getType());
                 DevelopmentCard card = builderHandler.build();
 
-                deck.getDevelopmentdeck()[ iterator.getColor() ][ iterator.getPeriod() ][ iterator.getCards() ] = card;
+                deck.getDevelopmentDeck()[ iterator.getColor() ][ iterator.getPeriod() ][ iterator.getCards() ] = card;
                 iterator.next();
             }
         }

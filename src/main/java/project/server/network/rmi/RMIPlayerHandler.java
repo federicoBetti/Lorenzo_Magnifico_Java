@@ -142,16 +142,19 @@ public class RMIPlayerHandler extends PlayerHandler{
 
     }
 
+    @Override
+    public void sendActionOk(String okOrNo) {
+
+    }
+
     // qua inizia la parte delle chiamate del client sul server
 
     void takeDevCard(String towerColour, int floor, String familyMemberColour) throws RemoteException {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         try {
-            clientTakeDevelopementCard(towerColour,floor,familyMember);
+            clientTakeDevelopmentCard(towerColour,floor,familyMember);
         } catch (CantDoActionException e) {
             cantDoAction();
-        } catch (CanUseBothPaymentMethodException e) {
-            canUseBothPaymentMethod();
         }
     }
 

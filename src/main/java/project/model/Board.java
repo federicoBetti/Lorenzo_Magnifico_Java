@@ -82,15 +82,12 @@ public final class Board {
 
     private List<Integer> finalPointsFromCharacterCards;
 
-    private int numberOfFamilyMemberPlayedInThisRound;
-
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
     private Deck deckCard;
 
 
     public Board(int numberOfPlayer){
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
-        this.numberOfFamilyMemberPlayedInThisRound = 1;
         victoryPointsInFaithTrack = new int[15];
         if (numberOfPlayer == 4){
             marketZone = new Market[4];
@@ -232,14 +229,6 @@ public final class Board {
 
     public List<Integer> getFinalPointsFromCharacterCards() {
         return finalPointsFromCharacterCards;
-    }
-
-    public void setNumberOfFamilyMemberPlayedInThisRound(int numberOfFamilyMemberPlayedInThisRound) {
-        this.numberOfFamilyMemberPlayedInThisRound = numberOfFamilyMemberPlayedInThisRound;
-    }
-
-    public int getNumberOfFamilyMemberPlayedInThisRound() {
-        return numberOfFamilyMemberPlayedInThisRound;
     }
 
     public int[] getFaithPointsRequiredEveryPeriod() {

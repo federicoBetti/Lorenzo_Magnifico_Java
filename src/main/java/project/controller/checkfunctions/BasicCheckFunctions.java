@@ -32,11 +32,23 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     @Override
     public boolean checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) {
+        BuildingCost totalCardCosts = new BuildingCost();
         for (BuildingCard b: cardToProduct){
             if (b.getCost().getDiceCost() > maxValueOfProduction)
                 return false;
         }
+        //attenione ho fatto che anche la
         return true;
+    }
+
+    private BuildingCost sumCost(BuildingCost totalCardCosts, BuildingCost cost) {
+        int woodRequired = totalCardCosts.getWoodRequired() + cost.getWoodRequired();
+        int stoneRequired = totalCardCosts.getStoneRequired() + cost.getStoneRequired();
+        int coinsRequired = totalCardCosts.getCoinsRequired() + cost.getCoinsRequired();
+        totalCardCosts.setCoinsRequired(coinsRequired);
+        totalCardCosts.setStoneRequired(stoneRequired);
+        totalCardCosts.setWoodRequired(woodRequired);
+        return totalCardCosts;
     }
 
     @Override

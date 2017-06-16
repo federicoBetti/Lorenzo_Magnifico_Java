@@ -1,4 +1,4 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

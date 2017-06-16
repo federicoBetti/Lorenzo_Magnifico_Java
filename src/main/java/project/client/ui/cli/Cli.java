@@ -49,7 +49,7 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void sendChoicePe(String input) throws InputException {
+    public void sendChoicePe( String input ) throws InputException {
         context.checkValidInput(input);
         clientSetter.sendChoicePe(input);
     }
@@ -101,7 +101,8 @@ public class Cli extends AbstractUI {
         context = new ImmediatePriviledgesContext(this, privilegesAction);
     }
 
-    public void takeDevCard() throws InputException {
+
+    public void takeDevCard() {
         context = new TowersContext(this);
     }
 
@@ -209,6 +210,7 @@ public class Cli extends AbstractUI {
 
     //todo show methods
     public void showTowers() {
+        //todo fare il metodo di print per le varie caratteristiche delle carte e per gli effetti
         //clientSetter.getUiBoard().getAllTowers().printTowers();
     }
 

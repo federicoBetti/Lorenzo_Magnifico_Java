@@ -211,6 +211,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     public void setFamiliar(Position zone, FamilyMember familyMember) {
         zone.setFamiliarOnThisPosition(familyMember);
         zone.setOccupied(true);
+        familyMember.setPlayed(true);
         return;
     }
 

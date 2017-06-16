@@ -47,7 +47,7 @@ public class Server {
 
 
     /**
-     * TODO implemetare tutti i metodi che si occupano della gestione delle room e del fileXML.login dei giocatori
+     * TODO implemetare tutti i metodi che si occupano della gestione delle room e del fileXML.controller dei giocatori
      */
 
     public void loginRequest(String nickname, PlayerHandler player) throws IOException {

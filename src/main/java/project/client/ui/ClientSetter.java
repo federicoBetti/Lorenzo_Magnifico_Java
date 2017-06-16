@@ -15,12 +15,12 @@ import project.model.Board;
 import project.model.FamilyMember;
 import project.model.PersonalBoard;
 import project.model.Score;
+
 import java.io.IOException;
 
 /**
  * this class is the "bridge" between user interface and client.
  */
-
 public class ClientSetter {
     AbstractClient client;
     AbstractUI ui;
@@ -197,6 +197,8 @@ public class ClientSetter {
 
     public void connect(String username, String password) {
         System.out.println(username + " " + password);
+        ui.startGame(3);
+        //startGame(2);
     }
 
     public void bothPaymentsAvailable() {

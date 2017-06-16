@@ -21,7 +21,7 @@ public class Deck {
         DevelopmentCard[][][] deck = new DevelopmentCard[Constants.CARD_TYPE_NUMBER][Constants.PERIOD_NUMBER][Constants.CARD_FOR_EACH_PERIOD];
     }
 
-    public DevelopmentCard[][][] getDevelopmentdeck() {
+    public DevelopmentCard[][][] getDevelopmentDeck() {
         return developmentDeck;
     }
 

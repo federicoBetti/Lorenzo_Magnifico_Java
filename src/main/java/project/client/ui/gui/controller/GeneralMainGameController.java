@@ -1,6 +1,5 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -110,23 +109,23 @@ public class GeneralMainGameController extends AbstractController{
 
     public void uploadImages(){
         super.uploadImages();
-        int faithPoints = mainController.getFaithPoints();
-        int turnOrder = mainController.getTurnOrder();
-        faithPointsArray.get(faithPoints).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
-        turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
+        int faithPoints = loginBuilder.getFaithPoints();
+        int turnOrder = loginBuilder.getTurnOrder();
+        faithPointsArray.get(faithPoints).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + loginBuilder.getColour() + "Pedone.png"))));
+        turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + loginBuilder.getColour() + "Pedone.png"))));
     }
 
 
     public void goToTowers() {
-        mainController.setScene(SceneType.TOWERS,SceneType.MAIN);
+        loginBuilder.setScene(SceneType.TOWERS,SceneType.MAIN);
     }
 
     public void goToProduction() {
-        mainController.setScene(SceneType.PRODUCTION,SceneType.MAIN);
+        loginBuilder.setScene(SceneType.PRODUCTION,SceneType.MAIN);
     }
 
     public void goToMarket() {
-        mainController.setScene(SceneType.MARKET,SceneType.MAIN);
+        loginBuilder.setScene(SceneType.MARKET,SceneType.MAIN);
     }
 
     public void goToCouncliPalace() {
@@ -139,7 +138,7 @@ public class GeneralMainGameController extends AbstractController{
     }
 
     public void showLeaderCard() {
-        mainController.setScene(SceneType.LEADER, SceneType.MAIN);
+        loginBuilder.setScene(SceneType.LEADER, SceneType.MAIN);
 
     }
 
@@ -148,11 +147,11 @@ public class GeneralMainGameController extends AbstractController{
 
 
     public void goToHarvester() {
-        mainController.setScene(SceneType.HARVESTER,SceneType.MAIN);
+        loginBuilder.setScene(SceneType.HARVESTER,SceneType.MAIN);
     }
 
     public void goToCouncil() {
-        mainController.setScene(SceneType.COUNCIL,SceneType.MAIN);
+        loginBuilder.setScene(SceneType.COUNCIL,SceneType.MAIN);
     }
 
 

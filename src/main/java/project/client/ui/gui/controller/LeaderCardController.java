@@ -1,10 +1,8 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -106,7 +104,7 @@ public class LeaderCardController extends AbstractController {
     }
 
     public void goBack() {
-        mainController.setScene(SceneType.MAIN,SceneType.LEADER);
+        loginBuilder.setScene(SceneType.MAIN,SceneType.LEADER);
     }
 
     public void playCard() {

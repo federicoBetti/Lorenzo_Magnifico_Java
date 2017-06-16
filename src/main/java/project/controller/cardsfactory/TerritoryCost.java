@@ -27,4 +27,12 @@ public class TerritoryCost implements Cost {
     public int getDiceCost() {
         return diceCost;
     }
+
+    public void setWoodRequired(int woodRequired) {
+        this.woodRequired = woodRequired;
+    }
+
+    public void setStoneRequired(int stoneRequired) {
+        this.stoneRequired = stoneRequired;
+    }
 }

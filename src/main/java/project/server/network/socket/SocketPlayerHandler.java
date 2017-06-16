@@ -92,6 +92,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+
     public void choosePaymentForVentureCard() throws IOException, ClassNotFoundException {
         int position = (int)objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();

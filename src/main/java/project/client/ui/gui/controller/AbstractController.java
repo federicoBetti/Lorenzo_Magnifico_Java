@@ -1,4 +1,4 @@
-package project.client.ui.gui.maingame;
+package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -11,7 +11,8 @@ import javafx.scene.image.ImageView;
  */
 public abstract class AbstractController {
 
-    protected MainGameBuilder mainController;
+    protected LoginBuilder loginBuilder;
+    protected MainController mainController;
     /**
      * textfield to write chat messages
      */
@@ -49,25 +50,24 @@ public abstract class AbstractController {
         familiarChosen = "Null";
     }
 
-    public void setMainController(MainGameBuilder mainController) {
+    public void setLoginBuilder(LoginBuilder loginBuilder) {
+        this.loginBuilder = loginBuilder;
+    }
+
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
     public void goToMainGame(ActionEvent actionEvent) {
-        mainController.setScene(SceneType.MAIN,SceneType.HARVESTER);
+        loginBuilder.setScene(SceneType.MAIN,SceneType.HARVESTER);
     }
 
     public void sendChat(ActionEvent actionEvent) {
         String text = chatText.getText() + "\n";
-        mainController.sendChat(text);
+        loginBuilder.sendChat(text);
     }
 
     public void uploadImages(){
-        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Zero.png"))));
-        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Nero.png"))));
-        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Bianco.png"))));
-        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Arancio.png"))));
-
     }
 
     protected Image getTrueFamiliarImage(){
@@ -102,6 +102,6 @@ public abstract class AbstractController {
 
 
     public void showPersonalBoard(SceneType oldScene) {
-        mainController.setScene(SceneType.PERSONAL_BOARD,oldScene);
+        loginBuilder.setScene(SceneType.PERSONAL_BOARD,oldScene);
     }
 }
