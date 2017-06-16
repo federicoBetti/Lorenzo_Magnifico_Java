@@ -537,7 +537,7 @@ public class GameActions {
                 e.printStackTrace();
             }
         }
-        player.sendActionOk(Constants.OK_OR_NO);
+        player.sendActionOk();
     }
 
     private void makePermanentEffects(PlayerHandler player, DevelopmentCard card )  {

@@ -311,7 +311,7 @@ public abstract class PlayerHandler extends Player {
 
     public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) throws CantDoActionException {
     }
-    public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) {
+    public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
     }
 
     public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException;

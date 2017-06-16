@@ -142,10 +142,6 @@ public class RMIPlayerHandler extends PlayerHandler{
 
     }
 
-    @Override
-    public void sendActionOk(String okOrNo) {
-
-    }
 
     // qua inizia la parte delle chiamate del client sul server
 
