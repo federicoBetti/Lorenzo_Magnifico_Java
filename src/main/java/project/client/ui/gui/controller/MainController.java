@@ -2,15 +2,15 @@ package project.client.ui.gui.controller;
 
 import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
+import project.model.PersonalBoard;
 
-/**
- * Created by federico on 15/06/17.
- */
+
 public class MainController {
     private static MainController instance;
     private ClientSetter clientSetter;
     private LoginBuilder loginBuilder;
     private TextField chatText;
+    private HarvesterController harvesterController;
 
 
     private MainController(){
@@ -52,9 +52,28 @@ public class MainController {
         clientSetter.takeDevCard(towerColour, floor, familiarColour);
     }
 
-
-
+    public void setHarvesterController(HarvesterController harvesterController) {
+        this.harvesterController = harvesterController;
+    }
 
 
     //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
+
+
+    public void personalBoardUpdate(){
+        PersonalBoard personalBoard = clientSetter.getUiPersonalBoard();
+        harvesterController.updateCards(personalBoard.getTerritories());
+        harvesterController.updateResources(personalBoard.getCoins(),personalBoard.getWood(),personalBoard.getStone(),personalBoard.getServants());
+
+    }
+
+    public void boardUpdate() {
+    }
+
+    public void scoreUpdate() {
+    }
+
+    public void familyMemberUpdate() {
+        harvesterController.updateFamilyMember(clientSetter.getUiFamilyMembers());
+    }
 }

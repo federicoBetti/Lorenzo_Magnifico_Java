@@ -41,4 +41,19 @@ public abstract class AbstractUI {
     public void startGame(int i) {
 
     }
+
+    //notifica alla ui che èè stato fatto un update, serve solo a me. l'ho messo non astratto cosi da te non fa niente
+    public void boardUpdate() {
+
+    }
+
+    public void scoreUpdate() {
+    }
+
+    public void personalBoardUpdate() {
+    }
+
+    public void familyMemberUpdate() {
+
+    }
 }

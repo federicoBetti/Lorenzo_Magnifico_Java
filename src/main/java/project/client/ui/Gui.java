@@ -74,4 +74,21 @@ public class Gui extends AbstractUI {
     public void startGame(int numberOfPlayer) {
         mainController.showMainGame();
     }
+
+    public void boardUpdate() {
+        mainController.boardUpdate();
+    }
+
+    public void scoreUpdate() {
+        mainController.scoreUpdate();
+    }
+
+    public void personalBoardUpdate() {
+        mainController.personalBoardUpdate();
+    }
+
+    public void familyMemberUpdate() {
+        mainController.familyMemberUpdate();
+
+    }
 }

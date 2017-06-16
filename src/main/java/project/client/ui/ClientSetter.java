@@ -188,18 +188,22 @@ public class ClientSetter {
 
     public void boardUpdate(Updates update) {
         update.doUpdate(uiBoard);
+        ui.boardUpdate();
     }
 
     public void scoreUpdate(Updates update) {
         update.doUpdate(uiScore);
+        ui.scoreUpdate();
     }
 
     public void personalBoardUpdate(Updates update) {
         update.doUpdate(uiPersonalBoard);
+        ui.personalBoardUpdate();
     }
 
     public void familyMemberUpdate(Updates update) {
         update.doUpdate(uiFamilyMembers);
+        ui.familyMemberUpdate();
     }
 
     public void connect(String username, String password) {
@@ -217,5 +221,21 @@ public class ClientSetter {
 
     //todo check utility
     public void notifyClient(Notify notify) {
+    }
+
+    public Board getUiBoard() {
+        return uiBoard;
+    }
+
+    public PersonalBoard getUiPersonalBoard() {
+        return uiPersonalBoard;
+    }
+
+    public Score getUiScore() {
+        return uiScore;
+    }
+
+    public FamilyMember[] getUiFamilyMembers() {
+        return uiFamilyMembers;
     }
 }

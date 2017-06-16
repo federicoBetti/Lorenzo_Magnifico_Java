@@ -2,7 +2,6 @@ package project.client.ui.gui.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,16 +58,6 @@ public class TowersMainGameController extends AbstractController {
     private Button submit;
 
 
-    @FXML
-    private RadioButton familiarOrange;
-    @FXML
-    private RadioButton familiarWhite;
-    @FXML
-    private RadioButton familiarBlack;
-    @FXML
-    private RadioButton familiarNull;
-
-
     /**
      * queste sono le image view che si trovano nei posti slezione di ogni carta. quando verrà selezioanta una carta
      * il familiare selezionato verrano posizionati li
@@ -114,9 +103,11 @@ public class TowersMainGameController extends AbstractController {
     @FXML
     private Button mainGameButton;
 
-    String towerColour;
-    String floor;
-    String familiarColour;
+    private String towerColour;
+    private String floor;
+    private String familiarColour;
+
+
 
 
     public TowersMainGameController() {
@@ -135,7 +126,7 @@ public class TowersMainGameController extends AbstractController {
         imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoNero.png"))));
         imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoBianco.png"))));
         imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoArancio.png"))));
-        green0.setImage(new Image(String.valueOf(getClass().getResource("/images/commercialHub.png"))));
+        green0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
         green1.setImage(new Image(String.valueOf(getClass().getResource("/images/woods.png"))));
 
 

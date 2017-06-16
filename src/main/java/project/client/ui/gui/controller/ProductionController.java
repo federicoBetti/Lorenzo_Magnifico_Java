@@ -69,7 +69,7 @@ public class ProductionController extends AbstractController{
     }
     public void initialize(){
 
-        buildingCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/commercialHub.png"))));
+        buildingCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
         allBuildingCard = new ArrayList<>(6);
         allBuildingCard.add(buildingCard0);
         allBuildingCard.add(buildingCard1);
