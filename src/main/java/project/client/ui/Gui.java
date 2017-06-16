@@ -31,7 +31,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void takeBonusCard(TowerAction towerAction) {
-
+        //verso ui
     }
 
     @Override
@@ -39,20 +39,6 @@ public class Gui extends AbstractUI {
 
     }
 
-    @Override
-    public void loginRequest(String loginParameter)  {
-
-    }
-
-    @Override
-    public void discardLeaderCard(String name)  {
-
-    }
-
-    @Override
-    public void prayOrNot(String action)  {
-
-    }
 
     @Override
     public void mainContext() {
@@ -63,40 +49,18 @@ public class Gui extends AbstractUI {
 
     }
 
-    @Override
-    public void sendChoicePe(String input)  {
-
-    }
 
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
 
     }
 
-    @Override
-    public void bonusHarvesterParameters(String input)  {
-
-    }
 
     @Override
     public void bonusProduction(BonusProductionOrHarvesterAction bonusProd)  {
 
     }
 
-    @Override
-    public void bonusProductionParameters(String action)  {
-
-    }
-
-    @Override
-    public void takeBonusCardParameters(String action)  {
-
-    }
-
-    @Override
-    public void immediatePriviledgeAction(String action)  {
-
-    }
 
     @Override
     public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) {

@@ -48,7 +48,6 @@ public class Cli extends AbstractUI {
         context = new ChoicePeContext(this);
     }
 
-    @Override
     public void sendChoicePe( String input ) throws InputException {
         context.checkValidInput(input);
         clientSetter.sendChoicePe(input);
@@ -59,7 +58,6 @@ public class Cli extends AbstractUI {
         context = new BonusHarvesterContext(bonusHarv, this);
     }
 
-    @Override
     public void bonusHarvesterParameters(String input) throws InputException {
         context.checkValidInput(input);
         String[] parameters = input.split("-");
@@ -72,7 +70,6 @@ public class Cli extends AbstractUI {
         context = new BonusProductionContext(bonusProd, this);
     }
 
-    @Override
     public void bonusProductionParameters(String lineFromKeyBoard) {
         try {
             context.checkValidInput(lineFromKeyBoard);
@@ -83,14 +80,13 @@ public class Cli extends AbstractUI {
         clientSetter.bonusProductionAction(parameters);
     }
 
-    @Override
     public void takeBonusCardParameters(String input) throws InputException {
         context.checkValidInput(input);
         String[] parameters = input.split("-");
         clientSetter.takeBonusCardAction(parameters[0], parameters[1]);
     }
 
-    @Override
+
     public void immediatePriviledgeAction(String input) throws InputException {
         String[] privileges = input.split("-");
         clientSetter.immediatePriviledgeAction(privileges);
@@ -134,7 +130,6 @@ public class Cli extends AbstractUI {
         context = new MarketContext(this);
     }
 
-    @Override
     public void loginRequest(String lineFromKeyBoard) throws InputException {
         clientSetter.loginRequest(lineFromKeyBoard);
     }

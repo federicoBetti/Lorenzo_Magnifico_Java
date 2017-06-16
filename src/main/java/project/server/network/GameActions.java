@@ -21,11 +21,11 @@ public class GameActions {
 
     private Room room;
 
-    private AllSupportFunctions getSupportFunctions(Player player){
+    private AllSupportFunctions getSupportFunctions(Player player) {
         return room.getMySupportFunction(player);
     }
 
-    private void takeDevelopmentCard(Tower zone, FamilyMember familyMember, PlayerHandler player){
+    private void takeDevelopmentCard(Tower zone, FamilyMember familyMember, PlayerHandler player) {
         DevelopmentCard card = zone.getCardOnThisFloor();
 
         getSupportFunctions(player).setFamiliar(zone, familyMember);
@@ -33,12 +33,12 @@ public class GameActions {
         zone.getTowerZoneEffect().doEffect(player);
         TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers());
 
-        makeImmediateEffects( player, zone.getCardOnThisFloor() );
+        makeImmediateEffects(player, zone.getCardOnThisFloor());
 
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
-        player.sendUpdates( new ScoreUpdate(player));
-        player.sendUpdates( new FamilyMemberUpdate(player));
+        player.sendUpdates(new ScoreUpdate(player));
+        player.sendUpdates(new FamilyMemberUpdate(player));
 
     }
 
@@ -47,17 +47,17 @@ public class GameActions {
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
 
-        getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue,diceFamiliarValue);
-        takeDevelopmentCard(zone,familyM,player);
+        getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
+        takeDevelopmentCard(zone, familyM, player);
     }
 
-    void takeVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment){
+    void takeVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
 
-        getSupportFunctions(player).payVenturesCard((VenturesCard)card, player, towerIsOccupied, diceCostValue, diceFamiliarValue, numberOfPayment);
-        takeDevelopmentCard(zone,familyM,player);
+        getSupportFunctions(player).payVenturesCard((VenturesCard) card, player, towerIsOccupied, diceCostValue, diceFamiliarValue, numberOfPayment);
+        takeDevelopmentCard(zone, familyM, player);
     }
 
 
@@ -72,25 +72,21 @@ public class GameActions {
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
 
-        if (indexOfMe < playerNumbers - 1){ //non sono l'ultimo del turno
+        if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
             next = turn.get(indexOfMe + 1);
             next.itsMyTurn();
-        }
-        else if (!allFamiliarPlayed(playerHandler)){// sono 'ultimo del turno ma non è finito round
+        } else if (!allFamiliarPlayed(playerHandler)) {// sono 'ultimo del turno ma non è finito round
             next = turn.get(0);
             next.itsMyTurn();
-        }
-        else if (currentRound == 2 && currentPeriod == 3){ //fine partita
+        } else if (currentRound == 2 && currentPeriod == 3) { //fine partita
             endMatch();//
-        }
-        else if (currentRound == 2){//fine periodo
+        } else if (currentRound == 2) {//fine periodo
             endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
             setEndTurn(true);
             firstPlayerTurn();
-        }
-        else {//fine round
+        } else {//fine round
             endRound();
             nextRound();
             setEndTurn(true);
@@ -105,9 +101,8 @@ public class GameActions {
     }
 
     private boolean allFamiliarPlayed(PlayerHandler playerHandler) {
-        for (FamilyMember familyMember: playerHandler.getAllFamilyMembers()){
-            if (!familyMember.isPlayed())
-                return false;
+        for (FamilyMember familyMember : playerHandler.getAllFamilyMembers()) {
+            if (!familyMember.isPlayed()) return false;
         }
         return true;
     }
@@ -116,36 +111,31 @@ public class GameActions {
 
         @Override
         public int compare(PlayerHandler o1, PlayerHandler o2) {
-            if (o1.getScore().getMilitaryPoints() > o2.getScore().getMilitaryPoints())
-                return 1;
-            else if (o1.getScore().getMilitaryPoints() == o2.getScore().getMilitaryPoints())
-                return 0;
-            else
-                return -1;
-        }
-    }
-    class WinnerComparator implements Comparator<PlayerHandler> {
-        @Override
-        public int compare(PlayerHandler o1, PlayerHandler o2) {
-            if (o1.getScore().getVictoryPoints() > o2.getScore().getVictoryPoints())
-                return 1;
-            else if (o1.getScore().getVictoryPoints() == o2.getScore().getVictoryPoints()) {
-                if (o1.getTurnOrder() < o2.getTurnOrder()) return 1;
-                else return -1;
-            }
-            else
-                return -1;
+            if (o1.getScore().getMilitaryPoints() > o2.getScore().getMilitaryPoints()) return 1;
+            else if (o1.getScore().getMilitaryPoints() == o2.getScore().getMilitaryPoints()) return 0;
+            else return -1;
         }
     }
 
-    private int getMilitaryPoints(PlayerHandler playerHandler){
+    class WinnerComparator implements Comparator<PlayerHandler> {
+        @Override
+        public int compare(PlayerHandler o1, PlayerHandler o2) {
+            if (o1.getScore().getVictoryPoints() > o2.getScore().getVictoryPoints()) return 1;
+            else if (o1.getScore().getVictoryPoints() == o2.getScore().getVictoryPoints()) {
+                if (o1.getTurnOrder() < o2.getTurnOrder()) return 1;
+                else return -1;
+            } else return -1;
+        }
+    }
+
+    private int getMilitaryPoints(PlayerHandler playerHandler) {
         return playerHandler.getScore().getMilitaryPoints();
     }
 
     private void endMatch() {
         MilitaryComparator comparator = new MilitaryComparator();
         List<PlayerHandler> militaryStandings = room.getListOfPlayers();
-        Collections.sort(militaryStandings,comparator);
+        Collections.sort(militaryStandings, comparator);
 
         int victoryPointsToWinner = 5;
         int victoryPointsToRunnerUp = 2;
@@ -155,16 +145,14 @@ public class GameActions {
             victoryPointsToWinner = 2;
         }
 
-        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+        for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler playerHandler = entry.getValue();
             int pointsToAdd = 0;
 
             finalPray(playerHandler);
 
-            if (playerHandler.equals(militaryStandingsWinner))
-                pointsToAdd += victoryPointsToWinner;
-            else if (playerHandler.equals(militaryStandingsRunnerUp))
-                pointsToAdd += victoryPointsToRunnerUp;
+            if (playerHandler.equals(militaryStandingsWinner)) pointsToAdd += victoryPointsToWinner;
+            else if (playerHandler.equals(militaryStandingsRunnerUp)) pointsToAdd += victoryPointsToRunnerUp;
 
             pointsToAdd += getExtraFinalPoints(playerHandler);
             pointsToAdd += pointsFromResources(playerHandler);
@@ -181,7 +169,7 @@ public class GameActions {
     private void finalPray(PlayerHandler playerHandler) {
         if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[Constants.PERIOD_NUMBER])
             pray(playerHandler);
-        else{
+        else {
             takeExcommunication(playerHandler);
         }
     }
@@ -192,7 +180,7 @@ public class GameActions {
         numberOfResources += playerHandler.getPersonalBoardReference().getServants();
         numberOfResources += playerHandler.getPersonalBoardReference().getStone();
         numberOfResources += playerHandler.getPersonalBoardReference().getWood();
-        return  (numberOfResources/5);
+        return (numberOfResources / 5);
     }
 
     private int getExtraFinalPoints(PlayerHandler playerHandler) {
@@ -209,7 +197,7 @@ public class GameActions {
     private PlayerHandler findWinner() {
         WinnerComparator comparator = new WinnerComparator();
         List<PlayerHandler> finalStandings = room.getListOfPlayers();
-        Collections.sort(finalStandings,comparator);
+        Collections.sort(finalStandings, comparator);
         return finalStandings.get(0);
 
     }
@@ -219,13 +207,13 @@ public class GameActions {
         List<Council> councilZone = room.getBoard().getCouncilZone();
         List<PlayerHandler> oldTurnOrder = room.getBoard().getTurn().getPlayerTurn();
 
-        for (Council council: councilZone){
-            if (!newTurnOrder.contains(council.getPlayer())){
+        for (Council council : councilZone) {
+            if (!newTurnOrder.contains(council.getPlayer())) {
                 newTurnOrder.add((PlayerHandler) council.getPlayer());
             }
         }
-        for (PlayerHandler player: oldTurnOrder){
-            if (!newTurnOrder.contains(player)){
+        for (PlayerHandler player : oldTurnOrder) {
+            if (!newTurnOrder.contains(player)) {
                 newTurnOrder.add(player);
             }
         }
@@ -245,7 +233,7 @@ public class GameActions {
         askForPraying(period);
     }
 
-    private void endRound(){//cambiare le carte, pulire spazi azione, settare i familiari a false
+    private void endRound() {//cambiare le carte, pulire spazi azione, settare i familiari a false
         refactorTowers();
         changePlayerOrder();
         clearAllPosition();
@@ -257,16 +245,16 @@ public class GameActions {
         List<Council> councilZone = room.getBoard().getCouncilZone();
         Market[] marketZone = room.getBoard().getMarketZone();
 
-        for (Harvester harvester: harvesterZone)
+        for (Harvester harvester : harvesterZone)
             clearSinglePosition(harvester);
 
-        for (Production production: productionZone)
+        for (Production production : productionZone)
             clearSinglePosition(production);
 
-        for (Market market: marketZone)
+        for (Market market : marketZone)
             clearSinglePosition(market);
 
-        for (Council council: councilZone)
+        for (Council council : councilZone)
             clearSinglePosition(council);
     }
 
@@ -285,14 +273,12 @@ public class GameActions {
         DevelopmentCard[][][] deck = room.getBoard().getDeckCard().getDevelopmentDeck();
         int roundsAdd = 0;
 
-        if (currentRound == 1)
-            roundsAdd = 4;
-        else
-            currentPeriod++;
+        if (currentRound == 1) roundsAdd = 4;
+        else currentPeriod++;
 
         //si potrebbe fare con iteratore..
-        for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++){
-            for (j=0; j < Constants.CARD_FOR_EACH_TOWER; j++){
+        for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++) {
+            for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 //ho fatto il ciclo passando per tutte le torri dal basso all'alto
                 clearSinglePosition(tower[j][i]);
                 tower[j][i].setCardOnThisFloor(deck[i][currentPeriod][roundsAdd + j]); //da testare
@@ -310,27 +296,24 @@ public class GameActions {
     private void askForPraying(int period) {
         int faithPointsNeeded = room.getBoard().getFaithPointsRequiredEveryPeriod()[period];
 
-        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+        for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
             if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
                 player.sendAskForPraying();
-            }
-            else{
+            } else {
                 takeExcommunication(player);
             }
         }
     }
 
 
-
     /**
-     *
      * @param position
      * @param familyM
      * @param servantsNumber
      * @param player
      */
-    public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player)  {
+    public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player) {
         int malusByField;
         int actionValue;
         int cardBonus = player.getPersonalBoardReference().getBonusOnActions().getHarvesterBonus();
@@ -338,16 +321,13 @@ public class GameActions {
 
 
         getSupportFunctions(player).setFamiliar(harvesterZone, familyM);
-        if (position == 0)
-            malusByField = 0;
-        else
-            malusByField = 3;
+        if (position == 0) malusByField = 0;
+        else malusByField = 3;
         actionValue = familyM.getMyValue() + servantsNumber - malusByField + cardBonus;
         player.getPersonalBoardReference().getMyTile().takeHarvesterResource();
 
-        for (TerritoryCard card: player.getPersonalBoardReference().getTerritories()){
-            if ( actionValue >= card.getCost().getDiceCost())
-                makePermanentEffects(player, card);
+        for (TerritoryCard card : player.getPersonalBoardReference().getTerritories()) {
+            if (actionValue >= card.getCost().getDiceCost()) makePermanentEffects(player, card);
         }
 
         HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone());
@@ -356,7 +336,6 @@ public class GameActions {
     }
 
     /**
-     *
      * @param position
      * @param familyM
      * @param cardToProduct
@@ -371,8 +350,8 @@ public class GameActions {
 
         player.getPersonalBoardReference().getMyTile().takeProductionResource();
 
-        for (BuildingCard card: cardToProduct){
-            makePermanentEffects(player, card );
+        for (BuildingCard card : cardToProduct) {
+            makePermanentEffects(player, card);
         }
 
         broadcastUpdates(productionUpdate);
@@ -385,10 +364,10 @@ public class GameActions {
      * @param familyM
      * @return
      */
-    void goToMarket(int position, FamilyMember familyM, PlayerHandler player){
+    void goToMarket(int position, FamilyMember familyM, PlayerHandler player) {
         Position marketPosition = room.getBoard().getMarketZone()[position];
 
-        getSupportFunctions(player).setFamiliar(marketPosition,familyM);
+        getSupportFunctions(player).setFamiliar(marketPosition, familyM);
         MarketUpdate marketUpdate = new MarketUpdate(room.getBoard().getMarketZone());
 
         getSupportFunctions(player).takeMarketAction(position);
@@ -399,12 +378,11 @@ public class GameActions {
 
 
     /**
-     *
      * @param leaderName
      * @param player
      */
-    void playLeaderCard(String leaderName, PlayerHandler player){
-        for (LeaderCard leaderCard: player.getPersonalBoardReference().getMyLeaderCard()) {
+    void playLeaderCard(String leaderName, PlayerHandler player) {
+        for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
                 leaderCard.playCard(player);
                 leaderCard.setPlayed(true);
@@ -418,9 +396,9 @@ public class GameActions {
      * @param leaderName
      * @return
      */
-    public void discardLeaderCard(String leaderName, PlayerHandler player){
+    public void discardLeaderCard(String leaderName, PlayerHandler player) {
         int numberToDelate = 0;
-        for (LeaderCard leaderCard: player.getPersonalBoardReference().getMyLeaderCard()) {
+        for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
                 numberToDelate = player.getPersonalBoardReference().getMyLeaderCard().indexOf(leaderCard);
                 break;
@@ -434,7 +412,7 @@ public class GameActions {
     /**
      * @return
      */
-    void rollDice(){
+    void rollDice() {
         int[] newDiceValue = new int[3];
         Random r = new Random();
         newDiceValue[0] = r.nextInt(5) + 1;
@@ -443,7 +421,7 @@ public class GameActions {
 
         room.getBoard().setDiceValue(newDiceValue);
 
-        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+        for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
             getSupportFunctions(player).setDicesValue(newDiceValue, player);
         }
@@ -455,33 +433,31 @@ public class GameActions {
     /**
      * @param privilegeNumber
      * @param familyMember
-     *@param player @return
+     * @param player          @return
      */
-    void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler player){
+    void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler player) {
         List<Council> councilZone = room.getBoard().getCouncilZone();
 
         getSupportFunctions(player).setFamiliarInTheCouncilPalace(councilZone, familyMember);
 
         Effects e = new AddCoin(1);
         e.doEffect(player);
-        takeCouncilPrivilege(privilegeNumber,player);
+        takeCouncilPrivilege(privilegeNumber, player);
 
         broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
 
     /**
-     *
      * @param privilegeNumber
      * @param player
      */
-    public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player ) {
+    public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player) {
         getSupportFunctions(player).takeCouncilPrivilege(privilegeNumber);
 
-        if ( privilegeNumber > 0 && privilegeNumber < 2 ){
+        if (privilegeNumber > 0 && privilegeNumber < 2) {
             player.sendUpdates(new PersonalBoardUpdate(player));
-        }
-        else {
+        } else {
             player.sendUpdates(new ScoreUpdate(player));
         }
     }
@@ -490,7 +466,7 @@ public class GameActions {
         int victoryPointsToAdd = room.getBoard().getVictoryPointsInFaithTrack()[player.getScore().getFaithPoints()];
 
         getSupportFunctions(player).pray(victoryPointsToAdd);
-        player.sendUpdates( new ScoreUpdate(player));
+        player.sendUpdates(new ScoreUpdate(player));
     }
 
     void takeExcommunication(PlayerHandler playerHandler) {
@@ -502,36 +478,32 @@ public class GameActions {
         broadcastUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone()));
     }
 
-    void broadcastNotifications(Notify notifications){
-        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+    void broadcastNotifications(Notify notifications) {
+        for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
-            player.sendNotification( notifications );
+            player.sendNotification(notifications);
         }
     }
 
-    private void broadcastUpdates( Updates updates ){
-        for (Map.Entry<String, PlayerHandler> entry: room.nicknamePlayersMap.entrySet()) {
+    private void broadcastUpdates(Updates updates) {
+        for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
             player.sendUpdates(updates);
         }
     }
 
-    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card ) {
+    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card) {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
             try {
-                if ( returnFromEffect instanceof TowerAction ){
+                if (returnFromEffect instanceof TowerAction) {
                     player.sendBonusTowerAction((TowerAction) returnFromEffect);
-                }
-
-                else if ( returnFromEffect instanceof BonusProductionOrHarvesterAction ){
+                } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction) {
                     player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
-                }
+                } else if (returnFromEffect instanceof TakePrivilegesAction)
+                    player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
 
-                else if ( returnFromEffect instanceof TakePrivilegesAction )
-                    player.sendRequestForPriviledges((TakePrivilegesAction)returnFromEffect);
-
-            }catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -540,15 +512,13 @@ public class GameActions {
         player.sendActionOk();
     }
 
-    private void makePermanentEffects(PlayerHandler player, DevelopmentCard card )  {
+    private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {
 
         for (Effects effect : card.getPermanentCardEffects()) {
-            if ( card.isChoicePe() ) {
-                int choice = player.sendPossibleChoice( Constants.CHOICE_PE );
+            if (card.isChoicePe()) {
+                int choice = player.sendPossibleChoice(Constants.CHOICE_PE);
                 card.getPermanentCardEffects().get(choice).doEffect(player);
-            }
-
-            else {
+            } else {
                 effect.doEffect(player);
             }
         }

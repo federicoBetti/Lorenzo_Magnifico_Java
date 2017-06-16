@@ -14,35 +14,16 @@ public abstract class AbstractUI {
         //to implement
     }
 
-    public abstract void takeBonusCard(TowerAction towerAction);
-
-    public abstract void bothPaymentsAvailable();
-
-    public abstract void loginRequest(String loginParameter) throws  InputException;
-
-    public abstract void discardLeaderCard(String name) throws  InputException;
-
-    public abstract void prayOrNot(String action) throws  InputException;
 
     public void mainContext(){}
 
-    public abstract void choicePe();
+    public abstract void takeBonusCard(TowerAction towerAction);
 
-    public abstract void sendChoicePe(String input) throws InputException;
+    public abstract void choicePe();
 
     public abstract void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv);
 
-    public abstract void bonusHarvesterParameters(String input) throws InputException;
-
     public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd);
-
-    public abstract void bonusProductionParameters(String action) throws InputException;
-
-    public abstract void takeBonusCardParameters(String action) throws InputException;
-
-    public abstract void immediatePriviledgeAction(String action) throws InputException;
-
-    public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
 
     public abstract void askForPraying();
 
@@ -50,6 +31,12 @@ public abstract class AbstractUI {
     }
 
     public abstract void cantDoAction();
+
+    public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
+
+    public abstract void bothPaymentsAvailable();
+
+
 
     public void startGame(int i) {
 

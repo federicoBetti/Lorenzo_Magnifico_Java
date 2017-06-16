@@ -23,12 +23,12 @@ import java.util.List;
  * per quanto riguarda client -> server: da qui chiamo i metodi sulla classe PlayerHandler, che faranno i contrlli e
  * chiamerà il metodo effettivo sulla gameactions.
  */
-public class RMIPlayerHandler extends PlayerHandler{
+public class RMIPlayerHandler extends PlayerHandler {
 
     private RMIServerToClientInterface myClient;
-    private HashMap<String,Talker> bonusType;
+    private HashMap<String, Talker> bonusType;
 
-    RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface){
+    RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
         this.myClient = rmiServerToClientInterface;
         fillHashMapBonusType();
     }
@@ -40,7 +40,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         bonusType.put(Constants.TAKE_PRIVILEGE_ACTION, myClient::takePrivilege);
     }
 
-    private interface Talker{
+    private interface Talker {
 
         void sendEffectAnswer(BonusInteraction bonusInteraction) throws RemoteException;
     }
@@ -65,7 +65,7 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public int canUseBothPaymentMethod()  {
+    public int canUseBothPaymentMethod() {
         try {
             myClient.canUseBothPaymentMethod();
         } catch (RemoteException e) {
@@ -84,7 +84,7 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public void sendAskForPraying()  {
+    public void sendAskForPraying() {
         try {
             myClient.askForPraying();
         } catch (RemoteException e) {
@@ -113,7 +113,7 @@ public class RMIPlayerHandler extends PlayerHandler{
     }
 
     @Override
-    public int sendPossibleChoice(String kindOfChoice){
+    public int sendPossibleChoice(String kindOfChoice) {
         return 0;
     }
 
@@ -148,21 +148,19 @@ public class RMIPlayerHandler extends PlayerHandler{
     void takeDevCard(String towerColour, int floor, String familyMemberColour) throws RemoteException {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         try {
-            clientTakeDevelopmentCard(towerColour,floor,familyMember);
+            clientTakeDevelopmentCard(towerColour, floor, familyMember);
         } catch (CantDoActionException e) {
             cantDoAction();
         }
     }
 
 
-
-
     void choosePaymentForVenturesCard(int position, int paymentChosen, String familyMemberColour) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
-        clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen );
+        clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen);
     }
 
-    void harvesterRequest(int position, String familyMemberColour, int servantsNumber)  {
+    void harvesterRequest(int position, String familyMemberColour, int servantsNumber) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         try {
             harvester(position, familyMember, servantsNumber);
@@ -171,22 +169,22 @@ public class RMIPlayerHandler extends PlayerHandler{
         }
     }
 
-    void productionRequest(int position, String familyMemberColour, List<String> cards)  {
+    void productionRequest(int position, String familyMemberColour, List<String> cards) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         ArrayList<BuildingCard> buildingCards = new ArrayList<>();
-        for (BuildingCard buildingCard: getPersonalBoardReference().getBuildings()){
-            if (cards.contains(buildingCard.getName())){
+        for (BuildingCard buildingCard : getPersonalBoardReference().getBuildings()) {
+            if (cards.contains(buildingCard.getName())) {
                 buildingCards.add(buildingCard);
             }
         }
         try {
-            production(position, familyMember, buildingCards );
+            production(position, familyMember, buildingCards);
         } catch (CantDoActionException e) {
             cantDoAction();
         }
     }
 
-    void goToMarketRequest(int position, String familyMemberColour)  {
+    void goToMarketRequest(int position, String familyMemberColour) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         try {
             goToMarket(position, familyMember);
@@ -195,7 +193,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         }
     }
 
-    void playLeaderCardRequest(String leaderCardName)  {
+    void playLeaderCardRequest(String leaderCardName) {
         try {
             playLeaderCard(leaderCardName);
         } catch (CantDoActionException e) {
@@ -203,7 +201,7 @@ public class RMIPlayerHandler extends PlayerHandler{
         }
     }
 
-    void discardLeaderCardRequest(String leaderCardName)  {
+    void discardLeaderCardRequest(String leaderCardName) {
         try {
             discardLeaderCard(leaderCardName);
         } catch (CantDoActionException e) {
