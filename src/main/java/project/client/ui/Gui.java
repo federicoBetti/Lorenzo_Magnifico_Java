@@ -1,18 +1,12 @@
 package project.client.ui;
 
 import javafx.application.Application;
-import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 
-import java.io.IOException;
-
-/**
- * Created by raffaelebongo on 05/06/17.
- */
 public class Gui extends AbstractUI {
     LoginBuilder loginBuilder;
     ClientSetter clientSetter;

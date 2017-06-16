@@ -6,11 +6,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import project.controller.Constants;
 
 /**
  * Created by federico on 10/06/17.
  */
-public class TowersMainGameController extends AbstractController{
+public class TowersMainGameController extends AbstractController {
 
     /**
      * todo vedere come importnare la board, a ogni update deve essere refresshata la board e aggiornate le carte etc
@@ -18,72 +19,117 @@ public class TowersMainGameController extends AbstractController{
     /**
      * queste sono le imageView dove dentro ci staranno le immagini delle carte
      */
-    public ImageView green3;
-    public ImageView green2;
-    public ImageView green1;
-    public ImageView green0;
-    public ImageView blue3;
-    public ImageView blue2;
-    public ImageView blue1;
-    public ImageView blue0;
-    public ImageView yellow3;
-    public ImageView yellow2;
-    public ImageView yellow1;
-    public ImageView yellow0;
-    public ImageView purple3;
-    public ImageView purple2;
-    public ImageView purple1;
-    public ImageView purple0;
+    @FXML
+    private ImageView green3;
+    @FXML
+    private ImageView green2;
+    @FXML
+    private ImageView green1;
+    @FXML
+    private ImageView green0;
+    @FXML
+    private ImageView blue3;
+    @FXML
+    private ImageView blue2;
+    @FXML
+    private ImageView blue1;
+    @FXML
+    private ImageView blue0;
+    @FXML
+    private ImageView yellow3;
+    @FXML
+    private ImageView yellow2;
+    @FXML
+    private ImageView yellow1;
+    @FXML
+    private ImageView yellow0;
+    @FXML
+    private ImageView purple3;
+    @FXML
+    private ImageView purple2;
+    @FXML
+    private ImageView purple1;
+    @FXML
+    private ImageView purple0;
 
 
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button submit;
 
-    public Button personalBoard;
-    public Button submit;
 
-
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
+    @FXML
+    private RadioButton familiarOrange;
+    @FXML
+    private RadioButton familiarWhite;
+    @FXML
+    private RadioButton familiarBlack;
+    @FXML
+    private RadioButton familiarNull;
 
 
     /**
      * queste sono le image view che si trovano nei posti slezione di ogni carta. quando verrà selezioanta una carta
      * il familiare selezionato verrano posizionati li
      */
-    public ImageView familiarGreen3;
-    public ImageView familiarGreen2;
-    public ImageView familiarGreen1;
-    public ImageView familiarGreen0;
-    public ImageView familiarBlue3;
-    public ImageView familiarBlue2;
-    public ImageView familiarBlue1;
-    public ImageView familiarBlue0;
-    public ImageView familiarYellow3;
-    public ImageView familiarYellow2;
-    public ImageView familiarYellow1;
-    public ImageView familiarYellow0;
-    public ImageView familiarPurple3;
-    public ImageView familiarPurple2;
-    public ImageView familiarPurple1;
-    public ImageView familiarPurple0;
+    @FXML
+    private ImageView familiarGreen3;
+    @FXML
+    private ImageView familiarGreen2;
+    @FXML
+    private ImageView familiarGreen1;
+    @FXML
+    private ImageView familiarGreen0;
+    @FXML
+    private ImageView familiarBlue3;
+    @FXML
+    private ImageView familiarBlue2;
+    @FXML
+    private ImageView familiarBlue1;
+    @FXML
+    private ImageView familiarBlue0;
+    @FXML
+    private ImageView familiarYellow3;
+    @FXML
+    private ImageView familiarYellow2;
+    @FXML
+    private ImageView familiarYellow1;
+    @FXML
+    private ImageView familiarYellow0;
+    @FXML
+    private ImageView familiarPurple3;
+    @FXML
+    private ImageView familiarPurple2;
+    @FXML
+    private ImageView familiarPurple1;
+    @FXML
+    private ImageView familiarPurple0;
 
 
-    public ToggleGroup familiar;
+    @FXML
+    private ToggleGroup familiar;
 
 
-    public Button mainGameButton;
+    @FXML
+    private Button mainGameButton;
+
+    String towerColour;
+    String floor;
+    String familiarColour;
 
 
-
-    public TowersMainGameController(){
+    public TowersMainGameController() {
         super();
         System.out.print("sono nel controller");
+        towerColour = null;
+        floor = null;
+        familiarColour = null;
     }
 
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
-    private void initialize(){
+    private void initialize() {
 
         imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoZero.png"))));
         imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoNero.png"))));
@@ -170,78 +216,98 @@ public class TowersMainGameController extends AbstractController{
 
     public void takeCardGreen3() {
         familiarGreen3.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.THIRD_FLOOR);
     }
 
     public void takeCardGreen2() {
         familiarGreen2.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.SECOND_FLOOR);
     }
 
     public void takeCardGreen1() {
         familiarGreen1.setImage(getTrueFamiliarImage());
-   }
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.FIRST_FLOOR);
+    }
 
     public void takeCardGreen0() {
         familiarGreen0.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.GROUND_FLOOR);
     }
 
 
     public void takeCardBlue3() {
         familiarBlue3.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.THIRD_FLOOR);
     }
 
     public void takeCardBlue2() {
         familiarBlue2.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.SECOND_FLOOR);
     }
 
     public void takeCardBlue1() {
         familiarBlue1.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.FIRST_FLOOR);
     }
 
     public void takeCardBlue0() {
         familiarBlue0.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.GROUND_FLOOR);
     }
 
     public void takeCardYellow0() {
         familiarYellow0.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.GROUND_FLOOR);
     }
 
     public void takeCardYellow1() {
         familiarYellow1.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.FIRST_FLOOR);
     }
 
     public void takeCardYellow2() {
         familiarYellow2.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.SECOND_FLOOR);
     }
 
     public void takeCardYellow3() {
         familiarYellow3.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.THIRD_FLOOR);
     }
 
     public void takeCardPurple0() {
         familiarPurple0.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.GROUND_FLOOR);
     }
 
     public void takeCardPurple1() {
         familiarPurple1.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.FIRST_FLOOR);
     }
 
     public void takeCardPurple2() {
         familiarPurple2.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.SECOND_FLOOR);
     }
 
     public void takeCardPurple3() {
         familiarPurple3.setImage(getTrueFamiliarImage());
+        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.THIRD_FLOOR);
+    }
+
+    private void selectCard(String towerColour, String floor) {
+        this.familiarColour = familiarChosen;
+        this.floor = floor;
+        this.towerColour = towerColour;
     }
 
 
-
-
-
-    public void showPersonalBoard(){
+    public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.TOWERS);
     }
 
 
     public void takeCard() {
+        if (floor != null) mainController.takeDevCard(towerColour, floor, familiarChosen);
     }
 }

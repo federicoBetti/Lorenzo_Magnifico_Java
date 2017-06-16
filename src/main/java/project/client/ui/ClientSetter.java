@@ -176,6 +176,13 @@ public class ClientSetter {
         ui.cantDoAction();
     }
 
+    public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction)  {
+        ui.takeImmediatePrivilege(privilegesAction);
+    }
+    public void bothPaymentsAvailable() {
+        ui.bothPaymentsAvailable();
+    }
+
 
     //updates methods
 
@@ -201,16 +208,10 @@ public class ClientSetter {
         //startGame(2);
     }
 
-    public void bothPaymentsAvailable() {
-        ui.bothPaymentsAvailable();
-    }
 
     public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
     }
 
-    public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction)  {
-        ui.takeImmediatePrivilege(privilegesAction);
-    }
 
 
 

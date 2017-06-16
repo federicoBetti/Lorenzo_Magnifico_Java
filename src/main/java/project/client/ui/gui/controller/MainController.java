@@ -33,23 +33,28 @@ public class MainController {
         this.loginBuilder = loginBuilder;
     }
 
-    public void switchScene(){
-        loginBuilder.switchScene();
+    public void showMainGame() {
+        loginBuilder.startMainGame();
     }
+
+
+    //DA QUA IN GIU LE COSE CHIAMATE SUL CLIENT SETTER
 
     public void setConnectionType(String connectionType) {
         clientSetter.setConnectionType(connectionType);
     }
 
     public void connect(String usernameChosen, String passwordChosen) {
-        clientSetter.connect(usernameChosen,passwordChosen);
+        clientSetter.loginRequest(usernameChosen);
     }
 
-    public void showMainGame() {
-        loginBuilder.startMainGame();
+    public void takeDevCard(String towerColour, String floor, String familiarColour )  {
+        clientSetter.takeDevCard(towerColour, floor, familiarColour);
     }
 
 
 
-    //TODO FARE DUE CONTROLLER DIVERSI, UNO PER COMUNCIARE CON L'ESTERNO E UNO ADIBITO A CAMBIARE SCHERMATE
+
+
+    //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
 }

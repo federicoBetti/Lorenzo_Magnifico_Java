@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import project.controller.Constants;
 
 /**
  * Created by federico on 13/06/17.
@@ -85,19 +86,19 @@ public abstract class AbstractController {
 
 
     public void familiarOrangeChosen(ActionEvent actionEvent) {
-        familiarChosen = "Orange";
+        familiarChosen = Constants.FAMILY_MEMBER_COLOUR_ORANGE;
     }
 
     public void familiarWhiteChosen(ActionEvent actionEvent) {
-        familiarChosen = "White";
+        familiarChosen = Constants.FAMILY_MEMBER_COLOUR_WHITE;
     }
 
     public void familiarBlackChosen(ActionEvent actionEvent) {
-        familiarChosen = "Black";
+        familiarChosen = Constants.FAMILY_MEMBER_COLOUR_BLACK;
     }
 
     public void familiarNullChosen(ActionEvent actionEvent) {
-        familiarChosen = "Null";
+        familiarChosen = Constants.FAMILY_MEMBER_COLOUR_NEUTRAL;
     }
 
 
