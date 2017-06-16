@@ -320,10 +320,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
 
-    public abstract void sendActionOk(String okOrNo);
-
-
-
+    public abstract void sendActionOk();
 
     protected void clientTakeDevelopementCard(String towerColour, int floor, FamilyMember familyMember) throws CantDoActionException, CanUseBothPaymentMethodException{
     }
