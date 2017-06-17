@@ -2,6 +2,7 @@ package project.controller.cardsfactory;
 
 import project.DevelopmentDeckIterator;
 import project.ExcomunicationDeckIterator;
+import project.TowerIterator;
 import project.controller.Constants;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.effects.effectsfactory.TrisIE;
@@ -12,7 +13,9 @@ import com.google.gson.Gson;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
@@ -107,10 +110,16 @@ public class LoadCards {
         }
     }
 
-    void loadBonusTower(){
+    void loadBonusTower(Board board) throws FileNotFoundException {
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+        TowerIterator iterator = new TowerIterator();
 
+        while (parser.hasNext()){
+            TowerFromJson towerFromJson = gson.fromJson(parser.next(), TowerFromJson.class);
+            Tower tower = new Tower(towerFromJson.getColour(), towerFromJson.getDiceValueOfThisFloor(), towerFromJson.getTrisIE());
+            board.setTowerInTowers(iterator.getTowerNumber(), iterator.getFloor(), tower);
+         }
     }
-
 
     DevelopmentCard buildVentureCard( ) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
@@ -130,8 +139,7 @@ public class LoadCards {
         return new CharacterCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-
-    DevelopmentCard buildTerritoryCard(  ){
+    DevelopmentCard buildTerritoryCard( ){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         TerritoryCost cost = gson.fromJson(jsonCost, TerritoryCost.class);
         return new TerritoryCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());

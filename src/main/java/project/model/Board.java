@@ -13,6 +13,7 @@ import java.util.List;
 public final class Board {
 
 
+    //todo fare iteratore per riempire le torri
     private Tower[][] towers;
 
     private CouncilPrivilege[] councilPrivileges;
@@ -264,5 +265,9 @@ public final class Board {
 
     public void setCouncilPrivilege(int priviledgeNumber, CouncilPrivilege councilPrivilege) {
         this.councilPrivileges[priviledgeNumber] = councilPrivilege;
+    }
+
+    public void setTowerInTowers( int towerNumber, int floor, Tower tower ){
+        this.towers[towerNumber][floor] = tower;
     }
 }
