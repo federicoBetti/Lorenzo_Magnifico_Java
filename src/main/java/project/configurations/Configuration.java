@@ -20,8 +20,6 @@ public class Configuration {
      * per le varie cose da caricare
      */
     public void loadConfiguration(){
-        loadCards = new LoadCards();
-
 
     }
 }

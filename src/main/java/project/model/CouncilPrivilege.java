@@ -5,18 +5,17 @@ import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.effects.realeffects.Effects;
 
 /**
- * 
+ * Created by raffaelebongo on 17/06/17.
  */
-public class Market extends Position {
+public class CouncilPrivilege {
 
-    Effects effect; //todo costruire con il tris: ogni posto ha sui effetti
+    int priviledgeNumber;
+    Effects effect;
 
-    public Market(TrisIE trisIE ){
+    public CouncilPrivilege(TrisIE trisIE, int priviledgeNumber ){
+        this.priviledgeNumber = priviledgeNumber;
         BuildImmediateEffects BuildImmediateEffects = new BuildImmediateEffects();
         effect = BuildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
-    }
-    public void makeEffect(int position) {
-        //to do implements
     }
 
 }

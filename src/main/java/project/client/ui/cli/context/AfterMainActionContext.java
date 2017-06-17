@@ -5,6 +5,7 @@ import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by raffaelebongo on 16/06/17.
@@ -14,8 +15,17 @@ public class AfterMainActionContext extends AbstractContext {
     public AfterMainActionContext(Cli cli) {
         super(cli);
         printHelp();
-        System.out.println("");
         map.put(Constants.SKIP_TURN, this::skipTurn );
+        map.put(Constants.PLAY_LEADER_CARD_AMA, this:: playLeaderCardAma );
+        map.put(Constants.DISCARD_LEADER_CARD_AMA, this:: discardLeaderCardAma );
+    }
+
+    private void discardLeaderCardAma() {
+        cli.discardLeaderCardAma();
+    }
+
+    private void playLeaderCardAma() {
+        cli.playLeaderCardAma();
     }
 
     private void skipTurn() {
@@ -23,11 +33,14 @@ public class AfterMainActionContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("Type Leader Card name [leader-card-name]");
+        System.out.println("the available actions are:\n");
+        for (Map.Entry<String, Actioner> entry: map.entrySet())
+            System.out.println(entry.getKey());
     }
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-
+        System.out.println();
+        printHelp();
     }
 }

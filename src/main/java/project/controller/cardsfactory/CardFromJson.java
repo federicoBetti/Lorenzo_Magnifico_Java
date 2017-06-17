@@ -19,25 +19,12 @@ public class CardFromJson {
         return anagrafic;
     }
 
-    public void setAnagrafic(Anagrafic anagrafic) {
-        this.anagrafic = anagrafic;
-    }
-
     public ImmediateEffectsFromJson getImmediateEffect() {
         return immediateEffect;
-    }
-
-    public void setImmediateEffect(ImmediateEffectsFromJson immediateEffect) {
-        this.immediateEffect = immediateEffect;
     }
 
     public PermanentEffectFromJson getPermanentEffect() {
         return permanentEffect;
     }
-
-    public void setPermanentEffect(PermanentEffectFromJson permanentEffect) {
-        this.permanentEffect = permanentEffect;
-    }
-
 
 }

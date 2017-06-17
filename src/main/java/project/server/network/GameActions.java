@@ -1,6 +1,5 @@
 package project.server.network;
 
-import javafx.collections.transformation.SortedList;
 import project.controller.cardsfactory.*;
 import project.controller.Constants;
 import project.controller.effects.realeffects.AddCoin;
@@ -35,6 +34,7 @@ public class GameActions {
 
         makeImmediateEffects(player, zone.getCardOnThisFloor());
 
+        player.sendActionOk();
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
         player.sendUpdates(new ScoreUpdate(player));
@@ -330,6 +330,7 @@ public class GameActions {
             if (actionValue >= card.getCost().getDiceCost()) makePermanentEffects(player, card);
         }
 
+        player.sendActionOk();
         HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone());
         broadcastUpdates(harvesterUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
@@ -354,6 +355,7 @@ public class GameActions {
             makePermanentEffects(player, card);
         }
 
+        player.sendActionOk();
         broadcastUpdates(productionUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -372,6 +374,7 @@ public class GameActions {
 
         getSupportFunctions(player).takeMarketAction(position);
 
+        player.sendActionOk();
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -381,10 +384,11 @@ public class GameActions {
      * @param leaderName
      * @param player
      */
+    //todo modify
     void playLeaderCard(String leaderName, PlayerHandler player) {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
-                leaderCard.playCard(player);
+                //leaderCard.playCard(player);
                 leaderCard.setPlayed(true);
             }
         }
@@ -444,6 +448,7 @@ public class GameActions {
         e.doEffect(player);
         takeCouncilPrivilege(privilegeNumber, player);
 
+        player.sendActionOk();
         broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
         player.sendUpdates(new PersonalBoardUpdate(player));
     }
@@ -471,7 +476,7 @@ public class GameActions {
 
     void takeExcommunication(PlayerHandler playerHandler) {
         int period = room.getBoard().getPeriod();
-        ExcommunitationTile card = room.getBoard().getExcommunicationZone()[period].getCardForThisPeriod();
+        ExcommunicationTile card = room.getBoard().getExcommunicationZone()[period].getCardForThisPeriod();
 
         card.makeEffect(playerHandler);
 

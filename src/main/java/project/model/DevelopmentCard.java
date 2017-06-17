@@ -5,8 +5,6 @@ import project.controller.effects.effectsfactory.PokerPE;
 import project.controller.effects.realeffects.Effects;
 import project.controller.effects.effectsfactory.BuildImmediateEffects;
 import project.controller.effects.effectsfactory.*;
-import project.server.network.PlayerHandler;
-import project.messages.BonusInteraction;
 
 
 import java.util.*;
@@ -38,7 +36,7 @@ public abstract class DevelopmentCard {
 
         BuildImmediateEffects ie = new BuildImmediateEffects();
         for (TrisIE x: immediateEffects){
-            Effects e = ie.SearchImmediateEffects(x.getType(), x.getParameter(), x.getQuantity());
+            Effects e = ie.searchImmediateEffects(x.getType(), x.getParameter(), x.getQuantity());
             immediateCardEffects.add(e);
         }
         BuildPermanentEffects pe = new BuildPermanentEffects();

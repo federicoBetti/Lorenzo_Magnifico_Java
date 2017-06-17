@@ -1,14 +1,21 @@
 package project.controller.cardsfactory;
 
-import project.DeckIterator;
+import project.DevelopmentDeckIterator;
+import project.ExcomunicationDeckIterator;
+import project.TowerIterator;
 import project.controller.Constants;
-import project.model.Deck;
-import project.model.DevelopmentCard;
+import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
+import project.controller.effects.effectsfactory.TrisIE;
+import project.controller.supportfunctions.CouncilPrivileges;
+import project.model.*;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
@@ -31,7 +38,7 @@ public class LoadCards {
     }
 
 
-    void loadMap(){
+    public void loadMap(){
         map.put( Constants.BUILDING_CARD.toString(), this::buildBuildingCard );
         map.put( Constants.TERRITORY_CARD.toString(), this::buildTerritoryCard);
         map.put( Constants.CHARACTER_CARD.toString(), this::buildCharacterCard );
@@ -39,12 +46,12 @@ public class LoadCards {
     }
 
 
-    void loadingCardsFromJson( Deck deck ) throws FileNotFoundException {
+    public void loadDevelopmentCards(Deck deck ) throws FileNotFoundException {
 
-        DeckIterator iterator = new DeckIterator();
+        DevelopmentDeckIterator iterator = new DevelopmentDeckIterator();
 
 
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/Users/raffaelebongo/Desktop/cardToUpload.Json"));
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 
             while (parser.hasNext() && iterator.hasNext() ) {
 
@@ -58,6 +65,69 @@ public class LoadCards {
             }
         }
 
+    public void loadExcommunicationTiles( Deck deck ) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while (parser.hasNext() ) {
+            ExTileFromJson exTileFromJson = gson.fromJson(parser.next(),ExTileFromJson.class );
+            ExcommunicationTile excommunicationTile = new ExcommunicationTile(exTileFromJson.getIdCard(), exTileFromJson.getPeriod(), exTileFromJson.getExcomunicationEffectsFromJson());
+
+            deck.getExcomunicationCard()[exTileFromJson.getPeriod()][exTileFromJson.getIdCard()] = excommunicationTile;
+        }
+    }
+
+    public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while (parser.hasNext() ) {
+            CouncilPrivilegesFromJson councilPrivilegesFromJson = gson.fromJson(parser.next(), CouncilPrivilegesFromJson.class );
+            CouncilPrivilege councilPrivilege = new CouncilPrivilege(councilPrivilegesFromJson.getTrisIEL(), councilPrivilegesFromJson.getPriviledgeNumber());
+            board.setCouncilPrivilege(councilPrivilegesFromJson.getPriviledgeNumber(), councilPrivilege);
+        }
+    }
+
+    public void loadMarketBonus(Board board) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while (parser.hasNext() ) {
+            MarketFromJson marketFromJson = gson.fromJson(parser.next(), MarketFromJson.class );
+            Market market = new Market(marketFromJson.getTrisIE());
+            board.setMarketPosition(marketFromJson.getPosition(), market);
+        }
+    }
+
+    public void loadBonusTile( Deck deck ) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while ( parser.hasNext() ){
+            TileBonusFromJson tileBonusFromJson = gson.fromJson( parser.next(), TileBonusFromJson.class );
+            Tile tile = new Tile(tileBonusFromJson);
+            deck.setProdHaarvTile(tileBonusFromJson.getTileNumber(), tile);
+        }
+    }
+
+    public void loadBonusTower(Board board) throws FileNotFoundException {
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+        TowerIterator iterator = new TowerIterator();
+
+        while (parser.hasNext()){
+            TowerFromJson towerFromJson = gson.fromJson(parser.next(), TowerFromJson.class);
+            Tower tower = new Tower(towerFromJson.getColour(), towerFromJson.getDiceValueOfThisFloor(), towerFromJson.getTrisIE());
+            board.setTowerInTowers(iterator.getTowerNumber(), iterator.getFloor(), tower);
+         }
+    }
+
+    public void loadLeaderCard() throws FileNotFoundException {
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while ( parser.hasNext() ){
+            LeaderCard leaderCard = gson.fromJson(parser.next(), LeaderCard.class );
+        }
+    }
 
     DevelopmentCard buildVentureCard( ) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
@@ -77,8 +147,7 @@ public class LoadCards {
         return new CharacterCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-
-    DevelopmentCard buildTerritoryCard(  ){
+    DevelopmentCard buildTerritoryCard( ){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         TerritoryCost cost = gson.fromJson(jsonCost, TerritoryCost.class);
         return new TerritoryCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());

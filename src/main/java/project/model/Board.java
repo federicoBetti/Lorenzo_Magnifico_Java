@@ -13,7 +13,10 @@ import java.util.List;
 public final class Board {
 
 
+    //todo fare iteratore per riempire le torri
     private Tower[][] towers;
+
+    private CouncilPrivilege[] councilPrivileges;
 
     /**
      * 
@@ -87,6 +90,7 @@ public final class Board {
 
 
     public Board(int numberOfPlayer){
+        councilPrivileges = new CouncilPrivilege[5];
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
         victoryPointsInFaithTrack = new int[15];
         if (numberOfPlayer == 4){
@@ -249,5 +253,21 @@ public final class Board {
 
     public void setExcommunicationZone(ExcommunicationZone[] excommunicationZone) {
         this.excommunicationZone = excommunicationZone;
+    }
+
+    public CouncilPrivilege[] getCouncilPrivileges() {
+        return councilPrivileges;
+    }
+
+    public void setMarketPosition(int positionNumber, Market market){
+        this.marketZone[positionNumber] = market;
+    }
+
+    public void setCouncilPrivilege(int priviledgeNumber, CouncilPrivilege councilPrivilege) {
+        this.councilPrivileges[priviledgeNumber] = councilPrivilege;
+    }
+
+    public void setTowerInTowers( int towerNumber, int floor, Tower tower ){
+        this.towers[towerNumber][floor] = tower;
     }
 }

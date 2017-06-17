@@ -1,6 +1,6 @@
 package project.model;
 
-import project.controller.cardsfactory.ExcommunitationTile;
+import project.controller.cardsfactory.ExcommunicationTile;
 
 import java.util.ArrayList;
 
@@ -13,19 +13,19 @@ public class ExcommunicationZone extends Position {
     /**
      * excomunication card on this zone
      */
-    private ExcommunitationTile cardForThisPeriod;
+    private ExcommunicationTile cardForThisPeriod;
 
     private ArrayList<Player> playersHaveTakenThisExcomunication;
     /**
      * Default constructor
      */
-    public ExcommunicationZone(ExcommunitationTile excommunitationTile) {
-        this.cardForThisPeriod = excommunitationTile;
+    public ExcommunicationZone(ExcommunicationTile excommunicationTile) {
+        this.cardForThisPeriod = excommunicationTile;
         playersHaveTakenThisExcomunication = new ArrayList<>();
     }
 
 
-    public ExcommunitationTile getCardForThisPeriod() {
+    public ExcommunicationTile getCardForThisPeriod() {
         return cardForThisPeriod;
     }
 

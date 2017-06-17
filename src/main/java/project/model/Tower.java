@@ -1,9 +1,11 @@
 package project.model;
 
+import project.controller.effects.effectsfactory.BuildImmediateEffects;
+import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.effects.realeffects.Effects;
 
 /**
- * 
+ * portare tutte le torri della board da file
  */
 public class Tower extends Position {
 
@@ -16,10 +18,18 @@ public class Tower extends Position {
 
     private boolean used;
 
-    private Effects towerZoneEffect;
+    private Effects towerZoneEffect;  //todo riempire con effetto
 
 
-    public Tower() {
+    public Tower(String colour, int diceValueOfhisFloor, TrisIE trisIE ) {
+        this.colour = colour;
+        this.diceValueOfThisFloor = diceValueOfThisFloor;
+
+        if(diceValueOfThisFloor >= 5 ) {
+            BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();
+            towerZoneEffect = buildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
+        }
+
         setOccupied(false);
     }
 
@@ -39,4 +49,9 @@ public class Tower extends Position {
     public Effects getTowerZoneEffect() {
         return towerZoneEffect;
     }
+
+    public String getColour() {
+        return colour;
+    }
+
 }

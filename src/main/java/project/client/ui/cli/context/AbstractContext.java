@@ -63,8 +63,6 @@ public abstract class AbstractContext {
     public interface Actioner{
          void action() throws InputException, IOException;
     }
-
-
 }
 
 

@@ -1,6 +1,6 @@
 package project.model;
 
-import project.controller.cardsfactory.ExcommunitationTile;
+import project.controller.cardsfactory.ExcommunicationTile;
 import project.controller.cardsfactory.LeaderCard;
 import project.controller.Constants;
 
@@ -14,7 +14,9 @@ public class Deck {
 
     private LeaderCard [] leaderCardeck; //va costruito con le LeaderCard
 
-    private ExcommunitationTile[][] excomunicationCard;
+    private ExcommunicationTile[][] excomunicationCard;
+
+    private Tile[] prodHaarvTiles;
 
     public Deck() {
 
@@ -25,5 +27,19 @@ public class Deck {
         return developmentDeck;
     }
 
+    public LeaderCard[] getLeaderCardeck() {
+        return leaderCardeck;
+    }
 
+    public ExcommunicationTile[][] getExcomunicationCard() {
+        return excomunicationCard;
+    }
+
+    public Tile[] getProdHaarvTiles() {
+        return prodHaarvTiles;
+    }
+
+    public void setProdHaarvTile( int tileNumber, Tile tile ){
+        prodHaarvTiles[tileNumber] = tile;
+    }
 }

@@ -88,6 +88,8 @@ public class Constants {
     public static final String BONUS_PRODUCTION = "bonus-production";
     public static final String BONUS_HARVESTER = "bonus-harvester" ;
     public static final String SKIP_TURN = "skip-turn" ;
+    public static final String PLAY_LEADER_CARD_AMA = "play-leader-card-ama";
+    public static final String DISCARD_LEADER_CARD_AMA = "discard-leader-card-ama";
     public static final String THIRD_FLOOR = "3";
     public static final String SECOND_FLOOR = "2";
     public static final String FIRST_FLOOR = "1";
@@ -100,5 +102,4 @@ public class Constants {
 
 
     private Constants(){}
-
 }

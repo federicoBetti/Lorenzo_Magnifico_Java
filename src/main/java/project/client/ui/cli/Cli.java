@@ -23,6 +23,7 @@ public class Cli extends AbstractUI {
     public Cli(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
         context = new ConnectionContext(this);
+        new Keyboard().start();
     }
 
     //context methods
@@ -36,11 +37,11 @@ public class Cli extends AbstractUI {
     }
 
     public void actionOk(){
-
+        context = new AfterMainActionContext(this);
     }
 
     public void cantDoAction(){
-
+        //todo
     }
 
     @Override
@@ -207,6 +208,14 @@ public class Cli extends AbstractUI {
     public void showTowers() {
         //todo fare il metodo di print per le varie caratteristiche delle carte e per gli effetti
         //clientSetter.getUiBoard().getAllTowers().printTowers();
+    }
+
+    public void discardLeaderCardAma() {
+        context = new DiscardLeaderCardAmaContext(this);
+    }
+
+    public void playLeaderCardAma() {
+        context = new PlayLeadercardAmaContext(this);
     }
 
     private class Keyboard extends Thread {

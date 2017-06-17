@@ -1,7 +1,8 @@
 package project.controller.effects.effectsfactory;
 
-import project.controller.effects.realeffects.*;
 
+import com.google.gson.Gson;
+import project.controller.effects.realeffects.*;
 import java.util.HashMap;
 
 /**
@@ -12,9 +13,12 @@ public class BuildExcommunicationEffects {
     //mi servono type, parameter, quantity
     //type sono: loseResource, downgrade, special, noEndPointsFromCard, loseFinalPoints
     private HashMap<String,ExcommunicationBuilder> typeEffect;
+    Gson gson;
+    ExcommunicationBuilder excommunicationBuilder;
 
     public BuildExcommunicationEffects(){
         typeEffect = new HashMap<>(5);
+        gson = new Gson();
         fillHashMapTypeEffects();
     }
 
@@ -25,6 +29,7 @@ public class BuildExcommunicationEffects {
         typeEffect.put(EffectsConstants.NO_FINAL_POINTS_FROM_CARDS, this::noFinalPointsFromCards);
         typeEffect.put(EffectsConstants.LOSE_FINAL_POINTS,          this::loseFinalPoints);
     }
+
 
     private Effects loseFinalPoints(String parameter, int quantity) {
         return new LoseFinalPointsFromResources(parameter);
