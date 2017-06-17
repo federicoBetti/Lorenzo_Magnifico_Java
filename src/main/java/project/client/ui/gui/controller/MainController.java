@@ -62,8 +62,12 @@ public class MainController {
 
     public void personalBoardUpdate(){
         PersonalBoard personalBoard = clientSetter.getUiPersonalBoard();
+        int coins = personalBoard.getCoins();
+        int wood = personalBoard.getWood();
+        int stone = personalBoard.getStone();
+        int servants = personalBoard.getServants();
         harvesterController.updateCards(personalBoard.getTerritories());
-        harvesterController.updateResources(personalBoard.getCoins(),personalBoard.getWood(),personalBoard.getStone(),personalBoard.getServants());
+        harvesterController.updateResources(coins,wood,stone,servants);
 
     }
 

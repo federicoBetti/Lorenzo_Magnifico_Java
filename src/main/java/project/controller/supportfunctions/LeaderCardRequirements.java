@@ -1,6 +1,7 @@
 package project.controller.supportfunctions;
 
 import project.controller.Constants;
+import project.model.PersonalBoard;
 import project.server.network.PlayerHandler;
 
 import java.util.HashMap;
@@ -49,30 +50,30 @@ public class LeaderCardRequirements {
     private boolean picoDellaMiradola(PlayerHandler playerHandler) {
         int buildingNumber;
         int venturesNumber;
-        buildingNumber = playerHandler.getPersonalBoardReference().getBuildings().size();
-        venturesNumber = playerHandler.getPersonalBoardReference().getVentures().size();
+        buildingNumber = personalBoard(playerHandler).getBuildings().size();
+        venturesNumber = personalBoard(playerHandler).getVentures().size();
         return buildingNumber >= 2 && venturesNumber >= 4;
     }
 
     private boolean ludovicoIIIGonzaga(PlayerHandler playerHandler) {
         int servantsNumber;
-        servantsNumber = playerHandler.getPersonalBoardReference().getServants();
+        servantsNumber = personalBoard(playerHandler).getServants();
         return servantsNumber >= 12;
     }
 
     private boolean bartolometoColleoni(PlayerHandler playerHandler) {
         int territoriesNumber;
         int venturesNumber;
-        territoriesNumber = playerHandler.getPersonalBoardReference().getTerritories().size();
-        venturesNumber = playerHandler.getPersonalBoardReference().getVentures().size();
+        territoriesNumber = personalBoard(playerHandler).getTerritories().size();
+        venturesNumber = personalBoard(playerHandler).getVentures().size();
         return territoriesNumber >= 4 && venturesNumber >= 2;
     }
 
     private boolean cosimoDeMedici(PlayerHandler playerHandler) {
         int buildingNumber;
         int charactersNumber;
-        buildingNumber = playerHandler.getPersonalBoardReference().getBuildings().size();
-        charactersNumber = playerHandler.getPersonalBoardReference().getCharacters().size();
+        buildingNumber = personalBoard(playerHandler).getBuildings().size();
+        charactersNumber = personalBoard(playerHandler).getCharacters().size();
         return buildingNumber >= 4 && charactersNumber >= 2;
     }
 
@@ -86,8 +87,8 @@ public class LeaderCardRequirements {
         int buildingNumber;
         int coinsNumber;
         int faithNumber;
-        buildingNumber = playerHandler.getPersonalBoardReference().getBuildings().size();
-        coinsNumber = playerHandler.getPersonalBoardReference().getCoins();
+        buildingNumber = personalBoard(playerHandler).getBuildings().size();
+        coinsNumber = personalBoard(playerHandler).getCoins();
         faithNumber = playerHandler.getScore().getFaithPoints();
         return buildingNumber >= 3 && coinsNumber >= 12 && faithNumber >= 2;
     }
@@ -97,10 +98,10 @@ public class LeaderCardRequirements {
         int stone;
         int coin;
         int servant;
-        wood = playerHandler.getPersonalBoardReference().getWood();
-        servant = playerHandler.getPersonalBoardReference().getServants();
-        stone = playerHandler.getPersonalBoardReference().getStone();
-        coin = playerHandler.getPersonalBoardReference().getCoins();
+        wood = personalBoard(playerHandler).getWood();
+        servant = personalBoard(playerHandler).getServants();
+        stone = personalBoard(playerHandler).getStone();
+        coin = personalBoard(playerHandler).getCoins();
         return wood >= 6 && stone >= 6 && coin >= 6 && servant >= 6;
     }
 
@@ -112,7 +113,7 @@ public class LeaderCardRequirements {
 
     private boolean federicoDaMontefeltro(PlayerHandler playerHandler) {
         int territoryNumber;
-        territoryNumber = playerHandler.getPersonalBoardReference().getTerritories().size();
+        territoryNumber = personalBoard(playerHandler).getTerritories().size();
         return territoryNumber >= 5;
     }
 
@@ -121,10 +122,10 @@ public class LeaderCardRequirements {
         int buildingNumber;
         int charactersNumber;
         int venturesNumber;
-        territoryNumber = playerHandler.getPersonalBoardReference().getTerritories().size();
-        buildingNumber = playerHandler.getPersonalBoardReference().getBuildings().size();
-        charactersNumber = playerHandler.getPersonalBoardReference().getCharacters().size();
-        venturesNumber = playerHandler.getPersonalBoardReference().getVentures().size();
+        territoryNumber = personalBoard(playerHandler).getTerritories().size();
+        buildingNumber = personalBoard(playerHandler).getBuildings().size();
+        charactersNumber = personalBoard(playerHandler).getCharacters().size();
+        venturesNumber = personalBoard(playerHandler).getVentures().size();
         return territoryNumber == 6 || buildingNumber == 6 || charactersNumber == 6 || venturesNumber == 6;
     }
 
@@ -133,24 +134,24 @@ public class LeaderCardRequirements {
         int buildingNumber;
         int charactersNumber;
         int venturesNumber;
-        territoryNumber = playerHandler.getPersonalBoardReference().getTerritories().size();
-        buildingNumber = playerHandler.getPersonalBoardReference().getBuildings().size();
-        charactersNumber = playerHandler.getPersonalBoardReference().getCharacters().size();
-        venturesNumber = playerHandler.getPersonalBoardReference().getVentures().size();
+        territoryNumber = personalBoard(playerHandler).getTerritories().size();
+        buildingNumber = personalBoard(playerHandler).getBuildings().size();
+        charactersNumber = personalBoard(playerHandler).getCharacters().size();
+        venturesNumber = personalBoard(playerHandler).getVentures().size();
         return territoryNumber >= 2 && buildingNumber >= 2 && charactersNumber >= 2 && venturesNumber >= 2;
     }
 
     private boolean sandroBotticelli(PlayerHandler playerHandler) {
         int woodNumber;
-        woodNumber = playerHandler.getPersonalBoardReference().getWood();
+        woodNumber = personalBoard(playerHandler).getWood();
         return woodNumber >= 10;        
     }
 
     private boolean leonardoDaVinci(PlayerHandler playerHandler) {
         int charactersNumber;
         int territoryNumber;
-        charactersNumber = playerHandler.getPersonalBoardReference().getCharacters().size();
-        territoryNumber = playerHandler.getPersonalBoardReference().getTerritories().size();
+        charactersNumber = personalBoard(playerHandler).getCharacters().size();
+        territoryNumber = personalBoard(playerHandler).getTerritories().size();
         return charactersNumber >= 4 && territoryNumber >= 2;
     }
 
@@ -162,13 +163,13 @@ public class LeaderCardRequirements {
 
     private boolean michelangeloBuonarroti(PlayerHandler playerHandler) {
         int stoneNumber;
-        stoneNumber = playerHandler.getPersonalBoardReference().getStone();
+        stoneNumber = personalBoard(playerHandler).getStone();
         return stoneNumber >= 10;
     }
 
     private boolean girolamoSavonarola(PlayerHandler playerHandler) {
         int coins;
-        coins = playerHandler.getPersonalBoardReference().getCoins();
+        coins = personalBoard(playerHandler).getCoins();
         return coins >= 18;
     }
 
@@ -182,13 +183,13 @@ public class LeaderCardRequirements {
 
     private boolean filippoBrunelleschi(PlayerHandler playerHandler) {
         int buildingsCardNumber;
-        buildingsCardNumber = playerHandler.getPersonalBoardReference().getBuildings().size();
+        buildingsCardNumber = personalBoard(playerHandler).getBuildings().size();
         return buildingsCardNumber >= 5;        
     }
 
     private boolean francescoSforza(PlayerHandler playerHandler) {
         int venturesCardNumber;
-        venturesCardNumber = playerHandler.getPersonalBoardReference().getVentures().size();
+        venturesCardNumber = personalBoard(playerHandler).getVentures().size();
         return venturesCardNumber >= 5;        
     }
 
@@ -196,12 +197,16 @@ public class LeaderCardRequirements {
     
     private boolean ludovicoAriosto(PlayerHandler playerHandler){
         int charactersCardNumber;
-        charactersCardNumber = playerHandler.getPersonalBoardReference().getCharacters().size();
+        charactersCardNumber = personalBoard(playerHandler).getCharacters().size();
         return charactersCardNumber >= 5;
     }
 
     @FunctionalInterface
     private interface RequirementsBuilder{
         boolean checkRequirements(PlayerHandler playerHandler);
+    }
+
+    private PersonalBoard personalBoard(PlayerHandler playerHandler){
+        return playerHandler.getPersonalBoardReference();
     }
 }
