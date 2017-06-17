@@ -27,7 +27,7 @@ public class BuildPermanentEffects {
 
                 }
             case"privilege":
-               // return new UsePrivilege(); //TODO completare
+               return new UsePrivilege(quantity);
 
                 //QUI VA USATO ANCHE IL TOTALCOST PERCHè CI SONO GLI SCAMBI DI RISORSE. LE QUANTITY INDICANO LE RISORSE CHE SI RICEVONO DALLO
                 // SCAMBIO, IL TOTAL COST QUELLO CHE SI SPENDE PER AVERE LE RISORSE

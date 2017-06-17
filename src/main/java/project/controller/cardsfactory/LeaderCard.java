@@ -1,13 +1,5 @@
 package project.controller.cardsfactory;
 
-import project.controller.effects.realeffects.Effects;
-import project.controller.effects.effectsfactory.BuildImmediateEffects;
-import project.controller.effects.effectsfactory.TrisIE;
-import project.model.Player;
-import project.server.network.PlayerHandler;
-
-import java.util.*;
-
 /**
  * 
  */
@@ -17,40 +9,8 @@ public class LeaderCard {
 
     private boolean isPlayed;
 
-    private List<Effects> immediateCardEffects;
 
 
-
-    //todo fare metodo build leader card effect che ritorna un effects
-    public LeaderCard(List<TrisIE> immediateEffects) {
-        this.immediateCardEffects = new ArrayList<>();
-        BuildImmediateEffects ie = new BuildImmediateEffects();
-        for (TrisIE x: immediateEffects){
-            Effects e = ie.SearchImmediateEffects(x.getType(), x.getParameter(), x.getQuantity());
-            immediateCardEffects.add(e);
-        }
-    }
-
-
-    public void discard() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void playCard(Player player) {
-        for (Effects x: immediateCardEffects ) {
-            x.doEffect((PlayerHandler) player);
-        }
-    }
-
-    /**
-     * @return
-     */
-    private void checkRequirements() {
-        // TODO implement here
-    }
 
     public String getName() {
         return name;

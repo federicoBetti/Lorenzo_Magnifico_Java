@@ -38,4 +38,8 @@ public class Deck {
     public Tile[] getProdHaarvTiles() {
         return prodHaarvTiles;
     }
+
+    public void setProdHaarvTile( int tileNumber, Tile tile ){
+        prodHaarvTiles[tileNumber] = tile;
+    }
 }

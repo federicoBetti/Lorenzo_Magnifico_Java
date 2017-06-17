@@ -4,12 +4,14 @@ import project.DevelopmentDeckIterator;
 import project.ExcomunicationDeckIterator;
 import project.controller.Constants;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
-import project.model.Deck;
-import project.model.DevelopmentCard;
+import project.controller.effects.effectsfactory.TrisIE;
+import project.controller.supportfunctions.CouncilPrivileges;
+import project.model.*;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,7 +74,40 @@ public class LoadCards {
         }
     }
 
-    void loadCouncilZonePriviledges(){
+    void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while (parser.hasNext() ) {
+            CouncilPrivilegesFromJson councilPrivilegesFromJson = gson.fromJson(parser.next(), CouncilPrivilegesFromJson.class );
+            CouncilPrivilege councilPrivilege = new CouncilPrivilege(councilPrivilegesFromJson.getTrisIEL(), councilPrivilegesFromJson.getPriviledgeNumber());
+            board.setCouncilPrivilege(councilPrivilegesFromJson.getPriviledgeNumber(), councilPrivilege);
+        }
+    }
+
+    void loadMarketBonus(Board board) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while (parser.hasNext() ) {
+            MarketFromJson marketFromJson = gson.fromJson(parser.next(), MarketFromJson.class );
+            Market market = new Market(marketFromJson.getTrisIE());
+            board.setMarketPosition(marketFromJson.getPosition(), market);
+        }
+    }
+
+    void loadBonusTile( Deck deck ) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while ( parser.hasNext() ){
+            TileBonusFromJson tileBonusFromJson = gson.fromJson( parser.next(), TileBonusFromJson.class );
+            Tile tile = new Tile(tileBonusFromJson);
+            deck.setProdHaarvTile(tileBonusFromJson.getTileNumber(), tile);
+        }
+    }
+
+    void loadBonusTower(){
 
     }
 

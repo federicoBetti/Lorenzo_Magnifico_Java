@@ -7,7 +7,7 @@ import project.controller.effects.realeffects.ProductionHarvesterAction;
 //todo rifare con HashMap
 public class BuildImmediateEffects {
 
-    public Effects SearchImmediateEffects(String type, String parameter, int quantity) {
+    public Effects searchImmediateEffects(String type, String parameter, int quantity) {
 
         switch (type){
         	case "takeRop":
@@ -35,6 +35,8 @@ public class BuildImmediateEffects {
 			case"bluBonustowerActionValue6WithDiscount":
 				return new BonusTowerActionBlue(parameter, quantity);
 
+			case"privilege":
+				return new UsePrivilege(quantity);
 
 			case "harvOrProdAct":
 				return new ProductionHarvesterAction(parameter, quantity);
@@ -52,8 +54,14 @@ public class BuildImmediateEffects {
                 return new SetLeaderEffectsUseful(parameter);
             case "setExcommunicationCardUseful":
                 return new SetExcommunicationCardUseful(parameter);
+
+			case"councilSpecial":
+				return new AddWoodAndStone(quantity);
+            case"marketSpecial":
+                return new AddMilitaryPointsAndCoins();
             default:
                 return null;
+
 
         }
 

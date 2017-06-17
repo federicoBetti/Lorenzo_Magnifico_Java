@@ -384,10 +384,11 @@ public class GameActions {
      * @param leaderName
      * @param player
      */
+    //todo modify
     void playLeaderCard(String leaderName, PlayerHandler player) {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
-                leaderCard.playCard(player);
+                //leaderCard.playCard(player);
                 leaderCard.setPlayed(true);
             }
         }

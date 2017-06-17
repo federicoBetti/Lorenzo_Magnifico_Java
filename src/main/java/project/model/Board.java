@@ -3,7 +3,6 @@ package project.model;
 
 import project.controller.Constants;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,7 @@ public final class Board {
 
     private Tower[][] towers;
 
-    private CoucilPriviliges[] coucilPriviliges; //todo 5 elementi
+    private CouncilPrivilege[] councilPrivileges;
 
     /**
      * 
@@ -90,6 +89,7 @@ public final class Board {
 
 
     public Board(int numberOfPlayer){
+        councilPrivileges = new CouncilPrivilege[5];
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
         victoryPointsInFaithTrack = new int[15];
         if (numberOfPlayer == 4){
@@ -252,5 +252,17 @@ public final class Board {
 
     public void setExcommunicationZone(ExcommunicationZone[] excommunicationZone) {
         this.excommunicationZone = excommunicationZone;
+    }
+
+    public CouncilPrivilege[] getCouncilPrivileges() {
+        return councilPrivileges;
+    }
+
+    public void setMarketPosition(int positionNumber, Market market){
+        this.marketZone[positionNumber] = market;
+    }
+
+    public void setCouncilPrivilege(int priviledgeNumber, CouncilPrivilege councilPrivilege) {
+        this.councilPrivileges[priviledgeNumber] = councilPrivilege;
     }
 }

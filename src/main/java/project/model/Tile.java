@@ -1,19 +1,33 @@
 package project.model;
 
+import project.controller.cardsfactory.TileBonusFromJson;
+import project.controller.effects.effectsfactory.BuildImmediateEffects;
+import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.effects.realeffects.Effects;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 
  */
 public class Tile {
 
-    List<Effects> harvesterBonus;
+    int tileNumber;
+    ArrayList<Effects> harvesterBonus;
+    ArrayList<Effects> productionBonus;
 
-    List<Effects>  productionBonus;
 
+    public Tile(TileBonusFromJson tile ){
+        BuildImmediateEffects BuildImmediateEffects = new BuildImmediateEffects();
 
+        this.tileNumber = tile.getTileNumber();
+
+        for(TrisIE tris : tile.getHarvesterBonus() )
+            harvesterBonus.add(BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
+
+        for(TrisIE tris : tile.getProductionBonus() )
+            productionBonus.add(BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
+    }
     /**
      * @return
      */
@@ -28,4 +42,7 @@ public class Tile {
         // TODO implement here
     }
 
+    public int getTileNumber() {
+        return tileNumber;
+    }
 }
