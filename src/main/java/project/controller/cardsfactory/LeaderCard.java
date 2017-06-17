@@ -15,18 +15,15 @@ public class LeaderCard {
 
     private String name;
 
-    private boolean onePerTurn;
-
     private boolean isPlayed;
 
     private List<Effects> immediateCardEffects;
 
 
-    public LeaderCard(){
-        this.immediateCardEffects = new ArrayList<>();
-    }
 
+    //todo fare metodo build leader card effect che ritorna un effects
     public LeaderCard(List<TrisIE> immediateEffects) {
+        this.immediateCardEffects = new ArrayList<>();
         BuildImmediateEffects ie = new BuildImmediateEffects();
         for (TrisIE x: immediateEffects){
             Effects e = ie.SearchImmediateEffects(x.getType(), x.getParameter(), x.getQuantity());

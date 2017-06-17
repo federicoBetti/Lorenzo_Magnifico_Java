@@ -5,8 +5,8 @@ package project;
  */
 public interface IteratorInterface {
 
-    public boolean hasNext();
+    boolean hasNext();
 
-    public void next(  );
+    void next();
 
 }

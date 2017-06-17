@@ -5,14 +5,14 @@ import project.controller.Constants;
 /**
  * TODO cambiarlo perchè bisgpa randomizzare le carte
  */
-public class DeckIterator implements IteratorInterface {
+public class DevelopmentDeckIterator implements IteratorInterface {
 
     int color;
     int period;
     int cards;
 
 
-    public DeckIterator(){
+    public DevelopmentDeckIterator(){
         this.color = 0;
         this.period = 0;
         this.cards = 0;

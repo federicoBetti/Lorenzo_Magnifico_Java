@@ -16,7 +16,7 @@ public class Tower extends Position {
 
     private boolean used;
 
-    private Effects towerZoneEffect;
+    private Effects towerZoneEffect;  //todo riempire con effetto
 
 
     public Tower() {

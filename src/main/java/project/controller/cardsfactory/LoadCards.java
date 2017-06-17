@@ -1,7 +1,9 @@
 package project.controller.cardsfactory;
 
-import project.DeckIterator;
+import project.DevelopmentDeckIterator;
+import project.ExcomunicationDeckIterator;
 import project.controller.Constants;
+import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.model.Deck;
 import project.model.DevelopmentCard;
 import com.google.gson.Gson;
@@ -39,12 +41,12 @@ public class LoadCards {
     }
 
 
-    void loadingCardsFromJson( Deck deck ) throws FileNotFoundException {
+    void loadDevelopmentCards(Deck deck ) throws FileNotFoundException {
 
-        DeckIterator iterator = new DeckIterator();
+        DevelopmentDeckIterator iterator = new DevelopmentDeckIterator();
 
 
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/Users/raffaelebongo/Desktop/cardToUpload.Json"));
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 
             while (parser.hasNext() && iterator.hasNext() ) {
 
@@ -57,6 +59,22 @@ public class LoadCards {
                 iterator.next();
             }
         }
+
+    void loadExcommunicationTiles( Deck deck ) throws FileNotFoundException {
+
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while (parser.hasNext() ) {
+            ExTileFromJson exTileFromJson = gson.fromJson(parser.next(),ExTileFromJson.class );
+            ExcommunicationTile excommunicationTile = new ExcommunicationTile(exTileFromJson.getIdCard(), exTileFromJson.getPeriod(), exTileFromJson.getExcomunicationEffectsFromJson());
+
+            deck.getExcomunicationCard()[exTileFromJson.getPeriod()][exTileFromJson.getIdCard()] = excommunicationTile;
+        }
+    }
+
+    void loadCouncilZonePriviledges(){
+
+    }
 
 
     DevelopmentCard buildVentureCard( ) {

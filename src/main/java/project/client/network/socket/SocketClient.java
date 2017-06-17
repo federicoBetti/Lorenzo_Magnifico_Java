@@ -40,20 +40,16 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void waitingForTheNewInteraction() {
-        String message = null;
-        try {
-            message = (String)objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            messageHandler.handleMessage(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        String message;
+        while (true) {
+            try {
+                message = (String) objectInputStream.readObject();
+                messageHandler.handleMessage(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -62,7 +58,6 @@ public class SocketClient extends AbstractClient {
     public void loginRequest(String loginParameter)  {
         sendKindOfRequest(Constants.LOGIN_REQUEST);
         sendKindOfRequest(loginParameter);
-        waitingForTheNewInteraction();
     }
 
     @Override
@@ -92,7 +87,6 @@ public class SocketClient extends AbstractClient {
     public void productionAction(String[] parameters)   {
         sendKindOfRequest(Constants.PRODUCTION);
         sendAllParameters(parameters);
-        waitingForTheNewInteraction();
     }
 
     @Override
@@ -105,14 +99,12 @@ public class SocketClient extends AbstractClient {
 
         sendKindOfRequest(Constants.PLAY_LEADER_CARD);
         sendKindOfRequest(name);
-        waitingForTheNewInteraction();
     }
 
     @Override
     public void discardLeaderCard(String name)   {
         sendKindOfRequest(Constants.DISCARD_LEADER_CARD);
         sendKindOfRequest(name);
-        waitingForTheNewInteraction();
     }
 
     @Override
@@ -122,9 +114,6 @@ public class SocketClient extends AbstractClient {
             sendKindOfRequest(Constants.PRAY);
         else
             sendKindOfRequest(Constants.DONT_PRAY);
-
-        waitingForTheNewInteraction();
-
     }
 
     public void askForPraying() {
@@ -145,12 +134,10 @@ public class SocketClient extends AbstractClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        waitingForTheNewInteraction();
     }
 
     public void takeBonusCardAction(String floor, String towerColour )  {
         send2Parameters(floor, towerColour);
-        waitingForTheNewInteraction();
     }
 
     @Override
@@ -188,7 +175,6 @@ public class SocketClient extends AbstractClient {
     public void bonusHarvesterAction(String servantsNumber)   {
         sendKindOfRequest(Constants.BONUS_HARVESTER);
         sendKindOfRequest(servantsNumber);
-        waitingForTheNewInteraction();
     }
 
     public void bonusProduction()   {
@@ -206,7 +192,6 @@ public class SocketClient extends AbstractClient {
     public void bonusProductionAction(String[] parameters)   {
         sendKindOfRequest(Constants.BONUS_PRODUCTION);
         sendAllParameters(parameters);
-        waitingForTheNewInteraction();
     }
 
     public void takeBonusCard()  {
@@ -229,7 +214,6 @@ public class SocketClient extends AbstractClient {
     @Override
     public void sendChoicePe(String input)   {
         sendKindOfRequest(input);
-        waitingForTheNewInteraction();
     }
 
     public void bothPaymentsAvailable() {
@@ -239,7 +223,6 @@ public class SocketClient extends AbstractClient {
     @Override
     public void sendChoicePaymentVc(String payment)  {
         sendKindOfRequest(payment);
-        waitingForTheNewInteraction();
     }
 
     //updates
@@ -254,7 +237,6 @@ public class SocketClient extends AbstractClient {
             e.printStackTrace();
         }
         clientSetter.scoreUpdate(update);
-        waitingForTheNewInteraction();
     }
 
     public void personalBoardUpdate() {
@@ -267,8 +249,6 @@ public class SocketClient extends AbstractClient {
             e.printStackTrace();
         }
         clientSetter.personalBoardUpdate(update);
-   
-            waitingForTheNewInteraction();
     }
 
     public void familyMemberUpdate() {
@@ -281,7 +261,6 @@ public class SocketClient extends AbstractClient {
             e.printStackTrace();
         }
         clientSetter.familyMemberUpdate(update);
-            waitingForTheNewInteraction();
     }
 
 
@@ -295,7 +274,6 @@ public class SocketClient extends AbstractClient {
             e.printStackTrace();
         }
         clientSetter.boardUpdate(update);
-        waitingForTheNewInteraction();
     }
 
 
@@ -312,8 +290,6 @@ public class SocketClient extends AbstractClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        waitingForTheNewInteraction();
     }
 
     void send3Parameters(String parameter1, String parameter2, String parameter3 )   {
@@ -334,7 +310,6 @@ public class SocketClient extends AbstractClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        waitingForTheNewInteraction();
     }
 
     void sendAllParameters(String[] parameters )   {
@@ -348,8 +323,6 @@ public class SocketClient extends AbstractClient {
                 e.printStackTrace();
             }
         }
-
-        waitingForTheNewInteraction();
     }
 
     void sendKindOfRequest(String kindOfRequest ) {

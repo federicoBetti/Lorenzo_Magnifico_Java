@@ -9,13 +9,15 @@ import project.messages.BonusInteraction;
 /**
  * 
  */
-public class ExcommunitationTile {
+public class ExcommunicationTile {
 
     private int period;
     private int idCard;
     private Effects excommunicationEffect;
 
-    public ExcommunitationTile(TrisIE myEffect) {
+    public ExcommunicationTile(int idCard, int period, TrisIE myEffect) {
+        this.idCard = idCard;
+        this.period = period;
         BuildExcommunicationEffects buildExcommunicationEffects = new BuildExcommunicationEffects();
         this.excommunicationEffect = buildExcommunicationEffects.searchEffectType(myEffect.getType(),myEffect.getParameter(),myEffect.getQuantity());
     }

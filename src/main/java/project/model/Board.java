@@ -3,6 +3,7 @@ package project.model;
 
 import project.controller.Constants;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,8 @@ public final class Board {
 
 
     private Tower[][] towers;
+
+    private CoucilPriviliges[] coucilPriviliges; //todo 5 elementi
 
     /**
      * 

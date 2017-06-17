@@ -23,6 +23,7 @@ public class Cli extends AbstractUI {
     public Cli(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
         context = new ConnectionContext(this);
+        new Keyboard().start();
     }
 
     //context methods

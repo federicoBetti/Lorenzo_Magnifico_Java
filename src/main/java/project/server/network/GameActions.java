@@ -1,6 +1,5 @@
 package project.server.network;
 
-import javafx.collections.transformation.SortedList;
 import project.controller.cardsfactory.*;
 import project.controller.Constants;
 import project.controller.effects.realeffects.AddCoin;
@@ -476,7 +475,7 @@ public class GameActions {
 
     void takeExcommunication(PlayerHandler playerHandler) {
         int period = room.getBoard().getPeriod();
-        ExcommunitationTile card = room.getBoard().getExcommunicationZone()[period].getCardForThisPeriod();
+        ExcommunicationTile card = room.getBoard().getExcommunicationZone()[period].getCardForThisPeriod();
 
         card.makeEffect(playerHandler);
 

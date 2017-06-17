@@ -1,13 +1,17 @@
 package project.model;
 
+import project.controller.effects.realeffects.Effects;
+
+import java.util.List;
+
 /**
  * 
  */
 public class Tile {
 
-    private TileBonus harvesterBonus;
+    List<Effects> harvesterBonus;
 
-    private TileBonus productionBonus;
+    List<Effects>  productionBonus;
 
 
     /**
