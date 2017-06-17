@@ -38,9 +38,9 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
     private void fillHashMapPayments() {
-        payments.put(TerritoryCard.class.toString(), (devCard, coinsFee, zoneDiceCost, valueOfFamilyMember, int coinsMore) -> payTerritoryCard(devCard, coinsFee, zoneDiceCost, valueOfFamilyMember));
-        payments.put(BuildingCard.class.toString(), (devCard, coinsFee, zoneDiceCost, valueOfFamilyMember, int coinsMore) -> payBuildingCard(devCard, coinsFee, zoneDiceCost, valueOfFamilyMember));
-        payments.put(CharacterCard.class.toString(), (devCard, coinsFee, zoneDiceCost, valueOfFamilyMember, int coinsMore) -> payCharacterCard(devCard, coinsFee, zoneDiceCost, valueOfFamilyMember));
+        payments.put(TerritoryCard.class.toString(), this::payTerritoryCard);
+        payments.put(BuildingCard.class.toString(),  this::payBuildingCard);
+        payments.put(CharacterCard.class.toString(), this::payCharacterCard);
     }
 
     private void fillHashMapPrivileges (){
@@ -60,7 +60,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
 
 
-    private void payTerritoryCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore){
+    private void payTerritoryCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         TerritoryCard card = (TerritoryCard)devCard;
         int coinsMore = 0;
         if (coinsFee)
@@ -75,7 +75,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     //TODO CONTROLLARE CHE I COSTI VADANO BENE, AD ESEMPIO CONTROLLARE CHE SE I BONUS O VALORI DEI DADI SONO MAGGIORI DEI COSTI NON MI VADA AD AGGIUNGERE RISORSE, MA E NE TOLGA 0
 
-    private void payBuildingCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore){
+    private void payBuildingCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         BuildingCard card = (BuildingCard)devCard;
         int coinsMore = 0;
         int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus();
@@ -90,7 +90,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
     }
 
-    private void payCharacterCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore){
+    private void payCharacterCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         CharacterCard card = (CharacterCard)devCard;
         int coinsMore = 0;
         int coinsBonus = player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getCoinsBonus();
@@ -242,8 +242,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @Override
     public void payCard(DevelopmentCard cardOnThisFloor, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember) {
-        int coinsMore = 0;
-        payments.get(cardOnThisFloor.getClass().toString()).pay(cardOnThisFloor, coinsFee, zoneDiceCost, valueOfFamilyMember, coinsMore);
+        payments.get(cardOnThisFloor.getClass().toString()).pay(cardOnThisFloor, coinsFee, zoneDiceCost, valueOfFamilyMember);
     }
 
     @Override
@@ -275,12 +274,12 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @FunctionalInterface
     private interface CardPayment{
-        void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore);
+        void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
     }
 
     @FunctionalInterface
     private interface MarketTaker{
         void takeMarketAction();
     }
-    
+
 }

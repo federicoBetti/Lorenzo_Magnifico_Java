@@ -61,7 +61,7 @@ public abstract class AbstractController {
     public ImageView LorenzoMagnifico;
 
     protected AbstractController(){
-        familiarChosen = "Null";
+        familiarChosen = Constants.FAMILY_MEMBER_COLOUR_NEUTRAL;
     }
 
     public void initialize(){
@@ -100,11 +100,11 @@ public abstract class AbstractController {
 
     protected Image getTrueFamiliarImage(){
         Image familiar;
-        if (familiarChosen == "Null")
+        if (familiarChosen.equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL))
             familiar = imageFamiliarNull.getImage();
-        else if (familiarChosen == "Black")
+        else if (familiarChosen.equals(Constants.FAMILY_MEMBER_COLOUR_BLACK))
             familiar = imageFamiliarBlack.getImage();
-        else if (familiarChosen == "White")
+        else if (familiarChosen.equals(Constants.FAMILY_MEMBER_COLOUR_WHITE))
             familiar = imageFamiliarWhite.getImage();
         else
             familiar = imageFamiliarOrange.getImage();

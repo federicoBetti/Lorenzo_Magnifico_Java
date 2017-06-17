@@ -11,14 +11,6 @@ import javafx.scene.image.ImageView;
 public class MarketController extends AbstractController {
 
     /**
-     * radio button in which you can chose the familiar to use
-     */
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
-
-    /**
      * the imageViews where the familiar will be placed
      */
     public ImageView imageMarket0;
@@ -32,7 +24,14 @@ public class MarketController extends AbstractController {
 
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
-    private void initialize(){
+    public void initialize(){
+    }
+
+
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        mainController.setMarketController(this);
     }
 
     public void uploadImages(){

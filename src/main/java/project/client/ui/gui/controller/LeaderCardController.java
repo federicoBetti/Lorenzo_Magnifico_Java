@@ -39,6 +39,13 @@ public class LeaderCardController extends AbstractController {
 
     }
 
+
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        mainController.setLeaderCardController(this);
+    }
+
     public void initialize(){
         imageFamiliarBlack = new ImageView();
         imageFamiliarOrange = new ImageView();

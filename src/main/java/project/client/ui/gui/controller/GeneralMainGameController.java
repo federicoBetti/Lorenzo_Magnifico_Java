@@ -83,7 +83,7 @@ public class GeneralMainGameController extends AbstractController{
 
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
-    private void initialize(){
+    public void initialize(){
         faithPointsArray.add(faithPoint0);
         faithPointsArray.add(faithPoint1);
         faithPointsArray.add(faithPoint2);
@@ -105,6 +105,12 @@ public class GeneralMainGameController extends AbstractController{
         turnOrderArray.add(turnOrder2);
         turnOrderArray.add(turnOrder3);
         turnOrderArray.add(turnOrder4);
+    }
+
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        mainController.setGeneralGameController(this);
     }
 
     public void uploadImages(){

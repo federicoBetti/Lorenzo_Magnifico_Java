@@ -51,6 +51,14 @@ public class councilPalaceController extends AbstractController {
         familiarInTheCouncil.add(imageInTheCouncil5);
 
     }
+
+
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        mainController.setCouncilPalaceController(this);
+    }
+
     public void setParameters(int maxPrivilegeChosen){
         this.maxPrivilegeChosen = maxPrivilegeChosen;
     }

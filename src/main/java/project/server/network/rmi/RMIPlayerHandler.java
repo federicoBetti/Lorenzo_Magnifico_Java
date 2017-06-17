@@ -55,6 +55,41 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
+    public void sendNotification(Notify notifications) {
+
+    }
+
+    @Override
+    public void sendUpdates(Updates updates) {
+
+    }
+
+    @Override
+    public int sendPossibleChoice(String kindOfChoice) {
+        return 0;
+    }
+
+    @Override
+    public void sendBonusTowerAction(TowerAction returnFromEffect){
+
+    }
+
+    @Override
+    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) {
+
+    }
+
+    @Override
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
+
+    }
+
+    @Override
+    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) {
+
+    }
+
+    @Override
     public void cantDoAction() {
         try {
             myClient.cantDoAction();
@@ -101,45 +136,6 @@ public class RMIPlayerHandler extends PlayerHandler {
         //todo uaglio
     }
 
-    @Override
-    public void sendNotification(Notify notifications) {
-
-    }
-
-    @Override
-    public void sendUpdates(Updates updates) {
-
-    }
-
-    @Override
-    public int sendPossibleChoice(String kindOfChoice) {
-        return 0;
-    }
-
-    @Override
-    public void sendBonusTowerAction(TowerAction returnFromEffect) throws IOException, ClassNotFoundException {
-
-    }
-
-    @Override
-    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException {
-
-    }
-
-    @Override
-    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
-
-    }
-
-    @Override
-    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
-
-    }
-
-    @Override
-    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
-
-    }
 
 
     // qua inizia la parte delle chiamate del client sul server

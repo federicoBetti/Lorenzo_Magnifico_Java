@@ -67,6 +67,13 @@ public class ProductionController extends AbstractController{
 
         borderNull.setColor(Color.TRANSPARENT);
     }
+
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        mainController.setProductionController(this);
+    }
+
     public void initialize(){
 
         buildingCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));

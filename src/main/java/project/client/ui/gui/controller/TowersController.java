@@ -10,7 +10,7 @@ import project.controller.Constants;
 /**
  * Created by federico on 10/06/17.
  */
-public class TowersMainGameController extends AbstractController {
+public class TowersController extends AbstractController {
 
     /**
      * todo vedere come importnare la board, a ogni update deve essere refresshata la board e aggiornate le carte etc
@@ -110,7 +110,7 @@ public class TowersMainGameController extends AbstractController {
 
 
 
-    public TowersMainGameController() {
+    public TowersController() {
         super();
         System.out.print("sono nel controller");
         towerColour = null;
@@ -118,9 +118,15 @@ public class TowersMainGameController extends AbstractController {
         familiarColour = null;
     }
 
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        mainController.setTowerController(this);
+    }
+
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
-    private void initialize() {
+    public void initialize() {
 
         imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoZero.png"))));
         imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoNero.png"))));

@@ -289,49 +289,57 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendBonusTowerAction( TowerAction returnFromEffect ) throws IOException, ClassNotFoundException {
+    public void sendBonusTowerAction( TowerAction returnFromEffect ){
 
-        while ( true ){
+        //todo riguarda questo metodo, ho cancellato delle cose per le eccezioni, in toeria solo roba relativa alle eccezioni ma non vorrei aver fatto qualche danno
+        while ( true ) {
 
             sendAnswer(returnFromEffect);
-            String answer = (String)objectInputStream.readObject();
-
-            if( answer.equals(Constants.EXIT))
-                return;
-
+            String answer = null;
             try {
-                //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
-                takeBonusDevCard(returnFromEffect);
-
+                answer = (String) objectInputStream.readObject();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-            } catch (CantDoActionException e) {
-                objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
-                objectOutputStream.flush();
-                objectOutputStream.reset();
+            }
+
+            if (answer.equals(Constants.EXIT)) return;
+
+            //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
+            try {
+                takeBonusDevCard(returnFromEffect);
+            } catch (CantDoActionException c) {
+
+
+                try {
+                    objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
+                    objectOutputStream.flush();
+                    objectOutputStream.reset();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 continue;
             }
-            break;
         }
+
     }
 
     @Override
-    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException {
+    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect)  {
         while ( true ) {
             try {
 
                 sendAnswer(returnFromEffect);
-                String answer = (String)objectInputStream.readObject();
+                String answer = (String) objectInputStream.readObject();
                 int intServantsNumber;
 
-                switch (answer){
+                switch (answer) {
                     case Constants.EXIT:
-                    return;
+                        return;
 
                     case Constants.BONUS_PRODUCTION:
-                        intServantsNumber = Integer.parseInt((String)objectInputStream.readObject());
+                        intServantsNumber = Integer.parseInt((String) objectInputStream.readObject());
                         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
                         doBonusProduct(returnFromEffect, intServantsNumber, cards);
                         break;
@@ -347,13 +355,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (CantDoActionException e) {
-                objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
-                objectOutputStream.flush();
-                objectOutputStream.reset();
-                continue;
+                try {
+                    objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
+                    objectOutputStream.flush();
+                    objectOutputStream.reset();
+                    continue;
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
-            break;
-
         }
     }
 
@@ -363,34 +373,54 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect)  {
         sendAnswer(returnFromEffect);
         takePriviledgesInArow(returnFromEffect);
     }
 
     @Override
-    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException {
+    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect)  {
         for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
-            int privilegeNumber = Integer.parseInt((String) objectInputStream.readObject());
+            int privilegeNumber = 0;
+            try {
+                privilegeNumber = Integer.parseInt((String) objectInputStream.readObject());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             takePrivilege(privilegeNumber);
         }
     }
 
-    private void takeBonusDevCard(TowerAction returnFromEffect) throws IOException, ClassNotFoundException, CantDoActionException {
+    private void takeBonusDevCard(TowerAction returnFromEffect) throws CantDoActionException {
 
-        int floor = Integer.parseInt((String)objectInputStream.readObject());
+        int floor = 0;
+        try {
+            floor = Integer.parseInt((String)objectInputStream.readObject());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         clientTakeBonusDevelopementCard(returnFromEffect, floor);
 
     }
 
-    private ArrayList<BuildingCard> receiveListOfBuildingCard() throws IOException, ClassNotFoundException {
+    private ArrayList<BuildingCard> receiveListOfBuildingCard()  {
         String messReceived = "start";
         List<BuildingCard> myBuildings = takeMyProductionCards();
         ListIterator<BuildingCard> iterator = myBuildings.listIterator();
         ArrayList<BuildingCard> cardsForProduction = new ArrayList<>();
 
         while (!messReceived.equals(Constants.STOP) ){
-            messReceived = (String)objectInputStream.readObject();
+            try {
+                messReceived = (String)objectInputStream.readObject();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
 
             int currentCard = 0;
             while ( iterator.hasNext() ){

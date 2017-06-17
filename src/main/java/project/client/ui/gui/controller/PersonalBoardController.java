@@ -40,6 +40,13 @@ public class PersonalBoardController extends AbstractController {
         imageFamiliarOrange = new ImageView();
     }
 
+
+    @Override
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        mainController.setPersonalBoardController(this);
+    }
+
     public void goBack() {
         SceneType lastScene = loginBuilder.getLastScene();
         loginBuilder.setScene(lastScene, SceneType.PERSONAL_BOARD);

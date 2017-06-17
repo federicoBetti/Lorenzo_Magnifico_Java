@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.TowersMainGameController">
+<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.TowersController">
    <children>
       <ImageView fitHeight="709.0" fitWidth="806.0" layoutX="25.0" layoutY="22.0">
          <image>

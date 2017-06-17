@@ -40,7 +40,7 @@ public class LeaderCardsEffects {
         return effects.get(leaderName).doEffect(player);
     }
 
-    private BonusInteraction fillHashMapRequirements() {
+    private void fillHashMapRequirements() {
         effects.put(Constants.FRANCESCO_SFORZA,this::francescoSforza);
         effects.put(Constants.LUDVICO_ARIOSTO,this::ludovicoAriosto);
         effects.put(Constants.FILIPPO_BRUNELLESCHI,this::filippoBrunelleschi);
@@ -179,6 +179,7 @@ public class LeaderCardsEffects {
 
     private BonusInteraction ludovicoAriosto(PlayerHandler player){
         //todo bisognerebbe usare la DntChecKpoisitiondecorator
+        return okOrNo;
     }
 
 

@@ -184,7 +184,7 @@ public class LoginBuilder extends Application {
             //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
-            TowersMainGameController controller = loader.getController();
+            TowersController controller = loader.getController();
             controller.setLoginBuilder(this);
             controller.setMainController(mainController);
             controller.uploadImages();

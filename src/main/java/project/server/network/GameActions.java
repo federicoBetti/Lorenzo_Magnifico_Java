@@ -10,6 +10,7 @@ import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.Room;
+import project.server.network.exception.CantDoActionException;
 
 import java.io.IOException;
 import java.util.*;
@@ -502,22 +503,16 @@ public class GameActions {
         }
     }
 
-    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card) {
+    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card)  {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
-            try {
-                if (returnFromEffect instanceof TowerAction) {
-                    player.sendBonusTowerAction((TowerAction) returnFromEffect);
-                } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction) {
-                    player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
-                } else if (returnFromEffect instanceof TakePrivilegesAction)
-                    player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            if (returnFromEffect instanceof TowerAction) {
+                player.sendBonusTowerAction((TowerAction) returnFromEffect);
+            } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction) {
+                player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
+            } else if (returnFromEffect instanceof TakePrivilegesAction)
+                player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
         }
         player.sendActionOk();
     }

@@ -312,7 +312,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int sendPossibleChoice(String kindOfChoice);
 
-    public abstract void sendBonusTowerAction(TowerAction returnFromEffect) throws IOException, ClassNotFoundException;
+    public abstract void sendBonusTowerAction(TowerAction returnFromEffect);
 
     protected FamilyMember findFamilyMember(String colour) {
         for (FamilyMember familyMember : getAllFamilyMembers())
