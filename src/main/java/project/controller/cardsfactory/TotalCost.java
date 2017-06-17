@@ -72,4 +72,10 @@ public class TotalCost implements Cost {
     public void setMilitaryCost(int militaryCost) {
         this.militaryCost = militaryCost;
     }
+
+    @Override
+    public void picoDellaMirandolaDowngrade() {
+
+        coinsRequired -= 3;
+    }
 }

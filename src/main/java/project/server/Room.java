@@ -1,7 +1,5 @@
 package project.server;
 
-import com.sun.javafx.collections.ObservableListWrapper;
-import javafx.collections.ObservableList;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.model.Board;

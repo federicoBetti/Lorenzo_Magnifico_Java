@@ -4,7 +4,6 @@ package project.controller.effects;
 import project.controller.effects.realeffects.Effects;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
-import project.model.Player;
 import project.server.network.PlayerHandler;
 
 public class SetExcommunicationCardUseful implements Effects {

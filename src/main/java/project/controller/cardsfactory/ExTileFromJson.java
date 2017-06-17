@@ -1,7 +1,6 @@
 package project.controller.cardsfactory;
 
 import project.controller.effects.effectsfactory.TrisIE;
-import project.controller.effects.realeffects.Effects;
 
 /**
  * Created by raffaelebongo on 17/06/17.

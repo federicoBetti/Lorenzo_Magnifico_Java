@@ -3,11 +3,8 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
-import project.controller.Constants;
-import project.server.network.PlayerHandler;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 

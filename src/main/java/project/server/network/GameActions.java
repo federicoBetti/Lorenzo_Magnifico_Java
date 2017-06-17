@@ -2,6 +2,7 @@ package project.server.network;
 
 import project.controller.cardsfactory.*;
 import project.controller.Constants;
+import project.controller.effects.effectsfactory.LeaderCardsEffects;
 import project.controller.effects.realeffects.AddCoin;
 import project.controller.effects.realeffects.Effects;
 import project.controller.supportfunctions.AllSupportFunctions;
@@ -388,7 +389,10 @@ public class GameActions {
     void playLeaderCard(String leaderName, PlayerHandler player) {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
-                //leaderCard.playCard(player);
+                BonusInteraction returnFromEffect = LeaderCardsEffects.doEffect(leaderName,player);
+                if (returnFromEffect instanceof LorenzoMagnifico){
+                    //todo fare cose per lorenzo magnifico
+                }
                 leaderCard.setPlayed(true);
             }
         }
@@ -405,6 +409,7 @@ public class GameActions {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
                 numberToDelate = player.getPersonalBoardReference().getMyLeaderCard().indexOf(leaderCard);
+                player.sendRequestForPriviledges(new TakePrivilegesAction(1));
                 break;
             }
         }

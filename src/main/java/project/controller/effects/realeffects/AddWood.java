@@ -2,7 +2,6 @@ package project.controller.effects.realeffects;
 
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
-import project.messages.updatesmessages.Updates;
 import project.server.network.PlayerHandler;
 
 public class AddWood implements TakeRoPEffects {

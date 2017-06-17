@@ -1,8 +1,6 @@
 package project.configurations;
 
 import project.controller.cardsfactory.*;
-import project.controller.Constants;
-import project.controller.cardsfactory.LoadCards;
 
 /**
  * Created by raffaelebongo on 18/05/17.

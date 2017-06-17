@@ -2,7 +2,6 @@ package project.client.network.rmi;
 
 import project.messages.*;
 
-import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

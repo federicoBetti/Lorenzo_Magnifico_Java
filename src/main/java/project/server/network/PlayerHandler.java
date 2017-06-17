@@ -1,12 +1,13 @@
 package project.server.network;
 
 import project.controller.cardsfactory.BuildingCard;
+import project.controller.cardsfactory.BuildingCost;
 import project.controller.cardsfactory.LeaderCard;
 import project.controller.cardsfactory.VenturesCard;
 import project.controller.checkfunctions.AllCheckFunctions;
 import project.controller.checkfunctions.BasicCheckFunctions;
 import project.controller.Constants;
-import project.controller.supportfunctions.LeaderCardRequirements;
+import project.controller.effects.effectsfactory.LeaderCardRequirements;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
@@ -14,7 +15,6 @@ import project.server.Room;
 import project.server.network.exception.*;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,12 +144,23 @@ public abstract class PlayerHandler extends Player {
 
         if (position > 0)
             maxValueOfProduction = maxValueOfProduction - Constants.MALUS_PROD_HARV;
-        canTakeCards =  checkFunctions.checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
+        canTakeCards =  checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
 
         if (canPlaceCard && canTakeCards)
             gameActions().production(position,familyM,cardToProduct,this);
         else
             throw new CantDoActionException();
+    }
+
+
+    public boolean checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) {
+        BuildingCost totalCardCosts = new BuildingCost();
+        for (BuildingCard b: cardToProduct){
+            if (b.getCost().getDiceCost() > maxValueOfProduction)
+                return false;
+        }
+        //attenione ho fatto che anche la
+        return true;
     }
 
     /**
@@ -314,11 +325,11 @@ public abstract class PlayerHandler extends Player {
     public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
     }
 
-    public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) throws IOException, ClassNotFoundException;
+    public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect);
 
-    public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
+    public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect);
 
-    public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) throws IOException, ClassNotFoundException;
+    public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect);
 
     public abstract void sendActionOk();
 

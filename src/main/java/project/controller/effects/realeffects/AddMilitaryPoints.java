@@ -2,7 +2,6 @@ package project.controller.effects.realeffects;
 
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
-import project.model.*;
 import project.server.network.PlayerHandler;
 
 /**

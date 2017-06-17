@@ -1,6 +1,5 @@
 package project.server.network;
 
-import project.server.network.socket.SocketPlayerHandler;
 import project.server.Server;
 
 import java.io.IOException;

@@ -52,4 +52,9 @@ public class VenturesCost implements Cost {
     public int getMilitaryCost() {
         return militaryCost;
     }
+
+    @Override
+    public void picoDellaMirandolaDowngrade() {
+        coinsRequired -= 3;
+    }
 }

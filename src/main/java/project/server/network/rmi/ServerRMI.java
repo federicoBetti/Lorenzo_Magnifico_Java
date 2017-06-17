@@ -3,8 +3,6 @@ package project.server.network.rmi;
 import project.client.network.rmi.RMIServerToClientInterface;
 import project.server.network.AbstractServer;
 import project.server.Server;
-import project.server.network.exception.CanUseBothPaymentMethodException;
-import project.server.network.exception.CantDoActionException;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

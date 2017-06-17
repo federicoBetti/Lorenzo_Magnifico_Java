@@ -3,7 +3,6 @@ package project.messages.updatesmessages;
 import project.controller.Constants;
 import project.model.Board;
 import project.model.ExcommunicationZone;
-import project.server.network.PlayerHandler;
 
 /**
  * Created by raffaelebongo on 14/06/17.

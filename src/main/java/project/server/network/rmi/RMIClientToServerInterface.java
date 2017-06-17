@@ -5,7 +5,6 @@ package project.server.network.rmi;
 // sono quelli in più che verranno chiamati dal client sul server
 
 import project.client.network.rmi.RMIServerToClientInterface;
-import project.server.network.ControllerInterface;
 
 import java.io.IOException;
 import java.rmi.Remote;

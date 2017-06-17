@@ -25,4 +25,9 @@ public class BuildingCost extends TerritoryCost {
     public void setCoinsRequired(int coinsRequired) {
         this.coinsRequired = coinsRequired;
     }
+
+    @Override
+    public void picoDellaMirandolaDowngrade() {
+        coinsRequired -= 3;
+    }
 }

@@ -30,17 +30,6 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
 
 
-    @Override
-    public boolean checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) {
-        BuildingCost totalCardCosts = new BuildingCost();
-        for (BuildingCard b: cardToProduct){
-            if (b.getCost().getDiceCost() > maxValueOfProduction)
-                return false;
-        }
-        //attenione ho fatto che anche la
-        return true;
-    }
-
     private BuildingCost sumCost(BuildingCost totalCardCosts, BuildingCost cost) {
         int woodRequired = totalCardCosts.getWoodRequired() + cost.getWoodRequired();
         int stoneRequired = totalCardCosts.getStoneRequired() + cost.getStoneRequired();
@@ -72,14 +61,13 @@ public class BasicCheckFunctions implements AllCheckFunctions{
     }
 
 
-    @Override
     public boolean checkCardCostCharacter(CharacterCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
-        int coinsBonus = player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getCoinsBonus();
-        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getDiceBonus();
+        int coinsBonus = personalBoard(player).getBonusOnActions().getCharactersBonus().getCoinsBonus();
+        int diceBonus = personalBoard(player).getBonusOnActions().getCharactersBonus().getDiceBonus();
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
-        if ((card.getCost().getCoinsRequired() + coinsMore + coinsBonus )<= player.getPersonalBoardReference().getCoins() &&
+        if ((card.getCost().getCoinsRequired() + coinsMore + coinsBonus )<= personalBoard(player).getCoins() &&
                 valueOfFamilyMember + diceBonus + getServants(player) >= zoneDiceCost)
             return true;
         return false;
@@ -92,21 +80,20 @@ public class BasicCheckFunctions implements AllCheckFunctions{
      */
 
     @Override
-    public int getServants(Player player) {
-        return player.getPersonalBoardReference().getServants();
+    public int getServants(PlayerHandler player) {
+        return personalBoard(player).getServants();
     }
 
-    @Override
     public boolean checkCardCostBuilding(BuildingCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
-        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus();
-        int woodBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getWoodBonus();
-        int stoneBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getStoneBonus();
+        int diceBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getDiceBonus();
+        int woodBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getWoodBonus();
+        int stoneBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getStoneBonus();
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
-        if (card.getCost().getWoodRequired() + woodBonus <= player.getPersonalBoardReference().getWood() &&
-                card.getCost().getStoneRequired() + stoneBonus <= player.getPersonalBoardReference().getStone() &&
-                (card.getCost().getCoinsRequired() + coinsMore)<= player.getPersonalBoardReference().getCoins() &&
+        if (card.getCost().getWoodRequired() + woodBonus <= personalBoard(player).getWood() &&
+                card.getCost().getStoneRequired() + stoneBonus <= personalBoard(player).getStone() &&
+                (card.getCost().getCoinsRequired() + coinsMore)<= personalBoard(player).getCoins() &&
                 (valueOfFamilyMember + diceBonus + getServants(player) )>= zoneDiceCost
                 )
             return true;
@@ -118,13 +105,13 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         int coinsMore = 0;
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
-        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus();
+        int diceBonus = personalBoard(player).getBonusOnActions().getVenturesBonus();
         boolean[] canTakeCardFromEffect = new boolean[2];
         int i = 0;
         for (VenturesCost v: card.getVenturesCost()) {
-            if (v.getWoodRequired() <= player.getPersonalBoardReference().getWood() &&
-                    v.getStoneRequired() <= player.getPersonalBoardReference().getStone() &&
-                    (v.getCoinsRequired() + coinsMore)<= player.getPersonalBoardReference().getCoins() &&
+            if (v.getWoodRequired() <= personalBoard(player).getWood() &&
+                    v.getStoneRequired() <= personalBoard(player).getStone() &&
+                    (v.getCoinsRequired() + coinsMore)<= personalBoard(player).getCoins() &&
                     v.getMilitaryRequired() <= player.getScore().getMilitaryPoints() &&
                     (valueOfFamilyMember + diceBonus + getServants(player) )>= zoneDiceCost
                     )
@@ -146,33 +133,33 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     }
 
-    @Override
     public boolean checkCardCostTerritory(TerritoryCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
-        int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getTerritoryBonus();
-        int length = player.getPersonalBoardReference().getTerritories().size();
-        /*if (player.getScore().getMilitaryPoints() >= //TODO quanti punti militari ci vogliono per carte verdi)
-                //&&
-                card.getCost().getWoodRequired() <= player.getPersonalBoardReference().getWood() &&
-                card.getCost().getStoneRequired() <= player.getPersonalBoardReference().getStone()  &&
-                coinsMore <= player.getPersonalBoardReference().getCoins() &&
+        int diceBonus = personalBoard(player).getBonusOnActions().getTerritoryBonus();
+        int length = personalBoard(player).getTerritories().size();
+        if (checkMilitaryPointsForTerritory(player,length) &&
+                card.getCost().getWoodRequired() <= personalBoard(player).getWood() &&
+                card.getCost().getStoneRequired() <= personalBoard(player).getStone()  &&
+                coinsMore <= personalBoard(player).getCoins() &&
                 (valueOfFamilyMember + diceBonus + getServants(player) )>= zoneDiceCost)
         return true;
-        */
+
         return false;
 
     }
-
 
     @Override
-    public boolean checkTowerOccupiedByYou(Tower[] tower, PlayerHandler player){
-        for (Tower t: tower){
-            if (t.getFamiliarOnThisPosition().getFamilyColour() == player.getFamilyColour())
-                return true;
-        }
+    public boolean checkMilitaryPointsForTerritory(PlayerHandler player, int length) {
+        if (player.getScore().getMilitaryPoints() >= player.getRoom().getBoard().getMilitaryPointsForTerritories()[length])
+            return true;
         return false;
     }
 
+
+
+    private PersonalBoard personalBoard(PlayerHandler playerHandler){
+        return playerHandler.getPersonalBoardReference();
+    }
 }

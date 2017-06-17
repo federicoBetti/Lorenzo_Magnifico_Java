@@ -1,12 +1,10 @@
 package project.client;
 
-import project.client.clientexceptions.NotAllowedSelection;
 import project.client.ui.ClientSetter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 /**
  * Created by raffaelebongo on 20/05/17.

@@ -14,4 +14,9 @@ public class CharactersCost implements Cost {
     public int getCoinsRequired() {
         return coinsRequired;
     }
+
+    @Override
+    public void picoDellaMirandolaDowngrade() {
+        coinsRequired -= 3;
+    }
 }

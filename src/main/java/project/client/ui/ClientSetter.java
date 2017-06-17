@@ -16,8 +16,6 @@ import project.model.FamilyMember;
 import project.model.PersonalBoard;
 import project.model.Score;
 
-import java.io.IOException;
-
 /**
  * this class is the "bridge" between user interface and client.
  */

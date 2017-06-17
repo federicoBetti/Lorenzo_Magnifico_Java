@@ -87,6 +87,7 @@ public final class Board {
 
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
     private Deck deckCard;
+    private int[] militaryPointsForTerritories;
 
 
     public Board(int numberOfPlayer){
@@ -269,5 +270,9 @@ public final class Board {
 
     public void setTowerInTowers( int towerNumber, int floor, Tower tower ){
         this.towers[towerNumber][floor] = tower;
+    }
+
+    public int[] getMilitaryPointsForTerritories() {
+        return militaryPointsForTerritories;
     }
 }

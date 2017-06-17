@@ -16,14 +16,10 @@ import java.util.List;
 public interface AllCheckFunctions {
 
     boolean checkPosition(int position, Position[] zone, FamilyMember familyMember);
-    boolean checkTowerOccupiedByYou(Tower[] tower, PlayerHandler player);
-    boolean checkCardCostTerritory(TerritoryCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
-    boolean checkCardCostCharacter(CharacterCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
-    boolean checkCardCostBuilding(BuildingCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
     int checkCardCostVentures(VenturesCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
-    boolean checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction);
-    boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+   boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+    boolean checkMilitaryPointsForTerritory(PlayerHandler player, int length) ;
+    int getServants(PlayerHandler player);
+    boolean checkTowerOccupied(Tower[] tower);
 
-    boolean checkTowerOccupied(Tower[] zone);
-    int getServants(Player player);
 }

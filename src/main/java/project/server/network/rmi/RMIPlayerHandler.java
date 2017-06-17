@@ -7,7 +7,6 @@ import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
 import project.server.network.PlayerHandler;
-import project.server.network.exception.CanUseBothPaymentMethodException;
 import project.server.network.exception.CantDoActionException;
 
 import java.io.IOException;

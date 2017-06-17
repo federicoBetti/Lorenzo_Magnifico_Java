@@ -1,7 +1,6 @@
 package project.client.ui.gui.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,7 +10,6 @@ import project.model.FamilyMember;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by federico on 11/06/17.

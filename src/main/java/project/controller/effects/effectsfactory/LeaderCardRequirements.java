@@ -1,4 +1,4 @@
-package project.controller.supportfunctions;
+package project.controller.effects.effectsfactory;
 
 import project.controller.Constants;
 import project.model.PersonalBoard;

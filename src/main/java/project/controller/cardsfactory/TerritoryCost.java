@@ -35,4 +35,8 @@ public class TerritoryCost implements Cost {
     public void setStoneRequired(int stoneRequired) {
         this.stoneRequired = stoneRequired;
     }
+
+    @Override
+    public void picoDellaMirandolaDowngrade() {
+    }
 }

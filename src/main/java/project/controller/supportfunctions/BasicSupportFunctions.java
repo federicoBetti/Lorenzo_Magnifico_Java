@@ -1,9 +1,6 @@
 package project.controller.supportfunctions;
 
-import project.controller.cardsfactory.BuildingCard;
-import project.controller.cardsfactory.CharacterCard;
-import project.controller.cardsfactory.TerritoryCard;
-import project.controller.cardsfactory.VenturesCard;
+import project.controller.cardsfactory.*;
 import project.controller.Constants;
 import project.controller.effects.realeffects.*;
 import project.model.*;
@@ -41,9 +38,9 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
     private void fillHashMapPayments() {
-        payments.put(TerritoryCard.class.toString(),this::payTerritoryCard);
-        payments.put(BuildingCard.class.toString(),this::payBuildingCard);
-        payments.put(CharacterCard.class.toString(),this::payCharacterCard);
+        payments.put(TerritoryCard.class.toString(), (devCard, coinsFee, zoneDiceCost, valueOfFamilyMember, int coinsMore) -> payTerritoryCard(devCard, coinsFee, zoneDiceCost, valueOfFamilyMember));
+        payments.put(BuildingCard.class.toString(), (devCard, coinsFee, zoneDiceCost, valueOfFamilyMember, int coinsMore) -> payBuildingCard(devCard, coinsFee, zoneDiceCost, valueOfFamilyMember));
+        payments.put(CharacterCard.class.toString(), (devCard, coinsFee, zoneDiceCost, valueOfFamilyMember, int coinsMore) -> payCharacterCard(devCard, coinsFee, zoneDiceCost, valueOfFamilyMember));
     }
 
     private void fillHashMapPrivileges (){
@@ -63,7 +60,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
 
 
-    private void payTerritoryCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private void payTerritoryCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore){
         TerritoryCard card = (TerritoryCard)devCard;
         int coinsMore = 0;
         if (coinsFee)
@@ -78,7 +75,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     //TODO CONTROLLARE CHE I COSTI VADANO BENE, AD ESEMPIO CONTROLLARE CHE SE I BONUS O VALORI DEI DADI SONO MAGGIORI DEI COSTI NON MI VADA AD AGGIUNGERE RISORSE, MA E NE TOLGA 0
 
-    private void payBuildingCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private void payBuildingCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore){
         BuildingCard card = (BuildingCard)devCard;
         int coinsMore = 0;
         int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus();
@@ -93,7 +90,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
     }
 
-    private void payCharacterCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private void payCharacterCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore){
         CharacterCard card = (CharacterCard)devCard;
         int coinsMore = 0;
         int coinsBonus = player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getCoinsBonus();
@@ -245,19 +242,21 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @Override
     public void payCard(DevelopmentCard cardOnThisFloor, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember) {
-        payments.get(cardOnThisFloor.getClass().toString()).pay(cardOnThisFloor, coinsFee, zoneDiceCost, valueOfFamilyMember);
+        int coinsMore = 0;
+        payments.get(cardOnThisFloor.getClass().toString()).pay(cardOnThisFloor, coinsFee, zoneDiceCost, valueOfFamilyMember, coinsMore);
     }
 
     @Override
     public void payVenturesCard(VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen) {
         int coinsMore = 0;
+        VenturesCost cost = card.getVenturesCost().get(paymentChoosen);
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
         int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus();
-        player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - (card.getVenturesCost().get(paymentChoosen).getWoodRequired()));
-        player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - (card.getVenturesCost().get(paymentChoosen).getStoneRequired()));
-        player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - (coinsMore + card.getVenturesCost().get(paymentChoosen).getCoinsRequired()));
-        player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() - (card.getVenturesCost().get(paymentChoosen).getMilitaryCost()));
+        player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - (cost.getWoodRequired()));
+        player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - (cost.getStoneRequired()));
+        player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - (coinsMore + cost.getCoinsRequired()));
+        player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() - (cost.getMilitaryCost()));
         int servantsUsed = payServants(zoneDiceCost, valueOfFamilyMember + diceBonus);
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
     }
@@ -276,12 +275,12 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @FunctionalInterface
     private interface CardPayment{
-        void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+        void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int coinsMore);
     }
 
     @FunctionalInterface
     private interface MarketTaker{
         void takeMarketAction();
     }
-
+    
 }

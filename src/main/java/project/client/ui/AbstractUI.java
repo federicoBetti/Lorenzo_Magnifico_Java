@@ -1,6 +1,5 @@
 package project.client.ui;
 
-import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;

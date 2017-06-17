@@ -1,6 +1,5 @@
 package project.controller.effects.realeffects;
 
-import javafx.scene.effect.Effect;
 import project.controller.Constants;
 import project.messages.BonusInteraction;
 import project.messages.TowerAction;

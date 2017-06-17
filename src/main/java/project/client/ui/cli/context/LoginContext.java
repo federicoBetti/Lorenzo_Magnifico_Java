@@ -5,8 +5,6 @@ import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by raffaelebongo on 05/06/17.

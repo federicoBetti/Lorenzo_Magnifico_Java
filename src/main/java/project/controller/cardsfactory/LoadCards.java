@@ -1,21 +1,14 @@
 package project.controller.cardsfactory;
 
 import project.DevelopmentDeckIterator;
-import project.ExcomunicationDeckIterator;
 import project.TowerIterator;
 import project.controller.Constants;
-import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
-import project.controller.effects.effectsfactory.TrisIE;
-import project.controller.supportfunctions.CouncilPrivileges;
 import project.model.*;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
