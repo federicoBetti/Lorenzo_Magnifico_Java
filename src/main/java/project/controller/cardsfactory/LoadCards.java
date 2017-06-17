@@ -38,7 +38,7 @@ public class LoadCards {
     }
 
 
-    void loadMap(){
+    public void loadMap(){
         map.put( Constants.BUILDING_CARD.toString(), this::buildBuildingCard );
         map.put( Constants.TERRITORY_CARD.toString(), this::buildTerritoryCard);
         map.put( Constants.CHARACTER_CARD.toString(), this::buildCharacterCard );
@@ -46,7 +46,7 @@ public class LoadCards {
     }
 
 
-    void loadDevelopmentCards(Deck deck ) throws FileNotFoundException {
+    public void loadDevelopmentCards(Deck deck ) throws FileNotFoundException {
 
         DevelopmentDeckIterator iterator = new DevelopmentDeckIterator();
 
@@ -65,7 +65,7 @@ public class LoadCards {
             }
         }
 
-    void loadExcommunicationTiles( Deck deck ) throws FileNotFoundException {
+    public void loadExcommunicationTiles( Deck deck ) throws FileNotFoundException {
 
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 
@@ -77,7 +77,7 @@ public class LoadCards {
         }
     }
 
-    void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
+    public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
 
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 
@@ -88,7 +88,7 @@ public class LoadCards {
         }
     }
 
-    void loadMarketBonus(Board board) throws FileNotFoundException {
+    public void loadMarketBonus(Board board) throws FileNotFoundException {
 
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 
@@ -99,7 +99,7 @@ public class LoadCards {
         }
     }
 
-    void loadBonusTile( Deck deck ) throws FileNotFoundException {
+    public void loadBonusTile( Deck deck ) throws FileNotFoundException {
 
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 
@@ -110,7 +110,7 @@ public class LoadCards {
         }
     }
 
-    void loadBonusTower(Board board) throws FileNotFoundException {
+    public void loadBonusTower(Board board) throws FileNotFoundException {
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
         TowerIterator iterator = new TowerIterator();
 
@@ -119,6 +119,14 @@ public class LoadCards {
             Tower tower = new Tower(towerFromJson.getColour(), towerFromJson.getDiceValueOfThisFloor(), towerFromJson.getTrisIE());
             board.setTowerInTowers(iterator.getTowerNumber(), iterator.getFloor(), tower);
          }
+    }
+
+    public void loadLeaderCard() throws FileNotFoundException {
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+
+        while ( parser.hasNext() ){
+            LeaderCard leaderCard = gson.fromJson(parser.next(), LeaderCard.class );
+        }
     }
 
     DevelopmentCard buildVentureCard( ) {
