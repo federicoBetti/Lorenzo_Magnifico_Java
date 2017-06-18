@@ -19,7 +19,7 @@ public class SetLeaderEffectsUseful implements Effects {
     public BonusInteraction doEffect(PlayerHandler player) {
         switch (parameter) {
             case "Lodovico Ariosto":
-                // TODO devo cambiare costruttore della support fuction in = new DontCheckPositionDecorator(oldSupportFunction)
+                // TODO devo cambiare costruttore della support fuction in = new LudovicoAriostoCheck(oldSupportFunction)
                 player.getLeaderEffectsUsefull().setCanPlaceInOccupiedPosition(true);
                 break;
 

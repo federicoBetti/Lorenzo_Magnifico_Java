@@ -14,9 +14,7 @@ import project.model.Tower;
  */
 public class TowersController extends AbstractController {
 
-    /**
-     * todo vedere come importnare la board, a ogni update deve essere refresshata la board e aggiornate le carte etc
-     */
+
     /**
      * queste sono le imageView dove dentro ci staranno le immagini delle carte
      */
@@ -53,11 +51,6 @@ public class TowersController extends AbstractController {
     @FXML
     private ImageView purple0;
 
-
-    @FXML
-    private Button personalBoard;
-    @FXML
-    private Button submit;
 
 
     /**
@@ -105,8 +98,9 @@ public class TowersController extends AbstractController {
     @FXML
     private Button mainGameButton;
 
-    private String towerColour;
-    private String floor;
+    private ImageView lastFamiiarPlaced;
+    private int towerColour;
+    private int floor;
     private String familiarColour;
 
 
@@ -117,8 +111,8 @@ public class TowersController extends AbstractController {
         super();
         System.out.print("sono nel controller");
         myTower = new TowerZone[4][4];
-        towerColour = null;
-        floor = null;
+        towerColour = -1;
+        floor = -1;
         familiarColour = null;
     }
 
@@ -128,9 +122,16 @@ public class TowersController extends AbstractController {
         mainController.setTowerController(this);
     }
 
+    @Override
+    public void refresh() {
+
+    }
+
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
     public void initialize() {
+
+        lastFamiiarPlaced = new ImageView();
 
         imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoZero.png"))));
         imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoNero.png"))));
@@ -162,12 +163,6 @@ public class TowersController extends AbstractController {
 
     public void showCardGreen3() {
         loginBuilder.showCardZoomed(green3.getImage());
-        /**
-         *todo dire che carta scelta è quella di green 3. magari prendendo il riferiemtno alla board sul cliente prendendo il nome da mandare poi
-         * al client setter. poi ogni volta che si vuole psizionare un prosnaggio bisogna controllare la board che quel posto sia vuoto altriemnti non lo fa fare
-         * poi bisogna far si che il MainController.showCardZoomed(e posizioanto è uno solo, e non posso metterne tanti
-         */
-
     }
 
     public void showCardGreen2() {
@@ -231,88 +226,84 @@ public class TowersController extends AbstractController {
     }
 
 
+    private void takeCard(int floor, int tower){
+        if (myTower[floor][tower].getFamiliarName() == null) {
+            lastFamiiarPlaced.setImage(null);
+            lastFamiiarPlaced = myTower[floor][tower].getFamiliarImage();
+            myTower[floor][tower].setFamiliarImage(getTrueFamiliarImage());
+            selectCard(tower, floor);
+        }
+
+    }
     public void takeCardGreen3() {
-        familiarGreen3.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.THIRD_FLOOR);
+        takeCard(3,0);
+
     }
 
     public void takeCardGreen2() {
-        familiarGreen2.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.SECOND_FLOOR);
+        takeCard(2,0);
+
     }
 
     public void takeCardGreen1() {
-        familiarGreen1.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.FIRST_FLOOR);
+        takeCard(1,0);
+
     }
 
     public void takeCardGreen0() {
-        familiarGreen0.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, Constants.GROUND_FLOOR);
+        takeCard(0,0);
     }
 
 
     public void takeCardBlue3() {
-        familiarBlue3.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.THIRD_FLOOR);
+        takeCard(3,1);
     }
 
     public void takeCardBlue2() {
-        familiarBlue2.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.SECOND_FLOOR);
+        takeCard(2,1);
     }
 
     public void takeCardBlue1() {
-        familiarBlue1.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.FIRST_FLOOR);
+        takeCard(1,1);
     }
 
     public void takeCardBlue0() {
-        familiarBlue0.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, Constants.GROUND_FLOOR);
+        takeCard(0,1);
     }
 
     public void takeCardYellow0() {
-        familiarYellow0.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.GROUND_FLOOR);
+        takeCard(0,2);
     }
 
     public void takeCardYellow1() {
-        familiarYellow1.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.FIRST_FLOOR);
+        takeCard(1,2);
     }
 
     public void takeCardYellow2() {
-        familiarYellow2.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.SECOND_FLOOR);
+        takeCard(2,2);
     }
 
     public void takeCardYellow3() {
-        familiarYellow3.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, Constants.THIRD_FLOOR);
+        takeCard(3,2);
     }
 
     public void takeCardPurple0() {
-        familiarPurple0.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.GROUND_FLOOR);
+        takeCard(0,3);
     }
 
     public void takeCardPurple1() {
-        familiarPurple1.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.FIRST_FLOOR);
+        takeCard(1,3);
     }
 
     public void takeCardPurple2() {
-        familiarPurple2.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.SECOND_FLOOR);
+        takeCard(2,3);
     }
 
-    public void takeCardPurple3() {
-        familiarPurple3.setImage(getTrueFamiliarImage());
-        selectCard(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, Constants.THIRD_FLOOR);
+    public void takeCardPurple3(){
+        takeCard(3,3);
     }
 
-    private void selectCard(String towerColour, String floor) {
+    private void selectCard(int towerColour, int floor) {
         this.familiarColour = familiarChosen;
         this.floor = floor;
         this.towerColour = towerColour;
@@ -325,7 +316,26 @@ public class TowersController extends AbstractController {
 
 
     public void takeCard() {
-        if (floor != null) mainController.takeDevCard(towerColour, floor, familiarChosen);
+        if (floor != -1){
+            String towerColourString = getTowerColour(towerColour);
+            mainController.takeDevCard(towerColourString, String.valueOf(floor), familiarChosen);
+        }
+    }
+
+    private String getTowerColour(int towerColour) {
+        switch (towerColour) {
+            case 0:
+                return Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD;
+            case 1:
+                return Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD;
+            case 2:
+                return Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD;
+            case 3:
+                return Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD;
+            default:
+                return "";
+            }
+
     }
 
     public void updatePosition(Tower[][] towers){
@@ -337,6 +347,7 @@ public class TowersController extends AbstractController {
             towerNumber = towerIterator.getTowerNumber();
             Tower serverTower = towers[floorNumber][towerNumber];
             TowerZone guiTower = myTower[floorNumber][towerNumber];
+
             if (serverTower.getCardOnThisFloor() == null && guiTower.getCardName() == null){
                 //niente, ho dovuto fare questi if separati perche nel secondo accedo al nome della carta e se lo facessi con una carta
                 //null mi andrebbe in null pointer
@@ -352,11 +363,12 @@ public class TowersController extends AbstractController {
                     modifyCard(guiTower,serverTower.getCardOnThisFloor().getName());
                 }
             }
+
             if (serverTower.getFamiliarOnThisPosition() == null && guiTower.getFamiliarName() == null){
                 // niente
             }
             else if (serverTower.getFamiliarOnThisPosition() == null)
-                modifyFamiliar(guiTower,null)
+                modifyFamiliar(guiTower,null);
             else {
                 if (serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())){
                     //niente
@@ -365,6 +377,7 @@ public class TowersController extends AbstractController {
                     modifyFamiliar(guiTower,serverTower.getFamiliarOnThisPosition().toString());
                 }
             }
+
         }
 
     }

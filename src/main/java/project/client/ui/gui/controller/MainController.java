@@ -149,6 +149,7 @@ public class MainController {
         Board board = clientSetter.getUiBoard();
         productionController.updatePosition(board.getProductionZone());
         harvesterController.updatePosition(board.getHarvesterZone());
+        towerController.updatePosition(board.getAllTowers());
     }
 
     public void scoreUpdate() {

@@ -7,7 +7,7 @@ import project.model.Tower;
  */
 public class TowerIterator implements IteratorInterface {
 
-    private final Tower[][] towers;
+    private Tower[][] towers;
     //todo
     int towerNumber;
     int floor;

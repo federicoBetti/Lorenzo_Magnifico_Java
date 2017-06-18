@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import project.model.Market;
 
 /**
  * Created by federico on 11/06/17.
@@ -18,6 +19,8 @@ public class MarketController extends AbstractController {
     public ImageView imageMarket2;
     public ImageView imageMarket3;
 
+    private FamiliarPosition[] familiarPositions;
+
     public MarketController(){
         System.out.print("sono nel controller");
     }
@@ -25,6 +28,18 @@ public class MarketController extends AbstractController {
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
     public void initialize(){
+        if (mainController.getNumberOfPlayer()==4){
+            familiarPositions = new FamiliarPosition[4];
+            familiarPositions[0] = new FamiliarPosition(imageMarket0);
+            familiarPositions[1] = new FamiliarPosition((imageMarket1));
+            familiarPositions[2] = new FamiliarPosition(imageMarket2);
+            familiarPositions[3] = new FamiliarPosition(imageMarket3);
+        }
+        else{
+            familiarPositions = new FamiliarPosition[2];
+            familiarPositions[0] = new FamiliarPosition(imageMarket0);
+            familiarPositions[1] = new FamiliarPosition((imageMarket1));
+        }
     }
 
 
@@ -32,6 +47,11 @@ public class MarketController extends AbstractController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setMarketController(this);
+    }
+
+    @Override
+    public void refresh() {
+
     }
 
     public void uploadImages(){
@@ -61,5 +81,9 @@ public class MarketController extends AbstractController {
 
     public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.MARKET);
+    }
+
+    public void updatePosition(Market[] markets){
+
     }
 }

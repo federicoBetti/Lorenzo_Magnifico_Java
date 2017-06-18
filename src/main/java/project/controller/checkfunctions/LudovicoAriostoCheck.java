@@ -3,9 +3,9 @@ package project.controller.checkfunctions;
 
 import project.model.*;
 
-public class DontCheckPositionDecorator extends CheckFunctionsDecorator {
+public class LudovicoAriostoCheck extends CheckFunctionsDecorator {
 
-    DontCheckPositionDecorator(AllCheckFunctions allCheckFunctions){
+    public LudovicoAriostoCheck(AllCheckFunctions allCheckFunctions){
         super(allCheckFunctions);
     }
 
@@ -19,11 +19,8 @@ public class DontCheckPositionDecorator extends CheckFunctionsDecorator {
      */
     @Override
     public boolean checkPosition(int position, Position[] zone, FamilyMember familyMember) {
-        if (!(zone instanceof Tower[])){
-            return true;
-        }
-        else
-            return allCheckFunctions.checkPosition(position,zone,familyMember);
+        zone[position].ludovicoAriosto();
+        return true;
 
     }
 

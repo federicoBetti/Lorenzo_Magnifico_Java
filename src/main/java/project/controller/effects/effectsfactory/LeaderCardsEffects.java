@@ -3,9 +3,11 @@ package project.controller.effects.effectsfactory;
 import project.controller.Constants;
 import project.controller.checkfunctions.DontPayForTerritories;
 import project.controller.checkfunctions.DontPayMoneyForTower;
+import project.controller.checkfunctions.LudovicoAriostoCheck;
 import project.controller.checkfunctions.PicoDellaMirandolaCheck;
 import project.controller.effects.realeffects.*;
 import project.controller.supportfunctions.FivePointsMoreForPray;
+import project.controller.supportfunctions.LudovicoAriostoSupport;
 import project.controller.supportfunctions.PicoDellaMirandolaSupport;
 import project.controller.supportfunctions.SantaRita;
 import project.messages.*;
@@ -178,7 +180,8 @@ public class LeaderCardsEffects {
 
 
     private BonusInteraction ludovicoAriosto(PlayerHandler player){
-        //todo bisognerebbe usare la DntChecKpoisitiondecorator
+        player.setCheckFunctions(new LudovicoAriostoCheck(player.getCheckFunctions()));
+        player.getRoom().setMySupportFunction(new LudovicoAriostoSupport(player.getRoom().getMySupportFunction(player)),player);
         return okOrNo;
     }
 

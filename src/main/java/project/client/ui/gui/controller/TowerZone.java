@@ -12,6 +12,7 @@ public class TowerZone {
     ImageView familiar;
     String cardName;
     String familiarName;
+
     public TowerZone(ImageView card, ImageView familiar){
         this.card = card;
         this.familiar = familiar;
@@ -46,5 +47,13 @@ public class TowerZone {
         else
             familiar.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + cardName +".png"))));
 
+    }
+
+    public ImageView getFamiliarImage() {
+        return familiar;
+    }
+
+    public void setFamiliarImage(Image trueFamiliarImage) {
+        familiar.setImage(trueFamiliarImage);
     }
 }
