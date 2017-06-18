@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import project.controller.cardsfactory.TerritoryCard;
 import project.model.FamilyMember;
+import project.model.Harvester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by federico on 11/06/17.
  */
 public class HarvesterController extends AbstractController {
+    public ImageView harvesterZoneImage;
 
     //todo si potrebbe fare che in base al numero di servants messo si illuminano le carte attivate
 
@@ -31,6 +33,8 @@ public class HarvesterController extends AbstractController {
     @FXML
     private ImageView imageHarvester3;
 
+    private ArrayList<ImageView> allPosition;
+    private String[] familyMemberOnPositions;
 
     /**
      * the imageViews where there are the territory cards
@@ -54,9 +58,11 @@ public class HarvesterController extends AbstractController {
 
     private List<ImageView> imageTerritoryCard;
     private List<String> nameOfTerritoryCard;
+    private int positionSelected;
 
     public HarvesterController() {
         super();
+        positionSelected = -1;
         System.out.print("sono nel controller");
     }
 
@@ -79,14 +85,30 @@ public class HarvesterController extends AbstractController {
         imageTerritoryCard.add(territoryCard4);
         imageTerritoryCard.add(territoryCard5);
 
-    }
+        allPosition = new ArrayList<>();
+        allPosition.add(imageHarvester0);
+        if (mainController.getNumberOfPlayer() >= 3){
+            allPosition.add(imageHarvester1);
+            allPosition.add(imageHarvester2);
+            allPosition.add(imageHarvester3);
+            familyMemberOnPositions = new String[4];
+        }
+        else {
+            familyMemberOnPositions = new String[1];
+        }
 
+    }
 
     public void uploadImages() {
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + loginBuilder.getColour() + ".png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
+        harvesterZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/raccolto" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
     }
 
+    public void refresh(){
+        positionSelected = -1;
+    }
 
     public void inizializeWithMain() {
         chatText = loginBuilder.getChat();
@@ -98,6 +120,17 @@ public class HarvesterController extends AbstractController {
 
 
     public void doHarvester() {
+        int servants = 0;
+        if (positionSelected == -1)
+            return;
+        try {
+            servants = Integer.parseInt(numberOfServantsTextField.getText());
+        }
+        catch (NumberFormatException e){
+            return;
+        }
+
+        mainController.doHarvester(positionSelected,servants,familiarChosen);
     }
 
 
@@ -127,40 +160,36 @@ public class HarvesterController extends AbstractController {
 
 
     public void placeFamiliarOnHarvester0() {
+        if (familyMemberOnPositions[0] != null)
+            return;
         imageHarvester0.setImage(getTrueFamiliarImage());
+        positionSelected = 0;
     }
 
     public void placeFamiliarOnHarvester1() {
+        if (familyMemberOnPositions[1] != null)
+            return;
         imageHarvester1.setImage(getTrueFamiliarImage());
+        positionSelected = 1;
     }
 
     public void placeFamiliarOnHarvester2() {
+        if (familyMemberOnPositions[2] != null)
+            return;
         imageHarvester2.setImage(getTrueFamiliarImage());
+        positionSelected = 2;
     }
 
     public void placeFamiliarOnHarvester3() {
+        if (familyMemberOnPositions[3] != null)
+            return;
         imageHarvester3.setImage(getTrueFamiliarImage());
+        positionSelected = 3;
     }
 
 
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.HARVESTER);
-    }
-
-    public void updateFamilyMember(FamilyMember[] uiFamilyMembers) {
-
-        for (int i = 0;i<imageFamiltMember.size(); i++){
-            ImageView imageView = imageFamiltMember.get(i);
-            RadioButton radioButton = radioButtonFamiliar.get(i);
-            if (uiFamilyMembers[i].isPlayed()){
-                imageView.setOpacity(0.7);
-                radioButton.setDisable(true);
-            }
-            else {
-                imageView.setOpacity(1);
-                radioButton.setDisable(false);
-            }
-        }
     }
 
 
@@ -172,6 +201,22 @@ public class HarvesterController extends AbstractController {
                 nameOfTerritoryCard.set(i,nameOfNewCard);
                 ImageView imageView = imageTerritoryCard.get(i);
                 imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
+            }
+        }
+    }
+
+    public void updatePosition(Harvester[] harvesterZone) {
+        for (int i = 0; i<harvesterZone.length; i++){
+            if (harvesterZone[i].getFamiliarOnThisPosition() == null){
+                familyMemberOnPositions[i] = "";
+                allPosition.get(i).setImage(null);
+            }
+            if (familyMemberOnPositions[i].equals(harvesterZone[i].getFamiliarOnThisPosition().toString()))
+                continue;
+            else {
+                familyMemberOnPositions[i] = harvesterZone[i].getFamiliarOnThisPosition().toString();
+                ImageView imageView = allPosition.get(i);
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familyMemberOnPositions[i] + ".png"))));
             }
         }
     }

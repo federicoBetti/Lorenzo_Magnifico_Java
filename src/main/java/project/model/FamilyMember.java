@@ -75,4 +75,7 @@ public class FamilyMember {
         this.fixedValue = fixedValue;
     }
 
+    public String toString(){
+        return (familyColour + myColour).toLowerCase();
+    }
 }

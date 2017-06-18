@@ -80,6 +80,7 @@ public class ClientSetter {
     }
 
     public void harvesterAction(String position, String familyMemberColour, String servantsNumber)  {
+        //è brutto che prenda stringhe, perche non: int,String,int
         client.harvesterAction(position, familyMemberColour, servantsNumber);
     }
 
@@ -92,6 +93,7 @@ public class ClientSetter {
     }
 
     public void productionAction(String[] parameters)   {
+        //è orrend che renda un array di stirnghe quando sono int,string,List<String>
         client.productionAction(parameters);
     }
 

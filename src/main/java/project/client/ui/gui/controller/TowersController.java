@@ -5,7 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import project.TowerIterator;
 import project.controller.Constants;
+import project.model.Tower;
 
 /**
  * Created by federico on 10/06/17.
@@ -108,11 +110,13 @@ public class TowersController extends AbstractController {
     private String familiarColour;
 
 
+    private TowerZone[][] myTower;
 
 
     public TowersController() {
         super();
         System.out.print("sono nel controller");
+        myTower = new TowerZone[4][4];
         towerColour = null;
         floor = null;
         familiarColour = null;
@@ -134,6 +138,22 @@ public class TowersController extends AbstractController {
         imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoArancio.png"))));
         green0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
         green1.setImage(new Image(String.valueOf(getClass().getResource("/images/woods.png"))));
+        myTower[0][0] = new TowerZone(green0,familiarGreen0);
+        myTower[1][0] = new TowerZone(green1,familiarGreen1);
+        myTower[2][0] = new TowerZone(green2,familiarGreen2);
+        myTower[3][0] = new TowerZone(green3,familiarGreen3);
+        myTower[0][1] = new TowerZone(blue0,familiarBlue0);
+        myTower[1][1] = new TowerZone(blue1,familiarBlue1);
+        myTower[2][1] = new TowerZone(blue2,familiarBlue2);
+        myTower[3][1] = new TowerZone(blue3,familiarBlue3);
+        myTower[0][2] = new TowerZone(yellow0,familiarYellow0);
+        myTower[1][2] = new TowerZone(yellow1,familiarYellow1);
+        myTower[2][2] = new TowerZone(yellow2,familiarYellow2);
+        myTower[3][2] = new TowerZone(yellow3,familiarYellow3);
+        myTower[0][3] = new TowerZone(purple0,familiarPurple0);
+        myTower[1][3] = new TowerZone(purple1,familiarPurple1);
+        myTower[2][3] = new TowerZone(purple2,familiarPurple2);
+        myTower[3][3] = new TowerZone(purple3,familiarPurple3);
 
 
         System.out.print("sono nel initaize");
@@ -306,5 +326,56 @@ public class TowersController extends AbstractController {
 
     public void takeCard() {
         if (floor != null) mainController.takeDevCard(towerColour, floor, familiarChosen);
+    }
+
+    public void updatePosition(Tower[][] towers){
+        int floorNumber;
+        int towerNumber;
+        TowerIterator towerIterator = new TowerIterator();
+        for (;towerIterator.hasNext();towerIterator.next()){
+            floorNumber = towerIterator.getFloor();
+            towerNumber = towerIterator.getTowerNumber();
+            Tower serverTower = towers[floorNumber][towerNumber];
+            TowerZone guiTower = myTower[floorNumber][towerNumber];
+            if (serverTower.getCardOnThisFloor() == null && guiTower.getCardName() == null){
+                //niente, ho dovuto fare questi if separati perche nel secondo accedo al nome della carta e se lo facessi con una carta
+                //null mi andrebbe in null pointer
+            }
+            else if (serverTower.getCardOnThisFloor() == null){
+                modifyCard(guiTower,null);
+            }
+            else {
+                if (serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())){
+                    //niente
+                }
+                else{
+                    modifyCard(guiTower,serverTower.getCardOnThisFloor().getName());
+                }
+            }
+            if (serverTower.getFamiliarOnThisPosition() == null && guiTower.getFamiliarName() == null){
+                // niente
+            }
+            else if (serverTower.getFamiliarOnThisPosition() == null)
+                modifyFamiliar(guiTower,null)
+            else {
+                if (serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())){
+                    //niente
+                }
+                else{
+                    modifyFamiliar(guiTower,serverTower.getFamiliarOnThisPosition().toString());
+                }
+            }
+        }
+
+    }
+
+    private void modifyFamiliar(TowerZone guiTower, String s) {
+        guiTower.setFamiliarName(s);
+        guiTower.setFamiliarImage(s);
+    }
+
+    private void modifyCard(TowerZone guiTower, String cardName) {
+        guiTower.setCardName(cardName);
+        guiTower.setCardImage(cardName);
     }
 }

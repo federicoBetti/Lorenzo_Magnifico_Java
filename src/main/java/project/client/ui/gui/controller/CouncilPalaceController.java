@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by federico on 13/06/17.
  */
-public class councilPalaceController extends AbstractController {
+public class CouncilPalaceController extends AbstractController {
 
 
     public Button buttonStoneWood;
@@ -34,7 +34,7 @@ public class councilPalaceController extends AbstractController {
 
 
 
-    public councilPalaceController(){
+    public CouncilPalaceController(){
         super();
         privilegeChoosen = new boolean[numberOfDifferentPrivileges];
         familiarInTheCouncil = new ArrayList<>(6);

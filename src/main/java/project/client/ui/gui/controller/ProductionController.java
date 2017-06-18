@@ -7,22 +7,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import project.controller.cardsfactory.BuildingCard;
+import project.model.Production;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ProductionController extends AbstractController{
-        public Button goBackButton;
 
-
-    /**
-     * button placed on the card. if you click them, you select the corrispective card
-     */
-    public Button buttonBuildingCard0;
-    public Button buttonBuildingCard1;
-    public Button buttonBuildingCard2;
-    public Button buttonBuildingCard3;
-    public Button buttonBuildingCard4;
-    public Button buttonBuildingCard5;
+    public Button goBackButton;
+    public ImageView productionZoneImage;
 
     public ImageView buildingCard0;
     public ImageView buildingCard1;
@@ -31,21 +26,18 @@ public class ProductionController extends AbstractController{
     public ImageView buildingCard4;
     public ImageView buildingCard5;
     private ArrayList<ImageView> allBuildingCard;
-
-
-
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
+    private ArrayList<String> nameOfBuilding;
 
     public ImageView imageProduction0;
     public ImageView imageProduction1;
     public ImageView imageProduction2;
     public ImageView imageProduction3;
+    private ArrayList<ImageView> allPosition;
+    private String[] familyMemberOnPositions;
 
 
     private boolean[] cardSelected;
+    private int positionSelected;
 
     DropShadow borderGlow= new DropShadow();
     DropShadow borderNull= new DropShadow();
@@ -56,6 +48,8 @@ public class ProductionController extends AbstractController{
      public ProductionController(){
          super();
         cardSelected = new boolean[6];
+        positionSelected = -1;
+        //todo guardare bene come fare sta parte in caso di piu di 4 persone nella zona
 
          /**
           * initializing of border to show wich card are selected
@@ -76,8 +70,12 @@ public class ProductionController extends AbstractController{
 
     public void initialize(){
 
+        //example
         buildingCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
+
+        nameOfBuilding = new ArrayList<>(6);
         allBuildingCard = new ArrayList<>(6);
+        allPosition = new ArrayList<>();
         allBuildingCard.add(buildingCard0);
         allBuildingCard.add(buildingCard1);
         allBuildingCard.add(buildingCard2);
@@ -85,15 +83,44 @@ public class ProductionController extends AbstractController{
         allBuildingCard.add(buildingCard4);
         allBuildingCard.add(buildingCard5);
 
+        allPosition.add(imageProduction0);
+        if (mainController.getNumberOfPlayer() >= 3){
+            allPosition.add(imageProduction1);
+            allPosition.add(imageProduction2);
+            allPosition.add(imageProduction3);
+            familyMemberOnPositions = new String[4];
+        }
+        else {
+            familyMemberOnPositions = new String[1];
+        }
     }
 
     public void uploadImages(){
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + loginBuilder.getColour() + ".png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
+        productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/produzione" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
     }
 
+    @Override
+    public void refresh(){
+        for (int i = 0; i<cardSelected.length; i++){
+            cardSelected[i] = false;
+            allBuildingCard.get(i).setEffect(borderNull);
+        }
+    }
 
     public void doProduction() {
+        if (positionSelected == -1)
+            return;
+        List<String> buildingCardSelected = new LinkedList<>();
+        for (int i = 0; i<cardSelected.length; i++){
+            if (cardSelected[i]){
+                String cardName = nameOfBuilding.get(i);
+                buildingCardSelected.add(cardName);
+            }
+        }
+        mainController.doProduction(positionSelected,familiarChosen,buildingCardSelected);
     }
 
     private void selectCard(int index){
@@ -134,21 +161,62 @@ public class ProductionController extends AbstractController{
 
 
     public void placeFamiliarOnProduction0() {
+        if (familyMemberOnPositions[0] != null)
+            return;
         imageProduction0.setImage(getTrueFamiliarImage());
+        positionSelected = 0;
     }
     public void placeFamiliarOnProduction1() {
+        if (familyMemberOnPositions[1] != null)
+            return;
         imageProduction1.setImage(getTrueFamiliarImage());
+        positionSelected = 1;
     }
     public void placeFamiliarOnProduction2() {
+        if (familyMemberOnPositions[2] != null)
+            return;
         imageProduction2.setImage(getTrueFamiliarImage());
+        positionSelected = 2;
     }
     public void placeFamiliarOnProduction3() {
+        if (familyMemberOnPositions[3] != null)
+            return;
         imageProduction3.setImage(getTrueFamiliarImage());
+        positionSelected = 3;
     }
 
 
     public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.PRODUCTION);
+    }
+
+    public void updateCards(List<BuildingCard> buildings) {
+        for (int i = 0; i< buildings.size(); i++){
+            String oldCard = nameOfBuilding.get(i);
+            if (oldCard == null){
+                int ciao;
+                String nameOfNewCard = buildings.get(i).getName();
+                nameOfBuilding.set(i,nameOfNewCard);
+                ImageView imageView = allBuildingCard.get(i);
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
+            }
+        }
+    }
+
+    public void updatePosition(Production[] productions){
+        for (int i = 0; i<productions.length; i++){
+            if (productions[i].getFamiliarOnThisPosition() == null){
+                familyMemberOnPositions[i] = null;
+                allPosition.get(i).setImage(null);
+            }
+            if (familyMemberOnPositions[i].equals(productions[i].getFamiliarOnThisPosition().toString()))
+                continue;
+            else {
+                familyMemberOnPositions[i] = productions[i].getFamiliarOnThisPosition().toString();
+                ImageView imageView = allPosition.get(i);
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familyMemberOnPositions[i] + ".png"))));
+            }
+        }
     }
 }
 

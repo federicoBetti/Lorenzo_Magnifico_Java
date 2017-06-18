@@ -36,6 +36,13 @@ public class LoginBuilder extends Application {
     private  AnchorPane leaderScene;
 
     private HarvesterController harvesterController;
+    private GeneralMainGameController generalMainGameController;
+    private CouncilPalaceController councilPalaceController;
+    private LeaderCardController leaderCardController;
+    private MarketController marketController;
+    private PersonalBoardController personalBoardController;
+    private ProductionController productionController;
+    private TowersController towersController;
 
     private SceneType lastScene;
     private String card;
@@ -162,10 +169,10 @@ public class LoginBuilder extends Application {
             generalScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
-            GeneralMainGameController controller = loader.getController();
-            controller.setLoginBuilder(this);
-            controller.setMainController(mainController);
-            controller.uploadImages();
+            generalMainGameController = loader.getController();
+            generalMainGameController.setLoginBuilder(this);
+            generalMainGameController.setMainController(mainController);
+            generalMainGameController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -184,10 +191,10 @@ public class LoginBuilder extends Application {
             //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
-            TowersController controller = loader.getController();
-            controller.setLoginBuilder(this);
-            controller.setMainController(mainController);
-            controller.uploadImages();
+            towersController = loader.getController();
+            towersController.setLoginBuilder(this);
+            towersController.setMainController(mainController);
+            towersController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -202,10 +209,10 @@ public class LoginBuilder extends Application {
             marketScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
-            MarketController controller = loader.getController();
-            controller.setLoginBuilder(this);
-            controller.setMainController(mainController);
-            controller.uploadImages();
+            marketController = loader.getController();
+            mainController.setLoginBuilder(this);
+            marketController.setMainController(mainController);
+            marketController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -224,10 +231,10 @@ public class LoginBuilder extends Application {
             //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
-            PersonalBoardController controller = loader.getController();
-            controller.setLoginBuilder(this);
-            controller.setMainController(mainController);
-            controller.uploadImages();
+            personalBoardController = loader.getController();
+            personalBoardController.setLoginBuilder(this);
+            personalBoardController.setMainController(mainController);
+            personalBoardController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -242,10 +249,10 @@ public class LoginBuilder extends Application {
             harvesterScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
-            //harvesterController = loader.getController();
-            //harvesterController.setLoginBuilder(this);
-            //harvesterController.inizializeWithMain();
-            //harvesterController.uploadImages();
+            harvesterController = loader.getController();
+            harvesterController.setLoginBuilder(this);
+            harvesterController.inizializeWithMain();
+            harvesterController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -260,10 +267,10 @@ public class LoginBuilder extends Application {
             productionScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
-            ProductionController controller = loader.getController();
-            controller.setLoginBuilder(this);
-            controller.setMainController(mainController);
-            controller.uploadImages();
+            productionController = loader.getController();
+            productionController.setLoginBuilder(this);
+            productionController.setMainController(mainController);
+            productionController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -301,10 +308,10 @@ public class LoginBuilder extends Application {
             //rootLayout.setCenter(primoScene);
 
             // Give the controller access to the main app.
-            councilPalaceController controller = loader.getController();
-            controller.setLoginBuilder(this);
-            controller.setMainController(mainController);
-            controller.uploadImages();
+            councilPalaceController = loader.getController();
+            councilPalaceController.setLoginBuilder(this);
+            councilPalaceController.setMainController(mainController);
+            councilPalaceController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -319,10 +326,10 @@ public class LoginBuilder extends Application {
             leaderScene = (AnchorPane) loader.load();
 
             // Give the controller access to the main app.
-            LeaderCardController controller = loader.getController();
-            controller.setLoginBuilder(this);
-            controller.setMainController(mainController);
-            controller.uploadImages();
+            leaderCardController = loader.getController();
+            leaderCardController.setLoginBuilder(this);
+            leaderCardController.setMainController(mainController);
+            leaderCardController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -338,35 +345,42 @@ public class LoginBuilder extends Application {
         this.lastScene = lastScene;
         switch (nextScene) {
             case MAIN: {
+                generalMainGameController.refresh();
                 rootLayoutMainGame.setCenter(generalScene);
                 break;
             }
             case TOWERS: {
+                towersController.refresh();
                 rootLayoutMainGame.setCenter(towersScene);
                 break;
             }
             case MARKET:{
+                marketController.refresh();
                 rootLayoutMainGame.setCenter(marketScene);
                 break;
             }
             case HARVESTER:{
-                harvesterController.aggiornaChat();
+                harvesterController.refresh();
                 rootLayoutMainGame.setCenter(harvesterScene);
                 break;
             }
             case PERSONAL_BOARD:{
+                personalBoardController.refresh();
                 rootLayoutMainGame.setCenter(personalBoardScene);
                 break;
             }
             case PRODUCTION:{
+                productionController.refresh();
                 rootLayoutMainGame.setCenter(productionScene);
                 break;
             }
             case COUNCIL:{
+                councilPalaceController.refresh();
                 rootLayoutMainGame.setCenter(councilScene);
                 break;
             }
             case LEADER:{
+                leaderCardController.refresh();
                 rootLayoutMainGame.setCenter(leaderScene);
                 break;
             }

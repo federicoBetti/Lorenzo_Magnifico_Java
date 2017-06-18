@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import project.controller.Constants;
+import project.model.FamilyMember;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,8 @@ public abstract class AbstractController {
 
     public abstract void setMainController(MainController mainController);
 
+    public abstract void refresh();
+
     public void goToMainGame(ActionEvent actionEvent) {
         loginBuilder.setScene(SceneType.MAIN,SceneType.HARVESTER);
     }
@@ -138,5 +141,23 @@ public abstract class AbstractController {
         numberOfWood.setText(String.valueOf(wood));
         numberOfStone.setText(String.valueOf(stone));
         numberOfServants.setText(String.valueOf(servants));
+    }
+
+
+
+    public void updateFamilyMember(FamilyMember[] uiFamilyMembers) {
+
+        for (int i = 0;i<imageFamiltMember.size(); i++){
+            ImageView imageView = imageFamiltMember.get(i);
+            RadioButton radioButton = radioButtonFamiliar.get(i);
+            if (uiFamilyMembers[i].isPlayed()){
+                imageView.setOpacity(0.7);
+                radioButton.setDisable(true);
+            }
+            else {
+                imageView.setOpacity(1);
+                radioButton.setDisable(false);
+            }
+        }
     }
 }

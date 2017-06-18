@@ -23,6 +23,14 @@
                 </configuration>
 
             </plugin>
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.8.3</version>
+                <configuration>
+                    <mainClass>project.client.ui.gui.controller.LoginBuilder</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
