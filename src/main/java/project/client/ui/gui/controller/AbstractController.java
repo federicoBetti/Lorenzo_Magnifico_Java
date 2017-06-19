@@ -1,13 +1,17 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import project.controller.Constants;
 import project.model.FamilyMember;
+import project.model.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,15 @@ public abstract class AbstractController {
     public TextField chatText;
     String familiarChosen;
 
+
+    @FXML
+    protected Button submit;
+    @FXML
+    private Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button buttonPlaceFamiliar;
     /**
      * radio button in which you can chose the familiar to use
      */
@@ -62,7 +75,7 @@ public abstract class AbstractController {
     public ImageView LorenzoMagnifico;
 
     protected AbstractController(){
-        familiarChosen = Constants.FAMILY_MEMBER_COLOUR_NEUTRAL;
+        familiarChosen = null;
     }
 
     public void initialize(){
@@ -78,6 +91,13 @@ public abstract class AbstractController {
         radioButtonFamiliar.add(familiarWhite);
         radioButtonFamiliar.add(familiarOrange);
         //todo controllare in che ordine sono messi i family member sul player
+
+
+        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Zero.png"))));
+        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Nero.png"))));
+        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Bianco.png"))));
+        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Arancio.png"))));
+
 
     }
 
@@ -96,6 +116,10 @@ public abstract class AbstractController {
     public void sendChat(ActionEvent actionEvent) {
         String text = chatText.getText() + "\n";
         loginBuilder.sendChat(text);
+    }
+
+    public void writeOnChat(String s){
+        chatText.setText(chatText.getText() + s + "\n");
     }
 
     public void uploadImages(){
@@ -159,5 +183,57 @@ public abstract class AbstractController {
                 radioButton.setDisable(false);
             }
         }
+        familiarChosen = null;
+    }
+
+    public void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox){
+        for (FamiliarPosition f: allPosition){
+            if (f.getFamiliarName() == null){
+                f.setImage(getTrueFamiliarImage());
+                return;
+            }
+        }
+        FamiliarPosition newPosition = new FamiliarPosition(allPosition.get(allPosition.size() - 1));
+        if (!allPosition.add(newPosition))//se è immtabile ritorna false
+            return;
+        ImageView imageView = newPosition.getImage();
+        imageView.setImage(getTrueFamiliarImage());
+        familiarBox.getChildren().addAll(imageView);
+        allPosition.add(newPosition);
+    }
+
+
+    public void updatePosition(Position[] positions, List<FamiliarPosition> allPosition){
+        for (int i = 0; i<positions.length; i++){
+            FamiliarPosition familiarPosition = allPosition.get(i);
+            if (positions[i].getFamiliarOnThisPosition() == null){
+                if (familiarPosition.getFamiliarName() == null)
+                    continue;
+                else {
+                    familiarPosition.setImage(null);
+                    familiarPosition.setFamiliarName(null);
+                }
+            }
+            if (familiarPosition.getFamiliarName().equals(positions[i].getFamiliarOnThisPosition().toString()))
+                continue;
+            else {
+                familiarPosition.setFamiliarName(positions[i].getFamiliarOnThisPosition().toString());
+                familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
+            }
+        }
+    }
+
+
+    protected void blockButton() {
+        mainGameButton.setDisable(true);
+        personalBoard.setDisable(true);
+        buttonPlaceFamiliar.setDisable(true);
+    }
+
+
+    protected void unlockButton() {
+        mainGameButton.setDisable(false);
+        personalBoard.setDisable(false);
+        buttonPlaceFamiliar.setDisable(false);
     }
 }

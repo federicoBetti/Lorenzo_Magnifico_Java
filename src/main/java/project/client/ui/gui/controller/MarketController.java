@@ -1,10 +1,12 @@
 package project.client.ui.gui.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import project.model.Market;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by federico on 11/06/17.
@@ -19,26 +21,32 @@ public class MarketController extends AbstractController {
     public ImageView imageMarket2;
     public ImageView imageMarket3;
 
-    private FamiliarPosition[] familiarPositions;
+    private ImageView lastFamiliarPlaced;
+    int positionSelected;
+
+    private List<FamiliarPosition> familiarPositions;
 
     public MarketController(){
         System.out.print("sono nel controller");
+        lastFamiliarPlaced = new ImageView();
+        positionSelected = -1;
     }
 
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
     public void initialize(){
+        familiarPositions = new ArrayList<>(2);
         if (mainController.getNumberOfPlayer()==4){
-            familiarPositions = new FamiliarPosition[4];
-            familiarPositions[0] = new FamiliarPosition(imageMarket0);
-            familiarPositions[1] = new FamiliarPosition((imageMarket1));
-            familiarPositions[2] = new FamiliarPosition(imageMarket2);
-            familiarPositions[3] = new FamiliarPosition(imageMarket3);
+            familiarPositions.add(new FamiliarPosition(imageMarket0));
+            familiarPositions.add(new FamiliarPosition(imageMarket1));
+            familiarPositions.add(new FamiliarPosition(imageMarket2));
+            familiarPositions.add(new FamiliarPosition(imageMarket3));
         }
         else{
-            familiarPositions = new FamiliarPosition[2];
-            familiarPositions[0] = new FamiliarPosition(imageMarket0);
-            familiarPositions[1] = new FamiliarPosition((imageMarket1));
+            familiarPositions.add(new FamiliarPosition(imageMarket0));
+            familiarPositions.add(new FamiliarPosition(imageMarket1));
+            imageMarket2.setDisable(true);
+            imageMarket3.setDisable(true);
         }
     }
 
@@ -63,18 +71,28 @@ public class MarketController extends AbstractController {
     }
 
 
+    private void placeFamiliar(int position){
+        FamiliarPosition familiar = familiarPositions.get(position);
+        if (familiar.getFamiliarName() != null)
+            return; //posizione occupata
+        lastFamiliarPlaced.setImage(null);
+        positionSelected = position;
+        familiar.setImage(getTrueFamiliarImage());
+        positionSelected = position;
+        lastFamiliarPlaced = familiar.getImage();
+    }
     
     public void placeFamiliarOnMarket0() {
-        imageMarket0.setImage(getTrueFamiliarImage());
+        placeFamiliar(0);
     }
     public void placeFamiliarOnMarket1() {
-        imageMarket1.setImage(getTrueFamiliarImage());
+        placeFamiliar(1);
     }
     public void placeFamiliarOnMarket2() {
-        imageMarket2.setImage(getTrueFamiliarImage());
+        placeFamiliar(2);
     }
     public void placeFamiliarOnMarket3() {
-        imageMarket3.setImage(getTrueFamiliarImage());
+        placeFamiliar(3);
     }
 
 
@@ -84,6 +102,7 @@ public class MarketController extends AbstractController {
     }
 
     public void updatePosition(Market[] markets){
+        super.updatePosition(markets,familiarPositions);
 
     }
 }

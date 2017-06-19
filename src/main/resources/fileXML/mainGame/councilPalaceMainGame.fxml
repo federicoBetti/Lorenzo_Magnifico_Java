@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -23,17 +24,12 @@
                     </image>
                 </ImageView>
                 <ImageView fx:id="imageInTheCouncil0" fitHeight="86.0" fitWidth="94.0" layoutX="96.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
-                <ImageView fx:id="imageInTheCouncil1" fitHeight="86.0" fitWidth="94.0" layoutX="188.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" />
-                <ImageView fx:id="imageInTheCouncil2" fitHeight="86.0" fitWidth="94.0" layoutX="292.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
-                <ImageView fx:id="imageInTheCouncil3" fitHeight="86.0" fitWidth="94.0" layoutX="420.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageInTheCouncil4" fitHeight="86.0" fitWidth="94.0" layoutX="514.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageInTheCouncil5" fitHeight="86.0" fitWidth="94.0" layoutX="622.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true" />
-                <Button fx:id="buttonStoneWood" layoutX="212.0" layoutY="289.0" onAction="#takeStoneWood" pickOnBounds="true" prefHeight="57.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+               <Button fx:id="buttonStoneWood" layoutX="212.0" layoutY="289.0" onAction="#takeStoneWood" pickOnBounds="true" prefHeight="57.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="buttonServants" layoutX="269.0" layoutY="287.0" onAction="#takeTwoServants" pickOnBounds="true" prefHeight="63.0" prefWidth="35.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="buttonTwoCoins" layoutX="318.0" layoutY="292.0" onAction="#takeTwoCoins" pickOnBounds="true" prefHeight="57.0" prefWidth="35.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="buttonMilitaryPoints" layoutX="365.0" layoutY="293.0" onAction="#takeTwoMiliaryPoints" pickOnBounds="true" prefHeight="57.0" prefWidth="44.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
             <Button fx:id="buttonFaithPoints" layoutX="415.0" layoutY="290.0" onAction="#takeOneFaithPoint" pickOnBounds="true" prefHeight="57.0" prefWidth="44.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="buttonPlaceFamiliar" layoutX="70.0" layoutY="90.0" onAction="#placeFamiliarInCouncil" pickOnBounds="true" prefHeight="178.0" prefWidth="452.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="buttonPlaceFamiliar" layoutX="70.0" layoutY="90.0" onAction="#placeFamiliarInCouncil" pickOnBounds="true" prefHeight="178.0" prefWidth="622.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
             </children>
         </Pane>
 
@@ -63,7 +59,7 @@
                         <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
                         <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen" toggleGroup="$familiar" />
                         <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen" selected="true" toggleGroup="$familiar" />
+                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" />
                     </children>
                 </VBox>
             </children>
@@ -192,6 +188,7 @@
                 <Image url="/images/cornici/cornice5x27.png" />
             </image>
         </ImageView>
+      <HBox fx:id="familiarBox" alignment="CENTER_LEFT" layoutX="106.0" layoutY="158.0" prefHeight="100.0" prefWidth="622.0" />
     </children>
 
 </AnchorPane>

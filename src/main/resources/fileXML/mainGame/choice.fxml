@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="175.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.ChoiceController">
+   <children>
+      <Button fx:id="buttonChoiche1" layoutX="55.0" layoutY="95.0" mnemonicParsing="false" onAction="#choice1" prefHeight="36.0" prefWidth="71.0">
+         <font>
+            <Font name="Lucida Blackletter" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonChoiche2" layoutX="180.0" layoutY="95.0" mnemonicParsing="false" onAction="#choice2" prefHeight="36.0" prefWidth="71.0">
+         <font>
+            <Font name="Lucida Blackletter" size="18.0" />
+         </font>
+      </Button>
+      <HBox alignment="CENTER" layoutX="1.0" layoutY="7.0" prefHeight="81.0" prefWidth="297.0">
+         <children>
+            <Label fx:id="message" text="Label">
+               <font>
+                  <Font name="Lucida Blackletter" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

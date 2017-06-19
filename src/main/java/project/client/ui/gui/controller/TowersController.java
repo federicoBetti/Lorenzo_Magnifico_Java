@@ -105,6 +105,7 @@ public class TowersController extends AbstractController {
 
 
     private TowerZone[][] myTower;
+    private String bonusCardType;
 
 
     public TowersController() {
@@ -133,11 +134,7 @@ public class TowersController extends AbstractController {
 
         lastFamiiarPlaced = new ImageView();
 
-        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoZero.png"))));
-        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoNero.png"))));
-        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoBianco.png"))));
-        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/rossoArancio.png"))));
-        green0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
+       green0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
         green1.setImage(new Image(String.valueOf(getClass().getResource("/images/woods.png"))));
         myTower[0][0] = new TowerZone(green0,familiarGreen0);
         myTower[1][0] = new TowerZone(green1,familiarGreen1);
@@ -390,5 +387,31 @@ public class TowersController extends AbstractController {
     private void modifyCard(TowerZone guiTower, String cardName) {
         guiTower.setCardName(cardName);
         guiTower.setCardImage(cardName);
+    }
+
+    public void takeBonusCard(String kindOfCard, String printBonusAction) {
+        loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
+        writeOnChat(printBonusAction);
+        writeOnChat("you can use a random familiar to select the card"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
+        blockButton();
+        this.bonusCardType = kindOfCard;
+    }
+
+    protected void blockButton(){
+        super.blockButton();
+        submit.setOnAction(#takeBonusCard());
+    }
+
+    protected void unlockButton(){
+        super.unlockButton();
+        submit.setOnAction(#takeCard(););
+    }
+
+    private void takeBonusCard() {
+        String towerColourString = getTowerColour(towerColour);
+        if (towerColourString.equals(bonusCardType || bonusCardType.equals(Constants.))){
+            mainController.takeBonusCardAction(floor,towerColourString);
+            unlockButton();
+        }
     }
 }

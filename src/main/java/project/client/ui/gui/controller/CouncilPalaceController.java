@@ -1,10 +1,13 @@
 package project.client.ui.gui.controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by federico on 13/06/17.
@@ -12,43 +15,54 @@ import java.util.ArrayList;
 public class CouncilPalaceController extends AbstractController {
 
 
-    public Button buttonStoneWood;
-    public Button buttonServants;
-    public Button buttonTwoCoins;
-    public Button buttonMilitaryPoints;
-    public Button buttonFaithPoints;
-    public Button buttonPlaceFamiliar;
+    public Button personalBoard;
+    public Button submit;
+    public Button mainGameButton;
+    @FXML
+    private Button buttonStoneWood;
+    @FXML
+    private Button buttonServants;
+    @FXML
+    private Button buttonTwoCoins;
+    @FXML
+    private Button buttonMilitaryPoints;
+    @FXML
+    private Button buttonFaithPoints;
+
+    @FXML
+    private Button buttonPlaceFamiliar;
+    @FXML
+    private HBox familiarBox;
+    private Button[] privilegeButtons;
     private boolean[] privilegeChoosen;
     private int maxPrivilegeChosen;
-    private final int numberOfDifferentPrivileges = 5;
 
 
-
-    public ImageView imageInTheCouncil0;
-    public ImageView imageInTheCouncil1;
-    public ImageView imageInTheCouncil2;
-    public ImageView imageInTheCouncil3;
-    public ImageView imageInTheCouncil4;
-    public ImageView imageInTheCouncil5;
-    private ArrayList<ImageView> familiarInTheCouncil;
+    @FXML
+    private ImageView imageInTheCouncil0;
+    private List<FamiliarPosition> familiarInTheCouncil;
 
 
 
     public CouncilPalaceController(){
         super();
+        int numberOfDifferentPrivileges = 5;
+        privilegeButtons = new Button[numberOfDifferentPrivileges];
         privilegeChoosen = new boolean[numberOfDifferentPrivileges];
-        familiarInTheCouncil = new ArrayList<>(6);
+        familiarInTheCouncil = new ArrayList<>();
         this.maxPrivilegeChosen = 1;
 
     }
 
     public void initialize(){
-        familiarInTheCouncil.add(imageInTheCouncil0);
-        familiarInTheCouncil.add(imageInTheCouncil1);
-        familiarInTheCouncil.add(imageInTheCouncil2);
-        familiarInTheCouncil.add(imageInTheCouncil3);
-        familiarInTheCouncil.add(imageInTheCouncil4);
-        familiarInTheCouncil.add(imageInTheCouncil5);
+        familiarInTheCouncil.add(new FamiliarPosition(imageInTheCouncil0));
+        familiarBox.getChildren().addAll(imageInTheCouncil0);
+
+        privilegeButtons[0] = buttonStoneWood;
+        privilegeButtons[1] = buttonServants;
+        privilegeButtons[2] = buttonTwoCoins;
+        privilegeButtons[3] = buttonMilitaryPoints;
+        privilegeButtons[4] = buttonFaithPoints;
 
     }
 
@@ -58,6 +72,8 @@ public class CouncilPalaceController extends AbstractController {
         this.mainController = mainController;
         mainController.setCouncilPalaceController(this);
     }
+
+
 
     public void setParameters(int maxPrivilegeChosen){
         this.maxPrivilegeChosen = maxPrivilegeChosen;
@@ -77,94 +93,92 @@ public class CouncilPalaceController extends AbstractController {
         return number;
     }
 
-    public void takeStoneWood() {
-        if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[0])
+    private void selectPrivilege(int number){
+        if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[number])
             return;
-        if (!privilegeChoosen[0]){
-            buttonStoneWood.setStyle("-fx-background-color: transparent;-fx-border-color: chocolate; ");
-            privilegeChoosen[0] = true;
-            System.out.println("cambio effetto");
+        if (!privilegeChoosen[number]){
+            privilegeButtons[number].setStyle("-fx-background-color: transparent;-fx-border-color: chocolate; ");
+            privilegeChoosen[number] = true;
         }
         else{
-            privilegeChoosen[0] = false;
-            buttonStoneWood.setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
+            privilegeChoosen[number] = false;
+            privilegeButtons[number].setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
         }
+    }
+
+    public void takeStoneWood() {
+        selectPrivilege(0);
     }
 
     public void takeTwoServants() {
-        if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[1])
-            return;
-        if (!privilegeChoosen[1]){
-            buttonServants.setStyle("-fx-background-color: transparent;-fx-border-color: chocolate; ");
-            privilegeChoosen[1] = true;
-            System.out.println("cambio effetto");
-        }
-        else{
-            privilegeChoosen[1] = false;
-            buttonServants.setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
-        }
+        selectPrivilege(1);
     }
 
     public void takeTwoCoins() {
-        if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[2])
-            return;
-        if (!privilegeChoosen[2]){
-            buttonTwoCoins.setStyle("-fx-background-color: transparent;-fx-border-color: chocolate; ");
-            privilegeChoosen[2] = true;
-            System.out.println("cambio effetto");
-        }
-        else{
-            privilegeChoosen[2] = false;
-            buttonStoneWood.setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
-        }
+        selectPrivilege(2);
     }
 
     public void takeTwoMiliaryPoints() {
-        if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[3])
-            return;
-        if (!privilegeChoosen[3]){
-            buttonMilitaryPoints.setStyle("-fx-background-color: transparent;-fx-border-color: chocolate; ");
-            privilegeChoosen[3] = true;
-            System.out.println("cambio effetto");
-        }
-        else{
-            privilegeChoosen[3] = false;
-            buttonStoneWood.setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
-        }
+        selectPrivilege(3);
     }
 
     public void takeOneFaithPoint() {
-        if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[4])
-            return;
-        if (!privilegeChoosen[4]){
-            buttonFaithPoints.setStyle("-fx-background-color: transparent;-fx-border-color: chocolate; ");
-            privilegeChoosen[4] = true;
-            System.out.println("cambio effetto");
-        }
-        else{
-            privilegeChoosen[4] = false;
-            buttonStoneWood.setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
-        }
+        selectPrivilege(4);
     }
 
     public void placeFamiliarInCouncil() {
-        ImageView spotToMoveFamiliar = findFirstFreePlace();
-        spotToMoveFamiliar.setImage(getTrueFamiliarImage());
+        super.placeFamiliar(familiarInTheCouncil,familiarBox);
     }
 
-    private ImageView findFirstFreePlace() {
-        for (ImageView imageView: familiarInTheCouncil){
-            if (imageView.getImage() == null)
-                return imageView;
-        }
-        return imageInTheCouncil5; //attenzione
-    }
 
     public void goToCouncil() {
-
+        int privilegeSelected = -1;
+        for (int i = 0; i<privilegeChoosen.length; i++){
+            if (privilegeChoosen[i])
+                privilegeSelected = i;
+        }
+        if (privilegeSelected == -1)
+            return;
+        mainController.goToCouncil(privilegeSelected,familiarChosen);
     }
 
+    @Override
+    public void refresh(){
+        for (boolean b: privilegeChoosen)
+            b = false;
+    }
     public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.COUNCIL);
+    }
+
+    public void takeImmediatePrivilege(int quantityOfDifferentPrivileges) {
+        loginBuilder.setScene(SceneType.COUNCIL,SceneType.PERSONAL_BOARD);
+        blockButton();
+        this.maxPrivilegeChosen = quantityOfDifferentPrivileges;
+        writeOnChat("AZIONE BONUS: prendi " + maxPrivilegeChosen + "privilegi diversi");
+    }
+
+
+    private void takePrivilege() {
+        ArrayList<Integer> privilegeSelected = new ArrayList<>();
+        for (int i = 0; i<privilegeChoosen.length; i++){
+            if (privilegeChoosen[i])
+                privilegeSelected.add(i);
+        }
+
+        if (privilegeSelected.size() == maxPrivilegeChosen) {
+            mainController.takeBonusPrivileges(privilegeSelected);
+            unlockButton();
+        }
+    }
+
+    protected void blockButton() {
+        super.blockButton();
+        submit.setOnAction(#takePrivilege());
+    }
+
+    protected void unlockButton() {
+        super.unlockButton();
+        submit.setOnAction(#goToCouncil();
     }
 }

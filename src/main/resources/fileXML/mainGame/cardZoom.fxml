@@ -3,7 +3,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="367.0" prefWidth="227.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provaMainGame.cardZoomController">
+<AnchorPane prefHeight="367.0" prefWidth="227.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.cardZoomController">
    <children>
       <ImageView fx:id="imageView" fitHeight="367.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true" />
    </children>

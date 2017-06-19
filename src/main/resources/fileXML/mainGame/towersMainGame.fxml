@@ -141,7 +141,7 @@
                   <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
                   <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen" toggleGroup="$familiar" />
                   <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen" selected="true" toggleGroup="$familiar" />
+                  <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" />
                </children>
             </VBox>
          </children>

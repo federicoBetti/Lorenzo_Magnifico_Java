@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -31,24 +32,21 @@
                   </ImageView>
                </children>
             </VBox>
-             <ImageView fx:id="imageProduction0" fitHeight="86.0" fitWidth="94.0" layoutX="49.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnProduction0"/>
-             <ImageView fx:id="imageProduction1" fitHeight="86.0" fitWidth="94.0" layoutX="260.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnProduction1"/>
-             <ImageView fx:id="imageProduction2" fitHeight="86.0" fitWidth="94.0" layoutX="373.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnProduction2"/>
-             <ImageView fx:id="imageProduction3" fitHeight="86.0" fitWidth="94.0" layoutX="480.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnProduction3"/>
+             <ImageView fx:id="imageProduction0" fitHeight="86.0" fitWidth="94.0" layoutX="49.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
 
-                    <ImageView fitHeight="516.0" fitWidth="863.0">
+                                                  <ImageView fitHeight="516.0" fitWidth="863.0">
             <image>
                 <Image url="/images/cornici/cornice18x27.png" />
             </image>
         </ImageView>
-      <ImageView fx:id="buildingCard0" fitHeight="187.0" fitWidth="120.0" layoutX="36.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#selectBuildingCard0"/>
-      <ImageView fx:id="buildingCard1" fitHeight="187.0" fitWidth="120.0" layoutX="167.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#selectBuildingCard1"/>
-      <ImageView fx:id="buildingCard2" fitHeight="187.0" fitWidth="120.0" layoutX="300.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#selectBuildingCard2"/>
-      <ImageView fx:id="buildingCard3" fitHeight="187.0" fitWidth="120.0" layoutX="434.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#selectBuildingCard3"/>
-      <ImageView fx:id="buildingCard4" fitHeight="187.0" fitWidth="120.0" layoutX="565.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#selectBuildingCard4"/>
-      <ImageView fx:id="buildingCard5" fitHeight="187.0" fitWidth="120.0" layoutX="697.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#selectBuildingCard5"/>
+      <ImageView fx:id="buildingCard0" fitHeight="187.0" fitWidth="120.0" layoutX="36.0" layoutY="281.0" onMouseClicked="#selectBuildingCard0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buildingCard1" fitHeight="187.0" fitWidth="120.0" layoutX="167.0" layoutY="278.0" onMouseClicked="#selectBuildingCard1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buildingCard2" fitHeight="187.0" fitWidth="120.0" layoutX="300.0" layoutY="277.0" onMouseClicked="#selectBuildingCard2" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buildingCard3" fitHeight="187.0" fitWidth="120.0" layoutX="434.0" layoutY="277.0" onMouseClicked="#selectBuildingCard3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buildingCard4" fitHeight="187.0" fitWidth="120.0" layoutX="565.0" layoutY="277.0" onMouseClicked="#selectBuildingCard4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buildingCard5" fitHeight="187.0" fitWidth="120.0" layoutX="697.0" layoutY="277.0" onMouseClicked="#selectBuildingCard5" pickOnBounds="true" preserveRatio="true" />
 
         <Pane layoutX="886.0" layoutY="32.0" prefHeight="653.0" prefWidth="159.0">
             <children>
@@ -70,7 +68,7 @@
                         <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
                         <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen" toggleGroup="$familiar" />
                         <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen" selected="true" toggleGroup="$familiar" />
+                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" />
                     </children>
                 </VBox>
             </children>
@@ -199,5 +197,7 @@
       <ImageView fx:id="LorenzoMagnifico" fitHeight="215.0" fitWidth="215.0" layoutX="860.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">
          <image>
          </image></ImageView>
+      <Button fx:id="buttonPlaceFamiliar" layoutX="72.0" layoutY="60.0" mnemonicParsing="false" onAction="#placeFamiliar" prefHeight="178.0" prefWidth="677.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+      <HBox fx:id="familiarBox" alignment="CENTER" layoutX="260.0" layoutY="86.0" prefHeight="146.0" prefWidth="480.0" />
     </children>
 </AnchorPane>

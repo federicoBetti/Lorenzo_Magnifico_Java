@@ -41,6 +41,7 @@ public class TowerAction extends BonusInteraction {
 
 	public void printBonusAction(){
 
+    	//todo fare che ritorna una stringa!
     	System.out.println("Bonus tower action:\n" +
 						   "kindOfCard" + kindOfCard+"\n"+
                            "Bonus dice value: " +newCardDicevalue+"\n");

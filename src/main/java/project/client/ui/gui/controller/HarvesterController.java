@@ -1,22 +1,29 @@
 package project.client.ui.gui.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import project.controller.cardsfactory.TerritoryCard;
-import project.model.FamilyMember;
 import project.model.Harvester;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by federico on 11/06/17.
  */
 public class HarvesterController extends AbstractController {
+
     public ImageView harvesterZoneImage;
+    public HBox familiarBox;
+    public Button submit;
+    public Button mainGameButton;
+    public Button personalBoard;
+    public Button buttonPlaceFamiliar;
 
     //todo si potrebbe fare che in base al numero di servants messo si illuminano le carte attivate
 
@@ -26,15 +33,8 @@ public class HarvesterController extends AbstractController {
      */
     @FXML
     private ImageView imageHarvester0;
-    @FXML
-    private ImageView imageHarvester1;
-    @FXML
-    private ImageView imageHarvester2;
-    @FXML
-    private ImageView imageHarvester3;
 
-    private ArrayList<ImageView> allPosition;
-    private String[] familyMemberOnPositions;
+    private List<FamiliarPosition> allPosition;
 
     /**
      * the imageViews where there are the territory cards
@@ -56,13 +56,15 @@ public class HarvesterController extends AbstractController {
     @FXML
     private TextField numberOfServantsTextField;
 
+    //todo si potrebbe fare la stessa cosa con familiar position con le carte
     private List<ImageView> imageTerritoryCard;
     private List<String> nameOfTerritoryCard;
-    private int positionSelected;
+    private boolean positionSelected;
+    private int diceValueBonus;
 
     public HarvesterController() {
         super();
-        positionSelected = -1;
+        positionSelected = false;
         System.out.print("sono nel controller");
     }
 
@@ -86,15 +88,11 @@ public class HarvesterController extends AbstractController {
         imageTerritoryCard.add(territoryCard5);
 
         allPosition = new ArrayList<>();
-        allPosition.add(imageHarvester0);
+        allPosition.add(new FamiliarPosition(imageHarvester0));
         if (mainController.getNumberOfPlayer() >= 3){
-            allPosition.add(imageHarvester1);
-            allPosition.add(imageHarvester2);
-            allPosition.add(imageHarvester3);
-            familyMemberOnPositions = new String[4];
         }
         else {
-            familyMemberOnPositions = new String[1];
+            allPosition = Collections.unmodifiableList(allPosition);
         }
 
     }
@@ -107,7 +105,7 @@ public class HarvesterController extends AbstractController {
     }
 
     public void refresh(){
-        positionSelected = -1;
+
     }
 
     public void inizializeWithMain() {
@@ -120,8 +118,8 @@ public class HarvesterController extends AbstractController {
 
 
     public void doHarvester() {
-        int servants = 0;
-        if (positionSelected == -1)
+        int servants = -1;
+        if (familiarChosen==null)
             return;
         try {
             servants = Integer.parseInt(numberOfServantsTextField.getText());
@@ -130,7 +128,7 @@ public class HarvesterController extends AbstractController {
             return;
         }
 
-        mainController.doHarvester(positionSelected,servants,familiarChosen);
+        mainController.doHarvester(servants,familiarChosen);
     }
 
 
@@ -159,34 +157,10 @@ public class HarvesterController extends AbstractController {
     }
 
 
-    public void placeFamiliarOnHarvester0() {
-        if (familyMemberOnPositions[0] != null)
-            return;
-        imageHarvester0.setImage(getTrueFamiliarImage());
-        positionSelected = 0;
+    public void placeFamiliar(){
+        super.placeFamiliar(allPosition, familiarBox);
+        positionSelected = true;
     }
-
-    public void placeFamiliarOnHarvester1() {
-        if (familyMemberOnPositions[1] != null)
-            return;
-        imageHarvester1.setImage(getTrueFamiliarImage());
-        positionSelected = 1;
-    }
-
-    public void placeFamiliarOnHarvester2() {
-        if (familyMemberOnPositions[2] != null)
-            return;
-        imageHarvester2.setImage(getTrueFamiliarImage());
-        positionSelected = 2;
-    }
-
-    public void placeFamiliarOnHarvester3() {
-        if (familyMemberOnPositions[3] != null)
-            return;
-        imageHarvester3.setImage(getTrueFamiliarImage());
-        positionSelected = 3;
-    }
-
 
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.HARVESTER);
@@ -206,18 +180,40 @@ public class HarvesterController extends AbstractController {
     }
 
     public void updatePosition(Harvester[] harvesterZone) {
-        for (int i = 0; i<harvesterZone.length; i++){
-            if (harvesterZone[i].getFamiliarOnThisPosition() == null){
-                familyMemberOnPositions[i] = "";
-                allPosition.get(i).setImage(null);
-            }
-            if (familyMemberOnPositions[i].equals(harvesterZone[i].getFamiliarOnThisPosition().toString()))
-                continue;
-            else {
-                familyMemberOnPositions[i] = harvesterZone[i].getFamiliarOnThisPosition().toString();
-                ImageView imageView = allPosition.get(i);
-                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familyMemberOnPositions[i] + ".png"))));
-            }
+        super.updatePosition(harvesterZone,allPosition);
+    }
+
+    public void bonusHarvester(int diceValue) {
+        loginBuilder.setScene(SceneType.HARVESTER, SceneType.PERSONAL_BOARD);
+        blockButton();
+        this.diceValueBonus = diceValue;
+        numberOfServantsTextField.setText("");
+        writeOnChat("BONUS ACTION: you can perform an harvester action of value" + diceValueBonus);
+        writeOnChat("select the number of servants that you want to use");
+    }
+
+
+    private void bonusAction() {
+        int servants = -1;
+        try {
+            servants = Integer.parseInt(numberOfServantsTextField.getText());
         }
+        catch (NumberFormatException e){
+            return;
+        }
+
+        mainController.doBonusHarvester(servants);
+        unlockButton();
+
+    }
+
+    protected void blockButton() {
+        super.blockButton();
+        submit.setOnAction(#bonusAction());
+    }
+
+    protected void unlockButton() {
+        super.unlockButton();
+        submit.setOnAction(#doHarvester());
     }
 }

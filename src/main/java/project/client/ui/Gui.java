@@ -25,7 +25,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void takeBonusCard(TowerAction towerAction) {
-        //verso ui
+        mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.printBonusAction());
     }
 
     @Override
@@ -46,19 +46,19 @@ public class Gui extends AbstractUI {
 
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
-
+        mainController.bonusHarvester(bonusHarv.getDiceValue());
     }
 
 
     @Override
     public void bonusProduction(BonusProductionOrHarvesterAction bonusProd)  {
-
+        mainController.bonusProduction(bonusProd.getDiceValue());
     }
 
 
     @Override
     public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) {
-
+        mainController.takePrivilege(privilegesAction.getQuantityOfDifferentPrivileges());
     }
 
     @Override

@@ -1,54 +1,62 @@
 package project.client.ui.gui.controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import project.controller.cardsfactory.BuildingCard;
 import project.model.Production;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ProductionController extends AbstractController{
 
-    public Button goBackButton;
-    public ImageView productionZoneImage;
 
-    public ImageView buildingCard0;
-    public ImageView buildingCard1;
-    public ImageView buildingCard2;
-    public ImageView buildingCard3;
-    public ImageView buildingCard4;
-    public ImageView buildingCard5;
+    private final int numberOfCard = 6;
+
+    @FXML
+    private ImageView productionZoneImage;
+    @FXML
+    private ImageView buildingCard0;
+    @FXML
+    private ImageView buildingCard1;
+    @FXML
+    private ImageView buildingCard2;
+    @FXML
+    private ImageView buildingCard3;
+    @FXML
+    private ImageView buildingCard4;
+    @FXML
+    private ImageView buildingCard5;
+    @FXML
+    private HBox familiarBox;
+
     private ArrayList<ImageView> allBuildingCard;
     private ArrayList<String> nameOfBuilding;
 
     public ImageView imageProduction0;
-    public ImageView imageProduction1;
-    public ImageView imageProduction2;
-    public ImageView imageProduction3;
-    private ArrayList<ImageView> allPosition;
-    private String[] familyMemberOnPositions;
+    private List<FamiliarPosition> allPosition;
 
 
     private boolean[] cardSelected;
-    private int positionSelected;
+    private boolean positionSelected;
 
     DropShadow borderGlow= new DropShadow();
     DropShadow borderNull= new DropShadow();
+    private int diceValueBonus;
 
 
-
-
-     public ProductionController(){
+    public ProductionController(){
          super();
-        cardSelected = new boolean[6];
-        positionSelected = -1;
+        cardSelected = new boolean[numberOfCard];
+        positionSelected = false;
         //todo guardare bene come fare sta parte in caso di piu di 4 persone nella zona
 
          /**
@@ -83,15 +91,11 @@ public class ProductionController extends AbstractController{
         allBuildingCard.add(buildingCard4);
         allBuildingCard.add(buildingCard5);
 
-        allPosition.add(imageProduction0);
+        allPosition.add(new FamiliarPosition(imageProduction0));
         if (mainController.getNumberOfPlayer() >= 3){
-            allPosition.add(imageProduction1);
-            allPosition.add(imageProduction2);
-            allPosition.add(imageProduction3);
-            familyMemberOnPositions = new String[4];
         }
         else {
-            familyMemberOnPositions = new String[1];
+            allPosition = Collections.unmodifiableList(allPosition);
         }
     }
 
@@ -111,7 +115,7 @@ public class ProductionController extends AbstractController{
     }
 
     public void doProduction() {
-        if (positionSelected == -1)
+        if (familiarChosen==null)
             return;
         List<String> buildingCardSelected = new LinkedList<>();
         for (int i = 0; i<cardSelected.length; i++){
@@ -120,7 +124,7 @@ public class ProductionController extends AbstractController{
                 buildingCardSelected.add(cardName);
             }
         }
-        mainController.doProduction(positionSelected,familiarChosen,buildingCardSelected);
+        mainController.doProduction(familiarChosen,buildingCardSelected);
     }
 
     private void selectCard(int index){
@@ -159,32 +163,10 @@ public class ProductionController extends AbstractController{
     }
 
 
-
-    public void placeFamiliarOnProduction0() {
-        if (familyMemberOnPositions[0] != null)
-            return;
-        imageProduction0.setImage(getTrueFamiliarImage());
-        positionSelected = 0;
+    public void placeFamiliar(){
+        super.placeFamiliar(allPosition, familiarBox);
+        positionSelected = true;
     }
-    public void placeFamiliarOnProduction1() {
-        if (familyMemberOnPositions[1] != null)
-            return;
-        imageProduction1.setImage(getTrueFamiliarImage());
-        positionSelected = 1;
-    }
-    public void placeFamiliarOnProduction2() {
-        if (familyMemberOnPositions[2] != null)
-            return;
-        imageProduction2.setImage(getTrueFamiliarImage());
-        positionSelected = 2;
-    }
-    public void placeFamiliarOnProduction3() {
-        if (familyMemberOnPositions[3] != null)
-            return;
-        imageProduction3.setImage(getTrueFamiliarImage());
-        positionSelected = 3;
-    }
-
 
     public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.PRODUCTION);
@@ -204,19 +186,44 @@ public class ProductionController extends AbstractController{
     }
 
     public void updatePosition(Production[] productions){
-        for (int i = 0; i<productions.length; i++){
-            if (productions[i].getFamiliarOnThisPosition() == null){
-                familyMemberOnPositions[i] = null;
-                allPosition.get(i).setImage(null);
-            }
-            if (familyMemberOnPositions[i].equals(productions[i].getFamiliarOnThisPosition().toString()))
-                continue;
-            else {
-                familyMemberOnPositions[i] = productions[i].getFamiliarOnThisPosition().toString();
-                ImageView imageView = allPosition.get(i);
-                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familyMemberOnPositions[i] + ".png"))));
+        super.updatePosition(productions,allPosition);
+    }
+
+    public void bonusProduction(int diceValue) {
+        loginBuilder.setScene(SceneType.HARVESTER, SceneType.PERSONAL_BOARD);
+        blockButton();
+        this.diceValueBonus = diceValue;
+        for (int i = 0; i < numberOfCard; i++){
+            cardSelected[i] = false;
+            allBuildingCard.get(i).setEffect(borderNull);
+        }
+        writeOnChat("BONUS ACTION: you can perform a prodution action of value" + diceValueBonus);
+        writeOnChat("select the cards that you want to use");
+    }
+
+    protected void blockButton() {
+        super.blockButton();
+        submit.setOnAction(#bonusAction());
+    }
+
+    private void bonusAction() {
+
+        List<String> buildingCardSelected = new LinkedList<>();
+        for (int i = 0; i<cardSelected.length; i++){
+            if (cardSelected[i]){
+                String cardName = nameOfBuilding.get(i);
+                buildingCardSelected.add(cardName);
             }
         }
+
+        mainController.doBonusProduction(buildingCardSelected);
+        unlockButton();
+
+    }
+
+    protected void unlockButton() {
+        super.unlockButton();
+        submit.setOnAction(#doProduction());
     }
 }
 

@@ -119,7 +119,7 @@ public class MainController {
     }
 
 
-    public void doProduction(int positionSelected, String familiarChosen, List<String> buildingCardSelected) {
+    public void doProduction(boolean positionSelected, String familiarChosen, List<String> buildingCardSelected) {
         clientSetter.productionAction();
     }
 
@@ -127,9 +127,30 @@ public class MainController {
         clientSetter.harvesterAction(positionSelected,familiarChosen,servants);
     }
 
+    public void goToCouncil(int privilegeSelected, String familiarChosen) {
+        clientSetter.councilAction(privilegeSelected,familiarChosen);
+    }
+
+    public void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
+        clientSetter.immediatePriviledgeAction(privilegeSelected);
+    }
+
+    public void doBonusHarvester(int servants) {
+        clientSetter.bonusHarvesterAction(servants);
+    }
+
+    public void doBonusProduction(List<String> buildingCardSelected) {
+        clientSetter.bonusProductionAction(buildingCardSelected);
+    }
+
+    public void takeBonusCardAction(int floor, String towerColourString) {
+        clientSetter.takeBonusCardAction(floor,towerColourString);
+    }
+
 
     //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
 
+    
 
     public void personalBoardUpdate(){
         PersonalBoard personalBoard = clientSetter.getUiPersonalBoard();
@@ -161,5 +182,21 @@ public class MainController {
         }
     }
 
+
+    public void takePrivilege(int quantityOfDifferentPrivileges) {
+        councilPalaceController.takeImmediatePrivilege(quantityOfDifferentPrivileges);
+    }
+
+    public void bonusHarvester(int diceValue) {
+        harvesterController.bonusHarvester(diceValue);
+    }
+
+    public void bonusProduction(int diceValue) {
+        productionController.bonusProduction(diceValue);
+    }
+
+    public void takeBonusCard(String kindOfCard, String printBonusAction) {
+        towerController.takeBonusCard(kindOfCard,printBonusAction);
+    }
 
 }
