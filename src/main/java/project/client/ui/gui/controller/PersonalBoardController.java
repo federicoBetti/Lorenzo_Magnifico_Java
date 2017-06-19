@@ -1,45 +1,115 @@
 package project.client.ui.gui.controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import project.controller.cardsfactory.TerritoryCard;
+import project.model.DevelopmentCard;
+import project.model.PersonalBoard;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PersonalBoardController extends AbstractController {
-    public Button goBackButton;
+    @FXML
+private Button goBackButton;
 
 
-    public ImageView territory0;
-    public ImageView territory1;
-    public ImageView territory2;
-    public ImageView territory3;
-    public ImageView territory4;
-    public ImageView territory5;
-    public ImageView character0;
-    public ImageView character1;
-    public ImageView character2;
-    public ImageView character3;
-    public ImageView character4;
-    public ImageView character5;
-    public ImageView building0;
-    public ImageView building1;
-    public ImageView building2;
-    public ImageView building3;
-    public ImageView building4;
-    public ImageView building5;
-    public ImageView ventures0;
-    public ImageView ventures1;
-    public ImageView ventures2;
-    public ImageView ventures3;
-    public ImageView ventures4;
-    public ImageView ventures5;
+    @FXML
+private ImageView territory0;
+    @FXML
+private ImageView territory1;
+    @FXML
+private ImageView territory2;
+    @FXML
+private ImageView territory3;
+    @FXML
+private ImageView territory4;
+    @FXML
+private ImageView territory5;
+    @FXML
+private ImageView character0;
+    @FXML
+private ImageView character1;
+    @FXML
+private ImageView character2;
+    @FXML
+private ImageView character3;
+    @FXML
+private ImageView character4;
+    @FXML
+private ImageView character5;
+    @FXML
+private ImageView building0;
+    @FXML
+private ImageView building1;
+    @FXML
+private ImageView building2;
+    @FXML
+private ImageView building3;
+    @FXML
+private ImageView building4;
+    @FXML
+private ImageView building5;
+    @FXML
+private ImageView ventures0;
+    @FXML
+private ImageView ventures1;
+    @FXML
+private ImageView ventures2;
+    @FXML
+private ImageView ventures3;
+    @FXML
+private ImageView ventures4;
+    @FXML
+private ImageView ventures5;
+    
+    private List<ImageView> territoryCards;
+    private List<ImageView> characterCards;
+    private List<ImageView> buildingCards;
+    private List<ImageView> venturesCards;
 
     public PersonalBoardController(){
         imageFamiliarBlack = new ImageView();
         imageFamiliarNull = new ImageView();
         imageFamiliarWhite = new ImageView();
         imageFamiliarOrange = new ImageView();
+        territoryCards = new ArrayList<>();
+        characterCards = new ArrayList<>();
+        buildingCards = new ArrayList<>();
+        venturesCards = new ArrayList<>();
     }
 
+    public void initialize(){
+        territoryCards.add(territory0);
+        territoryCards.add(territory1);
+        territoryCards.add(territory2);
+        territoryCards.add(territory3);
+        territoryCards.add(territory4);
+        territoryCards.add(territory5);
+
+        characterCards.add(character0);
+        characterCards.add(character1);
+        characterCards.add(character2);
+        characterCards.add(character3);
+        characterCards.add(character4);
+        characterCards.add(character5);
+
+        buildingCards.add(building0);
+        buildingCards.add(building1);
+        buildingCards.add(building2);
+        buildingCards.add(building3);
+        buildingCards.add(building4);
+        buildingCards.add(building5);
+
+        venturesCards.add(ventures0);
+        venturesCards.add(ventures1);
+        venturesCards.add(ventures2);
+        venturesCards.add(ventures3);
+        venturesCards.add(ventures4);
+        venturesCards.add(ventures5);
+    }
 
     @Override
     public void setMainController(MainController mainController) {
@@ -143,4 +213,15 @@ public class PersonalBoardController extends AbstractController {
         loginBuilder.showCardZoomed(ventures5.getImage());
     }
 
+
+    public void update(PersonalBoard personalBoard) {
+        fillList(territoryCards, personalBoard.getTerritories());
+        fillList(characterCards, personalBoard.getCharacters());
+        fillList(buildingCards, personalBoard.getBuildings());
+        fillList(venturesCards, personalBoard.getVentures());
+    }
+
+    private void fillList(List<ImageView> territoryCards, List<DevelopmentCard> territories) {
+
+    }
 }

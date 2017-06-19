@@ -202,6 +202,7 @@ public class MainController {
         harvesterController.updateCards(personalBoard.getTerritories());
         productionController.updateCards(personalBoard.getBuildings());
         leaderCardController.updateCards(personalBoard.getMyLeaderCard());
+        personalBoardController.update(personalBoard);
 
     }
 
