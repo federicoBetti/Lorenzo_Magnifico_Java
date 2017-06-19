@@ -1,9 +1,11 @@
 package project.controller.cardsfactory;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class VenturesCost implements Cost {
+public class VenturesCost implements Cost, Serializable {
 
 
     private int stoneRequired;

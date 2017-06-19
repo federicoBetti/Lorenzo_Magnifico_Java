@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 /**
  * Created by raffaelebongo on 29/05/17.
@@ -56,13 +57,13 @@ public class SocketClient extends AbstractClient {
     //send requests
     @Override
     public void loginRequest(String loginParameter)  {
-        sendKindOfRequest(Constants.LOGIN_REQUEST);
-        sendKindOfRequest(loginParameter);
+        sendGenericObject(Constants.LOGIN_REQUEST);
+        sendGenericObject(loginParameter);
     }
 
     @Override
-    public void takeDevCard(String towerColour, String floor, String familiarColour )   {
-        sendKindOfRequest(Constants.TAKE_DEV_CARD);
+    public void takeDevCard(String towerColour, int floor, String familiarColour )   {
+        sendGenericObject(Constants.TAKE_DEV_CARD);
         send3Parameters(towerColour, floor, familiarColour);
     }
 
@@ -72,48 +73,49 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void marketAction( String parameter1, String parameter2 )  {
-        sendKindOfRequest(Constants.GO_TO_MARKET);
-        send2Parameters(parameter1, parameter2);
+    public void marketAction( int position, String familyColour )  {
+        sendGenericObject(Constants.GO_TO_MARKET);
+        send2Parameters(position, familyColour);
     }
 
     @Override
-    public void councilAction(int parameter1, String parameter2)   {
-        sendKindOfRequest(Constants.GO_TO_COUNCIL_PALACE);
-        send2Parameters(parameter1, parameter2);
+    public void councilAction(int priviledgeNumber, String familyColour)   {
+        sendGenericObject(Constants.GO_TO_COUNCIL_PALACE);
+        send2Parameters(priviledgeNumber, familyColour);
     }
 
     @Override
-    public void productionAction(String[] parameters)   {
-        sendKindOfRequest(Constants.PRODUCTION);
-        sendAllParameters(parameters);
+    public void productionAction(String familiarColor, List<String> buildingCards )   {
+        sendGenericObject(Constants.PRODUCTION);
+        sendGenericObject(familiarColor);
+        sendAllStrings(buildingCards);
     }
 
     @Override
-    public void immediatePriviledgeAction(String[] privileges)  {
-        sendAllParameters(privileges);
+    public void immediatePriviledgeAction(List<Integer> privileges)  {
+        sendAllIntegers(privileges);
     }
 
     @Override
     public void playLeaderCard(String name )   {
 
-        sendKindOfRequest(Constants.PLAY_LEADER_CARD);
-        sendKindOfRequest(name);
+        sendGenericObject(Constants.PLAY_LEADER_CARD);
+        sendGenericObject(name);
     }
 
     @Override
     public void discardLeaderCard(String name)   {
-        sendKindOfRequest(Constants.DISCARD_LEADER_CARD);
-        sendKindOfRequest(name);
+        sendGenericObject(Constants.DISCARD_LEADER_CARD);
+        sendGenericObject(name);
     }
 
     @Override
-    public void prayOrNot(String action)   {
+    public void prayOrNot(boolean action)   {
 
-        if ( action.equals("yes"))
-            sendKindOfRequest(Constants.PRAY);
+        if (action)
+            sendGenericObject(Constants.PRAY);
         else
-            sendKindOfRequest(Constants.DONT_PRAY);
+            sendGenericObject(Constants.DONT_PRAY);
     }
 
     public void askForPraying() {
@@ -136,14 +138,14 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    public void takeBonusCardAction(String floor, String towerColour )  {
-        send2Parameters(floor, towerColour);
+    public void takeBonusCardAction(int floor, String towerColour )  {
+        send2Parameters(towerColour, floor);
     }
 
     @Override
-    public void harvesterAction(String parameter1, String parameter2, String parameter3)   {
-        sendKindOfRequest(Constants.HARVESTER);
-        send3Parameters(parameter1, parameter2, parameter3);
+    public void harvesterAction(String familyColour, int servantsNumber)   {
+        sendGenericObject(Constants.HARVESTER);
+        send2Parameters(familyColour, servantsNumber);
     }
 
 
@@ -172,9 +174,9 @@ public class SocketClient extends AbstractClient {
         clientSetter.takeImmediatePrivilege(privilegesAction);
     }
 
-    public void bonusHarvesterAction(String servantsNumber)   {
-        sendKindOfRequest(Constants.BONUS_HARVESTER);
-        sendKindOfRequest(servantsNumber);
+    public void bonusHarvesterAction(int servantsNumber)   {
+        sendGenericObject(Constants.BONUS_HARVESTER);
+        sendGenericObject(servantsNumber);
     }
 
     public void bonusProduction()   {
@@ -189,9 +191,9 @@ public class SocketClient extends AbstractClient {
         clientSetter.bonusProduction(bonusProd);
     }
 
-    public void bonusProductionAction(String[] parameters)   {
-        sendKindOfRequest(Constants.BONUS_PRODUCTION);
-        sendAllParameters(parameters);
+    public void bonusProductionAction(List<String> parameters)   {
+        sendGenericObject(Constants.BONUS_PRODUCTION);
+        sendAllStrings(parameters);
     }
 
     public void takeBonusCard()  {
@@ -212,8 +214,8 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void sendChoicePe(String input)   {
-        sendKindOfRequest(input);
+    public void sendChoicePe(int input)   {
+        sendGenericObject(input);
     }
 
     public void bothPaymentsAvailable() {
@@ -221,8 +223,8 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void sendChoicePaymentVc(String payment)  {
-        sendKindOfRequest(payment);
+    public void sendChoicePaymentVc(int payment)  {
+        sendGenericObject(payment);
     }
 
     //updates
@@ -278,7 +280,7 @@ public class SocketClient extends AbstractClient {
 
 
     //sending methods
-    void send2Parameters(String parameter1, String parameter2 )   {
+    void send2Parameters(Object parameter1, Object parameter2 )   {
         try {
             objectOutputStream.writeObject(parameter1);
             objectOutputStream.flush();
@@ -292,7 +294,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void send3Parameters(String parameter1, String parameter2, String parameter3 )   {
+    void send3Parameters(Object parameter1, Object parameter2, Object parameter3 )   {
 
         try {
             objectOutputStream.writeObject(parameter1);
@@ -312,7 +314,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendAllParameters(String[] parameters )   {
+    void sendAllStrings(List<String> parameters )   {
 
         for( String elem: parameters ){
             try {
@@ -325,7 +327,20 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendKindOfRequest(String kindOfRequest ) {
+    void sendAllIntegers(List<Integer> parameters ){
+
+        for( Integer elem: parameters ){
+            try {
+                objectOutputStream.writeObject(elem);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void sendGenericObject(Object kindOfRequest ) {
 
         try {
             objectOutputStream.writeObject(kindOfRequest);
@@ -334,6 +349,11 @@ public class SocketClient extends AbstractClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void nicknameAlreadyUsed() {
+        clientSetter.nicknameAlreadyUsed();
     }
 }
 

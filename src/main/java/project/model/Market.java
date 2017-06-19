@@ -4,10 +4,12 @@ import project.controller.effects.effectsfactory.BuildImmediateEffects;
 import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.effects.realeffects.Effects;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class Market extends Position {
+public class Market extends Position implements Serializable{
 
     Effects effect; //todo costruire con il tris: ogni posto ha sui effetti
 

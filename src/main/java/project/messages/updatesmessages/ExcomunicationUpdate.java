@@ -4,10 +4,12 @@ import project.controller.Constants;
 import project.model.Board;
 import project.model.ExcommunicationZone;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 14/06/17.
  */
-public class ExcomunicationUpdate extends Updates {
+public class ExcomunicationUpdate extends Updates implements Serializable{
 
     ExcommunicationZone[] excommunicationZone;
 

@@ -4,10 +4,12 @@ import project.controller.Constants;
 import project.model.Board;
 import project.model.Production;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 14/06/17.
  */
-public class ProductionUpdate extends Updates {
+public class ProductionUpdate extends Updates implements Serializable {
 
     Production[] productionZone;
 

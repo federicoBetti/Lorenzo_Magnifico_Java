@@ -72,7 +72,7 @@ public class LoginBuilder extends Application {
      */
     private void initRootLayout() {
         try {
-            // Load root layout from fxml file.
+            // Configuration root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/login/rootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
@@ -91,7 +91,7 @@ public class LoginBuilder extends Application {
      */
     private void initializeInitialLogin() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/login.fxml"));
             initialLoginScene = (AnchorPane) loader.load();
@@ -107,7 +107,7 @@ public class LoginBuilder extends Application {
 
     private void initializeWaitingLogin() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/attesaInizioPartita.fxml"));
             waitingLoginScene = (AnchorPane) loader.load();
@@ -163,7 +163,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaGeneralMainGame() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/generalMainGame.fxml"));
             generalScene = (AnchorPane) loader.load();
@@ -181,7 +181,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaTowers() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/towersMainGame.fxml"));
             towersScene = (AnchorPane) loader.load();
@@ -203,7 +203,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaMarket() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/marketMainGame.fxml"));
             marketScene = (AnchorPane) loader.load();
@@ -221,7 +221,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaPersonalBoard() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/personalBoardMainGame.fxml"));
             personalBoardScene = (AnchorPane) loader.load();
@@ -243,7 +243,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaHarvester() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/harvesterMainGame.fxml"));
             harvesterScene = (AnchorPane) loader.load();
@@ -261,7 +261,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaProduction() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/productionMainGame.fxml"));
             productionScene = (AnchorPane) loader.load();
@@ -282,7 +282,7 @@ public class LoginBuilder extends Application {
      */
     private void initRootLayoutMainGame() {
         try {
-            // Load root layout from fxml file.
+            // Configuration root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/mainGame/rootLayout.fxml"));
             rootLayoutMainGame = (BorderPane) loader.load();
 
@@ -298,7 +298,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaCouncil() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/councilPalaceMainGame.fxml"));
             councilScene = (AnchorPane) loader.load();
@@ -320,7 +320,7 @@ public class LoginBuilder extends Application {
 
     private  void inizializzaLeaderCard() {
         try {
-            // Load person overview.
+            // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/leaderCardMainGame.fxml"));
             leaderScene = (AnchorPane) loader.load();
@@ -404,7 +404,7 @@ public class LoginBuilder extends Application {
 
     public void showCardZoomed(Image imageView) {
         try {
-            // Load the fxml file and create a new stage for the popup dialog.
+            // Configuration the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/cardZoom.fxml"));
             AnchorPane card = (AnchorPane) loader.load();

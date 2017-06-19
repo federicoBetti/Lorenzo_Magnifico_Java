@@ -5,11 +5,12 @@ import project.controller.effects.effectsfactory.TrisIE;
 import project.model.DevelopmentCard;
 import project.model.PersonalBoard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class VenturesCard extends DevelopmentCard {
+public class VenturesCard extends DevelopmentCard implements Serializable{
 
     private List<VenturesCost> possibleCost;
 

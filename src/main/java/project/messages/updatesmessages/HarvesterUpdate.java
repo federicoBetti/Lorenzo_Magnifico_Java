@@ -4,10 +4,12 @@ import project.controller.Constants;
 import project.model.Board;
 import project.model.Harvester;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 14/06/17.
  */
-public class HarvesterUpdate extends Updates {
+public class HarvesterUpdate extends Updates implements Serializable {
     Harvester[] harvesterZone;
 
     public HarvesterUpdate(Harvester[] harvester ){

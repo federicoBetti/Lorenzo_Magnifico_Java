@@ -2,12 +2,13 @@ package project.model;
 
 import project.controller.cardsfactory.ExcommunicationTile;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * 
  */
-public class ExcommunicationZone extends Position {
+public class ExcommunicationZone extends Position implements Serializable {
 
 
     /**

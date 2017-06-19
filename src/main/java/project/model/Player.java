@@ -3,14 +3,18 @@ package project.model;
 import project.controller.cardsfactory.*;
 import project.messages.LeaderEffectsUsefull;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class Player {
+public class Player implements Serializable{
 
 	private String name;
 
 	private PersonalBoard personalBoardReference;
+
+	private boolean isOn;
 
 	private Score score;
 
@@ -29,6 +33,14 @@ public class Player {
     private ExcommunicationEffectsUseful excommunicationEffectsUseful;
 
 
+
+	public boolean isOn() {
+		return isOn;
+	}
+
+	public void setOn(boolean on) {
+		isOn = on;
+	}
 
 	public void setName(String name) {
 		this.name = name;

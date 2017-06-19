@@ -5,17 +5,18 @@ import project.controller.effects.effectsfactory.TrisIE;
 import project.model.DevelopmentCard;
 import project.model.PersonalBoard;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * 
  */
-public class CharacterCard extends DevelopmentCard {
+public class CharacterCard extends DevelopmentCard implements Serializable{
 
     private CharactersCost cardCost;
-    /**
-     * Default constructor
-     */
+
+    public CharacterCard(){}
+
     public CharacterCard(String name, int period, boolean choicePe, CharactersCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
         super(name, period, choicePe, immediateEffects, permanentEffects);
         this.cardCost = cost;

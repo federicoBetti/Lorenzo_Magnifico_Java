@@ -94,6 +94,11 @@ public class Constants {
     public static final String SECOND_FLOOR = "2";
     public static final String FIRST_FLOOR = "1";
     public static final String GROUND_FLOOR = "0";
+    public static final String NICKNAME_USED = "nickname-already-used";
+    public static final int PRIVILEDGE_NUMBER = 5;
+    public static final int FAITH_TRACK = 15;
+    public static final int MARKET_ZONE_FOUR_PLAYER = 4;
+    public static final int MARKET_ZONE_TWO_PLAYER = 2;
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

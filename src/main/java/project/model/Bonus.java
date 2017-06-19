@@ -1,9 +1,11 @@
 package project.model;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class Bonus {
+public class Bonus implements Serializable {
 
 
     private int bonusForTakingTerritory = 0;

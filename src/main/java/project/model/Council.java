@@ -1,9 +1,11 @@
 package project.model;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class Council extends Position {
+public class Council extends Position implements Serializable{
 
     private Player player;
     /**

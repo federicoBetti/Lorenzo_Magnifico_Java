@@ -1,13 +1,15 @@
 package project.server;
-import project.configurations.*;
+
 import project.controller.Constants;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
 import project.server.network.socket.SocketServer;
-import project.messages.Notify;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by raffaelebongo on 18/05/17.
@@ -23,15 +25,11 @@ public class Server {
 
     private ServerRMI rmiServer;
 
-    Configuration configuration;
 
-    public Server() throws IOException {
+    private Server() throws IOException {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
-        configuration = new Configuration();
-        configuration.loadConfiguration();//TODO vanno implementate tutte i metodi di configurazione e chiamati da qui
-
     }
 
     public static void main(String[] args) throws IOException {
@@ -51,35 +49,84 @@ public class Server {
      */
 
     public void loginRequest(String nickname, PlayerHandler player) throws IOException {
+        if ( nicknameAlreadyUsed(nickname))
+            player.sendAnswer(Constants.NICKNAME_USED);
+
         if ( rooms.isEmpty() || roomsAreAllFull()  ) {
             createNewRoom(nickname, player);
             return;
         }
-            for (Room room : rooms) {
-                if (!room.isFull()) {
-                    room.nicknamePlayersMap.put(nickname, player);
-                    Notify notify = new Notify(Constants.LOGIN_SUCCEDED);
-                    player.sendAnswer(notify);
-                    if ( room.isFull())
-                        startMatch(room);
-                    break;
-                }
+
+        for (Room room : rooms) {
+            if ( room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
+                player.setOn(true);
+                room.nicknamePlayersMap.replace(nickname, player);
+                checkAndStartTheTimer(room, player);
+                System.out.println(room.nicknamePlayersMap.entrySet());
             }
 
+            else if (!room.isFull()) {
+                player.setOn(true);
+                room.nicknamePlayersMap.put(nickname, player);
+                System.out.println(room.nicknamePlayersMap.entrySet());
+                player.sendAnswer(Constants.LOGIN_SUCCEDED);
+                checkAndStartTheTimer(room, player);
+
+                if ( room.isFull() ) {
+                    startMatch(room);
+                }
+
+                break;
+            }
         }
+    }
+
+    private boolean nicknameAlreadyUsed( String nickname ){
+        for ( Room room: rooms ) {
+            for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet())
+                if (entry.getKey().equals(nickname) && entry.getValue().isOn())
+                    return true;
+        }
+        return false;
+    }
+
+    private void checkAndStartTheTimer( Room room, PlayerHandler player ){
+        if ( room.numberOfPlayerOn() == 2 ){
+            myTimerStartMatch(player, room);
+        }
+    }
+
+    private void myTimerStartMatch( PlayerHandler player, Room room ) {
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                    if( room.minimumNumberOfPlayers() ) {
+                        player.itsMyTurn();
+                    }
+                    else
+                        System.out.println("è caduta connessione, non ci sono abbastanza player nella room");
+            }
+        };
+
+        Timer timer = new Timer();
+        System.out.println("timer iniziato da capo");
+        timer.schedule(timerTask, 10000);
+    }
 
     private void startMatch(Room room) {
-        Notify notify = new Notify(Constants.YOUR_TURN);
-        room.getBoard().getTurn().getPlayerTurn().get(0).sendAnswer(notify);
+        room.startMatch();
     }
 
     private void createNewRoom(String nickname, PlayerHandler player) {
-            Room room = new Room(this);
-            rooms.add(room);
-            room.nicknamePlayersMap.put(nickname, player);
-             //todo bisogna definire il metodo che fa i turni
-            Notify notify = new Notify(Constants.LOGIN_SUCCEDED);
-            player.sendAnswer(notify);
+        Room room = new Room(this);
+        rooms.add(room);
+        System.out.println("new room created!");
+        player.setOn(true);
+        room.nicknamePlayersMap.put(nickname, player);
+
+        System.out.println(room.nicknamePlayersMap.entrySet());
+        player.sendString(Constants.LOGIN_SUCCEDED);
     }
 
     private boolean roomsAreAllFull() {

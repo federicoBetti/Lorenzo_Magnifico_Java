@@ -1,9 +1,11 @@
 package project.controller.cardsfactory;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class LeaderCard {
+public class LeaderCard implements Serializable{
 
     private String name;
 

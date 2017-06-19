@@ -4,10 +4,12 @@ import project.controller.Constants;
 import project.model.Board;
 import project.model.Tower;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 14/06/17.
  */
-public class TowersUpdate extends Updates {
+public class TowersUpdate extends Updates implements Serializable {
 
     Tower[][] towersZone;
 

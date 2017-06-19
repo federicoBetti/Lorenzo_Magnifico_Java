@@ -1,9 +1,11 @@
 package project.model;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class FamilyMember {
+public class FamilyMember implements Serializable{
 
 
     private String familyColour;

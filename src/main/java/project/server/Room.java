@@ -1,5 +1,7 @@
 package project.server;
 
+import project.configurations.Configuration;
+import project.controller.Constants;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.model.Board;
@@ -35,20 +37,27 @@ public class Room {
 
     AllSupportFunctions allSupportFunctions;
 
+    Configuration configuration;
+
 
     Room(Server server){
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
         buildExcommunicationEffects = new BuildExcommunicationEffects();
+        configuration = new Configuration();
         this.server = server;
     }
 
     public boolean isFull() {
-        return nicknamePlayersMap.size() == maxPlayers;
+        int count = 0;
+        for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
+            if ( entry.getValue().isOn() )
+                count++;
+
+        if ( count == maxPlayers )
+            return true;
+        return false;
     }
-
-
-
 
 
     public Board getBoard() {
@@ -61,6 +70,24 @@ public class Room {
 
     public void setMySupportFunction(AllSupportFunctions allSupportFunctions, PlayerHandler player){
         playerAllSupportFunctionsMap.put(player,allSupportFunctions);
+    }
+
+    public int numberOfPlayerOn(){
+        int count = 0;
+        for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
+            if ( entry.getValue().isOn() )
+                count++;
+        return count;
+    }
+
+    public boolean minimumNumberOfPlayers(){
+        int count = 0;
+        for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
+            if ( entry.getValue().isOn() )
+                count++;
+        if( count >= 2 )
+            return true;
+        return false;
     }
 
     public GameActions getGameActions() {
@@ -82,5 +109,10 @@ public class Room {
             list.add(entry.getValue());
         }
         return list;
+    }
+
+    public void startMatch() {
+        this.board = new Board();
+        getBoard().getTurn().getPlayerTurn().get(0).sendAnswer(Constants.YOUR_TURN);
     }
 }

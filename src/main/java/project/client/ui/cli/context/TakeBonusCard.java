@@ -34,7 +34,7 @@ public class TakeBonusCard extends AbstractContext {
     public void printHelp() {
         System.out.println("the available actions are: \ntake the bonus card with these characteristics:");
         towerAction.printBonusAction();
-        System.out.println("type: \n" +
+        System.out.println(
                 "floor: 0, 1, 2, 3 \n" +
                 "tower colour: green, yellow, purple, blue");
 
