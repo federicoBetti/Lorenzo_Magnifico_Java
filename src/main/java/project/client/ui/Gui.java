@@ -30,7 +30,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void bothPaymentsAvailable() {
-
+        mainController.bothPaymentAvaiable();
     }
 
 
@@ -40,7 +40,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void choicePe() {
-
+        mainController.choosePermanentEffect();
     }
 
 
@@ -63,7 +63,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void askForPraying() {
-
+        mainController.askForPraying();
     }
 
     @Override

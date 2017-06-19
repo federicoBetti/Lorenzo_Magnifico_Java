@@ -433,6 +433,41 @@ public class LoginBuilder extends Application {
         }
     }
 
+
+    public void showChoice(String message, String choice1, String choice2) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
+            AnchorPane card = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Choice");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(card);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            ChoiceController controller = loader.getController();
+            controller.setMainController(mainController);
+            //controller.setDialogStage(dialogStage);
+            controller.setLabel(message);
+            controller.setChoice1(choice1);
+            controller.setCoiche2(choice2);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.show();
+
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return;
+        }
+    }
+
     public TextField getChat() {
         return chatText;
     }

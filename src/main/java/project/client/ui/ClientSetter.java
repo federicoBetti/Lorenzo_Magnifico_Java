@@ -133,7 +133,7 @@ public class ClientSetter {
         client.bonusProductionAction(parameters);
     }
 
-    public void sendChoicePaymentVc(String payment)  {
+    public void sendChoicePaymentVc(int payment)  {
         client.sendChoicePaymentVc(payment);
     }
 

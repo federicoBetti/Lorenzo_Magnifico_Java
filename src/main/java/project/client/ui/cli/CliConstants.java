@@ -28,4 +28,7 @@ public class CliConstants {
     public static final String CHOOSE_PARAMETERS = "choose-parameters";
     public static final String TAKE_BONUS_CARD = "take-bonus-card" ;
     public static final String HELP = "help" ;
+    public static final String BOTH_PAYMENT_AVAIABLE = "which payment do you want to use?";
+    public static final String ASK_FOR_PRAYING = "do you want to pray?";
+    public static final String CHOOSE_PERMANENT_EFFECT = "which permanent effect do you want to use?";
 }

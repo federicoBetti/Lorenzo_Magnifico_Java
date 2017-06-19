@@ -2,6 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
+import project.client.ui.cli.CliConstants;
 import project.model.Board;
 import project.model.PersonalBoard;
 
@@ -119,16 +120,16 @@ public class MainController {
     }
 
 
-    public void doProduction(boolean positionSelected, String familiarChosen, List<String> buildingCardSelected) {
-        clientSetter.productionAction();
+    public void doProduction( String familiarChosen, List<String> buildingCardSelected) {
+        clientSetter.productionAction(familiarChosen, buildingCardSelected);
     }
 
-    public void doHarvester(int positionSelected, int servants, String familiarChosen) {
-        clientSetter.harvesterAction(positionSelected,familiarChosen,servants);
+    public void doHarvester( int servants, String familiarChosen) {
+        clientSetter.harvesterAction(familiarChosen,servants);
     }
 
     public void goToCouncil(int privilegeSelected, String familiarChosen) {
-        clientSetter.councilAction(privilegeSelected,familiarChosen);
+        clientSetter.councilAction(familiarChosen,privilegeSelected);
     }
 
     public void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
@@ -145,6 +146,25 @@ public class MainController {
 
     public void takeBonusCardAction(int floor, String towerColourString) {
         clientSetter.takeBonusCardAction(floor,towerColourString);
+    }
+
+
+    public void setChoice(String text, int i) {
+        switch (text){
+            case CliConstants.BOTH_PAYMENT_AVAIABLE:{
+                clientSetter.sendChoicePaymentVc(i);
+                break;
+            }
+            case CliConstants.ASK_FOR_PRAYING:{
+                clientSetter.prayOrNot(i);
+                break;
+            }
+            case CliConstants.CHOOSE_PERMANENT_EFFECT:{
+                clientSetter.sendChoicePe(i);
+                break;
+            }
+        }
+
     }
 
 
@@ -199,4 +219,15 @@ public class MainController {
         towerController.takeBonusCard(kindOfCard,printBonusAction);
     }
 
+    public void bothPaymentAvaiable() {
+        loginBuilder.showChoice(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
+    }
+
+    public void choosePermanentEffect() {
+        loginBuilder.showChoice(CliConstants.CHOOSE_PERMANENT_EFFECT, "effect 1", "effect 2");
+    }
+
+    public void askForPraying() {
+        loginBuilder.showChoice(CliConstants.ASK_FOR_PRAYING, "yes", "no");
+    }
 }
