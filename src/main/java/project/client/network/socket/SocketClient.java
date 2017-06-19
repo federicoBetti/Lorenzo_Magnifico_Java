@@ -78,7 +78,7 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void councilAction(String parameter1, String parameter2)   {
+    public void councilAction(int parameter1, String parameter2)   {
         sendKindOfRequest(Constants.GO_TO_COUNCIL_PALACE);
         send2Parameters(parameter1, parameter2);
     }

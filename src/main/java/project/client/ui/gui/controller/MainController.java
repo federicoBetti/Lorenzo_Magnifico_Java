@@ -55,7 +55,7 @@ public class MainController {
     }
 
 
-    public int getNumberOfPlayer() {
+    int getNumberOfPlayer() {
         return numberOfPlayer;
     }
 
@@ -63,43 +63,43 @@ public class MainController {
         return colour;
     }
 
-    public void setHarvesterController(HarvesterController harvesterController) {
+    void setHarvesterController(HarvesterController harvesterController) {
         this.harvesterController = harvesterController;
         controllers.add(this.harvesterController);
     }
 
 
-    public void setCouncilPalaceController(CouncilPalaceController councilPalaceController) {
+    void setCouncilPalaceController(CouncilPalaceController councilPalaceController) {
         this.councilPalaceController = councilPalaceController;
         controllers.add(this.councilPalaceController);
     }
 
-    public void setGeneralGameController(GeneralMainGameController generalGameController) {
+    void setGeneralGameController(GeneralMainGameController generalGameController) {
         this.generalGameController = generalGameController;
         controllers.add(this.generalGameController);
     }
 
-    public void setLeaderCardController(LeaderCardController leaderCardController) {
+    void setLeaderCardController(LeaderCardController leaderCardController) {
         this.leaderCardController = leaderCardController;
         controllers.add(this.leaderCardController);
     }
 
-    public void setMarketController(MarketController marketController) {
+    void setMarketController(MarketController marketController) {
         this.marketController = marketController;
         controllers.add(this.marketController);
     }
 
-    public void setPersonalBoardController(PersonalBoardController personalBoardController) {
+    void setPersonalBoardController(PersonalBoardController personalBoardController) {
         this.personalBoardController = personalBoardController;
         controllers.add(this.personalBoardController);
     }
 
-    public void setProductionController(ProductionController productionController) {
+    void setProductionController(ProductionController productionController) {
         this.productionController = productionController;
         controllers.add(this.productionController);
     }
 
-    public void setTowerController(TowersController towerController) {
+    void setTowerController(TowersController towerController) {
         this.towerController = towerController;
         controllers.add(this.towerController);
     }
@@ -107,56 +107,59 @@ public class MainController {
 
     //DA QUA IN GIU LE COSE CHIAMATE SUL CLIENT SETTER
 
-    public void setConnectionType(String connectionType) {
+    void setConnectionType(String connectionType) {
         clientSetter.setConnectionType(connectionType);
     }
 
-    public void connect(String usernameChosen, String passwordChosen) {
+    void connect(String usernameChosen, String passwordChosen) {
         clientSetter.loginRequest(usernameChosen);
     }
 
-    public void takeDevCard(String towerColour, String floor, String familiarColour )  {
+    public void takeDevCard(String towerColour, int floor, String familiarColour )  {
         clientSetter.takeDevCard(towerColour, floor, familiarColour);
     }
 
 
-    public void doProduction( String familiarChosen, List<String> buildingCardSelected) {
+    void doProduction(String familiarChosen, List<String> buildingCardSelected) {
         clientSetter.productionAction(familiarChosen, buildingCardSelected);
     }
 
-    public void doHarvester( int servants, String familiarChosen) {
+    void doHarvester(int servants, String familiarChosen) {
         clientSetter.harvesterAction(familiarChosen,servants);
     }
 
-    public void goToCouncil(int privilegeSelected, String familiarChosen) {
-        clientSetter.councilAction(familiarChosen,privilegeSelected);
+    void goToCouncil(int privilegeSelected, String familiarChosen) {
+        clientSetter.councilAction(privilegeSelected,familiarChosen);
     }
 
-    public void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
+    void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
         clientSetter.immediatePriviledgeAction(privilegeSelected);
     }
 
-    public void doBonusHarvester(int servants) {
+    void doBonusHarvester(int servants) {
         clientSetter.bonusHarvesterAction(servants);
     }
 
-    public void doBonusProduction(List<String> buildingCardSelected) {
+    void doBonusProduction(List<String> buildingCardSelected) {
         clientSetter.bonusProductionAction(buildingCardSelected);
     }
 
-    public void takeBonusCardAction(int floor, String towerColourString) {
+    void takeBonusCardAction(int floor, String towerColourString) {
         clientSetter.takeBonusCardAction(floor,towerColourString);
     }
 
 
-    public void setChoice(String text, int i) {
+    void setChoice(String text, int i) {
         switch (text){
             case CliConstants.BOTH_PAYMENT_AVAIABLE:{
                 clientSetter.sendChoicePaymentVc(i);
                 break;
             }
             case CliConstants.ASK_FOR_PRAYING:{
-                clientSetter.prayOrNot(i);
+                if (i==1)
+                    clientSetter.prayOrNot(true);
+                else
+                    clientSetter.prayOrNot(false);
                 break;
             }
             case CliConstants.CHOOSE_PERMANENT_EFFECT:{
@@ -165,6 +168,18 @@ public class MainController {
             }
         }
 
+    }
+
+    public void skipTurn() {
+        clientSetter.skipTurn();
+    }
+
+    public void playLeaderCard(String cardSelected) {
+        clientSetter.playLeaderCard(cardSelected);
+    }
+
+    public void discardLeaderCard(String cardSelected) {
+        clientSetter.discardLeaderCard(cardSelected);
     }
 
 
@@ -230,4 +245,9 @@ public class MainController {
     public void askForPraying() {
         loginBuilder.showChoice(CliConstants.ASK_FOR_PRAYING, "yes", "no");
     }
+
+    public void endTurnContext() {
+        leaderCardController.endTurnContext();
+    }
+
 }

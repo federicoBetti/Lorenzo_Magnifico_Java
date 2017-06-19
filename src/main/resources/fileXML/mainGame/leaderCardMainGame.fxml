@@ -32,7 +32,7 @@
             </ImageView>
                 <VBox alignment="BOTTOM_LEFT" prefHeight="861.0" prefWidth="363.0">
                     <children>
-                  <Button fx:id="personalBoardButton" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="78.0" prefWidth="363.0" text="show personal board">
+                  <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="78.0" prefWidth="363.0" text="show personal board">
                      <font>
                         <Font name="Lucida Blackletter" size="21.0" />
                      </font>
@@ -42,7 +42,7 @@
                         <Font name="Lucida Blackletter" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="fiscardCardButton" mnemonicParsing="false" onAction="#discardCard" prefHeight="78.0" prefWidth="363.0" text="discard card">
+                  <Button fx:id="discardCardButton" mnemonicParsing="false" onAction="#discardCard" prefHeight="78.0" prefWidth="363.0" text="discard card">
                      <font>
                         <Font name="Lucida Blackletter" size="21.0" />
                      </font>

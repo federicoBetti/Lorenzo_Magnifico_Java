@@ -1,5 +1,6 @@
 package project.client.ui.gui.controller;
 
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +18,7 @@ public class LeaderCardController extends AbstractController {
     public ImageView imageLeaderCard2;
     public ImageView imageLeaderCard3;
     public ImageView imageLeaderCard4;
+    public Button goBackButton;
     private ArrayList<ImageView> arrayOfLeaderCard;
     private boolean[] leaderCardSelected;
 
@@ -44,6 +46,11 @@ public class LeaderCardController extends AbstractController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setLeaderCardController(this);
+    }
+
+    @Override
+    public void refresh() {
+
     }
 
     public void initialize(){
@@ -114,13 +121,36 @@ public class LeaderCardController extends AbstractController {
         loginBuilder.setScene(SceneType.MAIN,SceneType.LEADER);
     }
 
+    private int getLeaderSelected(){
+        for (int i = 0; i<leaderCardSelected.length; i++){
+            if (leaderCardSelected[i])
+                return i;
+        }
+    }
     public void playCard() {
+        int cardSelected = getLeaderSelected();
+        mainController.playLeaderCard(cardSelected);
     }
 
     public void discardCard() {
+        int cardSelected = getLeaderSelected();
+        mainController.discardLeaderCard(cardSelected);
     }
 
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.LEADER);
+    }
+
+    public void endTurnContext() {
+        goBackButton.setText("end turn");
+        goBackButton.setOnAction(#skipTurn());
+        blockButton();
+    }
+
+    private void skipTurn() {
+        mainController.skipTurn();
+        goBackButton.setText("go back");
+        goBackButton.setOnAction(#goBack());
+        unlockButton();
     }
 }

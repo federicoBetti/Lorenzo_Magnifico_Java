@@ -26,8 +26,7 @@ public abstract class AbstractUI {
 
     public abstract void askForPraying();
 
-    public void actionOk() {
-    }
+    public abstract void actionOk();
 
     public abstract void cantDoAction();
 

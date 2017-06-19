@@ -16,6 +16,9 @@ import project.model.FamilyMember;
 import project.model.PersonalBoard;
 import project.model.Score;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * this class is the "bridge" between user interface and client.
  */
@@ -75,29 +78,29 @@ public class ClientSetter {
         client.loginRequest(loginParameter);
     }
 
-    public void takeDevCard(String towerColour, String floor, String familiarColour )  {
+    public void takeDevCard(String towerColour, int floor, String familiarColour )  {
         client.takeDevCard(towerColour, floor, familiarColour);
     }
 
-    public void harvesterAction(String position, String familyMemberColour, String servantsNumber)  {
+    public void harvesterAction( String familyMemberColour, int servantsNumber)  {
         //è brutto che prenda stringhe, perche non: int,String,int
-        client.harvesterAction(position, familyMemberColour, servantsNumber);
+        client.harvesterAction(familyMemberColour, servantsNumber);
     }
 
     public void marketAction(String position, String familyColour)  {
         client.marketAction(position, familyColour);
     }
 
-    public void councilAction(String priviledgeNumber, String familiarColour )  {
+    public void councilAction(int priviledgeNumber, String familiarColour )  {
         client.councilAction( priviledgeNumber, familiarColour);
     }
 
-    public void productionAction(String[] parameters)   {
+    public void productionAction(String familiarChosen, List<String> buidingCards)   {
         //è orrend che renda un array di stirnghe quando sono int,string,List<String>
-        client.productionAction(parameters);
+        client.productionAction(familiarChosen,buidingCards);
     }
 
-    public void takeBonusCardAction(String floor, String towerColour )  {
+    public void takeBonusCardAction(int floor, String towerColour )  {
         client.takeBonusCardAction(floor, towerColour);
     }
 
@@ -109,31 +112,33 @@ public class ClientSetter {
         client.discardLeaderCard(name);
     }
 
-    public void prayOrNot(String action)   {
-        client.prayOrNot(action);
+    public void prayOrNot(boolean yesNo)   {
+        client.prayOrNot(yesNo);
     }
 
     public void sendExitToBonusAction()   {
         client.sendExitToBonusAction();
     }
 
-    public void sendChoicePe(String input)   {
-        client.sendChoicePe(input);
+    public void sendChoicePe(int selection)   {
+        //da me arrivano 1 o 2
+        client.sendChoicePe(selection);
     }
 
-    public void bonusHarvesterAction(String servantsNumber)   {
+    public void bonusHarvesterAction(int servantsNumber)   {
         client.bonusHarvesterAction( servantsNumber );
     }
 
-    public void immediatePriviledgeAction(String[] privileges)  {
+    public void immediatePriviledgeAction(ArrayList<Integer> privileges)  {
         client.immediatePriviledgeAction( privileges );
     }
 
-    public void bonusProductionAction(String[] parameters)   {
-        client.bonusProductionAction(parameters);
+    public void bonusProductionAction(List<String> buildingCards)   {
+        client.bonusProductionAction(buildingCards);
     }
 
     public void sendChoicePaymentVc(int payment)  {
+        //da me arrivano 1 o 2
         client.sendChoicePaymentVc(payment);
     }
 

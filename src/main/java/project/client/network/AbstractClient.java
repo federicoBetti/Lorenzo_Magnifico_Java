@@ -21,7 +21,7 @@ public class AbstractClient {
     public void marketAction(String parameter1, String parameter2)  {
     }
 
-    public void councilAction(String parameter1, String parameter2)  {
+    public void councilAction(int parameter1, String parameter2)  {
     }
 
     public void productionAction(String[] parameters)  {

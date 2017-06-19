@@ -67,6 +67,11 @@ public class Gui extends AbstractUI {
     }
 
     @Override
+    public void actionOk() {
+        mainController.endTurnContext();
+    }
+
+    @Override
     public void cantDoAction() {
 
     }
