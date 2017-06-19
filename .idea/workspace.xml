@@ -3,14 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/leaderCardMainGame.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/leaderCardMainGame.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/cardZoomController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/cardZoomController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/cardZoom.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/cardZoom.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -38,21 +45,83 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="942">
-              <caret line="180" column="40" lean-forward="false" selection-start-line="180" selection-start-column="40" selection-end-line="180" selection-end-column="40" />
+            <state relative-caret-position="1902">
+              <caret line="258" column="43" lean-forward="false" selection-start-line="258" selection-start-column="43" selection-end-line="258" selection-end-column="43" />
               <folding>
                 <element signature="e#3968#3969#0" expanded="true" />
                 <element signature="e#4037#4038#0" expanded="true" />
                 <element signature="e#5336#5337#0" expanded="true" />
                 <element signature="e#5375#5376#0" expanded="true" />
-                <element signature="e#5430#5431#0" expanded="true" />
-                <element signature="e#5487#5488#0" expanded="true" />
-                <element signature="e#5545#5546#0" expanded="true" />
-                <element signature="e#5605#5606#0" expanded="true" />
-                <element signature="e#7614#7615#0" expanded="true" />
-                <element signature="e#7696#7697#0" expanded="true" />
-                <element signature="e#7732#7733#0" expanded="true" />
-                <element signature="e#7785#7786#0" expanded="true" />
+                <element signature="e#5427#5428#0" expanded="true" />
+                <element signature="e#5484#5485#0" expanded="true" />
+                <element signature="e#5539#5540#0" expanded="true" />
+                <element signature="e#5599#5600#0" expanded="true" />
+                <element signature="e#7906#7907#0" expanded="true" />
+                <element signature="e#7988#7989#0" expanded="true" />
+                <element signature="e#8024#8025#0" expanded="true" />
+                <element signature="e#8077#8078#0" expanded="true" />
+                <element signature="e#8115#8116#0" expanded="true" />
+                <element signature="e#8167#8168#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonalBoardController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1180">
+              <caret line="61" column="25" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TowerZone.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowerZone.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="780">
+              <caret line="47" column="28" lean-forward="false" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1368#1369#0" expanded="true" />
+                <element signature="e#1420#1421#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarketController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+              <folding>
+                <element signature="e#2129#2130#0" expanded="true" />
+                <element signature="e#2203#2204#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductionController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="191" column="16" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gui.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="642">
+              <caret line="75" column="24" lean-forward="false" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+              <folding>
+                <element signature="e#1946#1947#0" expanded="true" />
+                <element signature="e#2018#2019#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,64 +130,31 @@
       <file leaf-file-name="LeaderCardController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="136" column="27" lean-forward="false" selection-start-line="136" selection-start-column="27" selection-end-line="136" selection-end-column="27" />
+            <state relative-caret-position="429">
+              <caret line="132" column="17" lean-forward="false" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java">
+      <file leaf-file-name="LoginBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            <state relative-caret-position="330">
+              <caret line="406" column="19" lean-forward="false" selection-start-line="406" selection-start-column="19" selection-end-line="406" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TowersController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1349">
+              <caret line="403" column="45" lean-forward="true" selection-start-line="403" selection-start-column="45" selection-end-line="403" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gui.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="70" column="36" lean-forward="true" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="36" />
-              <folding>
-                <element signature="e#984#985#0" expanded="true" />
-                <element signature="e#1036#1037#0" expanded="true" />
-                <element signature="e#1134#1135#0" expanded="true" />
-                <element signature="e#1188#1189#0" expanded="true" />
-                <element signature="e#1761#1762#0" expanded="true" />
-                <element signature="e#1807#1808#0" expanded="true" />
-                <element signature="e#1851#1852#0" expanded="true" />
-                <element signature="e#1898#1899#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientSetter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="142" column="5" lean-forward="true" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
-              <folding>
-                <element signature="e#3346#3347#0" expanded="true" />
-                <element signature="e#3408#3409#0" expanded="true" />
-                <element signature="e#3459#3460#0" expanded="true" />
-                <element signature="e#3504#3505#0" expanded="true" />
+                <marker date="1497895458136" expanded="false" signature="7618:7628" ph=" { " />
               </folding>
             </state>
           </provider>
@@ -127,8 +163,8 @@
       <file leaf-file-name="ChoiceController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+            <state relative-caret-position="560">
+              <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -152,7 +188,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Wood</find>
       <find>harvester</find>
       <find>Constants.OK_OR_NO</find>
       <find>&quot;0&quot;</find>
@@ -179,9 +214,10 @@
       <find>true</find>
       <find>production</find>
       <find>rosso</find>
-      <find>public</find>
       <find>card</find>
       <find>Towe</find>
+      <find>public</find>
+      <find>chat</find>
     </findStrings>
     <replaceStrings>
       <replace>private static</replace>
@@ -228,8 +264,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontPayForTerritories.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/CantPlaceFamiliarInMarket.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/PicoDellaMirandolaSupport.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/AllCheckFunctions.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontPayMoneyForTower.java" />
@@ -238,9 +272,7 @@
         <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DoubleServantsValue.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/BasicCheckFunctions.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/councilPalaceController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersMainGameController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
@@ -256,7 +288,6 @@
         <option value="$PROJECT_DIR$/src/main/java/project/TowerIterator.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowerZone.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/FamiliarPosition.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/towersMainGame.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/marketMainGame.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/councilPalaceMainGame.fxml" />
@@ -264,21 +295,26 @@
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/productionMainGame.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/cardZoom.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/choice.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/leaderCardMainGame.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/cardZoomController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java" />
       </list>
     </option>
   </component>
@@ -1390,14 +1426,7 @@
       <workItem from="1497454619441" duration="39056000" />
       <workItem from="1497723360766" duration="372000" />
       <workItem from="1497772194480" duration="25917000" />
-      <workItem from="1497886510037" duration="3891000" />
-    </task>
-    <task id="LOCAL-00005" summary="ciao">
-      <created>1494320568783</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1494320568783</updated>
+      <workItem from="1497886510037" duration="8533000" />
     </task>
     <task id="LOCAL-00006" summary="cambiamento ritorno takeDevCard">
       <created>1494327150891</created>
@@ -1735,7 +1764,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497887895094</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="working on gui">
+      <created>1497891636921</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1497891636921</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1765,7 +1801,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220467000" />
+    <option name="totallyTimeSpent" value="225109000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1783,6 +1819,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32672232" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1808,7 +1845,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32672232" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256785" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1886,40 +1922,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/AllCheckFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/cardZoomController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="79" column="26" lean-forward="false" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="41" column="76" lean-forward="false" selection-start-line="41" selection-start-column="76" selection-end-line="41" selection-end-column="76" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1927,6 +1934,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="862">
           <caret line="299" column="65" lean-forward="false" selection-start-line="299" selection-start-column="65" selection-end-line="299" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1934,6 +1942,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5520">
           <caret line="314" column="75" lean-forward="false" selection-start-line="314" selection-start-column="75" selection-end-line="314" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1941,6 +1952,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1956,6 +1968,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="862">
           <caret line="72" column="16" lean-forward="false" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
+          <folding>
+            <element signature="e#2374#2375#0" expanded="false" />
+            <element signature="e#2398#2399#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2005,6 +2021,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1722">
           <caret line="182" column="54" lean-forward="false" selection-start-line="182" selection-start-column="54" selection-end-line="182" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2026,13 +2045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowerZone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -2047,23 +2059,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="35" column="38" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="80" column="36" lean-forward="false" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
-          <folding>
-            <element signature="e#2613#2614#0" expanded="false" />
-            <element signature="e#2645#2646#0" expanded="false" />
-            <element signature="e#2688#2689#0" expanded="false" />
-            <element signature="e#2720#2721#0" expanded="false" />
-            <element signature="e#2763#2764#0" expanded="false" />
-            <element signature="e#2795#2796#0" expanded="false" />
-            <element signature="e#2838#2839#0" expanded="false" />
-            <element signature="e#2870#2871#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2126,6 +2121,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2176,60 +2172,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3560">
-          <caret line="209" column="34" lean-forward="false" selection-start-line="209" selection-start-column="34" selection-end-line="209" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6900">
-          <caret line="412" column="34" lean-forward="false" selection-start-line="412" selection-start-column="34" selection-end-line="412" selection-end-column="34" />
-          <folding>
-            <marker date="1497882931116" expanded="false" signature="7551:7561" ph=" { " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3000">
           <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/choice.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="107" lean-forward="false" selection-start-line="16" selection-start-column="107" selection-end-line="16" selection-end-column="107" />
-          <folding>
-            <marker date="1497883587037" expanded="true" signature="1294:1307" ph="..." />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/cardZoom.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="438" column="21" lean-forward="true" selection-start-line="438" selection-start-column="21" selection-end-line="438" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -2246,31 +2192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="70" column="36" lean-forward="true" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="36" />
-          <folding>
-            <element signature="e#984#985#0" expanded="true" />
-            <element signature="e#1036#1037#0" expanded="true" />
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1188#1189#0" expanded="true" />
-            <element signature="e#1761#1762#0" expanded="true" />
-            <element signature="e#1807#1808#0" expanded="true" />
-            <element signature="e#1851#1852#0" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="126" column="23" lean-forward="false" selection-start-line="126" selection-start-column="23" selection-end-line="126" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -2296,14 +2217,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="136" column="27" lean-forward="false" selection-start-line="136" selection-start-column="27" selection-end-line="136" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -2312,47 +2225,182 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="942">
-          <caret line="180" column="40" lean-forward="false" selection-start-line="180" selection-start-column="40" selection-end-line="180" selection-end-column="40" />
-          <folding>
-            <element signature="e#3968#3969#0" expanded="true" />
-            <element signature="e#4037#4038#0" expanded="true" />
-            <element signature="e#5336#5337#0" expanded="true" />
-            <element signature="e#5375#5376#0" expanded="true" />
-            <element signature="e#5430#5431#0" expanded="true" />
-            <element signature="e#5487#5488#0" expanded="true" />
-            <element signature="e#5545#5546#0" expanded="true" />
-            <element signature="e#5605#5606#0" expanded="true" />
-            <element signature="e#7614#7615#0" expanded="true" />
-            <element signature="e#7696#7697#0" expanded="true" />
-            <element signature="e#7732#7733#0" expanded="true" />
-            <element signature="e#7785#7786#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="142" column="5" lean-forward="true" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+        <state relative-caret-position="722">
+          <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
             <element signature="e#3346#3347#0" expanded="true" />
             <element signature="e#3408#3409#0" expanded="true" />
             <element signature="e#3459#3460#0" expanded="true" />
             <element signature="e#3504#3505#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="96" column="58" lean-forward="false" selection-start-line="96" selection-start-column="58" selection-end-line="96" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="218" column="36" lean-forward="false" selection-start-line="218" selection-start-column="36" selection-end-line="218" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3575">
+          <caret line="223" column="22" lean-forward="false" selection-start-line="223" selection-start-column="22" selection-end-line="223" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1349">
+          <caret line="403" column="45" lean-forward="true" selection-start-line="403" selection-start-column="45" selection-end-line="403" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1497895458136" expanded="false" signature="7618:7628" ph=" { " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowerZone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="47" column="28" lean-forward="false" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1368#1369#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/choice.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="107" lean-forward="false" selection-start-line="16" selection-start-column="107" selection-end-line="16" selection-end-column="107" />
+          <folding>
+            <marker date="1497883587037" expanded="true" signature="1294:1307" ph="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="132" column="17" lean-forward="false" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/cardZoomController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/cardZoom.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+          <folding>
+            <element signature="e#2129#2130#0" expanded="true" />
+            <element signature="e#2203#2204#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="191" column="16" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1902">
+          <caret line="258" column="43" lean-forward="false" selection-start-line="258" selection-start-column="43" selection-end-line="258" selection-end-column="43" />
+          <folding>
+            <element signature="e#3968#3969#0" expanded="true" />
+            <element signature="e#4037#4038#0" expanded="true" />
+            <element signature="e#5336#5337#0" expanded="true" />
+            <element signature="e#5375#5376#0" expanded="true" />
+            <element signature="e#5427#5428#0" expanded="true" />
+            <element signature="e#5484#5485#0" expanded="true" />
+            <element signature="e#5539#5540#0" expanded="true" />
+            <element signature="e#5599#5600#0" expanded="true" />
+            <element signature="e#7906#7907#0" expanded="true" />
+            <element signature="e#7988#7989#0" expanded="true" />
+            <element signature="e#8024#8025#0" expanded="true" />
+            <element signature="e#8077#8078#0" expanded="true" />
+            <element signature="e#8115#8116#0" expanded="true" />
+            <element signature="e#8167#8168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="406" column="19" lean-forward="false" selection-start-line="406" selection-start-column="19" selection-end-line="406" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="75" column="24" lean-forward="false" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+          <folding>
+            <element signature="e#1946#1947#0" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1180">
+          <caret line="61" column="25" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

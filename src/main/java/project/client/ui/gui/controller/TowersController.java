@@ -1,5 +1,7 @@
 package project.client.ui.gui.controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleGroup;
@@ -315,7 +317,7 @@ public class TowersController extends AbstractController {
     public void takeCard() {
         if (floor != -1){
             String towerColourString = getTowerColour(towerColour);
-            mainController.takeDevCard(towerColourString, String.valueOf(floor), familiarChosen);
+            mainController.takeDevCard(towerColourString,floor, familiarChosen);
         }
     }
 
@@ -399,17 +401,17 @@ public class TowersController extends AbstractController {
 
     protected void blockButton(){
         super.blockButton();
-        submit.setOnAction(#takeBonusCard());
+        submit.setOnAction(event -> takeBonusCard());
     }
 
     protected void unlockButton(){
         super.unlockButton();
-        submit.setOnAction(#takeCard(););
+        submit.setOnAction(event -> takeCard());
     }
 
     private void takeBonusCard() {
         String towerColourString = getTowerColour(towerColour);
-        if (towerColourString.equals(bonusCardType || bonusCardType.equals(Constants.))){
+        if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)){
             mainController.takeBonusCardAction(floor,towerColourString);
             unlockButton();
         }

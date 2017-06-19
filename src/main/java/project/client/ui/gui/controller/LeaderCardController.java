@@ -1,12 +1,16 @@
 package project.client.ui.gui.controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import project.controller.cardsfactory.LeaderCard;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by federico on 14/06/17.
@@ -21,6 +25,7 @@ public class LeaderCardController extends AbstractController {
     public Button goBackButton;
     private ArrayList<ImageView> arrayOfLeaderCard;
     private boolean[] leaderCardSelected;
+    private boolean[] leaderCardPresenti;
 
 
     DropShadow borderGlow= new DropShadow();
@@ -67,6 +72,7 @@ public class LeaderCardController extends AbstractController {
         arrayOfLeaderCard.add(imageLeaderCard3);
         arrayOfLeaderCard.add(imageLeaderCard4);
         leaderCardSelected = new boolean[5];
+        leaderCardPresenti = new boolean[5];
 
     }
 
@@ -80,9 +86,7 @@ public class LeaderCardController extends AbstractController {
         }
     }
     private void selectLeaderCard(int index){
-        if (leaderCardSelected[index])
-            return;
-        else {
+        if (!leaderCardSelected[index]){
             System.out.println("cambio selezione");
             unselectAllCards();
             leaderCardSelected[index] = true;
@@ -126,6 +130,7 @@ public class LeaderCardController extends AbstractController {
             if (leaderCardSelected[i])
                 return i;
         }
+        return 0;
     }
     public void playCard() {
         int cardSelected = getLeaderSelected();
@@ -137,20 +142,40 @@ public class LeaderCardController extends AbstractController {
         mainController.discardLeaderCard(cardSelected);
     }
 
+    public void updateCards(List<LeaderCard> leaderCards){
+        for (int i = 0; i<leaderCards.size(); i++){
+            LeaderCard l = leaderCards.get(i);
+            if (l == null){
+                if (leaderCardPresenti[i]){
+                    ImageView imageView = arrayOfLeaderCard.get(i);
+                    imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/back.png"))));
+                    leaderCardPresenti[i] = false;
+                }
+            }
+            else {
+                if (!leaderCardPresenti[i]){
+                    ImageView imageView = arrayOfLeaderCard.get(i);
+                     imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/" + l.getName() + ".png"))));
+                     leaderCardPresenti[i] = true;
+                }
+            }
+        }
+    }
+
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.LEADER);
     }
 
     public void endTurnContext() {
         goBackButton.setText("end turn");
-        goBackButton.setOnAction(#skipTurn());
+        goBackButton.setOnAction(event -> skipTurn());
         blockButton();
     }
 
     private void skipTurn() {
         mainController.skipTurn();
         goBackButton.setText("go back");
-        goBackButton.setOnAction(#goBack());
+        goBackButton.setOnAction(event -> goBack());
         unlockButton();
     }
 }

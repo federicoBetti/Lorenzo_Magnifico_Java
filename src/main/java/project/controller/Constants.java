@@ -94,6 +94,7 @@ public class Constants {
     public static final String SECOND_FLOOR = "2";
     public static final String FIRST_FLOOR = "1";
     public static final String GROUND_FLOOR = "0";
+    public static final String ALL_COLOURS = "all-colours";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

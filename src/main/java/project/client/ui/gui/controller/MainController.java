@@ -174,14 +174,17 @@ public class MainController {
         clientSetter.skipTurn();
     }
 
-    public void playLeaderCard(String cardSelected) {
+    public void playLeaderCard(int cardSelected) {
         clientSetter.playLeaderCard(cardSelected);
     }
 
-    public void discardLeaderCard(String cardSelected) {
+    public void discardLeaderCard(int cardSelected) {
         clientSetter.discardLeaderCard(cardSelected);
     }
 
+    public void goToMarket(int positionSelected, String familiarChosen) {
+        clientSetter.marketAction(positionSelected,familiarChosen);
+    }
 
     //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
 
@@ -198,6 +201,7 @@ public class MainController {
         }
         harvesterController.updateCards(personalBoard.getTerritories());
         productionController.updateCards(personalBoard.getBuildings());
+        leaderCardController.updateCards(personalBoard.getMyLeaderCard());
 
     }
 
@@ -206,6 +210,7 @@ public class MainController {
         productionController.updatePosition(board.getProductionZone());
         harvesterController.updatePosition(board.getHarvesterZone());
         towerController.updatePosition(board.getAllTowers());
+        generalGameController.updateTurn(board.getTurn().getPlayerTurn());
     }
 
     public void scoreUpdate() {
@@ -250,4 +255,7 @@ public class MainController {
         leaderCardController.endTurnContext();
     }
 
+    public void sendChat(String s) {
+        generalGameController.writeOnChat(s);
+    }
 }

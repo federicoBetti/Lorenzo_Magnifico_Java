@@ -112,6 +112,16 @@ public class ClientSetter {
         client.discardLeaderCard(name);
     }
 
+    public void discardLeaderCard(int cardSelected) {
+        String leaderName = uiPersonalBoard.getMyLeaderCard().get(cardSelected).getName();
+        discardLeaderCard(leaderName);
+    }
+
+    public void playLeaderCard(int cardSelected) {
+        String leaderName = uiPersonalBoard.getMyLeaderCard().get(cardSelected).getName();
+        playLeaderCard(leaderName);
+    }
+
     public void prayOrNot(boolean yesNo)   {
         client.prayOrNot(yesNo);
     }
@@ -243,4 +253,6 @@ public class ClientSetter {
     public FamilyMember[] getUiFamilyMembers() {
         return uiFamilyMembers;
     }
+
+
 }

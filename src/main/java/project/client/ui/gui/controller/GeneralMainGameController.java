@@ -6,71 +6,117 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import project.server.network.PlayerHandler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by federico on 10/06/17.
  */
 public class GeneralMainGameController extends AbstractController{
 
-    public Button send;
-    public Label chatArea;
-    public Button goToTowersButton;
-    public Button goToHarvesterAndProductionButton;
-    public Button goToMarketButton;
-    public Button goToCouncilPalaceButton;
-    public Button personalBoardButton;
-    public Button pointsButton;
-    public Button leaderCardButton;
-    public Button skipTurnButton;
+    @FXML
+    private Button send;
+    @FXML
+    private Label chatArea;
+    @FXML
+    private Button goToTowersButton;
+    @FXML
+    private Button goToMarketButton;
+    @FXML
+    private Button goToCouncilPalaceButton;
+    @FXML
+    private Button personalBoardButton;
+    @FXML
+    private Button pointsButton;
+    @FXML
+    private Button leaderCardButton;
+    @FXML
+    private Button skipTurnButton;
 
 
-    public TextField chatTesto;
+    @FXML
+    private TextField chatTesto;
 
 
-
-    public ImageView towerGreen_0;
-    public ImageView towerGreen_1;
-    public ImageView towerGreen_2;
-    public ImageView towerGreen_3;
-    public ImageView towerBlue_0;
-    public ImageView towerBlue_1;
-    public ImageView towerBlue_2;
-    public ImageView towerBlue_3;
-    public ImageView towerYellow_0;
-    public ImageView towerYellow_1;
-    public ImageView towerYellow_2;
-    public ImageView towerYellow_3;
-    public ImageView towerPurple_0;
-    public ImageView towerPurple_1;
-    public ImageView towerPurple_2;
-    public ImageView towerPurple_3;
+    @FXML
+    private ImageView towerGreen_0;
+    @FXML
+    private ImageView towerGreen_1;
+    @FXML
+    private ImageView towerGreen_2;
+    @FXML
+    private ImageView towerGreen_3;
+    @FXML
+    private ImageView towerBlue_0;
+    @FXML
+    private ImageView towerBlue_1;
+    @FXML
+    private ImageView towerBlue_2;
+    @FXML
+    private ImageView towerBlue_3;
+    @FXML
+    private ImageView towerYellow_0;
+    @FXML
+    private ImageView towerYellow_1;
+    @FXML
+    private ImageView towerYellow_2;
+    @FXML
+    private ImageView towerYellow_3;
+    @FXML
+    private ImageView towerPurple_0;
+    @FXML
+    private ImageView towerPurple_1;
+    @FXML
+    private ImageView towerPurple_2;
+    @FXML
+    private ImageView towerPurple_3;
 
     public ImageView[][] torri = new ImageView[4][4];
-    public ImageView faithPoint0;
-    public ImageView faithPoint1;
-    public ImageView faithPoint2;
-    public ImageView faithPoint3;
-    public ImageView faithPoint4;
-    public ImageView faithPoint5;
-    public ImageView faithPoint6;
-    public ImageView faithPoint7;
-    public ImageView faithPoint8;
-    public ImageView faithPoint9;
-    public ImageView faithPoint10;
-    public ImageView faithPoint11;
-    public ImageView faithPoint12;
-    public ImageView faithPoint13;
-    public ImageView faithPoint14;
-    public ImageView faithPoint15;
+    @FXML
+    private ImageView faithPoint0;
+    @FXML
+    private ImageView faithPoint1;
+    @FXML
+    private ImageView faithPoint2;
+    @FXML
+    private ImageView faithPoint3;
+    @FXML
+    private ImageView faithPoint4;
+    @FXML
+    private ImageView faithPoint5;
+    @FXML
+    private ImageView faithPoint6;
+    @FXML
+    private ImageView faithPoint7;
+    @FXML
+    private ImageView faithPoint8;
+    @FXML
+    private ImageView faithPoint9;
+    @FXML
+    private ImageView faithPoint10;
+    @FXML
+    private ImageView faithPoint11;
+    @FXML
+    private ImageView faithPoint12;
+    @FXML
+    private ImageView faithPoint13;
+    @FXML
+    private ImageView faithPoint14;
+    @FXML
+    private ImageView faithPoint15;
     private ArrayList<ImageView> faithPointsArray;
 
 
-    public ImageView turnOrder1;
-    public ImageView turnOrder2;
-    public ImageView turnOrder3;
-    public ImageView turnOrder4;
+    @FXML
+    private ImageView turnOrder1;
+    @FXML
+    private ImageView turnOrder2;
+    @FXML
+    private ImageView turnOrder3;
+    @FXML
+    private ImageView turnOrder4;
     private ArrayList<ImageView> turnOrderArray;
 
 
@@ -111,6 +157,11 @@ public class GeneralMainGameController extends AbstractController{
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setGeneralGameController(this);
+    }
+
+    @Override
+    public void refresh() {
+
     }
 
     public void uploadImages(){
@@ -163,5 +214,14 @@ public class GeneralMainGameController extends AbstractController{
 
     public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.MAIN);
+    }
+
+    public void updateTurn(List<PlayerHandler> playerTurn) {
+        int current = 0;
+        for (PlayerHandler p: playerTurn){
+            String playerColour = p.getFamilyColour();
+            turnOrderArray.get(current).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + playerColour + "Pedone.png"))));
+            current++;
+        }
     }
 }

@@ -403,6 +403,8 @@ public class LoginBuilder extends Application {
     }
 
     public void showCardZoomed(Image imageView) {
+        if (imageView==null)
+            return;
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();

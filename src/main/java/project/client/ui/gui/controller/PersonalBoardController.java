@@ -47,6 +47,11 @@ public class PersonalBoardController extends AbstractController {
         mainController.setPersonalBoardController(this);
     }
 
+    @Override
+    public void refresh() {
+
+    }
+
     public void goBack() {
         SceneType lastScene = loginBuilder.getLastScene();
         loginBuilder.setScene(lastScene, SceneType.PERSONAL_BOARD);

@@ -68,6 +68,7 @@ public class MarketController extends AbstractController {
     }
 
     public void goToMarket() {
+        mainController.goToMarket(positionSelected,familiarChosen);
     }
 
 
@@ -78,7 +79,6 @@ public class MarketController extends AbstractController {
         lastFamiliarPlaced.setImage(null);
         positionSelected = position;
         familiar.setImage(getTrueFamiliarImage());
-        positionSelected = position;
         lastFamiliarPlaced = familiar.getImage();
     }
     

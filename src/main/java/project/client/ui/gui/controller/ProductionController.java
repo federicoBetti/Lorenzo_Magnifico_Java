@@ -203,7 +203,7 @@ public class ProductionController extends AbstractController{
 
     protected void blockButton() {
         super.blockButton();
-        submit.setOnAction(#bonusAction());
+        submit.setOnAction(event -> bonusAction());
     }
 
     private void bonusAction() {
@@ -223,7 +223,7 @@ public class ProductionController extends AbstractController{
 
     protected void unlockButton() {
         super.unlockButton();
-        submit.setOnAction(#doProduction());
+        submit.setOnAction(event -> doProduction());
     }
 }
 

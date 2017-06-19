@@ -23,13 +23,13 @@ public class ChoiceController {
 
 
     public void choice1(ActionEvent actionEvent) {
-        mainController.setChoice(message.getText(), 1);
+        mainController.setChoice(message.getText(), 0);
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
         stage.close();
     }
 
     public void choice2(ActionEvent actionEvent) {
-        mainController.setChoice(message.getText(), 2);
+        mainController.setChoice(message.getText(), 1);
         Stage stage = (Stage) buttonChoiche2.getScene().getWindow();
         stage.close();
     }
