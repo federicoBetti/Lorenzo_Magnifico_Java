@@ -37,18 +37,16 @@ public class Room {
 
     AllSupportFunctions allSupportFunctions;
 
-    Configuration configuration;
 
 
-    Room(Server server){
+     Room(Server server){
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
         buildExcommunicationEffects = new BuildExcommunicationEffects();
-        configuration = new Configuration();
         this.server = server;
     }
 
-    public boolean isFull() {
+     boolean isFull() {
         int count = 0;
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
             if ( entry.getValue().isOn() )

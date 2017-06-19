@@ -19,8 +19,10 @@ public class Deck {
     private Tile[] prodHaarvTiles;
 
     public Deck() {
-
-        DevelopmentCard[][][] deck = new DevelopmentCard[Constants.CARD_TYPE_NUMBER][Constants.PERIOD_NUMBER][Constants.CARD_FOR_EACH_PERIOD];
+       developmentDeck = new DevelopmentCard[Constants.CARD_TYPE_NUMBER][Constants.PERIOD_NUMBER][Constants.CARD_FOR_EACH_PERIOD];
+       leaderCardeck = new LeaderCard[Constants.LEADER_CARD_NUMBER];
+       excomunicationCard = new ExcommunicationTile[Constants.PERIOD_NUMBER][Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD];
+       prodHaarvTiles = new Tile[Constants.NUMBER_OF_TILES];
     }
 
     public DevelopmentCard[][][] getDevelopmentDeck() {

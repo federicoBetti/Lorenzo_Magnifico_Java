@@ -242,8 +242,8 @@ public class GameActions {
     }
 
     private void clearAllPosition() {
-        Harvester[] harvesterZone = room.getBoard().getHarvesterZone();
-        Production[] productionZone = room.getBoard().getProductionZone();
+        List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
+        List<Production> productionZone = room.getBoard().getProductionZone();
         List<Council> councilZone = room.getBoard().getCouncilZone();
         Market[] marketZone = room.getBoard().getMarketZone();
 

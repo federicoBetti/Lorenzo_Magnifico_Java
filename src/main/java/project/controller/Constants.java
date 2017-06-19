@@ -97,13 +97,16 @@ public class Constants {
     public static final String NICKNAME_USED = "nickname-already-used";
     public static final int PRIVILEDGE_NUMBER = 5;
     public static final int FAITH_TRACK = 15;
-    public static final int MARKET_ZONE_FOUR_PLAYER = 4;
-    public static final int MARKET_ZONE_TWO_PLAYER = 2;
+    public static final int FOUR_PLAYERS = 4;
+    public static final int TWO_PLAYERS = 2;
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;
     public static final int MALUS_PROD_HARV = 3;
     public static final String MARKET = "market";
+    public static int LEADER_CARD_NUMBER = 20;
+    public static int EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD = 7;
+    public static int NUMBER_OF_TILES = 4;
 
 
     private Constants(){}

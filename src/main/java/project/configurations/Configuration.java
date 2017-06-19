@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
+import project.server.Server;
 
 public class Configuration {
 
@@ -118,6 +119,7 @@ public class Configuration {
             TowerFromJson towerFromJson = gson.fromJson(parser.next(), TowerFromJson.class);
             Tower tower = new Tower(towerFromJson.getColour(), towerFromJson.getDiceValueOfThisFloor(), towerFromJson.getTrisIE());
             board.setTowerInTowers(iterator.getTowerNumber(), iterator.getFloor(), tower);
+            iterator.next();
          }
     }
 
@@ -129,12 +131,12 @@ public class Configuration {
         }
     }
 
-    public void loadTimer() throws FileNotFoundException {
+    public TimerSettings loadTimer() throws FileNotFoundException {
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+        TimerSettings timerSettings = gson.fromJson(parser.next(), TimerSettings.class);
 
-        while ( parser.hasNext() ){
-            TimerFromJson timerFromJson = gson.fromJson(parser.next(), TimerFromJson.class);
-        }
+        return timerSettings;
+
     }
 
     DevelopmentCard buildVentureCard( ) {
