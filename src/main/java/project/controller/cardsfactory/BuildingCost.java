@@ -1,14 +1,14 @@
 package project.controller.cardsfactory;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class BuildingCost extends TerritoryCost {
+public class BuildingCost extends TerritoryCost implements Serializable {
 
     private int coinsRequired;
-    /**
-     * Default constructor
-     */
+
     public BuildingCost() {
         //TODO
     }

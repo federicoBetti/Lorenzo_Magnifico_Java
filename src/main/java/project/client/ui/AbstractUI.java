@@ -54,4 +54,6 @@ public abstract class AbstractUI {
     public void familyMemberUpdate() {
 
     }
+
+    public abstract void nicknameAlreadyUsed();
 }

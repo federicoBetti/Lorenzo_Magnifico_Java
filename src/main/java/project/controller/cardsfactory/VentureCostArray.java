@@ -1,12 +1,13 @@
 package project.controller.cardsfactory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by raffaelebongo on 19/05/17.
  */
-public class VentureCostArray {
+public class VentureCostArray implements Serializable{
 
     private List<VenturesCost> costArray;
 

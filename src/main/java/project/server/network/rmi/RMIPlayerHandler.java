@@ -9,7 +9,6 @@ import project.model.FamilyMember;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CantDoActionException;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -158,7 +157,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     void harvesterRequest(int position, String familyMemberColour, int servantsNumber) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         try {
-            harvester(position, familyMember, servantsNumber);
+            harvester(familyMember, servantsNumber);
         } catch (CantDoActionException e) {
             cantDoAction();
         }
@@ -173,7 +172,7 @@ public class RMIPlayerHandler extends PlayerHandler {
             }
         }
         try {
-            production(position, familyMember, buildingCards);
+            production(familyMember, buildingCards);
         } catch (CantDoActionException e) {
             cantDoAction();
         }

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public  abstract class Position {
 
 
-
     private boolean occupied;
 
     private FamilyMember familiarOnThisPosition;

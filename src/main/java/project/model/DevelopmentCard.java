@@ -5,6 +5,7 @@ import project.controller.effects.realeffects.Effects;
 import project.controller.effects.effectsfactory.*;
 
 
+import java.io.Serializable;
 import java.util.*;
 //bisogna fare che il meotod doEffect riitorna la rispooata a ritornare al client, che puo essere un oggetto che è ok, oppure un oggetto tipo tower action
 //ritorna una responde cioè bonusinterface
@@ -22,7 +23,6 @@ public abstract class DevelopmentCard {
     private Cost cardCost;
 
     private boolean choicePe;
-
 
     // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
     public DevelopmentCard(String name, int period, boolean choicePe, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects){
@@ -43,6 +43,8 @@ public abstract class DevelopmentCard {
             permanentCardEffects.add(e);
         }
     }
+
+    public DevelopmentCard(){}
 
     public boolean isChoicePe() {
         return choicePe;

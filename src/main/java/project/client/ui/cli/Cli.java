@@ -3,6 +3,7 @@ package project.client.ui.cli;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
+import project.controller.cardsfactory.BuildingCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -10,6 +11,8 @@ import project.messages.TowerAction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by raffaelebongo on 01/06/17.
@@ -51,7 +54,7 @@ public class Cli extends AbstractUI {
 
     public void sendChoicePe( String input ) throws InputException {
         context.checkValidInput(input);
-        clientSetter.sendChoicePe(input);
+        clientSetter.sendChoicePe(Integer.parseInt(input));
     }
 
     @Override
@@ -62,7 +65,7 @@ public class Cli extends AbstractUI {
     public void bonusHarvesterParameters(String input) throws InputException {
         context.checkValidInput(input);
         String[] parameters = input.split("-");
-        clientSetter.bonusHarvesterAction(parameters[0]);
+        clientSetter.bonusHarvesterAction(Integer.parseInt(parameters[0]));
 
     }
 
@@ -78,19 +81,28 @@ public class Cli extends AbstractUI {
             e.printStackTrace();
         }
         String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.bonusProductionAction(parameters);
+
+        List<String> buildingCards = new ArrayList<>();
+        for( String buildingCard : parameters )
+            buildingCards.add(buildingCard);
+
+        clientSetter.bonusProductionAction(buildingCards);
     }
 
     public void takeBonusCardParameters(String input) throws InputException {
         context.checkValidInput(input);
         String[] parameters = input.split("-");
-        clientSetter.takeBonusCardAction(parameters[0], parameters[1]);
+        clientSetter.takeBonusCardAction(Integer.parseInt(parameters[0]), parameters[1]);
     }
 
 
     public void immediatePriviledgeAction(String input) throws InputException {
         String[] privileges = input.split("-");
-        clientSetter.immediatePriviledgeAction(privileges);
+        List<Integer> privilegesChosen = new ArrayList<>();
+        for ( String priviledge: privileges )
+            privilegesChosen.add(new Integer(Integer.parseInt(priviledge)));
+
+        clientSetter.immediatePriviledgeAction(privilegesChosen);
     }
 
     @Override
@@ -146,11 +158,15 @@ public class Cli extends AbstractUI {
         context.printHelp();
     }
 
+    public void nicknameAlreadyUsed(){
+        System.out.println("Nickname already used! Please chose another one.");
+    }
+
     public void choseAndTakeDevCard(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.takeDevCard(parameters[0], parameters[1], parameters[2]);
+        clientSetter.takeDevCard(parameters[0], Integer.parseInt(parameters[1]), parameters[2]);
 
     }
 
@@ -158,28 +174,32 @@ public class Cli extends AbstractUI {
     public void chooseProductionParameters(String lineFromKeyBoard) throws InputException {
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.productionAction(parameters);
+        List<String> buildingCards = new ArrayList();
+        for (int i = 1; i<parameters.length; i++)
+            buildingCards.add(parameters[i]);
+
+        clientSetter.productionAction(parameters[0], buildingCards);
     }
 
     public void chooseHarversterParameters(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.harvesterAction(parameters[0], parameters[1], parameters[2]);
+        clientSetter.harvesterAction(parameters[0], Integer.parseInt(parameters[1]) );
     }
 
     public void chooseMarketActionParameters(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.marketAction(parameters[0], parameters[1]);
+        clientSetter.marketAction(Integer.parseInt(parameters[0]), parameters[1]);
     }
 
     public void chooseCouncilParameters(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.councilAction(parameters[0], parameters[1]);
+        clientSetter.councilAction(Integer.parseInt(parameters[0]), parameters[1]);
     }
 
     public void chooseLeaderCardToPlay(String action) throws InputException {
@@ -191,13 +211,18 @@ public class Cli extends AbstractUI {
     }
 
     public void prayOrNot(String action) throws InputException {
+        boolean yesOrNo;
         context.checkValidInput(action);
-        clientSetter.prayOrNot(action);
+        if ( action.equals("yes"))
+            yesOrNo = true;
+        else
+            yesOrNo = false;
+        clientSetter.prayOrNot(yesOrNo);
     }
 
     public void choosePayment(String payment) throws InputException {
         context.checkValidInput(payment);
-        clientSetter.sendChoicePaymentVc(payment);
+        clientSetter.sendChoicePaymentVc(Integer.parseInt(payment));
     }
 
     public void sendExitToBonusAction() throws InputException {

@@ -1,6 +1,7 @@
 package project.model;
 
 
+import project.configurations.Configuration;
 import project.controller.Constants;
 
 import java.util.ArrayList;
@@ -89,16 +90,20 @@ public final class Board {
     private Deck deckCard;
     private int[] militaryPointsForTerritories;
 
+    Configuration configuration;
+
 
     public Board(int numberOfPlayer){
-        councilPrivileges = new CouncilPrivilege[5];
+        councilPrivileges = new CouncilPrivilege[Constants.PRIVILEDGE_NUMBER];
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
-        victoryPointsInFaithTrack = new int[15];
+        victoryPointsInFaithTrack = new int[Constants.FAITH_TRACK];
+        Configuration configuration = new Configuration();
+
         if (numberOfPlayer == 4){
-            marketZone = new Market[4];
+
         }
         else
-            marketZone = new Market[2];
+            marketZone = new Market[Constants.MARKET_ZONE_TWO_PLAYER];
         if (numberOfPlayer >= 3){
             harvesterZone = new Harvester[4]; //todo attenzione qua in verità al max ci possono essere 8 giocatori per ogni
             // round di harv o prod, facciamo cosi con 8 giocatori (cioe numberofplayers * 2) oppure facciamo arraylist?

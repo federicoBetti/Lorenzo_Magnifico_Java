@@ -6,10 +6,12 @@ import project.controller.effects.realeffects.Effects;
 import project.server.network.PlayerHandler;
 import project.messages.BonusInteraction;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class ExcommunicationTile {
+public class ExcommunicationTile implements Serializable{
 
     private int period;
     private int idCard;

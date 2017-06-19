@@ -14,7 +14,6 @@ import project.model.*;
 import project.server.Room;
 import project.server.network.exception.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +24,7 @@ public abstract class PlayerHandler extends Player {
     final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
 
     public PlayerHandler(){
+        super();
         checkFunctions = new BasicCheckFunctions();
     }
 
@@ -85,7 +85,7 @@ public abstract class PlayerHandler extends Player {
             return canTakeVenturesCard;
     }
 
-    protected void clientTakeBonusDevelopementCard(TowerAction kindOfCard, int floor) throws CantDoActionException{
+    protected void clientTakeBonusDevelopementCard(String towerColour, int floor) throws CantDoActionException{
         //todo ricordarsi il caso della carta arcobaleno: mettere ad esempio costante "all" che poi nel controllo autorizza a prendere una carda da qualunque torre
     }
 
@@ -108,13 +108,12 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     *
-     * @param position
-     * @param familyM
+     *  @param familyM
      * @param servantsNumber
      */
 
-    protected void harvester(int position, FamilyMember familyM, int servantsNumber) throws CantDoActionException {
+    //todo rifare il metodo senza position
+    protected void harvester(FamilyMember familyM, int servantsNumber) throws CantDoActionException {
         Position[] harvesterZone = getPosition(Constants.HARVESTER);
         boolean canTakeCard;
 
@@ -127,13 +126,13 @@ public abstract class PlayerHandler extends Player {
 
 
     /**
-     * @param position
      * @param familyM
      * @param cardToProduct
      * @return
      */
 
-    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
+    //todo rifare metodo senza posizione
+    public void production(FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
         int maxValueOfProduction;
         Position[] productionZone = getPosition(Constants.PRODUCTION);
         boolean canPlaceCard;

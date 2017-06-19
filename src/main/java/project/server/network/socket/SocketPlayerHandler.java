@@ -34,6 +34,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
+        this.setOn(true);
         this.socketServer = socketServer;
         this.socket = socket;
         this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -55,7 +56,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             }
         } catch (CantDoActionException e) {
              cantDoAction();
-        } catch (CanUseBothPaymentMethodException e) {
+        } catch (CanUseBothPaymentMethodException e) {      //todo questa deve esserci?
             canUseBothPaymentMethod();
         } catch (IOException e) {   //todo queste due eccezioni qui
             e.printStackTrace();
@@ -104,13 +105,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     //ok
     public void harvesterRequest() throws IOException, ClassNotFoundException{
-        int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         int servantsNumber = (int)objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
         try {
-            harvester(position, familyMember, servantsNumber);
+            harvester( familyMember, servantsNumber);
         } catch (CantDoActionException e) {
             cantDoAction();
         }
@@ -119,13 +119,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     //ok
     //int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct
     public void productionRequest() throws IOException, ClassNotFoundException {
-        int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
 
         try {
-            production(position, familyMember, cards );
+            production(familyMember, cards );
         } catch (CantDoActionException e) {
             cantDoAction();
         }
@@ -185,7 +184,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    private List<BuildingCard> takeMyProductionCards(){
+    private List<BuildingCard> takeMyProductionCards() {
         return getPersonalBoardReference().getBuildings();
     }
 
@@ -222,7 +221,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         sendString(Constants.BOTH_PAYMENT_METHODS_AVAILABLE);
         int choice = - 1;
         try {
-            choice =  Integer.parseInt((String)objectInputStream.readObject());
+            choice =  (int)objectInputStream.readObject();
             return choice;
         } catch (IOException e) {
             e.printStackTrace();
@@ -308,10 +307,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
             try {
-                takeBonusDevCard(returnFromEffect);
+                takeBonusDevCard( answer );
             } catch (CantDoActionException c) {
-
-
                 try {
                     objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
                     objectOutputStream.flush();
@@ -383,7 +380,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
             int privilegeNumber = 0;
             try {
-                privilegeNumber = Integer.parseInt((String) objectInputStream.readObject());
+                privilegeNumber = (int) objectInputStream.readObject();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -393,7 +390,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    private void takeBonusDevCard(TowerAction returnFromEffect) throws CantDoActionException {
+    private void takeBonusDevCard( String towerColour ) throws CantDoActionException {
 
         int floor = 0;
         try {
@@ -403,7 +400,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        clientTakeBonusDevelopementCard(returnFromEffect, floor);
+        clientTakeBonusDevelopementCard(towerColour, floor );
 
     }
 
@@ -424,7 +421,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             int currentCard = 0;
             while ( iterator.hasNext() ){
-                if ( myBuildings.get(currentCard).equals(messReceived))
+                if ( myBuildings.get(currentCard).getName().equals(messReceived))
                     cardsForProduction.add(myBuildings.get(currentCard));
                 currentCard++;
             }

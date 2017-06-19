@@ -5,12 +5,13 @@ import project.controller.effects.effectsfactory.BuildImmediateEffects;
 import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.effects.realeffects.Effects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * 
  */
-public class Tile {
+public class Tile implements Serializable{
 
     int tileNumber;
     ArrayList<Effects> harvesterBonus;

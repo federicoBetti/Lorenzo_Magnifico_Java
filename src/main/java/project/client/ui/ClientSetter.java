@@ -87,7 +87,7 @@ public class ClientSetter {
         client.harvesterAction(familyMemberColour, servantsNumber);
     }
 
-    public void marketAction(String position, String familyColour)  {
+    public void marketAction(int position, String familyColour)  {
         client.marketAction(position, familyColour);
     }
 
@@ -95,9 +95,9 @@ public class ClientSetter {
         client.councilAction( priviledgeNumber, familiarColour);
     }
 
-    public void productionAction(String familiarChosen, List<String> buidingCards)   {
+    public void productionAction(String familiarColor, List<String> buidingCards)   {
         //è orrend che renda un array di stirnghe quando sono int,string,List<String>
-        client.productionAction(familiarChosen,buidingCards);
+        client.productionAction(familiarColor,buidingCards);
     }
 
     public void takeBonusCardAction(int floor, String towerColour )  {
@@ -139,7 +139,7 @@ public class ClientSetter {
         client.bonusHarvesterAction( servantsNumber );
     }
 
-    public void immediatePriviledgeAction(ArrayList<Integer> privileges)  {
+    public void immediatePriviledgeAction(List<Integer> privileges)  {
         client.immediatePriviledgeAction( privileges );
     }
 
@@ -148,7 +148,7 @@ public class ClientSetter {
     }
 
     public void sendChoicePaymentVc(int payment)  {
-        //da me arrivano 1 o 2
+        //da me arrivano 0 o 1
         client.sendChoicePaymentVc(payment);
     }
 
@@ -253,6 +253,4 @@ public class ClientSetter {
     public FamilyMember[] getUiFamilyMembers() {
         return uiFamilyMembers;
     }
-
-
 }

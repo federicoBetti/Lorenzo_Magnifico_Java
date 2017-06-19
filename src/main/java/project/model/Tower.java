@@ -4,10 +4,12 @@ import project.controller.effects.effectsfactory.BuildImmediateEffects;
 import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.effects.realeffects.Effects;
 
+import java.io.Serializable;
+
 /**
  * portare tutte le torri della board da file
  */
-public class Tower extends Position {
+public class Tower extends Position implements Serializable{
 
 
     private String colour;

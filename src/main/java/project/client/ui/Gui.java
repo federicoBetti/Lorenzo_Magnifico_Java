@@ -96,4 +96,9 @@ public class Gui extends AbstractUI {
         mainController.familyMemberUpdate();
 
     }
+
+    @Override
+    public void nicknameAlreadyUsed() {
+
+    }
 }

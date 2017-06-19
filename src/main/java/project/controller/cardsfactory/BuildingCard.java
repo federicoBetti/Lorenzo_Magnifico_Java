@@ -5,10 +5,11 @@ import project.controller.effects.effectsfactory.TrisIE;
 import project.model.*;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class BuildingCard extends DevelopmentCard {
+public class BuildingCard extends DevelopmentCard implements Serializable {
 
 
     private BuildingCost cardCost;

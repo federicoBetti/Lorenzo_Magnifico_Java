@@ -37,6 +37,11 @@ public class MessagesFromServerHandler {
         map.put(Constants.TAKE_PRIVILEGE_ACTION, this:: takeImmediatePriviledge );
         map.put(Constants.ASK_FOR_PRAYING, this::askForPraying);
         map.put(Constants.OK_OR_NO, this::actionOk );
+        map.put(Constants.NICKNAME_USED, this::nicknameAlreadyUsed );
+    }
+
+    private void nicknameAlreadyUsed() {
+        client.nicknameAlreadyUsed();
     }
 
     private void actionOk() {

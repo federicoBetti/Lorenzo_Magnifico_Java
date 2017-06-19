@@ -4,10 +4,12 @@ import project.controller.Constants;
 import project.model.PersonalBoard;
 import project.server.network.PlayerHandler;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 14/06/17.
  */
-public class PersonalBoardUpdate extends Updates {
+public class PersonalBoardUpdate extends Updates implements Serializable {
     private PersonalBoard personalBoard;
 
     public PersonalBoardUpdate(PlayerHandler player ){
