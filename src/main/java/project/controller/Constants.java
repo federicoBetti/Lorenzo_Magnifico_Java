@@ -103,6 +103,7 @@ public class Constants {
     public static final String WOOD = "wood";
     public static final String COIN = "coin";
     public static final String STONE = "stone";
+    public static final String TIMER_TURN_DELAYED = "timer-turn-delayed";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

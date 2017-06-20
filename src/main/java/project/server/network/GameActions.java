@@ -153,7 +153,6 @@ public class GameActions {
         return true;
     }
 
-
     class MilitaryComparator implements Comparator<PlayerHandler> {
 
         @Override

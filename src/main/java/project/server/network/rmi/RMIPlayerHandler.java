@@ -131,6 +131,16 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
+    public void timerTurnDelayed() {
+
+    }
+
+    @Override
+    public void nicknameAlredyUsed() {
+
+    }
+
+    @Override
     public void sendString(String message) {
         //todo uaglio
     }
