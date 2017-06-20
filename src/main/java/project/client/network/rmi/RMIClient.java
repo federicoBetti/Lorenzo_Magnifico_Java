@@ -38,8 +38,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     public void connect() throws ClientConnectionException {
         try {
-            Registry registry = LocateRegistry.getRegistry(Constants.LOCAL_ADDRESS, Constants.RMI_PORT);
-            myServer = (RMIClientToServerInterface) registry.lookup("RMIClientToServerInterface");
+            Registry registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
+            myServer = (RMIClientToServerInterface) registry.lookup("ServerRMI");
             UnicastRemoteObject.exportObject(this, 0);
             myUniqueId = myServer.connect(this);
         } catch (RemoteException | NotBoundException e) {

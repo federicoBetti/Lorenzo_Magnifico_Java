@@ -353,6 +353,7 @@ public class TowersController extends AbstractController {
             }
             else if (serverTower.getCardOnThisFloor() == null){
                 modifyCard(guiTower,null);
+                myTower[floorNumber][towerNumber] = guiTower;
             }
             else {
                 if (serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())){
@@ -360,20 +361,24 @@ public class TowersController extends AbstractController {
                 }
                 else{
                     modifyCard(guiTower,serverTower.getCardOnThisFloor().getName());
+                    myTower[floorNumber][towerNumber] = guiTower;
                 }
             }
 
             if (serverTower.getFamiliarOnThisPosition() == null && guiTower.getFamiliarName() == null){
                 // niente
             }
-            else if (serverTower.getFamiliarOnThisPosition() == null)
+            else if (serverTower.getFamiliarOnThisPosition() == null){
                 modifyFamiliar(guiTower,null);
+                myTower[floorNumber][towerNumber] = guiTower;
+            }
             else {
                 if (serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())){
                     //niente
                 }
                 else{
                     modifyFamiliar(guiTower,serverTower.getFamiliarOnThisPosition().toString());
+                    myTower[floorNumber][towerNumber] = guiTower;
                 }
             }
 

@@ -43,8 +43,8 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     public void startServer(int port) throws RemoteException {
         Registry registry = LocateRegistry.createRegistry(port);
         try {
-            registry.rebind("RMIClientToServerInterface", this);
-            UnicastRemoteObject.exportObject(this, port);
+            RMIClientToServerInterface serverInt = (RMIClientToServerInterface) UnicastRemoteObject.exportObject(this, port);
+            registry.rebind("ServerRMI", serverInt);
             //Debug.verbose("Server successfully initialized");
         } catch (RemoteException e) {
             throw new ServerException("Server interface not loaded", e);

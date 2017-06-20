@@ -15,9 +15,12 @@ import java.util.List;
 public class CouncilPalaceController extends AbstractController {
 
 
-    public Button personalBoard;
-    public Button submit;
-    public Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button submit;
+    @FXML
+    private Button mainGameButton;
     @FXML
     private Button buttonStoneWood;
     @FXML
@@ -43,8 +46,7 @@ public class CouncilPalaceController extends AbstractController {
     private List<FamiliarPosition> familiarInTheCouncil;
 
 
-
-    public CouncilPalaceController(){
+    public CouncilPalaceController() {
         super();
         int numberOfDifferentPrivileges = 5;
         privilegeButtons = new Button[numberOfDifferentPrivileges];
@@ -54,7 +56,7 @@ public class CouncilPalaceController extends AbstractController {
 
     }
 
-    public void initialize(){
+    public void initialize() {
         familiarInTheCouncil.add(new FamiliarPosition(imageInTheCouncil0));
         familiarBox.getChildren().addAll(imageInTheCouncil0);
 
@@ -74,33 +76,29 @@ public class CouncilPalaceController extends AbstractController {
     }
 
 
-
-    public void setParameters(int maxPrivilegeChosen){
+    public void setParameters(int maxPrivilegeChosen) {
         this.maxPrivilegeChosen = maxPrivilegeChosen;
     }
 
-    public void uploadImages(){
+    public void uploadImages() {
         super.uploadImages();
         LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + loginBuilder.getColour() + ".png"))));
     }
 
-    private int numberOfPrivilegeSelected(){
+    private int numberOfPrivilegeSelected() {
         int number = 0;
-        for (boolean b: privilegeChoosen){
-            if (b)
-                number++;
+        for (boolean b : privilegeChoosen) {
+            if (b) number++;
         }
         return number;
     }
 
-    private void selectPrivilege(int number){
-        if (!(numberOfPrivilegeSelected()<maxPrivilegeChosen) && !privilegeChoosen[number])
-            return;
-        if (!privilegeChoosen[number]){
+    private void selectPrivilege(int number) {
+        if (!(numberOfPrivilegeSelected() < maxPrivilegeChosen) && !privilegeChoosen[number]) return;
+        if (!privilegeChoosen[number]) {
             privilegeButtons[number].setStyle("-fx-background-color: transparent;-fx-border-color: chocolate; ");
             privilegeChoosen[number] = true;
-        }
-        else{
+        } else {
             privilegeChoosen[number] = false;
             privilegeButtons[number].setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
         }
@@ -127,32 +125,31 @@ public class CouncilPalaceController extends AbstractController {
     }
 
     public void placeFamiliarInCouncil() {
-        super.placeFamiliar(familiarInTheCouncil,familiarBox);
+        super.placeFamiliar(familiarInTheCouncil, familiarBox);
     }
 
 
     public void goToCouncil() {
         int privilegeSelected = -1;
-        for (int i = 0; i<privilegeChoosen.length; i++){
-            if (privilegeChoosen[i])
-                privilegeSelected = i;
+        for (int i = 0; i < privilegeChoosen.length; i++) {
+            if (privilegeChoosen[i]) privilegeSelected = i;
         }
-        if (privilegeSelected == -1)
-            return;
-        mainController.goToCouncil(privilegeSelected,familiarChosen);
+        if (privilegeSelected == -1) return;
+        mainController.goToCouncil(privilegeSelected, familiarChosen);
     }
 
     @Override
-    public void refresh(){
-        for (boolean b: privilegeChoosen)
+    public void refresh() {
+        for (boolean b : privilegeChoosen)
             b = false;
     }
-    public void showPersonalBoard(){
+
+    public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.COUNCIL);
     }
 
     public void takeImmediatePrivilege(int quantityOfDifferentPrivileges) {
-        loginBuilder.setScene(SceneType.COUNCIL,SceneType.PERSONAL_BOARD);
+        loginBuilder.setScene(SceneType.COUNCIL, SceneType.PERSONAL_BOARD);
         blockButton();
         this.maxPrivilegeChosen = quantityOfDifferentPrivileges;
         writeOnChat("AZIONE BONUS: prendi " + maxPrivilegeChosen + "privilegi diversi");
@@ -161,9 +158,8 @@ public class CouncilPalaceController extends AbstractController {
 
     private void takePrivilege() {
         ArrayList<Integer> privilegeSelected = new ArrayList<>();
-        for (int i = 0; i<privilegeChoosen.length; i++){
-            if (privilegeChoosen[i])
-                privilegeSelected.add(i);
+        for (int i = 0; i < privilegeChoosen.length; i++) {
+            if (privilegeChoosen[i]) privilegeSelected.add(i);
         }
 
         if (privilegeSelected.size() == maxPrivilegeChosen) {
@@ -174,11 +170,11 @@ public class CouncilPalaceController extends AbstractController {
 
     protected void blockButton() {
         super.blockButton();
-        submit.setOnAction(#takePrivilege());
+        submit.setOnAction(event -> takePrivilege());
     }
 
     protected void unlockButton() {
         super.unlockButton();
-        submit.setOnAction(#goToCouncil();
+        submit.setOnAction(event -> goToCouncil();
     }
 }
