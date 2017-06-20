@@ -1,5 +1,7 @@
 package project.server;
 
+import project.configurations.Configuration;
+import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -25,11 +27,16 @@ public class Server {
 
     private ServerRMI rmiServer;
 
+    private TimerSettings timerSettings;
+
+    private Configuration configuration;
 
     private Server() throws IOException {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
+        configuration = new Configuration();
+        this.timerSettings = configuration.loadTimer();
     }
 
     public static void main(String[] args) throws IOException {
@@ -96,23 +103,7 @@ public class Server {
         }
     }
 
-    private void myTimerStartMatch( PlayerHandler player, Room room ) {
 
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                    if( room.minimumNumberOfPlayers() ) {
-                        player.itsMyTurn();
-                    }
-                    else
-                        System.out.println("è caduta connessione, non ci sono abbastanza player nella room");
-            }
-        };
-
-        Timer timer = new Timer();
-        System.out.println("timer iniziato da capo");
-        timer.schedule(timerTask, 10000);
-    }
 
     private void startMatch(Room room) {
         room.startMatch();
@@ -135,5 +126,27 @@ public class Server {
                 return false;
         }
         return true;
+    }
+
+    private void myTimerStartMatch( PlayerHandler player, Room room ) {
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if( room.minimumNumberOfPlayers() ) {
+                    player.itsMyTurn();
+                }
+                else
+                    System.out.println("è caduta connessione, non ci sono abbastanza player nella room");
+            }
+        };
+
+        Timer timer = new Timer();
+        System.out.println("timer iniziato da capo");
+        timer.schedule(timerTask, 10000);
+    }
+
+    public void setTimerSettings(TimerSettings timerSettings) {
+        this.timerSettings = timerSettings;
     }
 }

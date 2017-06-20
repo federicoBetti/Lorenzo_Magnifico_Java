@@ -4,9 +4,8 @@ package project.model;
 import project.configurations.Configuration;
 import project.controller.Constants;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 /**
  * 
@@ -22,12 +21,13 @@ public final class Board {
     /**
      * 
      */
-    private Harvester[] harvesterZone;
+
+    private List<Harvester> harvesterZone;
 
     /**
      * 
      */
-    private Production[] productionZone;
+    private List<Production> productionZone;
 
     /**
      * 
@@ -68,7 +68,7 @@ public final class Board {
     private int[] diceValue;
 
 
-    private HashMap<String,Position[]> zones;
+    private Map<String,Position[]> zones;
 
     /**
      * questa variabile rappresenta se siamo alla fine di un turno e aspettiamo il lancio dei dadi
@@ -80,44 +80,63 @@ public final class Board {
      */
     private int[] victoryPointsInFaithTrack;
 
-    private Deck deck;
+    private Deck decks;
 
     private List<Integer> finalPointsFromTerritoryCards;
 
     private List<Integer> finalPointsFromCharacterCards;
 
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
-    private Deck deckCard;
+
     private int[] militaryPointsForTerritories;
 
     Configuration configuration;
 
 
-    public Board(int numberOfPlayer){
-        councilPrivileges = new CouncilPrivilege[Constants.PRIVILEDGE_NUMBER];
+    public Board(int numberOfPlayer) throws FileNotFoundException {
+        this.councilPrivileges = new CouncilPrivilege[Constants.PRIVILEDGE_NUMBER];
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
-        victoryPointsInFaithTrack = new int[Constants.FAITH_TRACK];
+        this.victoryPointsInFaithTrack = new int[Constants.FAITH_TRACK];
+        this.decks = new Deck();
+
         Configuration configuration = new Configuration();
 
-        if (numberOfPlayer == 4){
-
-        }
-        else
-            marketZone = new Market[Constants.MARKET_ZONE_TWO_PLAYER];
-        if (numberOfPlayer >= 3){
-            harvesterZone = new Harvester[4]; //todo attenzione qua in verità al max ci possono essere 8 giocatori per ogni
-            // round di harv o prod, facciamo cosi con 8 giocatori (cioe numberofplayers * 2) oppure facciamo arraylist?
-            productionZone = new Production[4];
+        if (numberOfPlayer == Constants.FOUR_PLAYERS){
+            marketZone = new Market[Constants.FOUR_PLAYERS];
+            configuration.loadMarketBonus( this,  "jsonGiustoPer4"  );
         }
         else {
-            harvesterZone = new Harvester[1];
-            productionZone = new Production[1];
+            marketZone = new Market[Constants.TWO_PLAYERS];
+            marketZone = new Market[Constants.FOUR_PLAYERS];
+            configuration.loadMarketBonus(this, "jsonGiustoPer2");
         }
+        if (numberOfPlayer > Constants.TWO_PLAYERS){
+            harvesterZone = new ArrayList<>();
+            productionZone = new ArrayList<>();
+        }
+        else {
+            harvesterZone = new ArrayList<>(1);
+            harvesterZone.add(new Harvester());
+            harvesterZone = Collections.unmodifiableList(harvesterZone);
+            productionZone = new ArrayList<>(1);
+            productionZone.add(new Production());
+            productionZone = Collections.unmodifiableList(productionZone);
+        }
+
         excommunicationZone = new ExcommunicationZone[3];
-        councilZone = new ArrayList<>(numberOfPlayer * 4);
-        towers = new Tower[4][4];
-        zones = new HashMap<>();
+
+        this.councilPrivileges = new CouncilPrivilege[5];
+        configuration.loadCouncilZonePriviledges(this);
+
+        this.towers = new Tower[4][4];
+        configuration.loadBonusTower(this);
+        this.zones = new HashMap<>();
         fillHashMap();
+
+        configuration.loadDevelopmentCards(getDeckCard());
+        configuration.loadBonusTile(getDeckCard());
+        configuration.loadExcommunicationTiles(getDeckCard());
+
         round = 1;
         period = 1;
     }
@@ -132,22 +151,12 @@ public final class Board {
         zones.put(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD,getTower(1));
         zones.put(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD,getTower(2));
         zones.put(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD,getTower(3));
-        zones.put(Constants.HARVESTER,getHarvesterZone());
-        zones.put(Constants.PRODUCTION, getProductionZone());
     }
 
     public void nextRound(){
         round ++;
         if (round == 3)
             round = 1;
-    }
-
-    public void setHarvesterZone(Harvester[] harvesterZone) {
-        this.harvesterZone = harvesterZone;
-    }
-
-    public void setProductionZone(Production[] productionZone) {
-        this.productionZone = productionZone;
     }
 
     public void setMarketZone(Market[] marketZone) {
@@ -160,14 +169,6 @@ public final class Board {
 
     public Tower[] getTower (int i){
         return towers[i];
-    }
-
-    public Harvester[] getHarvesterZone() {
-        return harvesterZone;
-    }
-
-    public Production[] getProductionZone() {
-        return productionZone;
     }
 
     public Market[] getMarketZone() {
@@ -254,7 +255,7 @@ public final class Board {
     }
 
     public Deck getDeckCard() {
-        return deckCard;
+        return decks;
     }
 
     public void setExcommunicationZone(ExcommunicationZone[] excommunicationZone) {
@@ -279,5 +280,29 @@ public final class Board {
 
     public int[] getMilitaryPointsForTerritories() {
         return militaryPointsForTerritories;
+    }
+
+    public Tower[][] getTowers() {
+        return towers;
+    }
+
+    public List<Harvester> getHarvesterZone() {
+        return harvesterZone;
+    }
+
+    public List<Production> getProductionZone() {
+        return productionZone;
+    }
+
+    public Map<String, Position[]> getZones() {
+        return zones;
+    }
+
+    public boolean isEndRound() {
+        return endRound;
+    }
+
+    public Deck getDecks() {
+        return decks;
     }
 }
