@@ -49,7 +49,6 @@ public abstract class AbstractContext {
     }
 
     public void doAction(String action) throws InputException, IOException {
-        System.out.println("sono qui");
         if( map.get(action) != null ) {
             actioner = map.get(action);
             actioner.action();

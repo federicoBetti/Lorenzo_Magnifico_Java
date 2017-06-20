@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * queste sono tutte le funzioni che il client puo chiamare sul server che poi dovranon essere implementate sia dall'rmi sia dal socket
  */
-public class AbstractClient {
+public abstract class AbstractClient {
 
 
     public void loginRequest(String loginParameter)  {
@@ -73,4 +73,8 @@ public class AbstractClient {
 
     public void skipTurn() {
     }
+
+
+
+    //da server a client
 }

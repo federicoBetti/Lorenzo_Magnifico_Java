@@ -34,7 +34,7 @@ public class SocketClient extends AbstractClient {
             socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
-            waitingForTheNewInteraction();
+            goToLogin();
         } catch (IOException e) {
             e.printStackTrace();
             throw new ClientConnectionException(e);
@@ -49,7 +49,6 @@ public class SocketClient extends AbstractClient {
     public void waitingForTheNewInteraction() {
 
         String message;
-        goToLogin();
         while (true) {
             try {
                 message = (String) objectInputStream.readObject();
@@ -64,9 +63,10 @@ public class SocketClient extends AbstractClient {
 
     //send requests
     @Override
-    public void loginRequest(String loginParameter)  {
+    public void loginRequest(String loginParameter) {
         sendGenericObject(Constants.LOGIN_REQUEST);
         sendGenericObject(loginParameter);
+        waitingForTheNewInteraction();
     }
 
     @Override
@@ -370,6 +370,10 @@ public class SocketClient extends AbstractClient {
 
     public void nicknameAlreadyUsed() {
         clientSetter.nicknameAlreadyUsed();
+    }
+
+    public void loginSucceded() {
+        clientSetter.loginSucceded();
     }
 }
 

@@ -13,13 +13,13 @@ public class LoginContext extends AbstractContext {
 
     public LoginContext( Cli cli ){
         super(cli);
-        System.out.println("You are in the Login Context. Write your nickname");
         map.put(CliConstants.HELP, this::printHelp);
+        printHelp();
     }
 
     @Override
     public void printHelp() {
-        //to implement
+        System.out.println("You are in the Login Context. Write your nickname");
     }
 
     @Override

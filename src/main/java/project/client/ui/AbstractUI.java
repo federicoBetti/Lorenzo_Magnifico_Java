@@ -66,4 +66,7 @@ public abstract class AbstractUI {
 
     public void goToLogin() {
     }
+
+    public abstract void loginSucceded();
+
 }

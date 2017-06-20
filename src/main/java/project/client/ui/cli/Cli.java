@@ -67,6 +67,11 @@ public class Cli extends AbstractUI {
         context = new LoginContext(this);
     }
 
+    @Override
+    public void loginSucceded() {
+        context = new WaitingForMatchStart(this);
+    }
+
     public void bonusHarvesterParameters(String input) throws InputException {
         context.checkValidInput(input);
         String[] parameters = input.split("-");
@@ -267,11 +272,11 @@ public class Cli extends AbstractUI {
 
         @Override
         public void run() {
+            SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
             while (true) {
                 String lineFromKeyBoard;
-                SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
                 try {
-                    lineFromKeyBoard = keyboard.readLineFromKeyboard();
+                    lineFromKeyBoard = keyboard.readLine();
                     if (context != null) {
                         context.doAction(lineFromKeyBoard);
                     }

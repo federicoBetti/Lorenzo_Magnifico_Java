@@ -1,5 +1,6 @@
 package project.server;
 
+import project.client.Launcer;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
@@ -53,7 +54,6 @@ public class Server {
         rmiServer.startServer(rmiPort);
     }
 
-
     /**
      * TODO implemetare tutti i metodi che si occupano della gestione delle room e del fileXML.controller dei giocatori
      */
@@ -77,7 +77,7 @@ public class Server {
                 } else if (!room.isFull()) {
                     player.setOn(true);
                     room.nicknamePlayersMap.put(nickname, player);
-                    player.sendAnswer(Constants.LOGIN_SUCCEDED);
+                    player.loginSucceded();
                     checkAndStartTheTimer(room, player);
 
                     if (room.isFull()) {
@@ -90,6 +90,7 @@ public class Server {
                     player.setOn(true);
                     loadPlayerState(room, nickname, player );
                     room.nicknamePlayersMap.replace(nickname, player);
+                    player.loginSucceded();
                 }
             }
         }
@@ -145,7 +146,7 @@ public class Server {
         room.nicknamePlayersMap.put(nickname, player);
 
         System.out.println(room.nicknamePlayersMap.entrySet());
-        player.sendString(Constants.LOGIN_SUCCEDED);
+        player.loginSucceded();
     }
 
     private boolean roomsAreAllFull() {

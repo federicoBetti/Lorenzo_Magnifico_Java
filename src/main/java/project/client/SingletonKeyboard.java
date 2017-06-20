@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 public class SingletonKeyboard {
 
     private static SingletonKeyboard singletonKeyboard = new SingletonKeyboard();
+    static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     private SingletonKeyboard(){}
 
@@ -17,8 +18,7 @@ public class SingletonKeyboard {
         return singletonKeyboard;
     }
 
-     public static String readLineFromKeyboard() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+     public static String readLine() throws IOException {
         return reader.readLine();
     }
 }

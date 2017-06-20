@@ -117,4 +117,9 @@ public class Gui extends AbstractUI {
     public void setConnectionType(String kindOfConnection) throws InputException {
 
     }
+
+    @Override
+    public void loginSucceded() {
+
+    }
 }

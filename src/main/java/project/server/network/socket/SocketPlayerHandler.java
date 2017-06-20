@@ -223,6 +223,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
+    public void loginSucceded() {
+        sendString(Constants.LOGIN_SUCCEDED);
+    }
+
+    @Override
     public void cantDoAction() {
         sendString(Constants.CANT_DO_ACTION);
     }

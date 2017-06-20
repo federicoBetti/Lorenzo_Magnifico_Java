@@ -141,6 +141,11 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
+    public void loginSucceded() {
+
+    }
+
+    @Override
     public void sendString(String message) {
         //todo uaglio
     }

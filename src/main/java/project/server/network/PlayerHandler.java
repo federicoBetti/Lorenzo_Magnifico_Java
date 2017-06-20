@@ -396,4 +396,6 @@ public abstract class PlayerHandler extends Player {
     public abstract void timerTurnDelayed();
 
     public abstract void nicknameAlredyUsed();
+
+    public abstract void loginSucceded();
 }

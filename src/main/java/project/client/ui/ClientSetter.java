@@ -22,7 +22,7 @@ import java.util.List;
  * this class is the "bridge" between user interface and client.
  */
 public class ClientSetter {
-    AbstractClient client;
+    private AbstractClient client;
     AbstractUI ui;
 
     Board uiBoard;
@@ -45,18 +45,17 @@ public class ClientSetter {
     }
 
     public void setConnectionType(String connectionType) {
-        System.out.println("sono qui");
         switch (connectionType) {
             case "socket":
                 try {
-                    client = new SocketClient(this);
+                    this.client = new SocketClient(this);
                 } catch (ClientConnectionException e) {
-                    // errore nella conessione socket
+                    System.out.println("errore di connessione");
                 }
                 break;
             case "RMI":
                 try {
-                    client = new RMIClient(this);
+                    this.client = new RMIClient(this);
                 } catch (ClientConnectionException e) {
                    // errore nella conessione RMI
                 }
@@ -73,7 +72,7 @@ public class ClientSetter {
 
     //these methods call other methods on the client
 
-    public void loginRequest(String loginParameter)   {
+    public void loginRequest(String loginParameter){
         client.loginRequest(loginParameter);
     }
 
@@ -263,5 +262,17 @@ public class ClientSetter {
 
     public void goToLogin() {
         ui.goToLogin();
+    }
+
+    public AbstractClient getClient() {
+        return client;
+    }
+
+    public void setClient(AbstractClient client) {
+        this.client = client;
+    }
+
+    public void loginSucceded() {
+        ui.loginSucceded();
     }
 }

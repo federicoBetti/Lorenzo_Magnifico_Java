@@ -22,7 +22,7 @@ public class MessagesFromServerHandler {
         this.client = client;
 
         map.put(Constants.YOUR_TURN, this::mainContext );
-        map.put(Constants.LOGIN_SUCCEDED, this:: waitingForNewInteraction );
+        map.put(Constants.LOGIN_SUCCEDED, this:: loginSucceded );
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
         //updates
         map.put(Constants.SCORE_UPDATE, this:: scoreUpdate );
@@ -38,6 +38,10 @@ public class MessagesFromServerHandler {
         map.put(Constants.ASK_FOR_PRAYING, this::askForPraying);
         map.put(Constants.OK_OR_NO, this::actionOk );
         map.put(Constants.NICKNAME_USED, this::nicknameAlreadyUsed );
+    }
+
+    private void loginSucceded() {
+        client.loginSucceded();
     }
 
     private void nicknameAlreadyUsed() {

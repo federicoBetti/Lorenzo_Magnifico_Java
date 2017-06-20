@@ -17,12 +17,13 @@ public class Launcer {
 
     private static String selectUi() {
 
+        SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
         while (true) {
             System.out.println("1: CLI");
             System.out.println("2: GUI");
             int choice = 0;
             try {
-                choice = Integer.parseInt(SingletonKeyboard.getInstance().readLineFromKeyboard());
+                choice = Integer.parseInt(keyboard.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
             }
