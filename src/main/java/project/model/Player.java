@@ -24,15 +24,29 @@ public class Player implements Serializable{
 
 	private String familyColour;
 
-	public String getName() {
-		return name;
-	}
-
     private LeaderEffectsUsefull leaderEffectsUsefull;
 
     private ExcommunicationEffectsUseful excommunicationEffectsUseful;
 
 
+
+    public void checkFinalPointsTerritory() {
+        // TODO implement here
+    }
+
+    public void checkFinalPointCharacters() {
+        // TODO implement here
+    }
+
+    public void checkFinalPointResources() {
+        // TODO implement here
+    }
+
+
+
+    public String getName() {
+        return name;
+    }
 
 	public boolean isOn() {
 		return isOn;
@@ -50,14 +64,13 @@ public class Player implements Serializable{
 		return personalBoardReference;
 	}
 
-
 	public void setPersonalBoardReference(PersonalBoard personalBoardReference) {
 		this.personalBoardReference = personalBoardReference;
 	}
 
 	public Score getScore() {
 		return score;
-	}
+    }
 
 	public void setScore(Score score) {
 		this.score = score;
@@ -78,23 +91,6 @@ public class Player implements Serializable{
 	public void setTurnOrder(int turnOrder) {
 		this.turnOrder = turnOrder;
 	}
-
-    public void checkFinalPointsTerritory() {
-        // TODO implement here
-    }
-
-    public void checkFinalPointCharacters() {
-        // TODO implement here
-    }
-
-    public void checkFinalPointResources() {
-        // TODO implement here
-    }
-
-    // TODO eliminare le cose qua sotto
-
-
-
 
 	public ExcommunicationEffectsUseful getExcommunicationEffectsUseful() {
 		return excommunicationEffectsUseful;

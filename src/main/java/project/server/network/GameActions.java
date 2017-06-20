@@ -85,7 +85,7 @@ public class GameActions {
     /**
      * @param playerHandler
      */
-    void nextTurn(PlayerHandler playerHandler) {
+    public void nextTurn(PlayerHandler playerHandler) {
         PlayerHandler next;
         List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
         int indexOfMe = turn.indexOf(playerHandler);
@@ -94,36 +94,61 @@ public class GameActions {
         int currentRound = room.getBoard().getRound();
 
         if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
-            next = turn.get(indexOfMe + 1);
-            next.itsMyTurn();
-        } else if (!allFamiliarPlayed(playerHandler)) {// sono 'ultimo del turno ma non è finito round
-            next = turn.get(0);
-            next.itsMyTurn();
-        } else if (currentRound == 2 && currentPeriod == 3) { //fine partita
-            endMatch();//
+             next = turn.get(indexOfMe + 1);
+             if ( next.isOn() )
+                 next.itsMyTurn();
+
+             nextTurn(next);
+
+        } else if (!allFamiliarPlayed()) {// sono 'ultimo del turno ma non è finito round
+             next = turn.get(0);
+             if (next.isOn()) {
+                 next.itsMyTurn();
+             }
+             nextTurn(next);
+         }
+         else if (currentRound == 2 && currentPeriod == 3) { //fine partita
+            endMatch();
+
         } else if (currentRound == 2) {//fine periodo
             endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
-            setEndTurn(true);
+            setEndRound(true);
             firstPlayerTurn();
-        } else {//fine round
+
+        } else {
             endRound();
             nextRound();
-            setEndTurn(true);
+            setEndRound(true);
             firstPlayerTurn();
         }
+
+        //todo se rimane solo un giocatore nella partita?
+        //todo se non ne rimane nessuno?
+        this.room.myTimerSkipTurn(playerHandler);
+    }
+
+
+
+    private void allAreOff() {
+        //todo
     }
 
     private void firstPlayerTurn() {
-        PlayerHandler firstPlayer;
-        firstPlayer = room.getBoard().getTurn().getPlayerTurn().get(0);
-        firstPlayer.itsMyTurn();
+        PlayerHandler firstPlayer = room.getBoard().getTurn().getPlayerTurn().get(0);
+        if ( firstPlayer.isOn() )
+            firstPlayer.itsMyTurn();
+        nextTurn(firstPlayer);
     }
 
-    private boolean allFamiliarPlayed(PlayerHandler playerHandler) {
-        for (FamilyMember familyMember : playerHandler.getAllFamilyMembers()) {
-            if (!familyMember.isPlayed()) return false;
+    //todo
+    private boolean allFamiliarPlayed() {
+        for( PlayerHandler player : room.getListOfPlayers()) {
+            for (FamilyMember familyMember : player.getAllFamilyMembers()) {
+                if (!familyMember.isPlayed())
+                    return false;
+            }
         }
         return true;
     }
@@ -311,7 +336,7 @@ public class GameActions {
 
     }
 
-    private void setEndTurn(boolean choice) {
+    private void setEndRound(boolean choice) {
         room.getBoard().setEndRound(choice);
     }
 
@@ -459,7 +484,7 @@ public class GameActions {
             PlayerHandler player = entry.getValue();
             getSupportFunctions(player).setDicesValue(newDiceValue, player);
         }
-        setEndTurn(false);
+        setEndRound(false);
 
         broadcastUpdates(new DiceValueUpdate(room.getBoard().getDiceValue()));
     }

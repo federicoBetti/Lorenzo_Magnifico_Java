@@ -18,7 +18,7 @@ import java.util.List;
  * Created by raffaelebongo on 01/06/17.
  */
 public class Cli extends AbstractUI {
-
+    //todo fare end turn context e tutto il via dicendo
 
     ClientSetter clientSetter; //all the operation have to pass across this class
     AbstractContext context;

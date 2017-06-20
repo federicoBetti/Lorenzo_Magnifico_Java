@@ -211,6 +211,17 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void timerTurnDelayed() {
+        sendString(Constants.TIMER_TURN_DELAYED);
+    }
+
+    @Override
+    public void nicknameAlredyUsed() {
+        sendString(Constants.NICKNAME_USED);
+    }
+
     @Override
     public void cantDoAction() {
         sendString(Constants.CANT_DO_ACTION);
@@ -235,7 +246,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void itsMyTurn() {
-        sendAnswer(Constants.YOUR_TURN);
+        sendString(Constants.YOUR_TURN);
     }
 
     @Override

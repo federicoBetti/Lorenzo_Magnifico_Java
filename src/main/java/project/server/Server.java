@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 /**
  * Created by raffaelebongo on 18/05/17.
  */
@@ -56,36 +57,49 @@ public class Server {
      */
 
     public void loginRequest(String nickname, PlayerHandler player) throws IOException {
-        if ( nicknameAlreadyUsed(nickname))
-            player.sendAnswer(Constants.NICKNAME_USED);
+        if (nicknameAlreadyUsed(nickname))
+            player.nicknameAlredyUsed();
 
-        if ( rooms.isEmpty() || roomsAreAllFull()  ) {
+        if (rooms.isEmpty() || roomsAreAllFull()) {
             createNewRoom(nickname, player);
             return;
         }
 
         for (Room room : rooms) {
-            if ( room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
-                player.setOn(true);
-                room.nicknamePlayersMap.replace(nickname, player);
-                checkAndStartTheTimer(room, player);
-                System.out.println(room.nicknamePlayersMap.entrySet());
-            }
+            if (!room.isMatchStarted()) { //riconnessione
+                if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
+                    player.setOn(true);
+                    room.nicknamePlayersMap.replace(nickname, player);
+                    checkAndStartTheTimer(room, player);
 
-            else if (!room.isFull()) {
-                player.setOn(true);
-                room.nicknamePlayersMap.put(nickname, player);
-                System.out.println(room.nicknamePlayersMap.entrySet());
-                player.sendAnswer(Constants.LOGIN_SUCCEDED);
-                checkAndStartTheTimer(room, player);
+                } else if (!room.isFull()) {
+                    player.setOn(true);
+                    room.nicknamePlayersMap.put(nickname, player);
+                    player.sendAnswer(Constants.LOGIN_SUCCEDED);
+                    checkAndStartTheTimer(room, player);
 
-                if ( room.isFull() ) {
-                    startMatch(room);
+                    if (room.isFull()) {
+                        startMatch(room);
+                    }
+
+                    break;
                 }
-
-                break;
             }
         }
+    }
+
+    private void loadPlayerState(Room room, String nickname, PlayerHandler newPlayer) {
+        PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
+
+        newPlayer.setName(oldPlayer.getName());
+        newPlayer.setPersonalBoardReference(oldPlayer.getPersonalBoardReference());
+        newPlayer.setScore(oldPlayer.getScore());
+        newPlayer.setAllFamilyMembers(oldPlayer.getAllFamilyMembers());
+        newPlayer.setTurnOrder(oldPlayer.getTurnOrder());
+        newPlayer.setFamilyColour(oldPlayer.getFamilyColour());
+        newPlayer.setLeaderEffectsUsefull(oldPlayer.getLeaderEffectsUsefull());
+        newPlayer.setExcommunicationEffectsUseful(oldPlayer.getExcommunicationEffectsUseful());
+
     }
 
     private boolean nicknameAlreadyUsed( String nickname ){
@@ -97,13 +111,12 @@ public class Server {
         return false;
     }
 
+
     private void checkAndStartTheTimer( Room room, PlayerHandler player ){
         if ( room.numberOfPlayerOn() == 2 ){
-            myTimerStartMatch(player, room);
+            myTimerStartMatch( room, this.timerSettings );
         }
     }
-
-
 
     private void startMatch(Room room) {
         room.startMatch();
@@ -128,25 +141,22 @@ public class Server {
         return true;
     }
 
-    private void myTimerStartMatch( PlayerHandler player, Room room ) {
+    private void myTimerStartMatch( Room room, TimerSettings timerSettings ) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                if( room.minimumNumberOfPlayers() ) {
-                    player.itsMyTurn();
+                if (room.minimumNumberOfPlayers()) {
+                    startMatch(room);
                 }
-                else
-                    System.out.println("è caduta connessione, non ci sono abbastanza player nella room");
             }
         };
 
-        Timer timer = new Timer();
-        System.out.println("timer iniziato da capo");
-        timer.schedule(timerTask, 10000);
+        Timer timer = new Timer(timerSettings.getStartMatchTimerName());
+        timer.schedule(timerTask, timerSettings.getDelayTimerStartMatch());
     }
 
-    public void setTimerSettings(TimerSettings timerSettings) {
-        this.timerSettings = timerSettings;
+    public TimerSettings getTimerSettings() {
+        return timerSettings;
     }
 }

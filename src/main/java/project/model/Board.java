@@ -97,6 +97,7 @@ public final class Board {
         this.councilPrivileges = new CouncilPrivilege[Constants.PRIVILEDGE_NUMBER];
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
         this.victoryPointsInFaithTrack = new int[Constants.FAITH_TRACK];
+        this.turn = new Turn();
         this.decks = new Deck();
 
         Configuration configuration = new Configuration();
@@ -107,6 +108,7 @@ public final class Board {
         }
         else {
             marketZone = new Market[Constants.TWO_PLAYERS];
+            marketZone = new Market[Constants.FOUR_PLAYERS];
             configuration.loadMarketBonus(this, "jsonGiustoPer2");
         }
         if (numberOfPlayer > Constants.TWO_PLAYERS){
