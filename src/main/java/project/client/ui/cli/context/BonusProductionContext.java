@@ -17,6 +17,7 @@ public class BonusProductionContext extends AbstractContext {
         super(cli);
         this.bonusProd = bonusProd;
         bonusProd.printAction();
+        printHelp();
     }
 
     @Override
@@ -24,7 +25,7 @@ public class BonusProductionContext extends AbstractContext {
         bonusProd.printAction();
         System.out.println("the available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            System.out.println(entry.getKey().toString());
     }
 
     @Override

@@ -132,7 +132,7 @@ public class Configuration {
     }
 
     public TimerSettings loadTimer() throws FileNotFoundException {
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/Users/raffaelebongo/Desktop/timer.json"));
         TimerSettings timerSettings = gson.fromJson(parser.next(), TimerSettings.class);
 
         return timerSettings;

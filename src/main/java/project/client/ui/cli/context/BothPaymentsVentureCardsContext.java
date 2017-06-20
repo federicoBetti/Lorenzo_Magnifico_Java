@@ -12,6 +12,7 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
 
     public BothPaymentsVentureCardsContext(Cli cli) {
         super(cli);
+        printHelp();
     }
 
     @Override

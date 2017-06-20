@@ -1,10 +1,8 @@
 package project.server;
 
-import project.client.Launcer;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
-import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -22,7 +20,6 @@ import java.util.TimerTask;
  */
 public class Server {
 
-
     private static final int RMI_PORT = 2;
 
     private ArrayList<Room> rooms;
@@ -39,8 +36,9 @@ public class Server {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
-        //configuration = new Configuration();
-      //  this.timerSettings = configuration.loadTimer();
+        //todo mettere configuration
+        configuration = new Configuration();
+        this.timerSettings = configuration.loadTimer();
     }
 
     public static void main(String[] args) throws IOException {
@@ -128,9 +126,10 @@ public class Server {
     }
 
 
+    //todo togliere player
     private void checkAndStartTheTimer( Room room, PlayerHandler player ){
         if ( room.numberOfPlayerOn() == 2 ){
-            myTimerStartMatch( room, this.timerSettings );
+            myTimerStartMatch( room, this.timerSettings, player );
         }
     }
 
@@ -157,17 +156,21 @@ public class Server {
         return true;
     }
 
-    private void myTimerStartMatch( Room room, TimerSettings timerSettings ) {
+    private void myTimerStartMatch( Room room, TimerSettings timerSettings, PlayerHandler player ) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
+                System.out.println("i'm in the timer");
                 if (room.minimumNumberOfPlayers()) {
-                    startMatch(room);
+                    player.itsMyTurn();
+                    System.out.println("did it");
+                    //startMatch(room);
                 }
             }
         };
 
+        //todo far partire timer
         Timer timer = new Timer(timerSettings.getStartMatchTimerName());
         timer.schedule(timerTask, timerSettings.getDelayTimerStartMatch());
     }

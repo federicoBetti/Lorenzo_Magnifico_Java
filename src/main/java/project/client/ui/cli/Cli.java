@@ -187,9 +187,14 @@ public class Cli extends AbstractUI {
         clientSetter.setConnectionType(kindOfConnection);
     }
 
-    public void choseAndTakeDevCard(String lineFromKeyBoard) throws InputException {
+    public void choseAndTakeDevCard(String lineFromKeyBoard)  {
 
-        context.checkValidInput(lineFromKeyBoard);
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            context.printHelp();
+            return;
+        }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.takeDevCard(parameters[0], Integer.parseInt(parameters[1]), parameters[2]);
 

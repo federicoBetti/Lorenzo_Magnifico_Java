@@ -14,10 +14,11 @@ public class PlayLeadercardAmaContext extends AbstractContext {
 
     public PlayLeadercardAmaContext(Cli cli) {
         super(cli);
-        System.out.println("Type the leader card's name to play: [leaderCardName]");
+
         map.put(CliConstants.SHOW_LEADER_CARDS, this::showLeaderCards );
         map.put(CliConstants.EXIT, cli::actionOk);
         map.put(CliConstants.HELP, this::printHelp);
+        printHelp();
     }
 
     //todo
@@ -30,8 +31,8 @@ public class PlayLeadercardAmaContext extends AbstractContext {
         System.out.println("the available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             System.out.println(entry.getKey());
+        System.out.println("Type the leader card's name to play: [leaderCardName]");
 
-        System.out.println("[leaderCardName]");
     }
 
     @Override

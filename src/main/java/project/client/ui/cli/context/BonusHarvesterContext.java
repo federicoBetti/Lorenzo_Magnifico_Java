@@ -19,6 +19,7 @@ public class BonusHarvesterContext extends AbstractContext {
     public BonusHarvesterContext(BonusProductionOrHarvesterAction bonusHarv, Cli cli) {
         super(cli);
         this.bonusHarv = bonusHarv;
+        printHelp();
     }
 
     @Override

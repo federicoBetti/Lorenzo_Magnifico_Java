@@ -18,13 +18,13 @@ public class ImmediatePriviledgesContext extends AbstractContext {
         super(cli);
         this.numberOfpriviledges = numberOfpriviledges;
         priviledgesTakenInArow = new int[5];
-        System.out.println("Type" + numberOfpriviledges.getQuantityOfDifferentPrivileges() + " priviledges'numbers that you prefer" +
-                "but different each others");
+        printHelp();
     }
 
     @Override
     public void printHelp() {
-        //todo
+        System.out.println("Type" + numberOfpriviledges.getQuantityOfDifferentPrivileges() + " priviledges'numbers that you prefer" +
+        "but different each others");
     }
 
     @Override

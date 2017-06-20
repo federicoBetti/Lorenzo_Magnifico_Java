@@ -17,6 +17,7 @@ public class DiscardLeaderCardContext extends AbstractContext {
         map.put(CliConstants.SHOW_LEADER_CARDS, this:: showLeaderCards );
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+        printHelp();
     }
 
     //todo implement

@@ -13,6 +13,7 @@ public class WaitingForYourTurnContext extends AbstractContext {
 
     public WaitingForYourTurnContext(Cli cli) {
         super(cli);
+        printHelp();
     }
 
     @Override

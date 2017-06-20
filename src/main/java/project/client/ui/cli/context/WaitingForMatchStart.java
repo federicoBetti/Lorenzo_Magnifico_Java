@@ -14,7 +14,6 @@ public class WaitingForMatchStart extends AbstractContext {
     public WaitingForMatchStart(Cli cli) {
        super(cli);
        printHelp();
-
     }
 
     @Override

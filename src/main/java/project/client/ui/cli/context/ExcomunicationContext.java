@@ -12,8 +12,7 @@ public class ExcomunicationContext extends AbstractContext{
 
     public ExcomunicationContext (Cli cli ){
         super(cli);
-        System.out.print("Available actions:" +
-                "\nDo you want to pray? [yes/no]");
+        printHelp();
     }
 
     public void printHelp() {
