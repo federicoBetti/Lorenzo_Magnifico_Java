@@ -16,7 +16,6 @@ import project.model.FamilyMember;
 import project.model.PersonalBoard;
 import project.model.Score;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,7 +45,7 @@ public class ClientSetter {
     }
 
     public void setConnectionType(String connectionType) {
-
+        System.out.println("sono qui");
         switch (connectionType) {
             case "socket":
                 try {
@@ -55,7 +54,7 @@ public class ClientSetter {
                     // errore nella conessione socket
                 }
                 break;
-            case "rmi":
+            case "RMI":
                 try {
                     client = new RMIClient(this);
                 } catch (ClientConnectionException e) {
@@ -153,7 +152,7 @@ public class ClientSetter {
     }
 
     public void skipTurn() {
-        //todo
+        client.skipTurn();
     }
 
 
@@ -256,5 +255,13 @@ public class ClientSetter {
 
     public void nicknameAlreadyUsed() {
 
+    }
+
+    public void waitingForYourTurn() {
+        ui.waitingForYourTurn();
+    }
+
+    public void goToLogin() {
+        ui.goToLogin();
     }
 }

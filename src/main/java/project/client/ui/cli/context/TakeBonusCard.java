@@ -56,8 +56,6 @@ public class TakeBonusCard extends AbstractContext {
 
         checkTowerColour(parameters[1]);
 
-
-
     }
 
     @Override

@@ -1,6 +1,5 @@
 package project.client.ui.cli.context;
 
-import com.sun.istack.internal.Nullable;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
@@ -26,7 +25,6 @@ public abstract class AbstractContext {
         cli.mainContext();
     }
 
-    @Nullable
     public abstract void printHelp();
 
     public void checkValidInput( String input ) throws InputException{
@@ -51,6 +49,7 @@ public abstract class AbstractContext {
     }
 
     public void doAction(String action) throws InputException, IOException {
+        System.out.println("sono qui");
         if( map.get(action) != null ) {
             actioner = map.get(action);
             actioner.action();

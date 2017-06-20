@@ -11,15 +11,18 @@ import java.io.IOException;
 public class ConnectionContext extends AbstractContext {
     public ConnectionContext(Cli cli) {
         super(cli);
+        printHelp();
     }
 
     @Override
     public void printHelp() {
-
+        System.out.println("Choose the type of connection: \n" +
+                "write: socket | rmi ");
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException {
-        //todo chiamare setConnectionType su ClientSetter
+    public void mainContextMethod(String kindOfConnection) throws InputException, IOException {
+        System.out.println("sono qui");
+        cli.setConnectionType(kindOfConnection);
     }
 }

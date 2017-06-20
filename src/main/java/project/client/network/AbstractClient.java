@@ -70,4 +70,7 @@ public class AbstractClient {
 
     public void productionAction(String familiarChosen, List<String> buidingCards) {
     }
+
+    public void skipTurn() {
+    }
 }

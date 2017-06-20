@@ -3,6 +3,8 @@ package project.server;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
+import project.model.Player;
+import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
 import project.server.network.socket.SocketServer;
@@ -36,8 +38,8 @@ public class Server {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
-        configuration = new Configuration();
-        this.timerSettings = configuration.loadTimer();
+        //configuration = new Configuration();
+      //  this.timerSettings = configuration.loadTimer();
     }
 
     public static void main(String[] args) throws IOException {
@@ -81,10 +83,22 @@ public class Server {
                     if (room.isFull()) {
                         startMatch(room);
                     }
-
                     break;
                 }
+            } else {
+                if( room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn() ){ //durante la partita
+                    player.setOn(true);
+                    loadPlayerState(room, nickname, player );
+                    room.nicknamePlayersMap.replace(nickname, player);
+                }
             }
+        }
+    }
+
+    private void replaceInTurn(Turn turn, PlayerHandler oldPlayer, PlayerHandler newPlayer) {
+        for (int i = 0; i < turn.getPlayerTurn().size(); i++  ){
+            if ( turn.getPlayerTurn().get(i) == oldPlayer )
+                turn.getPlayerTurn().set( i, newPlayer );
         }
     }
 
@@ -100,6 +114,7 @@ public class Server {
         newPlayer.setLeaderEffectsUsefull(oldPlayer.getLeaderEffectsUsefull());
         newPlayer.setExcommunicationEffectsUseful(oldPlayer.getExcommunicationEffectsUseful());
 
+        replaceInTurn(room.getBoard().getTurn(), oldPlayer, newPlayer);
     }
 
     private boolean nicknameAlreadyUsed( String nickname ){

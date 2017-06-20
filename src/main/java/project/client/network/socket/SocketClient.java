@@ -34,14 +34,22 @@ public class SocketClient extends AbstractClient {
             socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
+            waitingForTheNewInteraction();
         } catch (IOException e) {
+            e.printStackTrace();
             throw new ClientConnectionException(e);
         }
     }
 
+    private void goToLogin() {
+        clientSetter.goToLogin();
+    }
+
     @Override
     public void waitingForTheNewInteraction() {
+
         String message;
+        goToLogin();
         while (true) {
             try {
                 message = (String) objectInputStream.readObject();
@@ -278,6 +286,14 @@ public class SocketClient extends AbstractClient {
         clientSetter.boardUpdate(update);
     }
 
+    public void skipTurn() {
+        sendGenericObject(Constants.SKIP_TURN);
+        createWaitingForYourTurnContext();
+    }
+
+    private void createWaitingForYourTurnContext() {
+        clientSetter.waitingForYourTurn();
+    }
 
     //sending methods
     void send2Parameters(Object parameter1, Object parameter2 )   {

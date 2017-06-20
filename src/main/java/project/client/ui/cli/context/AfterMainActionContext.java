@@ -29,6 +29,7 @@ public class AfterMainActionContext extends AbstractContext {
     }
 
     private void skipTurn() {
+        cli.skipTurn();
     }
 
     @Override

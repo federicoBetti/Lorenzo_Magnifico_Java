@@ -1,9 +1,9 @@
 package project.client.ui.cli;
 
+import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
-import project.controller.cardsfactory.BuildingCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -60,6 +60,11 @@ public class Cli extends AbstractUI {
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
         context = new BonusHarvesterContext(bonusHarv, this);
+    }
+
+    @Override
+    public void goToLogin() {
+        context = new LoginContext(this);
     }
 
     public void bonusHarvesterParameters(String input) throws InputException {
@@ -162,6 +167,21 @@ public class Cli extends AbstractUI {
         System.out.println("Nickname already used! Please chose another one.");
     }
 
+    @Override
+    public void skipTurn() {
+        clientSetter.skipTurn();
+    }
+
+    @Override
+    public void waitingForYourTurn() {
+        context = new WaitingForYourTurnContext(this);
+    }
+
+    @Override
+    public void setConnectionType(String kindOfConnection) throws InputException {
+        clientSetter.setConnectionType(kindOfConnection);
+    }
+
     public void choseAndTakeDevCard(String lineFromKeyBoard) throws InputException {
 
         context.checkValidInput(lineFromKeyBoard);
@@ -174,7 +194,7 @@ public class Cli extends AbstractUI {
     public void chooseProductionParameters(String lineFromKeyBoard) throws InputException {
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        List<String> buildingCards = new ArrayList();
+        List<String> buildingCards = new ArrayList<>();
         for (int i = 1; i<parameters.length; i++)
             buildingCards.add(parameters[i]);
 
@@ -247,12 +267,11 @@ public class Cli extends AbstractUI {
 
         @Override
         public void run() {
-            BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
                 String lineFromKeyBoard;
-
+                SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
                 try {
-                    lineFromKeyBoard = keyboard.readLine();
+                    lineFromKeyBoard = keyboard.readLineFromKeyboard();
                     if (context != null) {
                         context.doAction(lineFromKeyBoard);
                     }
