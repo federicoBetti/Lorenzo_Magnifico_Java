@@ -102,7 +102,11 @@ public class MarketController extends AbstractController {
     }
 
     public void updatePosition(Market[] markets){
-        super.updatePosition(markets,familiarPositions);
+        List<Market> markets1 = new ArrayList<>(markets.length);
+        for (Market m: markets){
+            markets1.add(m);
+        }
+        super.updatePosition(markets1,familiarPositions);
 
     }
 }

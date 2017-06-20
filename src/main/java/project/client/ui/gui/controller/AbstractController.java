@@ -2,6 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -12,8 +13,10 @@ import javafx.scene.layout.HBox;
 import project.controller.Constants;
 import project.model.FamilyMember;
 import project.model.Position;
+import project.model.Production;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -203,10 +206,14 @@ public abstract class AbstractController {
     }
 
 
-    public void updatePosition(Position[] positions, List<FamiliarPosition> allPosition){
-        for (int i = 0; i<positions.length; i++){
-            FamiliarPosition familiarPosition = allPosition.get(i);
-            if (positions[i].getFamiliarOnThisPosition() == null){
+    public void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition){
+        Iterator<? extends Position> itPR = positions.iterator();
+        Iterator<FamiliarPosition> itFP = allPosition.iterator();
+
+        while (itFP.hasNext() && itPR.hasNext()){
+            FamiliarPosition familiarPosition = itFP.next();
+            Position position = itPR.next();
+            if (position.getFamiliarOnThisPosition() == null){
                 if (familiarPosition.getFamiliarName() == null)
                     continue;
                 else {
@@ -214,10 +221,10 @@ public abstract class AbstractController {
                     familiarPosition.setFamiliarName(null);
                 }
             }
-            if (familiarPosition.getFamiliarName().equals(positions[i].getFamiliarOnThisPosition().toString()))
+            if (familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))
                 continue;
             else {
-                familiarPosition.setFamiliarName(positions[i].getFamiliarOnThisPosition().toString());
+                familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
                 familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
             }
         }

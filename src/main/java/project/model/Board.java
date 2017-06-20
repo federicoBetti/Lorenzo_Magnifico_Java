@@ -107,7 +107,6 @@ public final class Board {
         }
         else {
             marketZone = new Market[Constants.TWO_PLAYERS];
-            marketZone = new Market[Constants.FOUR_PLAYERS];
             configuration.loadMarketBonus(this, "jsonGiustoPer2");
         }
         if (numberOfPlayer > Constants.TWO_PLAYERS){
@@ -116,11 +115,7 @@ public final class Board {
         }
         else {
             harvesterZone = new ArrayList<>(1);
-            harvesterZone.add(new Harvester());
-            harvesterZone = Collections.unmodifiableList(harvesterZone);
             productionZone = new ArrayList<>(1);
-            productionZone.add(new Production());
-            productionZone = Collections.unmodifiableList(productionZone);
         }
 
         excommunicationZone = new ExcommunicationZone[3];
@@ -304,5 +299,13 @@ public final class Board {
 
     public Deck getDecks() {
         return decks;
+    }
+
+    public void setHarvesterZone(List<Harvester> harvesterZone) {
+        this.harvesterZone = harvesterZone;
+    }
+
+    public void setProductionZone(List<Production> productionZone) {
+        this.productionZone = productionZone;
     }
 }

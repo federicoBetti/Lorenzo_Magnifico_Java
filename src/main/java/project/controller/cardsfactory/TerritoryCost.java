@@ -41,4 +41,22 @@ public class TerritoryCost implements Cost, Serializable {
     @Override
     public void picoDellaMirandolaDowngrade() {
     }
+
+
+
+    @Override
+    public void addCoin(int i) {
+
+    }
+
+    @Override
+    public void addStone(int i) {
+        stoneRequired += i;
+    }
+
+    @Override
+    public void addWood(int i) {
+        woodRequired += i;
+    }
+
 }

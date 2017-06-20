@@ -5,15 +5,16 @@ import project.model.Board;
 import project.model.Production;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by raffaelebongo on 14/06/17.
  */
 public class ProductionUpdate extends Updates implements Serializable {
 
-    Production[] productionZone;
+    List<Production> productionZone;
 
-    public ProductionUpdate(Production[] production ){
+    public ProductionUpdate(List<Production> production ){
         productionZone = production;
     }
 

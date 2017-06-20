@@ -19,15 +19,21 @@ public class PicoDellaMirandolaCheck extends CheckFunctionsDecorator {
     @Override
     public boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         DevelopmentCard card1 = card;
-        Cost cost = card1.getCost();
-        cost.picoDellaMirandolaDowngrade();
-        return allCheckFunctions.checkCardCost(card1,playerHandler,coinsFee,zoneDiceCost,valueOfFamilyMember);
+        Cost oldCost = card.getCost();
+        Cost newCost = oldCost.copyOf();
+        newCost.picoDellaMirandolaDowngrade();
+        card.setCost(newCost);
+        boolean result =  allCheckFunctions.checkCardCost(card1,playerHandler,coinsFee,zoneDiceCost,valueOfFamilyMember);
+        card.setCost(oldCost);
+        return result;
     }
     @Override
     public int checkCardCostVentures(VenturesCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         VenturesCard card1 = card;
-        for (VenturesCost cost: card1.getVenturesCost())
-            cost.picoDellaMirandolaDowngrade();
+        VenturesCost oldCost1;
+        VenturesCost oldCost2;
+        //todo
+
         return allCheckFunctions.checkCardCostVentures(card1,player,coinsFee,zoneDiceCost,valueOfFamilyMember);
     }
 }

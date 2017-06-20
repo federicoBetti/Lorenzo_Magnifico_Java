@@ -175,6 +175,6 @@ public class CouncilPalaceController extends AbstractController {
 
     protected void unlockButton() {
         super.unlockButton();
-        submit.setOnAction(event -> goToCouncil();
+        submit.setOnAction(event -> goToCouncil());
     }
 }

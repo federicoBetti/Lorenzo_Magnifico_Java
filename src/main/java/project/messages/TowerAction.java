@@ -28,6 +28,8 @@ public class TowerAction extends BonusInteraction {
         this.newCardDicevalue = quantity;
         this.discountedResource1 = discountedResource1;
         this.quantityDiscounted1 = quantityDiscounted1;
+		discountedResource2 = "empty";
+		quantityDiscounted2 = 0;
     }
 
     public TowerAction(String parameter, int quantity, String discountedResource1, int quantityDiscounted1, String discountedResource2, int quantityDiscounted2 ){
@@ -64,5 +66,25 @@ public class TowerAction extends BonusInteraction {
 	@Override
 	public String toString() {
 		return Constants.TOWER_ACTION;
+	}
+
+	public int getNewCardDicevalue() {
+		return newCardDicevalue;
+	}
+
+	public String getDiscountedResource1() {
+		return discountedResource1;
+	}
+
+	public int getQuantityDiscounted1() {
+		return quantityDiscounted1;
+	}
+
+	public String getDiscountedResource2() {
+		return discountedResource2;
+	}
+
+	public int getQuantityDiscounted2() {
+		return quantityDiscounted2;
 	}
 }

@@ -1,9 +1,6 @@
 package project.server.network;
 
-import project.controller.cardsfactory.BuildingCard;
-import project.controller.cardsfactory.BuildingCost;
-import project.controller.cardsfactory.LeaderCard;
-import project.controller.cardsfactory.VenturesCard;
+import project.controller.cardsfactory.*;
 import project.controller.checkfunctions.AllCheckFunctions;
 import project.controller.checkfunctions.BasicCheckFunctions;
 import project.controller.Constants;
@@ -54,7 +51,7 @@ public abstract class PlayerHandler extends Player {
         canPlaceFamiliar = checkFunctions.checkPosition(floor, tower, familyM);
         towerOccupied = checkFunctions.checkTowerOccupied((Tower[])tower);
 
-        if (towerColor == Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD) {
+        if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {
             int paymentChosen = checkOnVenturesCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
             gameActions().takeVenturesCard(zone, familyM, this, towerOccupied, paymentChosen);
         }
@@ -85,8 +82,61 @@ public abstract class PlayerHandler extends Player {
             return canTakeVenturesCard;
     }
 
-    protected void clientTakeBonusDevelopementCard(String towerColour, int floor) throws CantDoActionException{
-        //todo ricordarsi il caso della carta arcobaleno: mettere ad esempio costante "all" che poi nel controllo autorizza a prendere una carda da qualunque torre
+    protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {
+        if (!(returnFromEffect.getKindOfCard().equals(Constants.ALL_COLOURS) || returnFromEffect.getKindOfCard().equals(towerColour)))
+            throw new CantDoActionException();
+        DevelopmentCard card = getCard(towerColour,floor);
+        Cost realCost = card.getCost();
+        Cost costDiscounted = realCost.copyOf();
+        costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource1(), returnFromEffect.getQuantityDiscounted1());
+        costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource2(), returnFromEffect.getQuantityDiscounted2());
+        card.setCost(costDiscounted);
+
+        int diceValueOfFamiliar = returnFromEffect.getNewCardDicevalue();
+        int diceCost = getDiceCost(towerColour,floor);
+        Position[] tower = getPosition(towerColour);
+        Tower zone = getZone(towerColour,floor);
+        boolean towerOccupied = checkFunctions.checkTowerOccupied((Tower[])tower);
+
+        if (towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {
+            int paymentChosen = 0;
+            try {
+                paymentChosen = checkOnVenturesCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
+            } catch (CantDoActionException e) {
+                card.setCost(realCost);
+            }
+            gameActions().takeVenturesCard(zone, this, towerOccupied, paymentChosen, diceValueOfFamiliar);
+        }
+        else {
+            boolean canPayCard = checkFunctions.checkCardCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
+            if (!canPayCard) {
+                card.setCost(realCost);
+                throw new CantDoActionException();
+            }
+            else {
+                gameActions().takeNoVenturesCard(zone, this, towerOccupied, diceValueOfFamiliar);
+                gameActions().broadcastNotifications(new Notify(getName() + " has taken " + card.getName()));
+            }
+        }
+
+    }
+
+    private Cost discountCost(Cost costDiscounted, String discountedResource, int quantityDiscounted) {
+        switch (discountedResource){
+            case Constants.WOOD:{
+                costDiscounted.addWood(-quantityDiscounted);
+                break;
+            }
+            case Constants.COIN:{
+                costDiscounted.addCoin(-quantityDiscounted);
+                break;
+            }
+            case Constants.STONE:{
+                costDiscounted.addStone(-quantityDiscounted);
+                break;
+            }
+        }
+        return costDiscounted;
     }
 
     /**
@@ -114,14 +164,22 @@ public abstract class PlayerHandler extends Player {
 
     //todo rifare il metodo senza position
     protected void harvester(FamilyMember familyM, int servantsNumber) throws CantDoActionException {
-        Position[] harvesterZone = getPosition(Constants.HARVESTER);
+        List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
         boolean canTakeCard;
+        int position = firstFreePosition(harvesterZone, familyM.getFamilyColour());
 
-        canTakeCard = checkFunctions.checkPosition(position,harvesterZone,familyM);
-        if (canTakeCard)
-            gameActions().harvester(position,familyM,servantsNumber,this);
-        else
+        gameActions().harvester(position,familyM,servantsNumber,this);
+    }
+
+    private int firstFreePosition(List<? extends Position> harvesterZone, String familyColour) throws CantDoActionException {
+        for (Position p: harvesterZone){
+            if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour))
+                throw new CantDoActionException();
+        }
+        if (room.numberOfPlayerOn() > 2 && harvesterZone.size() > 0)
             throw new CantDoActionException();
+
+        return harvesterZone.size();
     }
 
 
@@ -134,32 +192,28 @@ public abstract class PlayerHandler extends Player {
     //todo rifare metodo senza posizione
     public void production(FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
         int maxValueOfProduction;
-        Position[] productionZone = getPosition(Constants.PRODUCTION);
-        boolean canPlaceCard;
+        List<Production> productionZone = room.getBoard().getProductionZone();
         boolean canTakeCards;
+        int position = firstFreePosition(productionZone,familyM.getFamilyColour());
 
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
-        canPlaceCard = checkFunctions.checkPosition(position,productionZone,familyM);
 
         if (position > 0)
             maxValueOfProduction = maxValueOfProduction - Constants.MALUS_PROD_HARV;
-        canTakeCards =  checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
+        checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
 
-        if (canPlaceCard && canTakeCards)
-            gameActions().production(position,familyM,cardToProduct,this);
-        else
-            throw new CantDoActionException();
+        gameActions().production(position,familyM,cardToProduct,this);
     }
 
 
-    public boolean checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) {
+    public void checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) throws CantDoActionException {
         BuildingCost totalCardCosts = new BuildingCost();
         for (BuildingCard b: cardToProduct){
             if (b.getCost().getDiceCost() > maxValueOfProduction)
-                return false;
+                throw new CantDoActionException();
         }
-        //attenione ho fatto che anche la
-        return true;
+        //todo qua in teoria mancano dei controlli se hai abbastanza risorse per fare produzione con scambio
+        return ;
     }
 
     /**
@@ -275,8 +329,11 @@ public abstract class PlayerHandler extends Player {
         return room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor();
     }
 
-    private DevelopmentCard getCard(String towerColor, int floor) {
-        return room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor();
+    private DevelopmentCard getCard(String towerColor, int floor) throws CantDoActionException {
+        DevelopmentCard card =  room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor();
+        if (card == null)
+            throw new CantDoActionException();
+        return card;
     }
 
 

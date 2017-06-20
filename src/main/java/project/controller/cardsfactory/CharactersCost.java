@@ -21,4 +21,21 @@ public class CharactersCost implements Cost, Serializable {
     public void picoDellaMirandolaDowngrade() {
         coinsRequired -= 3;
     }
+
+
+    @Override
+    public void addCoin(int i) {
+        coinsRequired += i;
+    }
+
+    @Override
+    public void addStone(int i) {
+
+    }
+
+    @Override
+    public void addWood(int i) {
+
+    }
+
 }

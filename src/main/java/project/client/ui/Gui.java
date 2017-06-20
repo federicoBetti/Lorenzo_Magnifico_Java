@@ -25,7 +25,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void takeBonusCard(TowerAction towerAction) {
-        mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.printBonusAction());
+        mainController.takeBonusCard(towerAction.getKindOfCard(),"ciao" ); //todo towerAction.printBonusAction());
     }
 
     @Override

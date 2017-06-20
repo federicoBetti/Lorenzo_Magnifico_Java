@@ -10,9 +10,7 @@ import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.Room;
-import project.server.network.exception.CantDoActionException;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -26,10 +24,9 @@ public class GameActions {
         return room.getMySupportFunction(player);
     }
 
-    private void takeDevelopmentCard(Tower zone, FamilyMember familyMember, PlayerHandler player) {
+    private void takeDevelopmentCard(Tower zone, PlayerHandler player) {
         DevelopmentCard card = zone.getCardOnThisFloor();
 
-        getSupportFunctions(player).setFamiliar(zone, familyMember);
         getSupportFunctions(player).placeCardInPersonalBoard(card);
         zone.getTowerZoneEffect().doEffect(player);
         TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers());
@@ -50,8 +47,19 @@ public class GameActions {
         int diceFamiliarValue = familyM.getMyValue();
 
         getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
-        takeDevelopmentCard(zone, familyM, player);
+        getSupportFunctions(player).setFamiliar(zone, familyM);
+        takeDevelopmentCard(zone, player);
     }
+
+    public void takeNoVenturesCard(Tower zone, PlayerHandler player, boolean towerIsOccupied, int diceFamiliarValue) {
+        DevelopmentCard card = zone.getCardOnThisFloor();
+        int diceCostValue = zone.getDiceValueOfThisFloor();
+
+        getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
+
+        takeDevelopmentCard(zone, player);
+    }
+
 
     void takeVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment) {
         DevelopmentCard card = zone.getCardOnThisFloor();
@@ -59,9 +67,20 @@ public class GameActions {
         int diceFamiliarValue = familyM.getMyValue();
 
         getSupportFunctions(player).payVenturesCard((VenturesCard) card, player, towerIsOccupied, diceCostValue, diceFamiliarValue, numberOfPayment);
-        takeDevelopmentCard(zone, familyM, player);
+        getSupportFunctions(player).setFamiliar(zone, familyM);
+        takeDevelopmentCard(zone, player);
     }
 
+
+    public void takeVenturesCard(Tower zone, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment, int diceFamiliarValue) {
+        DevelopmentCard card = zone.getCardOnThisFloor();
+        int diceCostValue = zone.getDiceValueOfThisFloor();
+
+        getSupportFunctions(player).payVenturesCard((VenturesCard) card, player, towerIsOccupied, diceCostValue, diceFamiliarValue, numberOfPayment);
+
+        takeDevelopmentCard(zone, player);
+
+    }
 
     /**
      * @param playerHandler
@@ -108,6 +127,7 @@ public class GameActions {
         }
         return true;
     }
+
 
     class MilitaryComparator implements Comparator<PlayerHandler> {
 
@@ -319,7 +339,8 @@ public class GameActions {
         int malusByField;
         int actionValue;
         int cardBonus = player.getPersonalBoardReference().getBonusOnActions().getHarvesterBonus();
-        Harvester harvesterZone = room.getBoard().getHarvesterZone()[position];
+        List<Harvester> harvesterList = room.getBoard().getHarvesterZone();
+        Harvester harvesterZone = new Harvester();
 
 
         getSupportFunctions(player).setFamiliar(harvesterZone, familyM);
@@ -329,8 +350,10 @@ public class GameActions {
         player.getPersonalBoardReference().getMyTile().takeHarvesterResource();
 
         for (TerritoryCard card : player.getPersonalBoardReference().getTerritories()) {
-            if (actionValue >= card.getCost().getDiceCost()) makePermanentEffects(player, card);
+            if (actionValue >= card.getCost().getDiceCost())
+                makePermanentEffects(player, card);
         }
+        harvesterList.add(harvesterZone);
 
         player.sendActionOk();
         HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone());
@@ -345,10 +368,11 @@ public class GameActions {
      * @param player
      */
     public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, PlayerHandler player) {
-        Production[] productionSpace = room.getBoard().getProductionZone();
-        Production productionZone = productionSpace[position];
+        List<Production> productionSpace = room.getBoard().getProductionZone();
+        Production productionZone = new Production();
 
         getSupportFunctions(player).setFamiliar(productionZone, familyM);
+        productionSpace.add(productionZone);
         ProductionUpdate productionUpdate = new ProductionUpdate(room.getBoard().getProductionZone());
 
         player.getPersonalBoardReference().getMyTile().takeProductionResource();

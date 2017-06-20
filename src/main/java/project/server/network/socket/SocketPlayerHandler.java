@@ -307,7 +307,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
             try {
-                takeBonusDevCard( answer );
+                takeBonusDevCard( answer, returnFromEffect );
             } catch (CantDoActionException c) {
                 try {
                     objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
@@ -390,7 +390,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    private void takeBonusDevCard( String towerColour ) throws CantDoActionException {
+    private void takeBonusDevCard(String towerColour, TowerAction returnFromEffect) throws CantDoActionException {
 
         int floor = 0;
         try {
@@ -400,7 +400,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        clientTakeBonusDevelopementCard(towerColour, floor );
+        clientTakeBonusDevelopementCard(towerColour, floor , returnFromEffect);
 
     }
 

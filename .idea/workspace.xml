@@ -3,10 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharactersCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharactersCost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Cost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Cost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TotalCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TotalCost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCost.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandolaCheck.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandolaCheck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/HarvesterUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/HarvesterUpdate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/Board.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/DevelopmentCard.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/DevelopmentCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -31,27 +50,35 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java">
+      <file leaf-file-name="HarvesterController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="195">
+              <caret line="183" column="16" lean-forward="false" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="16" />
               <folding>
-                <element signature="e#3968#3969#0" expanded="true" />
-                <element signature="e#4037#4038#0" expanded="true" />
-                <element signature="e#5336#5337#0" expanded="true" />
-                <element signature="e#5375#5376#0" expanded="true" />
-                <element signature="e#5427#5428#0" expanded="true" />
-                <element signature="e#5484#5485#0" expanded="true" />
-                <element signature="e#5539#5540#0" expanded="true" />
-                <element signature="e#5599#5600#0" expanded="true" />
-                <element signature="e#7961#7962#0" expanded="true" />
-                <element signature="e#8043#8044#0" expanded="true" />
-                <element signature="e#8079#8080#0" expanded="true" />
-                <element signature="e#8132#8133#0" expanded="true" />
-                <element signature="e#8170#8171#0" expanded="true" />
-                <element signature="e#8222#8223#0" expanded="true" />
+                <element signature="e#5500#5501#0" expanded="true" />
+                <element signature="e#5563#5564#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cost.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Cost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TerritoryCost.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,63 +86,78 @@
       <file leaf-file-name="MarketController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="431">
+              <caret line="107" column="9" lean-forward="true" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductionController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java">
+      <file leaf-file-name="SocketClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="131" column="61" lean-forward="false" selection-start-line="131" selection-start-column="61" selection-end-line="131" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RootLayout.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/RootLayout.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SceneType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/SceneType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PersonalBoardController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="356">
+              <caret line="355" column="29" lean-forward="true" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
               <folding>
-                <element signature="e#3818#3819#0" expanded="true" />
-                <element signature="e#3884#3885#0" expanded="true" />
+                <element signature="e#10421#10422#0" expanded="true" />
+                <element signature="e#10471#10472#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="315">
+              <caret line="211" column="40" lean-forward="true" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientSetter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="516">
+              <caret line="257" column="0" lean-forward="false" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gui.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="27" column="82" lean-forward="false" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cli.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/model/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="108" column="59" lean-forward="false" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
               <folding>
-                <marker date="1497897161892" expanded="true" signature="13784:14882" ph="{...}" />
+                <element signature="e#6736#6737#0" expanded="true" />
+                <element signature="e#6772#6773#0" expanded="true" />
+                <element signature="e#7128#7129#0" expanded="true" />
+                <element signature="e#7178#7179#0" expanded="true" />
+                <element signature="e#7248#7249#0" expanded="true" />
+                <element signature="e#7300#7301#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -213,20 +255,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontPayMoneyForTower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/CheckFunctionsDecorator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandolaCheck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DoubleServantsValue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/BasicCheckFunctions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/councilPalaceController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersMainGameController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/project/model/FamilyMember.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/DontCheckPositionDecorator.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LudovicoAriostoSupport.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/model/Position.java" />
@@ -240,30 +268,44 @@
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/councilPalaceMainGame.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/harvesterMainGame.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/productionMainGame.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/cardZoom.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/choice.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/leaderCardMainGame.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ChoiceController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/cardZoomController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/TowersController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/model/DevelopmentCard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandolaCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCost.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TotalCost.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharactersCost.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/HarvesterUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/model/Board.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Cost.java" />
       </list>
     </option>
   </component>
@@ -731,7 +773,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Ing Sftware/Sessione 5/sessione5/pubsub-rmi" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="RMIcl&#9;PSI&#9;JAVA://project.client.network.rmi.RMIClient&#10;rmi&#9;PSI&#9;JAVA://project.server.network.rmi.ServerRMI&#10;abs&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/AbstractUI.java&#10;cl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;Main&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/MainController.java&#10;ui&#9;PSI&#9;JAVA://project.client.ui.AbstractUI&#10;gui&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/Gui.java&#10;cli&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;b&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/messages/BonusProductionOrHarvesterAction.java&#10;towerac&#9;PSI&#9;JAVA://project.messages.TowerAction&#10;take&#9;PSI&#9;JAVA://project.messages.TakePrivilegesAction&#10;game&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;lea&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/effects/effectsfactory/LeaderCardsEffects.java&#10;Famil&#9;PSI&#9;JAVA://project.model.FamilyMember&#10;pl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/PlayerHandler.java&#10;le&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/effects/effectsfactory/LeaderCardsEffects.java&#10;gam&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;eade&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/effects/effectsfactory/LeaderCardsEffects.java&#10;Fam&#9;PSI&#9;JAVA://project.model.FamilyMember&#10;dont&#9;PSI&#9;JAVA://project.controller.checkfunctions.DontPayMoneyForTower&#10;Pl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/PlayerHandler.java&#10;lead&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java&#10;l&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java&#10;devel&#9;PSI&#9;JAVA://project.model.DevelopmentCard&#10;make imm&#9;PSI&#9;JAVA://project.server.network.GameActions#makeImmediateEffects&#10;req&#9;PSI&#9;JAVA://project.controller.supportfunctions.LeaderCardRequirements&#10;person&#9;PSI&#9;JAVA://project.model.PersonalBoard&#10;player&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/PlayerHandler.java&#10;g&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;clicon&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/cli/CliConstants.java&#10;tow&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/messages/TowerAction.java&#10;bonu&#9;PSI&#9;JAVA://project.messages.BonusInteraction&#10;leade&#9;PSI&#9;JAVA://Project.Controller.SupportFunctions.LeaderCardRequirements&#10;excomm&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
+    <property name="SearchEverywhereHistoryKey" value="boa&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/model/Board.java&#10;produc&#9;PSI&#9;JAVA://project.messages.updatesmessages.ProductionUpdate&#10;upd&#9;PSI&#9;JAVA://project.messages.updatesmessages.Updates&#10;pic&#9;PSI&#9;JAVA://project.controller.supportfunctions.PicoDellaMirandolaSupport&#10;cost&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/cardsfactory/Cost.java&#10;pico&#9;PSI&#9;JAVA://project.controller.checkfunctions.PicoDellaMirandolaCheck&#10;buil&#9;PSI&#9;JAVA://project.controller.cardsfactory.BuildingCost&#10;cos&#9;PSI&#9;JAVA://project.controller.cardsfactory.Cost&#10;game&#9;PSI&#9;JAVA://project.server.network.GameActions&#10;pl&#9;PSI&#9;JAVA://project.server.network.PlayerHandler&#10;RMIcl&#9;PSI&#9;JAVA://project.client.network.rmi.RMIClient&#10;rmi&#9;PSI&#9;JAVA://project.server.network.rmi.ServerRMI&#10;abs&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/AbstractUI.java&#10;cl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;Main&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/MainController.java&#10;ui&#9;PSI&#9;JAVA://project.client.ui.AbstractUI&#10;gui&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/Gui.java&#10;cli&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;b&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/messages/BonusProductionOrHarvesterAction.java&#10;towerac&#9;PSI&#9;JAVA://project.messages.TowerAction&#10;take&#9;PSI&#9;JAVA://project.messages.TakePrivilegesAction&#10;lea&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/effects/effectsfactory/LeaderCardsEffects.java&#10;Famil&#9;PSI&#9;JAVA://project.model.FamilyMember&#10;le&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/effects/effectsfactory/LeaderCardsEffects.java&#10;gam&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;eade&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/effects/effectsfactory/LeaderCardsEffects.java&#10;Fam&#9;PSI&#9;JAVA://project.model.FamilyMember&#10;dont&#9;PSI&#9;JAVA://project.controller.checkfunctions.DontPayMoneyForTower&#10;Pl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/PlayerHandler.java&#10;lead&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java&#10;l&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/supportfunctions/LeaderCardRequirements.java&#10;devel&#9;PSI&#9;JAVA://project.model.DevelopmentCard&#10;make imm&#9;PSI&#9;JAVA://project.server.network.GameActions#makeImmediateEffects&#10;req&#9;PSI&#9;JAVA://project.controller.supportfunctions.LeaderCardRequirements&#10;person&#9;PSI&#9;JAVA://project.model.PersonalBoard&#10;player&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/PlayerHandler.java&#10;g&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;clicon&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/cli/CliConstants.java&#10;tow&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/messages/TowerAction.java&#10;bonu&#9;PSI&#9;JAVA://project.messages.BonusInteraction&#10;leade&#9;PSI&#9;JAVA://Project.Controller.SupportFunctions.LeaderCardRequirements&#10;excomm&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/Project/Controller/CardsFactory/ExcommunitationTile.java" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="SONARLINT_ANALYSIS_RESULTS_SCOPE" value="All project files" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="false" />
@@ -786,60 +828,13 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/network/AbstractClient.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/TakeBonusCard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/configurations/Configuration.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/Constants.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharacterCard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharactersCost.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Cost.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/ExcommunicationTile.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/LeaderCard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TotalCost.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VentureCostArray.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCost.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/Effects.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/CouncilUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ExcomunicationUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/FamilyMemberUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/HarvesterUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/MarketUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/PersonalBoardUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Board.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Bonus.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Council.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/DevelopmentCard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/ExcommunicationZone.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/FamilyMember.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Harvester.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Market.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/PersonalBoard.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Player.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Position.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Production.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Score.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Tile.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Tower.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/model/Deck.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/server/Room.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/server/Server.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -847,8 +842,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/sonarlint.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TimerFromJson.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/configurations/TimerSettings.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -856,7 +850,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/LoadCards.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1541,14 +1534,7 @@
       <workItem from="1497454619441" duration="39056000" />
       <workItem from="1497723360766" duration="372000" />
       <workItem from="1497772194480" duration="25917000" />
-      <workItem from="1497886510037" duration="14639000" />
-    </task>
-    <task id="LOCAL-00009" summary="effetti carte scomunica e leader, elimino player advanced">
-      <created>1494840554408</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1494840554408</updated>
+      <workItem from="1497886510037" duration="22272000" />
     </task>
     <task id="LOCAL-00010" summary="effetti carte scomunica e leader, elimino player advanced">
       <created>1494840584637</created>
@@ -1886,7 +1872,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497902194578</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="working on gui">
+      <created>1497943931420</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1497943931420</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1916,7 +1909,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231215000" />
+    <option name="totallyTimeSpent" value="238848000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1934,20 +1927,20 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33655915" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3362256" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36643496" sideWeight="0.50213444" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16141514" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32672232" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264642" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31732777" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24571112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4196242" sideWeight="0.49786553" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4186551" sideWeight="0.49786553" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1963,6 +1956,39 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256785" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36643496" sideWeight="0.50213444" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16141514" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33655915" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264642" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31732777" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24571112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4196242" sideWeight="0.49786553" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256785" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -2028,7 +2054,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2037,201 +2063,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/model/FamilyMember.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="862">
-          <caret line="78" column="54" lean-forward="false" selection-start-line="78" selection-start-column="54" selection-end-line="78" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/LudovicoAriostoSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/AllSupportFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="18" column="53" lean-forward="true" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/model/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="43" column="50" lean-forward="false" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/LudovicoAriostoCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/LeaderCardsEffects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1722">
-          <caret line="182" column="54" lean-forward="false" selection-start-line="182" selection-start-column="54" selection-end-line="182" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/TowerIterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding>
-            <element signature="e#800#801#0" expanded="false" />
-            <element signature="e#849#850#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Scaricati/jdk1.8.0_131/javafx-src.zip!/javafx/scene/image/ImageView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="187" column="22" lean-forward="false" selection-start-line="187" selection-start-column="22" selection-end-line="187" selection-end-column="22" />
-          <folding>
-            <element signature="e#5238#5239#0" expanded="false" />
-            <element signature="e#5280#5281#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="145" column="34" lean-forward="true" selection-start-line="145" selection-start-column="34" selection-end-line="145" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/towersMainGame.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="143" column="107" lean-forward="false" selection-start-line="143" selection-start-column="107" selection-end-line="143" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/rootLayout.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/generalMainGame.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-61">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/marketMainGame.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="57" column="113" lean-forward="false" selection-start-line="57" selection-start-column="113" selection-end-line="57" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/personalBoardMainGame.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-61">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TakePrivilegesAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/councilPalaceMainGame.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2017">
-          <caret line="117" column="42" lean-forward="false" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/harvesterMainGame.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/productionMainGame.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="199" column="40" lean-forward="false" selection-start-line="199" selection-start-column="40" selection-end-line="199" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/BonusProductionOrHarvesterAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/CliConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/leaderCardMainGame.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -2241,22 +2072,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="184" column="29" lean-forward="false" selection-start-line="184" selection-start-column="29" selection-end-line="184" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="96" column="58" lean-forward="false" selection-start-line="96" selection-start-column="58" selection-end-line="96" selection-end-column="58" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/choice.fxml">
@@ -2283,25 +2098,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding>
-            <element signature="e#1946#1947#0" expanded="true" />
-            <element signature="e#2018#2019#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
@@ -2323,16 +2119,6 @@
         <state relative-caret-position="240">
           <caret line="24" column="35" lean-forward="true" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2362,25 +2148,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="e#2050#2051#0" expanded="true" />
-            <element signature="e#2110#2111#0" expanded="true" />
-            <element signature="e#4006#4007#0" expanded="true" />
-            <element signature="e#4064#4065#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/FamiliarPosition.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2389,14 +2162,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -2423,29 +2188,6 @@
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
             <marker date="1497897161892" expanded="true" signature="13784:14882" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="e#3968#3969#0" expanded="true" />
-            <element signature="e#4037#4038#0" expanded="true" />
-            <element signature="e#5336#5337#0" expanded="true" />
-            <element signature="e#5375#5376#0" expanded="true" />
-            <element signature="e#5427#5428#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#5539#5540#0" expanded="true" />
-            <element signature="e#5599#5600#0" expanded="true" />
-            <element signature="e#7961#7962#0" expanded="true" />
-            <element signature="e#8043#8044#0" expanded="true" />
-            <element signature="e#8079#8080#0" expanded="true" />
-            <element signature="e#8132#8133#0" expanded="true" />
-            <element signature="e#8170#8171#0" expanded="true" />
-            <element signature="e#8222#8223#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2506,18 +2248,307 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="402" column="39" lean-forward="true" selection-start-line="402" selection-start-column="39" selection-end-line="402" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/TowerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="746">
+          <caret line="70" column="38" lean-forward="false" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
+          <folding>
+            <element signature="e#2300#2301#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+            <element signature="e#2376#2377#0" expanded="true" />
+            <element signature="e#2416#2417#0" expanded="true" />
+            <element signature="e#2449#2450#0" expanded="true" />
+            <element signature="e#2492#2493#0" expanded="true" />
+            <element signature="e#2525#2526#0" expanded="true" />
+            <element signature="e#2565#2566#0" expanded="true" />
+            <element signature="e#2598#2599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Scaricati/jdk1.8.0_131/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="211" column="28" lean-forward="false" selection-start-line="211" selection-start-column="28" selection-end-line="211" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/PicoDellaMirandolaSupport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/model/DevelopmentCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="69" column="21" lean-forward="false" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+          <folding>
+            <element signature="e#2159#2160#0" expanded="false" />
+            <element signature="e#2195#2196#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/PicoDellaMirandolaCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2046">
+          <caret line="104" column="46" lean-forward="false" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VenturesCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <element signature="e#1050#1051#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1133#1134#0" expanded="false" />
+            <element signature="e#1167#1168#0" expanded="false" />
+            <element signature="e#1215#1216#0" expanded="false" />
+            <element signature="e#1248#1249#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TotalCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding>
+            <element signature="e#1627#1628#0" expanded="false" />
+            <element signature="e#1661#1662#0" expanded="false" />
+            <element signature="e#1710#1711#0" expanded="false" />
+            <element signature="e#1744#1745#0" expanded="false" />
+            <element signature="e#1792#1793#0" expanded="false" />
+            <element signature="e#1825#1826#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/CharactersCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="37" column="7" lean-forward="false" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+          <folding>
+            <element signature="e#448#449#0" expanded="false" />
+            <element signature="e#482#483#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/BuildingCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+          <folding>
+            <element signature="e#589#590#0" expanded="false" />
+            <element signature="e#623#624#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/checkfunctions/BasicCheckFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/supportfunctions/BasicSupportFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="207" column="16" lean-forward="false" selection-start-line="207" selection-start-column="16" selection-end-line="207" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/GameActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="374" column="44" lean-forward="false" selection-start-line="374" selection-start-column="44" selection-end-line="374" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/PlayerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="928">
+          <caret line="204" column="27" lean-forward="false" selection-start-line="204" selection-start-column="27" selection-end-line="204" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/Updates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/HarvesterUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#644#645#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+          <folding>
+            <element signature="e#601#602#0" expanded="true" />
+            <element signature="e#656#657#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="177" column="50" lean-forward="false" selection-start-line="177" selection-start-column="50" selection-end-line="177" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="131" column="61" lean-forward="false" selection-start-line="131" selection-start-column="61" selection-end-line="131" selection-end-column="61" />
+        <state relative-caret-position="215">
+          <caret line="188" column="20" lean-forward="false" selection-start-line="188" selection-start-column="20" selection-end-line="188" selection-end-column="20" />
+          <folding>
+            <element signature="e#5797#5798#0" expanded="true" />
+            <element signature="e#5858#5859#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/AbstractController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="202" column="51" lean-forward="true" selection-start-line="202" selection-start-column="51" selection-end-line="202" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="211" column="40" lean-forward="true" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="183" column="16" lean-forward="false" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="16" />
+          <folding>
+            <element signature="e#5500#5501#0" expanded="true" />
+            <element signature="e#5563#5564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/model/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="108" column="59" lean-forward="false" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
+          <folding>
+            <element signature="e#6736#6737#0" expanded="true" />
+            <element signature="e#6772#6773#0" expanded="true" />
+            <element signature="e#7128#7129#0" expanded="true" />
+            <element signature="e#7178#7179#0" expanded="true" />
+            <element signature="e#7248#7249#0" expanded="true" />
+            <element signature="e#7300#7301#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MarketController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="107" column="9" lean-forward="true" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="355" column="29" lean-forward="true" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
+          <folding>
+            <element signature="e#10421#10422#0" expanded="true" />
+            <element signature="e#10471#10472#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="257" column="0" lean-forward="false" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="27" column="82" lean-forward="false" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TerritoryCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/Cost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
           <folding />
         </state>
       </provider>

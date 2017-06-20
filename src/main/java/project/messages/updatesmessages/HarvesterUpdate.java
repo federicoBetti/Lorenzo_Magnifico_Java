@@ -5,14 +5,15 @@ import project.model.Board;
 import project.model.Harvester;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by raffaelebongo on 14/06/17.
  */
 public class HarvesterUpdate extends Updates implements Serializable {
-    Harvester[] harvesterZone;
+    List<Harvester> harvesterZone;
 
-    public HarvesterUpdate(Harvester[] harvester ){
+    public HarvesterUpdate(List<Harvester> harvester ){
         harvesterZone = harvester;
     }
 

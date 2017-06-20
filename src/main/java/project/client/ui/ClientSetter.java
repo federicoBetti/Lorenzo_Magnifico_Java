@@ -253,4 +253,8 @@ public class ClientSetter {
     public FamilyMember[] getUiFamilyMembers() {
         return uiFamilyMembers;
     }
+
+    public void nicknameAlreadyUsed() {
+
+    }
 }

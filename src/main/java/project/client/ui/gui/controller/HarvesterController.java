@@ -181,7 +181,7 @@ public class HarvesterController extends AbstractController {
         }
     }
 
-    public void updatePosition(Harvester[] harvesterZone) {
+    public void updatePosition(List<Harvester> harvesterZone) {
         super.updatePosition(harvesterZone,allPosition);
     }
 

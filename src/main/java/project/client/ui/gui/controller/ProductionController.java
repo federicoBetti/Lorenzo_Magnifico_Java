@@ -185,7 +185,7 @@ public class ProductionController extends AbstractController{
         }
     }
 
-    public void updatePosition(Production[] productions){
+    public void updatePosition(List<Production> productions){
         super.updatePosition(productions,allPosition);
     }
 
