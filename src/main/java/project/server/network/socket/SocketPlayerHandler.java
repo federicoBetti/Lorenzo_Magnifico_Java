@@ -26,11 +26,11 @@ import java.util.ListIterator;
 //todo implementare per ogni metodo i messaggi di ritorno al client o gia fatto in gameAction? controllare
 public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
-    SocketServer socketServer;
-    Socket socket;
-    ObjectInputStream objectInputStream;
-    ObjectOutputStream objectOutputStream;
-    ServerDataHandler serverDataHandler;
+    transient SocketServer socketServer;
+    transient Socket socket;
+    transient ObjectInputStream objectInputStream;
+    transient ObjectOutputStream objectOutputStream;
+    transient ServerDataHandler serverDataHandler;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();

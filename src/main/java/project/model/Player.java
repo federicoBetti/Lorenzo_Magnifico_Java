@@ -24,9 +24,9 @@ public class Player implements Serializable{
 
 	private String familyColour;
 
-    private LeaderEffectsUsefull leaderEffectsUsefull;
+    private transient LeaderEffectsUsefull leaderEffectsUsefull;
 
-    private ExcommunicationEffectsUseful excommunicationEffectsUseful;
+    private transient ExcommunicationEffectsUseful excommunicationEffectsUseful;
 
 
 

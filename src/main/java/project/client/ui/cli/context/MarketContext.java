@@ -23,12 +23,14 @@ public class MarketContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are:");
+        pRed.println("The available actions are");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pYellow.println(entry.getKey().toString());
 
-        System.out.println("[position-familiarColour] \n " +
-                "\n position: 0, 1, 2, 3 \n familiarColour: black, neutral, orange, white ");
+        pRed.println("The main Action is:");
+        pYellow.println("[position-familiarColour]\n" +
+                "position: 0, 1, 2, 3\nfamiliarColour: black, neutral, orange, white ");
+
     }
 
     @Override

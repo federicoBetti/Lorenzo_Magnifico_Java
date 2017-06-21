@@ -24,10 +24,12 @@ public class BonusHarvesterContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        bonusHarv.printAction();
-        System.out.println("the available actions are:");
+        pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pYellow.println(entry.getKey());
+
+        pRed.println("The main action is:");
+        pYellow.println(bonusHarv.actionString());
 
     }
 

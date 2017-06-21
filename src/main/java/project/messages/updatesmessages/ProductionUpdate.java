@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ProductionUpdate extends Updates implements Serializable {
 
-    List<Production> productionZone;
+    private List<Production> productionZone;
 
     public ProductionUpdate(List<Production> production ){
         productionZone = production;

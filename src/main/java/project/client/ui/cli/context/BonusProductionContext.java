@@ -16,16 +16,19 @@ public class BonusProductionContext extends AbstractContext {
     public BonusProductionContext(BonusProductionOrHarvesterAction bonusProd, Cli cli) {
         super(cli);
         this.bonusProd = bonusProd;
-        bonusProd.printAction();
+        bonusProd.actionString();
         printHelp();
     }
 
     @Override
     public void printHelp() {
-        bonusProd.printAction();
-        System.out.println("the available actions are:");
+
+        pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey().toString());
+            pYellow.println(entry.getKey().toString());
+
+        pRed.println("The main action is:");
+        pYellow.println(bonusProd.actionString());
     }
 
     @Override

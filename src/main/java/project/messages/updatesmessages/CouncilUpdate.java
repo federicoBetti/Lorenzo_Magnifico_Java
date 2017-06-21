@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class CouncilUpdate extends Updates implements Serializable {
 
-    List<Council> councilZone;
+    private List<Council> councilZone;
 
     public CouncilUpdate( List<Council> council ){
         councilZone = council;

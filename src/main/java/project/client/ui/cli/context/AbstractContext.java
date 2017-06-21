@@ -1,5 +1,7 @@
 package project.client.ui.cli.context;
 
+import com.diogonunes.jcdp.color.api.Ansi;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
@@ -15,10 +17,21 @@ public abstract class AbstractContext {
     Cli cli;
     Actioner actioner;
     Map<String, Actioner> map;
+    UnixColoredPrinter pYellow;
+    UnixColoredPrinter pRed;
 
     public AbstractContext( Cli cli ){
         this.cli = cli;
         map = new HashMap<>();
+        UnixColoredPrinter.Builder builder = new UnixColoredPrinter.Builder(0, false);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.YELLOW);
+        this.pYellow = new UnixColoredPrinter(builder);
+
+        UnixColoredPrinter.Builder builder1 = new UnixColoredPrinter.Builder(0, false);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.RED);
+        this.pRed = new UnixColoredPrinter(builder);
     }
 
     void exit() {

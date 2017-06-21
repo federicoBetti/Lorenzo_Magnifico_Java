@@ -17,7 +17,9 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("Main Action: type 0 or 1 for choosing the cost");
+        pRed.println("The main action is:");
+        pYellow.println("[0] for the first cost\n" +
+                        "[1] for the second cost");
     }
 
     public void checkValidInput( String input ) throws InputException{

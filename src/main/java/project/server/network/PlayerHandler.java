@@ -16,8 +16,8 @@ import java.util.List;
 
 public abstract class PlayerHandler extends Player {
 
-    private Room room;
-    private AllCheckFunctions checkFunctions;
+    private transient Room room;
+    private transient AllCheckFunctions checkFunctions;
     final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
 
     public PlayerHandler(){

@@ -18,7 +18,7 @@ public class WaitingForMatchStart extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("Waiting for start match...");
+        pRed.println("Waiting for start match...");
     }
 
     @Override

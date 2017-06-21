@@ -19,7 +19,7 @@ public class LoginContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("You are in the Login Context. Write your nickname");
+        pRed.println("You are in the Login Context. Write your nickname");
     }
 
     @Override

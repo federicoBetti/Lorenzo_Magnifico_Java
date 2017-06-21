@@ -1,5 +1,7 @@
 package project.client;
 
+import com.diogonunes.jcdp.color.api.Ansi;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.ClientSetter;
 
 import java.io.IOException;
@@ -17,10 +19,15 @@ public class Launcer {
 
     private static String selectUi() {
 
+        UnixColoredPrinter.Builder builder = new UnixColoredPrinter.Builder(0, false);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.YELLOW);
+        UnixColoredPrinter p = new UnixColoredPrinter(builder);
+
         SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
         while (true) {
-            System.out.println("1: CLI");
-            System.out.println("2: GUI");
+            p.println("1: CLI");
+            p.println("2: GUI");
             int choice = 0;
             try {
                 choice = Integer.parseInt(keyboard.readLine());
@@ -41,5 +48,6 @@ public class Launcer {
     public static void main(String[] args){
         new ClientSetter(selectUi());
     }
+
 
 }
