@@ -14,7 +14,7 @@ public interface RMIServerToClientInterface extends Remote{
 
     void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
+    //void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
 
     void notify (Notify notify);
 
@@ -43,4 +43,6 @@ public interface RMIServerToClientInterface extends Remote{
     void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
 
     void actionOk() throws  RemoteException;
+
+    void doProductionHarvester(BonusInteraction bonusInteraction);
 }

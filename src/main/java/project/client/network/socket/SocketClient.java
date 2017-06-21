@@ -157,7 +157,7 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    @Override
+
     public void bonusHarvester()  {
         BonusProductionOrHarvesterAction bonusHarv = null;
         try {
@@ -216,7 +216,7 @@ public class SocketClient extends AbstractClient {
         clientSetter.takeBonusCard(towerAction);
     }
 
-    @Override
+
     public void choicePe(){
         clientSetter.choicePe();
     }

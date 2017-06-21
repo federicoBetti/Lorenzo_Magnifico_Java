@@ -27,6 +27,10 @@ import java.util.List;
  *  questi metodi che ritornano sono anche quelli dell'update della UI in tempo reale
  */
 public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
+    @Override
+    public void doProductionHarvester(BonusInteraction bonusInteraction) {
+
+    }
 
     private RMIClientToServerInterface myServer;
     private String myUniqueId;
@@ -49,7 +53,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void loginRequest(String loginParameter) {
-        myServer.loginRequest(myUniqueId,loginParameter);
+        try {
+            myServer.loginRequest(myUniqueId,loginParameter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

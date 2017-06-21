@@ -4,6 +4,7 @@ import project.client.network.rmi.RMIServerToClientInterface;
 import project.server.network.AbstractServer;
 import project.server.Server;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.ServerException;
 import java.rmi.registry.LocateRegistry;
@@ -89,7 +90,11 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
 
 
     public void loginRequest(String clientUniqueId, String nickname)  {
-        server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
+        try {
+            server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) throws RemoteException {
@@ -102,11 +107,11 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     }
 
     public void harvesterRequest(String clientUniqueId, String familyMemberColour, int servantsNumber) {
-        getPlayerHandler(clientUniqueId).harvesterRequest(position,familyMemberColour, servantsNumber);
+        getPlayerHandler(clientUniqueId).harvesterRequest(familyMemberColour, servantsNumber);
     }
 
     public void productionRequest(String clientUniqueId, String familyMemberColour, List<String> cards){
-        getPlayerHandler(clientUniqueId).productionRequest(position,familyMemberColour, cards);
+        getPlayerHandler(clientUniqueId).productionRequest(familyMemberColour, cards);
     }
 
     public void goToMarketRequest(String clientUniqueId,int position, String familyMemberColour)  {
@@ -127,6 +132,46 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
 
     public void takePrivilegeRequest(String clientUniqueId, int privilegeNumber){
         getPlayerHandler(clientUniqueId).takePrivilegeRequest(privilegeNumber);
+    }
+
+    @Override
+    public void prayOrNot(String myUniqueId, boolean action) throws RemoteException {
+
+    }
+
+    @Override
+    public void exitOnBonusAction(String myUniqueId) throws RemoteException {
+
+    }
+
+    @Override
+    public void setChoicePe(String myUniqueId, int input) throws RemoteException {
+
+    }
+
+    @Override
+    public void sendBonusHarvester(String myUniqueId, int servantsNumber) throws RemoteException {
+
+    }
+
+    @Override
+    public void sendBonusProduction(String myUniqueId, List<String> parameters) throws RemoteException {
+
+    }
+
+    @Override
+    public void sendBonusCardAction(String myUniqueId, int floor, String towerColour) throws RemoteException {
+
+    }
+
+    @Override
+    public void sendImmediatePrivileges(String myUniqueId, List<Integer> privileges) throws RemoteException {
+
+    }
+
+    @Override
+    public void sendChoicePaymentVc(String myUniqueId, int payment) throws RemoteException {
+
     }
 
 

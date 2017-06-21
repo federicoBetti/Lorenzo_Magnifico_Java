@@ -73,7 +73,6 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public int sendPossibleChoice(String kindOfChoice) {
-        myClient;
         return 1;
     }
 
@@ -190,7 +189,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen);
     }
 
-    void harvesterRequest(int position, String familyMemberColour, int servantsNumber) {
+    void harvesterRequest(String familyMemberColour, int servantsNumber) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         try {
             harvester(familyMember, servantsNumber);
@@ -199,7 +198,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         }
     }
 
-    void productionRequest(int position, String familyMemberColour, List<String> cards) {
+    void productionRequest(String familyMemberColour, List<String> cards) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
         ArrayList<BuildingCard> buildingCards = new ArrayList<>();
         for (BuildingCard buildingCard : getPersonalBoardReference().getBuildings()) {

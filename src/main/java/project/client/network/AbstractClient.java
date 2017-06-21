@@ -13,7 +13,9 @@ public abstract class AbstractClient {
     public abstract void waitingForTheNewInteraction() ;
 
     public abstract void takeDevCard(String towerColour, int floor, String familiarColour )  ;
-    
+
+    public abstract void actionOk();
+
     public abstract void marketAction(int position, String familyColour)  ;
 
     public abstract void councilAction(int parameter1, String parameter2)  ;
@@ -41,4 +43,7 @@ public abstract class AbstractClient {
     public abstract void harvesterAction(String familyMemberColour, int servantsNumber) ;
 
     public abstract void productionAction(String familiarChosen, List<String> buidingCards) ;
+
+    public void skipTurn() {
+    }
 }
