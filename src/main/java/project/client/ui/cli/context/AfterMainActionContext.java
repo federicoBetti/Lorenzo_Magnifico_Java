@@ -14,10 +14,10 @@ public class AfterMainActionContext extends AbstractContext {
 
     public AfterMainActionContext(Cli cli) {
         super(cli);
-        printHelp();
         map.put(Constants.SKIP_TURN, this::skipTurn );
         map.put(Constants.PLAY_LEADER_CARD_AMA, this:: playLeaderCardAma );
         map.put(Constants.DISCARD_LEADER_CARD_AMA, this:: discardLeaderCardAma );
+        printHelp();
     }
 
     private void discardLeaderCardAma() {
@@ -29,6 +29,7 @@ public class AfterMainActionContext extends AbstractContext {
     }
 
     private void skipTurn() {
+        cli.skipTurn();
     }
 
     @Override

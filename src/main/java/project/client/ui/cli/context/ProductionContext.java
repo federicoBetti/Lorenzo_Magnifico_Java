@@ -12,12 +12,12 @@ import java.util.Map;
  */
 public class ProductionContext extends AbstractContext {
     Cli cli;
-    Map<String, Actioner> map;
 
     public ProductionContext(Cli cli ){
         super(cli);
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+        printHelp();
     }
 
     @Override

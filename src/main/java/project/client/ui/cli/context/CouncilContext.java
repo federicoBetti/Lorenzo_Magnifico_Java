@@ -16,6 +16,7 @@ public class CouncilContext extends AbstractContext {
         super(cli);
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+        printHelp();
     }
 
     @Override

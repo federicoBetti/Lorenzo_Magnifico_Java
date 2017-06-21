@@ -34,13 +34,20 @@ public class SocketClient extends AbstractClient {
             socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
+            goToLogin();
         } catch (IOException e) {
+            e.printStackTrace();
             throw new ClientConnectionException(e);
         }
     }
 
+    private void goToLogin() {
+        clientSetter.goToLogin();
+    }
+
     @Override
     public void waitingForTheNewInteraction() {
+
         String message;
         while (true) {
             try {
@@ -56,9 +63,10 @@ public class SocketClient extends AbstractClient {
 
     //send requests
     @Override
-    public void loginRequest(String loginParameter)  {
+    public void loginRequest(String loginParameter) {
         sendGenericObject(Constants.LOGIN_REQUEST);
         sendGenericObject(loginParameter);
+        waitingForTheNewInteraction();
     }
 
     @Override
@@ -278,6 +286,14 @@ public class SocketClient extends AbstractClient {
         clientSetter.boardUpdate(update);
     }
 
+    public void skipTurn() {
+        sendGenericObject(Constants.SKIP_TURN);
+        createWaitingForYourTurnContext();
+    }
+
+    private void createWaitingForYourTurnContext() {
+        clientSetter.waitingForYourTurn();
+    }
 
     //sending methods
     void send2Parameters(Object parameter1, Object parameter2 )   {
@@ -354,6 +370,10 @@ public class SocketClient extends AbstractClient {
 
     public void nicknameAlreadyUsed() {
         clientSetter.nicknameAlreadyUsed();
+    }
+
+    public void loginSucceded() {
+        clientSetter.loginSucceded();
     }
 }
 

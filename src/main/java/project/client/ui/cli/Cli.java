@@ -1,9 +1,9 @@
 package project.client.ui.cli;
 
+import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
-import project.controller.cardsfactory.BuildingCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by raffaelebongo on 01/06/17.
  */
 public class Cli extends AbstractUI {
-
+    //todo fare end turn context e tutto il via dicendo
 
     ClientSetter clientSetter; //all the operation have to pass across this class
     AbstractContext context;
@@ -60,6 +60,16 @@ public class Cli extends AbstractUI {
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
         context = new BonusHarvesterContext(bonusHarv, this);
+    }
+
+    @Override
+    public void goToLogin() {
+        context = new LoginContext(this);
+    }
+
+    @Override
+    public void loginSucceded() {
+        context = new WaitingForMatchStart(this);
     }
 
     public void bonusHarvesterParameters(String input) throws InputException {
@@ -162,9 +172,29 @@ public class Cli extends AbstractUI {
         System.out.println("Nickname already used! Please chose another one.");
     }
 
-    public void choseAndTakeDevCard(String lineFromKeyBoard) throws InputException {
+    @Override
+    public void skipTurn() {
+        clientSetter.skipTurn();
+    }
 
-        context.checkValidInput(lineFromKeyBoard);
+    @Override
+    public void waitingForYourTurn() {
+        context = new WaitingForYourTurnContext(this);
+    }
+
+    @Override
+    public void setConnectionType(String kindOfConnection) throws InputException {
+        clientSetter.setConnectionType(kindOfConnection);
+    }
+
+    public void choseAndTakeDevCard(String lineFromKeyBoard)  {
+
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            context.printHelp();
+            return;
+        }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.takeDevCard(parameters[0], Integer.parseInt(parameters[1]), parameters[2]);
 
@@ -174,7 +204,7 @@ public class Cli extends AbstractUI {
     public void chooseProductionParameters(String lineFromKeyBoard) throws InputException {
         context.checkValidInput(lineFromKeyBoard);
         String[] parameters = lineFromKeyBoard.split("-");
-        List<String> buildingCards = new ArrayList();
+        List<String> buildingCards = new ArrayList<>();
         for (int i = 1; i<parameters.length; i++)
             buildingCards.add(parameters[i]);
 
@@ -247,10 +277,9 @@ public class Cli extends AbstractUI {
 
         @Override
         public void run() {
-            BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+            SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
             while (true) {
                 String lineFromKeyBoard;
-
                 try {
                     lineFromKeyBoard = keyboard.readLine();
                     if (context != null) {

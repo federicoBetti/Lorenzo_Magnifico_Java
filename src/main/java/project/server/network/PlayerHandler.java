@@ -385,6 +385,13 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void sendActionOk();
 
+    //todo implement
     protected void clientTakeDevelopementCard(String towerColour, int floor, FamilyMember familyMember) throws CantDoActionException, CanUseBothPaymentMethodException{
     }
+
+    public abstract void timerTurnDelayed();
+
+    public abstract void nicknameAlredyUsed();
+
+    public abstract void loginSucceded();
 }

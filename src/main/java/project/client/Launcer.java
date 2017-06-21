@@ -2,9 +2,7 @@ package project.client;
 
 import project.client.ui.ClientSetter;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Created by raffaelebongo on 20/05/17.
@@ -18,13 +16,18 @@ public class Launcer {
     }
 
     private static String selectUi() {
-        BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+
+        SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
         while (true) {
-            System.out.println("1 -> CLI");
-            System.out.println("2 -> GUI");
+            System.out.println("1: CLI");
+            System.out.println("2: GUI");
+            int choice = 0;
             try {
-                int choice = Integer.parseInt(keyboard.readLine());
-                switch (choice) {
+                choice = Integer.parseInt(keyboard.readLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            switch (choice) {
                     case 1:
                         return "CLI";
                     case 2:
@@ -32,8 +35,6 @@ public class Launcer {
                     default:
                         throw new NumberFormatException("Not a valid choice");
                 }
-            } catch (IOException | NumberFormatException e) {
-            }
         }
     }
 

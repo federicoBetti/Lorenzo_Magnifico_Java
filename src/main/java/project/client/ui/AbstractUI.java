@@ -1,5 +1,6 @@
 package project.client.ui;
 
+import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -56,4 +57,16 @@ public abstract class AbstractUI {
     }
 
     public abstract void nicknameAlreadyUsed();
+
+    public abstract void skipTurn();
+
+    public abstract void waitingForYourTurn();
+
+    public abstract void setConnectionType(String kindOfConnection) throws InputException;
+
+    public void goToLogin() {
+    }
+
+    public abstract void loginSucceded();
+
 }

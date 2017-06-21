@@ -18,24 +18,26 @@ public class TowersContext extends AbstractContext {
         map.put(CliConstants.SHOW_TOWERS, this:: showTowers );
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+        printHelp();
     }
 
     private void showTowers() {
         //todo
     }
 
-    @Override
+    /*@Override
     public void doAction(String action) throws IOException, InputException {
         actioner = map.get(action);
         actioner.action();
-    }
+    }*/
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are:");
+        System.out.println("You are in the Tower Context! The available actions are:\n");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            System.out.println(entry.getKey().toString());
 
+        System.out.println("\nFor taking the tower type:\n");
         System.out.println("[towerColour-floor-familiarColour] \n towerColour: green, yellow, purple, blue " +
                 "\nfloor: 0, 1, 2, 3 \n familiarColour: black, neutral, orange, white ");
     }
@@ -44,10 +46,10 @@ public class TowersContext extends AbstractContext {
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length == 1 ))
+        if(!( parameters.length == 3 ))
             throw new InputException();
 
-        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 )
+        if (Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3 )
             throw new InputException();
 
     }

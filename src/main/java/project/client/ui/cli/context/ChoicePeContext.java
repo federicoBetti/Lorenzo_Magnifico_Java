@@ -15,9 +15,7 @@ public class ChoicePeContext extends AbstractContext {
     public ChoicePeContext(Cli cli) {
         super(cli);
         map.put(CliConstants.HELP, this::printHelp );
-        System.out.println("Choose the cost typing:" +
-                "\n 0 for the first cost;" +
-                "\n 1 for the second cost");
+        printHelp();
     }
 
     @Override
@@ -25,6 +23,10 @@ public class ChoicePeContext extends AbstractContext {
         System.out.println("the available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             System.out.println(entry.getKey());
+
+        System.out.println("\nChoose the cost typing:" +
+                "\n 0 for the first cost;" +
+                "\n 1 for the second cost");
     }
 
     @Override

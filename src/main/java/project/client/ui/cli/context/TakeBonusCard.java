@@ -18,7 +18,7 @@ public class TakeBonusCard extends AbstractContext {
         super(cli);
         this.towerAction = towerAction;
         map.put(CliConstants.EXIT, this::exitFromBonus );
-
+        printHelp();
     }
 
     private void exitFromBonus() throws IOException, InputException {
@@ -55,8 +55,6 @@ public class TakeBonusCard extends AbstractContext {
             throw new InputException();
 
         checkTowerColour(parameters[1]);
-
-
 
     }
 

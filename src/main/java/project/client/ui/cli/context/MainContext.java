@@ -12,7 +12,6 @@ import java.util.Map;
  * Created by raffaelebongo on 05/06/17.
  */
 public class MainContext extends AbstractContext {
-    Map<String,Actioner> map;
 
     public MainContext(Cli cli){
         super(cli);
@@ -37,6 +36,7 @@ public class MainContext extends AbstractContext {
         map.put(Constants.PLAY_LEADER_CARD, this:: leaderCard );
         map.put(Constants.DISCARD_LEADER_CARD, this:: dLeaderCard );
         map.put(Constants.GO_TO_MARKET, this::marketContext );
+        printHelp();
         //todo creare costanti che chiamano metodi che aggiornano i contesti
 
     }
@@ -67,7 +67,9 @@ public class MainContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-
+        System.out.println("You are in the main context! The available actions are:");
+        for (Map.Entry<String, Actioner> entry: map.entrySet())
+            System.out.println(entry.getKey().toString());
     }
 
     private void takeDevCard() {

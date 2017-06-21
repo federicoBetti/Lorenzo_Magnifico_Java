@@ -34,8 +34,8 @@ public class Constants {
     public static final String YOUR_TURN = "your-turn";
 
     //network constants
-    public static final String LOGIN_REQUEST = "fileXML.login-request";
-    public static final String TAKE_DEV_CARD = "client-Take-Developement-Card";
+    public static final String LOGIN_REQUEST = "login-request";
+    public static final String TAKE_DEV_CARD = "take-dev-card";
     public static final String CHOOSE_PAYMENT_FOR_VENTURE_CARD = "choose-Payment-Venture-card";
     public static final String STOP = "stop";
     public static final String GO_TO_MARKET ="go-to-market";
@@ -103,6 +103,7 @@ public class Constants {
     public static final String WOOD = "wood";
     public static final String COIN = "coin";
     public static final String STONE = "stone";
+    public static final String TIMER_TURN_DELAYED = "timer-turn-delayed";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

@@ -1,6 +1,7 @@
 package project.server;
 
 import project.configurations.Configuration;
+import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
@@ -9,6 +10,7 @@ import project.model.Player;
 import project.server.network.GameActions;
 import project.server.network.PlayerHandler;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 
@@ -35,15 +37,20 @@ public class Room {
 
     GameActions gameActions;
 
+    private boolean matchStarted;
+
     AllSupportFunctions allSupportFunctions;
 
+    TimerSettings timerSettings;
 
 
      Room(Server server){
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
         buildExcommunicationEffects = new BuildExcommunicationEffects();
+        matchStarted = false;
         this.server = server;
+        timerSettings = server.getTimerSettings();
     }
 
      boolean isFull() {
@@ -110,7 +117,41 @@ public class Room {
     }
 
     public void startMatch() {
-        this.board = new Board();
-        getBoard().getTurn().getPlayerTurn().get(0).sendAnswer(Constants.YOUR_TURN);
+        List<PlayerHandler> playerInTheMatch = new ArrayList<>();
+        for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet()) {
+            if ( entry.getValue().isOn() ){
+                playerInTheMatch.add(entry.getValue());
+            }
+        }
+
+        try {
+            board = new Board(playerInTheMatch.size());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            //todo gestire
+        }
+
+        Collections.shuffle(playerInTheMatch);
+        board.getTurn().setPlayerTurn(playerInTheMatch);
+        getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
+        matchStarted = true;
+    }
+
+    public void myTimerSkipTurn( PlayerHandler player ) {
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                player.timerTurnDelayed();
+                gameActions.nextTurn( player );
+            }
+        };
+
+        Timer timer = new Timer(timerSettings.getSkipTurnTimerName());
+        timer.schedule(timerTask, timerSettings.getDelayTimerSkipTurn());
+    }
+
+    public boolean isMatchStarted() {
+        return matchStarted;
     }
 }

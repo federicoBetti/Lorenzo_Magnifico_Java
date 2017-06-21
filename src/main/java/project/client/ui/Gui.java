@@ -1,6 +1,7 @@
 package project.client.ui;
 
 import javafx.application.Application;
+import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
 import project.messages.BonusProductionOrHarvesterAction;
@@ -99,6 +100,26 @@ public class Gui extends AbstractUI {
 
     @Override
     public void nicknameAlreadyUsed() {
+
+    }
+
+    @Override
+    public void skipTurn() {
+
+    }
+
+    @Override
+    public void waitingForYourTurn() {
+
+    }
+
+    @Override
+    public void setConnectionType(String kindOfConnection) throws InputException {
+
+    }
+
+    @Override
+    public void loginSucceded() {
 
     }
 }
