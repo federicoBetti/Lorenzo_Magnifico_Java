@@ -9,8 +9,8 @@ import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.server.network.rmi.RMIClientToServerInterface;
 
-import javax.naming.ldap.PagedResultsControl;
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -26,29 +26,66 @@ import java.util.List;
  *  che poi a sua volta chiama il relatiivo aggiornamento di GUI.
  *  questi metodi che ritornano sono anche quelli dell'update della UI in tempo reale
  */
-public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
+public class RMIClient extends AbstractClient implements RMIServerToClientInterface, Serializable {
     @Override
     public void doProductionHarvester(BonusInteraction bonusInteraction) {
 
     }
 
-    private RMIClientToServerInterface myServer;
+    @Override
+    public void loginSucceded() throws RemoteException {
+        clientSetter.loginSucceded();
+    }
+
+    transient private RMIClientToServerInterface myServer;
     private String myUniqueId;
-    private ClientSetter clientSetter;
+    transient private ClientSetter clientSetter;
     private HashMap<String,UpdateMethods> updateHashMap;
 
     public RMIClient(ClientSetter clientSetter) throws ClientConnectionException {
         super();
         fillUpdateHashMap();
         this.clientSetter = clientSetter;
+        System.out.println("provo a connettermi RMI");
         connect();
     }
 
     private void fillUpdateHashMap() {
+        updateHashMap = new HashMap<>(4);
         updateHashMap.put(Constants.BOARD_UPDATE,this::boardUpdate);
         updateHashMap.put(Constants.PERSONAL_BOARD_UPDATE,this::personalBoardUpdate);
         updateHashMap.put(Constants.FAMILY_MEMBER_UPDATE,this::familyMemberUpdate);
         updateHashMap.put(Constants.SCORE_UPDATE,this::scoreUpdate);
+    }
+    //QUA CI SONO I METODI DA CLIENT A SERVER
+
+    public void connect() throws ClientConnectionException {
+        try {
+            Registry reg = LocateRegistry.getRegistry(8001);
+            System.out.println("ho preso il registro");
+            myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
+            myServer.ping();
+            System.out.println("ho preso il server");
+            //UnicastRemoteObject.exportObject(this,8001);
+            System.out.println(this);
+        } catch (RemoteException | NotBoundException e) {
+            System.out.println("la mia prima esportazione non è andata bene");
+            throw new ClientConnectionException(e);
+        }
+        RMIServerToClientInterface me = null;
+        try {
+            me = (RMIServerToClientInterface) UnicastRemoteObject.exportObject(this, 0);
+        } catch (RemoteException e) {
+            System.out.println("porcodue");
+        }
+        System.out.println(me);
+        try {
+            myUniqueId = myServer.connect(me);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        System.out.println("mi sono esportato");
+            clientSetter.goToLogin();
     }
 
     @Override
@@ -232,18 +269,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     private void familyMemberUpdate(Updates updates){
         clientSetter.familyMemberUpdate(updates);
     }
-    //QUA CI SONO I METODI DA CLIENT A SERVER
 
-    public void connect() throws ClientConnectionException {
-        try {
-            Registry registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
-            myServer = (RMIClientToServerInterface) registry.lookup("ServerRMI");
-            UnicastRemoteObject.exportObject(this, 0);
-            myUniqueId = myServer.connect(this);
-        } catch (RemoteException | NotBoundException e) {
-            throw new ClientConnectionException(e);
-        }
-    }
 
     //QUA CI SONO I METODI DI RITORNO DA SERVER A CLIENT
 
@@ -283,8 +309,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public void canUseBothPaymentMethod() {
-        clientSetter.bothPaymentsAvailable();
+    public int canUseBothPaymentMethod() {
+        return clientSetter.bothPaymentsAvailableRMI();
     }
 
     @Override

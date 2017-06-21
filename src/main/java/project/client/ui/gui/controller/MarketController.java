@@ -1,6 +1,11 @@
 package project.client.ui.gui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import project.model.Market;
@@ -13,6 +18,48 @@ import java.util.List;
  */
 public class MarketController extends AbstractController {
 
+    @FXML
+    protected Button submit;
+    @FXML
+    private Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button buttonPlaceFamiliar;
+    /**
+     * radio button in which you can chose the familiar to use
+     */
+    public RadioButton familiarOrange;
+    public RadioButton familiarWhite;
+    public RadioButton familiarBlack;
+    public RadioButton familiarNull;
+
+    /**
+     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
+     */
+
+    public ImageView imageFamiliarNull;
+
+    public ImageView imageFamiliarBlack;
+
+    public ImageView imageFamiliarWhite;
+
+    public ImageView imageFamiliarOrange;
+
+
+    public Label numberOfCoins;
+
+    public Label numberOfWood;
+
+    public Label numberOfStone;
+
+    public Label numberOfServants;
+
+
+    public ImageView LorenzoMagnifico;
+
+
+    public TextField chatText;
     /**
      * the imageViews where the familiar will be placed
      */
@@ -27,6 +74,7 @@ public class MarketController extends AbstractController {
     private List<FamiliarPosition> familiarPositions;
 
     public MarketController(){
+        super();
         System.out.print("sono nel controller");
         lastFamiliarPlaced = new ImageView();
         positionSelected = -1;
@@ -35,19 +83,8 @@ public class MarketController extends AbstractController {
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
     public void initialize(){
+        super.initialize();
         familiarPositions = new ArrayList<>(2);
-        if (mainController.getNumberOfPlayer()==4){
-            familiarPositions.add(new FamiliarPosition(imageMarket0));
-            familiarPositions.add(new FamiliarPosition(imageMarket1));
-            familiarPositions.add(new FamiliarPosition(imageMarket2));
-            familiarPositions.add(new FamiliarPosition(imageMarket3));
-        }
-        else{
-            familiarPositions.add(new FamiliarPosition(imageMarket0));
-            familiarPositions.add(new FamiliarPosition(imageMarket1));
-            imageMarket2.setDisable(true);
-            imageMarket3.setDisable(true);
-        }
     }
 
 
@@ -64,7 +101,31 @@ public class MarketController extends AbstractController {
 
     public void uploadImages(){
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + loginBuilder.getColour() + ".png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+
+
+        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+        if (mainController.getNumberOfPlayer()==4){
+            familiarPositions.add(new FamiliarPosition(imageMarket0));
+            familiarPositions.add(new FamiliarPosition(imageMarket1));
+            familiarPositions.add(new FamiliarPosition(imageMarket2));
+            familiarPositions.add(new FamiliarPosition(imageMarket3));
+        }
+        else{
+            familiarPositions.add(new FamiliarPosition(imageMarket0));
+            familiarPositions.add(new FamiliarPosition(imageMarket1));
+            imageMarket2.setDisable(true);
+            imageMarket3.setDisable(true);
+        }
+    }
+
+    @Override
+    public void updateResources(int coins, int wood, int stone, int servants) {
+
+        updateOneResource(coins,numberOfCoins);
+        updateOneResource(wood,numberOfWood);
+        updateOneResource(stone,numberOfStone);
+        updateOneResource(servants,numberOfServants);
     }
 
     public void goToMarket() {
@@ -108,5 +169,9 @@ public class MarketController extends AbstractController {
         }
         super.updatePosition(markets1,familiarPositions);
 
+    }
+
+    public void sendChat(ActionEvent actionEvent) {
+        sendChat(chatText);
     }
 }

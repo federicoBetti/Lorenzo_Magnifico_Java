@@ -57,7 +57,7 @@ public class ClientSetter {
                 try {
                     this.client = new RMIClient(this);
                 } catch (ClientConnectionException e) {
-                   // errore nella conessione RMI
+                    System.out.println("errore di connessione RMI");
                 }
                 break;
             default:
@@ -73,6 +73,7 @@ public class ClientSetter {
     //these methods call other methods on the client
 
     public void loginRequest(String loginParameter){
+        System.out.println("sto facendo la login con nome: " + loginParameter);
         client.loginRequest(loginParameter);
     }
 
@@ -269,5 +270,9 @@ public class ClientSetter {
 
     public void loginSucceded() {
         ui.loginSucceded();
+    }
+
+    public int bothPaymentsAvailableRMI() {
+        return  ui.booleanChoosingRMI();
     }
 }

@@ -50,4 +50,6 @@ import java.util.List;
      void sendImmediatePrivileges(String myUniqueId, List<Integer> privileges) throws RemoteException;
 
      void sendChoicePaymentVc(String myUniqueId, int payment) throws RemoteException;
+
+     void ping() throws RemoteException;
  }

@@ -64,9 +64,9 @@ public abstract class AbstractUI {
 
     public abstract void setConnectionType(String kindOfConnection) throws InputException;
 
-    public void goToLogin() {
-    }
+    public abstract void goToLogin() ;
 
     public abstract void loginSucceded();
 
+    public abstract int booleanChoosingRMI();
 }

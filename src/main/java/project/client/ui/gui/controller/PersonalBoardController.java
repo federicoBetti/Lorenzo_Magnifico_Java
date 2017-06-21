@@ -1,10 +1,12 @@
 package project.client.ui.gui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import project.controller.cardsfactory.TerritoryCard;
 import project.model.DevelopmentCard;
 import project.model.PersonalBoard;
 
@@ -15,6 +17,17 @@ import java.util.List;
 public class PersonalBoardController extends AbstractController {
     @FXML
     private Button goBackButton;
+    @FXML
+    private Label numberOfCoins;
+
+    @FXML
+    private Label numberOfWood;
+
+    @FXML
+    private Label numberOfStone;
+
+    @FXML
+    private Label numberOfServants;
 
 
     @FXML
@@ -70,12 +83,11 @@ public class PersonalBoardController extends AbstractController {
     private List<ImageView> characterCards;
     private List<ImageView> buildingCards;
     private List<ImageView> venturesCards;
+    @FXML
+    private TextField chatText;
 
     public PersonalBoardController() {
-        imageFamiliarBlack = new ImageView();
-        imageFamiliarNull = new ImageView();
-        imageFamiliarWhite = new ImageView();
-        imageFamiliarOrange = new ImageView();
+        super();
         territoryCards = new ArrayList<>();
         characterCards = new ArrayList<>();
         buildingCards = new ArrayList<>();
@@ -121,6 +133,15 @@ public class PersonalBoardController extends AbstractController {
     @Override
     public void refresh() {
 
+    }
+
+    @Override
+    public void updateResources(int coins, int wood, int stone, int servants) {
+
+        updateOneResource(coins,numberOfCoins);
+        updateOneResource(wood,numberOfWood);
+        updateOneResource(stone,numberOfStone);
+        updateOneResource(servants,numberOfServants);
     }
 
     public void goBack() {
@@ -234,6 +255,11 @@ public class PersonalBoardController extends AbstractController {
         fillList(characterCards, personalBoard.getCharacters());
         fillList(buildingCards, personalBoard.getBuildings());
         fillList(venturesCards, personalBoard.getVentures());
+    }
+
+
+    public void sendChat(ActionEvent actionEvent){
+        sendChat(chatText);
     }
 
     private void fillList(List<ImageView> cards, List<? extends DevelopmentCard> territories) {

@@ -1,8 +1,6 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -13,7 +11,6 @@ import javafx.scene.layout.HBox;
 import project.controller.Constants;
 import project.model.FamilyMember;
 import project.model.Position;
-import project.model.Production;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,53 +26,26 @@ public abstract class AbstractController {
     /**
      * textfield to write chat messages
      */
-    
-    public TextField chatText;
+
     String familiarChosen;
 
 
-    @FXML
-    protected Button submit;
-    @FXML
-    private Button mainGameButton;
-    @FXML
-    private Button personalBoard;
-    @FXML
-    private Button buttonPlaceFamiliar;
-    /**
-     * radio button in which you can chose the familiar to use
-     */
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
-
-    protected List<RadioButton> radioButtonFamiliar;
-    /**
-     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
-     */
-    
-    public ImageView imageFamiliarNull;
-    
-    public ImageView imageFamiliarBlack;
-    
-    public ImageView imageFamiliarWhite;
-    
-    public ImageView imageFamiliarOrange;
-
     protected List<ImageView> imageFamiltMember;
+    protected List<RadioButton> radioButtonFamiliar;
 
-    
-    public Label numberOfCoins;
-    
-    public Label numberOfWood;
-    
-    public Label numberOfStone;
-    
-    public Label numberOfServants;
-
-    
-    public ImageView LorenzoMagnifico;
+   protected void fillFamilymember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange){
+       imageFamiltMember.add(imageFamiliarNull);
+       imageFamiltMember.add(imageFamiliarBlack);
+       imageFamiltMember.add(imageFamiliarWhite);
+       imageFamiltMember.add(imageFamiliarOrange);
+       System.out.println(imageFamiliarNull);
+       System.out.println(imageFamiliarNull);
+       System.out.println(imageFamiliarNull);
+       imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + "blu" + "Zero.png"))));
+       imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  +"blu" + "Nero.png"))));
+       imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  +"blu" + "Bianco.png"))));
+       imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  +"blu" + "Arancio.png"))));
+   }
 
     protected AbstractController(){
         familiarChosen = null;
@@ -83,23 +53,11 @@ public abstract class AbstractController {
 
     public void initialize(){
         imageFamiltMember = new ArrayList<>(4);
-        imageFamiltMember.add(imageFamiliarNull);
-        imageFamiltMember.add(imageFamiliarBlack);
-        imageFamiltMember.add(imageFamiliarWhite);
-        imageFamiltMember.add(imageFamiliarOrange);
 
         radioButtonFamiliar = new ArrayList<>(4);
-        radioButtonFamiliar.add(familiarNull);
-        radioButtonFamiliar.add(familiarBlack);
-        radioButtonFamiliar.add(familiarWhite);
-        radioButtonFamiliar.add(familiarOrange);
         //todo controllare in che ordine sono messi i family member sul player
 
 
-        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Zero.png"))));
-        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Nero.png"))));
-        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Bianco.png"))));
-        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Arancio.png"))));
 
 
     }
@@ -116,29 +74,31 @@ public abstract class AbstractController {
         loginBuilder.setScene(SceneType.MAIN,SceneType.HARVESTER);
     }
 
-    public void sendChat(ActionEvent actionEvent) {
+    public void sendChat(TextField chatText) {
         String text = chatText.getText() + "\n";
-        loginBuilder.sendChat(text);
+        writeOnChat(text);
     }
 
-    public void writeOnChat(String s){
-        chatText.setText(chatText.getText() + s + "\n");
+    public StringBuffer writeOnChat(String s){
+        loginBuilder.stringBufferAppend(s);
+        return loginBuilder.getStringBuffer();
+
     }
 
     public void uploadImages(){
     }
 
     protected Image getTrueFamiliarImage(){
-        Image familiar;
-        if (familiarChosen.equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL))
-            familiar = imageFamiliarNull.getImage();
-        else if (familiarChosen.equals(Constants.FAMILY_MEMBER_COLOUR_BLACK))
-            familiar = imageFamiliarBlack.getImage();
-        else if (familiarChosen.equals(Constants.FAMILY_MEMBER_COLOUR_WHITE))
-            familiar = imageFamiliarWhite.getImage();
-        else
-            familiar = imageFamiliarOrange.getImage();
-        return familiar;
+        switch (familiarChosen) {
+            case Constants.FAMILY_MEMBER_COLOUR_NEUTRAL:
+                return imageFamiltMember.get(0).getImage();
+            case Constants.FAMILY_MEMBER_COLOUR_BLACK:
+                return imageFamiltMember.get(1).getImage();
+            case Constants.FAMILY_MEMBER_COLOUR_WHITE:
+                return imageFamiltMember.get(2).getImage();
+            default:
+                return imageFamiltMember.get(3).getImage();
+        }
     }
 
 
@@ -163,11 +123,8 @@ public abstract class AbstractController {
         loginBuilder.setScene(SceneType.PERSONAL_BOARD,oldScene);
     }
 
-    public void updateResources(int coins, int wood, int stone, int servants) {
+    public void updateOneResource(int coins, Label numberOfCoins) {
         numberOfCoins.setText(String.valueOf(coins));
-        numberOfWood.setText(String.valueOf(wood));
-        numberOfStone.setText(String.valueOf(stone));
-        numberOfServants.setText(String.valueOf(servants));
     }
 
 
@@ -231,16 +188,18 @@ public abstract class AbstractController {
     }
 
 
-    protected void blockButton() {
+    protected void blockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
         mainGameButton.setDisable(true);
         personalBoard.setDisable(true);
         buttonPlaceFamiliar.setDisable(true);
     }
 
 
-    protected void unlockButton() {
+    protected void unlockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
         mainGameButton.setDisable(false);
         personalBoard.setDisable(false);
         buttonPlaceFamiliar.setDisable(false);
     }
+
+    public abstract void updateResources(int coins, int wood, int stone, int servants);
 }

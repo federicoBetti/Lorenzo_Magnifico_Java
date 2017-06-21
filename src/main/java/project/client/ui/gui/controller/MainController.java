@@ -26,8 +26,9 @@ public class MainController {
 
     private List<AbstractController> controllers;
 
-    private int numberOfPlayer;
-    private String colour;
+    private int numberOfPlayer = 2;
+    private String colour = "rosso";
+    private String nickName;
 
 
     private MainController(){
@@ -51,12 +52,12 @@ public class MainController {
     }
 
     public void showMainGame() {
-        loginBuilder.startMainGame();
+        loginBuilder.showPrimo();
     }
 
 
     int getNumberOfPlayer() {
-        return numberOfPlayer;
+        return 2;
     }
 
     public String getColour() {
@@ -111,8 +112,10 @@ public class MainController {
         clientSetter.setConnectionType(connectionType);
     }
 
-    void connect(String usernameChosen, String passwordChosen) {
-        clientSetter.loginRequest(usernameChosen);
+    void connect(String connectionType, String usernameChosen, String passwordChosen) {
+        nickName = usernameChosen;
+        System.out.println(nickName);
+        clientSetter.setConnectionType(connectionType);
     }
 
     public void takeDevCard(String towerColour, int floor, String familiarColour )  {
@@ -184,6 +187,10 @@ public class MainController {
 
     public void goToMarket(int positionSelected, String familiarChosen) {
         clientSetter.marketAction(positionSelected,familiarChosen);
+    }
+
+    public void takeNickname(String usernameChosen) {
+        clientSetter.loginRequest(usernameChosen);
     }
 
     //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
@@ -259,4 +266,9 @@ public class MainController {
     public void sendChat(String s) {
         generalGameController.writeOnChat(s);
     }
+
+    public void loginSucceded() {
+        loginBuilder.waitingScene();
+    }
+
 }

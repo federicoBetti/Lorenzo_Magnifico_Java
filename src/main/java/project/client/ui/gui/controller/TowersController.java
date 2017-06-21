@@ -1,10 +1,8 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import project.TowerIterator;
@@ -17,6 +15,45 @@ import project.model.Tower;
 public class TowersController extends AbstractController {
 
 
+    @FXML
+    protected Button submit;
+    @FXML
+    private Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button buttonPlaceFamiliar;
+    /**
+     * radio button in which you can chose the familiar to use
+     */
+    @FXML
+    private RadioButton familiarOrange;
+    @FXML
+    private RadioButton familiarWhite;
+    @FXML
+    private RadioButton familiarBlack;
+    @FXML
+    private RadioButton familiarNull;
+
+    /**
+     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
+     */
+
+    @FXML
+    private ImageView imageFamiliarNull;
+
+    @FXML
+    private ImageView imageFamiliarBlack;
+
+    @FXML
+    private ImageView imageFamiliarWhite;
+
+    @FXML
+    private ImageView imageFamiliarOrange;
+
+
+    @FXML
+    private TextField chatText;
     /**
      * queste sono le imageView dove dentro ci staranno le immagini delle carte
      */
@@ -97,8 +134,6 @@ public class TowersController extends AbstractController {
     private ToggleGroup familiar;
 
 
-    @FXML
-    private Button mainGameButton;
 
     private ImageView lastFamiiarPlaced;
     private int towerColour;
@@ -130,9 +165,14 @@ public class TowersController extends AbstractController {
 
     }
 
+    @Override
+    public void updateResources(int coins, int wood, int stone, int servants) {
+    }
+
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
     public void initialize() {
+        super.initialize();
 
         lastFamiiarPlaced = new ImageView();
 
@@ -159,6 +199,10 @@ public class TowersController extends AbstractController {
         System.out.print("sono nel initaize");
     }
 
+    public void uploadImages(){
+        super.uploadImages();
+        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+    }
 
     public void showCardGreen3() {
         loginBuilder.showCardZoomed(green3.getImage());
@@ -314,6 +358,10 @@ public class TowersController extends AbstractController {
     }
 
 
+    public void sendChat(ActionEvent actionEvent){
+        sendChat(chatText);
+    }
+
     public void takeCard() {
         if (floor != -1){
             String towerColourString = getTowerColour(towerColour);
@@ -405,12 +453,12 @@ public class TowersController extends AbstractController {
     }
 
     protected void blockButton(){
-        super.blockButton();
+        super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeBonusCard());
     }
 
     protected void unlockButton(){
-        super.unlockButton();
+        super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeCard());
     }
 

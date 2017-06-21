@@ -120,7 +120,7 @@
                                         <items>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="230.0">
                                                 <children>
-                                                    <TextField layoutX="24.0" layoutY="1.0" prefHeight="29.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    <TextField fx:id="chatText" layoutX="24.0" layoutY="1.0" prefHeight="29.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                 </children>
                                             </AnchorPane>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="155.0">

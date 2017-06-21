@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 
 import java.io.IOException;
-
+//TODO FARE ALTEZZA MAX 900
 public class LoginBuilder extends Application {
 
     private BorderPane rootLayout;
@@ -51,6 +51,7 @@ public class LoginBuilder extends Application {
     private int faithPoints;
     private int turnOrder;
     private BorderPane rootLayoutMainGame;
+    private StringBuffer stringBuffer;
 
 
     public void start(Stage primaryStage) {
@@ -121,10 +122,7 @@ public class LoginBuilder extends Application {
 
     }
 
-    public void switchScene() {
-        rootLayout.setCenter(waitingLoginScene);
-        return;
-    }
+
 
     private void showFirstPage() {
         rootLayout.setCenter(initialLoginScene);
@@ -141,28 +139,31 @@ public class LoginBuilder extends Application {
         faithPoints = 3;
         turnOrder = 2;
 
-        initRootLayoutMainGame();
         inizializzaGeneralMainGame();
-        showPrimo();
+
 
         inizializzaTowers();
         inizializzaHarvester();
+
         inizializzaMarket();
         inizializzaPersonalBoard();
         inizializzaProduction();
         inizializzaCouncil();
         inizializzaLeaderCard();
 
+
         System.out.println("sono in start");
     }
 
-    private  void showPrimo() {
+    public   void showPrimo() {
+        initRootLayoutMainGame();
         rootLayoutMainGame.setCenter(generalScene);
         System.out.print("faccio vedere il primo");
     }
 
     private  void inizializzaGeneralMainGame() {
         try {
+            stringBuffer = new StringBuffer();
             // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/generalMainGame.fxml"));
@@ -488,6 +489,18 @@ public class LoginBuilder extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public void waitingScene() {
+        rootLayout.setCenter(waitingLoginScene);
+    }
+
+    public StringBuffer getStringBuffer() {
+        return stringBuffer;
+    }
+
+    public void stringBufferAppend(String s) {
+        stringBuffer.append(s + "\n");
     }
 }
 

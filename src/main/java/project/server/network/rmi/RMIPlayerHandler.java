@@ -26,8 +26,13 @@ public class RMIPlayerHandler extends PlayerHandler {
     private transient RMIServerToClientInterface myClient;
     private HashMap<String, Talker> bonusType;
 
+
+    private BonusProductionOrHarvesterAction lastHarvProd;
+    private TowerAction lastTowerAction;
+
     RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
         this.myClient = rmiServerToClientInterface;
+        bonusType = new HashMap<>(4);
         fillHashMapBonusType();
     }
 
@@ -36,6 +41,41 @@ public class RMIPlayerHandler extends PlayerHandler {
         bonusType.put(Constants.BONUS_PRODUCTION_HARVESTER_ACTION, myClient::doProductionHarvester);
         bonusType.put(Constants.OK_OR_NO, myClient::ok);
         bonusType.put(Constants.TAKE_PRIVILEGE_ACTION, myClient::takePrivilege);
+    }
+
+    public void doBonusHarvester(int servantsNumber) {
+        try {
+            doBonusHarv(lastHarvProd,servantsNumber);
+        } catch (CantDoActionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void doBonusProduction(List<String> parameters) {
+        ArrayList<BuildingCard> buildingCards = new ArrayList<>();
+        for (BuildingCard buildingCard : getPersonalBoardReference().getBuildings()) {
+            if (parameters.contains(buildingCard.getName())) {
+                buildingCards.add(buildingCard);
+            }
+        }
+        try {
+            doBonusProduct(lastHarvProd, buildingCards);
+        } catch (CantDoActionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void takeBonusCardAction(int floor, String towerColour) {
+        try {
+            clientTakeBonusDevelopementCard(towerColour,floor,lastTowerAction);
+        } catch (CantDoActionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void takeImmediatePrivileges(List<Integer> privileges) {
+        for (Integer i: privileges)
+            takePrivilege(i.intValue());
     }
 
     private interface Talker {
@@ -78,6 +118,7 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void sendBonusTowerAction(TowerAction returnFromEffect){
+        lastTowerAction = returnFromEffect;
         try {
             myClient.bonusTowerAction(returnFromEffect);
         } catch (RemoteException e) {
@@ -88,6 +129,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) {
         try {
+            this.lastHarvProd = returnFromEffect;
             myClient.sendBonusProdHarv(returnFromEffect);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -116,7 +158,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public int canUseBothPaymentMethod() {
         try {
-            myClient.canUseBothPaymentMethod();
+             return myClient.canUseBothPaymentMethod();
         } catch (RemoteException e) {
             //todo gestire eccezzione di rete
         }
@@ -162,7 +204,12 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void loginSucceded() {
-
+        System.out.println("login RMI succeded");
+        try {
+            myClient.loginSucceded();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

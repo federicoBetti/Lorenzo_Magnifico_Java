@@ -1,5 +1,6 @@
 package project.client.ui.gui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +16,19 @@ import java.util.List;
  * Created by federico on 10/06/17.
  */
 public class GeneralMainGameController extends AbstractController{
+
+
+    @FXML
+    private Label numberOfCoins;
+
+    @FXML
+    private Label numberOfWood;
+
+    @FXML
+    private Label numberOfStone;
+
+    @FXML
+    private Label numberOfServants;
 
     @FXML
     private Button send;
@@ -35,9 +49,6 @@ public class GeneralMainGameController extends AbstractController{
     @FXML
     private Button skipTurnButton;
 
-
-    @FXML
-    private TextField chatTesto;
 
 
     @FXML
@@ -119,9 +130,12 @@ public class GeneralMainGameController extends AbstractController{
     private ImageView turnOrder4;
     private ArrayList<ImageView> turnOrderArray;
 
+    @FXML
+    private TextField chatText;
 
 
     public GeneralMainGameController(){
+        super();
         System.out.print("sono nel controller");
         faithPointsArray = new ArrayList<>(15);
         turnOrderArray = new ArrayList<>(4);
@@ -172,6 +186,15 @@ public class GeneralMainGameController extends AbstractController{
         turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + loginBuilder.getColour() + "Pedone.png"))));
     }
 
+    @Override
+    public void updateResources(int coins, int wood, int stone, int servants) {
+
+        updateOneResource(coins,numberOfCoins);
+        updateOneResource(wood,numberOfWood);
+        updateOneResource(stone,numberOfStone);
+        updateOneResource(servants,numberOfServants);
+    }
+
 
     public void goToTowers() {
         loginBuilder.setScene(SceneType.TOWERS,SceneType.MAIN);
@@ -197,6 +220,11 @@ public class GeneralMainGameController extends AbstractController{
     public void showLeaderCard() {
         loginBuilder.setScene(SceneType.LEADER, SceneType.MAIN);
 
+    }
+
+
+    public void sendChat(ActionEvent actionEvent){
+        sendChat(chatText);
     }
 
     public void skipTurn() {

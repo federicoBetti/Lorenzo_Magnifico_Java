@@ -37,6 +37,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void mainContext() {
+        mainController.showMainGame();
     }
 
     @Override
@@ -119,7 +120,18 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void loginSucceded() {
+    public void goToLogin() {
+      //  mainController.takeNickname(usernameChosen);
+    }
 
+    @Override
+    public void loginSucceded() {
+        mainController.loginSucceded();
+    }
+
+    @Override
+    public int booleanChoosingRMI() {
+        //todo
+        return 0;
     }
 }

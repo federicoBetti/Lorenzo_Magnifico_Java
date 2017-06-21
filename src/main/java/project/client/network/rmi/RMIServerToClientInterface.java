@@ -16,11 +16,11 @@ public interface RMIServerToClientInterface extends Remote{
 
     //void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
 
-    void notify (Notify notify);
+    void notify (Notify notify) throws RemoteException;;
 
-    void endTurn();
+    void endTurn() throws RemoteException;;
 
-    void takePrivilege(BonusInteraction takePrivilegesAction);
+    void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
 
     void askForPraying() throws RemoteException;
 
@@ -28,7 +28,7 @@ public interface RMIServerToClientInterface extends Remote{
 
     void cantDoAction() throws RemoteException;
 
-    void canUseBothPaymentMethod() throws RemoteException;
+    int canUseBothPaymentMethod() throws RemoteException;
 
     void itMyTurn() throws RemoteException;
 
@@ -45,4 +45,6 @@ public interface RMIServerToClientInterface extends Remote{
     void actionOk() throws  RemoteException;
 
     void doProductionHarvester(BonusInteraction bonusInteraction);
+
+    void loginSucceded() throws RemoteException;
 }

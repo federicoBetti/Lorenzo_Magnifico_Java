@@ -17,6 +17,7 @@ public class InitialLogin {
     public Button connect;
     public ToggleGroup connection;
     public Button aia;
+    int i = 0;
 
     private String connectionType;
     private String usernameChosen;
@@ -52,13 +53,18 @@ public class InitialLogin {
     }
 
     public void doConnection() {
-        loginBuilder.switchScene();
-        usernameChosen = username.getText();
-        passwordChosen = password.getText();
-        username.setText("ciaovecchio");
-        password.setText("ciaomerda");
-        mainController.setConnectionType(connectionType);
-        mainController.connect(usernameChosen,passwordChosen);
+        if (i == 0) {
+            mainController.setConnectionType(connectionType);
+            loginBuilder.startMainGame();
+            i++;
+        } else {
+            usernameChosen = username.getText();
+            passwordChosen = password.getText();
+            username.setText("ciaovecchio");
+            password.setText("ciaomerda");
+            loginBuilder.waitingScene();
+            mainController.takeNickname(usernameChosen);
+        }
     }
 
 
