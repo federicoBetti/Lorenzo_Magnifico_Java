@@ -55,38 +55,55 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void sendNotification(Notify notifications) {
-
+        try {
+            myClient.sendNotification(notifications);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void sendUpdates(Updates updates) {
-
+        try {
+            myClient.sendUpdates(updates);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int sendPossibleChoice(String kindOfChoice) {
-        return 0;
+        myClient;
+        return 1;
     }
 
     @Override
     public void sendBonusTowerAction(TowerAction returnFromEffect){
-
+        try {
+            myClient.bonusTowerAction(returnFromEffect);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) {
-
+        try {
+            myClient.sendBonusProdHarv(returnFromEffect);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
-
+        try {
+            myClient.sendRequestForPrivileges(returnFromEffect);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) {
-
-    }
 
     @Override
     public void cantDoAction() {
@@ -127,7 +144,11 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void sendActionOk() {
-
+        try {
+            myClient.actionOk();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

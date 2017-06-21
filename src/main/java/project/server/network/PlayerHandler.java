@@ -188,8 +188,6 @@ public abstract class PlayerHandler extends Player {
      * @param cardToProduct
      * @return
      */
-
-    //todo rifare metodo senza posizione
     public void production(FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
         int maxValueOfProduction;
         List<Production> productionZone = room.getBoard().getProductionZone();
@@ -384,8 +382,6 @@ public abstract class PlayerHandler extends Player {
     public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect);
 
     public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect);
-
-    public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect);
 
     public abstract void sendActionOk();
 

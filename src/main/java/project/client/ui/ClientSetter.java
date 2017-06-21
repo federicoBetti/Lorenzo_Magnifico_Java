@@ -228,11 +228,6 @@ public class ClientSetter {
     }
 
 
-    public void doProductionHarvester(BonusProductionOrHarvesterAction bonusProductionOrHarvesterAction) {
-    }
-
-
-
 
     //todo check utility
     public void notifyClient(Notify notify) {

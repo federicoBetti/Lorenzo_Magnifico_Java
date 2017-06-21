@@ -4,7 +4,6 @@ import project.client.network.rmi.RMIServerToClientInterface;
 import project.server.network.AbstractServer;
 import project.server.Server;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.ServerException;
 import java.rmi.registry.LocateRegistry;
@@ -89,7 +88,7 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     }
 
 
-    public void loginRequest(String clientUniqueId, String nickname) throws IOException {
+    public void loginRequest(String clientUniqueId, String nickname)  {
         server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
     }
 
@@ -102,11 +101,11 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
 
     }
 
-    public void harvesterRequest(String clientUniqueId, int position, String familyMemberColour, int servantsNumber) {
+    public void harvesterRequest(String clientUniqueId, String familyMemberColour, int servantsNumber) {
         getPlayerHandler(clientUniqueId).harvesterRequest(position,familyMemberColour, servantsNumber);
     }
 
-    public void productionRequest(String clientUniqueId, int position, String familyMemberColour, List<String> cards ){
+    public void productionRequest(String clientUniqueId, String familyMemberColour, List<String> cards){
         getPlayerHandler(clientUniqueId).productionRequest(position,familyMemberColour, cards);
     }
 
@@ -129,6 +128,9 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     public void takePrivilegeRequest(String clientUniqueId, int privilegeNumber){
         getPlayerHandler(clientUniqueId).takePrivilegeRequest(privilegeNumber);
     }
+
+
+    //da qua in poi ci saranno i metodi che ritornano scelte
 
 
 

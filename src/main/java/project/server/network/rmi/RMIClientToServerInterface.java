@@ -21,9 +21,9 @@ import java.util.List;
 
      void choosePaymentForVentureCard(String clientUniqueId, int position, int paymentChoosen, String familyMemberColour)throws RemoteException;
 
-     void harvesterRequest(String clientUniqueId, int position, String familyMemberColour, int servantsNumber)throws RemoteException;
+     void harvesterRequest(String clientUniqueId, String familyMemberColour, int servantsNumber)throws RemoteException;
 
-     void productionRequest(String clientUniqueId, int position, String familyMemberColour, List<String> cards )throws RemoteException;
+     void productionRequest(String clientUniqueId, String familyMemberColour, List<String> cards)throws RemoteException;
 
      void goToMarketRequest(String clientUniqueId,int position, String familyMemberColour) throws RemoteException ;
 
@@ -34,4 +34,20 @@ import java.util.List;
      void goToCouncilPalaceRequest(String clientUniqueId, int privilegeNumber, String familyMemberColour) throws RemoteException;
 
      void takePrivilegeRequest(String clientUniqueId, int privilegeNumber)throws RemoteException;
-}
+
+     void prayOrNot(String myUniqueId,boolean action) throws RemoteException;
+
+     void exitOnBonusAction(String myUniqueId) throws RemoteException;
+
+     void setChoicePe(String myUniqueId,int input) throws RemoteException;
+
+     void sendBonusHarvester(String myUniqueId, int servantsNumber) throws RemoteException;
+
+     void sendBonusProduction(String myUniqueId, List<String> parameters) throws RemoteException;
+
+     void sendBonusCardAction(String myUniqueId, int floor, String towerColour) throws RemoteException;
+
+     void sendImmediatePrivileges(String myUniqueId, List<Integer> privileges) throws RemoteException;
+
+     void sendChoicePaymentVc(String myUniqueId, int payment) throws RemoteException;
+ }

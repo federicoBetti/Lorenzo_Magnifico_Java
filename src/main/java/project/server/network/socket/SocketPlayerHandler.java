@@ -375,7 +375,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         takePriviledgesInArow(returnFromEffect);
     }
 
-    @Override
+
     public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect)  {
         for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
             int privilegeNumber = 0;

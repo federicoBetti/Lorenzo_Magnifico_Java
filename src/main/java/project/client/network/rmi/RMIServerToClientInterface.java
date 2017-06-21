@@ -1,6 +1,7 @@
 package project.client.network.rmi;
 
 import project.messages.*;
+import project.messages.updatesmessages.Updates;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -30,4 +31,16 @@ public interface RMIServerToClientInterface extends Remote{
     void canUseBothPaymentMethod() throws RemoteException;
 
     void itMyTurn() throws RemoteException;
+
+    void sendNotification(Notify notifications)throws RemoteException;
+
+    void sendUpdates(Updates updates)throws RemoteException;
+
+    void bonusTowerAction(TowerAction returnFromEffect)throws RemoteException;
+
+    void sendBonusProdHarv(BonusProductionOrHarvesterAction returnFromEffect)throws RemoteException;
+
+    void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
+
+    void actionOk() throws  RemoteException;
 }

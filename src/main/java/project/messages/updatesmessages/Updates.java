@@ -1,5 +1,6 @@
 package project.messages.updatesmessages;
 
+import project.client.network.rmi.UpdateType;
 import project.messages.BonusInteraction;
 import project.model.Board;
 import project.model.FamilyMember;
@@ -16,4 +17,6 @@ public abstract class Updates extends BonusInteraction {
     public void doUpdate(Score score){}
 
     public void doUpdate(FamilyMember[] familyMembersUi){}
+
+    //public abstract UpdateType getEnum(); todo sarebbe più bello farlo con una enum
 }

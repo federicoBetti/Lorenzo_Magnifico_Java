@@ -6,14 +6,18 @@ import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
 import project.messages.*;
+import project.messages.updatesmessages.Updates;
 import project.server.network.rmi.RMIClientToServerInterface;
 
+import javax.naming.ldap.PagedResultsControl;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * qua devono essere implementati sia i metodi di AbstracClient (cioè tutti quelli che il client deve chiamare sul server, sia quelli della
@@ -27,13 +31,199 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     private RMIClientToServerInterface myServer;
     private String myUniqueId;
     private ClientSetter clientSetter;
+    private HashMap<String,UpdateMethods> updateHashMap;
 
     public RMIClient(ClientSetter clientSetter) throws ClientConnectionException {
         super();
+        fillUpdateHashMap();
         this.clientSetter = clientSetter;
         connect();
     }
 
+    private void fillUpdateHashMap() {
+        updateHashMap.put(Constants.BOARD_UPDATE,this::boardUpdate);
+        updateHashMap.put(Constants.PERSONAL_BOARD_UPDATE,this::personalBoardUpdate);
+        updateHashMap.put(Constants.FAMILY_MEMBER_UPDATE,this::familyMemberUpdate);
+        updateHashMap.put(Constants.SCORE_UPDATE,this::scoreUpdate);
+    }
+
+    @Override
+    public void loginRequest(String loginParameter) {
+        myServer.loginRequest(myUniqueId,loginParameter);
+    }
+
+    @Override
+    public void waitingForTheNewInteraction() {
+
+    }
+
+    @Override
+    public void takeDevCard(String towerColour, int floor, String familiarColour) {
+        try {
+            myServer.takeDevCard(myUniqueId,towerColour,floor,familiarColour);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void marketAction(int position, String familyColour) {
+        try {
+            myServer.goToMarketRequest(myUniqueId,position,familyColour);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void councilAction(int parameter1, String parameter2) {
+        try {
+            myServer.goToCouncilPalaceRequest(myUniqueId,parameter1,parameter2);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void playLeaderCard(String action) {
+        try {
+            myServer.playLeaderCardRequest(myUniqueId,action);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void discardLeaderCard(String name) {
+        try {
+            myServer.discardLeaderCardRequest(myUniqueId,name);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void prayOrNot(boolean action) {
+        try {
+            myServer.prayOrNot(myUniqueId,action);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendExitToBonusAction() {
+        try {
+            myServer.exitOnBonusAction(myUniqueId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void choicePe() {
+        clientSetter.choicePe();
+    }
+
+    @Override
+    public void sendChoicePe(int input) {
+        try {
+            myServer.setChoicePe(myUniqueId,input);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void bonusHarvester(BonusProductionOrHarvesterAction action) {
+        clientSetter.bonusHarvester(action);
+    }
+
+    @Override
+    public void bonusHarvesterAction(int servantsNumber) {
+        try {
+            myServer.sendBonusHarvester(myUniqueId, servantsNumber);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void bonusProductionAction(List<String> parameters) {
+        try {
+            myServer.sendBonusProduction(myUniqueId, parameters);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void takeBonusCardAction(int floor, String towerColour) {
+        try {
+            myServer.sendBonusCardAction(myUniqueId, floor, towerColour);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void immediatePriviledgeAction(List<Integer> privileges) {
+        try {
+            myServer.sendImmediatePrivileges(myUniqueId, privileges);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void takeImmediatePrivilege(TakePrivilegesAction action) {
+        clientSetter.takeImmediatePrivilege(action);
+    }
+
+    @Override
+    public void sendChoicePaymentVc(int payment) {
+        try {
+            myServer.sendChoicePaymentVc(myUniqueId, payment);
+        } catch (RemoteException e) {
+
+        }
+    }
+
+    public void actionOk() {
+        clientSetter.actionOk();
+    }
+
+    @Override
+    public void harvesterAction(String familyMemberColour, int servantsNumber) {
+        try {
+            myServer.harvesterRequest(myUniqueId,familyMemberColour,servantsNumber);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void productionAction(String familiarChosen, List<String> buidingCards) {
+        try {
+            myServer.productionRequest(myUniqueId,familiarChosen,buidingCards);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private interface UpdateMethods{
+        void doUpdate(Updates updates);
+    }
+
+    private void boardUpdate(Updates updates){
+        clientSetter.boardUpdate(updates);
+    }
+    private void personalBoardUpdate(Updates updates){
+        clientSetter.personalBoardUpdate(updates);
+    }
+    private void scoreUpdate(Updates updates){
+        clientSetter.scoreUpdate(updates);
+    }
+    private void familyMemberUpdate(Updates updates){
+        clientSetter.familyMemberUpdate(updates);
+    }
     //QUA CI SONO I METODI DA CLIENT A SERVER
 
     public void connect() throws ClientConnectionException {
@@ -47,21 +237,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
-
-    public void takeDevCard(String[] parameters) throws IOException {
-        //myServer.takeDevCard(myUniqueId);
-    }
-
-
     //QUA CI SONO I METODI DI RITORNO DA SERVER A CLIENT
 
     public void takeAnotherCard(BonusInteraction towerAction){
         clientSetter.takeBonusCard((TowerAction)towerAction);
     }
 
-    public void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction){
-        clientSetter.doProductionHarvester((BonusProductionOrHarvesterAction)bonusProductionOrHarvesterAction);
-    }
 
     @Override
     public void notify(Notify notify) {
@@ -101,6 +282,34 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void itMyTurn() {
         clientSetter.itsMyTurn();
+    }
+
+    @Override
+    public void sendNotification(Notify notifications) {
+        clientSetter.notifyClient(notifications);
+    }
+
+    @Override
+    public void sendUpdates(Updates updates) {
+        updateHashMap.get(updates.toString()).doUpdate(updates);
+    }
+
+    @Override
+    public void bonusTowerAction(TowerAction returnFromEffect) {
+        clientSetter.takeBonusCard(returnFromEffect);
+    }
+
+    @Override
+    public void sendBonusProdHarv(BonusProductionOrHarvesterAction returnFromEffect) {
+        if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER))
+            clientSetter.bonusHarvester(returnFromEffect);
+        else
+            clientSetter.bonusProduction(returnFromEffect);
+    }
+
+    @Override
+    public void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect) {
+        clientSetter.takeImmediatePrivilege(returnFromEffect);
     }
 
 
