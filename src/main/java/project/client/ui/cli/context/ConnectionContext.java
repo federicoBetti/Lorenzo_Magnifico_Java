@@ -16,13 +16,12 @@ public class ConnectionContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("Choose the type of connection: \n" +
-                "write: socket | rmi ");
+        pRed.println("Choose the type of connection:\n" +
+                "type: socket | rmi ");
     }
 
     @Override
     public void mainContextMethod(String kindOfConnection) throws InputException, IOException {
-        System.out.println("sono qui");
         cli.setConnectionType(kindOfConnection);
     }
 }

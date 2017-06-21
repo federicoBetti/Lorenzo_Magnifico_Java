@@ -22,23 +22,23 @@ public class ProductionContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are:");
+       pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pYellow.println(entry.getKey());
 
-        System.out.println("[positionInBuildingZone(int)-familiarColour-buildingCard-...(max 6 buildingCard in your personal board] " +
-                "\n position: 0, 1, 2, 3, 4, 5 " +
-                "\n familiarColour: black, neutral, orange, white " +
-                "\n buildingCard: name ");
+        pYellow.println("[positionInBuildingZone(int)-familiarColour-buildingCard-...(max 6 buildingCard in your personal board]" +
+                "\nposition: 0, 1, 2, 3, 4, 5 " +
+                "\nfamiliarColour: black, neutral, orange, white " +
+                "\nbuildingCard: name ");
     }
 
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if (parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))
+        if (!(parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0))))
             throw new InputException();
-        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) < 6 )
+        if (!(Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) < 6) )
             throw new InputException();
 
         checkFamilyMemberColour(parameters[1]);

@@ -33,13 +33,13 @@ public class TowersContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("You are in the Tower Context! The available actions are:\n");
+        pRed.println("You are in the Tower Context! The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey().toString());
+            pYellow.println(entry.getKey().toString());
 
-        System.out.println("\nFor taking the tower type:\n");
-        System.out.println("[towerColour-floor-familiarColour] \n towerColour: green, yellow, purple, blue " +
-                "\nfloor: 0, 1, 2, 3 \n familiarColour: black, neutral, orange, white ");
+        pRed.println("The main Action is:");
+        pYellow.println("[towerColour-floor-familiarColour]\ntowerColour: green, yellow, purple, blue " +
+                "\nfloor: 0, 1, 2, 3\nfamiliarColour: black, neutral, orange, white ");
     }
 
     @Override

@@ -16,8 +16,8 @@ public class ExcomunicationContext extends AbstractContext{
     }
 
     public void printHelp() {
-        System.out.print("Available actions:" +
-                    "\nDo you want to pray? [yes/no]");
+        pRed.println("The available action is:");
+        pYellow.println("\nDo you want to pray? [yes/no]");
     }
 
     @Override

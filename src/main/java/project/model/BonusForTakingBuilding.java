@@ -1,9 +1,11 @@
 package project.model;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class BonusForTakingBuilding {
+public class BonusForTakingBuilding implements Serializable{
 
 
     private int diceBonus;

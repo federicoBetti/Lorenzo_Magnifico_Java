@@ -10,7 +10,7 @@ import java.util.*;
 //bisogna fare che il meotod doEffect riitorna la rispooata a ritornare al client, che puo essere un oggetto che è ok, oppure un oggetto tipo tower action
 //ritorna una responde cioè bonusinterface
 
-public abstract class DevelopmentCard {
+public abstract class DevelopmentCard implements Serializable{
 
     private String name;
 

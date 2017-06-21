@@ -1,5 +1,6 @@
 package project.client.ui.cli;
 
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
@@ -8,9 +9,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +51,12 @@ public class Cli extends AbstractUI {
         context = new ChoicePeContext(this);
     }
 
-    public void sendChoicePe( String input ) throws InputException {
-        context.checkValidInput(input);
+    public void sendChoicePe( String input )  {
+        try {
+            context.checkValidInput(input);
+        } catch (InputException e) {
+            context.printHelp();
+        }
         clientSetter.sendChoicePe(Integer.parseInt(input));
     }
 
@@ -183,7 +186,7 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void setConnectionType(String kindOfConnection) throws InputException {
+    public void setConnectionType(String kindOfConnection)  {
         clientSetter.setConnectionType(kindOfConnection);
     }
 
@@ -201,8 +204,12 @@ public class Cli extends AbstractUI {
     }
 
     //todo aggiustare come parametri giusti la chiamata
-    public void chooseProductionParameters(String lineFromKeyBoard) throws InputException {
-        context.checkValidInput(lineFromKeyBoard);
+    public void chooseProductionParameters(String lineFromKeyBoard)  {
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            context.printHelp();
+        }
         String[] parameters = lineFromKeyBoard.split("-");
         List<String> buildingCards = new ArrayList<>();
         for (int i = 1; i<parameters.length; i++)
@@ -211,38 +218,54 @@ public class Cli extends AbstractUI {
         clientSetter.productionAction(parameters[0], buildingCards);
     }
 
-    public void chooseHarversterParameters(String lineFromKeyBoard) throws InputException {
+    public void chooseHarversterParameters(String lineFromKeyBoard) {
 
-        context.checkValidInput(lineFromKeyBoard);
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            context.printHelp();
+        }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.harvesterAction(parameters[0], Integer.parseInt(parameters[1]) );
     }
 
-    public void chooseMarketActionParameters(String lineFromKeyBoard) throws InputException {
+    public void chooseMarketActionParameters(String lineFromKeyBoard)  {
 
-        context.checkValidInput(lineFromKeyBoard);
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            context.printHelp();
+        }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.marketAction(Integer.parseInt(parameters[0]), parameters[1]);
     }
 
-    public void chooseCouncilParameters(String lineFromKeyBoard) throws InputException {
+    public void chooseCouncilParameters(String lineFromKeyBoard)  {
 
-        context.checkValidInput(lineFromKeyBoard);
+        try {
+            context.checkValidInput(lineFromKeyBoard);
+        } catch (InputException e) {
+            context.printHelp();
+        }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.councilAction(Integer.parseInt(parameters[0]), parameters[1]);
     }
 
-    public void chooseLeaderCardToPlay(String action) throws InputException {
+    public void chooseLeaderCardToPlay(String action)  {    //todo va controllato sul server
         clientSetter.playLeaderCard(action);
     }
 
-    public void discardLeaderCard(String name) throws InputException {
+    public void discardLeaderCard(String name) {    //todo va controllato sul server
         clientSetter.discardLeaderCard(name);
     }
 
-    public void prayOrNot(String action) throws InputException {
+    public void prayOrNot(String action) {
         boolean yesOrNo;
-        context.checkValidInput(action);
+        try {
+            context.checkValidInput(action);
+        } catch (InputException e) {
+            context.printHelp();
+        }
         if ( action.equals("yes"))
             yesOrNo = true;
         else
@@ -250,8 +273,12 @@ public class Cli extends AbstractUI {
         clientSetter.prayOrNot(yesOrNo);
     }
 
-    public void choosePayment(String payment) throws InputException {
-        context.checkValidInput(payment);
+    public void choosePayment(String payment)  {
+        try {
+            context.checkValidInput(payment);
+        } catch (InputException e) {
+            context.printHelp();
+        }
         clientSetter.sendChoicePaymentVc(Integer.parseInt(payment));
     }
 
@@ -286,7 +313,7 @@ public class Cli extends AbstractUI {
                         context.doAction(lineFromKeyBoard);
                     }
                 } catch (InputException e) {
-                    context.printHelp();
+                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
 

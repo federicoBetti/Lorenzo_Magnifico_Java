@@ -1,5 +1,7 @@
 package project.messages;
 
+import java.io.Serializable;
+
 public class LeaderEffectsUsefull {
 	
     private boolean canPlaceInOccupiedPosition = false;

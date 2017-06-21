@@ -21,12 +21,13 @@ public class HarvesterContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are:");
+        pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pYellow.println(entry.getKey());
 
-        System.out.println("[position(int)-familiarColour-servantsNumber(int)] \n position: 0, 1, 2, 3 " +
-                "\n towerColour: green, yellow, purple, blue \n servantsNumber: any number ");
+        pRed.println("The main action is:");
+        pYellow.println("[position(int)-familiarColour-servantsNumber(int)]\nposition: 0, 1, 2, 3 " +
+                "\ntowerColour: green, yellow, purple, blue\nservantsNumber: any number ");
     }
 
     @Override

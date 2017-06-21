@@ -14,7 +14,6 @@ public class DiscardLeaderCardAmaContext extends AbstractContext {
 
     public DiscardLeaderCardAmaContext(Cli cli) {
         super(cli);
-        System.out.println("Type the leader card's name to discard: [leaderCardName]");
         map.put(CliConstants.SHOW_LEADER_CARDS, this::showLeaderCards );
         map.put(CliConstants.EXIT, cli::actionOk);
         map.put(CliConstants.HELP, this::printHelp);
@@ -28,11 +27,13 @@ public class DiscardLeaderCardAmaContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are:");
+
+        pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             System.out.println(entry.getKey());
 
-        System.out.println("[leaderCardName]");
+        pRed.println("The main action is:");
+        pYellow.print("Type the ");pRed.print("[leaderCardName] ");pYellow.print("that you want to discard");
     }
 
     @Override

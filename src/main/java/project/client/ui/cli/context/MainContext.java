@@ -67,9 +67,9 @@ public class MainContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("You are in the main context! The available actions are:");
+        pRed.println("You are in the main context! The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey().toString());
+            pYellow.println(entry.getKey().toString());
     }
 
     private void takeDevCard() {

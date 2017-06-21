@@ -32,14 +32,13 @@ public class TakeBonusCard extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are: \ntake the bonus card with these characteristics:");
+        pRed.println("The available actions are:\ntake the bonus card with these characteristics:");
         towerAction.printBonusAction();
-        System.out.println(
-                "floor: 0, 1, 2, 3 \n" +
+        pYellow.println("floor: 0, 1, 2, 3\n" +
                 "tower colour: green, yellow, purple, blue");
 
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pYellow.println(entry.getKey());
     }
 
     @Override

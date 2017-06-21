@@ -21,13 +21,14 @@ public class CouncilContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are:");
+        pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pYellow.println(entry.getKey());
 
-        System.out.println("[priviledgeNumber(int)-familiarColour] " +
-                "\n priviledgeNumber: 0, 1, 2, 3, 4, 5 " +
-                "\n familiarColour: black, neutral, orange, white  ");
+        pRed.println("The main action is:");
+        pYellow.println("[priviledgeNumber(int)-familiarColour]" +
+                "\npriviledgeNumber: 0, 1, 2, 3, 4, 5 " +
+                "\nfamiliarColour: black, neutral, orange, white  ");
     }
 
     @Override

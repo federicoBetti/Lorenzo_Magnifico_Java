@@ -11,7 +11,8 @@ import java.util.List;
  * Created by raffaelebongo on 14/06/17.
  */
 public class HarvesterUpdate extends Updates implements Serializable {
-    List<Harvester> harvesterZone;
+
+    private List<Harvester> harvesterZone;
 
     public HarvesterUpdate(List<Harvester> harvester ){
         harvesterZone = harvester;

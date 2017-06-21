@@ -28,10 +28,11 @@ public class PlayLeadercardAmaContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        System.out.println("the available actions are:");
+        pRed.println("the available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
-        System.out.println("Type the leader card's name to play: [leaderCardName]");
+            pYellow.println(entry.getKey());
+        pRed.println("The main action is:");
+        pYellow.println("Type the leader card's name to play:\n[leaderCardName]");
 
     }
 

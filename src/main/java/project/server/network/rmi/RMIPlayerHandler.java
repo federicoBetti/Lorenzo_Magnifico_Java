@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class RMIPlayerHandler extends PlayerHandler {
 
-    private RMIServerToClientInterface myClient;
+    private transient RMIServerToClientInterface myClient;
     private HashMap<String, Talker> bonusType;
 
     RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {

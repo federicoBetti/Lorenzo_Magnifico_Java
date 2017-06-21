@@ -21,8 +21,8 @@ public class BonusProductionOrHarvesterAction extends BonusInteraction {
 		return "bonus" + "-" + getKindOfAction();
 	}
 
-	public void printAction(){
-		System.out.println("you can do one " + getKindOfAction() + "with the " +
+	public String actionString(){
+		return ("Do one " + getKindOfAction() + "with the " +
                            "starting dice value of " + getDiceValue());
 	}
 }
