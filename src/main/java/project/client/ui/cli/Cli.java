@@ -1,5 +1,6 @@
 package project.client.ui.cli;
 
+import project.TowerIterator;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
@@ -8,6 +9,8 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
+import project.model.Board;
+import project.model.Tower;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -327,7 +330,8 @@ public class Cli extends AbstractUI {
 
     //todo show methods
     public void showTowers() {
-        //to implement
+        Tower[][] towers = clientSetter.getUiBoard().getAllTowers();
+        context = new ShowTowersContext(this, towers);
     }
 
     public void showProductionZone() {
