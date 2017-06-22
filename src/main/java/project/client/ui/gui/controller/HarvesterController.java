@@ -143,10 +143,6 @@ public class HarvesterController extends AbstractController {
 
         allPosition = new ArrayList<>();
         allPosition.add(new FamiliarPosition(imageHarvester0));
-        System.out.println(mainController);
-        System.out.println(mainController);
-        System.out.println(mainController);
-        System.out.println(mainController);
         if (mainController.getNumberOfPlayer() >= 3){
         }
         else {

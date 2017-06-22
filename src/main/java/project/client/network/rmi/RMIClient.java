@@ -285,7 +285,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void endTurn() {
-        clientSetter.skipTurn();
+       // clientSetter.skipTurn();
     }
 
     @Override

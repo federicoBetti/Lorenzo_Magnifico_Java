@@ -15,7 +15,7 @@ public abstract class AbstractUI {
     }
 
 
-    public void mainContext(){}
+    public abstract void mainContext();
 
     public abstract void takeBonusCard(TowerAction towerAction);
 

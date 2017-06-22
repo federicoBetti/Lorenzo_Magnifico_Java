@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -65,6 +66,7 @@ public class LoginBuilder extends Application {
 
         initializeInitialLogin();
         initializeWaitingLogin();
+        initalizeMainGame();
         showFirstPage();
     }
 
@@ -139,24 +141,26 @@ public class LoginBuilder extends Application {
         faithPoints = 3;
         turnOrder = 2;
 
+        initRootLayoutMainGame();
+
+        showPrimo();
+
+        System.out.println("sono in start");
+    }
+
+    public void initalizeMainGame() {
         inizializzaGeneralMainGame();
-
-
         inizializzaTowers();
         inizializzaHarvester();
-
         inizializzaMarket();
         inizializzaPersonalBoard();
         inizializzaProduction();
         inizializzaCouncil();
         inizializzaLeaderCard();
-
-
-        System.out.println("sono in start");
+        System.out.println("finita inizializzazione");
     }
 
     public   void showPrimo() {
-        initRootLayoutMainGame();
         rootLayoutMainGame.setCenter(generalScene);
         System.out.print("faccio vedere il primo");
     }
@@ -252,7 +256,7 @@ public class LoginBuilder extends Application {
             // Give the controller access to the main app.
             harvesterController = loader.getController();
             harvesterController.setLoginBuilder(this);
-            harvesterController.inizializeWithMain();
+            harvesterController.setMainController(mainController);
             harvesterController.uploadImages();
 
         } catch (IOException e) {
@@ -287,6 +291,7 @@ public class LoginBuilder extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/mainGame/rootLayout.fxml"));
             rootLayoutMainGame = (BorderPane) loader.load();
 
+            primaryStage.close();
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayoutMainGame);
             primaryStage.setScene(scene);
@@ -493,6 +498,15 @@ public class LoginBuilder extends Application {
 
     public void waitingScene() {
         rootLayout.setCenter(waitingLoginScene);
+        Task task = new Task<Void>() {
+            @Override public Void call() {
+                mainController.takeNickname();
+                return null;
+            }
+        };
+
+        new Thread(task).start();
+        System.out.println("ho messo la scena di wait");
     }
 
     public StringBuffer getStringBuffer() {
@@ -502,6 +516,7 @@ public class LoginBuilder extends Application {
     public void stringBufferAppend(String s) {
         stringBuffer.append(s + "\n");
     }
+
 }
 
 

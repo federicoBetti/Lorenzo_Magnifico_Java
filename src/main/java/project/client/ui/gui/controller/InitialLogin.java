@@ -54,16 +54,24 @@ public class InitialLogin {
 
     public void doConnection() {
         if (i == 0) {
-            mainController.setConnectionType(connectionType);
-            loginBuilder.startMainGame();
+            usernameChosen = username.getText();
+            mainController.setConnectionType(connectionType,usernameChosen);
             i++;
-        } else {
+        }else if (i==1){
+
+            System.out.println("ora devo inizializzare");
+            //loginBuilder.initalizeMainGame();
+            System.out.println("ho finito di inizializzare");
+            i++;
+        }
+        else {
             usernameChosen = username.getText();
             passwordChosen = password.getText();
             username.setText("ciaovecchio");
             password.setText("ciaomerda");
             loginBuilder.waitingScene();
-            mainController.takeNickname(usernameChosen);
+            mainController.takeNickname();
+            System.out.println("ciao");
         }
     }
 

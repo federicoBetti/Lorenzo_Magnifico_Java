@@ -29,6 +29,7 @@ public class MainController {
     private int numberOfPlayer = 2;
     private String colour = "rosso";
     private String nickName;
+    private String usernameChosen;
 
 
     private MainController(){
@@ -108,7 +109,8 @@ public class MainController {
 
     //DA QUA IN GIU LE COSE CHIAMATE SUL CLIENT SETTER
 
-    void setConnectionType(String connectionType) {
+    void setConnectionType(String connectionType, String usernameChosen) {
+        this.usernameChosen = usernameChosen;
         clientSetter.setConnectionType(connectionType);
     }
 
@@ -189,7 +191,7 @@ public class MainController {
         clientSetter.marketAction(positionSelected,familiarChosen);
     }
 
-    public void takeNickname(String usernameChosen) {
+    public void takeNickname() {
         clientSetter.loginRequest(usernameChosen);
     }
 
@@ -268,7 +270,21 @@ public class MainController {
     }
 
     public void loginSucceded() {
-        loginBuilder.waitingScene();
     }
 
+    public void initializeMainGame() {
+        loginBuilder.initalizeMainGame();
+    }
+
+    public void showPrimo() {
+        loginBuilder.showPrimo();
+    }
+
+    public void startMainGame() {
+        loginBuilder.startMainGame();
+    }
+
+    public void waitingLogin() {
+        loginBuilder.waitingScene();
+    }
 }

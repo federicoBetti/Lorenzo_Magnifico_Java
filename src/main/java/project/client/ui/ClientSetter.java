@@ -159,6 +159,7 @@ public class ClientSetter {
     //these methods call other methods on the ui
 
     public void itsMyTurn() {
+        System.out.println("è il tuo turno");
         ui.mainContext();
     }
 

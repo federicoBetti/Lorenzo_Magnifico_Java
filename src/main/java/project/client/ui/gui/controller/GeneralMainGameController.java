@@ -182,8 +182,8 @@ public class GeneralMainGameController extends AbstractController{
         super.uploadImages();
         int faithPoints = loginBuilder.getFaithPoints();
         int turnOrder = loginBuilder.getTurnOrder();
-        faithPointsArray.get(faithPoints).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + loginBuilder.getColour() + "Pedone.png"))));
-        turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + loginBuilder.getColour() + "Pedone.png"))));
+        faithPointsArray.get(faithPoints).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
+        turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
     }
 
     @Override
@@ -228,6 +228,7 @@ public class GeneralMainGameController extends AbstractController{
     }
 
     public void skipTurn() {
+        mainController.skipTurn();
     }
 
 
