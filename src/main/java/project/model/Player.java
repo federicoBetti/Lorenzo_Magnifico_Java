@@ -1,6 +1,7 @@
 package project.model;
 
 import project.configurations.Configuration;
+import project.controller.Constants;
 import project.controller.cardsfactory.*;
 import project.messages.LeaderEffectsUsefull;
 
@@ -35,6 +36,7 @@ public class Player implements Serializable{
     	Configuration configuration = new Configuration();
     	personalBoardReference = new PersonalBoard();
     	score = new Score();
+		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
 		try {
 			configuration.loadFamilymembers(this);
 		} catch (FileNotFoundException e) {

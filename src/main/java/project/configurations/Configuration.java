@@ -7,8 +7,7 @@ import project.controller.cardsfactory.*;
 import project.model.*;
 import com.google.gson.Gson;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -124,7 +123,9 @@ public class Configuration {
     }
 
     public void loadFamilymembers(Player player) throws FileNotFoundException {
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/Users/raffaelebongo/Desktop/familyMember.json"));
+        InputStream is = getClass().getResourceAsStream("/fileJson/familyMember.json");
+        Reader reader = new InputStreamReader(is);
+        JsonStreamParser parser = new JsonStreamParser(reader);
 
         for (int i = 0; parser.hasNext(); i++ ){
             player.setAllFamilyMembers(gson.fromJson(parser.next(), FamilyMember[].class));
@@ -140,7 +141,10 @@ public class Configuration {
     }
 
     public TimerSettings loadTimer() throws FileNotFoundException {
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/home/federico/Scrivania/timer.json"));
+        InputStream is = getClass().getResourceAsStream("/fileJson/timer.json");
+        Reader reader = new InputStreamReader(is);
+        JsonStreamParser parser = new JsonStreamParser(reader);
+
         TimerSettings timerSettings = gson.fromJson(parser.next(), TimerSettings.class);
 
         return timerSettings;
