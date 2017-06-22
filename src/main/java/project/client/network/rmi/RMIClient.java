@@ -26,7 +26,7 @@ import java.util.List;
  *  che poi a sua volta chiama il relatiivo aggiornamento di GUI.
  *  questi metodi che ritornano sono anche quelli dell'update della UI in tempo reale
  */
-public class RMIClient extends AbstractClient implements RMIServerToClientInterface, Serializable {
+public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
     @Override
     public void doProductionHarvester(BonusInteraction bonusInteraction) {
 
@@ -37,13 +37,19 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.loginSucceded();
     }
 
-    transient private RMIClientToServerInterface myServer;
+    private RMIClientToServerInterface myServer;
+    private RMIServerToClientInterface me;
     private String myUniqueId;
-    transient private ClientSetter clientSetter;
+    private ClientSetter clientSetter;
     private HashMap<String,UpdateMethods> updateHashMap;
 
     public RMIClient(ClientSetter clientSetter) throws ClientConnectionException {
         super();
+        try {
+            me = (RMIServerToClientInterface) UnicastRemoteObject.exportObject(this,0);
+        } catch (RemoteException e) {
+            System.out.println("ciao merda");
+        }
         fillUpdateHashMap();
         this.clientSetter = clientSetter;
         System.out.println("provo a connettermi RMI");
@@ -60,23 +66,17 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     //QUA CI SONO I METODI DA CLIENT A SERVER
 
     public void connect() throws ClientConnectionException {
+
         try {
             Registry reg = LocateRegistry.getRegistry(8001);
             System.out.println("ho preso il registro");
             myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
             myServer.ping();
             System.out.println("ho preso il server");
-            //UnicastRemoteObject.exportObject(this,8001);
             System.out.println(this);
         } catch (RemoteException | NotBoundException e) {
             System.out.println("la mia prima esportazione non è andata bene");
             throw new ClientConnectionException(e);
-        }
-        RMIServerToClientInterface me = null;
-        try {
-            me = (RMIServerToClientInterface) UnicastRemoteObject.exportObject(this, 0);
-        } catch (RemoteException e) {
-            System.out.println("porcodue");
         }
         System.out.println(me);
         try {

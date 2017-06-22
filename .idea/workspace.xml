@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="miglioramenti gui">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/LM43-1.0-SNAPSHOT.jar" afterPath="" />
+    <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -65,16 +65,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GeneralMainGameController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4">
-              <caret line="197" column="23" lean-forward="false" selection-start-line="197" selection-start-column="23" selection-end-line="197" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Gui.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -85,31 +75,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="100">
+              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductionController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/ProductionController.java">
+      <file leaf-file-name="RMIClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="143" column="88" lean-forward="false" selection-start-line="143" selection-start-column="88" selection-end-line="143" selection-end-column="88" />
+            <state relative-caret-position="480">
+              <caret line="79" column="9" lean-forward="false" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HarvesterController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/HarvesterController.java">
+      <file leaf-file-name="ServerRMI.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="127" column="16" lean-forward="false" selection-start-line="127" selection-start-column="16" selection-end-line="127" selection-end-column="16" />
+            <state relative-caret-position="125">
+              <caret line="45" column="12" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RMIServerToClientInterface.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="13" column="58" lean-forward="false" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -248,9 +248,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/timer.json" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/ConnectionContext.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIClientToServerInterface.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/RMIPlayerHandler.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fileXML/mainGame/personalBoardMainGame.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PersonalBoardController.java" />
@@ -260,7 +258,6 @@
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/InitialLogin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/cli/context/MainContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/controller/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/model/Player.java" />
@@ -278,6 +275,9 @@
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java" />
       </list>
     </option>
   </component>
@@ -863,7 +863,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Ing Sftware/Sessione 5/sessione5/pubsub-rmi" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="abst&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/AbstractController.java&#10;gui&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/Gui.java&#10;towe&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/TowersController.java&#10;coun&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java&#10;initial&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/InitialLogin.java&#10;timer&#9;PSI&#9;JAVA://project.configurations.TimerSettings&#10;maincon&#9;PSI&#9;JAVA://project.client.ui.cli.context.MainContext&#10;clients&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;clien&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/socket/SocketClient.java&#10;gener&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java&#10;cli&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;loginbui&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/LoginBuilder.java&#10;login&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/InitialLogin.java&#10;main&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/MainController.java&#10;client&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;rmiser&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java&#10;logi&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/LoginBuilder.java&#10;rmic&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java&#10;rmise&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java&#10;ser&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/Server.java&#10;server&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/ServerRMI.java&#10;rmicl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIClient.java&#10;socketpl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/socket/SocketPlayerHandler.java&#10;rmipl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/RMIPlayerHandler.java&#10;cl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;ma&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/MainController.java&#10;abs&#9;PSI&#9;JAVA://project.client.ui.cli.context.AbstractContext&#10;Socke&#9;PSI&#9;JAVA://project.server.network.socket.SocketServer&#10;RMI&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/ServerRMI.java&#10;RMISer&#9;FILE&#9;jar:///home/federico/Scaricati/jdk1.8.0_131/src.zip!/javax/management/remote/rmi/RMIServer.java&#10;rmicli&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIClient.java&#10;ga&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;socketplay&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/socket/SocketPlayerHandler.java&#10;abstractcl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/AbstractClient.java&#10;handler&#9;PSI&#9;JAVA://project.server.network.rmi.RMIPlayerHandler&#10;serveto&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java&#10;socketCl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/socket/SocketClient.java&#10;updates&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/messages/updatesmessages/Updates.java&#10;rmi&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/ServerRMI.java&#10;abstracts&#9;PSI&#9;JAVA://project.server.network.AbstractServer&#10;soc&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/socket/SocketClient.java&#10;pl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/PlayerHandler.java&#10;g&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;boa&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/model/Board.java&#10;produc&#9;PSI&#9;JAVA://project.messages.updatesmessages.ProductionUpdate&#10;upd&#9;PSI&#9;JAVA://project.messages.updatesmessages.Updates&#10;pic&#9;PSI&#9;JAVA://project.controller.supportfunctions.PicoDellaMirandolaSupport&#10;cost&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/cardsfactory/Cost.java&#10;pico&#9;PSI&#9;JAVA://project.controller.checkfunctions.PicoDellaMirandolaCheck&#10;buil&#9;PSI&#9;JAVA://project.controller.cardsfactory.BuildingCost" />
+    <property name="SearchEverywhereHistoryKey" value="ServerR&#9;PSI&#9;JAVA://project.server.network.rmi.ServerRMI&#10;rmiser&#9;PSI&#9;JAVA://project.client.network.rmi.RMIServerToClientInterface&#10;rmicl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIClient.java&#10;abst&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/AbstractController.java&#10;gui&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/Gui.java&#10;towe&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/TowersController.java&#10;coun&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/CouncilPalaceController.java&#10;initial&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/InitialLogin.java&#10;timer&#9;PSI&#9;JAVA://project.configurations.TimerSettings&#10;maincon&#9;PSI&#9;JAVA://project.client.ui.cli.context.MainContext&#10;clients&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;clien&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/socket/SocketClient.java&#10;gener&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/GeneralMainGameController.java&#10;cli&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;loginbui&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/LoginBuilder.java&#10;login&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/InitialLogin.java&#10;main&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/MainController.java&#10;client&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;logi&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/LoginBuilder.java&#10;rmic&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java&#10;rmise&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java&#10;ser&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/Server.java&#10;server&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/ServerRMI.java&#10;socketpl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/socket/SocketPlayerHandler.java&#10;rmipl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/RMIPlayerHandler.java&#10;cl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/ClientSetter.java&#10;ma&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/ui/gui/controller/MainController.java&#10;abs&#9;PSI&#9;JAVA://project.client.ui.cli.context.AbstractContext&#10;Socke&#9;PSI&#9;JAVA://project.server.network.socket.SocketServer&#10;RMI&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/ServerRMI.java&#10;RMISer&#9;FILE&#9;jar:///home/federico/Scaricati/jdk1.8.0_131/src.zip!/javax/management/remote/rmi/RMIServer.java&#10;rmicli&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIClient.java&#10;ga&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;socketplay&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/socket/SocketPlayerHandler.java&#10;abstractcl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/AbstractClient.java&#10;handler&#9;PSI&#9;JAVA://project.server.network.rmi.RMIPlayerHandler&#10;serveto&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java&#10;socketCl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/socket/SocketClient.java&#10;updates&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/messages/updatesmessages/Updates.java&#10;rmi&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/rmi/ServerRMI.java&#10;abstracts&#9;PSI&#9;JAVA://project.server.network.AbstractServer&#10;soc&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/client/network/socket/SocketClient.java&#10;pl&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/PlayerHandler.java&#10;g&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/server/network/GameActions.java&#10;boa&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/model/Board.java&#10;produc&#9;PSI&#9;JAVA://project.messages.updatesmessages.ProductionUpdate&#10;upd&#9;PSI&#9;JAVA://project.messages.updatesmessages.Updates&#10;pic&#9;PSI&#9;JAVA://project.controller.supportfunctions.PicoDellaMirandolaSupport&#10;cost&#9;FILE&#9;file:///home/federico/Documenti/Progetto/src/main/java/project/controller/cardsfactory/Cost.java&#10;pico&#9;PSI&#9;JAVA://project.controller.checkfunctions.PicoDellaMirandolaCheck" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="SONARLINT_ANALYSIS_RESULTS_SCOPE" value="All project files" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="false" />
@@ -1633,14 +1633,7 @@
       <workItem from="1497968245328" duration="8620000" />
       <workItem from="1498034698192" duration="4194000" />
       <workItem from="1498048571656" duration="23742000" />
-      <workItem from="1498117863402" duration="13972000" />
-    </task>
-    <task id="LOCAL-00018" summary="inizio costruzione player handler">
-      <created>1495532780124</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1495532780124</updated>
+      <workItem from="1498117863402" duration="15495000" />
     </task>
     <task id="LOCAL-00019" summary="inizio costruzione player handler">
       <created>1495532957692</created>
@@ -1978,7 +1971,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498131982718</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="miglioramenti gui">
+      <created>1498139583745</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1498139583745</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2008,7 +2008,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="294630000" />
+    <option name="totallyTimeSpent" value="296153000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2172,25 +2172,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fileXML/mainGame/productionMainGame.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/socket/MessagesFromServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -2211,14 +2192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="287" column="9" lean-forward="false" selection-start-line="287" selection-start-column="9" selection-end-line="287" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -2645,8 +2618,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="100">
+          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIServerToClientInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="13" column="58" lean-forward="false" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/client/network/rmi/RMIClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="79" column="9" lean-forward="false" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/server/network/rmi/ServerRMI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="45" column="12" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
           <folding />
         </state>
       </provider>
