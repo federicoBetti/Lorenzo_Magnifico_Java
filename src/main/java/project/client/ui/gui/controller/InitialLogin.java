@@ -17,6 +17,7 @@ public class InitialLogin {
     public Button connect;
     public ToggleGroup connection;
     public Button aia;
+    int i = 0;
 
     private String connectionType;
     private String usernameChosen;
@@ -52,13 +53,26 @@ public class InitialLogin {
     }
 
     public void doConnection() {
-        loginBuilder.switchScene();
-        usernameChosen = username.getText();
-        passwordChosen = password.getText();
-        username.setText("ciaovecchio");
-        password.setText("ciaomerda");
-        mainController.setConnectionType(connectionType);
-        mainController.connect(usernameChosen,passwordChosen);
+        if (i == 0) {
+            usernameChosen = username.getText();
+            mainController.setConnectionType(connectionType,usernameChosen);
+            i++;
+        }else if (i==1){
+
+            System.out.println("ora devo inizializzare");
+            //loginBuilder.initalizeMainGame();
+            System.out.println("ho finito di inizializzare");
+            i++;
+        }
+        else {
+            usernameChosen = username.getText();
+            passwordChosen = password.getText();
+            username.setText("ciaovecchio");
+            password.setText("ciaomerda");
+            loginBuilder.waitingScene();
+            mainController.takeNickname();
+            System.out.println("ciao");
+        }
     }
 
 

@@ -1,9 +1,10 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,14 +23,56 @@ public class HarvesterController extends AbstractController {
 
     public ImageView harvesterZoneImage;
     public HBox familiarBox;
-    public Button submit;
-    public Button mainGameButton;
-    public Button personalBoard;
-    public Button buttonPlaceFamiliar;
 
     //todo si potrebbe fare che in base al numero di servants messo si illuminano le carte attivate
 
+    @FXML
+    protected Button submit;
+    @FXML
+    private Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button buttonPlaceFamiliar;
+    /**
+     * radio button in which you can chose the familiar to use
+     */
+    public RadioButton familiarOrange;
+    public RadioButton familiarWhite;
+    public RadioButton familiarBlack;
+    public RadioButton familiarNull;
 
+    /**
+     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
+     */
+
+    public ImageView imageFamiliarNull;
+
+    public ImageView imageFamiliarBlack;
+
+    public ImageView imageFamiliarWhite;
+
+    public ImageView imageFamiliarOrange;
+
+
+    @FXML
+    private Label numberOfCoins;
+
+    @FXML
+    private Label numberOfWood;
+
+    @FXML
+    private Label numberOfStone;
+
+    @FXML
+    private Label numberOfServants;
+
+
+    @FXML
+    private ImageView LorenzoMagnifico;
+
+
+    public TextField chatText;
     /**
      * the imageViews where the familiar will be placed
      */
@@ -80,6 +123,15 @@ public class HarvesterController extends AbstractController {
     @FXML
     public void initialize() {
         super.initialize();
+    }
+
+    public void uploadImages() {
+        super.uploadImages();
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + "rosso" + ".png"))));
+        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
+        harvesterZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/raccolto" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
+
+        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         nameOfTerritoryCard = new ArrayList<String>(6);
         imageTerritoryCard = new ArrayList<>(6);
         imageTerritoryCard.add(territoryCard0);
@@ -99,11 +151,13 @@ public class HarvesterController extends AbstractController {
 
     }
 
-    public void uploadImages() {
-        super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
-        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
-        harvesterZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/raccolto" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
+    @Override
+    public void updateResources(int coins, int wood, int stone, int servants) {
+
+        updateOneResource(coins,numberOfCoins);
+        updateOneResource(wood,numberOfWood);
+        updateOneResource(stone,numberOfStone);
+        updateOneResource(servants,numberOfServants);
     }
 
     public void refresh(){
@@ -164,6 +218,10 @@ public class HarvesterController extends AbstractController {
         positionSelected = true;
     }
 
+    public void sendChat(ActionEvent actionEvent){
+        sendChat(chatText);
+    }
+
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.HARVESTER);
     }
@@ -210,12 +268,12 @@ public class HarvesterController extends AbstractController {
     }
 
     protected void blockButton() {
-        super.blockButton();
+        super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> bonusAction());
     }
 
     protected void unlockButton() {
-        super.unlockButton();
+        super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> doHarvester());
     }
 }

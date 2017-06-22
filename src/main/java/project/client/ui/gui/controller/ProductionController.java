@@ -1,7 +1,11 @@
 package project.client.ui.gui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,6 +23,48 @@ import java.util.List;
 public class ProductionController extends AbstractController{
 
 
+    @FXML
+    protected Button submit;
+    @FXML
+    private Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button buttonPlaceFamiliar;
+    /**
+     * radio button in which you can chose the familiar to use
+     */
+    public RadioButton familiarOrange;
+    public RadioButton familiarWhite;
+    public RadioButton familiarBlack;
+    public RadioButton familiarNull;
+
+    /**
+     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
+     */
+
+    public ImageView imageFamiliarNull;
+
+    public ImageView imageFamiliarBlack;
+
+    public ImageView imageFamiliarWhite;
+
+    public ImageView imageFamiliarOrange;
+
+
+    public Label numberOfCoins;
+
+    public Label numberOfWood;
+
+    public Label numberOfStone;
+
+    public Label numberOfServants;
+
+
+    public ImageView LorenzoMagnifico;
+
+
+    public TextField chatText;
     private final int numberOfCard = 6;
 
     @FXML
@@ -77,6 +123,7 @@ public class ProductionController extends AbstractController{
     }
 
     public void initialize(){
+        super.initialize();
 
         //example
         buildingCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
@@ -84,7 +131,16 @@ public class ProductionController extends AbstractController{
         nameOfBuilding = new ArrayList<>(6);
         allBuildingCard = new ArrayList<>(6);
         allPosition = new ArrayList<>();
-        allBuildingCard.add(buildingCard0);
+
+    }
+
+    public void uploadImages(){
+        super.uploadImages();
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
+        productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/produzione" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
+
+        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);allBuildingCard.add(buildingCard0);
         allBuildingCard.add(buildingCard1);
         allBuildingCard.add(buildingCard2);
         allBuildingCard.add(buildingCard3);
@@ -99,11 +155,13 @@ public class ProductionController extends AbstractController{
         }
     }
 
-    public void uploadImages(){
-        super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
-        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
-        productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/produzione" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
+    @Override
+    public void updateResources(int coins, int wood, int stone, int servants) {
+
+        updateOneResource(coins,numberOfCoins);
+        updateOneResource(wood,numberOfWood);
+        updateOneResource(stone,numberOfStone);
+        updateOneResource(servants,numberOfServants);
     }
 
     @Override
@@ -163,6 +221,10 @@ public class ProductionController extends AbstractController{
     }
 
 
+    public void sendChat(ActionEvent actionEvent){
+        sendChat(chatText);
+    }
+
     public void placeFamiliar(){
         super.placeFamiliar(allPosition, familiarBox);
         positionSelected = true;
@@ -202,7 +264,7 @@ public class ProductionController extends AbstractController{
     }
 
     protected void blockButton() {
-        super.blockButton();
+        super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> bonusAction());
     }
 
@@ -222,7 +284,7 @@ public class ProductionController extends AbstractController{
     }
 
     protected void unlockButton() {
-        super.unlockButton();
+        super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> doProduction());
     }
 }

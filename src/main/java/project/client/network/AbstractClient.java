@@ -8,68 +8,42 @@ import java.util.List;
 public abstract class AbstractClient {
 
 
-    public void loginRequest(String loginParameter)  {
-    }
+    public abstract void loginRequest(String loginParameter)  ;
 
-    public void waitingForTheNewInteraction() {
-    }
+    public abstract void waitingForTheNewInteraction() ;
 
-    public void takeDevCard(String towerColour, int floor, String familiarColour )  {
-    }
-    
-    public void marketAction(int position, String familyColour)  {
-    }
+    public abstract void takeDevCard(String towerColour, int floor, String familiarColour )  ;
 
-    public void councilAction(int parameter1, String parameter2)  {
-    }
+    public abstract void actionOk();
 
-    public void playLeaderCard(String action)  {
-    }
+    public abstract void marketAction(int position, String familyColour)  ;
 
-    public void discardLeaderCard(String name)  {
-    }
+    public abstract void councilAction(int parameter1, String parameter2)  ;
 
-    public void prayOrNot(boolean action)  {
-    }
+    public abstract void playLeaderCard(String action)  ;
 
-    public void sendExitToBonusAction()  {
-    }
+    public abstract void discardLeaderCard(String name)  ;
 
-    public void choicePe() {
-    }
+    public abstract void prayOrNot(boolean action)  ;
 
-    public void sendChoicePe(int input)  {
-    }
+    public abstract void sendExitToBonusAction()  ;
 
-    public void bonusHarvester()  {
-    }
+    public abstract void sendChoicePe(int input)  ;
 
-    public void bonusHarvesterAction(int servantsNumber)  {
-    }
+    public abstract void bonusHarvesterAction(int servantsNumber)  ;
 
-    public void bonusProductionAction(List<String> parameters)  {
-    }
+    public abstract void bonusProductionAction(List<String> parameters)  ;
 
-    public void takeBonusCardAction(int floor, String input)  {
-    }
+    public abstract void takeBonusCardAction(int floor, String input)  ;
 
-    public void immediatePriviledgeAction(List<Integer> privileges)  {
-    }
+    public abstract void immediatePriviledgeAction(List<Integer> privileges)  ;
 
-    public void takeImmediatePrivilege()  {
-    }
+    public abstract void sendChoicePaymentVc(int payment)  ;
 
-    public void sendChoicePaymentVc(int payment)  {
-    }
+    public abstract void harvesterAction(String familyMemberColour, int servantsNumber) ;
 
-    public void actionOk() {
-    }
+    public abstract void productionAction(String familiarChosen, List<String> buidingCards) ;
 
-    public void harvesterAction(String familyMemberColour, int servantsNumber) {
-    }
-
-    public void productionAction(String familiarChosen, List<String> buidingCards) {
-    }
 
     public void skipTurn() {
     }

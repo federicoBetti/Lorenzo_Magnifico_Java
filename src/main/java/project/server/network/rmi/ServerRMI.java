@@ -41,13 +41,14 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
      */
 
     public void startServer(int port) throws RemoteException {
-        Registry registry = LocateRegistry.createRegistry(port);
+        Registry registry = LocateRegistry.createRegistry(8001);
         try {
-            RMIClientToServerInterface serverInt = (RMIClientToServerInterface) UnicastRemoteObject.exportObject(this, port);
+            RMIClientToServerInterface serverInt = (RMIClientToServerInterface) UnicastRemoteObject.exportObject(this, 0);
             registry.rebind("ServerRMI", serverInt);
+            System.out.println("RMI server started!");
             //Debug.verbose("Server successfully initialized");
         } catch (RemoteException e) {
-            throw new ServerException("Server interface not loaded", e);
+            System.out.println("errore creazione Server RMI");
         }
     }
 /*
@@ -89,8 +90,12 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     }
 
 
-    public void loginRequest(String clientUniqueId, String nickname) throws IOException {
-        server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
+    public void loginRequest(String clientUniqueId, String nickname)  {
+        try {
+            server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) throws RemoteException {
@@ -102,12 +107,12 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
 
     }
 
-    public void harvesterRequest(String clientUniqueId, int position, String familyMemberColour, int servantsNumber) {
-        getPlayerHandler(clientUniqueId).harvesterRequest(position,familyMemberColour, servantsNumber);
+    public void harvesterRequest(String clientUniqueId, String familyMemberColour, int servantsNumber) {
+        getPlayerHandler(clientUniqueId).harvesterRequest(familyMemberColour, servantsNumber);
     }
 
-    public void productionRequest(String clientUniqueId, int position, String familyMemberColour, List<String> cards ){
-        getPlayerHandler(clientUniqueId).productionRequest(position,familyMemberColour, cards);
+    public void productionRequest(String clientUniqueId, String familyMemberColour, List<String> cards){
+        getPlayerHandler(clientUniqueId).productionRequest(familyMemberColour, cards);
     }
 
     public void goToMarketRequest(String clientUniqueId,int position, String familyMemberColour)  {
@@ -129,6 +134,57 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     public void takePrivilegeRequest(String clientUniqueId, int privilegeNumber){
         getPlayerHandler(clientUniqueId).takePrivilegeRequest(privilegeNumber);
     }
+
+    @Override
+    public void prayOrNot(String myUniqueId, boolean action) throws RemoteException {
+        if (action)
+            getPlayerHandler(myUniqueId).pray();
+        else
+            getPlayerHandler(myUniqueId).dontPray();
+    }
+
+    @Override
+    public void exitOnBonusAction(String myUniqueId) throws RemoteException {
+
+    }
+
+    @Override
+    public void setChoicePe(String myUniqueId, int input) throws RemoteException {
+
+    }
+
+    @Override
+    public void sendBonusHarvester(String myUniqueId, int servantsNumber) throws RemoteException {
+        getPlayerHandler(myUniqueId).doBonusHarvester(servantsNumber);
+    }
+
+    @Override
+    public void sendBonusProduction(String myUniqueId, List<String> parameters) throws RemoteException {
+        getPlayerHandler(myUniqueId).doBonusProduction(parameters);
+    }
+
+    @Override
+    public void sendBonusCardAction(String myUniqueId, int floor, String towerColour) throws RemoteException {
+        getPlayerHandler(myUniqueId).takeBonusCardAction(floor,towerColour);
+    }
+
+    @Override
+    public void sendImmediatePrivileges(String myUniqueId, List<Integer> privileges) throws RemoteException {
+        getPlayerHandler(myUniqueId).takeImmediatePrivileges(privileges);
+    }
+
+    @Override
+    public void sendChoicePaymentVc(String myUniqueId, int payment) throws RemoteException {
+
+    }
+
+    @Override
+    public void ping() throws RemoteException {
+        System.out.println("nuova richiesta di connessione RMI");
+    }
+
+
+    //da qua in poi ci saranno i metodi che ritornano scelte
 
 
 

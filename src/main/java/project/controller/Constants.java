@@ -105,6 +105,7 @@ public class Constants {
     public static final String STONE = "stone";
     public static final String TIMER_TURN_DELAYED = "timer-turn-delayed";
     public static final String GREEN = "green";
+    public static final int NUMBER_OF_FAMILIAR = 4;
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

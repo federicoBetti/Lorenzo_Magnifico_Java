@@ -1,7 +1,5 @@
 package project.client.ui.cli;
 
-import com.diogonunes.jcdp.color.api.Ansi;
-import project.PrinterClass.UnixColoredPrinter;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
@@ -37,10 +35,6 @@ public class Cli extends AbstractUI {
         context = new BothPaymentsVentureCardsContext(this);
     }
 
-    @Override
-    public void boardUpdate(Updates update) {
-        update.toScreen();
-    }
 
     public void mainContext() {
         context = new MainContext(this);
@@ -81,6 +75,17 @@ public class Cli extends AbstractUI {
     @Override
     public void loginSucceded() {
         context = new WaitingForMatchStart(this);
+    }
+
+    @Override
+    public int booleanChoosingRMI() {
+        //todo fare la print che chiedo qualcosa
+        try {
+            return Integer.parseInt(SingletonKeyboard.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public void bonusHarvesterParameters(String input) throws InputException {
@@ -312,6 +317,8 @@ public class Cli extends AbstractUI {
 
         @Override
         public void run() {
+
+
             SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
             while (true) {
                 String lineFromKeyBoard;

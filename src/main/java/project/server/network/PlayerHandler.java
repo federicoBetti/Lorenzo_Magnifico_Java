@@ -34,7 +34,7 @@ public abstract class PlayerHandler extends Player {
      * @param floor
      * @param familyM
      */
-    protected void clientTakeDevelopmentCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException{
+    public void clientTakeDevelopmentCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException{
         Position[] tower;
         DevelopmentCard card;
         int diceCost;
@@ -188,8 +188,6 @@ public abstract class PlayerHandler extends Player {
      * @param cardToProduct
      * @return
      */
-
-    //todo rifare metodo senza posizione
     public void production(FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
         int maxValueOfProduction;
         List<Production> productionZone = room.getBoard().getProductionZone();
@@ -376,22 +374,21 @@ public abstract class PlayerHandler extends Player {
         return null;
     }
 
-    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) throws CantDoActionException {
+    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
+        //todo !!!!
     }
     public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
+
+        //todo !!!!
     }
 
     public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect);
 
     public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect);
 
-    public abstract void takePriviledgesInArow(TakePrivilegesAction returnFromEffect);
-
     public abstract void sendActionOk();
 
     //todo implement
-    protected void clientTakeDevelopementCard(String towerColour, int floor, FamilyMember familyMember) throws CantDoActionException, CanUseBothPaymentMethodException{
-    }
 
     public abstract void timerTurnDelayed();
 

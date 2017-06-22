@@ -26,8 +26,10 @@ public class MainController {
 
     private List<AbstractController> controllers;
 
-    private int numberOfPlayer;
-    private String colour;
+    private int numberOfPlayer = 2;
+    private String colour = "rosso";
+    private String nickName;
+    private String usernameChosen;
 
 
     private MainController(){
@@ -51,12 +53,12 @@ public class MainController {
     }
 
     public void showMainGame() {
-        loginBuilder.startMainGame();
+        loginBuilder.showPrimo();
     }
 
 
     int getNumberOfPlayer() {
-        return numberOfPlayer;
+        return 2;
     }
 
     public String getColour() {
@@ -107,12 +109,15 @@ public class MainController {
 
     //DA QUA IN GIU LE COSE CHIAMATE SUL CLIENT SETTER
 
-    void setConnectionType(String connectionType) {
+    void setConnectionType(String connectionType, String usernameChosen) {
+        this.usernameChosen = usernameChosen;
         clientSetter.setConnectionType(connectionType);
     }
 
-    void connect(String usernameChosen, String passwordChosen) {
-        clientSetter.loginRequest(usernameChosen);
+    void connect(String connectionType, String usernameChosen, String passwordChosen) {
+        nickName = usernameChosen;
+        System.out.println(nickName);
+        clientSetter.setConnectionType(connectionType);
     }
 
     public void takeDevCard(String towerColour, int floor, String familiarColour )  {
@@ -184,6 +189,10 @@ public class MainController {
 
     public void goToMarket(int positionSelected, String familiarChosen) {
         clientSetter.marketAction(positionSelected,familiarChosen);
+    }
+
+    public void takeNickname() {
+        clientSetter.loginRequest(usernameChosen);
     }
 
     //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
@@ -258,5 +267,24 @@ public class MainController {
 
     public void sendChat(String s) {
         generalGameController.writeOnChat(s);
+    }
+
+    public void loginSucceded() {
+    }
+
+    public void initializeMainGame() {
+        loginBuilder.initalizeMainGame();
+    }
+
+    public void showPrimo() {
+        loginBuilder.showPrimo();
+    }
+
+    public void startMainGame() {
+        loginBuilder.startMainGame();
+    }
+
+    public void waitingLogin() {
+        loginBuilder.waitingScene();
     }
 }

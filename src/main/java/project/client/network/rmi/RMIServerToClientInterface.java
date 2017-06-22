@@ -1,6 +1,7 @@
 package project.client.network.rmi;
 
 import project.messages.*;
+import project.messages.updatesmessages.Updates;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -13,13 +14,13 @@ public interface RMIServerToClientInterface extends Remote{
 
     void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
+    //void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
 
-    void notify (Notify notify);
+    void notify (Notify notify) throws RemoteException;;
 
-    void endTurn();
+    void endTurn() throws RemoteException;;
 
-    void takePrivilege(BonusInteraction takePrivilegesAction);
+    void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
 
     void askForPraying() throws RemoteException;
 
@@ -27,7 +28,23 @@ public interface RMIServerToClientInterface extends Remote{
 
     void cantDoAction() throws RemoteException;
 
-    void canUseBothPaymentMethod() throws RemoteException;
+    int canUseBothPaymentMethod() throws RemoteException;
 
     void itMyTurn() throws RemoteException;
+
+    void sendNotification(Notify notifications)throws RemoteException;
+
+    void sendUpdates(Updates updates)throws RemoteException;
+
+    void bonusTowerAction(TowerAction returnFromEffect)throws RemoteException;
+
+    void sendBonusProdHarv(BonusProductionOrHarvesterAction returnFromEffect)throws RemoteException;
+
+    void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
+
+    void actionOk() throws  RemoteException;
+
+    void doProductionHarvester(BonusInteraction bonusInteraction);
+
+    void loginSucceded() throws RemoteException;
 }

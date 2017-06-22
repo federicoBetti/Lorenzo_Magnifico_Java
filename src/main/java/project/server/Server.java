@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
  * Created by raffaelebongo on 18/05/17.
  */
@@ -52,13 +51,14 @@ public class Server {
         rmiServer.startServer(rmiPort);
     }
 
+
     /**
      * TODO implemetare tutti i metodi che si occupano della gestione delle room e del fileXML.controller dei giocatori
      */
 
     public void loginRequest(String nickname, PlayerHandler player) throws IOException {
-        if (nicknameAlreadyUsed(nickname))
-            player.nicknameAlredyUsed();
+        if ( nicknameAlreadyUsed(nickname))
+            player.sendAnswer(Constants.NICKNAME_USED);
 
         if (rooms.isEmpty() || roomsAreAllFull()) {
             createNewRoom(nickname, player);

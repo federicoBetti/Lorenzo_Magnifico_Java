@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 
 import java.io.IOException;
-
+//TODO FARE ALTEZZA MAX 900
 public class LoginBuilder extends Application {
 
     private BorderPane rootLayout;
@@ -51,6 +52,7 @@ public class LoginBuilder extends Application {
     private int faithPoints;
     private int turnOrder;
     private BorderPane rootLayoutMainGame;
+    private StringBuffer stringBuffer;
 
 
     public void start(Stage primaryStage) {
@@ -64,6 +66,7 @@ public class LoginBuilder extends Application {
 
         initializeInitialLogin();
         initializeWaitingLogin();
+        initalizeMainGame();
         showFirstPage();
     }
 
@@ -121,10 +124,7 @@ public class LoginBuilder extends Application {
 
     }
 
-    public void switchScene() {
-        rootLayout.setCenter(waitingLoginScene);
-        return;
-    }
+
 
     private void showFirstPage() {
         rootLayout.setCenter(initialLoginScene);
@@ -142,9 +142,14 @@ public class LoginBuilder extends Application {
         turnOrder = 2;
 
         initRootLayoutMainGame();
-        inizializzaGeneralMainGame();
+
         showPrimo();
 
+        System.out.println("sono in start");
+    }
+
+    public void initalizeMainGame() {
+        inizializzaGeneralMainGame();
         inizializzaTowers();
         inizializzaHarvester();
         inizializzaMarket();
@@ -152,17 +157,17 @@ public class LoginBuilder extends Application {
         inizializzaProduction();
         inizializzaCouncil();
         inizializzaLeaderCard();
-
-        System.out.println("sono in start");
+        System.out.println("finita inizializzazione");
     }
 
-    private  void showPrimo() {
+    public   void showPrimo() {
         rootLayoutMainGame.setCenter(generalScene);
         System.out.print("faccio vedere il primo");
     }
 
     private  void inizializzaGeneralMainGame() {
         try {
+            stringBuffer = new StringBuffer();
             // Configuration person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/generalMainGame.fxml"));
@@ -251,7 +256,7 @@ public class LoginBuilder extends Application {
             // Give the controller access to the main app.
             harvesterController = loader.getController();
             harvesterController.setLoginBuilder(this);
-            harvesterController.inizializeWithMain();
+            harvesterController.setMainController(mainController);
             harvesterController.uploadImages();
 
         } catch (IOException e) {
@@ -286,6 +291,7 @@ public class LoginBuilder extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/mainGame/rootLayout.fxml"));
             rootLayoutMainGame = (BorderPane) loader.load();
 
+            primaryStage.close();
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayoutMainGame);
             primaryStage.setScene(scene);
@@ -489,6 +495,28 @@ public class LoginBuilder extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+
+    public void waitingScene() {
+        rootLayout.setCenter(waitingLoginScene);
+        Task task = new Task<Void>() {
+            @Override public Void call() {
+                mainController.takeNickname();
+                return null;
+            }
+        };
+
+        new Thread(task).start();
+        System.out.println("ho messo la scena di wait");
+    }
+
+    public StringBuffer getStringBuffer() {
+        return stringBuffer;
+    }
+
+    public void stringBufferAppend(String s) {
+        stringBuffer.append(s + "\n");
+    }
+
 }
 
 

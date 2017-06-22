@@ -17,7 +17,7 @@ public class ConnectionContext extends AbstractContext {
     @Override
     public void printHelp() {
         pRed.println("Choose the type of connection:\n" +
-                "type: socket | rmi ");
+                "type: socket | RMI ");
     }
 
     @Override

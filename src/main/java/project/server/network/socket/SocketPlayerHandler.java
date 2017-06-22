@@ -88,11 +88,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
         try {
-            clientTakeDevelopementCard(towerColour, floor, familyMember);
+            clientTakeDevelopmentCard(towerColour, floor, familyMember);
         } catch (CantDoActionException e) {
             cantDoAction();
-        } catch (CanUseBothPaymentMethodException e) {
-            canUseBothPaymentMethod();
         }
     }
 
@@ -359,7 +357,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                     case Constants.BONUS_PRODUCTION:
                         intServantsNumber = Integer.parseInt((String) objectInputStream.readObject());
                         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
-                        doBonusProduct(returnFromEffect, intServantsNumber, cards);
+                        doBonusProduct(returnFromEffect, cards);
                         break;
 
                     case Constants.BONUS_HARVESTER:
@@ -385,10 +383,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    @Override
-    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber, ArrayList<BuildingCard> cards) {
-
-    }
 
     @Override
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect)  {
@@ -396,7 +390,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         takePriviledgesInArow(returnFromEffect);
     }
 
-    @Override
+
     public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect)  {
         for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
             int privilegeNumber = 0;

@@ -1,6 +1,7 @@
 package project.client.ui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
@@ -10,9 +11,9 @@ import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
 
 public class Gui extends AbstractUI {
-    LoginBuilder loginBuilder;
     ClientSetter clientSetter;
     MainController mainController;
+    private boolean matchStarted;
 
     public Gui(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
@@ -20,6 +21,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void startUI() {
+        matchStarted = false;
         mainController = MainController.getInstance();
         mainController.setClientSetter(clientSetter);
         Application.launch(LoginBuilder.class);
@@ -38,6 +40,18 @@ public class Gui extends AbstractUI {
 
     @Override
     public void mainContext() {
+        if (!matchStarted) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    mainController.startMainGame();
+                }
+            });
+            mainController.startMainGame();
+            matchStarted = true;
+        }
+        else
+            mainController.showPrimo();
     }
 
     @Override
@@ -120,7 +134,19 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void loginSucceded() {
+    public void goToLogin() {
+        mainController.waitingLogin();
+      //  mainController.takeNickname(usernameChosen);
+    }
 
+    @Override
+    public void loginSucceded() {
+        mainController.loginSucceded();
+    }
+
+    @Override
+    public int booleanChoosingRMI() {
+        //todo
+        return 0;
     }
 }

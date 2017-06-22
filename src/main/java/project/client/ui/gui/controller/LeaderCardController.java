@@ -1,8 +1,10 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +19,28 @@ import java.util.List;
  */
 public class LeaderCardController extends AbstractController {
 
+    @FXML
+    protected Button submit;
+    @FXML
+    private Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+
+
+
+    public Label numberOfCoins;
+
+    public Label numberOfWood;
+
+    public Label numberOfStone;
+
+    public Label numberOfServants;
+
+
+    public ImageView LorenzoMagnifico;
+
+
+    public TextField chatText;
     public ImageView imageLeaderCard0;
     public ImageView imageLeaderCard1;
     public ImageView imageLeaderCard2;
@@ -32,10 +56,7 @@ public class LeaderCardController extends AbstractController {
     DropShadow borderNull= new DropShadow();
 
     public LeaderCardController(){
-        /**
-         * initializing of border to show wich card are selected
-         */
-
+        super();
         int depth = 70;//Setting the uniform variable for the glow width and height
         borderGlow.setColor(Color.BROWN);
         borderGlow.setWidth(depth);
@@ -58,11 +79,17 @@ public class LeaderCardController extends AbstractController {
 
     }
 
+    @Override
+    public void updateResources(int coins, int wood, int stone, int servants) {
+
+        updateOneResource(coins,numberOfCoins);
+        updateOneResource(wood,numberOfWood);
+        updateOneResource(stone,numberOfStone);
+        updateOneResource(servants,numberOfServants);
+    }
+
     public void initialize(){
-        imageFamiliarBlack = new ImageView();
-        imageFamiliarOrange = new ImageView();
-        imageFamiliarNull = new ImageView();
-        imageFamiliarWhite = new ImageView();
+        super.initialize();
         imageLeaderCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/leaders.jpg"))));
         imageLeaderCard1.setImage(new Image(String.valueOf(getClass().getResource("/images/leaders.jpg"))));
         arrayOfLeaderCard = new ArrayList<>();
@@ -76,6 +103,10 @@ public class LeaderCardController extends AbstractController {
 
     }
 
+
+    public void sendChat(ActionEvent actionEvent){
+        sendChat(chatText);
+    }
 
     private void unselectAllCards() {
         for (int i=0; i<leaderCardSelected.length;i++){
@@ -169,13 +200,15 @@ public class LeaderCardController extends AbstractController {
     public void endTurnContext() {
         goBackButton.setText("end turn");
         goBackButton.setOnAction(event -> skipTurn());
-        blockButton();
+        mainGameButton.setDisable(true);
+        personalBoard.setDisable(true);
     }
 
     private void skipTurn() {
         mainController.skipTurn();
         goBackButton.setText("go back");
         goBackButton.setOnAction(event -> goBack());
-        unlockButton();
+        mainGameButton.setDisable(false);
+        personalBoard.setDisable(false);
     }
 }

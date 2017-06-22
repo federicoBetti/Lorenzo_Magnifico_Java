@@ -16,7 +16,7 @@ public abstract class AbstractUI {
     }
 
 
-    public void mainContext(){}
+    public abstract void mainContext();
 
     public abstract void takeBonusCard(TowerAction towerAction);
 
@@ -65,9 +65,9 @@ public abstract class AbstractUI {
 
     public abstract void setConnectionType(String kindOfConnection) throws InputException;
 
-    public void goToLogin() {
-    }
+    public abstract void goToLogin() ;
 
     public abstract void loginSucceded();
 
+    public abstract int booleanChoosingRMI();
 }
