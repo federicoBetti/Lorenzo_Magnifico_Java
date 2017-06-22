@@ -23,7 +23,7 @@ public class FamilyMemberUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public void toScreen() {
+    public String toScreen() {
 
     }
 

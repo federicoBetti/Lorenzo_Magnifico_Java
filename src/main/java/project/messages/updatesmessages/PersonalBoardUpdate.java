@@ -31,21 +31,22 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-        return "The actual player's personal board has updated:\n" +
-                "Building Cards: "); printCards(personalBoard.getBuildings());
-        pRed.print("Character Cards: ");printCards(personalBoard.getCharacters());
-        pRed.print("Venture Cards: ");printCards(personalBoard.getVentures());
-        pRed.print("Territory Cards: ");printCards(personalBoard.getTerritories());
-        pRed.print("Wood: ");pBlue.println(personalBoard.getWood());
-        pRed.print("Servants: ");pBlue.println(personalBoard.getServants());
-        pRed.print("Stone: "); pBlue.println(personalBoard.getStone());
-        pRed.print("Coins: ");pBlue.println(personalBoard.getCoins());
-
+        return  "The actual player's personal board has updated:\n" +
+                "Building Cards: \n" + createCardsString(personalBoard.getBuildings())+
+                "Character Cards: \n" + createCardsString(personalBoard.getCharacters()) +
+                "Venture Cards: \n" + createCardsString(personalBoard.getVentures()) +
+                "Territory Cards: \n" + createCardsString(personalBoard.getTerritories()) +
+                "Wood: " + String.valueOf(personalBoard.getWood()) + "\n" +
+                "Servants: " + String.valueOf(personalBoard.getServants()) + "\n" +
+                "Stone: " + String.valueOf(personalBoard.getStone()) + "\n" +
+                "Coins: " + String.valueOf(personalBoard.getCoins());
     }
 
-    public void printCards(List<? extends DevelopmentCard> cards ){
+    public String createCardsString(List<? extends DevelopmentCard> cards ){
+        String res = null;
         for ( DevelopmentCard card : cards ) {
-            pBlue.println("                " + card.getName());
+            res = res +"                " + card.getName() +"\n";
         }
+        return res;
     }
 }

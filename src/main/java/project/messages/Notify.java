@@ -20,7 +20,7 @@ public class Notify extends Updates {
     }
 
     @Override
-    public void toScreen() {
-        
+    public String toScreen() {
+
     }
 }

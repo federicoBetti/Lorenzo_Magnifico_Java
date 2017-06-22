@@ -29,7 +29,7 @@ public class TowersUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public void toScreen() {
-        pBlue.println("A card has been taken from a tower! For further information type "); pRed.println("[show-towers]");
+    public String toScreen() {
+       return "A card has been taken from a tower! For further information type [show-towers]";
     }
 }

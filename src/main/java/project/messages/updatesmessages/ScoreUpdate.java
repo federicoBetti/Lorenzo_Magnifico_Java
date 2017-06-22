@@ -27,11 +27,11 @@ public class ScoreUpdate extends Updates implements Serializable{
     }
 
     @Override
-    public void toScreen() {
-        pBlue.println("The actual player's score is changed:\n");
-        pRed.print("Victory points: ");pBlue.print(score.getVictoryPoints());
-        pRed.print("Faith points: ");pBlue.print(score.getFaithPoints());
-        pRed.print("Military Points: ");pBlue.print(score.getMilitaryPoints());
+    public String toScreen() {
+        return "The actual player's score is changed:\n" +
+        "Victory points: " + String.valueOf(score.getVictoryPoints()) + "\n" +
+        "Faith points: " + String.valueOf(score.getFaithPoints()) + "\n" +
+        "Military Points: " + String.valueOf(score.getMilitaryPoints()) + "\n";
 
     }
 }

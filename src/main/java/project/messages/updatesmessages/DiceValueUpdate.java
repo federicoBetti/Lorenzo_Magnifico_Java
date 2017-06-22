@@ -26,7 +26,7 @@ public class DiceValueUpdate extends Updates {
     }
 
     @Override
-    public void toScreen() {
+    public String toScreen() {
 
     }
 }

@@ -32,5 +32,5 @@ public abstract class Updates extends BonusInteraction {
     public void doUpdate( PersonalBoard personalBoard ){}
     public void doUpdate(Score score){}
     public void doUpdate(FamilyMember[] familyMembersUi){}
-    public abstract void toScreen();
+    public abstract String toScreen();
 }

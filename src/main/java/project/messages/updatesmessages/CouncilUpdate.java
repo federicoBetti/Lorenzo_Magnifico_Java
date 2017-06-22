@@ -25,7 +25,7 @@ public class CouncilUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public void toScreen() {
+    public String toScreen() {
 
     }
 

@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/LM43-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/LM43-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/cli/Cli.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/Notify.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/Notify.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/CouncilUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/CouncilUpdate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/DiceValueUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/DiceValueUpdate.java" />
@@ -21,7 +15,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/Updates.java" afterPath="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/Updates.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/PersonalBoard.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/PersonalBoard.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -37,11 +30,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PersonalBoardUpdate.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PersonalBoardUpdate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/PersonalBoardUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+            <state relative-caret-position="480">
+              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -67,6 +60,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="MarketUpdate.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/MarketUpdate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="32" column="8" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PersonalBoard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/model/PersonalBoard.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -76,16 +79,6 @@
                 <element signature="e#998#999#0" expanded="true" />
                 <element signature="e#1021#1022#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Launcer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/project/client/Launcer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -110,16 +103,27 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="TowersUpdate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="32" column="95" lean-forward="false" selection-start-line="32" selection-start-column="95" selection-end-line="32" selection-end-column="95" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ProductionUpdate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="33" column="78" lean-forward="true" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
+            <state relative-caret-position="465">
+              <caret line="33" column="69" lean-forward="false" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#626#627#0" expanded="true" />
                 <element signature="e#681#682#0" expanded="true" />
-                <element signature="e#725#726#0" expanded="true" />
-                <element signature="e#810#811#0" expanded="true" />
+                <element signature="e#727#728#0" expanded="true" />
+                <element signature="e#803#804#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="33" column="79" lean-forward="true" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="79" />
+              <caret line="33" column="74" lean-forward="false" selection-start-line="33" selection-start-column="74" selection-end-line="33" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -251,14 +255,14 @@
         <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ExcomunicationUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/FamilyMemberUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/HarvesterUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/MarketUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/messages/Notify.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/client/network/socket/SocketClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/model/PersonalBoard.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/PersonalBoardUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/MarketUpdate.java" />
       </list>
     </option>
   </component>
@@ -1041,13 +1045,6 @@
       <workItem from="1496153210053" duration="2751000" />
       <workItem from="1496158985193" duration="2739000" />
     </task>
-    <task id="LOCAL-00025" summary="implementato network Socket lato server. Aggiunta classe Turn alla bord">
-      <created>1496076750070</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1496076750070</updated>
-    </task>
     <task id="LOCAL-00026" summary="prova sonar">
       <created>1496153762108</created>
       <option name="number" value="00026" />
@@ -1384,7 +1381,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498119047968</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="works on cli">
+      <created>1498127008931</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1498127008932</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1821,14 +1825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/MarketUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/Updates.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1861,35 +1857,6 @@
         <state relative-caret-position="153">
           <caret line="69" column="34" lean-forward="false" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="33" column="79" lean-forward="true" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="33" column="78" lean-forward="true" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
-          <folding>
-            <element signature="e#626#627#0" expanded="true" />
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-            <element signature="e#810#811#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1964,10 +1931,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/PersonalBoardUpdate.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ScoreUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="33" column="74" lean-forward="false" selection-start-line="33" selection-start-column="74" selection-end-line="33" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/TowersUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <caret line="32" column="95" lean-forward="false" selection-start-line="32" selection-start-column="95" selection-end-line="32" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/ProductionUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="33" column="69" lean-forward="false" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#803#804#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/PersonalBoardUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/messages/updatesmessages/MarketUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="32" column="8" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
           <folding />
         </state>
       </provider>

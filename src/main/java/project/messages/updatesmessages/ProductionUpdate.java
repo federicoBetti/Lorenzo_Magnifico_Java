@@ -30,7 +30,7 @@ public class ProductionUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public void toScreen() {
-        pBlue.println("The actual player has performed a production action!");
+    public String toScreen() {
+       return "The actual player has performed a production action!";
     }
 }
