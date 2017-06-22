@@ -24,7 +24,6 @@ public class Room {
      * Stato della partita completo ad eccezione delle personalBoard che sono contenute nel player
      */
 
-
     private Board board;
 
     int maxPlayers;
@@ -35,7 +34,7 @@ public class Room {
 
     private BuildExcommunicationEffects buildExcommunicationEffects;
 
-    GameActions gameActions;
+    private GameActions gameActions;
 
     private boolean matchStarted;
 
@@ -49,6 +48,7 @@ public class Room {
         nicknamePlayersMap = new HashMap<>();
         buildExcommunicationEffects = new BuildExcommunicationEffects();
         matchStarted = false;
+        gameActions = new GameActions(this);
         this.server = server;
         timerSettings = server.getTimerSettings();
     }
@@ -117,10 +117,15 @@ public class Room {
     }
 
     public void startMatch() {
+        String[] colors = fillColors();
+        int i = 0;
         List<PlayerHandler> playerInTheMatch = new ArrayList<>();
-        for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet()) {
-            if ( entry.getValue().isOn() ){
-                playerInTheMatch.add(entry.getValue());
+        for (Map.Entry<String, PlayerHandler> player : nicknamePlayersMap.entrySet()) {
+            if ( player.getValue().isOn() ){
+                playerInTheMatch.add(player.getValue());
+                player.getValue().setFamilyColour(colors[i]);
+                player.getValue().setFamilyColourInFamilyMembers();
+                i++;
             }
         }
 
@@ -131,10 +136,22 @@ public class Room {
             //todo gestire
         }
 
+
         Collections.shuffle(playerInTheMatch);
         board.getTurn().setPlayerTurn(playerInTheMatch);
         getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
         matchStarted = true;
+        myTimerSkipTurn(getBoard().getTurn().getPlayerTurn().get(0));
+    }
+
+    private String[] fillColors() {
+        String [] colors = new String[4];
+        colors[0] = Constants.GREEN;
+        colors[1] = Constants.RED;
+        colors[2] = Constants.YELLOW;
+        colors[3] = Constants.BLUE;
+
+        return colors;
     }
 
     public void myTimerSkipTurn( PlayerHandler player ) {

@@ -13,13 +13,17 @@ import java.util.List;
 public class Turn {
 
 
-    List<PlayerHandler> playerTurn;
+    private List<PlayerHandler> playerTurn;
+    /*
+    * variable used for checking the finishing of the round
+    * */
+    private int rotation;
+
 
     public Turn(){
         playerTurn = new ArrayList<>();
+        rotation = 0;
     }
-
-
 
     public List<PlayerHandler> getPlayerTurn() {
         return playerTurn;
@@ -27,5 +31,13 @@ public class Turn {
 
     public void setPlayerTurn(List<PlayerHandler> playerTurn) {
         this.playerTurn = playerTurn;
+    }
+
+    public int getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
     }
 }

@@ -74,6 +74,7 @@ public abstract class AbstractClient {
     public void skipTurn() {
     }
 
+    public abstract void timerTurnDelayed();
 
 
     //da server a client

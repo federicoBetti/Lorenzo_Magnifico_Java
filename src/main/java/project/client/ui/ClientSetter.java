@@ -275,4 +275,8 @@ public class ClientSetter {
     public void loginSucceded() {
         ui.loginSucceded();
     }
+
+    public void timerTurnDelayed() {
+        ui.waitingForYourTurn();
+    }
 }

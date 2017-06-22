@@ -291,6 +291,11 @@ public class SocketClient extends AbstractClient {
         createWaitingForYourTurnContext();
     }
 
+    @Override
+    public void timerTurnDelayed() {
+        clientSetter.timerTurnDelayed();
+    }
+
     private void createWaitingForYourTurnContext() {
         clientSetter.waitingForYourTurn();
     }

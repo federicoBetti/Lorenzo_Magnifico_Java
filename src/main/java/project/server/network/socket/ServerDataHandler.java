@@ -53,9 +53,13 @@ public class ServerDataHandler {
         map.put(Constants.TAKE_PRIVILEDGE, this::takePriviledgeRequest );
         map.put(Constants.PRAY, this::prayRequest );
         map.put(Constants.DONT_PRAY, this::dontPrayRequest );
+        map.put(Constants.SKIP_TURN, this::skipTurn );
         //todo completare con tutte le stringhe giuste e i metodi
     }
 
+    private void skipTurn() {
+        socketPlayerHandler.socketSkipTurn();
+    }
 
     private void dontPrayRequest() {
         socketPlayerHandler.dontPray();
