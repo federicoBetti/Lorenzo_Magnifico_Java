@@ -159,7 +159,6 @@ public class ClientSetter {
     //these methods call other methods on the ui
 
     public void itsMyTurn() {
-        System.out.println("è il tuo turno");
         ui.mainContext();
     }
 
@@ -275,5 +274,9 @@ public class ClientSetter {
 
     public int bothPaymentsAvailableRMI() {
         return  ui.booleanChoosingRMI();
+    }
+
+    public void timerTurnDelayed() {
+        ui.waitingForYourTurn();
     }
 }

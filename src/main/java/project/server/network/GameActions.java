@@ -20,6 +20,10 @@ public class GameActions {
 
     private Room room;
 
+    public GameActions( Room room ){
+        this.room = room;
+    }
+
     private AllSupportFunctions getSupportFunctions(Player player) {
         return room.getMySupportFunction(player);
     }
@@ -88,25 +92,37 @@ public class GameActions {
     public void nextTurn(PlayerHandler playerHandler) {
         PlayerHandler next;
         List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
+
+        for ( int i = 0; i < 2; i++ )
+            System.out.println(turn.get(i));
+
         int indexOfMe = turn.indexOf(playerHandler);
+        System.out.println(indexOfMe);
         int playerNumbers = room.getRoomPlayers();
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
 
         if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
              next = turn.get(indexOfMe + 1);
-             if ( next.isOn() )
+            System.out.println(next);
+             if ( next.isOn() ) {
                  next.itsMyTurn();
-
+                 this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
+                 return;
+             }
              nextTurn(next);
 
-        } else if (!allFamiliarPlayed()) {// sono 'ultimo del turno ma non è finito round
+        } else if ( room.getBoard().getTurn().getRotation() < 4) {// sono 'ultimo del turno ma non è finito round
              next = turn.get(0);
              if (next.isOn()) {
                  next.itsMyTurn();
+                 room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
+                 this.room.myTimerSkipTurn(turn.get(0));
+                 return;
              }
              nextTurn(next);
          }
+
          else if (currentRound == 2 && currentPeriod == 3) { //fine partita
             endMatch();
 
@@ -116,17 +132,21 @@ public class GameActions {
             nextPeriod();
             setEndRound(true);
             firstPlayerTurn();
+            this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
+            return;
 
         } else {
             endRound();
+            room.getBoard().getTurn().setRotation(0);
             nextRound();
             setEndRound(true);
             firstPlayerTurn();
+            this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
+            return;
         }
 
         //todo se rimane solo un giocatore nella partita?
         //todo se non ne rimane nessuno?
-        this.room.myTimerSkipTurn(playerHandler);
     }
 
 
@@ -187,6 +207,7 @@ public class GameActions {
         int victoryPointsToRunnerUp = 2;
         PlayerHandler militaryStandingsWinner = militaryStandings.get(0);
         PlayerHandler militaryStandingsRunnerUp = militaryStandings.get(1);
+
         if (getMilitaryPoints(militaryStandingsWinner) == getMilitaryPoints(militaryStandingsRunnerUp)) {
             victoryPointsToWinner = 2;
         }
@@ -197,8 +218,13 @@ public class GameActions {
 
             finalPray(playerHandler);
 
-            if (playerHandler.equals(militaryStandingsWinner)) pointsToAdd += victoryPointsToWinner;
-            else if (playerHandler.equals(militaryStandingsRunnerUp)) pointsToAdd += victoryPointsToRunnerUp;
+            if (playerHandler.equals(militaryStandingsWinner)) {
+                pointsToAdd += victoryPointsToWinner;
+            }
+
+            else if (playerHandler.equals(militaryStandingsRunnerUp)){
+                pointsToAdd += victoryPointsToRunnerUp;
+            }
 
             pointsToAdd += getExtraFinalPoints(playerHandler);
             pointsToAdd += pointsFromResources(playerHandler);
@@ -319,8 +345,11 @@ public class GameActions {
         DevelopmentCard[][][] deck = room.getBoard().getDeckCard().getDevelopmentDeck();
         int roundsAdd = 0;
 
-        if (currentRound == 1) roundsAdd = 4;
-        else currentPeriod++;
+        if (currentRound == 1)
+            roundsAdd = 4;
+
+        else
+            currentPeriod++;
 
         //si potrebbe fare con iteratore..
         for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++) {

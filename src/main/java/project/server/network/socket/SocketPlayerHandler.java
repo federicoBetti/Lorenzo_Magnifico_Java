@@ -75,6 +75,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         socketServer.loginRequest(nickname, this);
     }
 
+    public void socketSkipTurn() {
+        skipTurn();
+    }
 
     //ok
     public void takeDevCard() throws IOException, ClassNotFoundException {
@@ -224,6 +227,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     public void loginSucceded() {
         sendString(Constants.LOGIN_SUCCEDED);
     }
+
+
 
     @Override
     public void cantDoAction() {

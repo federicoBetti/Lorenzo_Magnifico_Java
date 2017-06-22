@@ -77,6 +77,7 @@ public class MainContext extends AbstractContext {
     }
 
     public void jumpTurn() {
+        cli.skipTurn();
     }
 
     public void showTowers() {

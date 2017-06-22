@@ -395,4 +395,14 @@ public abstract class PlayerHandler extends Player {
     public abstract void nicknameAlredyUsed();
 
     public abstract void loginSucceded();
+
+    public void skipTurn(){
+        room.getGameActions().nextTurn(this);
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+
 }

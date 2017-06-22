@@ -44,6 +44,12 @@ public abstract class AbstractClient {
 
     public abstract void productionAction(String familiarChosen, List<String> buidingCards) ;
 
+
     public void skipTurn() {
     }
+
+    public abstract void timerTurnDelayed();
+
+
+    //da server a client
 }

@@ -77,7 +77,7 @@ public class FamilyMember implements Serializable{
         this.fixedValue = fixedValue;
     }
 
-    public String toString(){
-        return (familyColour + myColour).toLowerCase();
-    }
+    //public String toString(){
+       // return (familyColour + myColour).toLowerCase();
+   // }
 }

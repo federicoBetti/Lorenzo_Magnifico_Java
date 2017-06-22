@@ -69,11 +69,13 @@ public class Server {
             if (!room.isMatchStarted()) { //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
                     player.setOn(true);
+                    player.setRoom(room);
                     room.nicknamePlayersMap.replace(nickname, player);
                     checkAndStartTheTimer(room, player);
 
                 } else if (!room.isFull()) {
                     player.setOn(true);
+                    player.setRoom(room);
                     room.nicknamePlayersMap.put(nickname, player);
                     player.loginSucceded();
                     checkAndStartTheTimer(room, player);
@@ -86,6 +88,7 @@ public class Server {
             } else {
                 if( room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn() ){ //durante la partita
                     player.setOn(true);
+                    player.setRoom(room);
                     loadPlayerState(room, nickname, player );
                     room.nicknamePlayersMap.replace(nickname, player);
                     player.loginSucceded();
@@ -142,6 +145,7 @@ public class Server {
         rooms.add(room);
         System.out.println("new room created!");
         player.setOn(true);
+        player.setRoom(room);
         room.nicknamePlayersMap.put(nickname, player);
 
         System.out.println(room.nicknamePlayersMap.entrySet());
@@ -161,11 +165,9 @@ public class Server {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("i'm in the timer");
                 if (room.minimumNumberOfPlayers()) {
-                    player.itsMyTurn();
-                    System.out.println("did it");
-                    //startMatch(room);
+                   // player.itsMyTurn();
+                    startMatch(room);
                 }
             }
         };

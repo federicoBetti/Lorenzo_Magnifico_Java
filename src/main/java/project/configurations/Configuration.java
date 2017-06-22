@@ -123,6 +123,14 @@ public class Configuration {
          }
     }
 
+    public void loadFamilymembers(Player player) throws FileNotFoundException {
+        JsonStreamParser parser = new JsonStreamParser(new FileReader("/Users/raffaelebongo/Desktop/familyMember.json"));
+
+        for (int i = 0; parser.hasNext(); i++ ){
+            player.setAllFamilyMembers(gson.fromJson(parser.next(), FamilyMember[].class));
+        }
+    }
+
     public void loadLeaderCard() throws FileNotFoundException {
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 

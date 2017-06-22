@@ -104,6 +104,7 @@ public class Constants {
     public static final String COIN = "coin";
     public static final String STONE = "stone";
     public static final String TIMER_TURN_DELAYED = "timer-turn-delayed";
+    public static final String GREEN = "green";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;
@@ -112,6 +113,9 @@ public class Constants {
     public static int LEADER_CARD_NUMBER = 20;
     public static int EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD = 7;
     public static int NUMBER_OF_TILES = 4;
+    public static String RED = "red";
+    public static String YELLOW ="yellow";
+    public static String BLUE ="blue";
 
 
     private Constants(){}

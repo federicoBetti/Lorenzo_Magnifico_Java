@@ -18,11 +18,11 @@ public class WaitingForYourTurnContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-
+        pRed.println("Waiting for your turn...");
     }
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-        //todo vedere cosa fare
+        printHelp();
     }
 }

@@ -37,8 +37,14 @@ public class MessagesFromServerHandler {
         map.put(Constants.TAKE_PRIVILEGE_ACTION, this:: takeImmediatePriviledge );
         map.put(Constants.ASK_FOR_PRAYING, this::askForPraying);
         map.put(Constants.OK_OR_NO, this::actionOk );
-        map.put(Constants.NICKNAME_USED, this::nicknameAlreadyUsed );
+        map.put(Constants.NICKNAME_USED, this:: nicknameAlreadyUsed );
+        map.put(Constants.TIMER_TURN_DELAYED, this:: timerTurnDelayed );
     }
+
+    private void timerTurnDelayed() {
+        client.timerTurnDelayed();
+    }
+
 
     private void loginSucceded() {
         client.loginSucceded();
