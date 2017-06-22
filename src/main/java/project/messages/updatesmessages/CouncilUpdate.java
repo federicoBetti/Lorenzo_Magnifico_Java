@@ -14,8 +14,8 @@ public class CouncilUpdate extends Updates implements Serializable {
 
     private List<Council> councilZone;
 
-    public CouncilUpdate( List<Council> council ){
-        super();
+    public CouncilUpdate( List<Council> council, String nickname ){
+        super(nickname);
         councilZone = council;
     }
 
@@ -26,7 +26,7 @@ public class CouncilUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-
+        return "The current player has placed a familiar in the Council palace!";
     }
 
     @Override

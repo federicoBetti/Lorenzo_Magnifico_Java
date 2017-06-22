@@ -14,8 +14,8 @@ import java.util.List;
 public class PersonalBoardUpdate extends Updates implements Serializable {
     private PersonalBoard personalBoard;
 
-    public PersonalBoardUpdate(PlayerHandler player ){
-        super();
+    public PersonalBoardUpdate(PlayerHandler player, String nickname ){
+        super(nickname);
         personalBoard = player.getPersonalBoardReference();
     }
 
@@ -31,7 +31,7 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-        return  "The actual player's personal board has updated:\n" +
+        return  "The current player's personal board has updated:\n" +
                 "Building Cards: \n" + createCardsString(personalBoard.getBuildings())+
                 "Character Cards: \n" + createCardsString(personalBoard.getCharacters()) +
                 "Venture Cards: \n" + createCardsString(personalBoard.getVentures()) +

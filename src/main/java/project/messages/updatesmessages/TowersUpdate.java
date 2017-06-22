@@ -13,8 +13,8 @@ public class TowersUpdate extends Updates implements Serializable {
 
     Tower[][] towersZone;
 
-    public TowersUpdate(Tower[][] towers ) {
-        super();
+    public TowersUpdate(Tower[][] towers, String nickname ) {
+        super(nickname);
         towersZone = towers;
     }
 
@@ -30,6 +30,6 @@ public class TowersUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-       return "A card has been taken from a tower! For further information type [show-towers]";
+       return "A card has been taken from a tower!";
     }
 }

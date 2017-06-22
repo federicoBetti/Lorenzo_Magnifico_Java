@@ -351,4 +351,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     public void timerTurnDelayed() {
 
     }
+
+    @Override
+    public void boardUpdate() {
+
+    }
 }

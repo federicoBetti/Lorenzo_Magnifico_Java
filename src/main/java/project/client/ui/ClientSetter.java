@@ -200,25 +200,27 @@ public class ClientSetter {
 
     //updates methods
 
-    public void boardUpdate(Updates update) {
-        update.doUpdate(uiBoard);
-        ui.boardUpdate(update);
-    }
 
     public void scoreUpdate(Updates update) {
         update.doUpdate(uiScore);
-        ui.scoreUpdate();
+        ui.scoreUpdate(update);
     }
 
     public void personalBoardUpdate(Updates update) {
         update.doUpdate(uiPersonalBoard);
-        ui.personalBoardUpdate();
+        ui.personalBoardUpdate(update);
     }
 
     public void familyMemberUpdate(Updates update) {
         update.doUpdate(uiFamilyMembers);
-        ui.familyMemberUpdate();
+        ui.familyMemberUpdate(update);
     }
+
+    public void boardUpdate(Updates updates) {
+        updates.doUpdate(uiBoard);
+        ui.boardUpdate(updates);
+    }
+
 
     public void connect(String username, String password) {
         System.out.println(username + " " + password);
@@ -279,4 +281,5 @@ public class ClientSetter {
     public void timerTurnDelayed() {
         ui.waitingForYourTurn();
     }
+
 }

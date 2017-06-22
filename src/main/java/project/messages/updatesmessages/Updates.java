@@ -12,6 +12,11 @@ import project.model.Score;
  */
 public abstract class Updates extends BonusInteraction {
 
+    String nicknameCurrentPlayer;
+
+    public Updates(String nicknameCurrentPlayer){
+        this.nicknameCurrentPlayer = nicknameCurrentPlayer;
+    }
     public void doUpdate(Board board){}
     public void doUpdate( PersonalBoard personalBoard ){}
     public void doUpdate(Score score){}

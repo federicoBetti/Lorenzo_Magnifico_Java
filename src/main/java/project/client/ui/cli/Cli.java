@@ -29,11 +29,37 @@ public class Cli extends AbstractUI {
         new Keyboard().start();
     }
 
+
+    @Override
+    public void scoreUpdate(Updates update) {
+        context.getpBlue().println(update.toScreen());
+        context.getpRed().println("For further information type a show command.");
+    }
+
+    @Override
+    public void personalBoardUpdate(Updates update) {
+        context.getpBlue().println(update.toScreen());
+        context.getpRed().println("For further information type a show command.");
+    }
+
+    @Override
+    public void familyMemberUpdate(Updates update) {
+        context.getpBlue().println(update.toScreen());
+        context.getpRed().println("For further information type a show command.");
+    }
+
+    @Override
+    public void boardUpdate(Updates update) {
+        context.getpBlue().println(update.toScreen());
+        context.getpRed().println("For further information type a show command.");
+    }
+
     //context methods
     @Override
     public void bothPaymentsAvailable() {
         context = new BothPaymentsVentureCardsContext(this);
     }
+
 
 
     public void mainContext() {
@@ -301,8 +327,55 @@ public class Cli extends AbstractUI {
 
     //todo show methods
     public void showTowers() {
-        //todo fare il metodo di print per le varie caratteristiche delle carte e per gli effetti
-        //clientSetter.getUiBoard().getAllTowers().printTowers();
+        //to implement
+    }
+
+    public void showProductionZone() {
+        //to implement
+    }
+
+    public void showCouncilZone() {
+        //to implement
+    }
+
+    public void showMarketZone() {
+        //to implement
+    }
+
+    public void showExcomunicationsTiles() {
+        //to implement
+    }
+
+    public void showPersonalBoard() {
+        //to implement
+    }
+
+    public void showLeaderCards() {
+        //to implement
+    }
+
+    public void showDicesValue() {
+        //to implement
+    }
+
+    public void showPoints() {
+        //to implement
+    }
+
+    public void showHarvesterZone() {
+        //to implement
+    }
+
+    public void gameReport() {
+        //to implement
+    }
+
+    public void showAllPlayers() {
+        //to implement
+    }
+
+    void chat(){
+        //to implement
     }
 
     public void discardLeaderCardAma() {

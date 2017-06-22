@@ -14,8 +14,8 @@ public class ProductionUpdate extends Updates implements Serializable {
 
     private List<Production> productionZone;
 
-    public ProductionUpdate(List<Production> production ){
-        super();
+    public ProductionUpdate(List<Production> production, String nickname ){
+        super(nickname);
         productionZone = production;
     }
 
@@ -31,6 +31,6 @@ public class ProductionUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-       return "The actual player has performed a production action!";
+       return "The current player has performed a production action!";
     }
 }

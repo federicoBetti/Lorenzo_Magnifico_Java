@@ -26,7 +26,7 @@ public class MessagesFromServerHandler {
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
         //updates
         map.put(Constants.SCORE_UPDATE, this:: scoreUpdate );
-        map.put(Constants.PERSONAL_BOARD_UPDATE, this:: personalBoardUpdate );
+        map.put(Constants.UPDATE, this:: personalBoardUpdate );
         map.put(Constants.FAMILY_MEMBER_UPDATE, this:: familyMemberUpdate );
         map.put(Constants.BOARD_UPDATE, this:: boardUpdate );
         map.put(Constants.CANT_DO_ACTION, this::cantDoAction );

@@ -33,15 +33,15 @@ public class GameActions {
 
         getSupportFunctions(player).placeCardInPersonalBoard(card);
         zone.getTowerZoneEffect().doEffect(player);
-        TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers());
+        TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers(), player.getName());
 
         makeImmediateEffects(player, zone.getCardOnThisFloor());
 
         player.sendActionOk();
         broadcastUpdates(towersUpdate);
-        player.sendUpdates(new PersonalBoardUpdate(player));
-        player.sendUpdates(new ScoreUpdate(player));
-        player.sendUpdates(new FamilyMemberUpdate(player));
+        player.sendUpdates(new PersonalBoardUpdate(player,player.getName()));
+        player.sendUpdates(new ScoreUpdate(player, player.getName()));
+        player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
 
     }
 
@@ -150,7 +150,7 @@ public class GameActions {
     }
 
 
-
+    //todo can we delete it?
     private void allAreOff() {
         //todo
     }
@@ -162,7 +162,7 @@ public class GameActions {
         nextTurn(firstPlayer);
     }
 
-    //todo
+    //todo can we delete it?
     private boolean allFamiliarPlayed() {
         for( PlayerHandler player : room.getListOfPlayers()) {
             for (FamilyMember familyMember : player.getAllFamilyMembers()) {
@@ -234,7 +234,7 @@ public class GameActions {
 
         PlayerHandler winner = findWinner();
         //winner.YOUWIN();
-        broadcastNotifications(new Notify("the winner is + " + winner.getName()));
+      //todo  broadcastNotifications(new Notify("the winner is + " + winner.getName()));
 
     }
 
@@ -409,9 +409,9 @@ public class GameActions {
         harvesterList.add(harvesterZone);
 
         player.sendActionOk();
-        HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone());
+        HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone(), player.getName());
         broadcastUpdates(harvesterUpdate);
-        player.sendUpdates(new PersonalBoardUpdate(player));
+        player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 
     /**
@@ -426,7 +426,7 @@ public class GameActions {
 
         getSupportFunctions(player).setFamiliar(productionZone, familyM);
         productionSpace.add(productionZone);
-        ProductionUpdate productionUpdate = new ProductionUpdate(room.getBoard().getProductionZone());
+        ProductionUpdate productionUpdate = new ProductionUpdate(room.getBoard().getProductionZone(), player.getName());
 
         player.getPersonalBoardReference().getMyTile().takeProductionResource();
 
@@ -436,7 +436,7 @@ public class GameActions {
 
         player.sendActionOk();
         broadcastUpdates(productionUpdate);
-        player.sendUpdates(new PersonalBoardUpdate(player));
+        player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 
 
@@ -449,13 +449,13 @@ public class GameActions {
         Position marketPosition = room.getBoard().getMarketZone()[position];
 
         getSupportFunctions(player).setFamiliar(marketPosition, familyM);
-        MarketUpdate marketUpdate = new MarketUpdate(room.getBoard().getMarketZone());
+        MarketUpdate marketUpdate = new MarketUpdate(room.getBoard().getMarketZone(), player.getName());
 
         getSupportFunctions(player).takeMarketAction(position);
 
         player.sendActionOk();
         broadcastUpdates(marketUpdate);
-        player.sendUpdates(new PersonalBoardUpdate(player));
+        player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 
 
@@ -475,7 +475,7 @@ public class GameActions {
             }
         }
 
-        player.sendUpdates(new PersonalBoardUpdate(player));
+        player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 
     /**
@@ -493,7 +493,7 @@ public class GameActions {
         }
 
         player.getPersonalBoardReference().getMyLeaderCard().remove(numberToDelate);
-        player.sendUpdates(new PersonalBoardUpdate(player));
+        player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 
     /**
@@ -532,8 +532,8 @@ public class GameActions {
         takeCouncilPrivilege(privilegeNumber, player);
 
         player.sendActionOk();
-        broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone()));
-        player.sendUpdates(new PersonalBoardUpdate(player));
+        broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone(), player.getName()));
+        player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 
     /**
@@ -544,9 +544,9 @@ public class GameActions {
         getSupportFunctions(player).takeCouncilPrivilege(privilegeNumber);
 
         if (privilegeNumber > 0 && privilegeNumber < 2) {
-            player.sendUpdates(new PersonalBoardUpdate(player));
+            player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
         } else {
-            player.sendUpdates(new ScoreUpdate(player));
+            player.sendUpdates(new ScoreUpdate(player, player.getName()));
         }
     }
 
@@ -554,16 +554,16 @@ public class GameActions {
         int victoryPointsToAdd = room.getBoard().getVictoryPointsInFaithTrack()[player.getScore().getFaithPoints()];
 
         getSupportFunctions(player).pray(victoryPointsToAdd);
-        player.sendUpdates(new ScoreUpdate(player));
+        player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 
-    void takeExcommunication(PlayerHandler playerHandler) {
+    void takeExcommunication(PlayerHandler player) {
         int period = room.getBoard().getPeriod();
         ExcommunicationTile card = room.getBoard().getExcommunicationZone()[period].getCardForThisPeriod();
 
-        card.makeEffect(playerHandler);
+        card.makeEffect(player);
 
-        broadcastUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone()));
+        broadcastUpdates(new ExcomunicationUpdate( room.getBoard().getExcommunicationZone(), player.getName()));
     }
 
     void broadcastNotifications(Notify notifications) {
@@ -572,6 +572,7 @@ public class GameActions {
             player.sendNotification(notifications);
         }
     }
+
 
     private void broadcastUpdates(Updates updates) {
         for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {

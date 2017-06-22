@@ -100,6 +100,22 @@ public class Gui extends AbstractUI {
         mainController.boardUpdate();
     }
 
+
+    @Override
+    public void scoreUpdate(Updates updates) {
+
+    }
+
+    @Override
+    public void personalBoardUpdate(Updates updates) {
+
+    }
+
+    @Override
+    public void familyMemberUpdate(Updates updates) {
+
+    }
+
     public void scoreUpdate() {
         mainController.scoreUpdate();
     }

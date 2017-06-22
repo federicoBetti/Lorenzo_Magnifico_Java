@@ -13,8 +13,8 @@ public class ExcomunicationUpdate extends Updates implements Serializable{
 
     ExcommunicationZone[] excommunicationZone;
 
-    public ExcomunicationUpdate( ExcommunicationZone[] exc ){
-        super();
+    public ExcomunicationUpdate( ExcommunicationZone[] exc, String nickname ){
+        super(nickname);
         excommunicationZone = exc;
     }
 
@@ -24,7 +24,7 @@ public class ExcomunicationUpdate extends Updates implements Serializable{
 
     @Override
     public String toScreen() {
-
+        return null;
     }
 
     @Override

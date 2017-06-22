@@ -14,8 +14,8 @@ public class HarvesterUpdate extends Updates implements Serializable {
 
     private List<Harvester> harvesterZone;
 
-    public HarvesterUpdate(List<Harvester> harvester ){
-        super();
+    public HarvesterUpdate(List<Harvester> harvester, String nickname ){
+        super(nickname);
         harvesterZone = harvester;
     }
 
@@ -31,6 +31,6 @@ public class HarvesterUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-
+        return "The current player has performed an harvester action!";
     }
 }

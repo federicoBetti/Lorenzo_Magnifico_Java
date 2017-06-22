@@ -19,6 +19,7 @@ public abstract class AbstractContext {
     Map<String, Actioner> map;
     UnixColoredPrinter pYellow;
     UnixColoredPrinter pRed;
+    UnixColoredPrinter pBlue;
 
     public AbstractContext( Cli cli ){
         this.cli = cli;
@@ -31,7 +32,12 @@ public abstract class AbstractContext {
         UnixColoredPrinter.Builder builder1 = new UnixColoredPrinter.Builder(0, false);
         builder.attribute(Ansi.Attribute.BOLD);
         builder.foreground(Ansi.FColor.RED);
-        this.pRed = new UnixColoredPrinter(builder);
+        this.pRed = new UnixColoredPrinter(builder1);
+
+        UnixColoredPrinter.Builder builder2 = new UnixColoredPrinter.Builder(0, false);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.BLUE);
+        this.pBlue = new UnixColoredPrinter(builder2);
     }
 
     void exit() {
@@ -72,6 +78,18 @@ public abstract class AbstractContext {
     @FunctionalInterface
     public interface Actioner{
          void action() throws InputException, IOException;
+    }
+
+    public UnixColoredPrinter getpYellow() {
+        return pYellow;
+    }
+
+    public UnixColoredPrinter getpRed() {
+        return pRed;
+    }
+
+    public UnixColoredPrinter getpBlue() {
+        return pBlue;
     }
 }
 

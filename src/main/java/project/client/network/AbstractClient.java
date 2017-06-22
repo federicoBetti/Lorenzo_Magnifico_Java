@@ -50,6 +50,8 @@ public abstract class AbstractClient {
 
     public abstract void timerTurnDelayed();
 
+    public abstract void boardUpdate();
+
 
     //da server a client
 }
