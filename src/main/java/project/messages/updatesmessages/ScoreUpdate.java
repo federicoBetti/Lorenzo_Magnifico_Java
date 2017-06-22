@@ -13,6 +13,7 @@ public class ScoreUpdate extends Updates implements Serializable{
     Score score;
 
     public ScoreUpdate(PlayerHandler player ){
+        super();
         this.score = player.getScore();
     }
 
@@ -23,5 +24,14 @@ public class ScoreUpdate extends Updates implements Serializable{
     @Override
     public String toString() {
         return Constants.SCORE_UPDATE;
+    }
+
+    @Override
+    public void toScreen() {
+        pBlue.println("The actual player's score is changed:\n");
+        pRed.print("Victory points: ");pBlue.print(score.getVictoryPoints());
+        pRed.print("Faith points: ");pBlue.print(score.getFaithPoints());
+        pRed.print("Military Points: ");pBlue.print(score.getMilitaryPoints());
+
     }
 }

@@ -1,5 +1,6 @@
 package project.client.ui.cli;
 
+import com.diogonunes.jcdp.color.api.Ansi;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
@@ -8,6 +9,7 @@ import project.client.ui.cli.context.*;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class Cli extends AbstractUI {
     ClientSetter clientSetter; //all the operation have to pass across this class
     AbstractContext context;
 
+
     public Cli(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
         context = new ConnectionContext(this);
@@ -32,6 +35,11 @@ public class Cli extends AbstractUI {
     @Override
     public void bothPaymentsAvailable() {
         context = new BothPaymentsVentureCardsContext(this);
+    }
+
+    @Override
+    public void boardUpdate(Updates update) {
+        update.toScreen();
     }
 
     public void mainContext() {

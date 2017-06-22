@@ -201,7 +201,7 @@ public class ClientSetter {
 
     public void boardUpdate(Updates update) {
         update.doUpdate(uiBoard);
-        ui.boardUpdate();
+        ui.boardUpdate(update);
     }
 
     public void scoreUpdate(Updates update) {

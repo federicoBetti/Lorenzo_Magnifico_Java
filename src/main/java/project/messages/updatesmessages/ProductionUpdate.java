@@ -15,6 +15,7 @@ public class ProductionUpdate extends Updates implements Serializable {
     private List<Production> productionZone;
 
     public ProductionUpdate(List<Production> production ){
+        super();
         productionZone = production;
     }
 
@@ -26,5 +27,10 @@ public class ProductionUpdate extends Updates implements Serializable {
     @Override
     public void doUpdate(Board board) {
         board.setProductionZone(productionZone);
+    }
+
+    @Override
+    public void toScreen() {
+        pBlue.println("The actual player has performed a production action!");
     }
 }

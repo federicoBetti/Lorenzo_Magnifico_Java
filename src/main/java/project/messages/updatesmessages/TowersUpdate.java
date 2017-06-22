@@ -14,6 +14,7 @@ public class TowersUpdate extends Updates implements Serializable {
     Tower[][] towersZone;
 
     public TowersUpdate(Tower[][] towers ) {
+        super();
         towersZone = towers;
     }
 
@@ -25,5 +26,10 @@ public class TowersUpdate extends Updates implements Serializable {
     @Override
     public void doUpdate(Board board) {
         board.setTowers(towersZone);
+    }
+
+    @Override
+    public void toScreen() {
+        pBlue.println("A card has been taken from a tower! For further information type "); pRed.println("[show-towers]");
     }
 }

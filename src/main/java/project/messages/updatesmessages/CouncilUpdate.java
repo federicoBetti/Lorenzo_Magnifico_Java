@@ -15,15 +15,22 @@ public class CouncilUpdate extends Updates implements Serializable {
     private List<Council> councilZone;
 
     public CouncilUpdate( List<Council> council ){
+        super();
         councilZone = council;
-    }
-    @Override
-    public String toString() {
-        return Constants.BOARD_UPDATE;
     }
 
     @Override
     public void doUpdate(Board board) {
         board.setCouncilZone(councilZone);
+    }
+
+    @Override
+    public void toScreen() {
+
+    }
+
+    @Override
+    public String toString() {
+        return Constants.BOARD_UPDATE;
     }
 }

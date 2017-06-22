@@ -14,11 +14,17 @@ public class ExcomunicationUpdate extends Updates implements Serializable{
     ExcommunicationZone[] excommunicationZone;
 
     public ExcomunicationUpdate( ExcommunicationZone[] exc ){
+        super();
         excommunicationZone = exc;
     }
 
     public void doUpdate( Board board ){
         board.setExcommunicationZone(excommunicationZone);
+    }
+
+    @Override
+    public void toScreen() {
+
     }
 
     @Override

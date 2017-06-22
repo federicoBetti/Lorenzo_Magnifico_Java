@@ -18,4 +18,9 @@ public class Notify extends Updates {
     public String toString() {
         return Constants.NOTIFY;
     }
+
+    @Override
+    public void toScreen() {
+        
+    }
 }

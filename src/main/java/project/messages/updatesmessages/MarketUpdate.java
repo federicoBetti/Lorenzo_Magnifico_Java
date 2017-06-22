@@ -14,6 +14,7 @@ public class MarketUpdate extends Updates implements Serializable{
     Market[] marketZone;
 
     public MarketUpdate(Market[] market ){
+        super();
         marketZone = market;
     }
 
@@ -25,5 +26,9 @@ public class MarketUpdate extends Updates implements Serializable{
     @Override
     public void doUpdate(Board board) {
         board.setMarketZone(marketZone);
+    }
+
+    @Override
+    public void toScreen() {
     }
 }

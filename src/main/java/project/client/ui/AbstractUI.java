@@ -4,6 +4,7 @@ import project.client.ui.cli.InputException;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 
 /**
  * Created by raffaelebongo on 29/05/17.
@@ -42,9 +43,9 @@ public abstract class AbstractUI {
     }
 
     //notifica alla ui che èè stato fatto un update, serve solo a me. l'ho messo non astratto cosi da te non fa niente
-    public void boardUpdate() {
+    public abstract void boardUpdate(Updates update);
 
-    }
+
 
     public void scoreUpdate() {
     }

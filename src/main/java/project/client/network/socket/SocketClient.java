@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class SocketClient extends AbstractClient {
 
+    String nickname;
     ClientSetter clientSetter;
     MessagesFromServerHandler messageHandler;
     Socket socket;
@@ -66,6 +67,7 @@ public class SocketClient extends AbstractClient {
     public void loginRequest(String loginParameter) {
         sendGenericObject(Constants.LOGIN_REQUEST);
         sendGenericObject(loginParameter);
+        nickname = loginParameter;
         waitingForTheNewInteraction();
     }
 

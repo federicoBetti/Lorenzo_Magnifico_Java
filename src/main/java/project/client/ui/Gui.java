@@ -7,6 +7,7 @@ import project.client.ui.gui.controller.MainController;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 
 public class Gui extends AbstractUI {
     LoginBuilder loginBuilder;
@@ -81,7 +82,7 @@ public class Gui extends AbstractUI {
         mainController.showMainGame();
     }
 
-    public void boardUpdate() {
+    public void boardUpdate(Updates update) {
         mainController.boardUpdate();
     }
 

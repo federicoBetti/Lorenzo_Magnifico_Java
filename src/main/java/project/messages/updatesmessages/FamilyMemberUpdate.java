@@ -13,12 +13,18 @@ public class FamilyMemberUpdate extends Updates implements Serializable {
     FamilyMember[] familyMembers;
 
     public FamilyMemberUpdate(PlayerHandler player) {
+        super();
         familyMembers = player.getAllFamilyMembers();
     }
 
     @Override
     public void doUpdate( FamilyMember[] familyMembersUi ){
         familyMembersUi = familyMembers;
+    }
+
+    @Override
+    public void toScreen() {
+
     }
 
     @Override

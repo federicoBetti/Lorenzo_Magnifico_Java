@@ -11,6 +11,7 @@ public class DiceValueUpdate extends Updates {
     int[] diceValue;
 
     public DiceValueUpdate( int[] diceValue){
+        super();
         this.diceValue = diceValue;
     }
 
@@ -22,5 +23,10 @@ public class DiceValueUpdate extends Updates {
     @Override
     public void doUpdate(Board board) {
         board.setDiceValue(this.diceValue);
+    }
+
+    @Override
+    public void toScreen() {
+
     }
 }

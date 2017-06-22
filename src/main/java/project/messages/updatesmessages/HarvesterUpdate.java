@@ -15,6 +15,7 @@ public class HarvesterUpdate extends Updates implements Serializable {
     private List<Harvester> harvesterZone;
 
     public HarvesterUpdate(List<Harvester> harvester ){
+        super();
         harvesterZone = harvester;
     }
 
@@ -26,5 +27,10 @@ public class HarvesterUpdate extends Updates implements Serializable {
     @Override
     public void doUpdate(Board board) {
         board.setHarvesterZone(harvesterZone);
+    }
+
+    @Override
+    public void toScreen() {
+
     }
 }

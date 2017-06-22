@@ -48,8 +48,8 @@ public class PersonalBoard implements Serializable{
     private List<LeaderCard> myLeaderCard;
 
     public PersonalBoard(){
-    	territories = new LinkedList<>();
-    	buildings = new LinkedList<>();
+    	territories = new ArrayList<>();
+    	buildings = new ArrayList<>();
     	myLeaderCard = new ArrayList<>();
 	}
 
@@ -132,6 +132,5 @@ public class PersonalBoard implements Serializable{
 	public void setEndBonus(int endBonus) {
 		this.endBonus = endBonus;
 	}
-
 
 }
