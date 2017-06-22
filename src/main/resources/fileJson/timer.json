@@ -3,7 +3,7 @@
   "delayTimerStartMatch":3000,
 
   "skipTurnTimerName":"timer-fine-turno",
-  "delayTimerSkipTurn":10000
+  "delayTimerSkipTurn":30000
 }
 
 

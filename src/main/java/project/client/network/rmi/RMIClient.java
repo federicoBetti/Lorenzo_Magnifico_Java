@@ -15,6 +15,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.RemoteStub;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.List;
@@ -27,10 +28,6 @@ import java.util.List;
  *  questi metodi che ritornano sono anche quelli dell'update della UI in tempo reale
  */
 public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
-    @Override
-    public void doProductionHarvester(BonusInteraction bonusInteraction) {
-
-    }
 
     @Override
     public void loginSucceded() throws RemoteException {
@@ -38,18 +35,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     private RMIClientToServerInterface myServer;
-    private RMIServerToClientInterface me;
     private String myUniqueId;
     private ClientSetter clientSetter;
     private HashMap<String,UpdateMethods> updateHashMap;
 
     public RMIClient(ClientSetter clientSetter) throws ClientConnectionException {
         super();
-        try {
-            me = (RMIServerToClientInterface) UnicastRemoteObject.exportObject(this,0);
-        } catch (RemoteException e) {
-            System.out.println("ciao merda");
-        }
         fillUpdateHashMap();
         this.clientSetter = clientSetter;
         System.out.println("provo a connettermi RMI");
@@ -66,26 +57,17 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     //QUA CI SONO I METODI DA CLIENT A SERVER
 
     public void connect() throws ClientConnectionException {
-
         try {
             Registry reg = LocateRegistry.getRegistry(8001);
-            System.out.println("ho preso il registro");
             myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
             myServer.ping();
-            System.out.println("ho preso il server");
-            System.out.println(this);
+            UnicastRemoteObject.exportObject(this, 0);
+            myUniqueId = myServer.connect(this);
         } catch (RemoteException | NotBoundException e) {
-            System.out.println("la mia prima esportazione non è andata bene");
             throw new ClientConnectionException(e);
         }
-        System.out.println(me);
-        try {
-            myUniqueId = myServer.connect(me);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        System.out.println("mi sono esportato");
-            clientSetter.goToLogin();
+        System.out.println("sto andando al login");
+        clientSetter.goToLogin();
     }
 
     @Override
@@ -236,6 +218,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
+    public void doProductionHarvester(BonusInteraction bonusInteraction) {
+
+    }
+
+    @Override
     public void harvesterAction(String familyMemberColour, int servantsNumber) {
         try {
             myServer.harvesterRequest(myUniqueId,familyMemberColour,servantsNumber);
@@ -248,6 +235,15 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     public void productionAction(String familiarChosen, List<String> buidingCards) {
         try {
             myServer.productionRequest(myUniqueId,familiarChosen,buidingCards);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void skipTurn() {
+        try {
+            myServer.skipTurn(myUniqueId);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

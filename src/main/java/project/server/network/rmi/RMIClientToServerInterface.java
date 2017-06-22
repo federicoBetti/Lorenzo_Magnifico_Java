@@ -4,6 +4,7 @@ package project.server.network.rmi;
 // è diversa da quella controler interface perchè ci sono anche i metodi di connessione che
 // sono quelli in più che verranno chiamati dal client sul server
 
+import com.sun.org.apache.regexp.internal.RE;
 import project.client.network.rmi.RMIServerToClientInterface;
 
 import java.io.IOException;
@@ -52,4 +53,6 @@ import java.util.List;
      void sendChoicePaymentVc(String myUniqueId, int payment) throws RemoteException;
 
      void ping() throws RemoteException;
+
+     void skipTurn(String myUniqueId) throws RemoteException;
  }

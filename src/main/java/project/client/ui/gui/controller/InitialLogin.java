@@ -28,7 +28,7 @@ public class InitialLogin {
 
 
     public InitialLogin(){
-        connectionType = "rmi";
+        connectionType = "RMI";
     }
 
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
@@ -49,22 +49,22 @@ public class InitialLogin {
     }
 
     public void rmiClicked() {
-        connectionType = "rmi";
+        connectionType = "RMI";
     }
 
     public void doConnection() {
         if (i == 0) {
             usernameChosen = username.getText();
+            System.out.println("invio richiesta connessione");
             mainController.setConnectionType(connectionType,usernameChosen);
             i++;
         }else if (i==1){
 
-            System.out.println("ora devo inizializzare");
             //loginBuilder.initalizeMainGame();
             System.out.println("ho finito di inizializzare");
             i++;
         }
-        else {
+        else {/*
             usernameChosen = username.getText();
             passwordChosen = password.getText();
             username.setText("ciaovecchio");
@@ -72,6 +72,7 @@ public class InitialLogin {
             loginBuilder.waitingScene();
             mainController.takeNickname();
             System.out.println("ciao");
+            */
         }
     }
 

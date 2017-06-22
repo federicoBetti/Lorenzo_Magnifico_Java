@@ -5,6 +5,7 @@ import project.server.network.AbstractServer;
 import project.server.Server;
 
 import java.io.IOException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.ServerException;
 import java.rmi.registry.LocateRegistry;
@@ -40,11 +41,12 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
      * @throws ServerException if some error occurs.
      */
 
-    public void startServer(int port) throws RemoteException {
+    public void startServer(int port) throws RemoteException, AlreadyBoundException {
         Registry registry = LocateRegistry.createRegistry(8001);
+        UnicastRemoteObject.exportObject(this,0);
         try {
-            RMIClientToServerInterface serverInt = (RMIClientToServerInterface) UnicastRemoteObject.exportObject(this, 0);
-            registry.rebind("ServerRMI", serverInt);
+                registry.rebind("ServerRMI", this);
+
             System.out.println("RMI server started!");
             //Debug.verbose("Server successfully initialized");
         } catch (RemoteException e) {
@@ -181,6 +183,11 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     @Override
     public void ping() throws RemoteException {
         System.out.println("nuova richiesta di connessione RMI");
+    }
+
+    @Override
+    public void skipTurn(String myUniqueId) throws RemoteException {
+        getPlayerHandler(myUniqueId).skipTurn();
     }
 
 

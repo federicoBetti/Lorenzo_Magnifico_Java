@@ -15,11 +15,9 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    //void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
+    void notify (Notify notify) throws RemoteException;
 
-    void notify (Notify notify) throws RemoteException;;
-
-    void endTurn() throws RemoteException;;
+    void endTurn() throws RemoteException;
 
     void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
 
@@ -45,7 +43,7 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void actionOk() throws  RemoteException;
 
-    void doProductionHarvester(BonusInteraction bonusInteraction);
+    void doProductionHarvester(BonusInteraction bonusInteraction) throws RemoteException;
 
     void loginSucceded() throws RemoteException;
 }

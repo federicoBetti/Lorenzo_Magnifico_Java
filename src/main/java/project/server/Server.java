@@ -9,6 +9,7 @@ import project.server.network.rmi.ServerRMI;
 import project.server.network.socket.SocketServer;
 
 import java.io.IOException;
+import java.rmi.AlreadyBoundException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Timer;
@@ -48,7 +49,11 @@ public class Server {
 
     private void startServer( int socketPort, int rmiPort ) throws IOException {
         serverSocket.startServer(socketPort);
-        rmiServer.startServer(rmiPort);
+        try {
+            rmiServer.startServer(rmiPort);
+        } catch (AlreadyBoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
