@@ -66,7 +66,7 @@ public class LoginBuilder extends Application {
 
         initializeInitialLogin();
         initializeWaitingLogin();
-        initalizeMainGame();
+        //initalizeMainGame();
         showFirstPage();
     }
 
@@ -215,7 +215,7 @@ public class LoginBuilder extends Application {
 
             // Give the controller access to the main app.
             marketController = loader.getController();
-            mainController.setLoginBuilder(this);
+            marketController.setLoginBuilder(this);
             marketController.setMainController(mainController);
             marketController.uploadImages();
 

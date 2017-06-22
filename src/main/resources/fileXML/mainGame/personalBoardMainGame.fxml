@@ -92,7 +92,7 @@
          <children>
             <ImageView fitHeight="549.0" fitWidth="361.0" opacity="0.72">
                <image>
-                  <Image url="/images/finestraPiccola.png" />
+                  <Image url="/images/immaginiSetUp/finestraPiccola.png" />
                </image>
             </ImageView>
             <VBox alignment="BOTTOM_LEFT" prefHeight="861.0" prefWidth="363.0">

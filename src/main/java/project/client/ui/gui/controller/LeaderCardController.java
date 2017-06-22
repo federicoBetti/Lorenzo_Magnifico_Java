@@ -90,8 +90,8 @@ public class LeaderCardController extends AbstractController {
 
     public void initialize(){
         super.initialize();
-        imageLeaderCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/leaders.jpg"))));
-        imageLeaderCard1.setImage(new Image(String.valueOf(getClass().getResource("/images/leaders.jpg"))));
+        imageLeaderCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/leaders.jpg"))));
+        imageLeaderCard1.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/leaders.jpg"))));
         arrayOfLeaderCard = new ArrayList<>();
         arrayOfLeaderCard.add(imageLeaderCard0);
         arrayOfLeaderCard.add(imageLeaderCard1);

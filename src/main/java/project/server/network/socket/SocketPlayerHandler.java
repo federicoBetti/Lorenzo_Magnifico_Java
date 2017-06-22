@@ -270,7 +270,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("errore invio su socket");
         }
     }
 

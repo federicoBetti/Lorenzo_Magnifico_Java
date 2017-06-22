@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class MarketController extends AbstractController {
 
+    public ImageView market;
     @FXML
     protected Button submit;
     @FXML
@@ -101,8 +102,14 @@ public class MarketController extends AbstractController {
 
     public void uploadImages(){
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
 
+        int playerNumber;
+        if (mainController.getNumberOfPlayer() < 4)
+            playerNumber = 2;
+        else
+            playerNumber = 4;
+        market.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/mercato" + playerNumber + "Giocatori.png"))));
 
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         if (mainController.getNumberOfPlayer()==4){
