@@ -34,37 +34,51 @@ public class ProductionController extends AbstractController{
     /**
      * radio button in which you can chose the familiar to use
      */
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
+    @FXML
+    private  RadioButton familiarOrange;
+    @FXML
+    private  RadioButton familiarWhite;
+    @FXML
+    private  RadioButton familiarBlack;
+    @FXML
+    private  RadioButton familiarNull;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
      */
 
-    public ImageView imageFamiliarNull;
+    @FXML
+    private  ImageView imageFamiliarNull;
 
-    public ImageView imageFamiliarBlack;
+    @FXML
+    private  ImageView imageFamiliarBlack;
 
-    public ImageView imageFamiliarWhite;
+    @FXML
+    private  ImageView imageFamiliarWhite;
 
-    public ImageView imageFamiliarOrange;
-
-
-    public Label numberOfCoins;
-
-    public Label numberOfWood;
-
-    public Label numberOfStone;
-
-    public Label numberOfServants;
+    @FXML
+    private  ImageView imageFamiliarOrange;
 
 
-    public ImageView LorenzoMagnifico;
+    @FXML
+    private  Label numberOfCoins;
+
+    @FXML
+    private  Label numberOfWood;
+
+    @FXML
+    private  Label numberOfStone;
+
+    @FXML
+    private  Label numberOfServants;
 
 
-    public TextField chatText;
+    @FXML
+    private  ImageView LorenzoMagnifico;
+
+
+    @FXML
+    private  TextField chatText;
     private final int numberOfCard = 6;
 
     @FXML
@@ -87,7 +101,8 @@ public class ProductionController extends AbstractController{
     private ArrayList<ImageView> allBuildingCard;
     private ArrayList<String> nameOfBuilding;
 
-    public ImageView imageProduction0;
+    @FXML
+    private  ImageView imageProduction0;
     private List<FamiliarPosition> allPosition;
 
 
@@ -137,8 +152,12 @@ public class ProductionController extends AbstractController{
     public void uploadImages(){
         super.uploadImages();
         LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
-        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
-        productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/produzione" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
+        int playerNumber;
+        if (mainController.getNumberOfPlayer() > 2)
+            playerNumber = 3;
+        else
+            playerNumber = 2;
+        productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/produzione" + playerNumber + "Giocatori.png"))));
 
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);allBuildingCard.add(buildingCard0);
         allBuildingCard.add(buildingCard1);

@@ -127,9 +127,13 @@ public class HarvesterController extends AbstractController {
 
     public void uploadImages() {
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + "rosso" + ".png"))));
-        //attenzione che bisogna mettere che sia se i giocatori sono 3 o 4 è la stessa cosa
-        harvesterZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/raccolto" + mainController.getNumberOfPlayer() + "Giocatori.png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        int playerNumber;
+        if (mainController.getNumberOfPlayer() > 2)
+            playerNumber = 3;
+        else
+            playerNumber = 2;
+        harvesterZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/raccolto" + playerNumber + "Giocatori.png"))));
 
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         nameOfTerritoryCard = new ArrayList<String>(6);

@@ -40,13 +40,11 @@ public class Gui extends AbstractUI {
     @Override
     public void mainContext() {
         if (!matchStarted) {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    mainController.startMainGame();
-                }
+            Platform.runLater(() -> {
+                mainController.setNumberOfPlayers(4);
+                mainController.initializeMainGame();
+                mainController.startMainGame();
             });
-            mainController.startMainGame();
             matchStarted = true;
         }
         else

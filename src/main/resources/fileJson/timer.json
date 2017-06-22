@@ -1,1 +1,7 @@
-10
+{
+"startMatchTimerName":"timer-inizio-match",
+"delayTimerStartMatch":10000,
+
+"skipTurnTimerName":"timer-fine-turno",
+"delayTimerSkipTurn":10000
+}

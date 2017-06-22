@@ -17,6 +17,22 @@ import java.util.List;
  */
 public class CouncilPalaceController extends AbstractController {
 
+    /**
+     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
+     */
+
+    @FXML
+    private  ImageView imageFamiliarNull;
+
+    @FXML
+    private  ImageView imageFamiliarBlack;
+
+    @FXML
+    private  ImageView imageFamiliarWhite;
+
+    @FXML
+    private  ImageView imageFamiliarOrange;
+
 
     @FXML
     private Label numberOfCoins;
@@ -105,6 +121,8 @@ public class CouncilPalaceController extends AbstractController {
     public void uploadImages() {
         super.uploadImages();
         LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+
     }
 
     @Override

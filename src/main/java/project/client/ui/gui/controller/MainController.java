@@ -57,8 +57,12 @@ public class MainController {
     }
 
 
-    int getNumberOfPlayer() {
-        return 2;
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayer = numberOfPlayers;
+    }
+
+    public int getNumberOfPlayer() {
+        return numberOfPlayer;
     }
 
     public String getColour() {
@@ -287,4 +291,5 @@ public class MainController {
     public void waitingLogin() {
         loginBuilder.waitingScene();
     }
+
 }
