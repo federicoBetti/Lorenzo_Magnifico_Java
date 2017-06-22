@@ -8,6 +8,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
+import project.model.Board;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 public class SocketClient extends AbstractClient {
 
+    String nickname;
     ClientSetter clientSetter;
     MessagesFromServerHandler messageHandler;
     Socket socket;
@@ -66,6 +68,7 @@ public class SocketClient extends AbstractClient {
     public void loginRequest(String loginParameter) {
         sendGenericObject(Constants.LOGIN_REQUEST);
         sendGenericObject(loginParameter);
+        nickname = loginParameter;
         waitingForTheNewInteraction();
     }
 
@@ -274,17 +277,6 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    public void boardUpdate()  {
-        Updates update = null;
-        try {
-            update = (DiceValueUpdate)objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        clientSetter.boardUpdate(update);
-    }
 
     public void skipTurn() {
         sendGenericObject(Constants.SKIP_TURN);
@@ -294,6 +286,19 @@ public class SocketClient extends AbstractClient {
     @Override
     public void timerTurnDelayed() {
         clientSetter.timerTurnDelayed();
+    }
+
+    @Override
+    public void boardUpdate() {
+        Updates update = null;
+        try {
+            update = (Updates) objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        clientSetter.boardUpdate(update);
     }
 
     private void createWaitingForYourTurnContext() {

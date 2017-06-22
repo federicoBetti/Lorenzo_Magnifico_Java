@@ -12,7 +12,8 @@ import java.io.Serializable;
 public class ScoreUpdate extends Updates implements Serializable{
     Score score;
 
-    public ScoreUpdate(PlayerHandler player ){
+    public ScoreUpdate(PlayerHandler player, String nickname ){
+        super(nickname);
         this.score = player.getScore();
     }
 
@@ -23,5 +24,14 @@ public class ScoreUpdate extends Updates implements Serializable{
     @Override
     public String toString() {
         return Constants.SCORE_UPDATE;
+    }
+
+    @Override
+    public String toScreen() {
+        return "The current player's score is changed:\n" +
+        "Victory points: " + String.valueOf(score.getVictoryPoints()) + "\n" +
+        "Faith points: " + String.valueOf(score.getFaithPoints()) + "\n" +
+        "Military Points: " + String.valueOf(score.getMilitaryPoints()) + "\n";
+
     }
 }

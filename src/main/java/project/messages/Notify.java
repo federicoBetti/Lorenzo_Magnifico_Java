@@ -11,11 +11,17 @@ public class Notify extends Updates {
     String notification;
 
     public Notify (String notification){
+        super(Constants.TO_EVERYONE);
         this.notification = notification;
     }
 
     @Override
     public String toString() {
         return Constants.NOTIFY;
+    }
+
+    @Override
+    public String toScreen() {
+        return null;
     }
 }

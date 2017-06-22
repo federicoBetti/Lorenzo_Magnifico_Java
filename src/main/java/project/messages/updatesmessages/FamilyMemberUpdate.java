@@ -12,13 +12,19 @@ import java.io.Serializable;
 public class FamilyMemberUpdate extends Updates implements Serializable {
     FamilyMember[] familyMembers;
 
-    public FamilyMemberUpdate(PlayerHandler player) {
+    public FamilyMemberUpdate(PlayerHandler player, String nickname) {
+        super(nickname);
         familyMembers = player.getAllFamilyMembers();
     }
 
     @Override
     public void doUpdate( FamilyMember[] familyMembersUi ){
         familyMembersUi = familyMembers;
+    }
+
+    @Override
+    public String toScreen() {
+        return null;
     }
 
     @Override

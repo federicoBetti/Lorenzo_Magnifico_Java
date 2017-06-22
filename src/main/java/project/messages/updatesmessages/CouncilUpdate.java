@@ -14,16 +14,23 @@ public class CouncilUpdate extends Updates implements Serializable {
 
     private List<Council> councilZone;
 
-    public CouncilUpdate( List<Council> council ){
+    public CouncilUpdate( List<Council> council, String nickname ){
+        super(nickname);
         councilZone = council;
-    }
-    @Override
-    public String toString() {
-        return Constants.BOARD_UPDATE;
     }
 
     @Override
     public void doUpdate(Board board) {
         board.setCouncilZone(councilZone);
+    }
+
+    @Override
+    public String toScreen() {
+        return "The current player has placed a familiar in the Council palace!";
+    }
+
+    @Override
+    public String toString() {
+        return Constants.BOARD_UPDATE;
     }
 }

@@ -8,6 +8,7 @@ import project.client.ui.gui.controller.MainController;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.Updates;
 
 public class Gui extends AbstractUI {
     ClientSetter clientSetter;
@@ -93,8 +94,24 @@ public class Gui extends AbstractUI {
         mainController.showMainGame();
     }
 
-    public void boardUpdate() {
+    public void boardUpdate(Updates update) {
         mainController.boardUpdate();
+    }
+
+
+    @Override
+    public void scoreUpdate(Updates updates) {
+
+    }
+
+    @Override
+    public void personalBoardUpdate(Updates updates) {
+
+    }
+
+    @Override
+    public void familyMemberUpdate(Updates updates) {
+
     }
 
     public void scoreUpdate() {

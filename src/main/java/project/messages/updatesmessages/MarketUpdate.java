@@ -13,7 +13,8 @@ public class MarketUpdate extends Updates implements Serializable{
 
     Market[] marketZone;
 
-    public MarketUpdate(Market[] market ){
+    public MarketUpdate(Market[] market, String nickname ){
+        super(nickname);
         marketZone = market;
     }
 
@@ -25,5 +26,10 @@ public class MarketUpdate extends Updates implements Serializable{
     @Override
     public void doUpdate(Board board) {
         board.setMarketZone(marketZone);
+    }
+
+    @Override
+    public String toScreen() {
+        return "The current player has placed a familiar in the market!";
     }
 }

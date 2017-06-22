@@ -81,11 +81,11 @@ public class MainContext extends AbstractContext {
     }
 
     public void showTowers() {
-        //to implement
+        cli.showTowers();
     }
 
     public void showProductionZone() {
-        //to implement
+        showProductionZone();
     }
 
     public void showCouncilZone() {

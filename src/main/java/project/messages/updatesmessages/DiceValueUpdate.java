@@ -10,7 +10,8 @@ public class DiceValueUpdate extends Updates {
 
     int[] diceValue;
 
-    public DiceValueUpdate( int[] diceValue){
+    public DiceValueUpdate( int[] diceValue ){
+        super(Constants.TO_EVERYONE);
         this.diceValue = diceValue;
     }
 
@@ -22,5 +23,10 @@ public class DiceValueUpdate extends Updates {
     @Override
     public void doUpdate(Board board) {
         board.setDiceValue(this.diceValue);
+    }
+
+    @Override
+    public String toScreen() {
+        return "The dices has been rolled!";
     }
 }
