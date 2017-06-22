@@ -95,6 +95,7 @@ public class CouncilPalaceController extends AbstractController {
     }
 
     public void initialize() {
+        super.initialize();
         familiarInTheCouncil.add(new FamiliarPosition(imageInTheCouncil0));
         familiarBox.getChildren().addAll(imageInTheCouncil0);
 
