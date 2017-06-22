@@ -41,7 +41,7 @@ public class Gui extends AbstractUI {
     public void mainContext() {
         if (!matchStarted) {
             Platform.runLater(() -> {
-                mainController.setNumberOfPlayers(4);
+                mainController.setNumberOfPlayers(3);
                 mainController.initializeMainGame();
                 mainController.startMainGame();
             });

@@ -151,13 +151,13 @@ public class ProductionController extends AbstractController{
 
     public void uploadImages(){
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
         int playerNumber;
         if (mainController.getNumberOfPlayer() > 2)
             playerNumber = 3;
         else
             playerNumber = 2;
-        productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/produzione" + playerNumber + "Giocatori.png"))));
+        productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/produzione" + playerNumber + "Giocatori.png"))));
 
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);allBuildingCard.add(buildingCard0);
         allBuildingCard.add(buildingCard1);

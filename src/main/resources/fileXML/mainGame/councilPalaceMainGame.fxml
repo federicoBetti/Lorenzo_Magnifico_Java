@@ -20,7 +20,7 @@
             <children>
                 <ImageView fitHeight="466.0" fitWidth="802.0">
                     <image>
-                        <Image url="/images/councilPalace.png" />
+                        <Image url="/images/immaginiSetUp/councilPalace.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="imageInTheCouncil0" fitHeight="86.0" fitWidth="94.0" layoutX="96.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
@@ -43,7 +43,7 @@
             <children>
                 <ImageView fitHeight="653.0" fitWidth="159.0" layoutX="-4.0" opacity="0.58">
                     <image>
-                        <Image url="/images/finestra.png" />
+                        <Image url="/images/immaginiSetUp/finestra.png" />
                     </image>
                 </ImageView>
                 <VBox alignment="TOP_CENTER" layoutY="92.0" prefHeight="496.0" prefWidth="159.0" spacing="8.0">
@@ -68,7 +68,7 @@
             <children>
                 <ImageView fitHeight="361.0" fitWidth="218.0" layoutX="578.0" layoutY="-2.0" opacity="0.58">
                     <image>
-                        <Image url="/images/finestra.png" />
+                        <Image url="/images/immaginiSetUp/finestra.png" />
                     </image>
                 </ImageView>
                 <SplitPane dividerPositions="0.9080779944289693" orientation="VERTICAL" prefHeight="361.0" prefWidth="363.0">
@@ -100,7 +100,7 @@
                 </SplitPane>
                 <ImageView fitHeight="361.0" fitWidth="218.0" layoutX="362.0" opacity="0.58">
                     <image>
-                        <Image url="/images/finestra.png" />
+                        <Image url="/images/immaginiSetUp/finestra.png" />
                     </image>
                 </ImageView>
                 <VBox layoutX="363.0" prefHeight="361.0" prefWidth="215.0">

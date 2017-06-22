@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import project.server.network.PlayerHandler;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.List;
 public class GeneralMainGameController extends AbstractController{
 
 
+    public Pane gameboard;
     @FXML
     private Label numberOfCoins;
 
@@ -184,6 +186,8 @@ public class GeneralMainGameController extends AbstractController{
         int turnOrder = loginBuilder.getTurnOrder();
         faithPointsArray.get(faithPoints).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
         turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
+        String background = "-fx-background-image: url(&quot;/images/immaginiSetUp/gameboard&quot; + mainController.getNumberOfPlayer() + &quot;Giocatori.png&quot;";
+        gameboard.setStyle(background);
     }
 
     @Override

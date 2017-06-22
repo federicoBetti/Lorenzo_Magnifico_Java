@@ -27,7 +27,7 @@
             <children>
             <ImageView fitHeight="415.0" fitWidth="360.0" opacity="0.64">
                <image>
-                  <Image url="/images/finestraPiccola.png" />
+                  <Image url="/images/immaginiSetUp/finestraPiccola.png" />
                </image>
             </ImageView>
                 <VBox alignment="BOTTOM_LEFT" prefHeight="861.0" prefWidth="363.0">
@@ -87,7 +87,7 @@
          <children>
             <ImageView fitHeight="861.0" fitWidth="589.0" opacity="0.64">
                <image>
-                  <Image url="/images/finestra.png" />
+                  <Image url="/images/immaginiSetUp/finestra.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imageLeaderCard0" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#leaderCardChosen0"/>
