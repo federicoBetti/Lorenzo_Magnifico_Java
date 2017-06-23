@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 
 import java.io.IOException;
+import java.util.List;
+
 //TODO FARE ALTEZZA MAX 900
 public class LoginBuilder extends Application {
 
@@ -36,6 +38,7 @@ public class LoginBuilder extends Application {
     private  AnchorPane productionScene;
     private  AnchorPane councilScene;
     private  AnchorPane leaderScene;
+    private AnchorPane draftScene;
 
     private HarvesterController harvesterController;
     private GeneralMainGameController generalMainGameController;
@@ -55,6 +58,7 @@ public class LoginBuilder extends Application {
     private BorderPane rootLayoutMainGame;
     private StringBuffer stringBuffer;
     private int choiceDone;
+    private DraftController draftController;
 
 
     public void start(Stage primaryStage) {
@@ -126,6 +130,25 @@ public class LoginBuilder extends Application {
 
     }
 
+
+    /**
+     * Shows the person overview inside the root layout.
+     */
+    private void initializeDraft() {
+        try {
+            // Configuration person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
+            draftScene = (AnchorPane) loader.load();
+
+            this.draftController = loader.getController();
+            draftController.setMainController(mainController);
+            draftController.setLoginBuilder(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private void showFirstPage() {
@@ -479,8 +502,42 @@ public class LoginBuilder extends Application {
         }
     }
 
-    public TextField getChat() {
-        return chatText;
+
+    public void showDraft(String labelMessage, List<String> leaderName) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
+            AnchorPane draft = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Draft");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(draft);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            DraftController controller = loader.getController();
+            controller.setMainController(mainController);
+            controller.setLoginBuilder(this);
+            controller.setLabel(labelMessage);
+            controller.uploadImages(leaderName);
+            System.out.println("sto per disegnare lo stage");
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return ;
+        }
+    }
+
+    public StringBuffer getChat() {
+        return stringBuffer;
     }
 
     public String getColour() {
@@ -546,6 +603,19 @@ public class LoginBuilder extends Application {
 
     public int getChoiceDone() {
         return choiceDone;
+    }
+
+    public void setDraft(List<String> leaderName) {
+        showDraft("draft of Leader Card", leaderName);
+    }
+
+    public void itIsntMyTurn() {
+        stringBuffer.append("it isn't your turn, you can't play!\n");
+        sendChatToControllers();
+    }
+
+    private void sendChatToControllers() {
+        mainController.updateChat(stringBuffer);
     }
 }
 

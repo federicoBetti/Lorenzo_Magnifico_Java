@@ -42,7 +42,6 @@ public class ChoiceController {
 
     public void setChoice1(String choice1) {
         buttonChoiche1.setText(choice1);
-        buttonChoiche1.
     }
 
     public void setCoiche2(String choice2) {

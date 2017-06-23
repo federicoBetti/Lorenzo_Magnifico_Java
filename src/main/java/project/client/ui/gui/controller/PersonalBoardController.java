@@ -85,6 +85,8 @@ public class PersonalBoardController extends AbstractController {
     private List<ImageView> venturesCards;
     @FXML
     private TextField chatText;
+    @FXML
+    private Label chatArea;
 
     public PersonalBoardController() {
         super();
@@ -132,7 +134,7 @@ public class PersonalBoardController extends AbstractController {
 
     @Override
     public void refresh() {
-
+        chatArea.setText(loginBuilder.getChat().toString());
     }
 
     @Override

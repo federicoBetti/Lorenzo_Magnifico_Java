@@ -5,10 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import project.server.network.PlayerHandler;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class GeneralMainGameController extends AbstractController{
     @FXML
     private Button send;
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
     @FXML
     private Button goToTowersButton;
     @FXML
@@ -178,7 +180,7 @@ public class GeneralMainGameController extends AbstractController{
 
     @Override
     public void refresh() {
-
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
     }
 
     public void uploadImages(){
@@ -233,7 +235,10 @@ public class GeneralMainGameController extends AbstractController{
     }
 
     public void skipTurn() {
-        mainController.skipTurn();
+        if (!mainController.isMyTurn())
+            loginBuilder.itIsntMyTurn();
+        else
+            mainController.skipTurn();
     }
 
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="489.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.DraftController">
+   <children>
+      <Label fx:id="title" alignment="CENTER" layoutY="6.0" prefHeight="76.0" prefWidth="681.0" style="-fx-background-color: transparent;" >
+         <font>
+            <Font name="Lucida Blackletter" size="24.0" />
+         </font>
+      </Label>
+      <HBox fx:id="cardBox" layoutX="4.0" layoutY="107.0" prefHeight="335.0" prefWidth="672.0" spacing="5" alignment="CENTER">
+         <children>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

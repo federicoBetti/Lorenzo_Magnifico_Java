@@ -112,6 +112,8 @@ public class ProductionController extends AbstractController{
     DropShadow borderGlow= new DropShadow();
     DropShadow borderNull= new DropShadow();
     private int diceValueBonus;
+    @FXML
+    private Label chatArea;
 
 
     public ProductionController(){
@@ -185,6 +187,7 @@ public class ProductionController extends AbstractController{
 
     @Override
     public void refresh(){
+        chatArea.setText(loginBuilder.getChat().toString());
         for (int i = 0; i<cardSelected.length; i++){
             cardSelected[i] = false;
             allBuildingCard.get(i).setEffect(borderNull);

@@ -1,7 +1,6 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
-import javafx.beans.value.ObservableObjectValue;
 import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
@@ -36,7 +35,9 @@ public class MainController {
     private String nickName;
     private String usernameChosen;
 
-    private BlockingQueue<Integer> queue;
+    private BlockingQueue<Integer> integerQueue;
+    private BlockingQueue<String> stringQueue;
+    private boolean myTurn;
 
 
     private MainController(){
@@ -167,7 +168,7 @@ public class MainController {
 
 
     void setChoice(String text, int i) {
-        queue.add(new Integer(i));
+        integerQueue.add(new Integer(i));
         /*
         switch (text){
             case CliConstants.BOTH_PAYMENT_AVAIABLE:{
@@ -302,6 +303,7 @@ public class MainController {
 // da qui in giu prove per risposta
 
     public void skipTurn() {
+        myTurn = false;
         Runnable a = new Runnable() {
             @Override
             public void run() {
@@ -314,7 +316,7 @@ public class MainController {
 
 
     public int getScelta() {
-        queue = new LinkedBlockingQueue<>(1);
+        integerQueue = new LinkedBlockingQueue<>(1);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -325,8 +327,8 @@ public class MainController {
         });
         Integer i = new Integer(0);
         try {
-            System.out.println("mi metto in attesa della queue");
-             i = queue.take();
+            System.out.println("mi metto in attesa della integerQueue");
+             i = integerQueue.take();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -335,7 +337,7 @@ public class MainController {
         while (true){
             System.out.println("sono nel while true");
         try {
-            return queue.take();
+            return integerQueue.take();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -349,7 +351,44 @@ public class MainController {
     }
 
     public void wakeUp(int choiceDone) {
-        queue.add(new Integer(choiceDone));
+        integerQueue.add(new Integer(choiceDone));
         }
 
+    public String startDraft(List<String> leaderName) {
+
+        stringQueue = new LinkedBlockingQueue<>(1);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                System.out.println("sono nel runlater");
+                loginBuilder.setDraft(leaderName);
+            }
+        });
+        String i = "";
+        try {
+            System.out.println("mi metto in attesa della integerQueue");
+            i = stringQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public void addStringQueue(String s) {
+        stringQueue.add(s);
+    }
+
+    public boolean isMyTurn() {
+        return myTurn;
+    }
+
+    public void setMyTurn(boolean myTurn) {
+        this.myTurn = myTurn;
+    }
+
+    public void updateChat(StringBuffer stringBuffer) {
+        for (AbstractController c: controllers)
+            c.refresh();
+    }
 }
