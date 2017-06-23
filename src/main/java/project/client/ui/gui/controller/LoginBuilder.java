@@ -96,9 +96,6 @@ public class LoginBuilder extends Application {
         }
     }
 
-    /**
-     * Shows the person overview inside the root layout.
-     */
     private void initializeInitialLogin() {
         try {
             // Configuration person overview.
@@ -131,10 +128,18 @@ public class LoginBuilder extends Application {
 
     }
 
+    public void initalizeMainGame() {
+        inizializzaGeneralMainGame();
+        inizializzaTowers();
+        inizializzaHarvester();
+        inizializzaMarket();
+        inizializzaPersonalBoard();
+        inizializzaProduction();
+        inizializzaCouncil();
+        inizializzaLeaderCard();
+        System.out.println("finita inizializzazione");
+    }
 
-    /**
-     * Shows the person overview inside the root layout.
-     */
     private void initializeDraft() {
         try {
             // Configuration person overview.
@@ -151,45 +156,7 @@ public class LoginBuilder extends Application {
         }
     }
 
-
-    private void showFirstPage() {
-        rootLayout.setCenter(initialLoginScene);
-    }
-
-    public void main(String[] args) {
-        launch(args);
-    }
-
-
-    public void startMainGame() {
-        faithPoints = 3;
-        turnOrder = 2;
-
-        initRootLayoutMainGame();
-
-        showPrimo();
-
-        System.out.println("sono in start");
-    }
-
-    public void initalizeMainGame() {
-        inizializzaGeneralMainGame();
-        inizializzaTowers();
-        inizializzaHarvester();
-        inizializzaMarket();
-        inizializzaPersonalBoard();
-        inizializzaProduction();
-        inizializzaCouncil();
-        inizializzaLeaderCard();
-        System.out.println("finita inizializzazione");
-    }
-
-    public   void showPrimo() {
-        rootLayoutMainGame.setCenter(generalScene);
-        System.out.print("faccio vedere il primo");
-    }
-
-    private  void inizializzaGeneralMainGame() {
+    private void inizializzaGeneralMainGame() {
         try {
             stringBuffer = new StringBuffer();
             // Configuration person overview.
@@ -208,107 +175,6 @@ public class LoginBuilder extends Application {
         }
     }
 
-    private  void inizializzaTowers() {
-        try {
-            // Configuration person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/towersMainGame.fxml"));
-            towersScene = (AnchorPane) loader.load();
-
-            //generalScene.getStylesheets().add(("fileXML.controller/primoCSS.css"));
-            // Set person overview into the center of root layout.
-            //rootLayout.setCenter(primoScene);
-
-            // Give the controller access to the main app.
-            towersController = loader.getController();
-            towersController.setLoginBuilder(this);
-            towersController.setMainController(mainController);
-            towersController.uploadImages();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private  void inizializzaMarket() {
-        try {
-            // Configuration person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/marketMainGame.fxml"));
-            marketScene = (AnchorPane) loader.load();
-
-            // Give the controller access to the main app.
-            marketController = loader.getController();
-            marketController.setLoginBuilder(this);
-            marketController.setMainController(mainController);
-            marketController.uploadImages();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private  void inizializzaPersonalBoard() {
-        try {
-            // Configuration person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/personalBoardMainGame.fxml"));
-            personalBoardScene = (AnchorPane) loader.load();
-
-            //generalScene.getStylesheets().add(("fileXML.controller/primoCSS.css"));
-            // Set person overview into the center of root layout.
-            //rootLayout.setCenter(primoScene);
-
-            // Give the controller access to the main app.
-            personalBoardController = loader.getController();
-            personalBoardController.setLoginBuilder(this);
-            personalBoardController.setMainController(mainController);
-            personalBoardController.uploadImages();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private  void inizializzaHarvester() {
-        try {
-            // Configuration person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/harvesterMainGame.fxml"));
-            harvesterScene = (AnchorPane) loader.load();
-
-            // Give the controller access to the main app.
-            harvesterController = loader.getController();
-            harvesterController.setLoginBuilder(this);
-            harvesterController.setMainController(mainController);
-            harvesterController.uploadImages();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private  void inizializzaProduction() {
-        try {
-            // Configuration person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/productionMainGame.fxml"));
-            productionScene = (AnchorPane) loader.load();
-
-            // Give the controller access to the main app.
-            productionController = loader.getController();
-            productionController.setLoginBuilder(this);
-            productionController.setMainController(mainController);
-            productionController.uploadImages();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Initializes the root layout.
-     */
     private void initRootLayoutMainGame() {
         try {
             // Configuration root layout from fxml file.
@@ -366,10 +232,243 @@ public class LoginBuilder extends Application {
         }
     }
 
+    private void inizializzaTowers() {
+        try {
+            // Configuration person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/towersMainGame.fxml"));
+            towersScene = (AnchorPane) loader.load();
+
+            //generalScene.getStylesheets().add(("fileXML.controller/primoCSS.css"));
+            // Set person overview into the center of root layout.
+            //rootLayout.setCenter(primoScene);
+
+            // Give the controller access to the main app.
+            towersController = loader.getController();
+            towersController.setLoginBuilder(this);
+            towersController.setMainController(mainController);
+            towersController.uploadImages();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void inizializzaMarket() {
+        try {
+            // Configuration person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/marketMainGame.fxml"));
+            marketScene = (AnchorPane) loader.load();
+
+            // Give the controller access to the main app.
+            marketController = loader.getController();
+            marketController.setLoginBuilder(this);
+            marketController.setMainController(mainController);
+            marketController.uploadImages();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void inizializzaPersonalBoard() {
+        try {
+            // Configuration person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/personalBoardMainGame.fxml"));
+            personalBoardScene = (AnchorPane) loader.load();
+
+            //generalScene.getStylesheets().add(("fileXML.controller/primoCSS.css"));
+            // Set person overview into the center of root layout.
+            //rootLayout.setCenter(primoScene);
+
+            // Give the controller access to the main app.
+            personalBoardController = loader.getController();
+            personalBoardController.setLoginBuilder(this);
+            personalBoardController.setMainController(mainController);
+            personalBoardController.uploadImages();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void inizializzaHarvester() {
+        try {
+            // Configuration person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/harvesterMainGame.fxml"));
+            harvesterScene = (AnchorPane) loader.load();
+
+            // Give the controller access to the main app.
+            harvesterController = loader.getController();
+            harvesterController.setLoginBuilder(this);
+            harvesterController.setMainController(mainController);
+            harvesterController.uploadImages();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void inizializzaProduction() {
+        try {
+            // Configuration person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/productionMainGame.fxml"));
+            productionScene = (AnchorPane) loader.load();
+
+            // Give the controller access to the main app.
+            productionController = loader.getController();
+            productionController.setLoginBuilder(this);
+            productionController.setMainController(mainController);
+            productionController.uploadImages();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private void showFirstPage() {
+        rootLayout.setCenter(initialLoginScene);
+    }
+
+    public void main(String[] args) {
+        launch(args);
+    }
+
+
+    public void startMainGame() {
+        //da eliminare
+        faithPoints = 3;
+        turnOrder = 2;
+
+        initRootLayoutMainGame();
+
+        showPrimo();
+
+        System.out.println("sono in start");
+    }
+
+
+    public  void showPrimo() {
+        rootLayoutMainGame.setCenter(generalScene);
+        System.out.print("faccio vedere il primo");
+    }
+
+
+    public void showCardZoomed(Image imageView) {
+        if (imageView==null)
+            return;
+        try {
+            // Configuration the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/cardZoom.fxml"));
+            AnchorPane card = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Card");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(card);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            cardZoomController controller = loader.getController();
+            //controller.setDialogStage(dialogStage);
+            controller.setImage(imageView);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.show();
+
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return;
+        }
+    }
+
+    public void showChoice(String message, String choice1, String choice2) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
+            AnchorPane choice = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Choice");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(choice);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            ChoiceController controller = loader.getController();
+            controller.setMainController(mainController);
+            //controller.setDialogStage(dialogStage);
+            controller.setLoginBuilder(this);
+            controller.setLabel(message);
+            controller.setChoice1(choice1);
+            controller.setCoiche2(choice2);
+            System.out.println("sto per disegnare lo stage");
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return ;
+        }
+    }
+
+    public void setDraft(List<LeaderCard> leaderName) {
+        showDraft("draft of Leader Card", leaderName);
+    }
+
+    public void showDraft(String labelMessage, List<LeaderCard> leaderName) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
+            AnchorPane draft = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Draft");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(draft);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            DraftController controller = loader.getController();
+            controller.setMainController(mainController);
+            controller.setLoginBuilder(this);
+            controller.setLabel(labelMessage);
+            controller.uploadImages(leaderName);
+            System.out.println("sto per disegnare lo stage");
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return ;
+        }
+    }
+
+
     public void setLastScene(SceneType lastScene) {
         this.lastScene = lastScene;
     }
-
 
     public void setScene(SceneType nextScene, SceneType lastScene) {
         this.lastScene = lastScene;
@@ -419,120 +518,8 @@ public class LoginBuilder extends Application {
         }
     }
 
-    public void sendChat(String text) {
-        //todo manda in chat, con iil riferiemnto al client setter
-        chatText.appendText(text);
-    }
-
     public SceneType getLastScene() {
         return lastScene;
-    }
-
-    public String getCard() {
-        return "commercialHub";
-    }
-
-    public void showCardZoomed(Image imageView) {
-        if (imageView==null)
-            return;
-        try {
-            // Configuration the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/cardZoom.fxml"));
-            AnchorPane card = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Card");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(getPrimaryStage());
-            Scene scene = new Scene(card);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            cardZoomController controller = loader.getController();
-            //controller.setDialogStage(dialogStage);
-            controller.setImage(imageView);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.show();
-
-            return;
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
-        }
-    }
-
-
-    public void showChoice(String message, String choice1, String choice2) {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
-            AnchorPane choice = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Choice");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(getPrimaryStage());
-            Scene scene = new Scene(choice);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            ChoiceController controller = loader.getController();
-            controller.setMainController(mainController);
-            //controller.setDialogStage(dialogStage);
-            controller.setLoginBuilder(this);
-            controller.setLabel(message);
-            controller.setChoice1(choice1);
-            controller.setCoiche2(choice2);
-            System.out.println("sto per disegnare lo stage");
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-            System.out.println("sono dopo che ho disegnato lo stage");
-            return ;
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return ;
-        }
-    }
-
-
-    public void showDraft(String labelMessage, List<LeaderCard> leaderName) {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
-            AnchorPane draft = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Draft");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(getPrimaryStage());
-            Scene scene = new Scene(draft);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            DraftController controller = loader.getController();
-            controller.setMainController(mainController);
-            controller.setLoginBuilder(this);
-            controller.setLabel(labelMessage);
-            controller.uploadImages(leaderName);
-            System.out.println("sto per disegnare lo stage");
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-            System.out.println("sono dopo che ho disegnato lo stage");
-            return ;
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return ;
-        }
     }
 
     public StringBuffer getChat() {
@@ -576,26 +563,6 @@ public class LoginBuilder extends Application {
         stringBuffer.append(s + "\n");
     }
 
-
-    public int setScelta() {
-        System.out.println("sto facendo partire thread");
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("sono nel thread runLater");
-                showChoice("dimmi la scelta ","primo", "secondo");
-            }
-        });
-        try {
-            System.out.println("inizio a dormire");
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("torno ora dalla scelta " + choiceDone);
-        return choiceDone;
-    }
-
     public void setChoiceDone(int choiceDone) {
         this.choiceDone = choiceDone;
     }
@@ -604,18 +571,9 @@ public class LoginBuilder extends Application {
         return choiceDone;
     }
 
-    public void setDraft(List<LeaderCard> leaderName) {
-        showDraft("draft of Leader Card", leaderName);
-    }
-
-
-    private void sendChatToControllers() {
-        mainController.updateChat(stringBuffer);
-    }
-
     public void writeOnMyChat(String s) {
         stringBuffer.append(s);
-        sendChatToControllers();
+        mainController.updateChat(stringBuffer);
     }
 }
 

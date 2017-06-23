@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import project.model.Tower;
 import project.server.network.PlayerHandler;
 
 import java.util.ArrayList;
@@ -89,7 +90,43 @@ public class GeneralMainGameController extends AbstractController{
     @FXML
     private ImageView towerPurple_3;
 
+
+    @FXML
+    private  ImageView familiarGreen0;
+    @FXML
+    private  ImageView familiarGreen1;
+    @FXML
+    private  ImageView familiarGreen2;
+    @FXML
+    private  ImageView familiarGreen3;
+    @FXML
+    private  ImageView familiarBlue0;
+    @FXML
+    private  ImageView familiarBlue1;
+    @FXML
+    private  ImageView familiarBlue2;
+    @FXML
+    private  ImageView familiarBlue3;
+    @FXML
+    private  ImageView familiarYellow0;
+    @FXML
+    private  ImageView familiarYellow1;
+    @FXML
+    private  ImageView familiarYellow2;
+    @FXML
+    private  ImageView familiarYellow3;
+    @FXML
+    private  ImageView familiarPurple0;
+    @FXML
+    private  ImageView familiarPurple1;
+    @FXML
+    private  ImageView familiarPurple2;
+    @FXML
+    private  ImageView familiarPurple3;
+
     public ImageView[][] torri = new ImageView[4][4];
+
+
     @FXML
     private ImageView faithPoint0;
     @FXML
@@ -139,11 +176,15 @@ public class GeneralMainGameController extends AbstractController{
     private TextField chatText;
 
 
+    private TowerZone[][] myTower;
+
+
     public GeneralMainGameController(){
         super();
         System.out.print("sono nel controller");
         faithPointsArray = new ArrayList<>(15);
         turnOrderArray = new ArrayList<>(4);
+        myTower = new TowerZone[4][4];
     }
 
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
@@ -170,6 +211,24 @@ public class GeneralMainGameController extends AbstractController{
         turnOrderArray.add(turnOrder2);
         turnOrderArray.add(turnOrder3);
         turnOrderArray.add(turnOrder4);
+
+
+        myTower[0][0] = new TowerZone(towerGreen_0,familiarGreen0);
+        myTower[1][0] = new TowerZone(towerGreen_1,familiarGreen1);
+        myTower[2][0] = new TowerZone(towerGreen_2,familiarGreen2);
+        myTower[3][0] = new TowerZone(towerGreen_3,familiarGreen3);
+        myTower[0][1] = new TowerZone(towerBlue_0,familiarBlue0);
+        myTower[1][1] = new TowerZone(towerBlue_1,familiarBlue1);
+        myTower[2][1] = new TowerZone(towerBlue_2,familiarBlue2);
+        myTower[3][1] = new TowerZone(towerBlue_3,familiarBlue3);
+        myTower[0][2] = new TowerZone(towerYellow_0,familiarYellow0);
+        myTower[1][2] = new TowerZone(towerYellow_1,familiarYellow1);
+        myTower[2][2] = new TowerZone(towerYellow_2,familiarYellow2);
+        myTower[3][2] = new TowerZone(towerYellow_3,familiarYellow3);
+        myTower[0][3] = new TowerZone(towerPurple_0,familiarPurple0);
+        myTower[1][3] = new TowerZone(towerPurple_1,familiarPurple1);
+        myTower[2][3] = new TowerZone(towerPurple_2,familiarPurple2);
+        myTower[3][3] = new TowerZone(towerPurple_3,familiarPurple3);
 
     }
 
@@ -264,6 +323,11 @@ public class GeneralMainGameController extends AbstractController{
             turnOrderArray.get(current).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + playerColour + "Pedone.png"))));
             current++;
         }
+    }
+
+
+    public void updatePosition(Tower[][] towers) {
+        super.updatePosition(towers, myTower);
     }
 
     public void setScelta() {

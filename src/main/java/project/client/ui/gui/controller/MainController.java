@@ -233,6 +233,7 @@ public class MainController {
         productionController.updatePosition(board.getProductionZone());
         harvesterController.updatePosition(board.getHarvesterZone());
         towerController.updatePosition(board.getAllTowers());
+        generalGameController.updatePosition(board.getAllTowers());
         generalGameController.updateTurn(board.getTurn().getPlayerTurn());
     }
 

@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.GeneralMainGameController">
    <children>
-      <Pane fx:id="gameboard" prefHeight="923.0" prefWidth="648.0" style="-fx-background-image: url(&quot;/images/gameboard.png&quot;);">
+      <Pane fx:id="gameboard" prefHeight="923.0" prefWidth="648.0" >
          <children>
             <Button fx:id="goToTowersButton" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="482.0" prefWidth="519.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
             <Button fx:id="goToProductionButton" layoutX="36.0" layoutY="732.0" mnemonicParsing="false" onAction="#goToProduction" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />

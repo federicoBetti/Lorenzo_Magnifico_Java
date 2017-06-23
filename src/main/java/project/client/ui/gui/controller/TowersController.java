@@ -388,64 +388,10 @@ public class TowersController extends AbstractController {
 
     }
 
-    public void updatePosition(Tower[][] towers){
-        int floorNumber;
-        int towerNumber;
-        TowerIterator towerIterator = new TowerIterator();
-        for (;towerIterator.hasNext();towerIterator.next()){
-            floorNumber = towerIterator.getFloor();
-            towerNumber = towerIterator.getTowerNumber();
-            Tower serverTower = towers[floorNumber][towerNumber];
-            TowerZone guiTower = myTower[floorNumber][towerNumber];
-
-            if (serverTower.getCardOnThisFloor() == null && guiTower.getCardName() == null){
-                //niente, ho dovuto fare questi if separati perche nel secondo accedo al nome della carta e se lo facessi con una carta
-                //null mi andrebbe in null pointer
-            }
-            else if (serverTower.getCardOnThisFloor() == null){
-                modifyCard(guiTower,null);
-                myTower[floorNumber][towerNumber] = guiTower;
-            }
-            else {
-                if (serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())){
-                    //niente
-                }
-                else{
-                    modifyCard(guiTower,serverTower.getCardOnThisFloor().getName());
-                    myTower[floorNumber][towerNumber] = guiTower;
-                }
-            }
-
-            if (serverTower.getFamiliarOnThisPosition() == null && guiTower.getFamiliarName() == null){
-                // niente
-            }
-            else if (serverTower.getFamiliarOnThisPosition() == null){
-                modifyFamiliar(guiTower,null);
-                myTower[floorNumber][towerNumber] = guiTower;
-            }
-            else {
-                if (serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())){
-                    //niente
-                }
-                else{
-                    modifyFamiliar(guiTower,serverTower.getFamiliarOnThisPosition().toString());
-                    myTower[floorNumber][towerNumber] = guiTower;
-                }
-            }
-
-        }
-
+    public void updatePosition(Tower[][] towers) {
+        super.updatePosition(towers, myTower);
     }
 
-    private void modifyFamiliar(TowerZone guiTower, String s) {
-        guiTower.setFamiliarName(s);
-        guiTower.setFamiliarImage(s);
-    }
-
-    private void modifyCard(TowerZone guiTower, String cardName) {
-        guiTower.setCardName(cardName);
-        guiTower.setCardImage(cardName);
-    }
 
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
