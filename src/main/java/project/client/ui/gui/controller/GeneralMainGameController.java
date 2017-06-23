@@ -175,6 +175,7 @@ public class GeneralMainGameController extends AbstractController{
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+
         mainController.setGeneralGameController(this);
     }
 
