@@ -34,6 +34,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.loginSucceded();
     }
 
+
     private RMIClientToServerInterface myServer;
     private String myUniqueId;
     private ClientSetter clientSetter;
@@ -351,5 +352,19 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void boardUpdate() {
 
+    }
+
+    public void scelta(){
+        try {
+            myServer.scelta(myUniqueId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public int getScelta() throws RemoteException {
+        return clientSetter.getScelta();
     }
 }

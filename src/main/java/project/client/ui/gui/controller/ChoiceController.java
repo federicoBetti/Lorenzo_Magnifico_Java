@@ -14,6 +14,7 @@ public class ChoiceController {
     public Label message;
 
     MainController mainController;
+    private LoginBuilder loginBuilder;
 
 
     public void setMainController(MainController mainController) {
@@ -23,15 +24,16 @@ public class ChoiceController {
 
 
     public void choice1(ActionEvent actionEvent) {
-        mainController.setChoice(message.getText(), 0);
+
+        loginBuilder.setChoiceDone(1);
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
-        stage.close();
+        stage.hide();
     }
 
     public void choice2(ActionEvent actionEvent) {
-        mainController.setChoice(message.getText(), 1);
-        Stage stage = (Stage) buttonChoiche2.getScene().getWindow();
-        stage.close();
+        loginBuilder.setChoiceDone(2);
+        Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
+        stage.hide();
     }
 
     public void setLabel(String message) {
@@ -40,9 +42,14 @@ public class ChoiceController {
 
     public void setChoice1(String choice1) {
         buttonChoiche1.setText(choice1);
+        buttonChoiche1.
     }
 
     public void setCoiche2(String choice2) {
         buttonChoiche2.setText(choice2);
+    }
+
+    public void setLoginBuilder(LoginBuilder loginBuilder) {
+        this.loginBuilder = loginBuilder;
     }
 }

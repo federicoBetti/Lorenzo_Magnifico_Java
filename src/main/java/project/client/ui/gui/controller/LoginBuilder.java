@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -53,6 +54,7 @@ public class LoginBuilder extends Application {
     private int turnOrder;
     private BorderPane rootLayoutMainGame;
     private StringBuffer stringBuffer;
+    private int choiceDone;
 
 
     public void start(Stage primaryStage) {
@@ -447,32 +449,33 @@ public class LoginBuilder extends Application {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
-            AnchorPane card = (AnchorPane) loader.load();
+            AnchorPane choice = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Choice");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
-            Scene scene = new Scene(card);
+            Scene scene = new Scene(choice);
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
             ChoiceController controller = loader.getController();
             controller.setMainController(mainController);
             //controller.setDialogStage(dialogStage);
+            controller.setLoginBuilder(this);
             controller.setLabel(message);
             controller.setChoice1(choice1);
             controller.setCoiche2(choice2);
-
+            System.out.println("sto per disegnare lo stage");
             // Show the dialog and wait until the user closes it
-            dialogStage.show();
-
-            return;
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return;
+            return ;
         }
     }
 
@@ -517,6 +520,33 @@ public class LoginBuilder extends Application {
         stringBuffer.append(s + "\n");
     }
 
+
+    public int setScelta() {
+        System.out.println("sto facendo partire thread");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("sono nel thread runLater");
+                showChoice("dimmi la scelta ","primo", "secondo");
+            }
+        });
+        try {
+            System.out.println("inizio a dormire");
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("torno ora dalla scelta " + choiceDone);
+        return choiceDone;
+    }
+
+    public void setChoiceDone(int choiceDone) {
+        this.choiceDone = choiceDone;
+    }
+
+    public int getChoiceDone() {
+        return choiceDone;
+    }
 }
 
 

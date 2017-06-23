@@ -52,6 +52,10 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void boardUpdate();
 
+    public void scelta() {
+
+    }
+
 
     //da server a client
 }

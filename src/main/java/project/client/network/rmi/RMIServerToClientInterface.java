@@ -46,4 +46,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void doProductionHarvester(BonusInteraction bonusInteraction) throws RemoteException;
 
     void loginSucceded() throws RemoteException;
+
+    int getScelta() throws RemoteException;
 }

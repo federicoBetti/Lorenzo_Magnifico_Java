@@ -1,5 +1,6 @@
 package project.client.ui.gui.controller;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -218,7 +219,7 @@ public class GeneralMainGameController extends AbstractController{
 
 
     public void showPoints() {
-
+        loginBuilder.showChoice("dimmi la scelta ","primo", "secondo");
     }
 
     public void showLeaderCard() {
@@ -256,5 +257,10 @@ public class GeneralMainGameController extends AbstractController{
             turnOrderArray.get(current).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + playerColour + "Pedone.png"))));
             current++;
         }
+    }
+
+    public void setScelta() {
+        loginBuilder.showChoice("dimmi la scelta ","primo", "secondo");
+        mainController.wakeUp(loginBuilder.getChoiceDone());
     }
 }

@@ -1,5 +1,7 @@
 package project.client.ui.gui.controller;
 
+import javafx.application.Platform;
+import javafx.beans.value.ObservableObjectValue;
 import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
@@ -8,6 +10,8 @@ import project.model.PersonalBoard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class MainController {
@@ -25,15 +29,19 @@ public class MainController {
     private TowersController towerController;
 
     private List<AbstractController> controllers;
+    private Object token;
 
     private int numberOfPlayer = 2;
     private String colour = "rosso";
     private String nickName;
     private String usernameChosen;
 
+    private BlockingQueue<Integer> queue;
+
 
     private MainController(){
         controllers = new ArrayList<>();
+        token = new Object();
     }
     public static MainController getInstance(){
         if (instance == null) {
@@ -159,6 +167,8 @@ public class MainController {
 
 
     void setChoice(String text, int i) {
+        queue.add(new Integer(i));
+        /*
         switch (text){
             case CliConstants.BOTH_PAYMENT_AVAIABLE:{
                 clientSetter.sendChoicePaymentVc(i);
@@ -176,11 +186,8 @@ public class MainController {
                 break;
             }
         }
+        */
 
-    }
-
-    public void skipTurn() {
-        clientSetter.skipTurn();
     }
 
     public void playLeaderCard(int cardSelected) {
@@ -291,5 +298,58 @@ public class MainController {
     public void waitingLogin() {
         loginBuilder.waitingScene();
     }
+
+// da qui in giu prove per risposta
+
+    public void skipTurn() {
+        Runnable a = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("ho fatto partire il nuovo thread che va");
+                clientSetter.skipTurn();
+            }
+        };
+        new Thread(a).start();
+    }
+
+
+    public int getScelta() {
+        queue = new LinkedBlockingQueue<>(1);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                System.out.println("sono nel runlater");
+                generalGameController.setScelta();
+            }
+        });
+        Integer i = new Integer(0);
+        try {
+            System.out.println("mi metto in attesa della queue");
+             i = queue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return i.intValue();
+        /*
+        while (true){
+            System.out.println("sono nel while true");
+        try {
+            return queue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        */
+    }
+
+    public void wakeUp(int choiceDone) {
+        queue.add(new Integer(choiceDone));
+        }
 
 }

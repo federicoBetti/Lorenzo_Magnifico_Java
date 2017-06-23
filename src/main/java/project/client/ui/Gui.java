@@ -163,4 +163,9 @@ public class Gui extends AbstractUI {
         //todo
         return 0;
     }
+
+    @Override
+    public int getScelta() {
+        return mainController.getScelta();
+    }
 }
