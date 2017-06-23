@@ -66,21 +66,14 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
             myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
             myServer.ping();
             System.out.println("ho preso il server");
-            //UnicastRemoteObject.exportObject(this,8001);
+            UnicastRemoteObject.exportObject(this,0);
             System.out.println(this);
         } catch (RemoteException | NotBoundException e) {
             System.out.println("la mia prima esportazione non è andata bene");
             throw new ClientConnectionException(e);
         }
-        RMIServerToClientInterface me = null;
         try {
-            me = (RMIServerToClientInterface) UnicastRemoteObject.exportObject(this, 0);
-        } catch (RemoteException e) {
-            System.out.println("porcodue");
-        }
-        System.out.println(me);
-        try {
-            myUniqueId = myServer.connect(me);
+            myUniqueId = myServer.connect(this);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

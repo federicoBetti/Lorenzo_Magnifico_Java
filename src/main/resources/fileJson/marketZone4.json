@@ -1,0 +1,43 @@
+{
+	"position":0,
+
+	"trisIE":
+	{
+		"type":"takeRos",
+		"parameter":"coin",
+		"quantity":5
+	}
+}
+
+{
+	"position":1,
+
+	"trisIE":
+	{
+		"type":"takeRos",
+		"parameter":"servant",
+		"quantity":5
+	}
+}
+
+{
+	"position":2,
+
+	"trisIE":
+	{
+		"type":"marketSpecial",
+		"parameter":" ",
+		"quantity":0
+	}
+}
+
+{
+	"position":3,
+
+	"trisIE":
+	{
+		"type":"privilege",
+		"parameter":" ",
+		"quantity":2
+	}
+}

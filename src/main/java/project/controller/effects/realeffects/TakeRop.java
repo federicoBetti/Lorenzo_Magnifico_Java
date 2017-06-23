@@ -9,7 +9,7 @@ public class TakeRop  {
                 return new AddWood(quantity);
             case "stone":
                 return new AddStone(quantity);
-            case "servant":
+            case "servants":
                 return new AddServants(quantity);
             case "victoryPoint":
                 return new AddVicotryPoints(quantity);
@@ -17,7 +17,7 @@ public class TakeRop  {
                 return new AddFaithPoints(quantity);
             case "militaryPoint":
                 return new AddMilitaryPoints(quantity);
-            case "coins":
+            case "coin":
                 return new AddCoin(quantity);
             case "privilege" :
                 //todo addPrivilege(effect, player);

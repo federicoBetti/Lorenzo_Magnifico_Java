@@ -37,8 +37,10 @@ public class TowerIterator implements IteratorInterface {
         if (floor<3){
             floor++;
         }
-        else if (towerNumber<3)
+        else if (towerNumber<3) {
             towerNumber++;
+            floor = 0;
+        }
         return ;
 
     }

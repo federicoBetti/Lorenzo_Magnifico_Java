@@ -6,6 +6,7 @@ import project.controller.Constants;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.model.Board;
+import project.model.CouncilPrivilege;
 import project.model.Player;
 import project.server.network.GameActions;
 import project.server.network.PlayerHandler;
@@ -131,12 +132,14 @@ public class Room {
 
         try {
             board = new Board(playerInTheMatch.size());
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             //todo gestire
         }
 
-
+        board.getAllTowers()[1][1].getColour();
+        board.getAllTowers()[1][1].getDiceValueOfThisFloor();
         Collections.shuffle(playerInTheMatch);
         board.getTurn().setPlayerTurn(playerInTheMatch);
         getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();

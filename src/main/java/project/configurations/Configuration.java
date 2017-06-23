@@ -71,12 +71,36 @@ public class Configuration {
         }
     }
 
-    public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
+    public void loadBonusTile( Deck deck ) throws FileNotFoundException {
 
+        InputStream is = getClass().getResourceAsStream("/fileJson/bonusTile.json");
+        Reader reader = new InputStreamReader(is);
+        JsonStreamParser parser = new JsonStreamParser(reader);
+
+        while ( parser.hasNext() ){
+            TileBonusFromJson tileBonusFromJson = gson.fromJson( parser.next(), TileBonusFromJson.class );
+            Tile tile = new Tile(tileBonusFromJson);
+            deck.setProdHaarvTile(tileBonusFromJson.getTileNumber(), tile);
+        }
+    }
+
+
+    public void loadLeaderCard() throws FileNotFoundException {
         JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
 
-        while (parser.hasNext() ) {
-            CouncilPrivilegesFromJson councilPrivilegesFromJson = gson.fromJson(parser.next(), CouncilPrivilegesFromJson.class );
+        while ( parser.hasNext() ){
+            LeaderCard leaderCard = gson.fromJson(parser.next(), LeaderCard.class );
+        }
+    }
+
+    public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
+
+        InputStream is = getClass().getResourceAsStream("/fileJson/councilPriviledge.json");
+        Reader reader = new InputStreamReader(is);
+        JsonStreamParser parser = new JsonStreamParser(reader);
+
+        while (parser.hasNext()) {
+            CouncilPrivilegesFromJson councilPrivilegesFromJson = gson.fromJson(parser.next(), CouncilPrivilegesFromJson.class);
             CouncilPrivilege councilPrivilege = new CouncilPrivilege(councilPrivilegesFromJson.getTrisIEL(), councilPrivilegesFromJson.getPriviledgeNumber());
             board.setCouncilPrivilege(councilPrivilegesFromJson.getPriviledgeNumber(), councilPrivilege);
         }
@@ -90,7 +114,9 @@ public class Configuration {
      */
     public void loadMarketBonus(Board board, String jsonFile ) throws FileNotFoundException {
 
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+        InputStream is = getClass().getResourceAsStream(jsonFile);
+        Reader reader = new InputStreamReader(is);
+        JsonStreamParser parser = new JsonStreamParser(reader);
 
         while (parser.hasNext() ) {
             MarketFromJson marketFromJson = gson.fromJson(parser.next(), MarketFromJson.class );
@@ -99,24 +125,15 @@ public class Configuration {
         }
     }
 
-    public void loadBonusTile( Deck deck ) throws FileNotFoundException {
-
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
-
-        while ( parser.hasNext() ){
-            TileBonusFromJson tileBonusFromJson = gson.fromJson( parser.next(), TileBonusFromJson.class );
-            Tile tile = new Tile(tileBonusFromJson);
-            deck.setProdHaarvTile(tileBonusFromJson.getTileNumber(), tile);
-        }
-    }
-
     public void loadBonusTower(Board board) throws FileNotFoundException {
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+        InputStream is = getClass().getResourceAsStream("/fileJson/towerZone.json");
+        Reader reader = new InputStreamReader(is);
+        JsonStreamParser parser = new JsonStreamParser(reader);
         TowerIterator iterator = new TowerIterator();
 
         while (parser.hasNext()){
             TowerFromJson towerFromJson = gson.fromJson(parser.next(), TowerFromJson.class);
-            Tower tower = new Tower(towerFromJson.getColour(), towerFromJson.getDiceValueOfThisFloor(), towerFromJson.getTrisIE());
+            Tower tower = new Tower(towerFromJson.getColour(), towerFromJson.getDiceValueOfThisFloor(), towerFromJson.getTowerNumber(), towerFromJson.getTrisIE());
             board.setTowerInTowers(iterator.getTowerNumber(), iterator.getFloor(), tower);
             iterator.next();
          }
@@ -129,14 +146,6 @@ public class Configuration {
 
         for (int i = 0; parser.hasNext(); i++ ){
             player.setAllFamilyMembers(gson.fromJson(parser.next(), FamilyMember[].class));
-        }
-    }
-
-    public void loadLeaderCard() throws FileNotFoundException {
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
-
-        while ( parser.hasNext() ){
-            LeaderCard leaderCard = gson.fromJson(parser.next(), LeaderCard.class );
         }
     }
 

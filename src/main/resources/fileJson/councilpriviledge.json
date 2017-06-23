@@ -1,0 +1,54 @@
+{
+	"priviledgeNumber":0,
+
+	"trisIEL":
+	{
+		"type":"councilSpecial",
+		"parameter":" ",
+		"quantity":1
+	}
+}
+
+{
+	"priviledgeNumber":1,
+
+	"trisIEL":
+	{
+		"type":"takeRop",
+		"parameter":"servant",
+		"quantity":2
+	}
+}
+
+{
+	"priviledgeNumber":2,
+
+	"trisIEL":
+	{
+		"type":"takeRop",
+		"parameter":"coin",
+		"quantity":2
+	}
+}
+
+{
+	"priviledgeNumber":3,
+
+	"trisIEL":
+	{
+		"type":"takeRop",
+		"parameter":"militaryPoint",
+		"quantity":2
+	}
+}
+
+{
+	"priviledgeNumber":4,
+
+	"trisIEL":
+	{
+		"type":"takeRop",
+		"parameter":"faithPoint",
+		"quantity":1
+	}
+}

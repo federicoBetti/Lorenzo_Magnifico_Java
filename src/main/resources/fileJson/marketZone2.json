@@ -1,0 +1,21 @@
+{
+	"position":0,
+
+	"trisIE":
+	{
+		"type":"takeRos",
+		"parameter":"coin",
+		"quantity":5
+	}
+}
+
+{
+	"position":1,
+
+	"trisIE":
+	{
+		"type":"takeRos",
+		"parameter":"servant",
+		"quantity":5
+	}
+}

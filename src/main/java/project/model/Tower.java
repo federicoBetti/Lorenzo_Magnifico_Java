@@ -18,14 +18,16 @@ public class Tower extends Position implements Serializable{
 
     private DevelopmentCard cardOnThisFloor;
 
+    private int towerNumber;
+
     private boolean used;
 
     private Effects towerZoneEffect;  //todo riempire con effetto
 
 
-    public Tower(String colour, int diceValueOfhisFloor, TrisIE trisIE ) {
+    public Tower(String colour, int diceValueOfhisFloor, int towerNumber, TrisIE trisIE ) {
         this.colour = colour;
-        this.diceValueOfThisFloor = diceValueOfThisFloor;
+        this.diceValueOfThisFloor = diceValueOfhisFloor;
 
         if(diceValueOfThisFloor >= 5 ) {
             BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();

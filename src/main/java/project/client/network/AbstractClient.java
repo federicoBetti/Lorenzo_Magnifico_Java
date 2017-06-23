@@ -1,11 +1,12 @@
 package project.client.network;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * queste sono tutte le funzioni che il client puo chiamare sul server che poi dovranon essere implementate sia dall'rmi sia dal socket
  */
-public abstract class AbstractClient {
+public abstract class AbstractClient implements Serializable{
 
 
     public abstract void loginRequest(String loginParameter)  ;
