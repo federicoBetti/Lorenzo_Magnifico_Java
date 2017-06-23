@@ -5,6 +5,7 @@ import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.server.network.rmi.RMIClientToServerInterface;
@@ -366,5 +367,15 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public int getScelta() throws RemoteException {
         return clientSetter.getScelta();
+    }
+
+    @Override
+    public String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException {
+        return clientSetter.getLeaderCardChosen(leaders);
+    }
+
+    @Override
+    public void matchStarted(int roomPlayers, String familyColour) throws RemoteException {
+        clientSetter.matchStarted(roomPlayers,familyColour);
     }
 }

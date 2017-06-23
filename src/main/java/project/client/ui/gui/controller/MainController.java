@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
+import project.controller.cardsfactory.LeaderCard;
 import project.model.Board;
 import project.model.PersonalBoard;
 
@@ -354,27 +355,6 @@ public class MainController {
         integerQueue.add(new Integer(choiceDone));
         }
 
-    public String startDraft(List<String> leaderName) {
-
-        stringQueue = new LinkedBlockingQueue<>(1);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-                System.out.println("sono nel runlater");
-                loginBuilder.setDraft(leaderName);
-            }
-        });
-        String i = "";
-        try {
-            System.out.println("mi metto in attesa della integerQueue");
-            i = stringQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return i;
-    }
-
     public void addStringQueue(String s) {
         stringQueue.add(s);
     }
@@ -390,5 +370,42 @@ public class MainController {
     public void updateChat(StringBuffer stringBuffer) {
         for (AbstractController c: controllers)
             c.refresh();
+    }
+
+    public String getLeaderCardChosen(List<LeaderCard> leaders) {
+        stringQueue = new LinkedBlockingQueue<>(1);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                System.out.println("sono nel runlater");
+                loginBuilder.setDraft(leaders);
+            }
+        });
+        String i = "";
+        try {
+            System.out.println("mi metto in attesa della integerQueue");
+            i = stringQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public void matchStarted(int roomPlayers, String familyColour) {
+        this.numberOfPlayer = roomPlayers;
+        this.colour = familyColour;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.initalizeMainGame();
+                loginBuilder.startMainGame();
+            }
+        });
+    }
+
+    public void startTurn() {
+        setMyTurn(true);
+        loginBuilder.writeOnMyChat("it's your turn, you can play!");
     }
 }

@@ -39,10 +39,10 @@ public abstract class AbstractController {
        imageFamiltMember.add(imageFamiliarBlack);
        imageFamiltMember.add(imageFamiliarWhite);
        imageFamiltMember.add(imageFamiliarOrange);
-       imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + "blu" + "Zero.png"))));
-       imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  +"blu" + "Nero.png"))));
-       imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  +"blu" + "Bianco.png"))));
-       imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  +"blu" + "Arancio.png"))));
+       imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Zero.png"))));
+       imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Nero.png"))));
+       imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Bianco.png"))));
+       imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Arancio.png"))));
    }
 
     protected AbstractController(){

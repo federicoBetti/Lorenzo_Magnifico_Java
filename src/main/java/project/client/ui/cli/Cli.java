@@ -4,6 +4,7 @@ import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -426,6 +427,17 @@ public class Cli extends AbstractUI {
             System.out.println("non è un numero coglione");
         }
         return 0;
+    }
+
+    @Override
+    public String getLeaderCardChosen(List<LeaderCard> leaders) {
+        //todo
+        return null;
+    }
+
+    @Override
+    public void matchStarted(int roomPlayers, String familyColour) {
+        //todo
     }
 }
 

@@ -95,7 +95,7 @@ public class Configuration {
 
     public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
 
-        InputStream is = getClass().getResourceAsStream("/fileJson/councilPriviledge.json");
+        InputStream is = getClass().getResourceAsStream("/fileJson/councilpriviledge.json");
         Reader reader = new InputStreamReader(is);
         JsonStreamParser parser = new JsonStreamParser(reader);
 

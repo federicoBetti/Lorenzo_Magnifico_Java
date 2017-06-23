@@ -415,5 +415,17 @@ public abstract class PlayerHandler extends Player {
         this.room = room;
     }
 
+    /**
+     * this method is used for the draft of leader cards
+     * @param leaders list of leader cards in which the player can choose
+     * @return
+     */
+    public abstract String leaderCardChosen(List<LeaderCard> leaders);
 
+    /**
+     * this method notify the players that the match is started.
+     * @param roomPlayers number of player in the room
+     * @param familyColour colour of the player
+     */
+    public abstract void matchStarted(int roomPlayers, String familyColour);
 }

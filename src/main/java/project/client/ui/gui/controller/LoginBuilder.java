@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
+import project.controller.cardsfactory.LeaderCard;
 
 import java.io.IOException;
 import java.util.List;
@@ -161,8 +162,6 @@ public class LoginBuilder extends Application {
 
 
     public void startMainGame() {
-        chatText = new TextField();
-        colour = "rosso";
         faithPoints = 3;
         turnOrder = 2;
 
@@ -503,7 +502,7 @@ public class LoginBuilder extends Application {
     }
 
 
-    public void showDraft(String labelMessage, List<String> leaderName) {
+    public void showDraft(String labelMessage, List<LeaderCard> leaderName) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -605,17 +604,18 @@ public class LoginBuilder extends Application {
         return choiceDone;
     }
 
-    public void setDraft(List<String> leaderName) {
+    public void setDraft(List<LeaderCard> leaderName) {
         showDraft("draft of Leader Card", leaderName);
     }
 
-    public void itIsntMyTurn() {
-        stringBuffer.append("it isn't your turn, you can't play!\n");
-        sendChatToControllers();
-    }
 
     private void sendChatToControllers() {
         mainController.updateChat(stringBuffer);
+    }
+
+    public void writeOnMyChat(String s) {
+        stringBuffer.append(s);
+        sendChatToControllers();
     }
 }
 

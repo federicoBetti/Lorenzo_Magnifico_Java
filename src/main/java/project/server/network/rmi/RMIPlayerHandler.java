@@ -3,6 +3,7 @@ package project.server.network.rmi;
 import project.client.network.rmi.RMIServerToClientInterface;
 import project.controller.Constants;
 import project.controller.cardsfactory.BuildingCard;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
@@ -212,6 +213,26 @@ public class RMIPlayerHandler extends PlayerHandler {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String leaderCardChosen(List<LeaderCard> leaders) {
+        try {
+            return myClient.leaderCardChosen(leaders);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void matchStarted(int roomPlayers, String familyColour) {
+        try {
+            myClient.matchStarted(roomPlayers,familyColour);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void sendString(String message) {

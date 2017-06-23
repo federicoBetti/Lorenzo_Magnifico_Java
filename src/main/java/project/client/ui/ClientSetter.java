@@ -6,6 +6,7 @@ import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.rmi.RMIClient;
 import project.client.network.socket.SocketClient;
 import project.client.ui.cli.Cli;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
@@ -286,5 +287,13 @@ public class ClientSetter {
 
     public int getScelta() {
         return ui.getScelta();
+    }
+
+    public String getLeaderCardChosen(List<LeaderCard> leaders) {
+        return ui.getLeaderCardChosen(leaders);
+    }
+
+    public void matchStarted(int roomPlayers, String familyColour) {
+        ui.matchStarted(roomPlayers,familyColour);
     }
 }

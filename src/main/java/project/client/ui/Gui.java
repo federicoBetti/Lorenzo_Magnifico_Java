@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
@@ -42,18 +43,9 @@ public class Gui extends AbstractUI {
 
     @Override
     public void mainContext() {
-        //it's my turn
-        mainController.setMyTurn(true);
-        if (!matchStarted) {
-            Platform.runLater(() -> {
-                mainController.setNumberOfPlayers(3);
-                mainController.initializeMainGame();
-                mainController.startMainGame();
-            });
-            matchStarted = true;
-        }
-        else
-            mainController.showPrimo();
+        //chiamato quando è il tuo turno
+        mainController.startTurn();
+        mainController.showPrimo();
     }
 
     @Override
@@ -163,7 +155,8 @@ public class Gui extends AbstractUI {
     }
 
     public String draftChoice(List<String> leaderName){
-        return mainController.startDraft(leaderName);
+        //return mainController.startDraft(leaderName);
+        return null;
     }
     @Override
     public int booleanChoosingRMI() {
@@ -174,5 +167,15 @@ public class Gui extends AbstractUI {
     @Override
     public int getScelta() {
         return mainController.getScelta();
+    }
+
+    @Override
+    public String getLeaderCardChosen(List<LeaderCard> leaders) {
+        return mainController.getLeaderCardChosen(leaders);
+    }
+
+    @Override
+    public void matchStarted(int roomPlayers, String familyColour) {
+        mainController.matchStarted(roomPlayers,familyColour);
     }
 }

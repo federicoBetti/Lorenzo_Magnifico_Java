@@ -238,7 +238,7 @@ public class GeneralMainGameController extends AbstractController{
 
     public void skipTurn() {
         if (!mainController.isMyTurn())
-            loginBuilder.itIsntMyTurn();
+            loginBuilder.writeOnMyChat("it isn't your turn!\n");
         else
             mainController.skipTurn();
     }

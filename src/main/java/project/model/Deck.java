@@ -4,6 +4,9 @@ import project.controller.cardsfactory.ExcommunicationTile;
 import project.controller.cardsfactory.LeaderCard;
 import project.controller.Constants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  */
@@ -12,7 +15,7 @@ public class Deck {
 
     private DevelopmentCard[][][] developmentDeck; // va cotruito con le carte: colore, periodo, carte
 
-    private LeaderCard [] leaderCardeck; //va costruito con le LeaderCard
+    private List<LeaderCard> leaderCardeck; //va costruito con le LeaderCard
 
     private ExcommunicationTile[][] excomunicationCard;
 
@@ -20,7 +23,7 @@ public class Deck {
 
     public Deck() {
        developmentDeck = new DevelopmentCard[Constants.CARD_TYPE_NUMBER][Constants.PERIOD_NUMBER][Constants.CARD_FOR_EACH_PERIOD];
-       leaderCardeck = new LeaderCard[Constants.LEADER_CARD_NUMBER];
+       leaderCardeck = new ArrayList<>(Constants.LEADER_CARD_NUMBER);
        excomunicationCard = new ExcommunicationTile[Constants.PERIOD_NUMBER][Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD];
        prodHaarvTiles = new Tile[Constants.NUMBER_OF_TILES];
     }
@@ -29,7 +32,7 @@ public class Deck {
         return developmentDeck;
     }
 
-    public LeaderCard[] getLeaderCardeck() {
+    public List<LeaderCard> getLeaderCardeck() {
         return leaderCardeck;
     }
 

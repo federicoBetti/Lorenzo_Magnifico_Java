@@ -1,10 +1,13 @@
 package project.client.ui;
 
 import project.client.ui.cli.InputException;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
+
+import java.util.List;
 
 /**
  * Created by raffaelebongo on 29/05/17.
@@ -71,4 +74,8 @@ public abstract class AbstractUI {
     }
 
     public abstract int getScelta();
+
+    public abstract String getLeaderCardChosen(List<LeaderCard> leaders);
+
+    public abstract void matchStarted(int roomPlayers, String familyColour);
 }

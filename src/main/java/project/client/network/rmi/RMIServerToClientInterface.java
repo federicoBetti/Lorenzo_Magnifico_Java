@@ -1,11 +1,13 @@
 package project.client.network.rmi;
 
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * questi sono i metodi che il server puo chiamare sul client,
@@ -48,4 +50,8 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void loginSucceded() throws RemoteException;
 
     int getScelta() throws RemoteException;
+
+    String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException;
+
+    void matchStarted(int roomPlayers, String familyColour) throws RemoteException;
 }

@@ -2,6 +2,7 @@ package project.server.network.socket;
 
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
@@ -228,6 +229,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         sendString(Constants.LOGIN_SUCCEDED);
     }
 
+    @Override
+    public String leaderCardChosen(List<LeaderCard> leaders) {
+        //todo
+        return null;
+    }
+
+    @Override
+    public void matchStarted(int roomPlayers, String familyColour) {
+//todo
+    }
 
 
     @Override

@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import project.controller.cardsfactory.LeaderCard;
 
 
 import java.util.List;
@@ -32,8 +33,9 @@ public class DraftController {
         title.setText(labelMessage);
     }
 
-    public void uploadImages(List<String> leaderName) {
-        for (String s: leaderName){
+    public void uploadImages(List<LeaderCard> leaderName) {
+        for (LeaderCard l: leaderName){
+            String s = l.getName();
             ImageView imageView = new ImageView();
             imageView.setFitWidth(128);
             imageView.setFitHeight(210);
