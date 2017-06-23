@@ -70,6 +70,7 @@ public class Server {
             return;
         }
 
+
         for (Room room : rooms) {
             if (!room.isMatchStarted()) { //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
