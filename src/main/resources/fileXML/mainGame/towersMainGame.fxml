@@ -28,7 +28,7 @@
 
       <Pane layoutX="27.0" layoutY="777.0" prefHeight="122.0" prefWidth="1019.0">
          <children>
-      
+
             <VBox layoutX="363.0" prefHeight="122.0" prefWidth="215.0">
                <children>
                   <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="41.0" prefWidth="213.0" text="show personal board">
@@ -131,17 +131,18 @@
             <VBox alignment="TOP_CENTER" layoutY="92.0" prefHeight="496.0" prefWidth="159.0" spacing="8.0">
                <children>
                   <ImageView fx:id="imageFamiliarNull" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen">
+                  <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" >
                      <toggleGroup>
                         <ToggleGroup fx:id="familiar" />
                      </toggleGroup>
                   </RadioButton>
                   <ImageView fx:id="imageFamiliarBlack" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen" toggleGroup="$familiar" />
-                  <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
                   <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen" toggleGroup="$familiar" />
+                  <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
+                  <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen" toggleGroup="$familiar" />
                   <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" />
+            <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen"/>
+
                </children>
             </VBox>
          </children>
