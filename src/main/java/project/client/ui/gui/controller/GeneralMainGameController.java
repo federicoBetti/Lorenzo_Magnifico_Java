@@ -170,6 +170,7 @@ public class GeneralMainGameController extends AbstractController{
         turnOrderArray.add(turnOrder2);
         turnOrderArray.add(turnOrder3);
         turnOrderArray.add(turnOrder4);
+
     }
 
     @Override
