@@ -104,12 +104,12 @@ public final class Board {
 
         if (numberOfPlayer == Constants.FOUR_PLAYERS){
             marketZone = new Market[Constants.FOUR_PLAYERS];
-            //configuration.loadMarketBonus( this,  "jsonGiustoPer4"  );
+            configuration.loadMarketBonus( this,  "/fileJson/marketZone4.json"  );
         }
         else {
             marketZone = new Market[Constants.TWO_PLAYERS];
             marketZone = new Market[Constants.FOUR_PLAYERS];
-            //configuration.loadMarketBonus(this, "jsonGiustoPer2");
+            configuration.loadMarketBonus(this, "/fileJson/marketZone2.json");
         }
         if (numberOfPlayer > Constants.TWO_PLAYERS){
             harvesterZone = new ArrayList<>();
@@ -123,10 +123,10 @@ public final class Board {
         excommunicationZone = new ExcommunicationZone[3];
 
         this.councilPrivileges = new CouncilPrivilege[5];
-        //configuration.loadCouncilZonePriviledges(this);
+        configuration.loadCouncilZonePriviledges(this);
 
         this.towers = new Tower[4][4];
-        //configuration.loadBonusTower(this);
+        configuration.loadBonusTower(this);
         this.zones = new HashMap<>();
         fillHashMap();
 

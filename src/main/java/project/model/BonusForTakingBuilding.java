@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class BonusForTakingBuilding implements Serializable{
 
 
+    private  int casa;
     private int diceBonus;
     private int woodBonus;
     private int stoneBonus;

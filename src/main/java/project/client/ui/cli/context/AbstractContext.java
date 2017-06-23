@@ -29,15 +29,15 @@ public abstract class AbstractContext {
         builder.foreground(Ansi.FColor.YELLOW);
         this.pYellow = new UnixColoredPrinter(builder);
 
-        UnixColoredPrinter.Builder builder1 = new UnixColoredPrinter.Builder(0, false);
+        builder = new UnixColoredPrinter.Builder(0, false);
         builder.attribute(Ansi.Attribute.BOLD);
         builder.foreground(Ansi.FColor.RED);
-        this.pRed = new UnixColoredPrinter(builder1);
+        this.pRed = new UnixColoredPrinter(builder);
 
-        UnixColoredPrinter.Builder builder2 = new UnixColoredPrinter.Builder(0, false);
+        builder = new UnixColoredPrinter.Builder(0, false);
         builder.attribute(Ansi.Attribute.BOLD);
         builder.foreground(Ansi.FColor.BLUE);
-        this.pBlue = new UnixColoredPrinter(builder2);
+        this.pBlue = new UnixColoredPrinter(builder);
     }
 
     void exit() {

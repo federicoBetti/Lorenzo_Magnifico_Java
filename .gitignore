@@ -1,6 +1,5 @@
-
-
-.idea/
+bin/
 out/
 target/
-Progetto.iml
+.idea/
+.idea/*
