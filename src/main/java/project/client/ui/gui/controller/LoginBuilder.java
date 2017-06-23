@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,8 @@ import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 
 import java.io.IOException;
+import java.util.List;
+
 //TODO FARE ALTEZZA MAX 900
 public class LoginBuilder extends Application {
 
@@ -35,6 +38,7 @@ public class LoginBuilder extends Application {
     private  AnchorPane productionScene;
     private  AnchorPane councilScene;
     private  AnchorPane leaderScene;
+    private AnchorPane draftScene;
 
     private HarvesterController harvesterController;
     private GeneralMainGameController generalMainGameController;
@@ -53,6 +57,8 @@ public class LoginBuilder extends Application {
     private int turnOrder;
     private BorderPane rootLayoutMainGame;
     private StringBuffer stringBuffer;
+    private int choiceDone;
+    private DraftController draftController;
 
 
     public void start(Stage primaryStage) {
@@ -124,6 +130,25 @@ public class LoginBuilder extends Application {
 
     }
 
+
+    /**
+     * Shows the person overview inside the root layout.
+     */
+    private void initializeDraft() {
+        try {
+            // Configuration person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
+            draftScene = (AnchorPane) loader.load();
+
+            this.draftController = loader.getController();
+            draftController.setMainController(mainController);
+            draftController.setLoginBuilder(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private void showFirstPage() {
@@ -447,37 +472,72 @@ public class LoginBuilder extends Application {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
-            AnchorPane card = (AnchorPane) loader.load();
+            AnchorPane choice = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Choice");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
-            Scene scene = new Scene(card);
+            Scene scene = new Scene(choice);
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
             ChoiceController controller = loader.getController();
             controller.setMainController(mainController);
             //controller.setDialogStage(dialogStage);
+            controller.setLoginBuilder(this);
             controller.setLabel(message);
             controller.setChoice1(choice1);
             controller.setCoiche2(choice2);
-
+            System.out.println("sto per disegnare lo stage");
             // Show the dialog and wait until the user closes it
-            dialogStage.show();
-
-            return;
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return;
+            return ;
         }
     }
 
-    public TextField getChat() {
-        return chatText;
+
+    public void showDraft(String labelMessage, List<String> leaderName) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
+            AnchorPane draft = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Draft");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(draft);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            DraftController controller = loader.getController();
+            controller.setMainController(mainController);
+            controller.setLoginBuilder(this);
+            controller.setLabel(labelMessage);
+            controller.uploadImages(leaderName);
+            System.out.println("sto per disegnare lo stage");
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return ;
+        }
+    }
+
+    public StringBuffer getChat() {
+        return stringBuffer;
     }
 
     public String getColour() {
@@ -517,6 +577,46 @@ public class LoginBuilder extends Application {
         stringBuffer.append(s + "\n");
     }
 
+
+    public int setScelta() {
+        System.out.println("sto facendo partire thread");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("sono nel thread runLater");
+                showChoice("dimmi la scelta ","primo", "secondo");
+            }
+        });
+        try {
+            System.out.println("inizio a dormire");
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("torno ora dalla scelta " + choiceDone);
+        return choiceDone;
+    }
+
+    public void setChoiceDone(int choiceDone) {
+        this.choiceDone = choiceDone;
+    }
+
+    public int getChoiceDone() {
+        return choiceDone;
+    }
+
+    public void setDraft(List<String> leaderName) {
+        showDraft("draft of Leader Card", leaderName);
+    }
+
+    public void itIsntMyTurn() {
+        stringBuffer.append("it isn't your turn, you can't play!\n");
+        sendChatToControllers();
+    }
+
+    private void sendChatToControllers() {
+        mainController.updateChat(stringBuffer);
+    }
 }
 
 

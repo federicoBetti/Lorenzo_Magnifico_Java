@@ -1,13 +1,16 @@
 package project.client.ui.gui.controller;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import project.server.network.PlayerHandler;
 
 import java.util.ArrayList;
@@ -35,7 +38,7 @@ public class GeneralMainGameController extends AbstractController{
     @FXML
     private Button send;
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
     @FXML
     private Button goToTowersButton;
     @FXML
@@ -172,12 +175,13 @@ public class GeneralMainGameController extends AbstractController{
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+
         mainController.setGeneralGameController(this);
     }
 
     @Override
     public void refresh() {
-
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
     }
 
     public void uploadImages(){
@@ -186,8 +190,8 @@ public class GeneralMainGameController extends AbstractController{
         int turnOrder = loginBuilder.getTurnOrder();
         faithPointsArray.get(faithPoints).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
         turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
-        String background = "-fx-background-image: url(&quot;/images/immaginiSetUp/gameboard&quot; + mainController.getNumberOfPlayer() + &quot;Giocatori.png&quot;";
-        gameboard.setStyle(background);
+        String urlImage = "/images/immaginiSetUp/gameboard" + mainController.getNumberOfPlayer() + "Giocatori.png";
+        gameboard.setStyle("-fx-background-image: url(" + urlImage + ")");
     }
 
     @Override
@@ -218,7 +222,7 @@ public class GeneralMainGameController extends AbstractController{
 
 
     public void showPoints() {
-
+        loginBuilder.showChoice("dimmi la scelta ","primo", "secondo");
     }
 
     public void showLeaderCard() {
@@ -232,7 +236,10 @@ public class GeneralMainGameController extends AbstractController{
     }
 
     public void skipTurn() {
-        mainController.skipTurn();
+        if (!mainController.isMyTurn())
+            loginBuilder.itIsntMyTurn();
+        else
+            mainController.skipTurn();
     }
 
 
@@ -256,5 +263,10 @@ public class GeneralMainGameController extends AbstractController{
             turnOrderArray.get(current).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + playerColour + "Pedone.png"))));
             current++;
         }
+    }
+
+    public void setScelta() {
+        loginBuilder.showChoice("dimmi la scelta ","primo", "secondo");
+        mainController.wakeUp(loginBuilder.getChoiceDone());
     }
 }

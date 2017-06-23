@@ -34,6 +34,7 @@ public abstract class AbstractController {
     protected List<RadioButton> radioButtonFamiliar;
 
    protected void fillFamilymember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange){
+       familiarChosen = new String();
        imageFamiltMember.add(imageFamiliarNull);
        imageFamiltMember.add(imageFamiliarBlack);
        imageFamiltMember.add(imageFamiliarWhite);
@@ -95,6 +96,7 @@ public abstract class AbstractController {
                 return imageFamiltMember.get(2).getImage();
             default:
                 return imageFamiltMember.get(3).getImage();
+
         }
     }
 

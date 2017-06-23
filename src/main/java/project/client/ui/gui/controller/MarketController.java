@@ -74,6 +74,9 @@ public class MarketController extends AbstractController {
 
     private List<FamiliarPosition> familiarPositions;
 
+    @FXML
+    private Label chatArea;
+
     public MarketController(){
         super();
         System.out.print("sono nel controller");
@@ -97,6 +100,7 @@ public class MarketController extends AbstractController {
 
     @Override
     public void refresh() {
+        chatArea.setText(loginBuilder.getChat().toString());
 
     }
 

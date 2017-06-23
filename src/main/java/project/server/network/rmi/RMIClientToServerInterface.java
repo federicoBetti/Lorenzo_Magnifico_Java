@@ -52,4 +52,8 @@ import java.util.List;
      void sendChoicePaymentVc(String myUniqueId, int payment) throws RemoteException;
 
      void ping() throws RemoteException;
+
+     void skipTurn(String myUniqueId) throws RemoteException;
+
+     void scelta(String myUniqueId) throws RemoteException;
  }

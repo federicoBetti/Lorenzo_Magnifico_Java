@@ -46,12 +46,15 @@ public abstract class AbstractClient implements Serializable{
     public abstract void productionAction(String familiarChosen, List<String> buidingCards) ;
 
 
-    public void skipTurn() {
-    }
+    public abstract void skipTurn();
 
     public abstract void timerTurnDelayed();
 
     public abstract void boardUpdate();
+
+    public void scelta() {
+
+    }
 
 
     //da server a client

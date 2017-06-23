@@ -1,6 +1,5 @@
 package project.client.ui.cli;
 
-import project.TowerIterator;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
@@ -9,7 +8,6 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
-import project.model.Board;
 import project.model.Tower;
 
 import java.io.IOException;
@@ -116,6 +114,7 @@ public class Cli extends AbstractUI {
         }
         return 0;
     }
+
 
     public void bonusHarvesterParameters(String input) throws InputException {
         context.checkValidInput(input);
@@ -412,6 +411,21 @@ public class Cli extends AbstractUI {
                 }
             }
         }
+    }
+
+
+    @Override
+    public int getScelta() {
+
+        System.out.println("scrivi scleta");
+        SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
+        try {
+            int a = Integer.parseInt(keyboard.readLine());
+            return a;
+        } catch (IOException e) {
+            System.out.println("non è un numero coglione");
+        }
+        return 0;
     }
 }
 

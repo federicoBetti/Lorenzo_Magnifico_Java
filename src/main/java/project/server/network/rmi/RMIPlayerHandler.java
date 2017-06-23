@@ -78,6 +78,7 @@ public class RMIPlayerHandler extends PlayerHandler {
             takePrivilege(i.intValue());
     }
 
+
     private interface Talker {
 
         void sendEffectAnswer(BonusInteraction bonusInteraction) throws RemoteException;
@@ -292,5 +293,19 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     void takePrivilegeRequest(int privilegeNumber) {
         takePrivilege(privilegeNumber);
+    }
+
+
+
+
+    public void scelta() {
+        int ciao = 0;
+        try {
+            ciao = myClient.getScelta();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        System.out.println(ciao);
+        skipTurn();
     }
 }

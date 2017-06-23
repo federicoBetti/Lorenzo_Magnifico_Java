@@ -3,6 +3,7 @@ package project.client.network.rmi;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -10,15 +11,13 @@ import java.rmi.RemoteException;
  * questi sono i metodi che il server puo chiamare sul client,
  * spesso di risposta a qualche chiamata del client precedente. devono essere implementati per forza dall'RMIClient
  */
-public interface RMIServerToClientInterface extends Remote{
+public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    //void doProductionHarvester (BonusInteraction bonusProductionOrHarvesterAction) throws RemoteException;
+    void notify (Notify notify) throws RemoteException;
 
-    void notify (Notify notify) throws RemoteException;;
-
-    void endTurn() throws RemoteException;;
+    void endTurn() throws RemoteException;
 
     void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
 
@@ -44,7 +43,9 @@ public interface RMIServerToClientInterface extends Remote{
 
     void actionOk() throws  RemoteException;
 
-    void doProductionHarvester(BonusInteraction bonusInteraction);
+    void doProductionHarvester(BonusInteraction bonusInteraction) throws RemoteException;
 
     void loginSucceded() throws RemoteException;
+
+    int getScelta() throws RemoteException;
 }

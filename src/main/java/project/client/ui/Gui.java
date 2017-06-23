@@ -10,6 +10,8 @@ import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
 
+import java.util.List;
+
 public class Gui extends AbstractUI {
     ClientSetter clientSetter;
     MainController mainController;
@@ -40,6 +42,8 @@ public class Gui extends AbstractUI {
 
     @Override
     public void mainContext() {
+        //it's my turn
+        mainController.setMyTurn(true);
         if (!matchStarted) {
             Platform.runLater(() -> {
                 mainController.setNumberOfPlayers(3);
@@ -158,9 +162,17 @@ public class Gui extends AbstractUI {
         mainController.loginSucceded();
     }
 
+    public String draftChoice(List<String> leaderName){
+        return mainController.startDraft(leaderName);
+    }
     @Override
     public int booleanChoosingRMI() {
         //todo
         return 0;
+    }
+
+    @Override
+    public int getScelta() {
+        return mainController.getScelta();
     }
 }

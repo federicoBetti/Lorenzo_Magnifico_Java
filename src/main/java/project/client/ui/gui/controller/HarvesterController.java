@@ -100,12 +100,15 @@ public class HarvesterController extends AbstractController {
 
     @FXML
     private TextField numberOfServantsTextField;
+    @FXML
+    private Label chatArea;
 
     //todo si potrebbe fare la stessa cosa con familiar position con le carte
     private List<ImageView> imageTerritoryCard;
     private List<String> nameOfTerritoryCard;
     private boolean positionSelected;
     private int diceValueBonus;
+
 
     public HarvesterController() {
         super();
@@ -165,16 +168,10 @@ public class HarvesterController extends AbstractController {
     }
 
     public void refresh(){
+        chatArea.setText(loginBuilder.getChat().toString());
 
     }
 
-    public void inizializeWithMain() {
-        chatText = loginBuilder.getChat();
-    }
-
-    public void aggiornaChat() {
-        chatText.setText(loginBuilder.getChat().getText());
-    }
 
 
     public void doHarvester() {

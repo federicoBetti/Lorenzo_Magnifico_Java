@@ -82,6 +82,8 @@ public class CouncilPalaceController extends AbstractController {
     private List<FamiliarPosition> familiarInTheCouncil;
     @FXML
     private TextField chatText;
+    @FXML
+    private Label chatArea;
 
 
     public CouncilPalaceController() {
@@ -190,6 +192,7 @@ public class CouncilPalaceController extends AbstractController {
 
     @Override
     public void refresh() {
+        chatArea.setText(loginBuilder.getChat().toString());
         for (boolean b : privilegeChoosen)
             b = false;
     }

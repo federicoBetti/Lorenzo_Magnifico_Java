@@ -1,5 +1,6 @@
 package project.client.ui.gui.controller;
 
+import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
@@ -8,6 +9,8 @@ import project.model.PersonalBoard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class MainController {
@@ -25,15 +28,21 @@ public class MainController {
     private TowersController towerController;
 
     private List<AbstractController> controllers;
+    private Object token;
 
     private int numberOfPlayer = 2;
     private String colour = "rosso";
     private String nickName;
     private String usernameChosen;
 
+    private BlockingQueue<Integer> integerQueue;
+    private BlockingQueue<String> stringQueue;
+    private boolean myTurn;
+
 
     private MainController(){
         controllers = new ArrayList<>();
+        token = new Object();
     }
     public static MainController getInstance(){
         if (instance == null) {
@@ -159,6 +168,8 @@ public class MainController {
 
 
     void setChoice(String text, int i) {
+        integerQueue.add(new Integer(i));
+        /*
         switch (text){
             case CliConstants.BOTH_PAYMENT_AVAIABLE:{
                 clientSetter.sendChoicePaymentVc(i);
@@ -176,11 +187,8 @@ public class MainController {
                 break;
             }
         }
+        */
 
-    }
-
-    public void skipTurn() {
-        clientSetter.skipTurn();
     }
 
     public void playLeaderCard(int cardSelected) {
@@ -292,4 +300,95 @@ public class MainController {
         loginBuilder.waitingScene();
     }
 
+// da qui in giu prove per risposta
+
+    public void skipTurn() {
+        myTurn = false;
+        Runnable a = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("ho fatto partire il nuovo thread che va");
+                clientSetter.skipTurn();
+            }
+        };
+        new Thread(a).start();
+    }
+
+
+    public int getScelta() {
+        integerQueue = new LinkedBlockingQueue<>(1);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                System.out.println("sono nel runlater");
+                generalGameController.setScelta();
+            }
+        });
+        Integer i = new Integer(0);
+        try {
+            System.out.println("mi metto in attesa della integerQueue");
+             i = integerQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return i.intValue();
+        /*
+        while (true){
+            System.out.println("sono nel while true");
+        try {
+            return integerQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        */
+    }
+
+    public void wakeUp(int choiceDone) {
+        integerQueue.add(new Integer(choiceDone));
+        }
+
+    public String startDraft(List<String> leaderName) {
+
+        stringQueue = new LinkedBlockingQueue<>(1);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                System.out.println("sono nel runlater");
+                loginBuilder.setDraft(leaderName);
+            }
+        });
+        String i = "";
+        try {
+            System.out.println("mi metto in attesa della integerQueue");
+            i = stringQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public void addStringQueue(String s) {
+        stringQueue.add(s);
+    }
+
+    public boolean isMyTurn() {
+        return myTurn;
+    }
+
+    public void setMyTurn(boolean myTurn) {
+        this.myTurn = myTurn;
+    }
+
+    public void updateChat(StringBuffer stringBuffer) {
+        for (AbstractController c: controllers)
+            c.refresh();
+    }
 }

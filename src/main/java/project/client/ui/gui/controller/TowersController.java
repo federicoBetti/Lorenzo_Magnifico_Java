@@ -143,6 +143,8 @@ public class TowersController extends AbstractController {
 
     private TowerZone[][] myTower;
     private String bonusCardType;
+    @FXML
+    private Label chatArea;
 
 
     public TowersController() {
@@ -162,6 +164,7 @@ public class TowersController extends AbstractController {
 
     @Override
     public void refresh() {
+        chatArea.setText(loginBuilder.getChat().toString());
 
     }
 

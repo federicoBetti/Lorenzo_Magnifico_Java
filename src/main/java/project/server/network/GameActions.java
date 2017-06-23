@@ -414,6 +414,13 @@ public class GameActions {
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 
+
+    public void havesterBonus(int harvesterValue, PlayerHandler playerHandler) {
+
+    }
+
+
+
     /**
      * @param position
      * @param familyM
@@ -426,19 +433,27 @@ public class GameActions {
 
         getSupportFunctions(player).setFamiliar(productionZone, familyM);
         productionSpace.add(productionZone);
+
+        productionBonus(cardToProduct,player);
+
         ProductionUpdate productionUpdate = new ProductionUpdate(room.getBoard().getProductionZone(), player.getName());
+        broadcastUpdates(productionUpdate);
+
+    }
+
+
+    public void productionBonus(List<BuildingCard> cards, PlayerHandler player) {
 
         player.getPersonalBoardReference().getMyTile().takeProductionResource();
 
-        for (BuildingCard card : cardToProduct) {
+        for (BuildingCard card : cards) {
             makePermanentEffects(player, card);
         }
 
         player.sendActionOk();
-        broadcastUpdates(productionUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
-    }
 
+    }
 
     /**
      * @param position

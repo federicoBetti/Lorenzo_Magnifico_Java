@@ -26,6 +26,9 @@ public class LeaderCardController extends AbstractController {
     @FXML
     private Button personalBoard;
 
+    @FXML
+    private Label chatArea;
+
 
 
     public Label numberOfCoins;
@@ -76,7 +79,7 @@ public class LeaderCardController extends AbstractController {
 
     @Override
     public void refresh() {
-
+        chatArea.setText(loginBuilder.getChat().toString());
     }
 
     @Override

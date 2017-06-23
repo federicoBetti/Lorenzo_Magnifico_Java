@@ -69,4 +69,6 @@ public abstract class AbstractUI {
     //astratto?
     public void update(Updates update) {
     }
+
+    public abstract int getScelta();
 }

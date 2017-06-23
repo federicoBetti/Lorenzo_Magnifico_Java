@@ -162,7 +162,6 @@ public abstract class PlayerHandler extends Player {
      * @param servantsNumber
      */
 
-    //todo rifare il metodo senza position
     protected void harvester(FamilyMember familyM, int servantsNumber) throws CantDoActionException {
         List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
         boolean canTakeCard;
@@ -182,6 +181,17 @@ public abstract class PlayerHandler extends Player {
         return harvesterZone.size();
     }
 
+    /**
+     * check function on bonus harvester action
+     * @param returnFromEffect
+     * @param intServantsNumber
+     * @throws CantDoActionException
+     */
+    public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
+        int harvesterValue = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() + intServantsNumber;
+
+        gameActions().havesterBonus(harvesterValue, this);
+    }
 
     /**
      * @param familyM
@@ -201,6 +211,14 @@ public abstract class PlayerHandler extends Player {
         checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
 
         gameActions().production(position,familyM,cardToProduct,this);
+    }
+
+
+    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
+        int maxValueOfProduction;
+        maxValueOfProduction =  returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
+        checkAvaiabiltyToProduct(cards,maxValueOfProduction);
+        gameActions().productionBonus(cards,this);
     }
 
 
@@ -374,13 +392,6 @@ public abstract class PlayerHandler extends Player {
         return null;
     }
 
-    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
-        //todo !!!!
-    }
-    public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
-
-        //todo !!!!
-    }
 
     public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect);
 
