@@ -33,6 +33,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void loginSucceded() throws RemoteException {
         clientSetter.loginSucceded();
+
     }
 
 
