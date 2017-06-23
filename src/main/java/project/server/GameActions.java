@@ -1,4 +1,4 @@
-package project.server.network;
+package project.server;
 
 import project.controller.cardsfactory.*;
 import project.controller.Constants;
@@ -10,6 +10,7 @@ import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.Room;
+import project.server.network.PlayerHandler;
 
 import java.util.*;
 
@@ -45,7 +46,7 @@ public class GameActions {
 
     }
 
-    void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
+    public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
@@ -65,7 +66,7 @@ public class GameActions {
     }
 
 
-    void takeVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment) {
+    public void takeVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
@@ -460,7 +461,7 @@ public class GameActions {
      * @param familyM
      * @return
      */
-    void goToMarket(int position, FamilyMember familyM, PlayerHandler player) {
+    public void goToMarket(int position, FamilyMember familyM, PlayerHandler player) {
         Position marketPosition = room.getBoard().getMarketZone()[position];
 
         getSupportFunctions(player).setFamiliar(marketPosition, familyM);
@@ -479,7 +480,7 @@ public class GameActions {
      * @param player
      */
     //todo modify
-    void playLeaderCard(String leaderName, PlayerHandler player) {
+    public void playLeaderCard(String leaderName, PlayerHandler player) {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
                 BonusInteraction returnFromEffect = LeaderCardsEffects.doEffect(leaderName,player);
@@ -514,7 +515,7 @@ public class GameActions {
     /**
      * @return
      */
-    void rollDice() {
+    public void rollDice() {
         int[] newDiceValue = new int[3];
         Random r = new Random();
         newDiceValue[0] = r.nextInt(5) + 1;
@@ -537,7 +538,7 @@ public class GameActions {
      * @param familyMember
      * @param player          @return
      */
-    void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler player) {
+    public void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler player) {
         List<Council> councilZone = room.getBoard().getCouncilZone();
 
         getSupportFunctions(player).setFamiliarInTheCouncilPalace(councilZone, familyMember);
@@ -572,7 +573,7 @@ public class GameActions {
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 
-    void takeExcommunication(PlayerHandler player) {
+    public void takeExcommunication(PlayerHandler player) {
         int period = room.getBoard().getPeriod();
         ExcommunicationTile card = room.getBoard().getExcommunicationZone()[period].getCardForThisPeriod();
 
@@ -581,7 +582,7 @@ public class GameActions {
         broadcastUpdates(new ExcomunicationUpdate( room.getBoard().getExcommunicationZone(), player.getName()));
     }
 
-    void broadcastNotifications(Notify notifications) {
+    public void broadcastNotifications(Notify notifications) {
         for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
             player.sendNotification(notifications);

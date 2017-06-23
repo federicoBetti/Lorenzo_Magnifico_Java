@@ -1,15 +1,12 @@
 package project.server;
 
-import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.model.Board;
-import project.model.CouncilPrivilege;
 import project.model.Player;
-import project.server.network.GameActions;
 import project.server.network.PlayerHandler;
 
 import java.io.FileNotFoundException;

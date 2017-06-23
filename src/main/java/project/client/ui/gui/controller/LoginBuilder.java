@@ -31,14 +31,14 @@ public class LoginBuilder extends Application {
     private WaitingLogin waitingLogin;
 
 
-    private  AnchorPane generalScene;
-    private  AnchorPane towersScene;
-    private  AnchorPane marketScene;
-    private  AnchorPane harvesterScene;
-    private  AnchorPane personalBoardScene;
-    private  AnchorPane productionScene;
-    private  AnchorPane councilScene;
-    private  AnchorPane leaderScene;
+    private AnchorPane generalScene;
+    private AnchorPane towersScene;
+    private AnchorPane marketScene;
+    private AnchorPane harvesterScene;
+    private AnchorPane personalBoardScene;
+    private AnchorPane productionScene;
+    private AnchorPane councilScene;
+    private AnchorPane leaderScene;
     private AnchorPane draftScene;
 
     private HarvesterController harvesterController;
