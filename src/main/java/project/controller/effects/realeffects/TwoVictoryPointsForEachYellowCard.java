@@ -9,11 +9,10 @@ public class TwoVictoryPointsForEachYellowCard implements Effects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        int i = 0;
-        while (player.getPersonalBoardReference().getBuildings().get(i) != null){
-            i++;
-        }
-        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + 2*i);
+
+        int yellowCards = player.getPersonalBoardReference().getBuildings().size();
+        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + 2*yellowCards);
+
         return new OkOrNo();
     }
 }

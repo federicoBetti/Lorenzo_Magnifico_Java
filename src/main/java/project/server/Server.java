@@ -3,6 +3,7 @@ package project.server;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
+import project.model.Deck;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -43,6 +44,13 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         Server server = new Server();
+
+        //for trying loading dev card
+        Configuration configuration = new Configuration();
+        Deck deck= new Deck();
+        configuration.loadDevelopmentCards(deck);
+        //
+
         server.startServer(Constants.SOCKET_PORT, Constants.RMI_PORT );
 
     }

@@ -9,6 +9,8 @@ public class BuildingCost extends TerritoryCost implements Serializable {
 
     private int coinsRequired;
 
+    private int servantRequired;
+
     public BuildingCost() {
         //TODO
     }

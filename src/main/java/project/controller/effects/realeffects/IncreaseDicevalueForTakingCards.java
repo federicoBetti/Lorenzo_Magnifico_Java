@@ -20,16 +20,16 @@ public class IncreaseDicevalueForTakingCards implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
             switch (kindOfCard){
-                case"character":
+                case"blue":
                     player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getDiceBonus() + quantityIncreased);
                     break;
-                case"territory":
+                case"green":
                     player.getPersonalBoardReference().getBonusOnActions().setTerritoryBonus(player.getPersonalBoardReference().getBonusOnActions().getTerritoryBonus() + quantityIncreased);
                     break;
-                case"venture":
+                case"purple":
                     player.getPersonalBoardReference().getBonusOnActions().setVenturesBonus(player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus() + quantityIncreased);
                     break;
-                case"building":
+                case"yellow":
                     player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setDiceBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getDiceBonus() + quantityIncreased);
                     break;
                 default:
