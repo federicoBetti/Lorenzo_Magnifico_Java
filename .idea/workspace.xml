@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adb06d8a-6d2f-456e-ab7e-b082db3add1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fileJson/newTowerZone.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" afterPath="$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/configurations/Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/project/configurations/Configuration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TowerFromJson.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TowerFromJson.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VentureCostArray.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/VentureCostArray.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildPermanentEffects.java" afterPath="$PROJECT_DIR$/src/main/java/project/controller/effects/effectsfactory/BuildPermanentEffects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/Board.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/Player.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/model/Tower.java" afterPath="$PROJECT_DIR$/src/main/java/project/model/Tower.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/GameActions.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/GameActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/Room.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/Room.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/Server.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/project/server/network/socket/SocketPlayerHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fileJson/councilpriviledge.json" afterPath="$PROJECT_DIR$/src/main/resources/fileJson/councilpriviledge.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fileJson/developmentCards.json" afterPath="$PROJECT_DIR$/src/main/resources/fileJson/developmentCards.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fileJson/marketZone2.json" afterPath="$PROJECT_DIR$/src/main/resources/fileJson/marketZone2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fileJson/marketZone4.json" afterPath="$PROJECT_DIR$/src/main/resources/fileJson/marketZone4.json" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -48,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/server/Room.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
-              <caret line="162" column="59" lean-forward="true" selection-start-line="162" selection-start-column="59" selection-end-line="162" selection-end-column="59" />
+              <caret line="162" column="59" lean-forward="false" selection-start-line="162" selection-start-column="59" selection-end-line="162" selection-end-column="59" />
               <folding>
                 <element signature="e#2725#2726#0" expanded="true" />
                 <element signature="e#2759#2760#0" expanded="true" />
@@ -81,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/configurations/Configuration.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="557">
-              <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -91,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="658">
-              <caret line="79" column="50" lean-forward="true" selection-start-line="79" selection-start-column="50" selection-end-line="79" selection-end-column="50" />
+              <caret line="79" column="50" lean-forward="false" selection-start-line="79" selection-start-column="50" selection-end-line="79" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -111,10 +94,61 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1800">
-              <caret line="155" column="8" lean-forward="true" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+              <caret line="155" column="8" lean-forward="false" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
               <folding>
-                <element signature="e#4974#4975#0" expanded="true" />
-                <element signature="e#5007#5008#0" expanded="true" />
+                <marker date="1498312126000" expanded="true" signature="5029:5035" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5115:5126" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5143:5149" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5206:5216" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5246:5252" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5280:5291" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5305:5311" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5387:5398" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5427:5433" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5510:5521" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5551:5557" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5590:5600" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5619:5625" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5653:5664" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5678:5684" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="5716:5727" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5745:5751" ph=" }" />
+                <marker date="1498312126000" expanded="true" signature="5832:5892" ph="{...}" />
+                <marker date="1498312126000" expanded="false" signature="5932:5943" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="5970:5976" ph=" }" />
+                <marker date="1498312126000" expanded="true" signature="6047:6120" ph="{...}" />
+                <marker date="1498312126000" expanded="true" signature="6174:6263" ph="{...}" />
+                <marker date="1498312126000" expanded="true" signature="6316:6404" ph="{...}" />
+                <marker date="1498312126000" expanded="true" signature="6451:6526" ph="{...}" />
+                <marker date="1498312126000" expanded="true" signature="6587:6698" ph="{...}" />
+                <marker date="1498312126000" expanded="true" signature="6771:6778" ph="{...}" />
+                <marker date="1498312126000" expanded="false" signature="6809:6820" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="6835:6841" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="6888:6899" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="6922:6928" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="6959:6970" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="6985:6991" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7039:7050" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7073:7079" ph=" }" />
+                <marker date="1498312126000" expanded="true" signature="7119:7127" ph="{...}" />
+                <marker date="1498312126000" expanded="false" signature="7165:7176" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7200:7206" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7235:7246" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7306:7317" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7331:7337" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7387:7398" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7419:7425" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7458:7469" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7488:7494" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7537:7548" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7580:7586" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7622:7633" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7657:7663" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7691:7702" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7724:7730" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7795:7806" ph=" { " />
+                <marker date="1498312126000" expanded="false" signature="7845:7851" ph=" }" />
+                <marker date="1498312126000" expanded="false" signature="7919:7930" ph=" { " />
               </folding>
             </state>
           </provider>
@@ -124,7 +158,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TowerFromJson.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+              <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -545,6 +579,156 @@
       <recent name="project.client.ui.cli" />
       <recent name="project.client" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/Gui.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/DraftController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LeaderCardController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/LoginBuilder.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/MainController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddCoin.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddMilitaryPoints.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddServants.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddStone.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/AddWood.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/controller/effects/realeffects/IncreaseDiceValueForHoP.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/fileXML/mainGame/councilPalaceMainGame.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/fileXML/mainGame/harvesterMainGame.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/fileXML/mainGame/marketMainGame.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/fileXML/mainGame/productionMainGame.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/fileXML/mainGame/towersMainGame.fxml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/project/client/ui/gui/controller/PopUpController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/fileXML/error/popUp.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/bartolomeoColleoni.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/cesareBorgia.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/cosimoDeMedici.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/federicoDaMontefeltro.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/filippoBrunelleschi.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/francescoSforza.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/francescoSforza.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/giovanniDalleBandeNere.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/girolamoSavonarola.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/leaderBack.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/leonardoDaVinci.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/lorenzoDeMedici.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/lucreziaBorgia.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/ludovicoAriosto.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/ludovicoIIIGonzaga.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/ludovicoIlMoro.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/michelangeloBuonarroti.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/picoDellaMirandola.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/sandroBotticelli.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/santaRita.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/sigismondoMalatesta.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/images/leaderCards/sistoIV.png</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -994,13 +1178,6 @@
       <workItem from="1498208318859" duration="892000" />
       <workItem from="1498209607323" duration="5441000" />
     </task>
-    <task id="LOCAL-00028" summary="Correzioni per Sonar">
-      <created>1496425082800</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1496425082800</updated>
-    </task>
     <task id="LOCAL-00029" summary="Correzioni per Sonar">
       <created>1496754679079</created>
       <option name="number" value="00029" />
@@ -1337,7 +1514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498302601862</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="startMatch method updated">
+      <created>1498312071725</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1498312071727</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1391,8 +1575,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36638832" sideWeight="0.50213444" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14735337" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251366" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23975904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32409638" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23975904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1460,7 +1644,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Refactoring dei package" />
     <MESSAGE value="inizio costruzione player handler" />
     <MESSAGE value="sviluppo player handler e game actions" />
     <MESSAGE value="implementato network Socket lato server. Aggiunta classe Turn alla bord" />
@@ -1485,7 +1668,8 @@
     <MESSAGE value="rmi funzionante, gui funzionante con scelta" />
     <MESSAGE value="prova" />
     <MESSAGE value="json development card active!" />
-    <option name="LAST_COMMIT_MESSAGE" value="json development card active!" />
+    <MESSAGE value="startMatch method updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="startMatch method updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1849,7 +2033,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/AbstractUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
-          <caret line="79" column="50" lean-forward="true" selection-start-line="79" selection-start-column="50" selection-end-line="79" selection-end-column="50" />
+          <caret line="79" column="50" lean-forward="false" selection-start-line="79" selection-start-column="50" selection-end-line="79" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1865,7 +2049,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/configurations/Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
-          <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1873,10 +2057,61 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/client/ui/ClientSetter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1800">
-          <caret line="155" column="8" lean-forward="true" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+          <caret line="155" column="8" lean-forward="false" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
           <folding>
-            <element signature="e#4974#4975#0" expanded="true" />
-            <element signature="e#5007#5008#0" expanded="true" />
+            <marker date="1498312126000" expanded="true" signature="5029:5035" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5115:5126" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5143:5149" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5206:5216" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5246:5252" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5280:5291" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5305:5311" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5387:5398" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5427:5433" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5510:5521" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5551:5557" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5590:5600" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5619:5625" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5653:5664" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5678:5684" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="5716:5727" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5745:5751" ph=" }" />
+            <marker date="1498312126000" expanded="true" signature="5832:5892" ph="{...}" />
+            <marker date="1498312126000" expanded="false" signature="5932:5943" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="5970:5976" ph=" }" />
+            <marker date="1498312126000" expanded="true" signature="6047:6120" ph="{...}" />
+            <marker date="1498312126000" expanded="true" signature="6174:6263" ph="{...}" />
+            <marker date="1498312126000" expanded="true" signature="6316:6404" ph="{...}" />
+            <marker date="1498312126000" expanded="true" signature="6451:6526" ph="{...}" />
+            <marker date="1498312126000" expanded="true" signature="6587:6698" ph="{...}" />
+            <marker date="1498312126000" expanded="true" signature="6771:6778" ph="{...}" />
+            <marker date="1498312126000" expanded="false" signature="6809:6820" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="6835:6841" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="6888:6899" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="6922:6928" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="6959:6970" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="6985:6991" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7039:7050" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7073:7079" ph=" }" />
+            <marker date="1498312126000" expanded="true" signature="7119:7127" ph="{...}" />
+            <marker date="1498312126000" expanded="false" signature="7165:7176" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7200:7206" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7235:7246" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7306:7317" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7331:7337" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7387:7398" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7419:7425" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7458:7469" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7488:7494" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7537:7548" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7580:7586" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7622:7633" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7657:7663" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7691:7702" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7724:7730" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7795:7806" ph=" { " />
+            <marker date="1498312126000" expanded="false" signature="7845:7851" ph=" }" />
+            <marker date="1498312126000" expanded="false" signature="7919:7930" ph=" { " />
           </folding>
         </state>
       </provider>
@@ -1903,7 +2138,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/controller/cardsfactory/TowerFromJson.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1927,7 +2162,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/project/server/Room.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
-          <caret line="162" column="59" lean-forward="true" selection-start-line="162" selection-start-column="59" selection-end-line="162" selection-end-column="59" />
+          <caret line="162" column="59" lean-forward="false" selection-start-line="162" selection-start-column="59" selection-end-line="162" selection-end-column="59" />
           <folding>
             <element signature="e#2725#2726#0" expanded="true" />
             <element signature="e#2759#2760#0" expanded="true" />
