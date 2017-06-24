@@ -137,6 +137,12 @@ public class Room {
             //todo gestire
         }
 
+        for (int k = 0; k < 4; k++ ){
+            for ( int j = 0; j < 4; j ++ ){
+                System.out.println(k +" "+ j );
+                System.out.println(board.getAllTowers()[k][j].getColour());
+            }
+        }
         getGameActions().refactorTowers();
         Collections.shuffle(playerInTheMatch);
         board.getTurn().setPlayerTurn(playerInTheMatch);

@@ -1,6 +1,7 @@
 package project.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -12,9 +13,11 @@ public  abstract class Position {
 
     private FamilyMember familiarOnThisPosition;
 
-    private ArrayList<FamilyMember> ludovicoAriostoPosition;
+    private List<FamilyMember> ludovicoAriostoPosition;
 
     Position (){
+        familiarOnThisPosition = new FamilyMember();
+        ludovicoAriostoPosition = new ArrayList<>();
         this.occupied = false;
     }
 

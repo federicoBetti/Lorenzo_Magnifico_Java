@@ -332,7 +332,9 @@ public class GameActions {
     }
 
     private void clearSinglePosition(Position position) {
+        System.out.println("position " + position );
         position.setOccupied(false);
+        System.out.println(position.isOccupied());
         position.getFamiliarOnThisPosition().setPlayed(false);
         position.setFamiliarOnThisPosition(null);
     }

@@ -276,6 +276,7 @@ public final class Board {
 
     public void setTowerInTowers(int towerNumber, int floor, Tower tower ){
         this.towers[towerNumber][floor] = tower;
+        System.out.println(tower);
     }
 
     public int[] getMilitaryPointsForTerritories() {
