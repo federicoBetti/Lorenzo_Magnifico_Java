@@ -154,6 +154,7 @@ public class ClientSetter {
 
     public void skipTurn() {
         client.skipTurn();
+        //client.scelta();
     }
 
 

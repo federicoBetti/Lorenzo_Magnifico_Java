@@ -15,6 +15,9 @@ public class AddServants implements TakeRoPEffects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
+        quantity += player.getPersonalBoardReference().getBonusOnActions().getServantsBonus();
+        if (quantity<0)
+            quantity = 0;
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + quantity);
         return new OkOrNo();
     }

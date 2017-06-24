@@ -97,35 +97,25 @@ public class Gui extends AbstractUI {
 
     @Override
     public void scoreUpdate(Updates updates) {
+        mainController.scoreUpdate();
 
     }
 
     @Override
     public void personalBoardUpdate(Updates updates) {
+        mainController.personalBoardUpdate();
 
     }
 
     @Override
     public void familyMemberUpdate(Updates updates) {
-
-    }
-
-    public void scoreUpdate() {
-        mainController.scoreUpdate();
-    }
-
-    public void personalBoardUpdate() {
-        mainController.personalBoardUpdate();
-    }
-
-    public void familyMemberUpdate() {
         mainController.familyMemberUpdate();
 
     }
 
     @Override
     public void nicknameAlreadyUsed() {
-
+        mainController.nicknameAlreadyUsed();
     }
 
     @Override

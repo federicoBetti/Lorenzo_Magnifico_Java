@@ -1,7 +1,9 @@
 package project.controller.effects.realeffects;
 
+import project.controller.Constants;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
+import project.model.Bonus;
 import project.server.network.PlayerHandler;
 
 /**
@@ -19,6 +21,11 @@ public class IncreaseDiceValueForHoP implements Effects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
+        Bonus b =  player.getPersonalBoardReference().getBonusOnActions();
+        if (kindOfAction.equals(Constants.HARVESTER))
+            b.setHarvesterBonus(b.getHarvesterBonus() + increasingDiceValue);
+        else
+            b.setProductionBonus(b.getProductionBonus() + increasingDiceValue);
         return new OkOrNo();
     }
 }

@@ -13,6 +13,9 @@ public class AddWood implements TakeRoPEffects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
+        quantity += player.getPersonalBoardReference().getBonusOnActions().getWoodBonus();
+        if (quantity<0)
+            quantity = 0;
         player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + quantity);
         return new OkOrNo();
     }

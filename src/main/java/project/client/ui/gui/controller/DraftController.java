@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,20 +14,18 @@ import project.controller.cardsfactory.LeaderCard;
 import java.util.List;
 
 /**
- * Created by federico on 23/06/17.
+ * this is the controller class of draft view on the grafical user interface
  */
 public class DraftController {
-    public Label title;
-    public HBox cardBox;
+
+    @FXML
+    private Label title;
+    @FXML
+    private HBox cardBox;
     private MainController mainController;
-    private LoginBuilder loginBuilder;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
-    }
-
-    public void setLoginBuilder(LoginBuilder loginBuilder) {
-        this.loginBuilder = loginBuilder;
     }
 
     public void setLabel(String labelMessage) {
@@ -39,7 +38,7 @@ public class DraftController {
             ImageView imageView = new ImageView();
             imageView.setFitWidth(128);
             imageView.setFitHeight(210);
-            imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/" + s + ".png"))));
+            imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCards/" + s + ".png"))));
             imageView.setOnMouseClicked(event -> imageClicked(s));
             cardBox.getChildren().addAll(imageView);
         }

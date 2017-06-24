@@ -42,17 +42,17 @@
                 <VBox alignment="TOP_CENTER" layoutY="92.0" prefHeight="496.0" prefWidth="159.0" spacing="8.0">
                     <children>
                         <ImageView fx:id="imageFamiliarNull" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen">
+                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" >
                             <toggleGroup>
                                 <ToggleGroup fx:id="familiar" />
                             </toggleGroup>
                         </RadioButton>
                         <ImageView fx:id="imageFamiliarBlack" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen" toggleGroup="$familiar" />
-                        <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
                         <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen" toggleGroup="$familiar" />
+                        <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
+                        <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen" toggleGroup="$familiar" />
                         <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" />
+                        <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen"/>
                     </children>
                 </VBox>
             </children>
