@@ -116,17 +116,21 @@ public class Configuration {
     public void loadBonusTower(Board board) throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream("/fileJson/newTowerZone.json");
         Reader reader = new InputStreamReader(is);
-        JsonStreamParser parser = new JsonStreamParser(reader);
         TowerIterator iterator = new TowerIterator();
 
         TowerFromJson[][] towersFromJson = gson.fromJson(reader, TowerFromJson[][].class);
 
-        while (iterator.hasNext()) {
+     //   while (iterator.hasNext()) {
 
-            Tower tower = new Tower(towersFromJson[iterator.getTowerNumber()][iterator.getFloor()].getColour(), towersFromJson[iterator.getTowerNumber()][iterator.getFloor()].getDiceValueOfThisFloor(), towersFromJson[iterator.getTowerNumber()][iterator.getFloor()].getTowerNumber(), towersFromJson[iterator.getTowerNumber()][iterator.getFloor()].getTrisIE());
-            board.setTowerInTowers(iterator.getTowerNumber(), iterator.getFloor(), tower);
-            iterator.next();
+        for ( int i = 0; i < 4; i++ ) {
+            for ( int j = 0; j < 4; j++ ) {
+                Tower tower = new Tower(towersFromJson[i][j].getColour(), towersFromJson[i][j].getDiceValueOfThisFloor(), towersFromJson[i][j].getTowerNumber(), towersFromJson[i][j].getTrisIE());
+                board.setTowerInTowers(i, j, tower);
+                System.out.println(tower);
+            }
         }
+           // iterator.next();
+      //  }
     }
 
     public void loadFamilyMembers(Player player) throws FileNotFoundException {

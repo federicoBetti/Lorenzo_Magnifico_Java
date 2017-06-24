@@ -24,17 +24,15 @@ public class TowerIterator implements IteratorInterface {
 
     @Override
     public boolean hasNext() {
-        if (floor<3){
+        if (floor<4 && towerNumber < 4){
             return true;
         }
-        else if (towerNumber<3)
-            return true;
         return false;
     }
 
     @Override
     public void next() {
-        if (floor<3){
+        if (floor< 4){
             floor++;
         }
         else if (towerNumber<3) {
