@@ -76,6 +76,7 @@ public class Server {
         for (Room room : rooms) {
             if (!room.isMatchStarted()) { //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
+                    System.out.println("riconnessione");
                     player.setOn(true);
                     player.setRoom(room);
                     room.nicknamePlayersMap.replace(nickname, player);

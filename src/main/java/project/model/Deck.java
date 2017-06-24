@@ -23,18 +23,22 @@ public class Deck {
 
     public Deck() {
        developmentDeck = new DevelopmentCard[Constants.CARD_TYPE_NUMBER][Constants.PERIOD_NUMBER][Constants.CARD_FOR_EACH_PERIOD];
-       leaderCardeck = new ArrayList<>(Constants.LEADER_CARD_NUMBER);
        excomunicationCard = new ExcommunicationTile[Constants.PERIOD_NUMBER][Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD];
        prodHaarvTiles = new Tile[Constants.NUMBER_OF_TILES];
+    }
+
+    public List<LeaderCard> getLeaderCardeck() {
+        return leaderCardeck;
+    }
+
+    public void setLeaderCardeck(List<LeaderCard> leaderCardeck) {
+        this.leaderCardeck = leaderCardeck;
     }
 
     public DevelopmentCard[][][] getDevelopmentDeck() {
         return developmentDeck;
     }
 
-    public List<LeaderCard> getLeaderCardeck() {
-        return leaderCardeck;
-    }
 
     public ExcommunicationTile[][] getExcomunicationCard() {
         return excomunicationCard;

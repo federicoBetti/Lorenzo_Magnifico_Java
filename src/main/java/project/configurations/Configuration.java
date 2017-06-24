@@ -8,7 +8,9 @@ import project.model.*;
 import com.google.gson.Gson;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
@@ -80,12 +82,18 @@ public class Configuration {
     }
 
 
-    public void loadLeaderCard() throws FileNotFoundException {
-        InputStream is = getClass().getResourceAsStream("/fileJson/bonusTile.json");
+    public void loadLeaderCard(Deck deck) throws FileNotFoundException {
+        InputStream is = getClass().getResourceAsStream("/fileJson/leaderCards.json");
         Reader reader = new InputStreamReader(is);
 
-        LeaderCard leaderCard = gson.fromJson(reader, LeaderCard.class);
-        //todo inserirlo nel deck
+        LeaderCard[] leaderCards = gson.fromJson(reader, LeaderCard[].class);
+        List<LeaderCard> leaders = new ArrayList<>();
+
+        for ( LeaderCard card : leaderCards )
+            leaders.add(card);
+
+        deck.setLeaderCardeck(leaders);
+
     }
 
     public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {

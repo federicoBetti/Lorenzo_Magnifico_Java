@@ -61,7 +61,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (CanUseBothPaymentMethodException e) {      //todo questa deve esserci?
             canUseBothPaymentMethod();
         } catch (IOException e) {   //todo queste due eccezioni qui
-            e.printStackTrace();
+            this.setOn(false);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {

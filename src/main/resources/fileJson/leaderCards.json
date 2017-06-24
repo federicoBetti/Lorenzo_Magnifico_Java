@@ -1,0 +1,101 @@
+[
+{
+	"name":"francescoSforza",
+	"isPlayed":false
+},
+
+{
+	"name":"ludovicoAriosto",
+	"isPlayed":false
+},
+
+{
+	"name":"filippoBrunelleschi",
+	"isPlayed":false
+},
+
+{
+	"name":"federicoDaMontefeltro",
+	"isPlayed":false
+},
+
+{
+	"name":"girolamoSavonarola",
+	"isPlayed":false
+},
+
+{
+	"name":"giovanniDalleBandeNere",
+	"isPlayed":false
+},
+
+{
+	"name":"sandroBotticelli",
+	"isPlayed":false
+},
+
+{
+	"name":"michelangeloBuonarroti",
+	"isPlayed":false
+},
+
+{
+	"name":"ludovicoIIIGonzaga",
+	"isPlayed":false
+},
+
+{
+	"name":"leonardoDaVinci",
+	"isPlayed":false
+},
+
+{
+	"name":"picoDellaMirandola",
+	"isPlayed":false
+},
+
+{
+	"name":"sistoIV",
+	"isPlayed":false
+},
+
+{
+	"name":"lucreziaBorgia",
+	"isPlayed":false
+},
+
+{
+	"name":"sigismondoMalatesta",
+	"isPlayed":false
+},
+
+{
+	"name":"lorenzoDeMedici",
+	"isPlayed":false
+},
+
+{
+	"name":"ludovicoIlMoro",
+	"isPlayed":false
+},
+
+{
+	"name":"cesareBorgia",
+	"isPlayed":false
+},
+
+{
+	"name":"santaRita",
+	"isPlayed":false
+},
+
+{
+	"name":"cosimoDeMedici",
+	"isPlayed":false
+},
+
+{
+	"name":"bartolomeoColleoni",
+	"isPlayed":false
+}
+]

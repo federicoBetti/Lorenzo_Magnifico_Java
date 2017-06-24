@@ -133,9 +133,10 @@ public final class Board {
         fillHashMap();
 
         configuration.loadDevelopmentCards(getDeckCard());
+        configuration.loadLeaderCard(decks);
         //configuration.loadBonusTile(getDeckCard());
         //configuration.loadExcommunicationTiles(getDeckCard());
-        //configuration.loadLeaderCard();
+
 
         round = 0;
         period = 0;
