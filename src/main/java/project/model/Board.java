@@ -142,7 +142,14 @@ public final class Board {
     }
 
     public Board() {
-        //ui construcutor
+         Tower[][] towers = new Tower[0][0];
+         CouncilPrivilege[] councilPrivileges = new CouncilPrivilege[0];
+         List<Harvester> harvesterZone = new ArrayList<>();
+         List<Production> productionZone = new ArrayList<>();
+         Market[] marketZone = new Market[0];
+         List<Council> councilZone = new ArrayList<>();
+         ExcommunicationZone[] excommunicationZone = new ExcommunicationZone[3];
+         Turn turn = new Turn();
     }
 
 

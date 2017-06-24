@@ -96,8 +96,10 @@ public abstract class AbstractController {
                 return imageFamiltMember.get(1).getImage();
             case Constants.FAMILY_MEMBER_COLOUR_WHITE:
                 return imageFamiltMember.get(2).getImage();
-            default:
+            case Constants.FAMILY_MEMBER_COLOUR_ORANGE:
                 return imageFamiltMember.get(3).getImage();
+            default:
+                return null;
 
         }
     }
@@ -211,7 +213,6 @@ public abstract class AbstractController {
                         modifyFamiliar(guiTower, serverTower.getFamiliarOnThisPosition().toString());
                     }
                 }
-                System.out.println("fatto update una posizione");
             }
         }
 

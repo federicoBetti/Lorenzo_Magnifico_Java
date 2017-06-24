@@ -17,8 +17,13 @@ public abstract class Updates extends BonusInteraction {
     public Updates(String nicknameCurrentPlayer){
         this.nicknameCurrentPlayer = nicknameCurrentPlayer;
     }
+
     public void doUpdate(Board board){}
-    public void doUpdate( PersonalBoard personalBoard ){}
+
+    public PersonalBoard doUpdate(){
+        return null;
+    }
+
     public void doUpdate(Score score){}
 
     public void doUpdate(FamilyMember[] familyMembersUi){}
