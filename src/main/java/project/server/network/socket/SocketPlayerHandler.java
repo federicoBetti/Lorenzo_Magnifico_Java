@@ -1,5 +1,6 @@
 package project.server.network.socket;
 
+import project.configurations.Configuration;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
@@ -237,7 +238,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
-        //todo
+        try {
+             objectOutputStream.writeObject(Constants.MATCH_STARTED);
+             objectOutputStream.writeObject(roomPlayers);
+             objectOutputStream.writeObject(familyColour);
+             objectOutputStream.flush();
+             objectOutputStream.reset();
+        } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 
 

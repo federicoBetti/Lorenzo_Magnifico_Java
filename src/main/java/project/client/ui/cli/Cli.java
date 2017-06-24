@@ -73,7 +73,7 @@ public class Cli extends AbstractUI {
     }
 
     public void cantDoAction(){
-        //todo
+        context.cantDoAction();
     }
 
     @Override
@@ -261,7 +261,7 @@ public class Cli extends AbstractUI {
     }
 
     public void chooseHarversterParameters(String lineFromKeyBoard) {
-
+        System.out.println("QUI");
         try {
             context.checkValidInput(lineFromKeyBoard);
         } catch (InputException e) {
@@ -437,7 +437,7 @@ public class Cli extends AbstractUI {
 
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
-        //todo
+        context = new MatchStartedContext(this);
     }
 }
 

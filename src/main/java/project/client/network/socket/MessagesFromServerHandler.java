@@ -24,7 +24,9 @@ public class MessagesFromServerHandler {
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: loginSucceded );
         map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
+        map.put(Constants.MATCH_STARTED, this:: matchStarted );
         //updates
+        map.put(Constants.PERSONAL_BOARD_UPDATE, this::personalBoardUpdate);
         map.put(Constants.SCORE_UPDATE, this:: scoreUpdate );
         map.put(Constants.UPDATE, this:: personalBoardUpdate );
         map.put(Constants.FAMILY_MEMBER_UPDATE, this:: familyMemberUpdate );
@@ -39,6 +41,10 @@ public class MessagesFromServerHandler {
         map.put(Constants.OK_OR_NO, this::actionOk );
         map.put(Constants.NICKNAME_USED, this:: nicknameAlreadyUsed );
         map.put(Constants.TIMER_TURN_DELAYED, this:: timerTurnDelayed );
+    }
+
+    private void matchStarted() {
+        client.matchStarted();
     }
 
     private void timerTurnDelayed() {
@@ -84,8 +90,7 @@ public class MessagesFromServerHandler {
     }
 
     private void cantDoAction() throws IOException, ClassNotFoundException {
-        //todo farla passare per il client setter e fargli fare questo nella ui: stamapre messaggio generale non posso fare azione
-        waitingForNewInteraction();
+        client.cantDoAction();
     }
 
     private void boardUpdate() throws IOException, ClassNotFoundException {
@@ -108,9 +113,6 @@ public class MessagesFromServerHandler {
         client.takeBonusCard();
     }
 
-    private void waitingForNewInteraction() throws IOException, ClassNotFoundException {
-        client.waitingForTheNewInteraction();
-    }
 
     public void handleMessage(String message) throws IOException, ClassNotFoundException {
         contextCreator = map.get(message);

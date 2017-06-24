@@ -239,7 +239,7 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     protected void goToMarket(int position, FamilyMember familyM) throws CantDoActionException {
-        Position[] marketZone = getPosition(Constants.MARKET);
+        Position[] marketZone = room.getBoard().getMarketZone();
         boolean canGoToMarket = checkFunctions.checkPosition(position,marketZone,familyM);
 
         if (canGoToMarket)
@@ -333,7 +333,7 @@ public abstract class PlayerHandler extends Player {
     }
 
 
-    private Position[] getPosition(String towerColor) {
+    private Tower[] getPosition(String towerColor) {
         return room.getBoard().getTrueArrayList(towerColor);
     }
 

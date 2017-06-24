@@ -12,7 +12,6 @@ import java.util.Map;
  * Created by raffaelebongo on 05/06/17.
  */
 public class MarketContext extends AbstractContext {
-    Cli cli;
 
     public MarketContext( Cli cli ){
         super(cli);
@@ -42,14 +41,14 @@ public class MarketContext extends AbstractContext {
 
         if( parameters[0].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
             throw new InputException();
-        if (Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3 )
-            throw new InputException();
 
         checkFamilyMemberColour(parameters[1]);
     }
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
+        System.out.println("QUIiiiiii");
         cli.chooseMarketActionParameters(action);
+        System.out.println("passo market");
     }
 }
