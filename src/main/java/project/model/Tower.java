@@ -26,6 +26,7 @@ public class Tower extends Position implements Serializable{
 
 
     public Tower(String colour, int diceValueOfhisFloor, int towerNumber, TrisIE trisIE ) {
+        super();
         this.colour = colour;
         this.diceValueOfThisFloor = diceValueOfhisFloor;
 

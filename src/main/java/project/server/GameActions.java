@@ -333,8 +333,10 @@ public class GameActions {
 
     private void clearSinglePosition(Position position) {
         position.setOccupied(false);
-        position.getFamiliarOnThisPosition().setPlayed(false);
-        position.setFamiliarOnThisPosition(null);
+            if (position.getFamiliarOnThisPosition() != null) {
+                position.getFamiliarOnThisPosition().setPlayed(false);
+                position.setFamiliarOnThisPosition(null);
+            }
     }
 
     void refactorTowers() {
