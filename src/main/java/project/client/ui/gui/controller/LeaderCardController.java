@@ -52,7 +52,7 @@ public class LeaderCardController extends AbstractController {
     public Button goBackButton;
     private ArrayList<ImageView> arrayOfLeaderCard;
     private boolean[] leaderCardSelected;
-    private boolean[] leaderCardPresenti;
+    private boolean[] leaderCardPresent;
 
 
     DropShadow borderGlow= new DropShadow();
@@ -93,8 +93,6 @@ public class LeaderCardController extends AbstractController {
 
     public void initialize(){
         super.initialize();
-        imageLeaderCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/leaders.jpg"))));
-        imageLeaderCard1.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/leaders.jpg"))));
         arrayOfLeaderCard = new ArrayList<>();
         arrayOfLeaderCard.add(imageLeaderCard0);
         arrayOfLeaderCard.add(imageLeaderCard1);
@@ -102,7 +100,7 @@ public class LeaderCardController extends AbstractController {
         arrayOfLeaderCard.add(imageLeaderCard3);
         arrayOfLeaderCard.add(imageLeaderCard4);
         leaderCardSelected = new boolean[5];
-        leaderCardPresenti = new boolean[5];
+        leaderCardPresent = new boolean[5];
 
     }
 
@@ -180,17 +178,18 @@ public class LeaderCardController extends AbstractController {
         for (int i = 0; i<leaderCards.size(); i++){
             LeaderCard l = leaderCards.get(i);
             if (l == null){
-                if (leaderCardPresenti[i]){
+                if (leaderCardPresent[i]){
                     ImageView imageView = arrayOfLeaderCard.get(i);
                     imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/back.png"))));
-                    leaderCardPresenti[i] = false;
+                    leaderCardPresent[i] = false;
                 }
             }
             else {
-                if (!leaderCardPresenti[i]){
+                if (!leaderCardPresent[i]){
                     ImageView imageView = arrayOfLeaderCard.get(i);
-                     imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/" + l.getName() + ".png"))));
-                     leaderCardPresenti[i] = true;
+                     imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCards/" + l.getName() + ".png"))));
+
+                     leaderCardPresent[i] = true;
                 }
             }
         }

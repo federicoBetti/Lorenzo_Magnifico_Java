@@ -229,12 +229,14 @@ public class MainController {
     }
 
     public void boardUpdate() {
-        Board board = clientSetter.getUiBoard();
-        productionController.updatePosition(board.getProductionZone());
-        harvesterController.updatePosition(board.getHarvesterZone());
-        towerController.updatePosition(board.getAllTowers());
-        generalGameController.updatePosition(board.getAllTowers());
-        generalGameController.updateTurn(board.getTurn().getPlayerTurn());
+        Platform.runLater(() -> {
+            Board board = clientSetter.getUiBoard();
+            productionController.updatePosition(board.getProductionZone());
+            harvesterController.updatePosition(board.getHarvesterZone());
+            towerController.updatePosition(board.getAllTowers());
+            generalGameController.updatePosition(board.getAllTowers());
+            generalGameController.updateTurn(board.getTurn().getPlayerTurn());
+        });
     }
 
     public void scoreUpdate() {
@@ -408,5 +410,14 @@ public class MainController {
     public void startTurn() {
         setMyTurn(true);
         loginBuilder.writeOnMyChat("it's your turn, you can play!");
+    }
+
+    public void nicknameAlreadyUsed() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.popUp("nickname already used");
+            }
+        });
     }
 }

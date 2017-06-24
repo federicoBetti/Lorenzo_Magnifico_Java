@@ -140,6 +140,7 @@ public class LoginBuilder extends Application {
         System.out.println("finita inizializzazione");
     }
 
+  /*
     private void initializeDraft() {
         try {
             // Configuration person overview.
@@ -149,12 +150,12 @@ public class LoginBuilder extends Application {
 
             this.draftController = loader.getController();
             draftController.setMainController(mainController);
-            draftController.setLoginBuilder(this);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    */
 
     private void inizializzaGeneralMainGame() {
         try {
@@ -450,7 +451,6 @@ public class LoginBuilder extends Application {
             // Set the person into the controller.
             DraftController controller = loader.getController();
             controller.setMainController(mainController);
-            controller.setLoginBuilder(this);
             controller.setLabel(labelMessage);
             controller.uploadImages(leaderName);
             System.out.println("sto per disegnare lo stage");
@@ -465,6 +465,37 @@ public class LoginBuilder extends Application {
         }
     }
 
+
+    public void popUp(String s) {
+
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/error/popUp.fxml"));
+            AnchorPane popUp = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Warning");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(popUp);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            PopUpController controller = loader.getController();
+            controller.setLabel(s);
+            System.out.println("sto per disegnare lo stage");
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return ;
+        }
+    }
 
     public void setLastScene(SceneType lastScene) {
         this.lastScene = lastScene;
@@ -575,6 +606,7 @@ public class LoginBuilder extends Application {
         stringBuffer.append(s);
         mainController.updateChat(stringBuffer);
     }
+
 }
 
 
