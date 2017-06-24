@@ -56,6 +56,10 @@ public abstract class AbstractClient implements Serializable{
 
     }
 
+    public abstract void matchStarted();
+
+    public abstract void cantDoAction();
+
 
     //da server a client
 }

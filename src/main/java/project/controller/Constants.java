@@ -109,6 +109,7 @@ public class Constants {
     public static final String TO_EVERYONE = "everyone";
     public static final String UPDATE = "update";
     public static final int LEADER_CARD_NUMBER_PER_PLAYER = 5;
+    public static final String MATCH_STARTED = "match-started";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

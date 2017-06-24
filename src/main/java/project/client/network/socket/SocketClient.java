@@ -301,6 +301,26 @@ public class SocketClient extends AbstractClient {
         clientSetter.boardUpdate(update);
     }
 
+    @Override
+    public void matchStarted() {
+        int roomPlayersNumber = 0;
+        try {
+            roomPlayersNumber = (int)objectInputStream.readObject();
+            String playerFamilyColour = (String)objectInputStream.readObject();
+            clientSetter.matchStarted(roomPlayersNumber, playerFamilyColour);
+
+        } catch (IOException e) {
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+    }
+
+    @Override
+    public void cantDoAction() {
+        clientSetter.cantDoAction();
+    }
+
     private void createWaitingForYourTurnContext() {
         clientSetter.waitingForYourTurn();
     }

@@ -5,6 +5,7 @@ import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
+import project.controller.supportfunctions.BasicSupportFunctions;
 import project.messages.updatesmessages.TowersUpdate;
 import project.model.Board;
 import project.model.Player;
@@ -122,6 +123,8 @@ public class Room {
         List<PlayerHandler> playerInTheMatch = new ArrayList<>();
         for (Map.Entry<String, PlayerHandler> player : nicknamePlayersMap.entrySet()) {
             if ( player.getValue().isOn() ){
+                BasicSupportFunctions supportFunctions = new BasicSupportFunctions(player.getValue());
+                playerAllSupportFunctionsMap.put(player.getValue(), supportFunctions);
                 playerInTheMatch.add(player.getValue());
                 player.getValue().setFamilyColour(colors[i]);
                 player.getValue().setFamilyColourInFamilyMembers();

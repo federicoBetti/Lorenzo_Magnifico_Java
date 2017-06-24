@@ -364,6 +364,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    @Override
+    public void matchStarted() {
+
+    }
+
 
     @Override
     public int getScelta() throws RemoteException {

@@ -75,6 +75,10 @@ public abstract class AbstractContext {
             mainContextMethod(action);
     }
 
+    public void cantDoAction(){
+        pRed.println("Error, action not avaiable. Please try with another input");
+    }
+
     @FunctionalInterface
     public interface Actioner{
          void action() throws InputException, IOException;

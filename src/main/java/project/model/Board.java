@@ -161,6 +161,7 @@ public final class Board {
 
     public void setMarketZone(Market[] marketZone) {
         this.marketZone = marketZone;
+
     }
 
     public int[] getVictoryPointsInFaithTrack() {

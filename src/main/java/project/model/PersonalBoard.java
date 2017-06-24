@@ -48,8 +48,11 @@ public class PersonalBoard implements Serializable{
     private List<LeaderCard> myLeaderCard;
 
     public PersonalBoard(){
+    	bonusOnActions = new Bonus();
     	territories = new ArrayList<>();
     	buildings = new ArrayList<>();
+    	characters = new ArrayList<>();
+    	ventures = new ArrayList<>();
     	myLeaderCard = new ArrayList<>();
 	}
 

@@ -10,13 +10,15 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     @Override
     public boolean checkPosition(int position, Position[] zone, FamilyMember familyMember) {
+
         return !zone[position].isOccupied() && nobodyOfMyFamily(zone, familyMember.getFamilyColour());
     }
 
     private boolean nobodyOfMyFamily(Position[] zone, String familyColour){
         for (int i=0;i<zone.length;i++){
-            if (zone[i].getFamiliarOnThisPosition().getFamilyColour() == familyColour)
-                return false;
+            if ( zone[i].getFamiliarOnThisPosition() != null )
+                if (zone[i].getFamiliarOnThisPosition().getFamilyColour().equals(familyColour))
+                    return false;
         }
         return true;
     }

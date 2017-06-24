@@ -153,8 +153,9 @@ public class ClientSetter {
     }
 
     public void skipTurn() {
-        client.skipTurn();
-        //client.scelta();
+        //client.skipTurn();
+        //todo l ho modificato per testare scelta
+        client.scelta();
     }
 
 
