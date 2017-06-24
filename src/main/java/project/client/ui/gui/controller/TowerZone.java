@@ -7,53 +7,55 @@ import javafx.scene.image.ImageView;
 /**
  * Created by federico on 18/06/17.
  */
-public class TowerZone {
-    ImageView card;
-    ImageView familiar;
-    String cardName;
-    String familiarName;
+class TowerZone {
+    private ImageView card;
+    private ImageView familiar;
+    private String cardName;
+    private String familiarName;
 
-    public TowerZone(ImageView card, ImageView familiar){
+    TowerZone(ImageView card, ImageView familiar){
         this.card = card;
         this.familiar = familiar;
+        cardName = null;
+        familiarName = null;
     }
 
-    public String getCardName() {
+    String getCardName() {
         return cardName;
     }
 
-    public String getFamiliarName() {
+    String getFamiliarName() {
         return familiarName;
     }
 
-    public void setCardName(String cardName) {
+    void setCardName(String cardName) {
         this.cardName = cardName;
     }
 
-    public void setCardImage(String cardName) {
+    void setCardImage(String cardName) {
         if (cardName == null)
             card.setImage(null);
         else
-            card.setImage(new Image(String.valueOf(getClass().getResource("/images/card/" + cardName +".png"))));
+            card.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + cardName +".png"))));
     }
 
-    public void setFamiliarName(String familiarName) {
+    void setFamiliarName(String familiarName) {
         this.familiarName = familiarName;
     }
 
-    public void setFamiliarImage(String s) {
+    void setFamiliarImage(String s) {
         if (familiarName == null)
             familiar.setImage(null);
         else
-            familiar.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + cardName +".png"))));
+            familiar.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + s +".png"))));
 
     }
 
-    public ImageView getFamiliarImage() {
+    ImageView getFamiliarImage() {
         return familiar;
     }
 
-    public void setFamiliarImage(Image trueFamiliarImage) {
+    void setFamiliarImage(Image trueFamiliarImage) {
         familiar.setImage(trueFamiliarImage);
     }
 }

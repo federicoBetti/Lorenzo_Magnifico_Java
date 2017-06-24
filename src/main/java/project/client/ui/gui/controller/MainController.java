@@ -40,6 +40,8 @@ public class MainController {
     private BlockingQueue<String> stringQueue;
     private boolean myTurn;
 
+    private Board board;
+
 
     private MainController(){
         controllers = new ArrayList<>();
@@ -201,7 +203,17 @@ public class MainController {
     }
 
     public void goToMarket(int positionSelected, String familiarChosen) {
+
+        System.out.println("ho fatto partire il nuovo thread per richiesta mercato con parametri" + positionSelected +"  "+familiarChosen);
         clientSetter.marketAction(positionSelected,familiarChosen);
+/*
+        Runnable a = new Runnable() {
+            @Override
+            public void run() {
+            }
+        };
+        new Thread(a).start();
+        */
     }
 
     public void takeNickname() {
@@ -213,29 +225,31 @@ public class MainController {
     
 
     public void personalBoardUpdate(){
-        PersonalBoard personalBoard = clientSetter.getUiPersonalBoard();
-        int coins = personalBoard.getCoins();
-        int wood = personalBoard.getWood();
-        int stone = personalBoard.getStone();
-        int servants = personalBoard.getServants();
-        for (AbstractController c: controllers){
-            c.updateResources(coins,wood,stone,servants);
-        }
-        harvesterController.updateCards(personalBoard.getTerritories());
-        productionController.updateCards(personalBoard.getBuildings());
-        leaderCardController.updateCards(personalBoard.getMyLeaderCard());
-        personalBoardController.update(personalBoard);
-
+        Platform.runLater(() -> {
+            PersonalBoard personalBoard = clientSetter.getUiPersonalBoard();
+            int coins = personalBoard.getCoins();
+            int wood = personalBoard.getWood();
+            int stone = personalBoard.getStone();
+            int servants = personalBoard.getServants();
+            for (AbstractController c: controllers){
+                c.updateResources(coins,wood,stone,servants);
+            }
+            harvesterController.updateCards(personalBoard.getTerritories());
+            productionController.updateCards(personalBoard.getBuildings());
+            leaderCardController.updateCards(personalBoard.getMyLeaderCard());
+            personalBoardController.update(personalBoard);
+        });
     }
 
     public void boardUpdate() {
+        board = clientSetter.getUiBoard();
         Platform.runLater(() -> {
-            Board board = clientSetter.getUiBoard();
-            productionController.updatePosition(board.getProductionZone());
-            harvesterController.updatePosition(board.getHarvesterZone());
+            //productionController.updatePosition(board.getProductionZone());
+            //harvesterController.updatePosition(board.getHarvesterZone());
+            marketController.updatePosition(board.getMarketZone());
             towerController.updatePosition(board.getAllTowers());
             generalGameController.updatePosition(board.getAllTowers());
-            generalGameController.updateTurn(board.getTurn().getPlayerTurn());
+            //generalGameController.updateTurn(board.getTurn().getPlayerTurn());
         });
     }
 
@@ -278,7 +292,12 @@ public class MainController {
     }
 
     public void endTurnContext() {
-        leaderCardController.endTurnContext();
+        Platform.runLater(() -> {
+            System.out.println("metto il contesto di fine turno");
+            loginBuilder.setScene(SceneType.LEADER,SceneType.MAIN);
+            leaderCardController.endTurnContext();
+
+        });
     }
 
     public void sendChat(String s) {
@@ -401,15 +420,20 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                System.out.println("comincio inizializzo main game");
                 loginBuilder.initalizeMainGame();
                 loginBuilder.startMainGame();
+                System.out.println("fine inizializzazione");
             }
         });
     }
 
     public void startTurn() {
         setMyTurn(true);
-        loginBuilder.writeOnMyChat("it's your turn, you can play!");
+        Platform.runLater(() -> {
+            loginBuilder.writeOnMyChat("it's your turn, you can play!");
+            loginBuilder.showPrimo();
+        });
     }
 
     public void nicknameAlreadyUsed() {

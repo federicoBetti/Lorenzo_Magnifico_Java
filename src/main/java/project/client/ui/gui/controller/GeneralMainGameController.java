@@ -190,6 +190,42 @@ public class GeneralMainGameController extends AbstractController{
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
     @FXML
     public void initialize(){
+        super.initialize();
+        // da eliminare
+
+
+        
+          ImageView familiarGreen0 = new ImageView();
+        
+          ImageView familiarGreen1 = new ImageView();
+        
+          ImageView familiarGreen2 = new ImageView();
+        
+          ImageView familiarGreen3 = new ImageView();
+        
+          ImageView familiarBlue0 = new ImageView();
+        
+          ImageView familiarBlue1 = new ImageView();
+        
+          ImageView familiarBlue2 = new ImageView();
+        
+          ImageView familiarBlue3 = new ImageView();
+        
+          ImageView familiarYellow0 = new ImageView();
+        
+          ImageView familiarYellow1 = new ImageView();
+        
+          ImageView familiarYellow2 = new ImageView();
+        
+          ImageView familiarYellow3 = new ImageView();
+        
+          ImageView familiarPurple0 = new ImageView();
+        
+          ImageView familiarPurple1 = new ImageView();
+        
+          ImageView familiarPurple2 = new ImageView();
+        
+          ImageView familiarPurple3 = new ImageView();
         faithPointsArray.add(faithPoint0);
         faithPointsArray.add(faithPoint1);
         faithPointsArray.add(faithPoint2);

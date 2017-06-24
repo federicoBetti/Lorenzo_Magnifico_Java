@@ -20,10 +20,6 @@ import java.util.List;
 public class LeaderCardController extends AbstractController {
 
     @FXML
-    protected Button submit;
-    @FXML
-    private Button mainGameButton;
-    @FXML
     private Button personalBoard;
 
     @FXML
@@ -31,13 +27,6 @@ public class LeaderCardController extends AbstractController {
 
 
 
-    public Label numberOfCoins;
-
-    public Label numberOfWood;
-
-    public Label numberOfStone;
-
-    public Label numberOfServants;
 
 
     public ImageView LorenzoMagnifico;
@@ -85,10 +74,6 @@ public class LeaderCardController extends AbstractController {
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
 
-        updateOneResource(coins,numberOfCoins);
-        updateOneResource(wood,numberOfWood);
-        updateOneResource(stone,numberOfStone);
-        updateOneResource(servants,numberOfServants);
     }
 
     public void initialize(){
@@ -202,7 +187,6 @@ public class LeaderCardController extends AbstractController {
     public void endTurnContext() {
         goBackButton.setText("end turn");
         goBackButton.setOnAction(event -> skipTurn());
-        mainGameButton.setDisable(true);
         personalBoard.setDisable(true);
     }
 
@@ -210,7 +194,6 @@ public class LeaderCardController extends AbstractController {
         mainController.skipTurn();
         goBackButton.setText("go back");
         goBackButton.setOnAction(event -> goBack());
-        mainGameButton.setDisable(false);
         personalBoard.setDisable(false);
     }
 }

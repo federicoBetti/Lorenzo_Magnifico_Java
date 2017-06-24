@@ -140,7 +140,8 @@ public class MarketController extends AbstractController {
     }
 
     public void goToMarket() {
-        mainController.goToMarket(positionSelected,familiarChosen);
+        if (positionSelected!= -1)
+            mainController.goToMarket(positionSelected,familiarChosen);
     }
 
 
@@ -174,7 +175,7 @@ public class MarketController extends AbstractController {
     }
 
     public void updatePosition(Market[] markets){
-        List<Market> markets1 = new ArrayList<>(markets.length);
+        List<Market> markets1 = new ArrayList<>();
         for (Market m: markets){
             markets1.add(m);
         }

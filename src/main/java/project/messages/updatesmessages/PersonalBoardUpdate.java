@@ -17,6 +17,14 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
     public PersonalBoardUpdate(PlayerHandler player, String nickname ){
         super(nickname);
         personalBoard = player.getPersonalBoardReference();
+        int coins = personalBoard.getCoins();
+        System.out.println(coins);
+        int wood = personalBoard.getWood();
+        System.out.println(wood);
+        int stone = personalBoard.getStone();
+        System.out.println(stone);
+        int servants = personalBoard.getServants();
+        System.out.println(servants);
     }
 
     @Override
@@ -25,8 +33,8 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public void doUpdate(PersonalBoard personalBoard) {
-        personalBoard = this.personalBoard;
+    public PersonalBoard doUpdate() {
+        return personalBoard;
     }
 
     @Override

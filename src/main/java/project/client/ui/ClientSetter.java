@@ -210,8 +210,16 @@ public class ClientSetter {
     }
 
     public void personalBoardUpdate(Updates update) {
-        update.doUpdate(uiPersonalBoard);
+        uiPersonalBoard = update.doUpdate();
         ui.personalBoardUpdate(update);
+        int coins = uiPersonalBoard.getCoins();
+        System.out.println(coins);
+        int wood = uiPersonalBoard.getWood();
+        System.out.println(wood);
+        int stone = uiPersonalBoard.getStone();
+        System.out.println(stone);
+        int servants = uiPersonalBoard.getServants();
+        System.out.println(servants);
     }
 
     public void familyMemberUpdate(Updates update) {
