@@ -33,19 +33,25 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
     public String toScreen() {
         return  "The current player's personal board has updated:\n" +
                 "Building Cards: \n" + createCardsString(personalBoard.getBuildings())+
-                "Character Cards: \n" + createCardsString(personalBoard.getCharacters()) +
-                "Venture Cards: \n" + createCardsString(personalBoard.getVentures()) +
-                "Territory Cards: \n" + createCardsString(personalBoard.getTerritories()) +
-                "Wood: " + String.valueOf(personalBoard.getWood()) + "\n" +
+                "\nCharacter Cards: \n" + createCardsString(personalBoard.getCharacters()) +
+                "\nVenture Cards: \n" + createCardsString(personalBoard.getVentures()) +
+                "\nTerritory Cards: \n" + createCardsString(personalBoard.getTerritories()) +
+                "\nWood: " + String.valueOf(personalBoard.getWood()) + "\n" +
                 "Servants: " + String.valueOf(personalBoard.getServants()) + "\n" +
                 "Stone: " + String.valueOf(personalBoard.getStone()) + "\n" +
                 "Coins: " + String.valueOf(personalBoard.getCoins());
     }
 
     public String createCardsString(List<? extends DevelopmentCard> cards ){
-        String res = null;
+
+        if ( cards.size() == 0 )
+            return " ";
+
+        int i = 0;
+        String res = i + ") ";
         for ( DevelopmentCard card : cards ) {
-            res = res +"                " + card.getName() +"\n";
+            res += "                " + card.getName() +"\n";
+            i++;
         }
         return res;
     }

@@ -23,6 +23,8 @@ public class Cli extends AbstractUI {
 
     ClientSetter clientSetter; //all the operation have to pass across this class
     AbstractContext context;
+    private int numberOfPlayers;
+    private String playerColor;
 
 
     public Cli(ClientSetter clientSetter) {
@@ -86,6 +88,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(input);
         } catch (InputException e) {
             context.printHelp();
+            return;
         }
         clientSetter.sendChoicePe(Integer.parseInt(input));
     }
@@ -251,6 +254,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(lineFromKeyBoard);
         } catch (InputException e) {
             context.printHelp();
+            return;
         }
         String[] parameters = lineFromKeyBoard.split("-");
         List<String> buildingCards = new ArrayList<>();
@@ -266,6 +270,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(lineFromKeyBoard);
         } catch (InputException e) {
             context.printHelp();
+            return;
         }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.harvesterAction(parameters[0], Integer.parseInt(parameters[1]) );
@@ -277,7 +282,9 @@ public class Cli extends AbstractUI {
             context.checkValidInput(lineFromKeyBoard);
         } catch (InputException e) {
             context.printHelp();
+            return;
         }
+
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.marketAction(Integer.parseInt(parameters[0]), parameters[1]);
     }
@@ -288,6 +295,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(lineFromKeyBoard);
         } catch (InputException e) {
             context.printHelp();
+            return;
         }
         String[] parameters = lineFromKeyBoard.split("-");
         clientSetter.councilAction(Integer.parseInt(parameters[0]), parameters[1]);
@@ -307,6 +315,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(action);
         } catch (InputException e) {
             context.printHelp();
+            return;
         }
         if ( action.equals("yes"))
             yesOrNo = true;
@@ -320,6 +329,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(payment);
         } catch (InputException e) {
             context.printHelp();
+            return;
         }
         clientSetter.sendChoicePaymentVc(Integer.parseInt(payment));
     }
@@ -438,6 +448,16 @@ public class Cli extends AbstractUI {
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         context = new MatchStartedContext(this);
+        numberOfPlayers = roomPlayers;
+        playerColor = familyColour;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public String getPlayerColor() {
+        return playerColor;
     }
 }
 

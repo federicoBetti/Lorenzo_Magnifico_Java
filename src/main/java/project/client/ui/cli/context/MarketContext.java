@@ -36,19 +36,28 @@ public class MarketContext extends AbstractContext {
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length == 2 ))
+        if(!( parameters.length == 2 )) {
             throw new InputException();
+        }
 
-        if( parameters[0].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
+        if( !(parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))) {
             throw new InputException();
+        }
+        if( cli.getNumberOfPlayers() == 2 ) {
+            if ((Integer.parseInt(parameters[0]) > 1)) {
+                throw new InputException();
+            }
+        }
+
+        else if ( cli.getNumberOfPlayers() > 2 )
+            if( Integer.parseInt(parameters[0]) > 3 )
+                throw new InputException();
 
         checkFamilyMemberColour(parameters[1]);
     }
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-        System.out.println("QUIiiiiii");
         cli.chooseMarketActionParameters(action);
-        System.out.println("passo market");
     }
 }

@@ -34,7 +34,7 @@ public class AfterMainActionContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        pRed.println("The available actions are:\n");
+        pRed.println("You have done successfully your main action. The currents available actions are:\n");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             pYellow.println(entry.getKey());
     }
