@@ -1,4 +1,4 @@
-{
+[{
 	"priviledgeNumber":0,
 
 	"trisIEL":
@@ -7,7 +7,7 @@
 		"parameter":" ",
 		"quantity":1
 	}
-}
+},
 
 {
 	"priviledgeNumber":1,
@@ -18,7 +18,7 @@
 		"parameter":"servant",
 		"quantity":2
 	}
-}
+},
 
 {
 	"priviledgeNumber":2,
@@ -29,7 +29,7 @@
 		"parameter":"coin",
 		"quantity":2
 	}
-}
+},
 
 {
 	"priviledgeNumber":3,
@@ -40,7 +40,7 @@
 		"parameter":"militaryPoint",
 		"quantity":2
 	}
-}
+},
 
 {
 	"priviledgeNumber":4,
@@ -52,3 +52,4 @@
 		"quantity":1
 	}
 }
+	]

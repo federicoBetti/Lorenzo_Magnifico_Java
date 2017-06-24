@@ -1,6 +1,7 @@
 package project.model;
 
 
+import com.google.gson.Gson;
 import project.configurations.Configuration;
 import project.controller.Constants;
 
@@ -109,11 +110,11 @@ public final class Board {
         else {
             marketZone = new Market[Constants.TWO_PLAYERS];
             marketZone = new Market[Constants.FOUR_PLAYERS];
-            configuration.loadMarketBonus(this, "/fileJson/marketZone2.json");
+           configuration.loadMarketBonus(this, "/fileJson/marketZone2.json");
         }
         if (numberOfPlayer > Constants.TWO_PLAYERS){
             harvesterZone = new ArrayList<>();
-            productionZone = new ArrayList<>();
+           productionZone = new ArrayList<>();
         }
         else {
             harvesterZone = new ArrayList<>(1);
@@ -127,15 +128,17 @@ public final class Board {
 
         this.towers = new Tower[4][4];
         configuration.loadBonusTower(this);
+
         this.zones = new HashMap<>();
         fillHashMap();
 
         configuration.loadDevelopmentCards(getDeckCard());
         //configuration.loadBonusTile(getDeckCard());
         //configuration.loadExcommunicationTiles(getDeckCard());
+        //configuration.loadLeaderCard();
 
-        round = 1;
-        period = 1;
+        round = 0;
+        period = 0;
     }
 
     public Board() {
@@ -267,11 +270,11 @@ public final class Board {
         this.marketZone[positionNumber] = market;
     }
 
-    public void setCouncilPrivilege(int priviledgeNumber, CouncilPrivilege councilPrivilege) {
-        this.councilPrivileges[priviledgeNumber] = councilPrivilege;
+    public void setCouncilPrivileges(CouncilPrivilege[] councilPrivileges) {
+        this.councilPrivileges = councilPrivileges;
     }
 
-    public void setTowerInTowers( int towerNumber, int floor, Tower tower ){
+    public void setTowerInTowers(int towerNumber, int floor, Tower tower ){
         this.towers[towerNumber][floor] = tower;
     }
 

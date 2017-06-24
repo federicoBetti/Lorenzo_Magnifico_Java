@@ -1,4 +1,4 @@
-
+[
 {
 	"position":0,
 
@@ -8,7 +8,7 @@
 		"parameter":"coin",
 		"quantity":5
 	}
-}
+},
 
 {
 	"position":1,
@@ -19,7 +19,7 @@
 		"parameter":"servant",
 		"quantity":5
 	}
-}
+},
 
 {
 	"position":2,
@@ -30,7 +30,7 @@
 		"parameter":" ",
 		"quantity":0
 	}
-}
+},
 
 {
 	"position":3,
@@ -42,3 +42,4 @@
 		"quantity":2
 	}
 }
+]

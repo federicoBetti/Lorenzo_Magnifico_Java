@@ -15,6 +15,7 @@ public class TowerFromJson {
 
     private int towerNumber;
 
+
     public int getTowerNumber() {
         return towerNumber;
     }

@@ -1,0 +1,175 @@
+[
+  [
+    {
+      "colour": "green",
+      "diceValueOfThisFloor": 1,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 1
+    },
+    {
+      "colour": "green",
+      "diceValueOfThisFloor": 3,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 1
+    },
+    {
+      "colour": "green",
+      "diceValueOfThisFloor": 5,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "wood",
+        "quantity": 1
+      },
+      "towerNumber": 1
+    },
+    {
+      "colour": "green",
+      "diceValueOfThisFloor": 7,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "wood",
+        "quantity": 2
+      },
+      "towerNumber": 1
+    }
+  ],
+  //
+  [
+    {
+      "colour": "blue",
+      "diceValueOfThisFloor": 1,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 2
+    },
+    {
+      "colour": "blue",
+      "diceValueOfThisFloor": 3,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 2
+    },
+    {
+      "colour": "blue",
+      "diceValueOfThisFloor": 5,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "stone",
+        "quantity": 1
+      },
+      "towerNumber": 2
+    },
+    {
+      "colour": "blue",
+      "diceValueOfThisFloor": 7,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "stone",
+        "quantity": 7
+      },
+      "towerNumber": 2
+    }
+  ],
+  [
+    //
+
+    {
+      "colour": "yellow",
+      "diceValueOfThisFloor": 1,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 3
+    },
+    {
+      "colour": "yellow",
+      "diceValueOfThisFloor": 3,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 3
+    },
+    {
+      "colour": "yellow",
+      "diceValueOfThisFloor": 5,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "militaryPoint",
+        "quantity": 1
+      },
+      "towerNumber": 3
+    },
+    {
+      "colour": "yellow",
+      "diceValueOfThisFloor": 7,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "militaryPoint",
+        "quantity": 2
+      },
+      "towerNumber": 3
+    }
+  ],
+  [
+    //
+
+    {
+      "colour": "purple",
+      "diceValueOfThisFloor": 1,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 4
+    },
+    {
+      "colour": "purple",
+      "diceValueOfThisFloor": 3,
+      "trisIE": {
+        "type": " ",
+        "parameter": " ",
+        "quantity": 0
+      },
+      "towerNumber": 4
+    },
+    {
+      "colour": "purple",
+      "diceValueOfThisFloor": 5,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "coin",
+        "quantity": 1
+      },
+      "towerNumber": 4
+    },
+    {
+      "colour": "purple",
+      "diceValueOfThisFloor": 7,
+      "trisIE": {
+        "type": "takeRop",
+        "parameter": "coin",
+        "quantity": 2
+      },
+      "towerNumber": 4
+    }
+  ]
+]

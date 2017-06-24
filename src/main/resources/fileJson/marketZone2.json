@@ -1,4 +1,5 @@
-{
+[
+	{
 	"position":0,
 
 	"trisIE":
@@ -7,9 +8,9 @@
 		"parameter":"coin",
 		"quantity":5
 	}
-}
+},
 
-{
+  {
 	"position":1,
 
 	"trisIE":
@@ -18,4 +19,5 @@
 		"parameter":"servant",
 		"quantity":5
 	}
-}
+  }
+]

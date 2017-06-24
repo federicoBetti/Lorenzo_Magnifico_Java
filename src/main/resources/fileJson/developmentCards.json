@@ -16,8 +16,7 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
-		{"type":" ", "parameter":" ", "quantity":0 }
+		"tris":[
 		]
 	},
 
@@ -111,8 +110,7 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
-		{"type":" ", "parameter":" ", "quantity":0 }
+		"tris":[
 		]
 	},
 
@@ -416,8 +414,8 @@
 			"militaryCost":0
 			},
 
-		"type":"privilege",
-		"parameter":" ",
+		"type":"takeRop",
+		"parameter":"privilege",
 		"quantity":1
 		}
 		]
@@ -2449,8 +2447,8 @@
 				"militaryCost":0
 				},
 
-			"type":"privilege",
-			"parameter":" ",
+			"type":"takeRop",
+			"parameter":"privilege",
 			"quantity":1
 		}]
 	}
@@ -3679,7 +3677,7 @@
 	"immediateEffect":{
 		"tris":[ 
 		{"type":"takeRop", "parameter":"militaryPoint", "quantity":2 },
-		{"type":"production", "parameter":" ", "quantity":1 }
+		{"type":"harvOrProdAct", "parameter":"production", "quantity":1 }
 		]
 	},
 

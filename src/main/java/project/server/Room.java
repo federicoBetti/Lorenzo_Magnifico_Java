@@ -5,6 +5,7 @@ import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
+import project.messages.updatesmessages.TowersUpdate;
 import project.model.Board;
 import project.model.Player;
 import project.server.network.PlayerHandler;
@@ -136,6 +137,7 @@ public class Room {
             //todo gestire
         }
 
+        getGameActions().refactorTowers();
         Collections.shuffle(playerInTheMatch);
         board.getTurn().setPlayerTurn(playerInTheMatch);
 
@@ -165,7 +167,9 @@ public class Room {
         //inizia la partita
         for (PlayerHandler p: playerInTheMatch){
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
+            p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
         }
+
 
         getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
         matchStarted = true;

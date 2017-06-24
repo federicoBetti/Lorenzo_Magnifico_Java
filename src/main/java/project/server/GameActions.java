@@ -337,7 +337,7 @@ public class GameActions {
         position.setFamiliarOnThisPosition(null);
     }
 
-    private void refactorTowers() {
+    void refactorTowers() {
         int j;
         int i;
         int currentPeriod = room.getBoard().getPeriod();

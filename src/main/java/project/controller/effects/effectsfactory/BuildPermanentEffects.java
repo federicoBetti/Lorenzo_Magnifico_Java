@@ -68,6 +68,7 @@ public class BuildPermanentEffects {
                 return new NoImmediateEffectTwoHighestPositionsTower();
                 //TODO
             default:
+                System.out.println("sono entrato nel default permanent");
                 return null;
 
 

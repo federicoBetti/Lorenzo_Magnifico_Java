@@ -38,7 +38,7 @@ public class Player implements Serializable{
     	score = new Score();
 		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
 		try {
-			configuration.loadFamilymembers(this);
+			configuration.loadFamilyMembers(this);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
