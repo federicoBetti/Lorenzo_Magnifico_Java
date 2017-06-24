@@ -29,18 +29,19 @@ public class DevelopmentDeckIterator implements IteratorInterface {
 
     @Override
     public void next( ) {
-        if ( cards < Constants.CARD_FOR_EACH_PERIOD )
-            cards++;
-
-        else if ( period < 2 ){
+        if ( cards == Constants.CARD_FOR_EACH_PERIOD - 1  ) {
             cards = 0;
             period++;
         }
-        else if ( color < Constants.CARD_TYPE_NUMBER ){
+        else {
+            cards++;
+        }
+
+        if ( period == Constants.PERIOD_NUMBER ) {
             color++;
             period = 0;
-            cards = 0;
         }
+
     }
 
     public int getColor() {

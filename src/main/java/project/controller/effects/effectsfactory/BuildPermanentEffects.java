@@ -18,23 +18,27 @@ public class BuildPermanentEffects {
                         return new VictoryPointsForEachPurpleCard(quantity);
                     case"VictoryPointsForEachBlueCard":
                         return new VictoryPointForEachBlueCard(quantity);
-                    case"victoryPoints":
+                    case"victoryPoint":
                         return new AddVicotryPoints(quantity);
-                    case"militaryPoints":
+                    case"militaryPoint":
                         return new AddMilitaryPoints(quantity);
                     case"coin":
                         return  new AddCoin(quantity);
-
+                    case"wood":
+                        return new AddWood(quantity);
+                    case"servant":
+                        return new AddServants(quantity);
+                    case"privilege":
+                        return new UsePrivilege(quantity);
                 }
-            case"privilege":
-               return new UsePrivilege(quantity);
+
 
                 //QUI VA USATO ANCHE IL TOTALCOST PERCHè CI SONO GLI SCAMBI DI RISORSE. LE QUANTITY INDICANO LE RISORSE CHE SI RICEVONO DALLO
                 // SCAMBIO, IL TOTAL COST QUELLO CHE SI SPENDE PER AVERE LE RISORSE
 
             case "exchangeRes": //4 PARAMETRI -> POKER
                 switch( parameter1 ){
-                    case"coinsFor":
+                    case"coinFor":
                         return new ExchangeCoinsFor( quantity, effectCost, parameter2  );
                     case"woodFor":
                         return new ExchangeWoodFor( quantity, effectCost, parameter2 );

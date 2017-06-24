@@ -8,13 +8,13 @@ public class Anagrafic {
     private String name;
     private int period;
     private boolean choicePe;
-    private Object cost;
+    private Object[] cost;
 
     public Object getCost() {
         return cost;
     }
 
-    public void setCost(Object cost) {
+    public void setCost(Object[] cost) {
         this.cost = cost;
     }
 

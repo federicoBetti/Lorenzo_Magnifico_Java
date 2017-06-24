@@ -17,12 +17,8 @@ public class VictoryPointForEachBlueCard implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
-        int i = 0;
-        while ( player.getPersonalBoardReference().getCharacters().get(i) != null ) {
-            i++;
-        }
-
-        player.getScore().setVictoryPoints( player.getScore().getVictoryPoints() + this.quantity*i);
+        int blueCards = player.getPersonalBoardReference().getCharacters().size();
+        player.getScore().setVictoryPoints( player.getScore().getVictoryPoints() + this.quantity*blueCards);
 
         return new OkOrNo();
     }

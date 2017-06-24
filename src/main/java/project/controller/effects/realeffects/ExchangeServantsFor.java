@@ -28,22 +28,22 @@ public class ExchangeServantsFor implements Effects {
             player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - servantsRequired);
 
             switch (resourceRewardered) {
-                case "woods":
+                case "wood":
                     player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
                     break;
-                case "stones":
+                case "stone":
                     player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + resourceEarned);
                     break;
-                case "servants":
+                case "servant":
                     player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + resourceEarned);
                     break;
-                case "victoryPoints":
+                case "victoryPoint":
                     player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + resourceEarned);
                     break;
-                case "faithPoints":
+                case "faithPoint":
                     player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
                     break;
-                case "coins":
+                case "coin":
                     player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + resourceEarned);
                     break;
                 default:

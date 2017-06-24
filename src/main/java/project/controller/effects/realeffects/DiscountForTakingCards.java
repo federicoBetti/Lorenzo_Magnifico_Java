@@ -24,7 +24,7 @@ public class DiscountForTakingCards implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         switch (kindOfCardDiscounted){
-            case"buildings":
+            case"yellow":
                 switch(kindOfReasourceDiscounted) {
                     case "stone":
                         player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().setStoneBonus(player.getPersonalBoardReference().getBonusOnActions().getBuildingsBonus().getStoneBonus() + quantityDiscounted);
@@ -36,7 +36,7 @@ public class DiscountForTakingCards implements Effects {
                         return  null;
                 }
 
-            case"characters":
+            case"blue":
                 player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().setCoinsBonus(player.getPersonalBoardReference().getBonusOnActions().getCharactersBonus().getCoinsBonus() + quantityDiscounted);
                 break;
 

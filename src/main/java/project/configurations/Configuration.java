@@ -17,7 +17,7 @@ import project.server.Server;
 public class Configuration {
 
     Gson gson;
-    CardFromJson cardFromJson;
+    CardFromJson[] cardsFromJson;
     Map< String, BuilderHandler > map;
     BuilderHandler builderHandler;
 
@@ -33,29 +33,33 @@ public class Configuration {
 
 
     public void loadMap(){
-        map.put( Constants.BUILDING_CARD.toString(), this::buildBuildingCard );
-        map.put( Constants.TERRITORY_CARD.toString(), this::buildTerritoryCard);
-        map.put( Constants.CHARACTER_CARD.toString(), this::buildCharacterCard );
-        map.put( Constants.VENTURE_CARD.toString(), this::buildVentureCard );
+        map.put( Constants.BUILDING_CARD, this::buildBuildingCard );
+        map.put( Constants.TERRITORY_CARD, this::buildTerritoryCard);
+        map.put( Constants.CHARACTER_CARD, this::buildCharacterCard );
+        map.put( Constants.VENTURE_CARD, this::buildVentureCard );
     }
 
 
     public void loadDevelopmentCards(Deck deck ) throws FileNotFoundException {
 
         DevelopmentDeckIterator iterator = new DevelopmentDeckIterator();
+        InputStream is = getClass().getResourceAsStream("/fileJson/developmentCards.json");
+        Reader reader = new InputStreamReader(is);
+        JsonStreamParser parser = new JsonStreamParser(reader);
 
 
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+                this.cardsFromJson = gson.fromJson(reader, CardFromJson[].class);
 
-            while (parser.hasNext() && iterator.hasNext() ) {
+                int i = 1;
+                for ( CardFromJson cardFJ : cardsFromJson ) {
+                    builderHandler = map.get(cardFJ.getAnagrafic().getType());
+                    DevelopmentCard card = builderHandler.build(cardFJ);
+                    System.out.println(i+") " + card.getName());
+    i++;
 
-                this.cardFromJson = gson.fromJson(parser.next(), CardFromJson.class);
+                    deck.getDevelopmentDeck()[ iterator.getColor() ][ iterator.getPeriod() ][ iterator.getCards() ] = card;
+                    iterator.next();
 
-                builderHandler =  map.get(cardFromJson.getAnagrafic().getType());
-                DevelopmentCard card = builderHandler.build();
-
-                deck.getDevelopmentDeck()[ iterator.getColor() ][ iterator.getPeriod() ][ iterator.getCards() ] = card;
-                iterator.next();
             }
         }
 
@@ -103,6 +107,7 @@ public class Configuration {
             CouncilPrivilegesFromJson councilPrivilegesFromJson = gson.fromJson(parser.next(), CouncilPrivilegesFromJson.class);
             CouncilPrivilege councilPrivilege = new CouncilPrivilege(councilPrivilegesFromJson.getTrisIEL(), councilPrivilegesFromJson.getPriviledgeNumber());
             board.setCouncilPrivilege(councilPrivilegesFromJson.getPriviledgeNumber(), councilPrivilege);
+            System.out.println(councilPrivilege.getPriviledgeNumber());
         }
     }
 
@@ -160,34 +165,42 @@ public class Configuration {
 
     }
 
-    DevelopmentCard buildVentureCard( ) {
+    DevelopmentCard buildVentureCard( CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
-        VentureCostArray cost = gson.fromJson(jsonCost, VentureCostArray.class);
-        return new VenturesCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost.getCostArray(), cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
+        VenturesCost[] venturesCosts = gson.fromJson(jsonCost, VenturesCost[].class);
+        VentureCostArray ventureCostArray = new VentureCostArray();
+
+        for ( VenturesCost cost: venturesCosts)
+            ventureCostArray.getCostArray().add(cost);
+
+        return new VenturesCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), ventureCostArray.getCostArray(), cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-    DevelopmentCard buildBuildingCard( ){
+    DevelopmentCard buildBuildingCard( CardFromJson cardFromJson ){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
-        BuildingCost cost = gson.fromJson(jsonCost, BuildingCost.class);
+        BuildingCost[] aCost = gson.fromJson(jsonCost, BuildingCost[].class);
+        BuildingCost cost = aCost[0];
         return new BuildingCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-    DevelopmentCard buildCharacterCard( ){
+    DevelopmentCard buildCharacterCard( CardFromJson cardFromJson){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
-        CharactersCost cost = gson.fromJson(jsonCost, CharactersCost.class);
+        CharactersCost[] aCost = gson.fromJson(jsonCost, CharactersCost[].class);
+        CharactersCost cost = aCost[0];
         return new CharacterCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-    DevelopmentCard buildTerritoryCard( ){
+    DevelopmentCard buildTerritoryCard(CardFromJson cardFromJson ){
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
-        TerritoryCost cost = gson.fromJson(jsonCost, TerritoryCost.class);
+        TerritoryCost[] aCost = gson.fromJson(jsonCost, TerritoryCost[].class);
+        TerritoryCost cost = aCost[0];
         return new TerritoryCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
     @FunctionalInterface
     private interface BuilderHandler {
 
-        DevelopmentCard build( );
+        DevelopmentCard build( CardFromJson cardFromJson );
     }
 
 }

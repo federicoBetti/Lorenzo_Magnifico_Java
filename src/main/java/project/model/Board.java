@@ -130,7 +130,7 @@ public final class Board {
         this.zones = new HashMap<>();
         fillHashMap();
 
-       // configuration.loadDevelopmentCards(getDeckCard());
+        configuration.loadDevelopmentCards(getDeckCard());
         //configuration.loadBonusTile(getDeckCard());
         //configuration.loadExcommunicationTiles(getDeckCard());
 
