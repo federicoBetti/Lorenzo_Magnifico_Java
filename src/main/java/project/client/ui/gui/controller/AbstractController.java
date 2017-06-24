@@ -191,31 +191,28 @@ public abstract class AbstractController {
     public void updatePosition(Tower[][] towers, TowerZone[][] myTower){
         int floorNumber;
         int towerNumber;
-        TowerIterator towerIterator = new TowerIterator();
-        for (;towerIterator.hasNext();towerIterator.next()){
-            floorNumber = towerIterator.getFloor();
-            towerNumber = towerIterator.getTowerNumber();
-            Tower serverTower = towers[floorNumber][towerNumber];
-            TowerZone guiTower = myTower[floorNumber][towerNumber];
+        for (floorNumber = 0; floorNumber<4; floorNumber++) {
+            for (towerNumber = 0; towerNumber < 4 ; towerNumber++) {
+                Tower serverTower = towers[floorNumber][towerNumber];
+                TowerZone guiTower = myTower[floorNumber][towerNumber];
 
-            if (serverTower.getCardOnThisFloor() == null && !(guiTower.getCardName() == null)){
-                modifyCard(guiTower,null);
-            }
-            else {
-                if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())){
-                    modifyCard(guiTower,serverTower.getCardOnThisFloor().getName());
+                if (serverTower.getCardOnThisFloor() == null) {
+                    modifyCard(guiTower, null);
+                } else {
+                    if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())) {
+                        modifyCard(guiTower, serverTower.getCardOnThisFloor().getName());
+                    }
                 }
-            }
 
-            if (serverTower.getFamiliarOnThisPosition() == null && !(guiTower.getFamiliarName() == null)){
-                modifyFamiliar(guiTower,null);
-            }
-            else {
-                if (!serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())){
-                    modifyFamiliar(guiTower,serverTower.getFamiliarOnThisPosition().toString());
+                if (!(serverTower.getFamiliarOnThisPosition().isPlayed())) {
+                    modifyFamiliar(guiTower, null);
+                } else {
+                    if (!serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())) {
+                        modifyFamiliar(guiTower, serverTower.getFamiliarOnThisPosition().toString());
+                    }
                 }
+                System.out.println("fatto update una posizione");
             }
-
         }
 
     }

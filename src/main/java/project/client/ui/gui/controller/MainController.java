@@ -231,11 +231,13 @@ public class MainController {
     public void boardUpdate() {
         Platform.runLater(() -> {
             Board board = clientSetter.getUiBoard();
-            productionController.updatePosition(board.getProductionZone());
-            harvesterController.updatePosition(board.getHarvesterZone());
+            System.out.println("comincio primo update");
+            //productionController.updatePosition(board.getProductionZone());
+            //harvesterController.updatePosition(board.getHarvesterZone());
             towerController.updatePosition(board.getAllTowers());
             generalGameController.updatePosition(board.getAllTowers());
-            generalGameController.updateTurn(board.getTurn().getPlayerTurn());
+            System.out.println("finisco update");
+            //generalGameController.updateTurn(board.getTurn().getPlayerTurn());
         });
     }
 
@@ -401,15 +403,17 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                System.out.println("comincio inizializzo main game");
                 loginBuilder.initalizeMainGame();
                 loginBuilder.startMainGame();
+                System.out.println("fine inizializzazione");
             }
         });
     }
 
     public void startTurn() {
         setMyTurn(true);
-        loginBuilder.writeOnMyChat("it's your turn, you can play!");
+        Platform.runLater(() -> loginBuilder.writeOnMyChat("it's your turn, you can play!"));
     }
 
     public void nicknameAlreadyUsed() {

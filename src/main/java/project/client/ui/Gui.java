@@ -45,7 +45,6 @@ public class Gui extends AbstractUI {
     public void mainContext() {
         //chiamato quando è il tuo turno
         mainController.startTurn();
-        mainController.showPrimo();
     }
 
     @Override
@@ -140,6 +139,11 @@ public class Gui extends AbstractUI {
     }
 
     @Override
+    public void matchStarted(int roomPlayers, String familyColour) {
+        mainController.matchStarted(roomPlayers,familyColour);
+    }
+
+    @Override
     public void loginSucceded() {
         mainController.loginSucceded();
     }
@@ -164,8 +168,5 @@ public class Gui extends AbstractUI {
         return mainController.getLeaderCardChosen(leaders);
     }
 
-    @Override
-    public void matchStarted(int roomPlayers, String familyColour) {
-        mainController.matchStarted(roomPlayers,familyColour);
-    }
+
 }

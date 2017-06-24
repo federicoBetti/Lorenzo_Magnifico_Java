@@ -173,9 +173,24 @@ public class Room {
         //inizia la partita
         for (PlayerHandler p: playerInTheMatch){
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
+        }
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        for (PlayerHandler p: playerInTheMatch){
             p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
         }
 
+
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
         matchStarted = true;
