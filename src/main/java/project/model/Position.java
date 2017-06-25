@@ -1,12 +1,13 @@
 package project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 
  */
-public abstract class Position {
+public abstract class Position implements Serializable{
 
 
     private boolean occupied;

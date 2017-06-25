@@ -208,7 +208,7 @@ public class ClientSetter {
     }
 
     public void personalBoardUpdate(Updates update) {
-        uiPersonalBoard = update.doUpdatePersonalBoard();
+        uiPersonalBoard = update.doUpdate(uiPersonalBoard);
         ui.personalBoardUpdate(update);
     }
 
@@ -218,7 +218,7 @@ public class ClientSetter {
     }
 
     public void boardUpdate(Updates updates) {
-        uiBoard.setTowers(updates.doUpdateTowers());
+        updates.doUpdate(uiBoard);
         System.out.println(updates.toScreen());
         ui.boardUpdate(updates);
     }

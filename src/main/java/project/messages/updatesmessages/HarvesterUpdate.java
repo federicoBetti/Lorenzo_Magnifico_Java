@@ -5,7 +5,6 @@ import project.model.Board;
 import project.model.Harvester;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +12,9 @@ import java.util.List;
  */
 public class HarvesterUpdate extends Updates implements Serializable {
 
-    private ArrayList<Harvester> harvesterZone;
+    private List<Harvester> harvesterZone;
 
-    public HarvesterUpdate(ArrayList<Harvester> harvester, String nickname ){
+    public HarvesterUpdate(List<Harvester> harvester, String nickname ){
         super(nickname);
         harvesterZone = harvester;
     }
@@ -26,8 +25,8 @@ public class HarvesterUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public ArrayList<Harvester> doUpdateHarvester(){
-        return harvesterZone;
+    public void doUpdate(Board board) {
+        board.setHarvesterZone(harvesterZone);
     }
 
     @Override

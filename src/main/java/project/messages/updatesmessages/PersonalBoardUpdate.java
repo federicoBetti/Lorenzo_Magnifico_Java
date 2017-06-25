@@ -25,7 +25,7 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public PersonalBoard doUpdatePersonalBoard(){
+    public PersonalBoard doUpdate(PersonalBoard personalB) {
         return personalBoard;
     }
 

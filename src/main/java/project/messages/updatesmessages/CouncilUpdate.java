@@ -21,8 +21,8 @@ public class CouncilUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public ArrayList<Council> doUpdateCouncil(){
-        return councilZone;
+    public void doUpdate(Board board) {
+        board.setCouncilZone(councilZone);
     }
 
     @Override

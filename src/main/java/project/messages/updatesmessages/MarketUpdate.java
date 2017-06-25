@@ -24,13 +24,12 @@ public class MarketUpdate extends Updates implements Serializable{
     }
 
     @Override
-    public Market[] doUpdateMarket(){
-        return marketZone;
+    public void doUpdate(Board board) {
+        board.setMarketZone(marketZone);
     }
 
     @Override
     public String toScreen() {
-        return marketZone[0].getFamiliarOnThisPosition().toString();
-        // l'ho modifiato per prova return "The current player has placed a familiar in the market!";
+        return "The current player has placed a familiar in the market!";
     }
 }

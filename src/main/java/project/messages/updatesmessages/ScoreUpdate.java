@@ -17,8 +17,10 @@ public class ScoreUpdate extends Updates implements Serializable{
         this.score = player.getScore();
     }
 
-    public void doUpdate( Score scoreUi ){
-        scoreUi = score;
+    @Override
+    public Score doUpdate( Score scoreUi ){
+
+        return score;
     }
 
     @Override
