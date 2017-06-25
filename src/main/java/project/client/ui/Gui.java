@@ -83,7 +83,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void cantDoAction() {
-        mainController.sendChat("you can't perform this action");
+        mainController.cantDoAction();
     }
 
     public void startGame(int numberOfPlayer) {

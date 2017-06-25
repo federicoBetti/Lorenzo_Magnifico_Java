@@ -18,7 +18,7 @@ public class FamilyMemberUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public FamilyMember[] doUpdateFamilyMembers(FamilyMember[] familyMembersUi ){
+    public FamilyMember[] doUpdateFamilyMembers( ){
         return familyMembers;
     }
 

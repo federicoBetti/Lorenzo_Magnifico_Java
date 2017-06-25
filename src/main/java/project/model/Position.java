@@ -10,9 +10,9 @@ import java.util.List;
 public abstract class Position implements Serializable{
 
 
-    private boolean occupied;
+    protected boolean occupied;
 
-    private FamilyMember familiarOnThisPosition;
+    protected FamilyMember familiarOnThisPosition;
 
     private List<FamilyMember> ludovicoAriostoPosition;
 

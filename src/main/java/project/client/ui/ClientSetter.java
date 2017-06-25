@@ -213,7 +213,7 @@ public class ClientSetter {
     }
 
     public void familyMemberUpdate(Updates update) {
-        update.doUpdateFamilyMembers(uiFamilyMembers);
+        uiFamilyMembers = update.doUpdateFamilyMembers();
         ui.familyMemberUpdate(update);
     }
 

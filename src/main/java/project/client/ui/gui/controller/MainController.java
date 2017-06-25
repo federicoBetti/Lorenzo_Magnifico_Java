@@ -461,4 +461,16 @@ public class MainController {
             }
         });
     }
+
+    public void cantDoAction() {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.writeOnMyChat("you can't perform this action\n");
+                loginBuilder.popUp("you can't do thi action");
+                myTurn = false;
+            }
+        });
+    }
 }

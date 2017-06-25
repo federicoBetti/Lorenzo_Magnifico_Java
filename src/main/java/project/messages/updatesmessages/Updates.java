@@ -29,8 +29,8 @@ public abstract class Updates extends BonusInteraction implements Serializable{
         return null;
     }
 
-    public FamilyMember[] doUpdateFamilyMembers(FamilyMember[] familyMembersUi){
-        return familyMembersUi;
+    public FamilyMember[] doUpdateFamilyMembers(){
+        return null;
     }
     public abstract String toScreen();
 }

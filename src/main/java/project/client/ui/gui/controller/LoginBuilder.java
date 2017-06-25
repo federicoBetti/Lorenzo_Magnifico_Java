@@ -65,7 +65,7 @@ public class LoginBuilder extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Login");
-        this.primaryStage.setResizable(false);
+        this.primaryStage.setResizable(true);
         mainController = MainController.getInstance();
         mainController.setLoginBuilder(this);
 
