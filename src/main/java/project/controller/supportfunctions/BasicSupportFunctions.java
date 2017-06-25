@@ -209,6 +209,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         zone.setFamiliarOnThisPosition(familyMember);
         zone.setOccupied(true);
         familyMember.setPlayed(true);
+        System.out.println("sono nel set familiar e ho appena messo " + familyMember);
         return;
     }
 

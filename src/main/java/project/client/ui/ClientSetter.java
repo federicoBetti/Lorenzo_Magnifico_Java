@@ -153,9 +153,9 @@ public class ClientSetter {
     }
 
     public void skipTurn() {
-        //client.skipTurn();
+        client.skipTurn();
         //todo l ho modificato per testare scelta
-        client.scelta();
+        //client.scelta();
     }
 
 
@@ -212,23 +212,18 @@ public class ClientSetter {
     public void personalBoardUpdate(Updates update) {
         uiPersonalBoard = update.doUpdate();
         ui.personalBoardUpdate(update);
-        int coins = uiPersonalBoard.getCoins();
-        System.out.println(coins);
-        int wood = uiPersonalBoard.getWood();
-        System.out.println(wood);
-        int stone = uiPersonalBoard.getStone();
-        System.out.println(stone);
-        int servants = uiPersonalBoard.getServants();
-        System.out.println(servants);
     }
 
     public void familyMemberUpdate(Updates update) {
-        update.doUpdate(uiFamilyMembers);
+        uiFamilyMembers = update.doUpdate(uiFamilyMembers);
+        System.out.println(uiFamilyMembers);
+        System.out.println(update);
         ui.familyMemberUpdate(update);
     }
 
     public void boardUpdate(Updates updates) {
         updates.doUpdate(uiBoard);
+        System.out.println(updates.toScreen());
         ui.boardUpdate(updates);
     }
 

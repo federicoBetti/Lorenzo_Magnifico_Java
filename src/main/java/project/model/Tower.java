@@ -3,6 +3,8 @@ package project.model;
 import project.controller.effects.effectsfactory.BuildImmediateEffects;
 import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.effects.realeffects.Effects;
+import project.messages.BonusInteraction;
+import project.server.network.PlayerHandler;
 
 import java.io.Serializable;
 
@@ -33,6 +35,9 @@ public class Tower extends Position implements Serializable{
         if(diceValueOfThisFloor >= 5 ) {
             BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();
             towerZoneEffect = buildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
+        }
+        else {
+            towerZoneEffect = (Effects) player -> null;
         }
 
         setOccupied(false);

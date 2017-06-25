@@ -6,7 +6,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.controller.supportfunctions.BasicSupportFunctions;
-import project.messages.updatesmessages.TowersUpdate;
+import project.messages.updatesmessages.*;
 import project.model.Board;
 import project.model.Player;
 import project.server.network.PlayerHandler;
@@ -140,38 +140,35 @@ public class Room {
             //todo gestire
         }
 
-        for (int k = 0; k < 4; k++ ){
-            for ( int j = 0; j < 4; j ++ ){
-                System.out.println(k +" "+ j );
-                System.out.println(board.getAllTowers()[k][j].getColour());
-            }
-        }
         getGameActions().refactorTowers();
         Collections.shuffle(playerInTheMatch);
         board.getTurn().setPlayerTurn(playerInTheMatch);
 
         //todo aggiungere questa parte per il draft
-        /*
-        //draft
-        List<List<LeaderCard>> listsForDraft = getListOfLeader();
+/*
+        //draft FUNZIONA BASTA TOGLIERE I COMMENTI PER TESTARLO
+
+       ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i< Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++){
-
-            ListIterator<List<LeaderCard>> leaderIterator = listsForDraft.listIterator();
-            ListIterator<PlayerHandler> playerIterator = playerInTheMatch.listIterator();
+            System.out.println("inizio richiest giro di leader");
+           ListIterator<ArrayList<LeaderCard>> leaderIterator = listsForDraft.listIterator();
+           ListIterator<PlayerHandler> playerIterator = playerInTheMatch.listIterator();
 
             while (leaderIterator.hasNext() && playerIterator.hasNext()) {
                 PlayerHandler player = playerIterator.next();
-                List<LeaderCard> leaders = leaderIterator.next();
-
+               ArrayList<LeaderCard> leaders = (ArrayList)leaderIterator.next();
+                System.out.println("mando scelta carta leader");
                 String leaderName = player.leaderCardChosen(leaders);
                 LeaderCard leaderToAdd = getLeader(leaderName, leaders);
+                System.out.println("ho messo carta leader: " + leaderName + "    nel giocatore");
 
                 player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
+                leaders.remove(leaderToAdd);
             }
             listsForDraft = shiftLeaderList(listsForDraft);
         }
-        */
+*/
 
         //inizia la partita
         for (PlayerHandler p: playerInTheMatch){
@@ -185,6 +182,7 @@ public class Room {
         }
 
         for (PlayerHandler p: playerInTheMatch){
+            p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
             p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
         }
 
@@ -195,12 +193,14 @@ public class Room {
             e.printStackTrace();
         }
 
+
+        gameActions.rollDice();
         getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
         matchStarted = true;
         myTimerSkipTurn(getBoard().getTurn().getPlayerTurn().get(0));
     }
 
-    private LeaderCard getLeader(String leaderName, List<LeaderCard> leaders) {
+    private LeaderCard getLeader(String leaderName,ArrayList<LeaderCard> leaders) {
         for (LeaderCard l: leaders){
             if (l.getName().equals(leaderName))
                 return l;
@@ -208,20 +208,20 @@ public class Room {
         return null;
     }
 
-    private List<List<LeaderCard>> shiftLeaderList(List<List<LeaderCard>> listsForDraft) {
-        List<LeaderCard> firstList = listsForDraft.get(0);
+    private ArrayList<ArrayList<LeaderCard>> shiftLeaderList(ArrayList<ArrayList<LeaderCard>> listsForDraft) {
+       ArrayList<LeaderCard> firstList = listsForDraft.get(0);
         listsForDraft.remove(0);
         listsForDraft.add(firstList);
         return listsForDraft;
     }
 
-    private List<List<LeaderCard>> getListOfLeader() {
-        List<List<LeaderCard>> listsForDraft = new ArrayList<>();
-        List<LeaderCard> leaders = board.getDeckCard().getLeaderCardeck();
+    private ArrayList<ArrayList<LeaderCard>> getListOfLeader() {
+       ArrayList<ArrayList<LeaderCard>> listsForDraft = new ArrayList<>();
+       ArrayList<LeaderCard> leaders = board.getDeckCard().getLeaderCardeck();
         Collections.shuffle(leaders);
         for (int i = 0; i<getRoomPlayers(); i++){
-            List<LeaderCard> l = leaders.subList(5 * i,5*i + 5);
-            listsForDraft.add(l);
+           ArrayList<LeaderCard> ll = new ArrayList<>(leaders.subList(5 * i,5*i + 5));
+            listsForDraft.add(ll);
         }
         return listsForDraft;
     }
@@ -237,7 +237,7 @@ public class Room {
         return colors;
     }
 
-    public void myTimerSkipTurn( PlayerHandler player ) {
+    public Timer myTimerSkipTurn(PlayerHandler player ) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -249,6 +249,7 @@ public class Room {
 
         Timer timer = new Timer(timerSettings.getSkipTurnTimerName());
         timer.schedule(timerTask, timerSettings.getDelayTimerSkipTurn());
+        return timer;
     }
 
     public boolean isMatchStarted() {

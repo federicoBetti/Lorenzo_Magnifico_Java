@@ -54,4 +54,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException;
 
     void matchStarted(int roomPlayers, String familyColour) throws RemoteException;
+
+    void timerTurnDelayed() throws RemoteException;
 }

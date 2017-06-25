@@ -27,8 +27,8 @@ public class Deck {
        prodHaarvTiles = new Tile[Constants.NUMBER_OF_TILES];
     }
 
-    public List<LeaderCard> getLeaderCardeck() {
-        return leaderCardeck;
+    public ArrayList<LeaderCard> getLeaderCardeck() {
+        return (ArrayList<LeaderCard>) leaderCardeck;
     }
 
     public void setLeaderCardeck(List<LeaderCard> leaderCardeck) {

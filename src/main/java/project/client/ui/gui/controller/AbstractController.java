@@ -35,29 +35,35 @@ public abstract class AbstractController {
     protected List<ImageView> imageFamiltMember;
     protected List<RadioButton> radioButtonFamiliar;
 
-   protected void fillFamilymember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange){
-       familiarChosen = new String();
-       imageFamiltMember.add(imageFamiliarNull);
-       imageFamiltMember.add(imageFamiliarBlack);
-       imageFamiltMember.add(imageFamiliarWhite);
-       imageFamiltMember.add(imageFamiliarOrange);
-       imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Zero.png"))));
-       imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Nero.png"))));
-       imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Bianco.png"))));
-       imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/"  + mainController.getColour() + "Arancio.png"))));
-   }
+    protected void fillFamilymember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange) {
+        familiarChosen = new String();
+        imageFamiltMember.add(imageFamiliarNull);
+        imageFamiltMember.add(imageFamiliarBlack);
+        imageFamiltMember.add(imageFamiliarWhite);
+        imageFamiltMember.add(imageFamiliarOrange);
+        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "neutral.png"))));
+        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "black.png"))));
+        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "white.png"))));
+        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "orange.png"))));
+    }
 
-    protected AbstractController(){
+
+    protected void fillRadioButton(RadioButton familiarNull, RadioButton familiarBlack, RadioButton familiarWhite, RadioButton familiarOrange) {
+        radioButtonFamiliar.add(familiarNull);
+        radioButtonFamiliar.add(familiarBlack);
+        radioButtonFamiliar.add(familiarWhite);
+        radioButtonFamiliar.add(familiarOrange);
+    }
+
+    protected AbstractController() {
         familiarChosen = null;
     }
 
-    public void initialize(){
+    public void initialize() {
         imageFamiltMember = new ArrayList<>(4);
 
         radioButtonFamiliar = new ArrayList<>(4);
         //todo controllare in che ordine sono messi i family member sul player
-
-
 
 
     }
@@ -71,7 +77,7 @@ public abstract class AbstractController {
     public abstract void refresh();
 
     public void goToMainGame(ActionEvent actionEvent) {
-        loginBuilder.setScene(SceneType.MAIN,SceneType.HARVESTER);
+        loginBuilder.setScene(SceneType.MAIN, SceneType.HARVESTER);
     }
 
     public void sendChat(TextField chatText) {
@@ -79,16 +85,16 @@ public abstract class AbstractController {
         writeOnChat(text);
     }
 
-    public StringBuffer writeOnChat(String s){
+    public StringBuffer writeOnChat(String s) {
         loginBuilder.stringBufferAppend(s);
         return loginBuilder.getStringBuffer();
 
     }
 
-    public void uploadImages(){
+    public void uploadImages() {
     }
 
-    protected Image getTrueFamiliarImage(){
+    protected Image getTrueFamiliarImage() {
         switch (familiarChosen) {
             case Constants.FAMILY_MEMBER_COLOUR_NEUTRAL:
                 return imageFamiltMember.get(0).getImage();
@@ -110,6 +116,7 @@ public abstract class AbstractController {
     }
 
     public void familiarWhiteChosen(ActionEvent actionEvent) {
+        System.out.println("ho scelto il faiiare bianco");
         familiarChosen = Constants.FAMILY_MEMBER_COLOUR_WHITE;
     }
 
@@ -123,7 +130,7 @@ public abstract class AbstractController {
 
 
     public void showPersonalBoard(SceneType oldScene) {
-        loginBuilder.setScene(SceneType.PERSONAL_BOARD,oldScene);
+        loginBuilder.setScene(SceneType.PERSONAL_BOARD, oldScene);
     }
 
     public void updateOneResource(int coins, Label numberOfCoins) {
@@ -131,17 +138,15 @@ public abstract class AbstractController {
     }
 
 
-
     public void updateFamilyMember(FamilyMember[] uiFamilyMembers) {
 
-        for (int i = 0;i<imageFamiltMember.size(); i++){
+        for (int i = 0; i < imageFamiltMember.size(); i++) {
             ImageView imageView = imageFamiltMember.get(i);
             RadioButton radioButton = radioButtonFamiliar.get(i);
-            if (uiFamilyMembers[i].isPlayed()){
+            if (uiFamilyMembers[i].isPlayed()) {
                 imageView.setOpacity(0.7);
                 radioButton.setDisable(true);
-            }
-            else {
+            } else {
                 imageView.setOpacity(1);
                 radioButton.setDisable(false);
             }
@@ -149,55 +154,69 @@ public abstract class AbstractController {
         familiarChosen = null;
     }
 
-    public void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox){
-        for (FamiliarPosition f: allPosition){
-            if (f.getFamiliarName() == null){
+    public void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox) {
+        System.out.println("provo a piazzare familiare");
+        for (FamiliarPosition f : allPosition) {
+            if (f.getFamiliarName() == "") {
+                System.out.println("ho trovato un posto vuoto");
                 f.setImage(getTrueFamiliarImage());
                 return;
             }
         }
+        System.out.println("creo un nuovo posto per un mio familiare");
         FamiliarPosition newPosition = new FamiliarPosition(allPosition.get(allPosition.size() - 1));
-        if (!allPosition.add(newPosition))//se è immtabile ritorna false
-            return;
         ImageView imageView = newPosition.getImage();
         imageView.setImage(getTrueFamiliarImage());
         familiarBox.getChildren().addAll(imageView);
         allPosition.add(newPosition);
     }
 
+    protected int familiarPlaced(List<FamiliarPosition> allPosition) {
+        int i = 0;
+        for (FamiliarPosition f: allPosition)
+            if (f.getFamiliarName()!= "")
+                i++;
+        return i;
+    }
 
-    public void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition){
+
+    public void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition) {
         Iterator<? extends Position> itPR = positions.iterator();
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
 
-        while (itFP.hasNext() && itPR.hasNext()){
+        while (itFP.hasNext() && itPR.hasNext()) {
             FamiliarPosition familiarPosition = itFP.next();
             Position position = itPR.next();
-            if (position.getFamiliarOnThisPosition() == null){
-                if (familiarPosition.getFamiliarName() == null)
-                    continue;
+            System.out.println("devo aggiornare una posizione con familiare " + position.getFamiliarOnThisPosition());
+            if (position.getFamiliarOnThisPosition() == null) {
+                if (familiarPosition.getFamiliarName().equals("")) continue;
                 else {
                     familiarPosition.setImage(null);
-                    familiarPosition.setFamiliarName(null);
+                    familiarPosition.setFamiliarName("");
                 }
-            }
-            if (familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))
-                continue;
-            else {
-                familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
-                familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
+            } else {
+                if (familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))
+                    continue;
+                else {
+                    System.out.println("devo cambiare il familiar sulla posizione");
+                    familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
+                    System.out.println(familiarPosition.getFamiliarName());
+                    familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
+                }
             }
         }
     }
 
-    public void updatePosition(Tower[][] towers, TowerZone[][] myTower){
+    public void updatePosition(Tower[][] towers, TowerZone[][] myTower) {
         int floorNumber;
         int towerNumber;
-        for (floorNumber = 0; floorNumber<4; floorNumber++) {
-            for (towerNumber = 0; towerNumber < 4 ; towerNumber++) {
-                Tower serverTower = towers[floorNumber][towerNumber];
-                TowerZone guiTower = myTower[floorNumber][towerNumber];
+        for (towerNumber = 0; towerNumber < 4; towerNumber++) {
+            for (floorNumber = 0; floorNumber < 4; floorNumber++) {
+                Tower serverTower = towers[towerNumber][floorNumber];
+                TowerZone guiTower = myTower[towerNumber][floorNumber];
 
+
+                System.out.println(serverTower.getCardOnThisFloor());
                 if (serverTower.getCardOnThisFloor() == null) {
                     modifyCard(guiTower, null);
                 } else {
@@ -206,10 +225,16 @@ public abstract class AbstractController {
                     }
                 }
 
-                if (!(serverTower.getFamiliarOnThisPosition().isPlayed())) {
-                    modifyFamiliar(guiTower, null);
+                System.out.println(serverTower.getFamiliarOnThisPosition());
+
+                if (!(serverTower.isOccupied())) {
+                    guiTower.setFamiliarName(null);
+                    guiTower.setFamiliarImage((Image) null);
                 } else {
+
+                    System.out.println(serverTower.getFamiliarOnThisPosition());
                     if (!serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())) {
+                        System.out.println(serverTower.getFamiliarOnThisPosition());
                         modifyFamiliar(guiTower, serverTower.getFamiliarOnThisPosition().toString());
                     }
                 }
@@ -225,6 +250,8 @@ public abstract class AbstractController {
     }
 
     private void modifyCard(TowerZone guiTower, String cardName) {
+        if (guiTower.getCardName().equals(cardName))
+            return;
         guiTower.setCardName(cardName);
         guiTower.setCardImage(cardName);
     }

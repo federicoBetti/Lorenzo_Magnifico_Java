@@ -195,5 +195,6 @@ public class LeaderCardController extends AbstractController {
         goBackButton.setText("go back");
         goBackButton.setOnAction(event -> goBack());
         personalBoard.setDisable(false);
+        loginBuilder.setScene(SceneType.MAIN, SceneType.LEADER);
     }
 }

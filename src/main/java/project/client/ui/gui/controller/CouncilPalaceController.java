@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,15 @@ import java.util.List;
  * Created by federico on 13/06/17.
  */
 public class CouncilPalaceController extends AbstractController {
+
+
+    /**
+     * radio button in which you can chose the familiar to use
+     */
+    public RadioButton familiarOrange;
+    public RadioButton familiarWhite;
+    public RadioButton familiarBlack;
+    public RadioButton familiarNull;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
@@ -84,6 +94,7 @@ public class CouncilPalaceController extends AbstractController {
     private TextField chatText;
     @FXML
     private Label chatArea;
+    private boolean familiarPlaced;
 
 
     public CouncilPalaceController() {
@@ -92,6 +103,7 @@ public class CouncilPalaceController extends AbstractController {
         privilegeButtons = new Button[numberOfDifferentPrivileges];
         privilegeChoosen = new boolean[numberOfDifferentPrivileges];
         familiarInTheCouncil = new ArrayList<>();
+        familiarPlaced = false;
         this.maxPrivilegeChosen = 1;
 
     }
@@ -125,6 +137,7 @@ public class CouncilPalaceController extends AbstractController {
         super.uploadImages();
         LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+        fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
 
     }
 
@@ -177,7 +190,16 @@ public class CouncilPalaceController extends AbstractController {
     }
 
     public void placeFamiliarInCouncil() {
-        super.placeFamiliar(familiarInTheCouncil, familiarBox);
+        if (familiarPlaced){
+            System.out.println("devo cambiare familiare perchè lho gia piazzato");
+            familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
+            super.placeFamiliar(familiarInTheCouncil, familiarBox);
+        }
+        else {
+            System.out.println("è la prima volta che entro qua");
+            familiarPlaced = true;
+            super.placeFamiliar(familiarInTheCouncil,familiarBox);
+        }
     }
 
 
@@ -186,13 +208,15 @@ public class CouncilPalaceController extends AbstractController {
         for (int i = 0; i < privilegeChoosen.length; i++) {
             if (privilegeChoosen[i]) privilegeSelected = i;
         }
-        if (privilegeSelected == -1) return;
+        if (privilegeSelected == -1 || !familiarPlaced) return;
+        familiarPlaced = false;
         mainController.goToCouncil(privilegeSelected, familiarChosen);
     }
 
     @Override
     public void refresh() {
         chatArea.setText(loginBuilder.getChat().toString());
+
         for (boolean b : privilegeChoosen)
             b = false;
     }
@@ -208,6 +232,12 @@ public class CouncilPalaceController extends AbstractController {
         writeOnChat("AZIONE BONUS: prendi " + maxPrivilegeChosen + "privilegi diversi");
     }
 
+    public void goToMainGame(ActionEvent actionEvent){
+        if (familiarPlaced)
+            familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
+        familiarPlaced = false;
+        super.goToMainGame(actionEvent);
+    }
 
     public void sendChat(ActionEvent actionEvent){
         sendChat(chatText);

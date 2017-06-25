@@ -14,12 +14,12 @@ class FamiliarPosition {
 
     FamiliarPosition(ImageView imageView){
         this.familiarPosition = imageView;
-        familiarName = null;
+        familiarName = "";
     }
 
     FamiliarPosition(FamiliarPosition toClone){
         this.familiarPosition = toClone.getImage();
-        familiarName = null;
+        familiarName = "";
     }
     public String getFamiliarName() {
         return familiarName;

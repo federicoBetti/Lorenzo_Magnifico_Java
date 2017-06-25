@@ -16,7 +16,7 @@ public  abstract class Position {
     private List<FamilyMember> ludovicoAriostoPosition;
 
     Position (){
-        familiarOnThisPosition = new FamilyMember();
+        //familiarOnThisPosition = new FamilyMember();
         ludovicoAriostoPosition = new ArrayList<>();
         this.occupied = false;
     }
