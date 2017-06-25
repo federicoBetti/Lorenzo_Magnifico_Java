@@ -16,8 +16,8 @@ class TowerZone {
     TowerZone(ImageView card, ImageView familiar){
         this.card = card;
         this.familiar = familiar;
-        cardName = null;
-        familiarName = null;
+        cardName = "";
+        familiarName = "";
     }
 
     String getCardName() {

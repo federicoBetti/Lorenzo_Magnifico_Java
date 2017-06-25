@@ -19,7 +19,7 @@
         </HBox>
       <HBox layoutX="5.0" layoutY="91.0" prefHeight="81.0" prefWidth="290.0" alignment="CENTER">
          <children>
-              <Button fx:id="button" mnemonicParsing="false" onAction="#ok">
+              <Button fx:id="button" mnemonicParsing="false" onAction="#ok" text="ok">
                   <font>
                       <Font name="Lucida Blackletter" size="18.0" />
                   </font>

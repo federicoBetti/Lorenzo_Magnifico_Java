@@ -6,6 +6,7 @@ import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
 import project.model.Board;
+import project.model.FamilyMember;
 import project.model.PersonalBoard;
 
 import java.util.ArrayList;
@@ -146,6 +147,7 @@ public class MainController {
     }
 
     void doHarvester(int servants, String familiarChosen) {
+        System.out.println("sto mandando ichiesta di harvester con numero di familiari: " + servants);
         clientSetter.harvesterAction(familiarChosen,servants);
     }
 
@@ -203,17 +205,15 @@ public class MainController {
     }
 
     public void goToMarket(int positionSelected, String familiarChosen) {
-
-        System.out.println("ho fatto partire il nuovo thread per richiesta mercato con parametri" + positionSelected +"  "+familiarChosen);
-        clientSetter.marketAction(positionSelected,familiarChosen);
-/*
         Runnable a = new Runnable() {
             @Override
             public void run() {
+                System.out.println("ho fatto partire il nuovo thread per richiesta mercato con parametri" + positionSelected +"  "+familiarChosen);
+                clientSetter.marketAction(positionSelected,familiarChosen);
             }
         };
         new Thread(a).start();
-        */
+
     }
 
     public void takeNickname() {
@@ -257,9 +257,14 @@ public class MainController {
     }
 
     public void familyMemberUpdate() {
-        for (AbstractController c: controllers){
-            c.updateFamilyMember(clientSetter.getUiFamilyMembers());
-        }
+        Platform.runLater(() -> {
+            generalGameController.updateFamilyMember(clientSetter.getUiFamilyMembers());
+            harvesterController.updateFamilyMember(clientSetter.getUiFamilyMembers());
+            productionController.updateFamilyMember(clientSetter.getUiFamilyMembers());
+            towerController.updateFamilyMember(clientSetter.getUiFamilyMembers());
+            marketController.updateFamilyMember(clientSetter.getUiFamilyMembers());
+            councilPalaceController.updateFamilyMember(clientSetter.getUiFamilyMembers());
+        });
     }
 
 
@@ -327,10 +332,11 @@ public class MainController {
 
     public void skipTurn() {
         myTurn = false;
+        loginBuilder.writeOnMyChat("you have finished your turn\n");
         Runnable a = new Runnable() {
             @Override
             public void run() {
-                System.out.println("ho fatto partire il nuovo thread che va");
+
                 clientSetter.skipTurn();
             }
         };
@@ -431,7 +437,7 @@ public class MainController {
     public void startTurn() {
         setMyTurn(true);
         Platform.runLater(() -> {
-            loginBuilder.writeOnMyChat("it's your turn, you can play!");
+            loginBuilder.writeOnMyChat("it's your turn, you can play!\n");
             loginBuilder.showPrimo();
         });
     }
@@ -441,6 +447,17 @@ public class MainController {
             @Override
             public void run() {
                 loginBuilder.popUp("nickname already used");
+            }
+        });
+    }
+
+    public void timerDelayed() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.writeOnMyChat("the turn is over\n");
+                loginBuilder.popUp("turn finished due timer");
+                myTurn = false;
             }
         });
     }

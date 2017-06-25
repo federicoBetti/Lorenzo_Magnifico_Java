@@ -20,9 +20,11 @@ import java.util.*;
 public class GameActions {
 
     private Room room;
+    private Timer timer;
 
     public GameActions( Room room ){
         this.room = room;
+        timer = new Timer();
     }
 
     private AllSupportFunctions getSupportFunctions(Player player) {
@@ -34,9 +36,11 @@ public class GameActions {
 
         getSupportFunctions(player).placeCardInPersonalBoard(card);
         zone.getTowerZoneEffect().doEffect(player);
-        TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowers(), player.getName());
 
         makeImmediateEffects(player, zone.getCardOnThisFloor());
+
+        zone.setCardOnThisFloor(null);
+        TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowersUpdate(), player.getName());
 
         player.sendActionOk();
         broadcastUpdates(towersUpdate);
@@ -50,9 +54,12 @@ public class GameActions {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
-
+        System.out.println(familyM);
         getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
         getSupportFunctions(player).setFamiliar(zone, familyM);
+        //prova
+        System.out.println(zone.getFamiliarOnThisPosition());
+
         takeDevelopmentCard(zone, player);
     }
 
@@ -107,8 +114,9 @@ public class GameActions {
              next = turn.get(indexOfMe + 1);
             System.out.println(next);
              if ( next.isOn() ) {
+                 timer.cancel();
                  next.itsMyTurn();
-                 this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
+                 timer = this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
                  return;
              }
              nextTurn(next);
@@ -116,9 +124,10 @@ public class GameActions {
         } else if ( room.getBoard().getTurn().getRotation() < 4) {// sono 'ultimo del turno ma non è finito round
              next = turn.get(0);
              if (next.isOn()) {
+                 timer.cancel();
                  next.itsMyTurn();
                  room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
-                 this.room.myTimerSkipTurn(turn.get(0));
+                 timer = this.room.myTimerSkipTurn(turn.get(0));
                  return;
              }
              nextTurn(next);
@@ -132,8 +141,9 @@ public class GameActions {
             nextRound();
             nextPeriod();
             setEndRound(true);
+            timer.cancel();
             firstPlayerTurn();
-            this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
+            timer = this.room.myTimerSkipTurn(turn.get(0));
             return;
 
         } else {
@@ -141,8 +151,9 @@ public class GameActions {
             room.getBoard().getTurn().setRotation(0);
             nextRound();
             setEndRound(true);
+            timer.cancel();
             firstPlayerTurn();
-            this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
+            timer = this.room.myTimerSkipTurn(turn.get(0));
             return;
         }
 
@@ -358,8 +369,8 @@ public class GameActions {
         for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++) {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 //ho fatto il ciclo passando per tutte le torri dal basso all'alto
-                clearSinglePosition(tower[j][i]);
-                tower[j][i].setCardOnThisFloor(deck[i][currentPeriod][roundsAdd + j]); //da testare
+                clearSinglePosition(tower[i][j]);
+                tower[i][j].setCardOnThisFloor(deck[i][currentPeriod][roundsAdd + j]); //da testare
             }
         }
 
@@ -467,11 +478,14 @@ public class GameActions {
         Position marketPosition = room.getBoard().getMarketZone()[position];
 
         getSupportFunctions(player).setFamiliar(marketPosition, familyM);
-        MarketUpdate marketUpdate = new MarketUpdate(room.getBoard().getMarketZone(), player.getName());
+
+        MarketUpdate marketUpdate = new MarketUpdate(room.getBoard(), player.getName());
 
         getSupportFunctions(player).takeMarketAction(position);
 
         player.sendActionOk();
+        //prova di stampa
+        System.out.println(marketUpdate.toScreen());
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
@@ -550,7 +564,8 @@ public class GameActions {
         takeCouncilPrivilege(privilegeNumber, player);
 
         player.sendActionOk();
-        broadcastUpdates(new CouncilUpdate(room.getBoard().getCouncilZone(), player.getName()));
+        ArrayList<Council> council = (ArrayList<Council>) room.getBoard().getCouncilZone();
+        broadcastUpdates(new CouncilUpdate(council, player.getName()));
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
 

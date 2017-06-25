@@ -18,7 +18,7 @@ public class ExcomunicationUpdate extends Updates implements Serializable{
         excommunicationZone = exc;
     }
 
-    public void doUpdate( Board board ){
+    public void doUpdate(Board board ){
         board.setExcommunicationZone(excommunicationZone);
     }
 

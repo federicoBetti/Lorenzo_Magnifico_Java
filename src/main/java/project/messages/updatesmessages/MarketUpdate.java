@@ -11,11 +11,11 @@ import java.io.Serializable;
  */
 public class MarketUpdate extends Updates implements Serializable{
 
-    Market[] marketZone;
+    private Market[] marketZone;
 
-    public MarketUpdate(Market[] market, String nickname ){
+    public MarketUpdate(Board market, String nickname ){
         super(nickname);
-        marketZone = market;
+        marketZone = market.getMarketZone();
     }
 
     @Override
@@ -30,6 +30,7 @@ public class MarketUpdate extends Updates implements Serializable{
 
     @Override
     public String toScreen() {
-        return "The current player has placed a familiar in the market!";
+        return marketZone[0].getFamiliarOnThisPosition().toString();
+        // l'ho modifiato per prova return "The current player has placed a familiar in the market!";
     }
 }

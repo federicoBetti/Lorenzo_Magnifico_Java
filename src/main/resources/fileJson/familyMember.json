@@ -1,37 +1,34 @@
 [
-	{
-	"familyColour":"empty",
-	"myColour":"orange",
-	"fixedBonus":0,
-	"fixedValue":0,
-	"myValue":0,
-	"isPlayed":false
-	},
-
-	{
-	"familyColour":"empty",
-	"myColour":"white",
-	"fixedBonus":0,
-	"fixedValue":0,
-	"myValue":0,
-	"isPlayed":false
-	},
-
-	{
-	"familyColour":"empty",
-	"myColour":"black",
-	"fixedBonus":0,
-	"fixedValue":0,
-	"myValue":0,
-	"isPlayed":false
-	},
-
-	{
-	"familyColour":"empty",
-	"myColour":"neutral",
-	"fixedBonus":0,
-	"fixedValue":0,
-	"myValue":0,
-	"isPlayed":false
-	}
+  {
+    "familyColour": "empty",
+    "myColour": "neutral",
+    "fixedBonus": 0,
+    "fixedValue": 0,
+    "myValue": 0,
+    "isPlayed": false
+  },
+  {
+    "familyColour": "empty",
+    "myColour": "black",
+    "fixedBonus": 0,
+    "fixedValue": 0,
+    "myValue": 0,
+    "isPlayed": false
+  },
+  {
+    "familyColour": "empty",
+    "myColour": "white",
+    "fixedBonus": 0,
+    "fixedValue": 0,
+    "myValue": 0,
+    "isPlayed": false
+  },
+  {
+    "familyColour": "empty",
+    "myColour": "orange",
+    "fixedBonus": 0,
+    "fixedValue": 0,
+    "myValue": 0,
+    "isPlayed": false
+  }
 ]

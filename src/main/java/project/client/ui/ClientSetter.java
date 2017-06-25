@@ -218,6 +218,7 @@ public class ClientSetter {
 
     public void boardUpdate(Updates updates) {
         updates.doUpdate(uiBoard);
+        System.out.println(updates.toScreen());
         ui.boardUpdate(updates);
     }
 

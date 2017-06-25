@@ -250,20 +250,20 @@ public class GeneralMainGameController extends AbstractController{
 
 
         myTower[0][0] = new TowerZone(towerGreen_0,familiarGreen0);
-        myTower[1][0] = new TowerZone(towerGreen_1,familiarGreen1);
-        myTower[2][0] = new TowerZone(towerGreen_2,familiarGreen2);
-        myTower[3][0] = new TowerZone(towerGreen_3,familiarGreen3);
-        myTower[0][1] = new TowerZone(towerBlue_0,familiarBlue0);
+        myTower[0][1] = new TowerZone(towerGreen_1,familiarGreen1);
+        myTower[0][2] = new TowerZone(towerGreen_2,familiarGreen2);
+        myTower[0][3] = new TowerZone(towerGreen_3,familiarGreen3);
+        myTower[1][0] = new TowerZone(towerBlue_0,familiarBlue0);
         myTower[1][1] = new TowerZone(towerBlue_1,familiarBlue1);
-        myTower[2][1] = new TowerZone(towerBlue_2,familiarBlue2);
-        myTower[3][1] = new TowerZone(towerBlue_3,familiarBlue3);
-        myTower[0][2] = new TowerZone(towerYellow_0,familiarYellow0);
-        myTower[1][2] = new TowerZone(towerYellow_1,familiarYellow1);
+        myTower[1][2] = new TowerZone(towerBlue_2,familiarBlue2);
+        myTower[1][3] = new TowerZone(towerBlue_3,familiarBlue3);
+        myTower[2][0] = new TowerZone(towerYellow_0,familiarYellow0);
+        myTower[2][1] = new TowerZone(towerYellow_1,familiarYellow1);
         myTower[2][2] = new TowerZone(towerYellow_2,familiarYellow2);
-        myTower[3][2] = new TowerZone(towerYellow_3,familiarYellow3);
-        myTower[0][3] = new TowerZone(towerPurple_0,familiarPurple0);
-        myTower[1][3] = new TowerZone(towerPurple_1,familiarPurple1);
-        myTower[2][3] = new TowerZone(towerPurple_2,familiarPurple2);
+        myTower[2][3] = new TowerZone(towerYellow_3,familiarYellow3);
+        myTower[3][0] = new TowerZone(towerPurple_0,familiarPurple0);
+        myTower[3][1] = new TowerZone(towerPurple_1,familiarPurple1);
+        myTower[3][2] = new TowerZone(towerPurple_2,familiarPurple2);
         myTower[3][3] = new TowerZone(towerPurple_3,familiarPurple3);
 
     }

@@ -5,6 +5,7 @@ import project.model.Board;
 import project.model.Council;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public class CouncilUpdate extends Updates implements Serializable {
 
-    private List<Council> councilZone;
+    private ArrayList<Council> councilZone;
 
-    public CouncilUpdate( List<Council> council, String nickname ){
+    public CouncilUpdate( ArrayList<Council> council, String nickname ){
         super(nickname);
         councilZone = council;
     }

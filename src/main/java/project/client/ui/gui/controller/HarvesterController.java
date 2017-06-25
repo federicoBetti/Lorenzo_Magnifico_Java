@@ -139,7 +139,8 @@ public class HarvesterController extends AbstractController {
         harvesterZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/raccolto" + playerNumber + "Giocatori.png"))));
 
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
-        nameOfTerritoryCard = new ArrayList<String>(6);
+        fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
+        nameOfTerritoryCard = new ArrayList<String>();
         imageTerritoryCard = new ArrayList<>(6);
         imageTerritoryCard.add(territoryCard0);
         imageTerritoryCard.add(territoryCard1);
@@ -150,13 +151,9 @@ public class HarvesterController extends AbstractController {
 
         allPosition = new ArrayList<>();
         allPosition.add(new FamiliarPosition(imageHarvester0));
-        if (mainController.getNumberOfPlayer() >= 3){
-        }
-        else {
-            allPosition = Collections.unmodifiableList(allPosition);
-        }
 
     }
+
 
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
@@ -215,8 +212,18 @@ public class HarvesterController extends AbstractController {
 
 
     public void placeFamiliar(){
+        if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0)
+            return;
         super.placeFamiliar(allPosition, familiarBox);
         positionSelected = true;
+    }
+
+    protected int familiarPlaced(List<FamiliarPosition> allPosition) {
+        int i = 0;
+        for (FamiliarPosition f: allPosition)
+            if (f.getFamiliarName()!= "")
+                i++;
+        return i;
     }
 
     public void sendChat(ActionEvent actionEvent){
@@ -229,11 +236,12 @@ public class HarvesterController extends AbstractController {
 
 
     public void updateCards(List<TerritoryCard> territoryCards){
-        for (int i = 0; i< territoryCards.size(); i++){
-            String oldCard = nameOfTerritoryCard.get(i);
-            if (oldCard == null){
+        for (int i = 0; i< territoryCards.size(); i++) {
+            try {
+                nameOfTerritoryCard.get(i);
+            } catch (IndexOutOfBoundsException e) {
                 String nameOfNewCard = territoryCards.get(i).getName();
-                nameOfTerritoryCard.set(i,nameOfNewCard);
+                nameOfTerritoryCard.add(nameOfNewCard);
                 ImageView imageView = imageTerritoryCard.get(i);
                 imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
             }

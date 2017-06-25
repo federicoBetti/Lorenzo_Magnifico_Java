@@ -11,6 +11,7 @@ import project.server.network.PlayerHandler;
 import project.server.network.exception.CantDoActionException;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,9 +108,11 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public void sendUpdates(Updates updates) {
         try {
+            System.out.println(updates.toScreen());
             myClient.sendUpdates(updates);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println(e.getCause());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -196,7 +199,11 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void timerTurnDelayed() {
-
+        try {
+            myClient.timerTurnDelayed();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -217,7 +224,9 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public String leaderCardChosen(List<LeaderCard> leaders) {
         try {
-            return myClient.leaderCardChosen(leaders);
+            String leaderName = myClient.leaderCardChosen(leaders);
+            System.out.println(leaderName);
+            return leaderName;
         } catch (RemoteException e) {
             e.printStackTrace();
         }

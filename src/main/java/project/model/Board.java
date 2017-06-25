@@ -1,7 +1,6 @@
 package project.model;
 
 
-import com.google.gson.Gson;
 import project.configurations.Configuration;
 import project.controller.Constants;
 
@@ -101,6 +100,9 @@ public final class Board {
         this.turn = new Turn();
         this.decks = new Deck();
 
+        //questi sotto sono da importare da file, li inizializzo poer testare
+        militaryPointsForTerritories = new int[]{0, 0, 0, 0, 0, 0};
+
         Configuration configuration = new Configuration();
 
         if (numberOfPlayer == Constants.FOUR_PLAYERS){
@@ -122,6 +124,7 @@ public final class Board {
         }
 
         excommunicationZone = new ExcommunicationZone[3];
+        councilZone = new ArrayList<>();
 
         this.councilPrivileges = new CouncilPrivilege[5];
         configuration.loadCouncilZonePriviledges(this);
@@ -323,5 +326,9 @@ public final class Board {
 
     public void setProductionZone(List<Production> productionZone) {
         this.productionZone = productionZone;
+    }
+
+    public Tower[][] getAllTowersUpdate() {
+        return towers.clone();
     }
 }

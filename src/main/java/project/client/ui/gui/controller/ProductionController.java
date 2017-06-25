@@ -162,6 +162,7 @@ public class ProductionController extends AbstractController{
         productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/produzione" + playerNumber + "Giocatori.png"))));
 
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);allBuildingCard.add(buildingCard0);
+        fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
         allBuildingCard.add(buildingCard1);
         allBuildingCard.add(buildingCard2);
         allBuildingCard.add(buildingCard3);

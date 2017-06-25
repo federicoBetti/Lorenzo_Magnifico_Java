@@ -101,7 +101,7 @@ public class MarketController extends AbstractController {
     @Override
     public void refresh() {
         chatArea.setText(loginBuilder.getChat().toString());
-
+        lastFamiliarPlaced.setImage(null);
     }
 
     public void uploadImages(){
@@ -116,6 +116,7 @@ public class MarketController extends AbstractController {
         market.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/mercato" + playerNumber + "Giocatori.png"))));
 
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+        fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
         if (mainController.getNumberOfPlayer()==4){
             familiarPositions.add(new FamiliarPosition(imageMarket0));
             familiarPositions.add(new FamiliarPosition(imageMarket1));
@@ -140,14 +141,18 @@ public class MarketController extends AbstractController {
     }
 
     public void goToMarket() {
-        if (positionSelected!= -1)
+        if (positionSelected!= -1){
+            System.out.println("fatto partire richiesta mercato");
             mainController.goToMarket(positionSelected,familiarChosen);
+
+
+        }
     }
 
 
     private void placeFamiliar(int position){
         FamiliarPosition familiar = familiarPositions.get(position);
-        if (familiar.getFamiliarName() != null)
+        if (familiar.getFamiliarName() != "")
             return; //posizione occupata
         lastFamiliarPlaced.setImage(null);
         positionSelected = position;
@@ -175,6 +180,8 @@ public class MarketController extends AbstractController {
     }
 
     public void updatePosition(Market[] markets){
+        if (markets == null)
+            return;
         List<Market> markets1 = new ArrayList<>();
         for (Market m: markets){
             markets1.add(m);

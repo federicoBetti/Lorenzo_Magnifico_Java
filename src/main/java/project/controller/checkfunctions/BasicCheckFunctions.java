@@ -114,6 +114,10 @@ public class BasicCheckFunctions implements AllCheckFunctions{
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
         int diceBonus = personalBoard(player).getBonusOnActions().getTerritoryBonus();
         int length = personalBoard(player).getTerritories().size();
+        System.out.println(coinsFee);
+        System.out.println(zoneDiceCost);
+        System.out.println(valueOfFamilyMember);
+        System.out.println(card.getCost().getWoodRequired());
         return checkMilitaryPointsForTerritory(player, length) && card.getCost().getWoodRequired() <= personalBoard(player).getWood() && card.getCost().getStoneRequired() <= personalBoard(player).getStone() && coinsMore <= personalBoard(player).getCoins() && (valueOfFamilyMember + diceBonus + getServants(player)) >= zoneDiceCost;
 
     }

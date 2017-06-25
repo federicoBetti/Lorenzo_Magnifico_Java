@@ -14,8 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.CouncilPalaceController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.CouncilPalaceController">
     <children>
+
+        <ImageView fitHeight="516.0" fitWidth="863.0">
+            <image>
+                <Image url="/images/cornici/cornice18x27.png" />
+            </image>
+        </ImageView>
         <Pane layoutX="28.0" layoutY="26.0" prefHeight="466.0" prefWidth="805.0">
             <children>
                 <ImageView fitHeight="466.0" fitWidth="802.0">
@@ -33,12 +39,6 @@
             </children>
         </Pane>
 
-        <ImageView fitHeight="516.0" fitWidth="863.0">
-            <image>
-                <Image url="/images/cornici/cornice18x27.png" />
-            </image>
-        </ImageView>
-
         <Pane layoutX="886.0" layoutY="32.0" prefHeight="653.0" prefWidth="159.0">
             <children>
                 <ImageView fitHeight="653.0" fitWidth="159.0" layoutX="-4.0" opacity="0.58">
@@ -49,7 +49,7 @@
                 <VBox alignment="TOP_CENTER" layoutY="92.0" prefHeight="496.0" prefWidth="159.0" spacing="8.0">
                     <children>
                         <ImageView fx:id="imageFamiliarNull" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"  toggleGroup="$familiar" >
+                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen">
                             <toggleGroup>
                                 <ToggleGroup fx:id="familiar" />
                             </toggleGroup>
@@ -59,7 +59,8 @@
                         <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
                         <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen" toggleGroup="$familiar" />
                         <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen"/>
+                        <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen" toggleGroup="$familiar" />
+
                     </children>
                 </VBox>
             </children>

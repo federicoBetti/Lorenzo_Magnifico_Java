@@ -58,7 +58,7 @@ public abstract class PlayerHandler extends Player {
         }
         else {
             boolean canPayCard = checkFunctions.checkCardCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
-
+            System.out.println("canPayCard" + canPayCard + "  postion: " + canPlaceFamiliar);
             if (canPayCard && canPlaceFamiliar) {
                 gameActions().takeNoVenturesCard(zone, familyM, this, towerOccupied);
                 gameActions().broadcastNotifications(new Notify(getName() + " has taken " + card.getName()));
@@ -390,6 +390,7 @@ public abstract class PlayerHandler extends Player {
     protected FamilyMember findFamilyMember(String colour) {
         for (FamilyMember familyMember : getAllFamilyMembers())
             if (familyMember.getMyColour().equals(colour)) return familyMember;
+        System.out.println("ho ritornato un familiar null");
         return null;
     }
 

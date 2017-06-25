@@ -182,20 +182,20 @@ public class TowersController extends AbstractController {
        green0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
         green1.setImage(new Image(String.valueOf(getClass().getResource("/images/woods.png"))));
         myTower[0][0] = new TowerZone(green0,familiarGreen0);
-        myTower[1][0] = new TowerZone(green1,familiarGreen1);
-        myTower[2][0] = new TowerZone(green2,familiarGreen2);
-        myTower[3][0] = new TowerZone(green3,familiarGreen3);
-        myTower[0][1] = new TowerZone(blue0,familiarBlue0);
+        myTower[0][1] = new TowerZone(green1,familiarGreen1);
+        myTower[0][2] = new TowerZone(green2,familiarGreen2);
+        myTower[0][3] = new TowerZone(green3,familiarGreen3);
+        myTower[1][0] = new TowerZone(blue0,familiarBlue0);
         myTower[1][1] = new TowerZone(blue1,familiarBlue1);
-        myTower[2][1] = new TowerZone(blue2,familiarBlue2);
-        myTower[3][1] = new TowerZone(blue3,familiarBlue3);
-        myTower[0][2] = new TowerZone(yellow0,familiarYellow0);
-        myTower[1][2] = new TowerZone(yellow1,familiarYellow1);
+        myTower[1][2] = new TowerZone(blue2,familiarBlue2);
+        myTower[1][3] = new TowerZone(blue3,familiarBlue3);
+        myTower[2][0] = new TowerZone(yellow0,familiarYellow0);
+        myTower[2][1] = new TowerZone(yellow1,familiarYellow1);
         myTower[2][2] = new TowerZone(yellow2,familiarYellow2);
-        myTower[3][2] = new TowerZone(yellow3,familiarYellow3);
-        myTower[0][3] = new TowerZone(purple0,familiarPurple0);
-        myTower[1][3] = new TowerZone(purple1,familiarPurple1);
-        myTower[2][3] = new TowerZone(purple2,familiarPurple2);
+        myTower[2][3] = new TowerZone(yellow3,familiarYellow3);
+        myTower[3][0] = new TowerZone(purple0,familiarPurple0);
+        myTower[3][1] = new TowerZone(purple1,familiarPurple1);
+        myTower[3][2] = new TowerZone(purple2,familiarPurple2);
         myTower[3][3] = new TowerZone(purple3,familiarPurple3);
 
 
@@ -205,6 +205,8 @@ public class TowersController extends AbstractController {
     public void uploadImages(){
         super.uploadImages();
         fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+        fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
+
     }
 
     public void showCardGreen3() {

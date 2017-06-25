@@ -256,6 +256,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     private void boardUpdate(Updates updates){
+        System.out.println(updates.toScreen());
         clientSetter.boardUpdate(updates);
     }
     private void personalBoardUpdate(Updates updates){
@@ -347,7 +348,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void timerTurnDelayed() {
-
+        clientSetter.timerTurnDelayed();
     }
 
     @Override
@@ -376,6 +377,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException {
+        System.out.println("mi sono arrivate le carte leader");
         return clientSetter.getLeaderCardChosen(leaders);
     }
 
