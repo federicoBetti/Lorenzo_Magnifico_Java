@@ -83,7 +83,6 @@ public class ClientSetter {
     }
 
     public void harvesterAction( String familyMemberColour, int servantsNumber)  {
-        //è brutto che prenda stringhe, perche non: int,String,int
         client.harvesterAction(familyMemberColour, servantsNumber);
     }
 
@@ -96,7 +95,6 @@ public class ClientSetter {
     }
 
     public void productionAction(String familiarColor, List<String> buidingCards)   {
-        //è orrend che renda un array di stirnghe quando sono int,string,List<String>
         client.productionAction(familiarColor,buidingCards);
     }
 
@@ -153,9 +151,8 @@ public class ClientSetter {
     }
 
     public void skipTurn() {
-        //client.skipTurn();
-        //todo l ho modificato per testare scelta
-        client.scelta();
+        client.skipTurn();
+
     }
 
 
@@ -212,14 +209,6 @@ public class ClientSetter {
     public void personalBoardUpdate(Updates update) {
         uiPersonalBoard = update.doUpdate();
         ui.personalBoardUpdate(update);
-        int coins = uiPersonalBoard.getCoins();
-        System.out.println(coins);
-        int wood = uiPersonalBoard.getWood();
-        System.out.println(wood);
-        int stone = uiPersonalBoard.getStone();
-        System.out.println(stone);
-        int servants = uiPersonalBoard.getServants();
-        System.out.println(servants);
     }
 
     public void familyMemberUpdate(Updates update) {

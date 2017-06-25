@@ -132,10 +132,11 @@ public final class Board {
         this.zones = new HashMap<>();
         fillHashMap();
 
-        configuration.loadDevelopmentCards(getDeckCard());
+        configuration.loadDevelopmentCards(decks);
         configuration.loadLeaderCard(decks);
+        configuration.loadExcommunicationTiles(decks);
         //configuration.loadBonusTile(getDeckCard());
-        //configuration.loadExcommunicationTiles(getDeckCard());
+
 
 
         round = 0;

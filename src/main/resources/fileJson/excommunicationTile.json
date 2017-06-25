@@ -1,0 +1,191 @@
+[
+  {
+    "period": 1,
+    "idCard": 1,
+    "excomunicationEffectsFromJson": {
+      "type": "loseResource",
+      "parameter": "militaryPoints",
+      "quantity": 1
+    }
+  },
+  {
+    "period": 1,
+    "idCard": 2,
+    "excomunicationEffectsFromJson": {
+      "type": "loseResource",
+      "parameter": "coins",
+      "quantity": 1
+    }
+  },
+  {
+    "period": 1,
+    "idCard": 3,
+    "excomunicationEffectsFromJson": {
+      "type": "loseResource",
+      "parameter": "servants",
+      "quantity": 1
+    }
+  },
+  {
+    "period": 1,
+    "idCard": 4,
+    "excomunicationEffectsFromJson": {
+      "type": "loseResource",
+      "parameter": "woodStone",
+      "quantity": 1
+    }
+  },
+  {
+    "period": 1,
+    "idCard": 5,
+    "excomunicationEffectsFromJson": {
+      "type": "downgrade",
+      "parameter": "harvester",
+      "quantity": 3
+    }
+  },
+  {
+    "period": 1,
+    "idCard": 6,
+    "excomunicationEffectsFromJson": {
+      "type": "downgrade",
+      "parameter": "production",
+      "quantity": 3
+    }
+  },
+  {
+    "period": 1,
+    "idCard": 7,
+    "excomunicationEffectsFromJson": {
+      "type": "downgrade",
+      "parameter": "dices",
+      "quantity": 1
+    }
+  },
+  {
+    "period": 2,
+    "idCard": 1,
+    "excomunicationEffectsFromJson": {
+      "type": "downgrade",
+      "parameter": "territoryCard",
+      "quantity": 4
+    }
+  },
+  {
+    "period": 2,
+    "idCard": 2,
+    "excomunicationEffectsFromJson": {
+      "type": "downgrade",
+      "parameter": "buildingCard",
+      "quantity": 4
+    }
+  },
+  {
+    "period": 2,
+    "idCard": 3,
+    "excomunicationEffectsFromJson": {
+      "type": "downgrade",
+      "parameter": "characterCard",
+      "quantity": 4
+    }
+  },
+  {
+    "period": 2,
+    "idCard": 4,
+    "excomunicationEffectsFromJson": {
+      "type": "downgrade",
+      "parameter": "ventureCard",
+      "quantity": 4
+    }
+  },
+  {
+    "period": 2,
+    "idCard": 5,
+    "excomunicationEffectsFromJson": {
+      "type": "special",
+      "parameter": "market",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 2,
+    "idCard": 6,
+    "excomunicationEffectsFromJson": {
+      "type": "special",
+      "parameter": "servants",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 2,
+    "idCard": 7,
+    "excomunicationEffectsFromJson": {
+      "type": "special",
+      "parameter": "turn",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 3,
+    "idCard": 1,
+    "excomunicationEffectsFromJson": {
+      "type": "noFinalPointsFromCards",
+      "parameter": "characterCard",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 3,
+    "idCard": 2,
+    "excomunicationEffectsFromJson": {
+      "type": "noFinalPointsFromCards",
+      "parameter": "ventureCard",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 3,
+    "idCard": 3,
+    "excomunicationEffectsFromJson": {
+      "type": "noFinalPointsFromCards",
+      "parameter": "territoryCard",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 3,
+    "idCard": 4,
+    "excomunicationEffectsFromJson": {
+      "type": "loseFinalPoints",
+      "parameter": "victoryPoint",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 3,
+    "idCard": 5,
+    "excomunicationEffectsFromJson": {
+      "type": "loseFinalPoints",
+      "parameter": "militaryPoints",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 3,
+    "idCard": 6,
+    "excomunicationEffectsFromJson": {
+      "type": "loseFinalPoints",
+      "parameter": "woodStone",
+      "quantity": 0
+    }
+  },
+  {
+    "period": 3,
+    "idCard": 7,
+    "excomunicationEffectsFromJson": {
+      "type": "loseFinalPoints",
+      "parameter": "allResources",
+      "quantity": 0
+    }
+  }
+]

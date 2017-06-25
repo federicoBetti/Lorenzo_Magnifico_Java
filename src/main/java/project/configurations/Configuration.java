@@ -60,14 +60,16 @@ public class Configuration {
 
     public void loadExcommunicationTiles(Deck deck) throws FileNotFoundException {
 
-        JsonStreamParser parser = new JsonStreamParser(new FileReader("/file/giusto"));
+        InputStream is = getClass().getResourceAsStream("/fileJson/excommunicationTile.json");
+        Reader reader = new InputStreamReader(is);
 
-        while (parser.hasNext()) {
-            ExTileFromJson exTileFromJson = gson.fromJson(parser.next(), ExTileFromJson.class);
-            ExcommunicationTile excommunicationTile = new ExcommunicationTile(exTileFromJson.getIdCard(), exTileFromJson.getPeriod(), exTileFromJson.getExcomunicationEffectsFromJson());
+        ExTileFromJson[] exTilesFromJson = gson.fromJson(reader, ExTileFromJson[].class);
 
-            deck.getExcomunicationCard()[exTileFromJson.getPeriod()][exTileFromJson.getIdCard()] = excommunicationTile;
+        for ( ExTileFromJson tile : exTilesFromJson ) {
+            ExcommunicationTile excommunicationTile = new ExcommunicationTile(tile.getIdCard(), tile.getPeriod(), tile.getExcomunicationEffectsFromJson());
+            deck.getExcomunicationCard()[tile.getPeriod() - 1][tile.getIdCard() - 1] = excommunicationTile;
         }
+
     }
 
     public void loadBonusTile(Deck deck) throws FileNotFoundException {
