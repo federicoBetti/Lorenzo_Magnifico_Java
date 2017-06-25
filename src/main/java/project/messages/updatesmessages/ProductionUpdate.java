@@ -5,6 +5,7 @@ import project.model.Board;
 import project.model.Production;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public class ProductionUpdate extends Updates implements Serializable {
 
-    private List<Production> productionZone;
+    private ArrayList<Production> productionZone;
 
-    public ProductionUpdate(List<Production> production, String nickname ){
+    public ProductionUpdate(ArrayList<Production> production, String nickname ){
         super(nickname);
         productionZone = production;
     }
@@ -25,8 +26,8 @@ public class ProductionUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public void doUpdate(Board board) {
-        board.setProductionZone(productionZone);
+    public ArrayList<Production> doUpdateProduction(){
+        return productionZone;
     }
 
     @Override

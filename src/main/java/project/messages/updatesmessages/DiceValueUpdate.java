@@ -21,9 +21,8 @@ public class DiceValueUpdate extends Updates {
     }
 
     @Override
-    public void doUpdate(Board board) {
-        board.setDiceValue(this.diceValue);
-        //todo nnela gui si devono mettere quelli giusti dei giocatori con scene builder
+    public int[] doupdateDiceValue(){
+        return diceValue;
     }
 
     @Override

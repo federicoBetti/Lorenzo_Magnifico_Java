@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 
  */
-public  abstract class Position {
+public abstract class Position {
 
 
     private boolean occupied;

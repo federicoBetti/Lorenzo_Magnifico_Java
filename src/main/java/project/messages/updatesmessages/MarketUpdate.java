@@ -24,8 +24,8 @@ public class MarketUpdate extends Updates implements Serializable{
     }
 
     @Override
-    public void doUpdate(Board board) {
-        board.setMarketZone(marketZone);
+    public Market[] doUpdateMarket(){
+        return marketZone;
     }
 
     @Override

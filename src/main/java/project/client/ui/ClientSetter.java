@@ -11,6 +11,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.TowersUpdate;
 import project.messages.updatesmessages.Updates;
 import project.model.Board;
 import project.model.FamilyMember;
@@ -202,22 +203,22 @@ public class ClientSetter {
 
 
     public void scoreUpdate(Updates update) {
-        update.doUpdate(uiScore);
+       // update.doUpdate(uiScore);
         ui.scoreUpdate(update);
     }
 
     public void personalBoardUpdate(Updates update) {
-        uiPersonalBoard = update.doUpdate();
+        uiPersonalBoard = update.doUpdatePersonalBoard();
         ui.personalBoardUpdate(update);
     }
 
     public void familyMemberUpdate(Updates update) {
-        update.doUpdate(uiFamilyMembers);
+        update.doUpdateFamilyMembers(uiFamilyMembers);
         ui.familyMemberUpdate(update);
     }
 
     public void boardUpdate(Updates updates) {
-        updates.doUpdate(uiBoard);
+        uiBoard.setTowers(updates.doUpdateTowers());
         System.out.println(updates.toScreen());
         ui.boardUpdate(updates);
     }

@@ -24,8 +24,8 @@ public class TowersUpdate extends Updates implements Serializable {
     }
 
     @Override
-    public void doUpdate(Board board) {
-        board.setTowers(towersZone);
+    public Tower[][] doUpdateTowers(){
+        return towersZone;
     }
 
     @Override

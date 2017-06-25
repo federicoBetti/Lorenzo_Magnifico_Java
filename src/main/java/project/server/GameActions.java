@@ -423,7 +423,7 @@ public class GameActions {
         harvesterList.add(harvesterZone);
 
         player.sendActionOk();
-        HarvesterUpdate harvesterUpdate = new HarvesterUpdate(room.getBoard().getHarvesterZone(), player.getName());
+        HarvesterUpdate harvesterUpdate = new HarvesterUpdate((ArrayList<Harvester>) room.getBoard().getHarvesterZone(), player.getName());
         broadcastUpdates(harvesterUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
@@ -450,7 +450,7 @@ public class GameActions {
 
         productionBonus(cardToProduct,player);
 
-        ProductionUpdate productionUpdate = new ProductionUpdate(room.getBoard().getProductionZone(), player.getName());
+        ProductionUpdate productionUpdate = new ProductionUpdate((ArrayList<Production>) room.getBoard().getProductionZone(), player.getName());
         broadcastUpdates(productionUpdate);
 
     }
