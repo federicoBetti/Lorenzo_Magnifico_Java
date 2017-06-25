@@ -221,13 +221,14 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @Override
     public void setDicesValue(int[] newDiceValue, Player p) {
-        for (int i = 0; i<newDiceValue.length; i++)
-            p.getAllFamilyMembers()[i].setMyValue(newDiceValue[i]);
+        for (int i = 1; i<newDiceValue.length + 1; i++)
+            p.getAllFamilyMembers()[i].setMyValue(newDiceValue[i-1]);
     }
 
     @Override
     public void setFamiliarInTheCouncilPalace(List<Council> councilZone, FamilyMember familyMember) {
         councilZone.add(new Council(familyMember,player));
+        familyMember.setPlayed(true);
     }
 
 

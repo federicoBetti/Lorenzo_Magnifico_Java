@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import project.model.Score;
 import project.model.Tower;
 import project.server.network.PlayerHandler;
 
@@ -284,8 +285,6 @@ public class GeneralMainGameController extends AbstractController{
         super.uploadImages();
         int faithPoints = loginBuilder.getFaithPoints();
         int turnOrder = loginBuilder.getTurnOrder();
-        faithPointsArray.get(faithPoints).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
-        turnOrderArray.get(turnOrder).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
         String urlImage = "/images/immaginiSetUp/gameboard" + mainController.getNumberOfPlayer() + "Giocatori.png";
         gameboard.setStyle("-fx-background-image: url(" + urlImage + ")");
     }
@@ -366,8 +365,13 @@ public class GeneralMainGameController extends AbstractController{
         super.updatePosition(towers, myTower);
     }
 
-    public void setScelta() {
-        loginBuilder.showChoice("dimmi la scelta ","primo", "secondo");
+    public void setScelta(String bothPaymentAvaiable, String s, String s1) {
+        loginBuilder.showChoice(bothPaymentAvaiable,s,s1);
         mainController.wakeUp(loginBuilder.getChoiceDone());
+    }
+
+    public void setScore(Score uiScore) {
+        faithPointsArray.get(uiScore.getFaithPoints()).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
+
     }
 }

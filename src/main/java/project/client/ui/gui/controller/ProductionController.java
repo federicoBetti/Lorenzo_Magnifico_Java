@@ -188,7 +188,10 @@ public class ProductionController extends AbstractController{
 
     @Override
     public void refresh(){
+        super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
+        if (positionSelected)
+            allPosition.remove(allPosition.size()-1);
         for (int i = 0; i<cardSelected.length; i++){
             cardSelected[i] = false;
             allBuildingCard.get(i).setEffect(borderNull);
@@ -249,6 +252,17 @@ public class ProductionController extends AbstractController{
     }
 
     public void placeFamiliar(){
+        if (familiarChosen.equals(""))
+            return;
+        if (positionSelected){
+            if (allPosition.size()>1)
+                allPosition.remove(allPosition.size() - 1);
+            else
+                allPosition.get(0).setFamiliarName("");
+            super.placeFamiliar(allPosition,familiarBox);
+        }
+        if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0)
+            return;
         super.placeFamiliar(allPosition, familiarBox);
         positionSelected = true;
     }
@@ -258,16 +272,7 @@ public class ProductionController extends AbstractController{
     }
 
     public void updateCards(List<BuildingCard> buildings) {
-        for (int i = 0; i< buildings.size(); i++){
-            String oldCard = nameOfBuilding.get(i);
-            if (oldCard == null){
-                int ciao;
-                String nameOfNewCard = buildings.get(i).getName();
-                nameOfBuilding.set(i,nameOfNewCard);
-                ImageView imageView = allBuildingCard.get(i);
-                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
-            }
-        }
+        super.updateCards(buildings,nameOfBuilding,allBuildingCard);
     }
 
     public void updatePosition(List<Production> productions){

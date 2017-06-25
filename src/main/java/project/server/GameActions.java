@@ -101,11 +101,7 @@ public class GameActions {
         PlayerHandler next;
         List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
 
-        for ( int i = 0; i < 2; i++ )
-            System.out.println(turn.get(i));
-
         int indexOfMe = turn.indexOf(playerHandler);
-        System.out.println(indexOfMe);
         int playerNumbers = room.getRoomPlayers();
         int currentPeriod = room.getBoard().getPeriod();
         int currentRound = room.getBoard().getRound();
@@ -122,6 +118,7 @@ public class GameActions {
              nextTurn(next);
 
         } else if ( room.getBoard().getTurn().getRotation() < 4) {// sono 'ultimo del turno ma non è finito round
+            System.out.println("sono l'ultimo del turno, metto la rotazione a "  +room.getBoard().getTurn().getRotation());
              next = turn.get(0);
              if (next.isOn()) {
                  timer.cancel();
@@ -147,6 +144,7 @@ public class GameActions {
             return;
 
         } else {
+            System.out.println("fine round!");
             endRound();
             room.getBoard().getTurn().setRotation(0);
             nextRound();

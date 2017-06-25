@@ -165,8 +165,11 @@ public class HarvesterController extends AbstractController {
     }
 
     public void refresh(){
+        super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
-
+        if (positionSelected)
+            allPosition.remove(allPosition.size()-1);
+        positionSelected = false;
     }
 
 
@@ -212,19 +215,21 @@ public class HarvesterController extends AbstractController {
 
 
     public void placeFamiliar(){
+        if (familiarChosen.equals(""))
+            return;
+        if (positionSelected){
+            if (allPosition.size()>1)
+            allPosition.remove(allPosition.size() - 1);
+            else
+                allPosition.get(0).setFamiliarName("");
+            super.placeFamiliar(allPosition,familiarBox);
+        }
         if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0)
             return;
         super.placeFamiliar(allPosition, familiarBox);
         positionSelected = true;
     }
 
-    protected int familiarPlaced(List<FamiliarPosition> allPosition) {
-        int i = 0;
-        for (FamiliarPosition f: allPosition)
-            if (f.getFamiliarName()!= "")
-                i++;
-        return i;
-    }
 
     public void sendChat(ActionEvent actionEvent){
         sendChat(chatText);
@@ -236,16 +241,7 @@ public class HarvesterController extends AbstractController {
 
 
     public void updateCards(List<TerritoryCard> territoryCards){
-        for (int i = 0; i< territoryCards.size(); i++) {
-            try {
-                nameOfTerritoryCard.get(i);
-            } catch (IndexOutOfBoundsException e) {
-                String nameOfNewCard = territoryCards.get(i).getName();
-                nameOfTerritoryCard.add(nameOfNewCard);
-                ImageView imageView = imageTerritoryCard.get(i);
-                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
-            }
-        }
+        super.updateCards(territoryCards,nameOfTerritoryCard,imageTerritoryCard);
     }
 
     public void updatePosition(List<Harvester> harvesterZone) {

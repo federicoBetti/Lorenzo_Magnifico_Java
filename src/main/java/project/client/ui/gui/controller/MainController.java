@@ -6,7 +6,6 @@ import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
 import project.model.Board;
-import project.model.FamilyMember;
 import project.model.PersonalBoard;
 
 import java.util.ArrayList;
@@ -244,16 +243,24 @@ public class MainController {
     public void boardUpdate() {
         board = clientSetter.getUiBoard();
         Platform.runLater(() -> {
+            System.out.println("dadi: " + board.getDiceValue()[0] +" " +board.getDiceValue()[1] +" " +board.getDiceValue()[2]);
             //productionController.updatePosition(board.getProductionZone());
             //harvesterController.updatePosition(board.getHarvesterZone());
+            councilPalaceController.updatePosition(board.getCouncilZone());
             marketController.updatePosition(board.getMarketZone());
             towerController.updatePosition(board.getAllTowers());
             generalGameController.updatePosition(board.getAllTowers());
-            //generalGameController.updateTurn(board.getTurn().getPlayerTurn());
+            generalGameController.updateTurn(board.getTurn().getPlayerTurn());
         });
     }
 
     public void scoreUpdate() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                generalGameController.setScore(clientSetter.getUiScore());
+            }
+        });
     }
 
     public void familyMemberUpdate() {
@@ -269,7 +276,12 @@ public class MainController {
 
 
     public void takePrivilege(int quantityOfDifferentPrivileges) {
-        councilPalaceController.takeImmediatePrivilege(quantityOfDifferentPrivileges);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                councilPalaceController.takeImmediatePrivilege(quantityOfDifferentPrivileges);
+            }
+        });
     }
 
     public void bonusHarvester(int diceValue) {
@@ -284,16 +296,16 @@ public class MainController {
         towerController.takeBonusCard(kindOfCard,printBonusAction);
     }
 
-    public void bothPaymentAvaiable() {
-        loginBuilder.showChoice(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
+    public int bothPaymentAvaiable() {
+        return getScelta(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
     }
 
-    public void choosePermanentEffect() {
-        loginBuilder.showChoice(CliConstants.CHOOSE_PERMANENT_EFFECT, "effect 1", "effect 2");
+    public int choosePermanentEffect() {
+        return getScelta(CliConstants.CHOOSE_PERMANENT_EFFECT, "effect 1", "effect 2");
     }
 
-    public void askForPraying() {
-        loginBuilder.showChoice(CliConstants.ASK_FOR_PRAYING, "yes", "no");
+    public int askForPraying() {
+        return getScelta(CliConstants.ASK_FOR_PRAYING, "yes", "no");
     }
 
     public void endTurnContext() {
@@ -344,14 +356,14 @@ public class MainController {
     }
 
 
-    public int getScelta() {
+    public int getScelta(String bothPaymentAvaiable, String s, String s1) {
         integerQueue = new LinkedBlockingQueue<>(1);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
 
                 System.out.println("sono nel runlater");
-                generalGameController.setScelta();
+                generalGameController.setScelta(bothPaymentAvaiable,s,s1);
             }
         });
         Integer i = new Integer(0);

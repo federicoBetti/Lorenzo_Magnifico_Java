@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import project.model.Council;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -190,9 +191,14 @@ public class CouncilPalaceController extends AbstractController {
     }
 
     public void placeFamiliarInCouncil() {
+        if (familiarChosen.equals(""))
+            return;
         if (familiarPlaced){
             System.out.println("devo cambiare familiare perchè lho gia piazzato");
-            familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
+            if (familiarInTheCouncil.size() > 1)
+                familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
+            else
+                familiarInTheCouncil.get(0).setFamiliarName("");
             super.placeFamiliar(familiarInTheCouncil, familiarBox);
         }
         else {
@@ -215,10 +221,14 @@ public class CouncilPalaceController extends AbstractController {
 
     @Override
     public void refresh() {
+        super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
 
-        for (boolean b : privilegeChoosen)
-            b = false;
+        if (familiarPlaced)
+            familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
+        familiarPlaced = false;
+        for (boolean bo : privilegeChoosen)
+            bo = false;
     }
 
     public void showPersonalBoard() {
@@ -263,5 +273,9 @@ public class CouncilPalaceController extends AbstractController {
     protected void unlockButton() {
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> goToCouncil());
+    }
+
+    public void updatePosition(List<Council> councilZone) {
+        super.updatePosition(councilZone,familiarInTheCouncil);
     }
 }

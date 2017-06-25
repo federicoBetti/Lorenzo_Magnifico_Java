@@ -148,7 +148,6 @@ public class Configuration {
         Reader reader = new InputStreamReader(is);
 
         player.setAllFamilyMembers(gson.fromJson(reader, FamilyMember[].class));
-
     }
 
     public TimerSettings loadTimer() throws FileNotFoundException {

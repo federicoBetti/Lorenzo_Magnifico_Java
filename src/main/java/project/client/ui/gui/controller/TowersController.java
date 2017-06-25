@@ -164,7 +164,11 @@ public class TowersController extends AbstractController {
 
     @Override
     public void refresh() {
+        super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
+        lastFamiiarPlaced.setImage(null);
+        floor = -1;
+        familiarChosen = "";
 
     }
 
@@ -274,28 +278,25 @@ public class TowersController extends AbstractController {
     }
 
 
-    private void takeCard(int floor, int tower){
-        if (myTower[floor][tower].getFamiliarName() == null) {
+    private void takeCard(int tower, int floor){
+        if (myTower[tower][floor].getFamiliarName() == null) {
             lastFamiiarPlaced.setImage(null);
-            lastFamiiarPlaced = myTower[floor][tower].getFamiliarImage();
-            myTower[floor][tower].setFamiliarImage(getTrueFamiliarImage());
+            lastFamiiarPlaced = myTower[tower][floor].getFamiliarImage();
+            myTower[tower][floor].setFamiliarImage(getTrueFamiliarImage());
             selectCard(tower, floor);
         }
 
     }
     public void takeCardGreen3() {
-        takeCard(3,0);
-
+        takeCard(0,3);
     }
 
     public void takeCardGreen2() {
-        takeCard(2,0);
-
+        takeCard(0,2);
     }
 
     public void takeCardGreen1() {
-        takeCard(1,0);
-
+        takeCard(0, 1);
     }
 
     public void takeCardGreen0() {
@@ -304,11 +305,11 @@ public class TowersController extends AbstractController {
 
 
     public void takeCardBlue3() {
-        takeCard(3,1);
+        takeCard(1,3);
     }
 
     public void takeCardBlue2() {
-        takeCard(2,1);
+        takeCard(1,2);
     }
 
     public void takeCardBlue1() {
@@ -316,15 +317,15 @@ public class TowersController extends AbstractController {
     }
 
     public void takeCardBlue0() {
-        takeCard(0,1);
+        takeCard(1,0);
     }
 
     public void takeCardYellow0() {
-        takeCard(0,2);
+        takeCard(2,0);
     }
 
     public void takeCardYellow1() {
-        takeCard(1,2);
+        takeCard(2,1);
     }
 
     public void takeCardYellow2() {
@@ -332,19 +333,19 @@ public class TowersController extends AbstractController {
     }
 
     public void takeCardYellow3() {
-        takeCard(3,2);
+        takeCard(2,3);
     }
 
     public void takeCardPurple0() {
-        takeCard(0,3);
+        takeCard(3,0);
     }
 
     public void takeCardPurple1() {
-        takeCard(1,3);
+        takeCard(3,1);
     }
 
     public void takeCardPurple2() {
-        takeCard(2,3);
+        takeCard(3,2);
     }
 
     public void takeCardPurple3(){
@@ -370,6 +371,7 @@ public class TowersController extends AbstractController {
     public void takeCard() {
         if (floor != -1){
             String towerColourString = getTowerColour(towerColour);
+            lastFamiiarPlaced = new ImageView();
             mainController.takeDevCard(towerColourString,floor, familiarChosen);
         }
     }

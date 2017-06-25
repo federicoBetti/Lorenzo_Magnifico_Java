@@ -32,7 +32,7 @@ public class ClientSetter {
     Score uiScore;
     FamilyMember[] uiFamilyMembers;
 
-    //todo creare board
+    //todo fare metodi uguali per rmi e socket in quelli che ritornano risposte e oserei dire di farli tutti con return int
     public ClientSetter(String kindOfUI ) {
         uiBoard = new Board();
         uiPersonalBoard = new PersonalBoard();

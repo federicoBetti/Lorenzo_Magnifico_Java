@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public final class Board {
 
@@ -19,48 +19,48 @@ public final class Board {
     private CouncilPrivilege[] councilPrivileges;
 
     /**
-     * 
+     *
      */
 
     private List<Harvester> harvesterZone;
 
     /**
-     * 
+     *
      */
     private List<Production> productionZone;
 
     /**
-     * 
+     *
      */
     private Market[] marketZone;
 
     /**
-     * 
+     *
      */
     private List<Council> councilZone;
 
     /**
-     * 
+     *
      */
     private ExcommunicationZone[] excommunicationZone;
 
     /**
-     * 
+     *
      */
     private Turn turn;
 
     /**
-     * 
+     *
      */
     private int period;
 
     /**
-     * 
+     *
      */
     private int isPlaying;
 
     /**
-     * 
+     *
      */
     private int round;
 
@@ -68,7 +68,7 @@ public final class Board {
     private int[] diceValue;
 
 
-    private Map<String,Position[]> zones;
+    private Map<String, Position[]> zones;
 
     /**
      * questa variabile rappresenta se siamo alla fine di un turno e aspettiamo il lancio dei dadi
@@ -105,20 +105,18 @@ public final class Board {
 
         Configuration configuration = new Configuration();
 
-        if (numberOfPlayer == Constants.FOUR_PLAYERS){
+        if (numberOfPlayer == Constants.FOUR_PLAYERS) {
             marketZone = new Market[Constants.FOUR_PLAYERS];
-            configuration.loadMarketBonus( this,  "/fileJson/marketZone4.json"  );
-        }
-        else {
+            configuration.loadMarketBonus(this, "/fileJson/marketZone4.json");
+        } else {
             marketZone = new Market[Constants.TWO_PLAYERS];
             marketZone = new Market[Constants.FOUR_PLAYERS];
-           configuration.loadMarketBonus(this, "/fileJson/marketZone2.json");
+            configuration.loadMarketBonus(this, "/fileJson/marketZone2.json");
         }
-        if (numberOfPlayer > Constants.TWO_PLAYERS){
+        if (numberOfPlayer > Constants.TWO_PLAYERS) {
             harvesterZone = new ArrayList<>();
-           productionZone = new ArrayList<>();
-        }
-        else {
+            productionZone = new ArrayList<>();
+        } else {
             harvesterZone = new ArrayList<>(1);
             productionZone = new ArrayList<>(1);
         }
@@ -141,34 +139,32 @@ public final class Board {
         //configuration.loadBonusTile(getDeckCard());
 
 
-
         round = 0;
         period = 0;
     }
 
     public Board() {
-         Tower[][] towers = new Tower[0][0];
-         CouncilPrivilege[] councilPrivileges = new CouncilPrivilege[0];
-         List<Harvester> harvesterZone = new ArrayList<>();
-         List<Production> productionZone = new ArrayList<>();
-         Market[] marketZone = new Market[0];
-         List<Council> councilZone = new ArrayList<>();
-         ExcommunicationZone[] excommunicationZone = new ExcommunicationZone[3];
-         Turn turn = new Turn();
+        towers = new Tower[0][0];
+        councilPrivileges = new CouncilPrivilege[0];
+        harvesterZone = new ArrayList<>();
+        productionZone = new ArrayList<>();
+        marketZone = new Market[0];
+        councilZone = new ArrayList<>();
+        excommunicationZone = new ExcommunicationZone[3];
+        turn = new Turn();
     }
 
 
     private void fillHashMap() {
-        zones.put(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD,getTower(0));
-        zones.put(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD,getTower(1));
-        zones.put(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD,getTower(2));
-        zones.put(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD,getTower(3));
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_TERRITORY_CARD, getTower(0));
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD, getTower(1));
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD, getTower(2));
+        zones.put(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD, getTower(3));
     }
 
-    public void nextRound(){
-        round ++;
-        if (round == 3)
-            round = 1;
+    public void nextRound() {
+        round++;
+        if (round == 3) round = 1;
     }
 
     public void setMarketZone(Market[] marketZone) {
@@ -180,7 +176,7 @@ public final class Board {
         return victoryPointsInFaithTrack;
     }
 
-    public Tower[] getTower (int i){
+    public Tower[] getTower(int i) {
         return towers[i];
     }
 
@@ -223,8 +219,8 @@ public final class Board {
         this.diceValue = diceValue;
     }
 
-    public Tower[] getTrueArrayList(String whichZone){
-        return (Tower[])zones.get(whichZone);
+    public Tower[] getTrueArrayList(String whichZone) {
+        return (Tower[]) zones.get(whichZone);
     }
 
     public boolean getEndRound() {
@@ -235,12 +231,12 @@ public final class Board {
         this.endRound = endRound;
     }
 
-    public Tower[][] getAllTowers(){
+    public Tower[][] getAllTowers() {
         return towers;
     }
 
-    public void nextPeriod(){
-        period ++;
+    public void nextPeriod() {
+        period++;
     }
 
     public void setTowers(Tower[][] towers) {
@@ -279,7 +275,7 @@ public final class Board {
         return councilPrivileges;
     }
 
-    public void setMarketPosition(int positionNumber, Market market){
+    public void setMarketPosition(int positionNumber, Market market) {
         this.marketZone[positionNumber] = market;
     }
 
@@ -287,7 +283,7 @@ public final class Board {
         this.councilPrivileges = councilPrivileges;
     }
 
-    public void setTowerInTowers(int towerNumber, int floor, Tower tower ){
+    public void setTowerInTowers(int towerNumber, int floor, Tower tower) {
         this.towers[towerNumber][floor] = tower;
         System.out.println(tower);
     }

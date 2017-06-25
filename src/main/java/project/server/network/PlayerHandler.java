@@ -58,7 +58,7 @@ public abstract class PlayerHandler extends Player {
         }
         else {
             boolean canPayCard = checkFunctions.checkCardCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
-            System.out.println("canPayCard" + canPayCard + "  postion: " + canPlaceFamiliar);
+            System.out.println("canPayCard: " + canPayCard + "  postion: " + canPlaceFamiliar);
             if (canPayCard && canPlaceFamiliar) {
                 gameActions().takeNoVenturesCard(zone, familyM, this, towerOccupied);
                 gameActions().broadcastNotifications(new Notify(getName() + " has taken " + card.getName()));
@@ -80,7 +80,7 @@ public abstract class PlayerHandler extends Player {
             return canUseBothPaymentMethod();
         }
         else
-            return canTakeVenturesCard;
+            return canTakeVenturesCard - 1;
     }
 
     protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {

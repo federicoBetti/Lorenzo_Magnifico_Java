@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import project.TowerIterator;
 import project.controller.Constants;
+import project.controller.cardsfactory.TerritoryCard;
+import project.model.DevelopmentCard;
 import project.model.FamilyMember;
 import project.model.Position;
 import project.model.Tower;
@@ -74,7 +76,9 @@ public abstract class AbstractController {
 
     public abstract void setMainController(MainController mainController);
 
-    public abstract void refresh();
+    public void refresh(){
+        familiarChosen = "";
+    }
 
     public void goToMainGame(ActionEvent actionEvent) {
         loginBuilder.setScene(SceneType.MAIN, SceneType.HARVESTER);
@@ -144,7 +148,7 @@ public abstract class AbstractController {
             ImageView imageView = imageFamiltMember.get(i);
             RadioButton radioButton = radioButtonFamiliar.get(i);
             if (uiFamilyMembers[i].isPlayed()) {
-                imageView.setOpacity(0.7);
+                imageView.setOpacity(0.5);
                 radioButton.setDisable(true);
             } else {
                 imageView.setOpacity(1);
@@ -154,10 +158,23 @@ public abstract class AbstractController {
         familiarChosen = null;
     }
 
+    public void updateCards(List<? extends DevelopmentCard> territoryCards, List<String> nameOfTerritoryCard, List<ImageView> imageTerritoryCard ){
+        for (int i = 0; i< territoryCards.size(); i++) {
+            try {
+                nameOfTerritoryCard.get(i);
+            } catch (IndexOutOfBoundsException e) {
+                String nameOfNewCard = territoryCards.get(i).getName();
+                nameOfTerritoryCard.add(nameOfNewCard);
+                ImageView imageView = imageTerritoryCard.get(i);
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
+            }
+        }
+    }
+
     public void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox) {
         System.out.println("provo a piazzare familiare");
         for (FamiliarPosition f : allPosition) {
-            if (f.getFamiliarName() == "") {
+            if (f.getFamiliarName().equals("")) {
                 System.out.println("ho trovato un posto vuoto");
                 f.setImage(getTrueFamiliarImage());
                 return;
@@ -174,7 +191,7 @@ public abstract class AbstractController {
     protected int familiarPlaced(List<FamiliarPosition> allPosition) {
         int i = 0;
         for (FamiliarPosition f: allPosition)
-            if (f.getFamiliarName()!= "")
+            if (!f.getFamiliarName().equals(""))
                 i++;
         return i;
     }
@@ -194,16 +211,13 @@ public abstract class AbstractController {
                     familiarPosition.setImage(null);
                     familiarPosition.setFamiliarName("");
                 }
-            } else {
-                if (familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))
-                    continue;
-                else {
+            } else if (!(familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))){
                     System.out.println("devo cambiare il familiar sulla posizione");
                     familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
                     System.out.println(familiarPosition.getFamiliarName());
                     familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
                 }
-            }
+
         }
     }
 
@@ -218,7 +232,8 @@ public abstract class AbstractController {
 
                 System.out.println(serverTower.getCardOnThisFloor());
                 if (serverTower.getCardOnThisFloor() == null) {
-                    modifyCard(guiTower, null);
+                    guiTower.setCardName(null);
+                    guiTower.setCardImage(null);
                 } else {
                     if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())) {
                         modifyCard(guiTower, serverTower.getCardOnThisFloor().getName());

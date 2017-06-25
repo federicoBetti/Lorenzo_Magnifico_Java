@@ -34,7 +34,8 @@ public class Player implements Serializable{
 
     public Player(){
     	Configuration configuration = new Configuration();
-    	personalBoardReference = new PersonalBoard();
+    	//uso costruttore di prova per avere un po di risorse all'inizio
+    	personalBoardReference = new PersonalBoard(10);
     	score = new Score();
 		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
 		try {
@@ -137,7 +138,8 @@ public class Player implements Serializable{
 
 	public void setFamilyColourInFamilyMembers( ){
 		for ( FamilyMember familyMember : getAllFamilyMembers() ){
-			familyMember.setFamilyColour(getFamilyColour());
+			if (!familyMember.getMyColour().equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL))
+				familyMember.setFamilyColour(getFamilyColour());
 		}
 	}
 

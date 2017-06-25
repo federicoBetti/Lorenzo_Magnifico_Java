@@ -1,7 +1,7 @@
 package project.client.ui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
+import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
@@ -10,7 +10,6 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
-import project.model.PersonalBoard;
 
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void takeBonusCard(TowerAction towerAction) {
-        mainController.takeBonusCard(towerAction.getKindOfCard(),"ciao" ); //todo towerAction.printBonusAction());
+        mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() ); //todo towerAction.printBonusAction());
     }
 
     @Override
@@ -161,7 +160,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public int getScelta() {
-        return mainController.getScelta();
+        return mainController.getScelta(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
     }
 
     @Override

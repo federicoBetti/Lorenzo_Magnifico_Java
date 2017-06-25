@@ -100,6 +100,7 @@ public class MarketController extends AbstractController {
 
     @Override
     public void refresh() {
+        super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiliarPlaced.setImage(null);
     }
@@ -143,16 +144,15 @@ public class MarketController extends AbstractController {
     public void goToMarket() {
         if (positionSelected!= -1){
             System.out.println("fatto partire richiesta mercato");
+            lastFamiliarPlaced.setImage(null);
             mainController.goToMarket(positionSelected,familiarChosen);
-
-
         }
     }
 
 
     private void placeFamiliar(int position){
         FamiliarPosition familiar = familiarPositions.get(position);
-        if (familiar.getFamiliarName() != "")
+        if (!familiar.getFamiliarName().equals(""))
             return; //posizione occupata
         lastFamiliarPlaced.setImage(null);
         positionSelected = position;
