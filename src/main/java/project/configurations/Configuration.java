@@ -143,7 +143,6 @@ public class Configuration {
     public void loadBonusTower(Board board) throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream("/fileJson/newTowerZone.json");
         Reader reader = new InputStreamReader(is);
-        TowerIterator iterator = new TowerIterator();
 
         TowerFromJson[][] towersFromJson = gson.fromJson(reader, TowerFromJson[][].class);
 
@@ -152,10 +151,8 @@ public class Configuration {
             for ( int j = 0; j < 4; j++ ) {
                 Tower tower = new Tower(towersFromJson[i][j].getColour(), towersFromJson[i][j].getDiceValueOfThisFloor(), towersFromJson[i][j].getTowerNumber(), towersFromJson[i][j].getTrisIE());
                 board.setTowerInTowers(i, j, tower);
-                System.out.println(tower);
             }
         }
-
     }
 
     public void loadFamilyMembers(Player player) throws FileNotFoundException {
