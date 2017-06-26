@@ -7,6 +7,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
+import project.model.Tile;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CanUseBothPaymentMethodException;
 import project.server.network.exception.CantDoActionException;
@@ -247,6 +248,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (IOException e) {
         e.printStackTrace();
     }
+    }
+
+    @Override
+    public int chooseTile(ArrayList<Tile> tiles) {
+        //todo per draft delle tile
+        return 0;
     }
 
 

@@ -355,6 +355,7 @@ public class GeneralMainGameController extends AbstractController{
         int current = 0;
         for (PlayerHandler p: playerTurn){
             String playerColour = p.getFamilyColour();
+            System.out.println("il colore che devo mettere al posto " + current + " del turno è " + playerColour);
             turnOrderArray.get(current).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + playerColour + "Pedone.png"))));
             current++;
         }

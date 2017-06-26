@@ -170,11 +170,6 @@ public class ProductionController extends AbstractController{
         allBuildingCard.add(buildingCard5);
 
         allPosition.add(new FamiliarPosition(imageProduction0));
-        if (mainController.getNumberOfPlayer() >= 3){
-        }
-        else {
-            allPosition = Collections.unmodifiableList(allPosition);
-        }
     }
 
     @Override

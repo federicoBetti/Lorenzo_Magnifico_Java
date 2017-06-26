@@ -9,6 +9,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
+import project.model.Tile;
 import project.model.Tower;
 
 import java.io.IOException;
@@ -450,6 +451,12 @@ public class Cli extends AbstractUI {
         context = new MatchStartedContext(this);
         numberOfPlayers = roomPlayers;
         playerColor = familyColour;
+    }
+
+    @Override
+    public int tileDraft(ArrayList<Tile> tiles) {
+        //todo draft delle tile
+        return 0;
     }
 
     public int getNumberOfPlayers() {

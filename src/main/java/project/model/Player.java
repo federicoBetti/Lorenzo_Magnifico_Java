@@ -140,6 +140,8 @@ public class Player implements Serializable{
 		for ( FamilyMember familyMember : getAllFamilyMembers() ){
 			if (!familyMember.getMyColour().equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL))
 				familyMember.setFamilyColour(getFamilyColour());
+			else
+				familyMember.setFamilyColour("empty" + getFamilyColour());
 		}
 	}
 

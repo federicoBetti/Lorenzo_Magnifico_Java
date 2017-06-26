@@ -6,7 +6,9 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
+import project.model.Tile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,4 +80,6 @@ public abstract class AbstractUI {
     public abstract String getLeaderCardChosen(List<LeaderCard> leaders);
 
     public abstract void matchStarted(int roomPlayers, String familyColour);
+
+    public abstract int tileDraft(ArrayList<Tile> tiles);
 }

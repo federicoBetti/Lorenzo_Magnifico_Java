@@ -7,6 +7,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
+import project.model.Tile;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CantDoActionException;
 
@@ -202,7 +203,8 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.timerTurnDelayed();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println("il giocatore si è disconnesso");
+            setOn(false);
         }
     }
 
@@ -240,6 +242,16 @@ public class RMIPlayerHandler extends PlayerHandler {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public int chooseTile(ArrayList<Tile> tiles) {
+        try {
+            return myClient.tileChoosen(tiles);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 

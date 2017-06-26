@@ -43,11 +43,6 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
     }
 
     @Override
-    public void takeCouncilPrivilege(int privelgeNumber) {
-        allSupportFunctions.takeCouncilPrivilege(privelgeNumber);
-    }
-
-    @Override
     public void takeMarketAction(int position) {
         allSupportFunctions.takeMarketAction(position);
     }

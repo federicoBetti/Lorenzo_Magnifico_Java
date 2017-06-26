@@ -17,9 +17,6 @@ public class Market extends Position implements Serializable{
         BuildImmediateEffects BuildImmediateEffects = new BuildImmediateEffects();
         effect = BuildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
     }
-    public void makeEffect(int position) {
-        //to do implements
-    }
 
     public Effects getEffect() {
         return effect;

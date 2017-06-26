@@ -110,7 +110,6 @@ public final class Board {
             configuration.loadMarketBonus(this, "/fileJson/marketZone4.json");
         } else {
             marketZone = new Market[Constants.TWO_PLAYERS];
-            marketZone = new Market[Constants.FOUR_PLAYERS];
             configuration.loadMarketBonus(this, "/fileJson/marketZone2.json");
         }
         if (numberOfPlayer > Constants.TWO_PLAYERS) {
@@ -126,6 +125,8 @@ public final class Board {
 
         this.councilPrivileges = new CouncilPrivilege[5];
         configuration.loadCouncilZonePriviledges(this);
+        for (CouncilPrivilege c: councilPrivileges)
+            System.out.println(c + "effetto: " + c.getEffect());
 
         this.towers = new Tower[4][4];
         configuration.loadBonusTower(this);
@@ -164,7 +165,7 @@ public final class Board {
 
     public void nextRound() {
         round++;
-        if (round == 3) round = 1;
+        if (round == 2) round = 0;
     }
 
     public void setMarketZone(Market[] marketZone) {

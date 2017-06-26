@@ -430,4 +430,6 @@ public abstract class PlayerHandler extends Player {
      * @param familyColour colour of the player
      */
     public abstract void matchStarted(int roomPlayers, String familyColour);
+
+    public abstract int chooseTile(ArrayList<Tile> tiles);
 }

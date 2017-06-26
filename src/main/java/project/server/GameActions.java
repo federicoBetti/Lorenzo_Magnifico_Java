@@ -55,8 +55,12 @@ public class GameActions {
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
         System.out.println(familyM);
+
+        //devo far pagare i servants!
+        System.out.println("ho numero di servants: " + player.getPersonalBoardReference().getServants());
         getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
         getSupportFunctions(player).setFamiliar(zone, familyM);
+        System.out.println("ho numero di servants: " + player.getPersonalBoardReference().getServants());
         //prova
         System.out.println(zone.getFamiliarOnThisPosition());
 
@@ -119,24 +123,26 @@ public class GameActions {
 
         } else if ( room.getBoard().getTurn().getRotation() < 4) {// sono 'ultimo del turno ma non è finito round
             System.out.println("sono l'ultimo del turno, metto la rotazione a "  +room.getBoard().getTurn().getRotation());
-             next = turn.get(0);
+            room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
+            next = turn.get(0);
              if (next.isOn()) {
                  timer.cancel();
                  next.itsMyTurn();
-                 room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
                  timer = this.myTimerSkipTurn(turn.get(0));
                  return;
              }
              nextTurn(next);
          }
 
-         else if (currentRound == 2 && currentPeriod == 3) { //fine partita
+         else if (currentRound == 1 && currentPeriod == 2) { //fine partita
             endMatch();
 
-        } else if (currentRound == 2) {//fine periodo
+        } else if (currentRound == 1) {//fine periodo
+            System.out.println("fine periodo!" + currentPeriod);
             endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
+            room.getBoard().getTurn().setRotation(0);
             setEndRound(true);
             timer.cancel();
             firstPlayerTurn();
@@ -144,7 +150,7 @@ public class GameActions {
             return;
 
         } else {
-            System.out.println("fine round!");
+            System.out.println("fine round!" + currentPeriod);
             endRound();
             room.getBoard().getTurn().setRotation(0);
             nextRound();
@@ -373,7 +379,7 @@ public class GameActions {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 //ho fatto il ciclo passando per tutte le torri dal basso all'alto
                 clearSinglePosition(tower[i][j]);
-                tower[i][j].setCardOnThisFloor(deck[i][currentPeriod][roundsAdd + j]); //da testare
+                tower[i][j].setCardOnThisFloor(deck[i][currentPeriod][roundsAdd + j]); //da testare!!!!
             }
         }
 
@@ -484,11 +490,10 @@ public class GameActions {
 
         MarketUpdate marketUpdate = new MarketUpdate(room.getBoard(), player.getName());
 
-        getSupportFunctions(player).takeMarketAction(position);
+        Effects e = room.getBoard().getMarketZone()[position].getEffect();
+        e.doEffect(player);
 
         player.sendActionOk();
-        //prova di stampa
-        System.out.println(marketUpdate.toScreen());
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
@@ -577,7 +582,10 @@ public class GameActions {
      * @param player
      */
     public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player) {
-        getSupportFunctions(player).takeCouncilPrivilege(privilegeNumber);
+
+        CouncilPrivilege privilege = room.getBoard().getCouncilPrivileges()[privilegeNumber];
+        Effects e = privilege.getEffect();
+        e.doEffect(player);
 
         if (privilegeNumber > 0 && privilegeNumber < 2) {
             player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
