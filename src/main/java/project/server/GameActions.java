@@ -116,7 +116,7 @@ public class GameActions {
              if ( next.isOn() ) {
                  timer.cancel();
                  next.itsMyTurn();
-                 timer = this.room.myTimerSkipTurn(turn.get(indexOfMe + 1));
+                 timer = this.myTimerSkipTurn(turn.get(indexOfMe + 1));
                  return;
              }
              nextTurn(next);
@@ -128,7 +128,7 @@ public class GameActions {
                  timer.cancel();
                  next.itsMyTurn();
                  room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
-                 timer = this.room.myTimerSkipTurn(turn.get(0));
+                 timer = this.myTimerSkipTurn(turn.get(0));
                  return;
              }
              nextTurn(next);
@@ -144,7 +144,7 @@ public class GameActions {
             setEndRound(true);
             timer.cancel();
             firstPlayerTurn();
-            timer = this.room.myTimerSkipTurn(turn.get(0));
+            timer = this.myTimerSkipTurn(turn.get(0));
             return;
 
         } else {
@@ -155,7 +155,7 @@ public class GameActions {
             setEndRound(true);
             timer.cancel();
             firstPlayerTurn();
-            timer = this.room.myTimerSkipTurn(turn.get(0));
+            timer = this.myTimerSkipTurn(turn.get(0));
             return;
         }
 
@@ -185,6 +185,11 @@ public class GameActions {
             }
         }
         return true;
+    }
+
+    public void firstTurn() {
+        room.getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
+        timer = myTimerSkipTurn(room.getBoard().getTurn().getPlayerTurn().get(0));
     }
 
     class MilitaryComparator implements Comparator<PlayerHandler> {
@@ -643,5 +648,20 @@ public class GameActions {
             }
         }
 
+    }
+
+    public Timer myTimerSkipTurn(PlayerHandler player ) {
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                player.timerTurnDelayed();
+                nextTurn( player );
+            }
+        };
+
+        Timer timer = new Timer(room.timerSettings.getSkipTurnTimerName());
+        timer.schedule(timerTask, room.timerSettings.getDelayTimerSkipTurn());
+        return timer;
     }
 }

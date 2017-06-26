@@ -135,7 +135,7 @@ public final class Board {
         configuration.loadDevelopmentCards(decks);
         configuration.loadLeaderCard(decks);
         configuration.loadExcommunicationTiles(decks);
-        //configuration.loadBonusTile(getDeckCard());
+        configuration.loadBonusTile(getDeckCard());
 
 
         round = 0;
@@ -284,7 +284,6 @@ public final class Board {
 
     public void setTowerInTowers(int towerNumber, int floor, Tower tower) {
         this.towers[towerNumber][floor] = tower;
-        System.out.println(tower);
     }
 
     public int[] getMilitaryPointsForTerritories() {
