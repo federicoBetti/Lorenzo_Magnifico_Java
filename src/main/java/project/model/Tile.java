@@ -7,6 +7,7 @@ import project.controller.effects.realeffects.Effects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -14,11 +15,13 @@ import java.util.ArrayList;
 public class Tile implements Serializable{
 
     int tileNumber;
-    ArrayList<Effects> harvesterBonus;
-    ArrayList<Effects> productionBonus;
+    List<Effects> harvesterBonus;
+    List<Effects> productionBonus;
 
 
     public Tile(TileBonusFromJson tile ){
+        harvesterBonus = new ArrayList<>();
+        productionBonus = new ArrayList<>();
         BuildImmediateEffects BuildImmediateEffects = new BuildImmediateEffects();
 
         this.tileNumber = tile.getTileNumber();

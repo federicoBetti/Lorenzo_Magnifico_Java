@@ -195,9 +195,10 @@ public class Room {
 
 
         gameActions.rollDice();
-        getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
         matchStarted = true;
-        myTimerSkipTurn(getBoard().getTurn().getPlayerTurn().get(0));
+        gameActions.firstTurn();
+
+
     }
 
     private LeaderCard getLeader(String leaderName,ArrayList<LeaderCard> leaders) {
@@ -237,20 +238,7 @@ public class Room {
         return colors;
     }
 
-    public Timer myTimerSkipTurn(PlayerHandler player ) {
 
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                player.timerTurnDelayed();
-                gameActions.nextTurn( player );
-            }
-        };
-
-        Timer timer = new Timer(timerSettings.getSkipTurnTimerName());
-        timer.schedule(timerTask, timerSettings.getDelayTimerSkipTurn());
-        return timer;
-    }
 
     public boolean isMatchStarted() {
         return matchStarted;

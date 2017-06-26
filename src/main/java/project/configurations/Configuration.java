@@ -77,9 +77,12 @@ public class Configuration {
         InputStream is = getClass().getResourceAsStream("/fileJson/bonusTile.json");
         Reader reader = new InputStreamReader(is);
 
-        TileBonusFromJson tileBonusFromJson = gson.fromJson(reader, TileBonusFromJson.class);
-        Tile tile = new Tile(tileBonusFromJson);
-        deck.setProdHaarvTile(tileBonusFromJson.getTileNumber(), tile);
+        TileBonusFromJson[] tilesBonusFromJson = gson.fromJson(reader, TileBonusFromJson[].class);
+
+        for ( TileBonusFromJson tileJ : tilesBonusFromJson ) {
+            Tile tile = new Tile(tileJ);
+            deck.setProdHaarvTile(tileJ.getTileNumber(), tile);
+        }
 
     }
 

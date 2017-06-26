@@ -50,5 +50,6 @@ public class Deck {
 
     public void setProdHaarvTile( int tileNumber, Tile tile ){
         prodHaarvTiles[tileNumber] = tile;
+        System.out.println( prodHaarvTiles[tileNumber] + "\n" +  prodHaarvTiles[tileNumber].getTileNumber());
     }
 }
