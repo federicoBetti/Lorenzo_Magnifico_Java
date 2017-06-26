@@ -1,11 +1,9 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import project.controller.cardsfactory.LeaderCard;
@@ -32,19 +30,39 @@ public class DraftController {
         title.setText(labelMessage);
     }
 
-    public void uploadImages(List<LeaderCard> leaderName) {
-        for (LeaderCard l: leaderName){
-            String s = l.getName();
+
+    public void uploadImagesTile(List<String> name) {
+        for (String s: name){
+            ImageView imageView = new ImageView();
+            imageView.setFitWidth(49);
+            imageView.setFitHeight(400);
+            imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/risorse/bonusTile" + s + ".png"))));
+            imageView.setOnMouseClicked(event -> imageClickedInt(s));
+            cardBox.getChildren().addAll(imageView);
+        }
+
+    }
+
+    private void imageClickedInt(String s) {
+
+        mainController.addIntQueue(Integer.parseInt(s));
+        Stage stage = (Stage) title.getScene().getWindow();
+        stage.hide();
+    }
+
+    public void uploadImagesLeader(List<String> name) {
+        for (String s: name){
             ImageView imageView = new ImageView();
             imageView.setFitWidth(128);
             imageView.setFitHeight(210);
             imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCards/" + s + ".png"))));
-            imageView.setOnMouseClicked(event -> imageClicked(s));
+            imageView.setOnMouseClicked(event -> imageClickedLeader(s));
             cardBox.getChildren().addAll(imageView);
         }
     }
 
-    private void imageClicked(String s) {
+
+    private void imageClickedLeader(String s) {
         mainController.addStringQueue(s);
         Stage stage = (Stage) title.getScene().getWindow();
         stage.hide();

@@ -9,6 +9,7 @@ import project.controller.supportfunctions.BasicSupportFunctions;
 import project.messages.updatesmessages.*;
 import project.model.Board;
 import project.model.Player;
+import project.model.Tile;
 import project.server.network.PlayerHandler;
 
 import java.io.FileNotFoundException;
@@ -145,9 +146,9 @@ public class Room {
         board.getTurn().setPlayerTurn(playerInTheMatch);
 
         //todo aggiungere questa parte per il draft
-/*
-        //draft FUNZIONA BASTA TOGLIERE I COMMENTI PER TESTARLO
 
+        //draft leader
+/*
        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i< Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++){
@@ -168,8 +169,21 @@ public class Room {
             }
             listsForDraft = shiftLeaderList(listsForDraft);
         }
+        //draft tile
 */
+        ArrayList<Tile> tiles = fillListTile();
+        ListIterator<PlayerHandler> iterator = playerInTheMatch.listIterator();
+        while(iterator.hasNext())
+            iterator.next();
 
+        while (iterator.hasPrevious()){
+            PlayerHandler p = iterator.previous();
+            int tileId = p.chooseTile(tiles);
+            System.out.println("ha scelto la tile numero " + tileId);
+            Tile tile = getTrueTile(tileId,tiles);
+            p.getPersonalBoardReference().setMyTile(tile);
+            tiles.remove(tile);
+        }
         //inizia la partita
         for (PlayerHandler p: playerInTheMatch){
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
@@ -198,7 +212,21 @@ public class Room {
         matchStarted = true;
         gameActions.firstTurn();
 
+    }
 
+    private Tile getTrueTile(int tileId, ArrayList<Tile> tiles) {
+        for (Tile t: tiles)
+            if (t.getTileNumber() == tileId)
+                return t;
+        return null;
+    }
+
+    private ArrayList<Tile> fillListTile() {
+        ArrayList<Tile> tiles = new ArrayList<>(4);
+        for (Tile t: board.getDeckCard().getProdHaarvTiles())
+            tiles.add(t);
+        Collections.shuffle(tiles);
+        return tiles;
     }
 
     private LeaderCard getLeader(String leaderName,ArrayList<LeaderCard> leaders) {
@@ -217,11 +245,12 @@ public class Room {
     }
 
     private ArrayList<ArrayList<LeaderCard>> getListOfLeader() {
+        int numberOfCard = Constants.LEADER_CARD_NUMBER_PER_PLAYER;
        ArrayList<ArrayList<LeaderCard>> listsForDraft = new ArrayList<>();
        ArrayList<LeaderCard> leaders = board.getDeckCard().getLeaderCardeck();
         Collections.shuffle(leaders);
         for (int i = 0; i<getRoomPlayers(); i++){
-           ArrayList<LeaderCard> ll = new ArrayList<>(leaders.subList(5 * i,5*i + 5));
+           ArrayList<LeaderCard> ll = new ArrayList<>(leaders.subList(numberOfCard * i,numberOfCard*i + numberOfCard));
             listsForDraft.add(ll);
         }
         return listsForDraft;

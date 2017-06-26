@@ -13,11 +13,9 @@ import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.TowersUpdate;
 import project.messages.updatesmessages.Updates;
-import project.model.Board;
-import project.model.FamilyMember;
-import project.model.PersonalBoard;
-import project.model.Score;
+import project.model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -203,7 +201,7 @@ public class ClientSetter {
 
 
     public void scoreUpdate(Updates update) {
-       // update.doUpdate(uiScore);
+        uiScore = update.doUpdate(uiScore);
         ui.scoreUpdate(update);
     }
 
@@ -294,5 +292,9 @@ public class ClientSetter {
 
     public void matchStarted(int roomPlayers, String familyColour) {
         ui.matchStarted(roomPlayers,familyColour);
+    }
+
+    public int tileDraft(ArrayList<Tile> tiles) {
+        return ui.tileDraft(tiles);
     }
 }

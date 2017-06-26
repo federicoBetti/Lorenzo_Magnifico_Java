@@ -97,10 +97,8 @@
             </ImageView>
             <VBox alignment="BOTTOM_LEFT" prefHeight="861.0" prefWidth="363.0">
                <children>
-                  <ImageView fitHeight="550.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="/images/risorse/bonusTile1.png" />
-                     </image>
+                  <ImageView fx:id="bonusTile" fitHeight="550.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+
                   </ImageView>
                   <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBack" prefHeight="78.0" prefWidth="363.0" text="go back">
                      <font>

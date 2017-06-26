@@ -167,6 +167,7 @@ public class TowersController extends AbstractController {
         super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiiarPlaced.setImage(null);
+
         floor = -1;
         familiarChosen = "";
 
@@ -183,8 +184,6 @@ public class TowersController extends AbstractController {
 
         lastFamiiarPlaced = new ImageView();
 
-       green0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
-        green1.setImage(new Image(String.valueOf(getClass().getResource("/images/woods.png"))));
         myTower[0][0] = new TowerZone(green0,familiarGreen0);
         myTower[0][1] = new TowerZone(green1,familiarGreen1);
         myTower[0][2] = new TowerZone(green2,familiarGreen2);

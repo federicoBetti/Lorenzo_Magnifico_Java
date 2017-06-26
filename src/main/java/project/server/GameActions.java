@@ -123,24 +123,26 @@ public class GameActions {
 
         } else if ( room.getBoard().getTurn().getRotation() < 4) {// sono 'ultimo del turno ma non è finito round
             System.out.println("sono l'ultimo del turno, metto la rotazione a "  +room.getBoard().getTurn().getRotation());
-             next = turn.get(0);
+            room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
+            next = turn.get(0);
              if (next.isOn()) {
                  timer.cancel();
                  next.itsMyTurn();
-                 room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
                  timer = this.myTimerSkipTurn(turn.get(0));
                  return;
              }
              nextTurn(next);
          }
 
-         else if (currentRound == 2 && currentPeriod == 3) { //fine partita
+         else if (currentRound == 1 && currentPeriod == 2) { //fine partita
             endMatch();
 
-        } else if (currentRound == 2) {//fine periodo
+        } else if (currentRound == 1) {//fine periodo
+            System.out.println("fine periodo!" + currentPeriod);
             endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
+            room.getBoard().getTurn().setRotation(0);
             setEndRound(true);
             timer.cancel();
             firstPlayerTurn();
@@ -148,7 +150,7 @@ public class GameActions {
             return;
 
         } else {
-            System.out.println("fine round!");
+            System.out.println("fine round!" + currentPeriod);
             endRound();
             room.getBoard().getTurn().setRotation(0);
             nextRound();

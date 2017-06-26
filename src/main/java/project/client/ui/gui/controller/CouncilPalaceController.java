@@ -260,8 +260,8 @@ public class CouncilPalaceController extends AbstractController {
         }
 
         if (privilegeSelected.size() == maxPrivilegeChosen) {
-            mainController.takeBonusPrivileges(privilegeSelected);
             unlockButton();
+            mainController.takeBonusPrivileges(privilegeSelected);
         }
     }
 

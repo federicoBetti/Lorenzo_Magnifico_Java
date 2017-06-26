@@ -14,8 +14,8 @@ public class CouncilPrivilege {
 
     public CouncilPrivilege(TrisIE trisIE, int priviledgeNumber ){
         this.priviledgeNumber = priviledgeNumber;
-        BuildImmediateEffects BuildImmediateEffects = new BuildImmediateEffects();
-        effect = BuildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
+        BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();
+        effect = buildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
     }
 
     public int getPriviledgeNumber() {

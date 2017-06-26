@@ -3,10 +3,12 @@ package project.client.network.rmi;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
+import project.model.Tile;
 
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,4 +58,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void matchStarted(int roomPlayers, String familyColour) throws RemoteException;
 
     void timerTurnDelayed() throws RemoteException;
+
+    int tileChoosen(ArrayList<Tile> tiles) throws RemoteException;
 }

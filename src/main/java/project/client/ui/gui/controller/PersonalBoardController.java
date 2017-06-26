@@ -15,6 +15,7 @@ import java.util.List;
 
 
 public class PersonalBoardController extends AbstractController {
+    public ImageView bonusTile;
     @FXML
     private Button goBackButton;
     @FXML
@@ -274,5 +275,11 @@ public class PersonalBoardController extends AbstractController {
                 counter++;
             }
         }
+    }
+
+    public void setBonusTile(int i) {
+        if (bonusTile.getImage()!=null)
+            return;
+        bonusTile.setImage(new Image(String.valueOf(getClass().getResource("/images/risorse/bonusTile" + String.valueOf(i) + ".png"))));
     }
 }

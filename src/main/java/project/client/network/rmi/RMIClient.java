@@ -8,6 +8,7 @@ import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
+import project.model.Tile;
 import project.server.network.rmi.RMIClientToServerInterface;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -349,6 +351,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void timerTurnDelayed() {
         clientSetter.timerTurnDelayed();
+    }
+
+    @Override
+    public int tileChoosen(ArrayList<Tile> tiles) throws RemoteException {
+        return clientSetter.tileDraft(tiles);
     }
 
     @Override

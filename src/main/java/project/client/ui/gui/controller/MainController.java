@@ -7,6 +7,7 @@ import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
 import project.model.Board;
 import project.model.PersonalBoard;
+import project.model.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,7 +138,15 @@ public class MainController {
     }
 
     public void takeDevCard(String towerColour, int floor, String familiarColour )  {
-        clientSetter.takeDevCard(towerColour, floor, familiarColour);
+
+        Runnable a = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("ho fatto partire il nuovo thread per richiesta per la torre");
+                clientSetter.takeDevCard(towerColour, floor, familiarColour);
+            }
+        };
+        new Thread(a).start();
     }
 
 
@@ -233,6 +242,8 @@ public class MainController {
             for (AbstractController c: controllers){
                 c.updateResources(coins,wood,stone,servants);
             }
+
+            personalBoardController.setBonusTile(personalBoard.getMyTile().getTileNumber());
             harvesterController.updateCards(personalBoard.getTerritories());
             productionController.updateCards(personalBoard.getBuildings());
             leaderCardController.updateCards(personalBoard.getMyLeaderCard());
@@ -484,5 +495,31 @@ public class MainController {
                 myTurn = false;
             }
         });
+    }
+
+    public int tileDraft(ArrayList<Tile> tiles) {
+        integerQueue = new LinkedBlockingQueue<>();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                System.out.println("sono nel runlater");
+                loginBuilder.setDraft(tiles);
+            }
+        });
+        int i = 0;
+        try {
+            System.out.println("mi metto in attesa della integerQueue");
+            i = integerQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public void addIntQueue(int i) {
+        Integer num = new Integer(i);
+        integerQueue.add(num);
     }
 }

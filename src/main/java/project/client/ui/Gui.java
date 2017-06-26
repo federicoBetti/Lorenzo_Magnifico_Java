@@ -10,7 +10,9 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
+import project.model.Tile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Gui extends AbstractUI {
@@ -141,6 +143,11 @@ public class Gui extends AbstractUI {
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         mainController.matchStarted(roomPlayers,familyColour);
+    }
+
+    @Override
+    public int tileDraft(ArrayList<Tile> tiles) {
+        return mainController.tileDraft(tiles);
     }
 
     @Override

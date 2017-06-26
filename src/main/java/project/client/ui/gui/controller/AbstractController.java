@@ -43,7 +43,7 @@ public abstract class AbstractController {
         imageFamiltMember.add(imageFamiliarBlack);
         imageFamiltMember.add(imageFamiliarWhite);
         imageFamiltMember.add(imageFamiliarOrange);
-        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "neutral.png"))));
+        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/empty" + mainController.getColour() + "neutral.png"))));
         imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "black.png"))));
         imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "white.png"))));
         imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "orange.png"))));
@@ -204,17 +204,14 @@ public abstract class AbstractController {
         while (itFP.hasNext() && itPR.hasNext()) {
             FamiliarPosition familiarPosition = itFP.next();
             Position position = itPR.next();
-            System.out.println("devo aggiornare una posizione con familiare " + position.getFamiliarOnThisPosition());
-            if (position.getFamiliarOnThisPosition() == null) {
+           if (position.getFamiliarOnThisPosition() == null) {
                 if (familiarPosition.getFamiliarName().equals("")) continue;
                 else {
                     familiarPosition.setImage(null);
                     familiarPosition.setFamiliarName("");
                 }
             } else if (!(familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))){
-                    System.out.println("devo cambiare il familiar sulla posizione");
                     familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
-                    System.out.println(familiarPosition.getFamiliarName());
                     familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
                 }
 
@@ -230,8 +227,7 @@ public abstract class AbstractController {
                 TowerZone guiTower = myTower[towerNumber][floorNumber];
 
 
-                System.out.println(serverTower.getCardOnThisFloor());
-                if (serverTower.getCardOnThisFloor() == null) {
+               if (serverTower.getCardOnThisFloor() == null) {
                     guiTower.setCardName(null);
                     guiTower.setCardImage(null);
                 } else {
@@ -240,16 +236,11 @@ public abstract class AbstractController {
                     }
                 }
 
-                System.out.println(serverTower.getFamiliarOnThisPosition());
-
                 if (!(serverTower.isOccupied())) {
                     guiTower.setFamiliarName(null);
                     guiTower.setFamiliarImage((Image) null);
                 } else {
-
-                    System.out.println(serverTower.getFamiliarOnThisPosition());
-                    if (!serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())) {
-                        System.out.println(serverTower.getFamiliarOnThisPosition());
+                     if (!serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())) {
                         modifyFamiliar(guiTower, serverTower.getFamiliarOnThisPosition().toString());
                     }
                 }

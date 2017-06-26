@@ -24,6 +24,10 @@ public class BuildImmediateEffects {
         				return new TwoVictoryPointsForEachYellowCard();
         			case "blueCard":
         				return new VictoryPointForEachBlueCard(quantity);
+					default: {
+        					System.out.println("sono nell caso di def, non va bene");
+        					return null;
+						}
         		}
 
         		//Riguardare questo metodo
