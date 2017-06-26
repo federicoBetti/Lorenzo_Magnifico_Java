@@ -103,7 +103,7 @@ public final class Board {
         //questi sotto sono da importare da file, li inizializzo poer testare
         militaryPointsForTerritories = new int[]{0, 0, 0, 0, 0, 0};
 
-        Configuration configuration = new Configuration();
+        configuration = new Configuration();
 
         if (numberOfPlayer == Constants.FOUR_PLAYERS) {
             marketZone = new Market[Constants.FOUR_PLAYERS];
@@ -134,10 +134,10 @@ public final class Board {
         this.zones = new HashMap<>();
         fillHashMap();
 
-        //configuration.loadDevelopmentCards(decks);
-       // configuration.loadLeaderCard(decks);
-       // configuration.loadExcommunicationTiles(decks);
-     //   configuration.loadBonusTile(getDeckCard());
+        configuration.loadDevelopmentCards(decks);
+        configuration.loadLeaderCard(decks);
+        configuration.loadExcommunicationTiles(decks);
+        configuration.loadBonusTile(getDeckCard());
 
 
         round = 0;

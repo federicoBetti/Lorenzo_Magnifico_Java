@@ -136,8 +136,11 @@ public class Configuration {
         int i = 0;
         for ( Market marketInList : marketZone ){
             market[i] = marketInList;
+            i++;
         }
         board.setMarketZone(market);
+        System.out.println(board.getMarketZone()[0].getEffect().getClass());
+        System.out.println("la zona 1 è " + board.getMarketZone()[1].getClass());
     }
 
     public void loadBonusTower(Board board) throws FileNotFoundException {

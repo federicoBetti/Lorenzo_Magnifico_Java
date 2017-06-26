@@ -187,6 +187,7 @@ public class ProductionController extends AbstractController{
         chatArea.setText(loginBuilder.getChat().toString());
         if (positionSelected)
             allPosition.remove(allPosition.size()-1);
+        positionSelected = false;
         for (int i = 0; i<cardSelected.length; i++){
             cardSelected[i] = false;
             allBuildingCard.get(i).setEffect(borderNull);
@@ -194,7 +195,7 @@ public class ProductionController extends AbstractController{
     }
 
     public void doProduction() {
-        if (familiarChosen==null)
+        if (familiarChosen.equals(""))
             return;
         List<String> buildingCardSelected = new LinkedList<>();
         for (int i = 0; i<cardSelected.length; i++){

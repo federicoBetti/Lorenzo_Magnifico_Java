@@ -167,8 +167,13 @@ public class HarvesterController extends AbstractController {
     public void refresh(){
         super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
-        if (positionSelected)
+
+        if (positionSelected){
+            FamiliarPosition f = allPosition.get(allPosition.size() -1 );
+            f.setImage(null);
             allPosition.remove(allPosition.size()-1);
+
+        }
         positionSelected = false;
     }
 
@@ -176,7 +181,7 @@ public class HarvesterController extends AbstractController {
 
     public void doHarvester() {
         int servants = -1;
-        if (familiarChosen==null)
+        if (familiarChosen.equals(""))
             return;
         try {
             servants = Integer.parseInt(numberOfServantsTextField.getText());

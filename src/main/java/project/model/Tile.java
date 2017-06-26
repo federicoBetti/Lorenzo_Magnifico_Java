@@ -35,15 +35,15 @@ public class Tile implements Serializable{
     /**
      * @return
      */
-    public void takeProductionResource() {
-        // TODO implement here
+    public List<Effects> takeProductionResource() {
+        return productionBonus;
     }
 
     /**
      * @return
      */
-    public void takeHarvesterResource() {
-        // TODO implement here
+    public List<Effects> takeHarvesterResource() {
+        return harvesterBonus;
     }
 
     public int getTileNumber() {

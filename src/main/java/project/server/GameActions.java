@@ -423,7 +423,8 @@ public class GameActions {
         if (position == 0) malusByField = 0;
         else malusByField = 3;
         actionValue = familyM.getMyValue() + servantsNumber - malusByField + cardBonus;
-        player.getPersonalBoardReference().getMyTile().takeHarvesterResource();
+        for (Effects e :player.getPersonalBoardReference().getMyTile().takeHarvesterResource())
+            e.doEffect(player);
 
         for (TerritoryCard card : player.getPersonalBoardReference().getTerritories()) {
             if (actionValue >= card.getCost().getDiceCost())
@@ -439,7 +440,7 @@ public class GameActions {
 
 
     public void havesterBonus(int harvesterValue, PlayerHandler playerHandler) {
-
+        //todo
     }
 
 
@@ -467,7 +468,8 @@ public class GameActions {
 
     public void productionBonus(List<BuildingCard> cards, PlayerHandler player) {
 
-        player.getPersonalBoardReference().getMyTile().takeProductionResource();
+        for (Effects e: player.getPersonalBoardReference().getMyTile().takeProductionResource())
+            e.doEffect(player);
 
         for (BuildingCard card : cards) {
             makePermanentEffects(player, card);
@@ -542,9 +544,9 @@ public class GameActions {
     public void rollDice() {
         int[] newDiceValue = new int[3];
         Random r = new Random();
-        newDiceValue[0] = r.nextInt(5) + 1;
-        newDiceValue[1] = r.nextInt(5) + 1;
-        newDiceValue[2] = r.nextInt(5) + 1;
+        newDiceValue[0] = r.nextInt(6) + 1;
+        newDiceValue[1] = r.nextInt(6) + 1;
+        newDiceValue[2] = r.nextInt(6) + 1;
 
         room.getBoard().setDiceValue(newDiceValue);
 
@@ -647,6 +649,7 @@ public class GameActions {
                 card.getPermanentCardEffects().get(choice).doEffect(player);
             } else {
                 effect.doEffect(player);
+                System.out.println(" effetto permanente stampato " + effect.getClass());
             }
         }
 

@@ -389,7 +389,8 @@ public abstract class PlayerHandler extends Player {
 
     protected FamilyMember findFamilyMember(String colour) {
         for (FamilyMember familyMember : getAllFamilyMembers())
-            if (familyMember.getMyColour().equals(colour)) return familyMember;
+            if (familyMember.getMyColour().equals(colour))
+                return familyMember;
         System.out.println("ho ritornato un familiar null");
         return null;
     }

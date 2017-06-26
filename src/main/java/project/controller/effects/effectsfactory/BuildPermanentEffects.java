@@ -12,25 +12,33 @@ public class BuildPermanentEffects {
     public Effects searchPermanentEffects(String type, String parameter1, String parameter2, int quantity, TotalCost effectCost) {
 
         switch( type ){ //3 PARAMETRI -> TRIS
-            case"takeRop":
-                switch( parameter1 ) {
-                    case"VictoryPointsForEachPurpleCard":
+            case"takeRop": {
+                switch (parameter1) {
+                    case "VictoryPointsForEachPurpleCard":
                         return new VictoryPointsForEachPurpleCard(quantity);
-                    case"VictoryPointsForEachBlueCard":
+                    case "VictoryPointsForEachBlueCard":
                         return new VictoryPointForEachBlueCard(quantity);
-                    case"victoryPoint":
+                    case "victoryPoint":
                         return new AddVicotryPoints(quantity);
-                    case"militaryPoint":
+                    case "militaryPoint":
                         return new AddMilitaryPoints(quantity);
-                    case"coin":
-                        return  new AddCoin(quantity);
-                    case"wood":
+                    case "coin":
+                        return new AddCoin(quantity);
+                    case "wood":
                         return new AddWood(quantity);
-                    case"servant":
+                    case "servant":
                         return new AddServants(quantity);
-                    case"privilege":
+                    case "privilege":
                         return new UsePrivilege(quantity);
+                    case "stone":
+                        return new AddStone(quantity);
+                    default:{
+                        System.out.println("non ho trovato l'effetto");
+                        return null;
+                    }
+
                 }
+            }
 
 
                 //QUI VA USATO ANCHE IL TOTALCOST PERCHè CI SONO GLI SCAMBI DI RISORSE. LE QUANTITY INDICANO LE RISORSE CHE SI RICEVONO DALLO
@@ -52,7 +60,12 @@ public class BuildPermanentEffects {
                         return new ServantWoodStoneForSixVictoryPoints();
                     case"faithPointForTwoCoinsAndTwoVictoryPoint":
                         return new FaithPointForTwoCoinsAndTwoVictoryPoints ();
+                    default: {
+                        System.out.println("non ho trovato l'effetto");
+                        return null;
+                    }
                 }
+
 
                 //POKER
             case"discountForTakingCard":
