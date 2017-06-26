@@ -21,4 +21,7 @@ public class Market extends Position implements Serializable{
         //to do implements
     }
 
+    public Effects getEffect() {
+        return effect;
+    }
 }

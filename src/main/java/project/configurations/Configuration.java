@@ -106,9 +106,15 @@ public class Configuration {
         InputStream is = getClass().getResourceAsStream("/fileJson/councilpriviledge.json");
         Reader reader = new InputStreamReader(is);
 
-        CouncilPrivilege[] councilPrivilege = gson.fromJson(reader, CouncilPrivilege[].class);
-        board.setCouncilPrivileges(councilPrivilege);
+        CouncilPrivilegesFromJson[] councilPrivilegesJ = gson.fromJson(reader, CouncilPrivilegesFromJson[].class);
+        CouncilPrivilege[] councilPrivilege = new CouncilPrivilege[5];
 
+        for ( CouncilPrivilegesFromJson cpj : councilPrivilegesJ ) {
+            councilPrivilege[cpj.getPriviledgeNumber()] = new CouncilPrivilege(cpj.getTrisIEL(), cpj.getPriviledgeNumber());
+
+            board.setCouncilPrivileges(councilPrivilege);
+
+        }
     }
 
     /**
@@ -121,9 +127,17 @@ public class Configuration {
         InputStream is = getClass().getResourceAsStream(jsonFile);
         Reader reader = new InputStreamReader(is);
 
-
-        Market[] marketZone = gson.fromJson(reader, Market[].class);
-        board.setMarketZone(marketZone);
+        List<Market> marketZone = new ArrayList<>();
+        MarketFromJson[] marketFromJsons = gson.fromJson(reader, MarketFromJson[].class);
+        for ( MarketFromJson marketFromJson : marketFromJsons ) {
+            marketZone.add(new Market(marketFromJson.getTrisIE()));
+        }
+        Market[] market = new Market[marketZone.size()];
+        int i = 0;
+        for ( Market marketInList : marketZone ){
+            market[i] = marketInList;
+        }
+        board.setMarketZone(market);
     }
 
     public void loadBonusTower(Board board) throws FileNotFoundException {
@@ -133,7 +147,6 @@ public class Configuration {
 
         TowerFromJson[][] towersFromJson = gson.fromJson(reader, TowerFromJson[][].class);
 
-     //   while (iterator.hasNext()) {
 
         for ( int i = 0; i < 4; i++ ) {
             for ( int j = 0; j < 4; j++ ) {
@@ -142,8 +155,7 @@ public class Configuration {
                 System.out.println(tower);
             }
         }
-           // iterator.next();
-      //  }
+
     }
 
     public void loadFamilyMembers(Player player) throws FileNotFoundException {

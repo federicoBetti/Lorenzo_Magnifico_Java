@@ -59,6 +59,7 @@ public class BuildImmediateEffects {
             case"marketSpecial":
                 return new AddMilitaryPointsAndCoins();
             default:
+            	System.out.println("effetto market nullo");
                 return null;
 
 
