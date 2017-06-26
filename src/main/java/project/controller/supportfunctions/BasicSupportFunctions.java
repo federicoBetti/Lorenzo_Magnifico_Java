@@ -32,8 +32,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         this.payments = new HashMap<>();
         privileges = new HashMap<>(5);
         takeFromMarket = new HashMap<>(4);
-        fillHashMapPrivileges();
-        fillHashMapTakeFromMarket();
         fillHashMapPayments();
     }
 
@@ -42,22 +40,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         payments.put(BuildingCard.class.toString(),  this::payBuildingCard);
         payments.put(CharacterCard.class.toString(), this::payCharacterCard);
     }
-
-    private void fillHashMapPrivileges (){
-        privileges.put(0,this::woodStonePrivilege);
-        privileges.put(1,this::servantsPrivilege);
-        privileges.put(2,this::coinsPrivilege);
-        privileges.put(3,this::militaryPointsPrivilege);
-        privileges.put(4,this::faithPointsPrivilege);
-    }
-
-    private void fillHashMapTakeFromMarket() {
-        takeFromMarket.put(0,this::marketCoins);
-        takeFromMarket.put(1,this::marketServants);
-        takeFromMarket.put(2,this::marketMilitaryCoins);
-        takeFromMarket.put(3,this::marketPrivileges);
-    }
-
 
 
     private void payTerritoryCard(DevelopmentCard devCard, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
@@ -140,57 +122,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
 
-    void woodStonePrivilege(){
-        Effects e;
-        e = new AddWood(1);
-        e.doEffect(player);
-        e = new AddCoin(1);
-        e.doEffect(player);
-    }
-
-    void faithPointsPrivilege(){
-        Effects e = new AddFaithPoints(1);
-        e.doEffect(player);
-    }
-
-    void servantsPrivilege(){
-        Effects e = new AddServants(2);
-        e.doEffect(player);
-    }
-
-    void coinsPrivilege(){
-        Effects e = new AddCoin(2);
-        e.doEffect(player);
-    }
-
-    void militaryPointsPrivilege(){
-        Effects e = new AddMilitaryPoints(2);
-        e.doEffect(player);
-    }
-
-
-
-    void marketCoins(){
-        Effects e = new AddCoin(5);
-        e.doEffect(player);
-    }
-
-    void marketServants(){
-        Effects e = new AddServants(5);
-        e.doEffect(player);
-    }
-    void marketMilitaryCoins(){
-        Effects e = new AddCoin(2);
-        e.doEffect(player);
-        e = new AddMilitaryPoints(3);
-        e.doEffect(player);
-    }
-    void marketPrivileges(){
-        Effects e = new UsePrivilege(2);
-        BonusInteraction bonusInteraction = e.doEffect(player);
-        player.sendAnswer(bonusInteraction);
-    }
-
 /*
     @Override
     public BonusInteraction applyEffects(DevelopmentCard card, PlayerHandler player){
@@ -232,10 +163,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
 
-    @Override
-    public void takeCouncilPrivilege(int privilegeNumber) {
-        privileges.get((Integer)privilegeNumber).takePrivilege();
-    }
 
     @Override
     public void takeMarketAction(int position) {

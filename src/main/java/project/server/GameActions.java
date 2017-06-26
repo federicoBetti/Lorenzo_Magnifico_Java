@@ -55,8 +55,12 @@ public class GameActions {
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
         System.out.println(familyM);
+
+        //devo far pagare i servants!
+        System.out.println("ho numero di servants: " + player.getPersonalBoardReference().getServants());
         getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
         getSupportFunctions(player).setFamiliar(zone, familyM);
+        System.out.println("ho numero di servants: " + player.getPersonalBoardReference().getServants());
         //prova
         System.out.println(zone.getFamiliarOnThisPosition());
 
@@ -479,11 +483,10 @@ public class GameActions {
 
         MarketUpdate marketUpdate = new MarketUpdate(room.getBoard(), player.getName());
 
-        getSupportFunctions(player).takeMarketAction(position);
+        Effects e = room.getBoard().getMarketZone()[position].getEffect();
+        e.doEffect(player);
 
         player.sendActionOk();
-        //prova di stampa
-        System.out.println(marketUpdate.toScreen());
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
@@ -572,7 +575,10 @@ public class GameActions {
      * @param player
      */
     public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player) {
-        getSupportFunctions(player).takeCouncilPrivilege(privilegeNumber);
+
+        CouncilPrivilege privilege = room.getBoard().getCouncilPrivileges()[privilegeNumber];
+        Effects e = privilege.getEffect();
+        e.doEffect(player);
 
         if (privilegeNumber > 0 && privilegeNumber < 2) {
             player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));

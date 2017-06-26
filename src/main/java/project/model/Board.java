@@ -110,7 +110,6 @@ public final class Board {
             configuration.loadMarketBonus(this, "/fileJson/marketZone4.json");
         } else {
             marketZone = new Market[Constants.TWO_PLAYERS];
-            marketZone = new Market[Constants.FOUR_PLAYERS];
             configuration.loadMarketBonus(this, "/fileJson/marketZone2.json");
         }
         if (numberOfPlayer > Constants.TWO_PLAYERS) {
