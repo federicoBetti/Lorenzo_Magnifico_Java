@@ -11,11 +11,9 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.messages.updatesmessages.TowersUpdate;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -290,11 +288,12 @@ public class ClientSetter {
         return ui.getLeaderCardChosen(leaders);
     }
 
+    public int tileDraft(List<Tile> tiles) {
+        return ui.tileDraft(tiles);
+    }
+
     public void matchStarted(int roomPlayers, String familyColour) {
         ui.matchStarted(roomPlayers,familyColour);
     }
 
-    public int tileDraft(ArrayList<Tile> tiles) {
-        return ui.tileDraft(tiles);
-    }
 }

@@ -41,6 +41,22 @@ public class MessagesFromServerHandler {
         map.put(Constants.OK_OR_NO, this::actionOk );
         map.put(Constants.NICKNAME_USED, this:: nicknameAlreadyUsed );
         map.put(Constants.TIMER_TURN_DELAYED, this:: timerTurnDelayed );
+        map.put(Constants.TILE_DRAFT, this::tileDraft );
+        map.put(Constants.LEADER_DRAFT, this:: leaderDraft );
+    }
+
+    private void leaderDraft() {
+        client.leaderDraft();
+    }
+
+    private void tileDraft() {
+        try {
+            client.tileDraft();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void matchStarted() {

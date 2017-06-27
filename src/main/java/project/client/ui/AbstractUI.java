@@ -8,7 +8,6 @@ import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
 import project.model.Tile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -81,5 +80,5 @@ public abstract class AbstractUI {
 
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
-    public abstract int tileDraft(ArrayList<Tile> tiles);
+    public abstract int tileDraft(List<Tile> tiles);
 }

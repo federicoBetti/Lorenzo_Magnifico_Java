@@ -195,9 +195,12 @@ public class Room {
             e.printStackTrace();
         }   */
 
-        for (PlayerHandler p: playerInTheMatch){
+        int moreCoin = 0;
+        for (PlayerHandler p: board.getTurn().getPlayerTurn()){
+            setResources(p, moreCoin);
             p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
             p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
+            moreCoin++;
         }
 
 
@@ -212,6 +215,13 @@ public class Room {
         matchStarted = true;
         gameActions.firstTurn();
 
+    }
+
+    private void setResources ( PlayerHandler player, int moreCoin ){
+        player.getPersonalBoardReference().setWood(2);
+        player.getPersonalBoardReference().setStone(2);
+        player.getPersonalBoardReference().setServants(3);
+        player.getPersonalBoardReference().setCoins(5 + moreCoin);
     }
 
     private Tile getTrueTile(int tileId, ArrayList<Tile> tiles) {

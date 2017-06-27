@@ -355,12 +355,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public int tileChoosen(ArrayList<Tile> tiles) throws RemoteException {
+
         return clientSetter.tileDraft(tiles);
     }
 
     @Override
     public void boardUpdate() {
-
     }
 
     public void scelta(){

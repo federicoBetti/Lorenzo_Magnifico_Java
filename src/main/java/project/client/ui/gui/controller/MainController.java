@@ -39,6 +39,7 @@ public class MainController {
 
     private BlockingQueue<Integer> integerQueue;
     private BlockingQueue<String> stringQueue;
+
     private boolean myTurn;
 
     private Board board;
@@ -497,7 +498,7 @@ public class MainController {
         });
     }
 
-    public int tileDraft(ArrayList<Tile> tiles) {
+    public int tileDraft(List<Tile> tiles) {
         integerQueue = new LinkedBlockingQueue<>();
 
         Platform.runLater(new Runnable() {
@@ -505,7 +506,7 @@ public class MainController {
             public void run() {
 
                 System.out.println("sono nel runlater");
-                loginBuilder.setDraft(tiles);
+                loginBuilder.setDraft((ArrayList<Tile>) tiles);
             }
         });
         int i = 0;
