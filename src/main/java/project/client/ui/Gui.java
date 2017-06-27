@@ -12,7 +12,6 @@ import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
 import project.model.Tile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Gui extends AbstractUI {
@@ -146,7 +145,7 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public int tileDraft(ArrayList<Tile> tiles) {
+    public int tileDraft(List<Tile> tiles) {
         return mainController.tileDraft(tiles);
     }
 

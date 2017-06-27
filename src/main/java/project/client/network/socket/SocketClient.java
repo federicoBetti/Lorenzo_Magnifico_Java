@@ -4,16 +4,19 @@ import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
 import project.controller.Constants;
+import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
 import project.model.Board;
+import project.model.Tile;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,7 +59,11 @@ public class SocketClient extends AbstractClient {
                 message = (String) objectInputStream.readObject();
                 messageHandler.handleMessage(message);
             } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    wait();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -73,55 +80,55 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void takeDevCard(String towerColour, int floor, String familiarColour )   {
+    public void takeDevCard(String towerColour, int floor, String familiarColour) {
         sendGenericObject(Constants.TAKE_DEV_CARD);
         send3Parameters(towerColour, floor, familiarColour);
     }
 
     @Override
-    public void actionOk(){
+    public void actionOk() {
         clientSetter.actionOk();
     }
 
     @Override
-    public void marketAction( int position, String familyColour )  {
+    public void marketAction(int position, String familyColour) {
         sendGenericObject(Constants.GO_TO_MARKET);
         send2Parameters(position, familyColour);
     }
 
     @Override
-    public void councilAction(int priviledgeNumber, String familyColour)   {
+    public void councilAction(int priviledgeNumber, String familyColour) {
         sendGenericObject(Constants.GO_TO_COUNCIL_PALACE);
         send2Parameters(priviledgeNumber, familyColour);
     }
 
     @Override
-    public void productionAction(String familiarColor, List<String> buildingCards )   {
+    public void productionAction(String familiarColor, List<String> buildingCards) {
         sendGenericObject(Constants.PRODUCTION);
         sendGenericObject(familiarColor);
         sendAllStrings(buildingCards);
     }
 
     @Override
-    public void immediatePriviledgeAction(List<Integer> privileges)  {
+    public void immediatePriviledgeAction(List<Integer> privileges) {
         sendAllIntegers(privileges);
     }
 
     @Override
-    public void playLeaderCard(String name )   {
+    public void playLeaderCard(String name) {
 
         sendGenericObject(Constants.PLAY_LEADER_CARD);
         sendGenericObject(name);
     }
 
     @Override
-    public void discardLeaderCard(String name)   {
+    public void discardLeaderCard(String name) {
         sendGenericObject(Constants.DISCARD_LEADER_CARD);
         sendGenericObject(name);
     }
 
     @Override
-    public void prayOrNot(boolean action)   {
+    public void prayOrNot(boolean action) {
 
         if (action)
             sendGenericObject(Constants.PRAY);
@@ -139,7 +146,7 @@ public class SocketClient extends AbstractClient {
 
     //receive answers: bonus interaction
     @Override
-    public void sendExitToBonusAction()   {
+    public void sendExitToBonusAction() {
         try {
             objectOutputStream.writeObject(Constants.EXIT);
             objectOutputStream.flush();
@@ -149,22 +156,21 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    public void takeBonusCardAction(int floor, String towerColour )  {
+    public void takeBonusCardAction(int floor, String towerColour) {
         send2Parameters(towerColour, floor);
     }
 
     @Override
-    public void harvesterAction(String familyColour, int servantsNumber)   {
+    public void harvesterAction(String familyColour, int servantsNumber) {
         sendGenericObject(Constants.HARVESTER);
         send2Parameters(familyColour, servantsNumber);
     }
 
 
-
-    public void bonusHarvester()  {
+    public void bonusHarvester() {
         BonusProductionOrHarvesterAction bonusHarv = null;
         try {
-            bonusHarv = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
+            bonusHarv = (BonusProductionOrHarvesterAction) objectInputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -173,10 +179,10 @@ public class SocketClient extends AbstractClient {
         clientSetter.bonusHarvester(bonusHarv);
     }
 
-    public void takeImmediatePrivilege()  {
+    public void takeImmediatePrivilege() {
         TakePrivilegesAction privilegesAction = null;
         try {
-            privilegesAction = (TakePrivilegesAction)objectInputStream.readObject();
+            privilegesAction = (TakePrivilegesAction) objectInputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -185,15 +191,15 @@ public class SocketClient extends AbstractClient {
         clientSetter.takeImmediatePrivilege(privilegesAction);
     }
 
-    public void bonusHarvesterAction(int servantsNumber)   {
+    public void bonusHarvesterAction(int servantsNumber) {
         sendGenericObject(Constants.BONUS_HARVESTER);
         sendGenericObject(servantsNumber);
     }
 
-    public void bonusProduction()   {
+    public void bonusProduction() {
         BonusProductionOrHarvesterAction bonusProd = null;
         try {
-            bonusProd = (BonusProductionOrHarvesterAction)objectInputStream.readObject();
+            bonusProd = (BonusProductionOrHarvesterAction) objectInputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -202,12 +208,12 @@ public class SocketClient extends AbstractClient {
         clientSetter.bonusProduction(bonusProd);
     }
 
-    public void bonusProductionAction(List<String> parameters)   {
+    public void bonusProductionAction(List<String> parameters) {
         sendGenericObject(Constants.BONUS_PRODUCTION);
         sendAllStrings(parameters);
     }
 
-    public void takeBonusCard()  {
+    public void takeBonusCard() {
         TowerAction towerAction = null;
         try {
             towerAction = (TowerAction) objectInputStream.readObject();
@@ -220,12 +226,12 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    public void choicePe(){
+    public void choicePe() {
         clientSetter.choicePe();
     }
 
     @Override
-    public void sendChoicePe(int input)   {
+    public void sendChoicePe(int input) {
         sendGenericObject(input);
     }
 
@@ -234,16 +240,16 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void sendChoicePaymentVc(int payment)  {
+    public void sendChoicePaymentVc(int payment) {
         sendGenericObject(payment);
     }
 
     //updates
 
-    public void scoreUpdate()  {
+    public void scoreUpdate() {
         Updates update = null;
         try {
-            update = (ScoreUpdate)objectInputStream.readObject();
+            update = (ScoreUpdate) objectInputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -255,7 +261,7 @@ public class SocketClient extends AbstractClient {
     public void personalBoardUpdate() {
         Updates update = null;
         try {
-            update = (PersonalBoardUpdate)objectInputStream.readObject();
+            update = (PersonalBoardUpdate) objectInputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -267,7 +273,7 @@ public class SocketClient extends AbstractClient {
     public void familyMemberUpdate() {
         Updates update = null;
         try {
-            update = (FamilyMemberUpdate)objectInputStream.readObject();
+            update = (FamilyMemberUpdate) objectInputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -275,7 +281,6 @@ public class SocketClient extends AbstractClient {
         }
         clientSetter.familyMemberUpdate(update);
     }
-
 
 
     public void skipTurn() {
@@ -305,15 +310,15 @@ public class SocketClient extends AbstractClient {
     public void matchStarted() {
         int roomPlayersNumber = 0;
         try {
-            roomPlayersNumber = (int)objectInputStream.readObject();
-            String playerFamilyColour = (String)objectInputStream.readObject();
+            roomPlayersNumber = (int) objectInputStream.readObject();
+            String playerFamilyColour = (String) objectInputStream.readObject();
             clientSetter.matchStarted(roomPlayersNumber, playerFamilyColour);
 
         } catch (IOException e) {
-        e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-    }
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -326,7 +331,7 @@ public class SocketClient extends AbstractClient {
     }
 
     //sending methods
-    void send2Parameters(Object parameter1, Object parameter2 )   {
+    void send2Parameters(Object parameter1, Object parameter2) {
         try {
             objectOutputStream.writeObject(parameter1);
             objectOutputStream.flush();
@@ -340,7 +345,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void send3Parameters(Object parameter1, Object parameter2, Object parameter3 )   {
+    void send3Parameters(Object parameter1, Object parameter2, Object parameter3) {
 
         try {
             objectOutputStream.writeObject(parameter1);
@@ -360,9 +365,9 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendAllStrings(List<String> parameters )   {
+    void sendAllStrings(List<String> parameters) {
 
-        for( String elem: parameters ){
+        for (String elem : parameters) {
             try {
                 objectOutputStream.writeObject(elem);
                 objectOutputStream.flush();
@@ -373,9 +378,9 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendAllIntegers(List<Integer> parameters ){
+    void sendAllIntegers(List<Integer> parameters) {
 
-        for( Integer elem: parameters ){
+        for (Integer elem : parameters) {
             try {
                 objectOutputStream.writeObject(elem);
                 objectOutputStream.flush();
@@ -386,7 +391,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendGenericObject(Object kindOfRequest ) {
+    void sendGenericObject(Object kindOfRequest) {
 
         try {
             objectOutputStream.writeObject(kindOfRequest);
@@ -404,6 +409,55 @@ public class SocketClient extends AbstractClient {
 
     public void loginSucceded() {
         clientSetter.loginSucceded();
+    }
+
+    public void leaderDraft() {
+        //todo
+        List<String> leaders = new ArrayList<>();
+        String message;
+
+        while (true) {
+            try {
+                message = (String) objectInputStream.readObject();
+                if (message.equals(Constants.STOP))
+                    break;
+
+                leaders.add(message);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+      //  clientSetter.getLeaderCardChosen(leaders);
+
+    }
+
+    public void tileDraft() throws IOException, ClassNotFoundException {
+        List<Tile> tiles = new ArrayList<>();
+
+            int size = (int) objectInputStream.readObject();
+
+            for (int i = 0; i < size; i++) {
+
+                try {
+                    Tile tile = (Tile) objectInputStream.readObject();
+                    tiles.add(tile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            int choice = clientSetter.tileDraft(tiles);
+        System.out.println("arrivata la scelta " + choice + " ora mando...");
+            objectOutputStream.writeObject(choice);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        System.out.println("mandato");
     }
 }
 

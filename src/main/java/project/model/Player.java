@@ -34,8 +34,8 @@ public class Player implements Serializable{
 
     public Player(){
     	Configuration configuration = new Configuration();
-    	//uso costruttore di prova per avere un po di risorse all'inizio
-    	personalBoardReference = new PersonalBoard(10);
+    	
+    	personalBoardReference = new PersonalBoard();
     	score = new Score();
 		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
 		try {

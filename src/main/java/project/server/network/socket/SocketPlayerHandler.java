@@ -34,9 +34,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     transient ObjectInputStream objectInputStream;
     transient ObjectOutputStream objectOutputStream;
     transient ServerDataHandler serverDataHandler;
+    Object token;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
+        this.token = new Object();
         this.setOn(true);
         this.socketServer = socketServer;
         this.socket = socket;
@@ -49,26 +51,54 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void run() {
         try {
-            while (true) {
-                System.out.println("waiting for Request...");
-                Object object = objectInputStream.readObject();
 
-                System.out.println("the client wants to do " + object);
-                    serverDataHandler.handleRequest(object);
 
-            }
+            System.out.println("waiting for Request...");
+            Object object = objectInputStream.readObject();
+            System.out.println(object);
+            System.out.println("the client wants to do " + object);
+            serverDataHandler.handleRequest(object);
+
         } catch (CantDoActionException e) {
-             cantDoAction();
+            cantDoAction();
         } catch (CanUseBothPaymentMethodException e) {      //todo questa deve esserci?
             canUseBothPaymentMethod();
         } catch (IOException e) {   //todo queste due eccezioni qui
             this.setOn(false);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            closeSocket(objectInputStream );
-            closeSocket(objectOutputStream );
-            closeSocket(socket );
+        }
+
+        synchronized (token) {
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        while (true) {
+            try {
+
+
+                System.out.println("waiting for Request...");
+                Object object = objectInputStream.readObject();
+                System.out.println(object);
+                System.out.println("the client wants to do " + object);
+                serverDataHandler.handleRequest(object);
+
+            } catch (CantDoActionException e) {
+                cantDoAction();
+            } catch (CanUseBothPaymentMethodException e) {      //todo questa deve esserci?
+                canUseBothPaymentMethod();
+            } catch (IOException e) {   //todo queste due eccezioni qui
+                this.setOn(false);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                closeSocket(objectInputStream);
+                closeSocket(objectOutputStream);
+                closeSocket(socket);
+            }
         }
     }
 
@@ -233,27 +263,81 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public String leaderCardChosen(List<LeaderCard> leaders) {
-        //todo
+        List<String> leadersName = new ArrayList<>();
+        for ( LeaderCard leaderCard : leaders ){
+            leadersName.add(leaderCard.getName());
+        }
+
+        sendString(Constants.LEADER_DRAFT);
+        for (String leaderCard : leadersName ) {
+            try {
+                objectOutputStream.writeObject(leaderCard);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            objectOutputStream.writeObject(Constants.STOP);
+            return (String) objectInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         return null;
+    }
+
+    @Override
+    public int chooseTile(ArrayList<Tile> tiles) {
+
+        sendString(Constants.TILE_DRAFT);
+        try {
+            objectOutputStream.writeObject(tiles.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (Tile tile : tiles) {
+            try {
+                objectOutputStream.writeObject(tile);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+     try {
+            System.out.println("sono in attesa qui");
+            Object choice =  objectInputStream.readObject();
+           System.out.println(choice.getClass());
+         System.out.println("la scelta è " + choice);
+            return (int)choice;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
-             objectOutputStream.writeObject(Constants.MATCH_STARTED);
-             objectOutputStream.writeObject(roomPlayers);
-             objectOutputStream.writeObject(familyColour);
-             objectOutputStream.flush();
-             objectOutputStream.reset();
+            synchronized (token){
+                token.notify();
+            }
+            objectOutputStream.writeObject(Constants.MATCH_STARTED);
+            objectOutputStream.writeObject(roomPlayers);
+            objectOutputStream.writeObject(familyColour);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
         } catch (IOException e) {
-        e.printStackTrace();
-    }
-    }
-
-    @Override
-    public int chooseTile(ArrayList<Tile> tiles) {
-        //todo per draft delle tile
-        return 0;
+            e.printStackTrace();
+        }
     }
 
 
