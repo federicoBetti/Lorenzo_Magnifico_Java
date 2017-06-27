@@ -18,10 +18,10 @@ import project.server.Server;
 
 public class Configuration {
 
-    Gson gson;
-    CardFromJson[] cardsFromJson;
-    Map<String, BuilderHandler> map;
-    BuilderHandler builderHandler;
+    private Gson gson;
+    private CardFromJson[] cardsFromJson;
+    private Map<String, BuilderHandler> map;
+    private BuilderHandler builderHandler;
 
     public Configuration() {
         this.map = new HashMap<>();
@@ -34,7 +34,7 @@ public class Configuration {
     }
 
 
-    public void loadMap() {
+    private void loadMap() {
         map.put(Constants.BUILDING_CARD, this::buildBuildingCard);
         map.put(Constants.TERRITORY_CARD, this::buildTerritoryCard);
         map.put(Constants.CHARACTER_CARD, this::buildCharacterCard);
@@ -176,7 +176,7 @@ public class Configuration {
 
     }
 
-    DevelopmentCard buildVentureCard(CardFromJson cardFromJson) {
+    private DevelopmentCard buildVentureCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         VenturesCost[] venturesCosts = gson.fromJson(jsonCost, VenturesCost[].class);
         VentureCostArray ventureCostArray = new VentureCostArray();
@@ -187,21 +187,21 @@ public class Configuration {
         return new VenturesCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), ventureCostArray.getCostArray(), cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-    DevelopmentCard buildBuildingCard(CardFromJson cardFromJson) {
+    private DevelopmentCard buildBuildingCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         BuildingCost[] aCost = gson.fromJson(jsonCost, BuildingCost[].class);
         BuildingCost cost = aCost[0];
         return new BuildingCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-    DevelopmentCard buildCharacterCard(CardFromJson cardFromJson) {
+    private DevelopmentCard buildCharacterCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         CharactersCost[] aCost = gson.fromJson(jsonCost, CharactersCost[].class);
         CharactersCost cost = aCost[0];
         return new CharacterCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-    DevelopmentCard buildTerritoryCard(CardFromJson cardFromJson) {
+    private DevelopmentCard buildTerritoryCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         TerritoryCost[] aCost = gson.fromJson(jsonCost, TerritoryCost[].class);
         TerritoryCost cost = aCost[0];

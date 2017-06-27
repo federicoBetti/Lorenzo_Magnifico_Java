@@ -10,14 +10,21 @@ import javafx.scene.control.ToggleGroup;
  * Created by federico on 08/06/17.
  */
 public class InitialLogin {
-    public TextField username;
-    public TextField password;
-    public RadioButton socket;
-    public RadioButton rmi;
-    public Button connect;
-    public ToggleGroup connection;
-    public Button aia;
-    int i = 0;
+    @FXML
+    private  TextField username;
+    @FXML
+    private  TextField password;
+    @FXML
+    private  RadioButton socket;
+    @FXML
+    private  RadioButton rmi;
+    @FXML
+    private  Button connect;
+    @FXML
+    private  ToggleGroup connection;
+    @FXML
+    private  Button aia;
+    private int i = 0;
 
     private String connectionType;
     private String usernameChosen;
@@ -32,8 +39,8 @@ public class InitialLogin {
     }
 
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
-    @FXML
-    private void initialize(){
+
+    public void initialize(){
     }
 
     public void setLoginBuilder(LoginBuilder loginBuilder) {

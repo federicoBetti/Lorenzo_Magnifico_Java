@@ -14,7 +14,7 @@ public class TerritoryCost implements Cost, Serializable {
     private int diceCost;
 
 
-    public TerritoryCost() {
+    TerritoryCost() {
         //da fare
     }
 

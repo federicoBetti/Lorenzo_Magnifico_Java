@@ -10,7 +10,7 @@ public abstract class AbstractServer {
 
     protected Server server;
 
-    public AbstractServer( Server server ){
+    protected AbstractServer(Server server){
         this.server = server;
     }
 

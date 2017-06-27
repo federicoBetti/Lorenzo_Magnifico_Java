@@ -9,8 +9,8 @@ import project.controller.effects.realeffects.Effects;
  */
 public class CouncilPrivilege {
 
-    int priviledgeNumber;
-    Effects effect;
+    private int priviledgeNumber;
+    private Effects effect;
 
     public CouncilPrivilege(TrisIE trisIE, int priviledgeNumber ){
         this.priviledgeNumber = priviledgeNumber;

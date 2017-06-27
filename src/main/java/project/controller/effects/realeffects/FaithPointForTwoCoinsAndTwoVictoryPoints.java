@@ -8,9 +8,9 @@ import project.server.network.PlayerHandler;
  * Created by raffaelebongo on 10/05/17.
  */
 public class FaithPointForTwoCoinsAndTwoVictoryPoints implements Effects {
-    int faithPointsrequired;
-    int coinsEarned;
-    int victoryPointsEarned;
+    private int faithPointsrequired;
+    private int coinsEarned;
+    private int victoryPointsEarned;
 
     public FaithPointForTwoCoinsAndTwoVictoryPoints(){
         faithPointsrequired = 1;

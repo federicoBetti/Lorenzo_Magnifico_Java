@@ -7,7 +7,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 public class SetExcommunicationCardUseful implements Effects {
-    String parameter;
+    private String parameter;
 
     public SetExcommunicationCardUseful(String parameter){
         this.parameter = parameter;

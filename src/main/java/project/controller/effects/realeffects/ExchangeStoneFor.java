@@ -10,9 +10,9 @@ import project.server.network.PlayerHandler;
  */
 public class ExchangeStoneFor implements Effects {
 
-    int stoneRequired;
-    int resourceEarned;
-    String resourceRewardered;
+    private int stoneRequired;
+    private int resourceEarned;
+    private String resourceRewardered;
 
     public ExchangeStoneFor (int quantity, TotalCost effectCost, String resourceRewardered ){
         this.stoneRequired = effectCost.getStoneRequired();

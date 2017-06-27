@@ -24,7 +24,8 @@ import java.util.List;
 public class GeneralMainGameController extends AbstractController{
 
 
-    public Pane gameboard;
+    @FXML
+    private Pane gameboard;
     @FXML
     private Label numberOfCoins;
 
@@ -178,10 +179,12 @@ public class GeneralMainGameController extends AbstractController{
 
 
     private TowerZone[][] myTower;
+    private ImageView lastImageFaith;
 
 
     public GeneralMainGameController(){
         super();
+        lastImageFaith = new ImageView();
         System.out.print("sono nel controller");
         faithPointsArray = new ArrayList<>(15);
         turnOrderArray = new ArrayList<>(4);
@@ -372,7 +375,9 @@ public class GeneralMainGameController extends AbstractController{
     }
 
     public void setScore(Score uiScore) {
-        faithPointsArray.get(uiScore.getFaithPoints()).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
-
+        lastImageFaith.setImage(null);
+        ImageView faith = faithPointsArray.get(uiScore.getFaithPoints());
+        faith.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
+        lastImageFaith = faith;
     }
 }

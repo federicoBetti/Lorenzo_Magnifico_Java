@@ -210,7 +210,11 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void nicknameAlredyUsed() {
-
+        try {
+            myClient.nicknameAlreadyUsed();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by raffaelebongo on 19/05/17.
  */
 public class PermanentEffectFromJson {
-    List<PokerPE> poker;
+    private List<PokerPE> poker;
 
     public PermanentEffectFromJson(){
         this.poker = new ArrayList<>();

@@ -45,7 +45,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
     }
 
 
-    public boolean checkCardCostCharacter(CharacterCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private boolean checkCardCostCharacter(CharacterCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
         int coinsBonus = personalBoard(player).getBonusOnActions().getCharactersBonus().getCoinsBonus();
         int diceBonus = personalBoard(player).getBonusOnActions().getCharactersBonus().getDiceBonus();
@@ -65,7 +65,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         return personalBoard(player).getServants();
     }
 
-    public boolean checkCardCostBuilding(BuildingCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private boolean checkCardCostBuilding(BuildingCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
         int diceBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getDiceBonus();
         int woodBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getWoodBonus();
@@ -108,7 +108,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     }
 
-    public boolean checkCardCostTerritory(TerritoryCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+    private boolean checkCardCostTerritory(TerritoryCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;

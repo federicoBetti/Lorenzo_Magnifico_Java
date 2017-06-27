@@ -12,7 +12,7 @@ public class BonusProductionOrHarvesterAction extends BonusInteraction {
 	public int getDiceValue() {
 		return diceValue;
 	}
-	public String getKindOfAction() {
+	private String getKindOfAction() {
 		return kindOfAction;
 	}
 

@@ -11,8 +11,8 @@ import project.server.network.PlayerHandler;
  */
 public class IncreaseDiceValueForHoP implements Effects {
 
-    String kindOfAction;
-    int increasingDiceValue;
+    private String kindOfAction;
+    private int increasingDiceValue;
 
     public IncreaseDiceValueForHoP(int quantity, String kindOfAction) {
         this.increasingDiceValue = quantity;

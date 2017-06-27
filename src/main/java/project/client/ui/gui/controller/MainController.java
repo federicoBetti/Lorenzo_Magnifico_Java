@@ -258,6 +258,8 @@ public class MainController {
             System.out.println("dadi: " + board.getDiceValue()[0] +" " +board.getDiceValue()[1] +" " +board.getDiceValue()[2]);
             //productionController.updatePosition(board.getProductionZone());
             //harvesterController.updatePosition(board.getHarvesterZone());
+            System.out.println("il consiglio è " + board.getCouncilZone());
+            System.out.println("il controller del consiglo è " + councilPalaceController);
             councilPalaceController.updatePosition(board.getCouncilZone());
             marketController.updatePosition(board.getMarketZone());
             towerController.updatePosition(board.getAllTowers());
@@ -415,7 +417,7 @@ public class MainController {
         return myTurn;
     }
 
-    public void setMyTurn(boolean myTurn) {
+    private void setMyTurn(boolean myTurn) {
         this.myTurn = myTurn;
     }
 

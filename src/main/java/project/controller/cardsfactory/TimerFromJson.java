@@ -3,12 +3,12 @@ package project.controller.cardsfactory;
 /**
  * Created by raffaelebongo on 18/06/17.
  */
-public class TimerFromJson {
+class TimerFromJson {
 
-    String startMatchTimerName;
-    int delaySm;
-    String skipTurnTimerName;
-    int delaySt;
+    private String startMatchTimerName;
+    private int delaySm;
+    private String skipTurnTimerName;
+    private int delaySt;
 
     public TimerFromJson(){
     }

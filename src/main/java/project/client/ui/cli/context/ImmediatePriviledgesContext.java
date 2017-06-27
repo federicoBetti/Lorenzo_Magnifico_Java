@@ -11,8 +11,8 @@ import java.io.IOException;
  */
 public class ImmediatePriviledgesContext extends AbstractContext {
 
-    int[] priviledgesTakenInArow;   //array va inizializzato a zero o è autimatico?
-    TakePrivilegesAction numberOfpriviledges;
+    private int[] priviledgesTakenInArow;   //array va inizializzato a zero o è autimatico?
+    private TakePrivilegesAction numberOfpriviledges;
 
     public ImmediatePriviledgesContext(Cli cli, TakePrivilegesAction numberOfpriviledges) {
         super(cli);

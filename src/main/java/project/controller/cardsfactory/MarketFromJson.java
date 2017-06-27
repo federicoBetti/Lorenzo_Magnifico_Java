@@ -6,8 +6,8 @@ import project.controller.effects.effectsfactory.TrisIE;
  * Created by raffaelebongo on 17/06/17.
  */
 public class MarketFromJson {
-    int position;
-    TrisIE trisIE;
+    private int position;
+    private TrisIE trisIE;
 
     public int getPosition() {
         return position;

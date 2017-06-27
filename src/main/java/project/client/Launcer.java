@@ -9,10 +9,10 @@ import java.io.IOException;
 /**
  * Created by raffaelebongo on 20/05/17.
  */
-public class Launcer {
+class Launcer {
 
     //todo completare
-    int x;
+    private int x;
     public Launcer(int x){
         this.x = x;
     }

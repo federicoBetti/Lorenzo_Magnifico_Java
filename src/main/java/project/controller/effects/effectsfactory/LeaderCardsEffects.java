@@ -24,13 +24,14 @@ public class LeaderCardsEffects {
 
 
 
-    private static HashMap<String, EffectsBuilder> effects;
-    OkOrNo okOrNo;
+    private  HashMap<String, EffectsBuilder> effects;
+    private OkOrNo okOrNo;
     /**
      * Default constructor
      */
     public LeaderCardsEffects() {
         okOrNo = new OkOrNo();
+        effects = new HashMap<>();
         fillHashMapRequirements();
     }
 
@@ -38,7 +39,7 @@ public class LeaderCardsEffects {
         BonusInteraction doEffect(PlayerHandler player);
     }
 
-    public static BonusInteraction doEffect(String leaderName, PlayerHandler player){
+    public BonusInteraction doEffect(String leaderName, PlayerHandler player){
         return effects.get(leaderName).doEffect(player);
     }
 

@@ -32,4 +32,9 @@ public class MarketUpdate extends Updates implements Serializable{
     public String toScreen() {
         return "The current player has placed a familiar in the market!";
     }
+
+    public void stamp(){
+        for (Market m: marketZone)
+            System.out.println(m.getFamiliarOnThisPosition());
+    }
 }

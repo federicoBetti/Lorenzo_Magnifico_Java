@@ -24,7 +24,7 @@ public class ProductionController extends AbstractController{
 
 
     @FXML
-    protected Button submit;
+    private Button submit;
     @FXML
     private Button mainGameButton;
     @FXML
@@ -109,8 +109,8 @@ public class ProductionController extends AbstractController{
     private boolean[] cardSelected;
     private boolean positionSelected;
 
-    DropShadow borderGlow= new DropShadow();
-    DropShadow borderNull= new DropShadow();
+    private DropShadow borderGlow= new DropShadow();
+    private DropShadow borderNull= new DropShadow();
     private int diceValueBonus;
     @FXML
     private Label chatArea;
@@ -185,16 +185,18 @@ public class ProductionController extends AbstractController{
     public void refresh(){
         super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
+
         if (positionSelected)
             allPosition.remove(allPosition.size()-1);
         positionSelected = false;
+
         for (int i = 0; i<cardSelected.length; i++){
             cardSelected[i] = false;
             allBuildingCard.get(i).setEffect(borderNull);
         }
     }
 
-    public void doProduction() {
+    private void doProduction() {
         if (familiarChosen.equals(""))
             return;
         List<String> buildingCardSelected = new LinkedList<>();
@@ -204,6 +206,8 @@ public class ProductionController extends AbstractController{
                 buildingCardSelected.add(cardName);
             }
         }
+
+        positionSelected = false;
         mainController.doProduction(familiarChosen,buildingCardSelected);
     }
 
@@ -287,7 +291,7 @@ public class ProductionController extends AbstractController{
         writeOnChat("select the cards that you want to use");
     }
 
-    protected void blockButton() {
+    private void blockButton() {
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> bonusAction());
     }
@@ -307,7 +311,7 @@ public class ProductionController extends AbstractController{
 
     }
 
-    protected void unlockButton() {
+    private void unlockButton() {
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> doProduction());
     }

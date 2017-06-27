@@ -9,7 +9,7 @@ import project.server.network.PlayerHandler;
  */
 public class VictoryPointsForEachPurpleCard implements Effects {
 
-    int quantity;
+    private int quantity;
     public VictoryPointsForEachPurpleCard( int quantity ){
         this.quantity = quantity;
     }

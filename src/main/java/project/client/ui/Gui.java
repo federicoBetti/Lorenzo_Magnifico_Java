@@ -15,8 +15,8 @@ import project.model.Tile;
 import java.util.List;
 
 public class Gui extends AbstractUI {
-    ClientSetter clientSetter;
-    MainController mainController;
+    private ClientSetter clientSetter;
+    private MainController mainController;
     private boolean matchStarted;
 
     public Gui(ClientSetter clientSetter) {

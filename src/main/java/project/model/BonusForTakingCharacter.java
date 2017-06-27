@@ -6,8 +6,8 @@ import java.io.Serializable;
  * Created by raffaelebongo on 10/05/17.
  */
 public class BonusForTakingCharacter implements Serializable {
-    int diceBonus;
-    int coinsBonus;
+    private int diceBonus;
+    private int coinsBonus;
 
     public int getDiceBonus() {
         return diceBonus;

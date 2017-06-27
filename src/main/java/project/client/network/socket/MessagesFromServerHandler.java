@@ -10,11 +10,11 @@ import java.util.Map;
 /**
  * Created by raffaelebongo on 05/06/17.
  */
-public class MessagesFromServerHandler {
+class MessagesFromServerHandler {
 
-    Map<String, ContextCreator> map;
-    ContextCreator contextCreator;
-    SocketClient client;
+    private Map<String, ContextCreator> map;
+    private ContextCreator contextCreator;
+    private SocketClient client;
 
 
     public MessagesFromServerHandler( SocketClient client ){

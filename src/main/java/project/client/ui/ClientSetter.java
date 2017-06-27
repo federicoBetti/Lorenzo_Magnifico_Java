@@ -21,12 +21,12 @@ import java.util.List;
  */
 public class ClientSetter {
     private AbstractClient client;
-    AbstractUI ui;
+    private AbstractUI ui;
 
-    Board uiBoard;
-    PersonalBoard uiPersonalBoard;
-    Score uiScore;
-    FamilyMember[] uiFamilyMembers;
+    private Board uiBoard;
+    private PersonalBoard uiPersonalBoard;
+    private Score uiScore;
+    private FamilyMember[] uiFamilyMembers;
 
     //todo fare metodi uguali per rmi e socket in quelli che ritornano risposte e oserei dire di farli tutti con return int
     public ClientSetter(String kindOfUI ) {
@@ -198,24 +198,24 @@ public class ClientSetter {
     //updates methods
 
 
-    public void scoreUpdate(Updates update) {
+    public synchronized void scoreUpdate(Updates update) {
         uiScore = update.doUpdate(uiScore);
         ui.scoreUpdate(update);
     }
 
-    public void personalBoardUpdate(Updates update) {
+    public synchronized void personalBoardUpdate(Updates update) {
         uiPersonalBoard = update.doUpdate(uiPersonalBoard);
         ui.personalBoardUpdate(update);
     }
 
-    public void familyMemberUpdate(Updates update) {
+    public synchronized void familyMemberUpdate(Updates update) {
         uiFamilyMembers = update.doUpdateFamilyMembers();
         ui.familyMemberUpdate(update);
     }
 
-    public void boardUpdate(Updates updates) {
+    public synchronized void boardUpdate(Updates updates) {
         updates.doUpdate(uiBoard);
-        System.out.println(updates.toScreen());
+        updates.stamp();
         ui.boardUpdate(updates);
     }
 

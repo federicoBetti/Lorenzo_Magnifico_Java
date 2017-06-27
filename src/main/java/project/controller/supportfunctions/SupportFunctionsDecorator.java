@@ -13,7 +13,7 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
 
     AllSupportFunctions allSupportFunctions = null;
 
-    public SupportFunctionsDecorator(AllSupportFunctions allSupportFunctions){
+    SupportFunctionsDecorator(AllSupportFunctions allSupportFunctions){
         this.allSupportFunctions = allSupportFunctions;
     }
 

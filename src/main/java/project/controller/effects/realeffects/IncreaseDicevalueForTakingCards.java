@@ -9,8 +9,8 @@ import project.server.network.PlayerHandler;
  */
 public class IncreaseDicevalueForTakingCards implements Effects {
 
-    int quantityIncreased;
-    String kindOfCard;
+    private int quantityIncreased;
+    private String kindOfCard;
 
     public IncreaseDicevalueForTakingCards(int quantity, String parameter1) {
         this.quantityIncreased = quantity;

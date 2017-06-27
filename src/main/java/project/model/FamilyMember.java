@@ -21,7 +21,7 @@ public class FamilyMember implements Serializable{
     private boolean isPlayed;
 
 
-    public FamilyMember(){
+    protected FamilyMember(){
         this.fixedValue = 0;
         this.isPlayed = false;
     }

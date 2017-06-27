@@ -8,7 +8,7 @@ import project.model.Board;
  */
 public class DiceValueUpdate extends Updates {
 
-    int[] diceValue;
+    private int[] diceValue;
 
     public DiceValueUpdate( int[] diceValue ){
         super(Constants.TO_EVERYONE);

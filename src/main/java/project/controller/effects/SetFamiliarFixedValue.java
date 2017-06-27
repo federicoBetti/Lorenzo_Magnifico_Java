@@ -7,8 +7,8 @@ import project.server.network.PlayerHandler;
 
 
 public class SetFamiliarFixedValue implements Effects {
-    String parameter;
-    int quantity;
+    private String parameter;
+    private int quantity;
 
     public SetFamiliarFixedValue(String parameter, int quantity){
         this.parameter = parameter;

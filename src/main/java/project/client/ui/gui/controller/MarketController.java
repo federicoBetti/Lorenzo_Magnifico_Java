@@ -18,7 +18,8 @@ import java.util.List;
  */
 public class MarketController extends AbstractController {
 
-    public ImageView market;
+    @FXML
+    private ImageView market;
     @FXML
     protected Button submit;
     @FXML
@@ -30,47 +31,65 @@ public class MarketController extends AbstractController {
     /**
      * radio button in which you can chose the familiar to use
      */
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
+    @FXML
+    private  RadioButton familiarOrange;
+    @FXML
+    private  RadioButton familiarWhite;
+    @FXML
+    private  RadioButton familiarBlack;
+    @FXML
+    private  RadioButton familiarNull;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
      */
 
-    public ImageView imageFamiliarNull;
+    @FXML
+    private  ImageView imageFamiliarNull;
 
-    public ImageView imageFamiliarBlack;
+    @FXML
+    private  ImageView imageFamiliarBlack;
 
-    public ImageView imageFamiliarWhite;
+    @FXML
+    private  ImageView imageFamiliarWhite;
 
-    public ImageView imageFamiliarOrange;
-
-
-    public Label numberOfCoins;
-
-    public Label numberOfWood;
-
-    public Label numberOfStone;
-
-    public Label numberOfServants;
+    @FXML
+    private  ImageView imageFamiliarOrange;
 
 
-    public ImageView LorenzoMagnifico;
+    @FXML
+    private  Label numberOfCoins;
+
+    @FXML
+    private  Label numberOfWood;
+
+    @FXML
+    private  Label numberOfStone;
+
+    @FXML
+    private  Label numberOfServants;
 
 
-    public TextField chatText;
+    @FXML
+    private  ImageView LorenzoMagnifico;
+
+
+    @FXML
+    private  TextField chatText;
     /**
      * the imageViews where the familiar will be placed
      */
-    public ImageView imageMarket0;
-    public ImageView imageMarket1;
-    public ImageView imageMarket2;
-    public ImageView imageMarket3;
+    @FXML
+    private  ImageView imageMarket0;
+    @FXML
+    private  ImageView imageMarket1;
+    @FXML
+    private  ImageView imageMarket2;
+    @FXML
+    private  ImageView imageMarket3;
 
     private ImageView lastFamiliarPlaced;
-    int positionSelected;
+    private int positionSelected;
 
     private List<FamiliarPosition> familiarPositions;
 
@@ -144,7 +163,7 @@ public class MarketController extends AbstractController {
     public void goToMarket() {
         if (positionSelected!= -1){
             System.out.println("fatto partire richiesta mercato");
-            lastFamiliarPlaced.setImage(null);
+            lastFamiliarPlaced = new ImageView((Image) null);
             mainController.goToMarket(positionSelected,familiarChosen);
         }
     }

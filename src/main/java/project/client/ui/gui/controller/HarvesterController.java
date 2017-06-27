@@ -21,13 +21,15 @@ import java.util.List;
  */
 public class HarvesterController extends AbstractController {
 
-    public ImageView harvesterZoneImage;
-    public HBox familiarBox;
+    @FXML
+    private  ImageView harvesterZoneImage;
+    @FXML
+    private  HBox familiarBox;
 
     //todo si potrebbe fare che in base al numero di servants messo si illuminano le carte attivate
 
     @FXML
-    protected Button submit;
+    private Button submit;
     @FXML
     private Button mainGameButton;
     @FXML
@@ -37,22 +39,30 @@ public class HarvesterController extends AbstractController {
     /**
      * radio button in which you can chose the familiar to use
      */
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
+    @FXML
+    private  RadioButton familiarOrange;
+    @FXML
+    private  RadioButton familiarWhite;
+    @FXML
+    private  RadioButton familiarBlack;
+    @FXML
+    private  RadioButton familiarNull;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
      */
+    @FXML
+    private  ImageView imageFamiliarNull;
 
-    public ImageView imageFamiliarNull;
+    @FXML
+    private  ImageView imageFamiliarBlack;
 
-    public ImageView imageFamiliarBlack;
+    @FXML
+    private  ImageView imageFamiliarWhite;
 
-    public ImageView imageFamiliarWhite;
+    @FXML
+    private  ImageView imageFamiliarOrange;
 
-    public ImageView imageFamiliarOrange;
 
 
     @FXML
@@ -72,7 +82,7 @@ public class HarvesterController extends AbstractController {
     private ImageView LorenzoMagnifico;
 
 
-    public TextField chatText;
+    private TextField chatText;
     /**
      * the imageViews where the familiar will be placed
      */
@@ -179,7 +189,7 @@ public class HarvesterController extends AbstractController {
 
 
 
-    public void doHarvester() {
+    private void doHarvester() {
         int servants = -1;
         if (familiarChosen.equals(""))
             return;
@@ -189,7 +199,7 @@ public class HarvesterController extends AbstractController {
         catch (NumberFormatException e){
             return;
         }
-
+        positionSelected = false;
         mainController.doHarvester(servants,familiarChosen);
     }
 
@@ -277,12 +287,12 @@ public class HarvesterController extends AbstractController {
 
     }
 
-    protected void blockButton() {
+    private void blockButton() {
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> bonusAction());
     }
 
-    protected void unlockButton() {
+    private void unlockButton() {
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> doHarvester());
     }

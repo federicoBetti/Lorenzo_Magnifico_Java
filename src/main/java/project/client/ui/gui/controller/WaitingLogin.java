@@ -6,7 +6,7 @@ package project.client.ui.gui.controller;
  */
 public class WaitingLogin {
 
-    MainController mainController;
+    private MainController mainController;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;

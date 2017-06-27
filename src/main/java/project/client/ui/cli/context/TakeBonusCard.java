@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by raffaelebongo on 14/06/17.
  */
 public class TakeBonusCard extends AbstractContext {
-    TowerAction towerAction;
+    private TowerAction towerAction;
 
     public TakeBonusCard(Cli cli, TowerAction towerAction) {
         super(cli);

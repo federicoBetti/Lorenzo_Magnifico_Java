@@ -24,12 +24,12 @@ import java.util.List;
  */
 public class SocketClient extends AbstractClient {
 
-    String nickname;
-    ClientSetter clientSetter;
-    MessagesFromServerHandler messageHandler;
-    Socket socket;
-    ObjectOutputStream objectOutputStream;
-    ObjectInputStream objectInputStream;
+    private String nickname;
+    private ClientSetter clientSetter;
+    private MessagesFromServerHandler messageHandler;
+    private Socket socket;
+    private ObjectOutputStream objectOutputStream;
+    private ObjectInputStream objectInputStream;
 
     // cosi si collega con la user interface scelta e creata appositamente
     public SocketClient(ClientSetter clientSetter) throws ClientConnectionException {
@@ -331,7 +331,7 @@ public class SocketClient extends AbstractClient {
     }
 
     //sending methods
-    void send2Parameters(Object parameter1, Object parameter2) {
+    private void send2Parameters(Object parameter1, Object parameter2) {
         try {
             objectOutputStream.writeObject(parameter1);
             objectOutputStream.flush();
@@ -345,7 +345,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void send3Parameters(Object parameter1, Object parameter2, Object parameter3) {
+    private void send3Parameters(Object parameter1, Object parameter2, Object parameter3) {
 
         try {
             objectOutputStream.writeObject(parameter1);
@@ -365,7 +365,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendAllStrings(List<String> parameters) {
+    private void sendAllStrings(List<String> parameters) {
 
         for (String elem : parameters) {
             try {
@@ -378,7 +378,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendAllIntegers(List<Integer> parameters) {
+    private void sendAllIntegers(List<Integer> parameters) {
 
         for (Integer elem : parameters) {
             try {
@@ -391,7 +391,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    void sendGenericObject(Object kindOfRequest) {
+    private void sendGenericObject(Object kindOfRequest) {
 
         try {
             objectOutputStream.writeObject(kindOfRequest);

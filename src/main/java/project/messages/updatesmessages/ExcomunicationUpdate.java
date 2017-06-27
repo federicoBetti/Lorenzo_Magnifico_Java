@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class ExcomunicationUpdate extends Updates implements Serializable{
 
-    ExcommunicationZone[] excommunicationZone;
+    private ExcommunicationZone[] excommunicationZone;
 
     public ExcomunicationUpdate( ExcommunicationZone[] exc, String nickname ){
         super(nickname);

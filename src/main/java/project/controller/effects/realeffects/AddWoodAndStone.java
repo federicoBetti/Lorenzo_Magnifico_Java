@@ -9,7 +9,7 @@ import project.server.network.PlayerHandler;
  * Created by raffaelebongo on 17/06/17.
  */
 public class AddWoodAndStone implements Effects {
-    int quantity;
+    private int quantity;
 
     public AddWoodAndStone(int quantity) {
         this.quantity = quantity;

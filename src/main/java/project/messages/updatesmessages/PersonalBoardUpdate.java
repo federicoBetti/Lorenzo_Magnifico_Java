@@ -42,7 +42,7 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
                 "Coins: " + String.valueOf(personalBoard.getCoins());
     }
 
-    public String createCardsString(List<? extends DevelopmentCard> cards ){
+    private String createCardsString(List<? extends DevelopmentCard> cards){
 
         if ( cards.size() == 0 )
             return " ";

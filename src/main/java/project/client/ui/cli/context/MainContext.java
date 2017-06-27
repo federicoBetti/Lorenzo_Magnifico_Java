@@ -76,59 +76,59 @@ public class MainContext extends AbstractContext {
         cli.takeDevCard();
     }
 
-    public void jumpTurn() {
+    private void jumpTurn() {
         cli.skipTurn();
     }
 
-    public void showTowers() {
+    private void showTowers() {
         cli.showTowers();
     }
 
-    public void showProductionZone() {
+    private void showProductionZone() {
         showProductionZone();
     }
 
-    public void showCouncilZone() {
+    private void showCouncilZone() {
         //to implement
     }
 
-    public void showMarketZone() {
+    private void showMarketZone() {
         //to implement
     }
 
-    public void showExcomunicationsTiles() {
+    private void showExcomunicationsTiles() {
         //to implement
     }
 
-    public void showPersonalBoard() {
+    private void showPersonalBoard() {
         //to implement
     }
 
-    public void showLeaderCards() {
+    private void showLeaderCards() {
         //to implement
     }
 
-    public void showDicesValue() {
+    private void showDicesValue() {
         //to implement
     }
 
-    public void showPoints() {
+    private void showPoints() {
         //to implement
     }
 
-    public void showHarvesterZone() {
+    private void showHarvesterZone() {
         //to implement
     }
 
-    public void gameReport() {
+    private void gameReport() {
         //to implement
     }
 
-    public void showAllPlayers() {
+    private void showAllPlayers() {
         //to implement
     }
 
-    void chat(){
+    private void chat(){
         //to implement
     }
 

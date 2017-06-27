@@ -9,8 +9,8 @@ import java.net.Socket;
 
 
 public class SocketServer extends AbstractServer {
-    SocketServer socketServer;
-    ServerSocket serverSocket;
+    private SocketServer socketServer;
+    private ServerSocket serverSocket;
 
 
     public SocketServer(Server server) throws IOException {

@@ -23,10 +23,14 @@ public class CouncilPalaceController extends AbstractController {
     /**
      * radio button in which you can chose the familiar to use
      */
-    public RadioButton familiarOrange;
-    public RadioButton familiarWhite;
-    public RadioButton familiarBlack;
-    public RadioButton familiarNull;
+    @FXML
+    private  RadioButton familiarOrange;
+    @FXML
+    private  RadioButton familiarWhite;
+    @FXML
+    private  RadioButton familiarBlack;
+    @FXML
+    private  RadioButton familiarNull;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
@@ -209,10 +213,15 @@ public class CouncilPalaceController extends AbstractController {
     }
 
 
-    public void goToCouncil() {
+    private void goToCouncil() {
         int privilegeSelected = -1;
         for (int i = 0; i < privilegeChoosen.length; i++) {
-            if (privilegeChoosen[i]) privilegeSelected = i;
+            if (privilegeChoosen[i]){
+                privilegeSelected = i;
+                privilegeChoosen[i] = false;
+                privilegeButtons[i].setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
+
+            }
         }
         if (privilegeSelected == -1 || !familiarPlaced) return;
         familiarPlaced = false;
@@ -260,17 +269,24 @@ public class CouncilPalaceController extends AbstractController {
         }
 
         if (privilegeSelected.size() == maxPrivilegeChosen) {
+            for (int i = 0; i < privilegeChoosen.length; i++) {
+                if (privilegeChoosen[i]){
+                    privilegeChoosen[i] = false;
+                    privilegeButtons[i].setStyle("-fx-background-color: transparent;-fx-border-color: transparent; ");
+            }
+        }
             unlockButton();
             mainController.takeBonusPrivileges(privilegeSelected);
         }
+        else writeOnChat("you don't have taken the right number of privileges!\nthe righy number is " + maxPrivilegeChosen + "\n");
     }
 
-    protected void blockButton() {
+    private void blockButton() {
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takePrivilege());
     }
 
-    protected void unlockButton() {
+    private void unlockButton() {
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> goToCouncil());
     }

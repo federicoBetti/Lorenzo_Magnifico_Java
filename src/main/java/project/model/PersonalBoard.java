@@ -56,6 +56,18 @@ public class PersonalBoard implements Serializable{
     	myLeaderCard = new ArrayList<>();
 	}
 
+	/**
+	 * costruttore usato di prova
+	 * @param i
+	 */
+	public PersonalBoard(int i) {
+		this();
+		coins=i;
+		servants=i;
+		stone=i;
+		wood=i;
+	}
+
 
     public List<LeaderCard> getMyLeaderCard() {
         return myLeaderCard;

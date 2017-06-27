@@ -11,9 +11,9 @@ import project.server.network.PlayerHandler;
 //todo fare con HashMap
 public class DiscountForTakingCards implements Effects {
 
-    String kindOfReasourceDiscounted;
-    String kindOfCardDiscounted;
-    int quantityDiscounted;
+    private String kindOfReasourceDiscounted;
+    private String kindOfCardDiscounted;
+    private int quantityDiscounted;
 
     public DiscountForTakingCards(int quantity, String parameter1, String parameter2 ) {
         this.kindOfReasourceDiscounted = parameter1;

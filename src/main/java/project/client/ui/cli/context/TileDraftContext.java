@@ -11,7 +11,7 @@ import java.util.List;
  * Created by raffaelebongo on 27/06/17.
  */
 public class TileDraftContext extends AbstractContext {
-    List<Tile> tiles;
+    private List<Tile> tiles;
 
     public TileDraftContext(Cli cli, List<Tile> tiles) {
         super(cli);

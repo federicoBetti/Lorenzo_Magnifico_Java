@@ -7,7 +7,7 @@ import java.util.List;
  * Created by raffaelebongo on 19/05/17.
  */
 public class ImmediateEffectsFromJson {
-    List<TrisIE> tris;
+    private List<TrisIE> tris;
 
     public ImmediateEffectsFromJson(){
         this.tris = new ArrayList<>();

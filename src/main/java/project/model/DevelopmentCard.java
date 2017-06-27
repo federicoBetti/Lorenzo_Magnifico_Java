@@ -25,7 +25,7 @@ public abstract class DevelopmentCard implements Serializable{
     private boolean choicePe;
 
     // ci saranno altre cose e parametri nella carta ma gli effetti vengono gestiti così
-    public DevelopmentCard(String name, int period, boolean choicePe, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects){
+    protected DevelopmentCard(String name, int period, boolean choicePe, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects){
         this.name = name;
         this.period = period;
         this.choicePe = choicePe;
@@ -44,7 +44,7 @@ public abstract class DevelopmentCard implements Serializable{
         }
     }
 
-    public DevelopmentCard(){}
+    protected DevelopmentCard(){}
 
     public boolean isChoicePe() {
         return choicePe;

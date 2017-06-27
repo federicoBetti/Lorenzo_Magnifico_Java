@@ -60,4 +60,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void timerTurnDelayed() throws RemoteException;
 
     int tileChoosen(ArrayList<Tile> tiles) throws RemoteException;
+
+    void nicknameAlreadyUsed() throws RemoteException;
 }

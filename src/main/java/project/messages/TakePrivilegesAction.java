@@ -7,7 +7,7 @@ import project.controller.Constants;
  */
 public class TakePrivilegesAction extends BonusInteraction {
 
-    int quantityOfDifferentPrivileges;
+    private int quantityOfDifferentPrivileges;
 
     public TakePrivilegesAction(int quantityOfDifferentPrivileges){
         this.quantityOfDifferentPrivileges = quantityOfDifferentPrivileges;

@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class Market extends Position implements Serializable{
 
-    Effects effect; //todo costruire con il tris: ogni posto ha sui effetti
+    private Effects effect; //todo costruire con il tris: ogni posto ha sui effetti
 
     public Market(TrisIE trisIE ){
         BuildImmediateEffects BuildImmediateEffects = new BuildImmediateEffects();

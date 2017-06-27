@@ -7,7 +7,7 @@ import project.server.network.PlayerHandler;
 
 public class BonusTowerAction implements Effects {
 
-    TowerAction towerAction;
+    private TowerAction towerAction;
 
     public BonusTowerAction(String parameter, int quantity) {
         towerAction = new TowerAction(parameter,quantity);

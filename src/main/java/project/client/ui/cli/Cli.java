@@ -24,12 +24,12 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class Cli extends AbstractUI {
     //todo fare end turn context e tutto il via dicendo
 
-    ClientSetter clientSetter; //all the operation have to pass across this class
-    AbstractContext context;
-    volatile boolean choice = false;
+    private ClientSetter clientSetter; //all the operation have to pass across this class
+    private AbstractContext context;
+    private volatile boolean choice = false;
     private int numberOfPlayers;
     private String playerColor;
-    volatile BlockingDeque<String> choiceQueue;
+    private volatile BlockingDeque<String> choiceQueue;
 
 
     public Cli(ClientSetter clientSetter) {

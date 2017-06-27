@@ -32,10 +32,11 @@ public class Player implements Serializable{
     private transient ExcommunicationEffectsUseful excommunicationEffectsUseful;
 
 
-    public Player(){
+    protected Player(){
     	Configuration configuration = new Configuration();
     	
-    	personalBoardReference = new PersonalBoard();
+    	//personalBoardReference = new PersonalBoard();
+		personalBoardReference = new PersonalBoard(10);
     	score = new Score();
 		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
 		try {

@@ -25,8 +25,8 @@ import java.util.List;
  */
 public abstract class AbstractController {
 
-    protected LoginBuilder loginBuilder;
-    protected MainController mainController;
+    LoginBuilder loginBuilder;
+    MainController mainController;
     /**
      * textfield to write chat messages
      */
@@ -34,10 +34,10 @@ public abstract class AbstractController {
     String familiarChosen;
 
 
-    protected List<ImageView> imageFamiltMember;
-    protected List<RadioButton> radioButtonFamiliar;
+    private List<ImageView> imageFamiltMember;
+    private List<RadioButton> radioButtonFamiliar;
 
-    protected void fillFamilymember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange) {
+    void fillFamilymember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange) {
         familiarChosen = new String();
         imageFamiltMember.add(imageFamiliarNull);
         imageFamiltMember.add(imageFamiliarBlack);
@@ -50,18 +50,18 @@ public abstract class AbstractController {
     }
 
 
-    protected void fillRadioButton(RadioButton familiarNull, RadioButton familiarBlack, RadioButton familiarWhite, RadioButton familiarOrange) {
+    void fillRadioButton(RadioButton familiarNull, RadioButton familiarBlack, RadioButton familiarWhite, RadioButton familiarOrange) {
         radioButtonFamiliar.add(familiarNull);
         radioButtonFamiliar.add(familiarBlack);
         radioButtonFamiliar.add(familiarWhite);
         radioButtonFamiliar.add(familiarOrange);
     }
 
-    protected AbstractController() {
+    AbstractController() {
         familiarChosen = null;
     }
 
-    public void initialize() {
+    void initialize() {
         imageFamiltMember = new ArrayList<>(4);
 
         radioButtonFamiliar = new ArrayList<>(4);
@@ -80,11 +80,11 @@ public abstract class AbstractController {
         familiarChosen = "";
     }
 
-    public void goToMainGame(ActionEvent actionEvent) {
+    void goToMainGame(ActionEvent actionEvent) {
         loginBuilder.setScene(SceneType.MAIN, SceneType.HARVESTER);
     }
 
-    public void sendChat(TextField chatText) {
+    void sendChat(TextField chatText) {
         String text = chatText.getText() + "\n";
         writeOnChat(text);
     }
@@ -98,7 +98,7 @@ public abstract class AbstractController {
     public void uploadImages() {
     }
 
-    protected Image getTrueFamiliarImage() {
+    Image getTrueFamiliarImage() {
         switch (familiarChosen) {
             case Constants.FAMILY_MEMBER_COLOUR_NEUTRAL:
                 return imageFamiltMember.get(0).getImage();
@@ -133,11 +133,11 @@ public abstract class AbstractController {
     }
 
 
-    public void showPersonalBoard(SceneType oldScene) {
+    void showPersonalBoard(SceneType oldScene) {
         loginBuilder.setScene(SceneType.PERSONAL_BOARD, oldScene);
     }
 
-    public void updateOneResource(int coins, Label numberOfCoins) {
+    void updateOneResource(int coins, Label numberOfCoins) {
         numberOfCoins.setText(String.valueOf(coins));
     }
 
@@ -158,7 +158,7 @@ public abstract class AbstractController {
         familiarChosen = null;
     }
 
-    public void updateCards(List<? extends DevelopmentCard> territoryCards, List<String> nameOfTerritoryCard, List<ImageView> imageTerritoryCard ){
+    void updateCards(List<? extends DevelopmentCard> territoryCards, List<String> nameOfTerritoryCard, List<ImageView> imageTerritoryCard){
         for (int i = 0; i< territoryCards.size(); i++) {
             try {
                 nameOfTerritoryCard.get(i);
@@ -171,7 +171,7 @@ public abstract class AbstractController {
         }
     }
 
-    public void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox) {
+    void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox) {
         System.out.println("provo a piazzare familiare");
         for (FamiliarPosition f : allPosition) {
             if (f.getFamiliarName().equals("")) {
@@ -188,7 +188,7 @@ public abstract class AbstractController {
         allPosition.add(newPosition);
     }
 
-    protected int familiarPlaced(List<FamiliarPosition> allPosition) {
+    int familiarPlaced(List<FamiliarPosition> allPosition) {
         int i = 0;
         for (FamiliarPosition f: allPosition)
             if (!f.getFamiliarName().equals(""))
@@ -197,7 +197,7 @@ public abstract class AbstractController {
     }
 
 
-    public void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition) {
+    void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition) {
         Iterator<? extends Position> itPR = positions.iterator();
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
 
@@ -218,7 +218,7 @@ public abstract class AbstractController {
         }
     }
 
-    public void updatePosition(Tower[][] towers, TowerZone[][] myTower) {
+    void updatePosition(Tower[][] towers, TowerZone[][] myTower) {
         int floorNumber;
         int towerNumber;
         for (towerNumber = 0; towerNumber < 4; towerNumber++) {
@@ -231,7 +231,10 @@ public abstract class AbstractController {
                     guiTower.setCardName(null);
                     guiTower.setCardImage(null);
                 } else {
+                   System.out.println("la carta sul server è " + serverTower.getCardOnThisFloor().getName());
+                   System.out.println("la carta qua sul client è " + guiTower.getCardName());
                     if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())) {
+                        System.out.println("ho trovato una carta diversa da prima!");
                         modifyCard(guiTower, serverTower.getCardOnThisFloor().getName());
                     }
                 }
@@ -256,21 +259,19 @@ public abstract class AbstractController {
     }
 
     private void modifyCard(TowerZone guiTower, String cardName) {
-        if (guiTower.getCardName().equals(cardName))
-            return;
         guiTower.setCardName(cardName);
         guiTower.setCardImage(cardName);
     }
 
 
-    protected void blockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
+    void blockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
         mainGameButton.setDisable(true);
         personalBoard.setDisable(true);
         buttonPlaceFamiliar.setDisable(true);
     }
 
 
-    protected void unlockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
+    void unlockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
         mainGameButton.setDisable(false);
         personalBoard.setDisable(false);
         buttonPlaceFamiliar.setDisable(false);

@@ -9,15 +9,15 @@ public class TowerIterator implements IteratorInterface {
 
     private Tower[][] towers;
     //todo
-    int towerNumber;
-    int floor;
+    private int towerNumber;
+    private int floor;
 
     public TowerIterator(Tower[][] towers){
         this();
         this.towers = towers;
     }
 
-    public TowerIterator() {
+    private TowerIterator() {
         towerNumber = 0;
         floor = 0;
     }

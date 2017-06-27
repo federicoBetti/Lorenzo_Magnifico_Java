@@ -10,16 +10,22 @@ import java.util.HashMap;
 public class LeaderCardRequirements {
 
     
-    private static HashMap<String, RequirementsBuilder> requirements;
+    private HashMap<String, RequirementsBuilder> requirements;
     /**
      * Default constructor
      */
     public LeaderCardRequirements() {
+        requirements = new HashMap<>();
+        requirements = new HashMap<>(Constants.LEADER_CARD_NUMBER);
         fillHashMapRequirements();
     }
 
-    public static boolean checkRequirements(String leaderName, PlayerHandler playerHandler){
-        return requirements.get(leaderName).checkRequirements(playerHandler);
+    public boolean checkRequirements(String leaderName, PlayerHandler playerHandler){
+        System.out.println("sto per cercare il leader: " + leaderName);
+        RequirementsBuilder r = requirements.get(leaderName);
+        boolean action = r.checkRequirements(playerHandler);
+        return action;
+        //return requirements.get(leaderName).checkRequirements(playerHandler);
     }
 
     private void fillHashMapRequirements() {

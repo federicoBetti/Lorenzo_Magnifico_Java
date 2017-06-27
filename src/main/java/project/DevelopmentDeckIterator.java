@@ -7,9 +7,9 @@ import project.controller.Constants;
  */
 public class DevelopmentDeckIterator implements IteratorInterface {
 
-    int color;
-    int period;
-    int cards;
+    private int color;
+    private int period;
+    private int cards;
 
 
     public DevelopmentDeckIterator(){

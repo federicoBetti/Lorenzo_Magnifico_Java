@@ -11,8 +11,12 @@ public class LeaderCard implements Serializable{
 
     private boolean isPlayed;
 
+    private boolean onePerTurn;
 
 
+    public boolean isOnePerTurn() {
+        return onePerTurn;
+    }
 
     public String getName() {
         return name;

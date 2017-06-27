@@ -20,9 +20,11 @@ public abstract class PlayerHandler extends Player {
     private transient Room room;
     private transient AllCheckFunctions checkFunctions;
     final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
+    private LeaderCardRequirements leaderCardRequirements;
 
-    public PlayerHandler(){
+    protected PlayerHandler(){
         super();
+        leaderCardRequirements = new LeaderCardRequirements();
         checkFunctions = new BasicCheckFunctions();
     }
 
@@ -35,7 +37,7 @@ public abstract class PlayerHandler extends Player {
      * @param floor
      * @param familyM
      */
-    public void clientTakeDevelopmentCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException{
+    protected void clientTakeDevelopmentCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException{
         Position[] tower;
         DevelopmentCard card;
         int diceCost;
@@ -188,7 +190,7 @@ public abstract class PlayerHandler extends Player {
      * @param intServantsNumber
      * @throws CantDoActionException
      */
-    public void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
+    protected void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
         int harvesterValue = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() + intServantsNumber;
 
         gameActions().havesterBonus(harvesterValue, this);
@@ -199,7 +201,7 @@ public abstract class PlayerHandler extends Player {
      * @param cardToProduct
      * @return
      */
-    public void production(FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
+    protected void production(FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
         int maxValueOfProduction;
         List<Production> productionZone = room.getBoard().getProductionZone();
         boolean canTakeCards;
@@ -215,7 +217,7 @@ public abstract class PlayerHandler extends Player {
     }
 
 
-    public void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
+    protected void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
         int maxValueOfProduction;
         maxValueOfProduction =  returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
         checkAvaiabiltyToProduct(cards,maxValueOfProduction);
@@ -223,7 +225,7 @@ public abstract class PlayerHandler extends Player {
     }
 
 
-    public void checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) throws CantDoActionException {
+    private void checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) throws CantDoActionException {
         BuildingCost totalCardCosts = new BuildingCost();
         for (BuildingCard b: cardToProduct){
             if (b.getCost().getDiceCost() > maxValueOfProduction)
@@ -260,7 +262,7 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     protected void playLeaderCard(String leaderName) throws CantDoActionException {
-        if (LeaderCardRequirements.checkRequirements(leaderName,this))
+        if (leaderCardRequirements.checkRequirements(leaderName,this))
             gameActions().playLeaderCard(leaderName,this);
         else
             throw new CantDoActionException();
@@ -270,7 +272,7 @@ public abstract class PlayerHandler extends Player {
      * @param leaderName
      * @return
      */
-    public void discardLeaderCard(String leaderName) throws CantDoActionException {
+    protected void discardLeaderCard(String leaderName) throws CantDoActionException {
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
                 gameActions().discardLeaderCard(leaderName,this);
@@ -366,7 +368,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void cantDoAction();
 
-    public abstract int canUseBothPaymentMethod() ;
+    protected abstract int canUseBothPaymentMethod() ;
 
     public abstract void itsMyTurn(); //non saprei che parametri passare
 

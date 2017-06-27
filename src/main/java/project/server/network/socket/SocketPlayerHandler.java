@@ -29,12 +29,12 @@ import java.util.ListIterator;
 //todo implementare per ogni metodo i messaggi di ritorno al client o gia fatto in gameAction? controllare
 public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
-    transient SocketServer socketServer;
-    transient Socket socket;
-    transient ObjectInputStream objectInputStream;
-    transient ObjectOutputStream objectOutputStream;
-    transient ServerDataHandler serverDataHandler;
-    Object token;
+    private transient SocketServer socketServer;
+    private transient Socket socket;
+    private transient ObjectInputStream objectInputStream;
+    private transient ObjectOutputStream objectOutputStream;
+    private transient ServerDataHandler serverDataHandler;
+    private Object token;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
@@ -502,7 +502,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    public void takePriviledgesInArow(TakePrivilegesAction returnFromEffect)  {
+    private void takePriviledgesInArow(TakePrivilegesAction returnFromEffect)  {
         for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
             int privilegeNumber = 0;
             try {

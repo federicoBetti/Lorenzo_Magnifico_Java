@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by raffaelebongo on 22/06/17.
  */
 public class ShowTowersContext extends AbstractContext {
-    Tower[][] towers;
+    private Tower[][] towers;
 
     public ShowTowersContext(Cli cli, Tower[][] towers) {
         super(cli);

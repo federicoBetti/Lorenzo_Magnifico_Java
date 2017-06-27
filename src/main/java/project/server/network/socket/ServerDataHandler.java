@@ -22,13 +22,13 @@ import java.util.Map;
  * room e da li il preciso metodo dalla classe delle azioni che modifica lo stato della partita.
  */
 
-public class ServerDataHandler {
+class ServerDataHandler {
 
-    SocketPlayerHandler socketPlayerHandler;
-    ObjectInputStream objectInputStream;
-    ObjectOutputStream objectOutputStream;
-    Map<String, MethodsHadler> map;
-    MethodsHadler methodsHadler;
+    private SocketPlayerHandler socketPlayerHandler;
+    private ObjectInputStream objectInputStream;
+    private ObjectOutputStream objectOutputStream;
+    private Map<String, MethodsHadler> map;
+    private MethodsHadler methodsHadler;
 
     public ServerDataHandler(SocketPlayerHandler socketPlayerHandler, ObjectInputStream input, ObjectOutputStream output ){
         map = new HashMap<>();
@@ -38,7 +38,7 @@ public class ServerDataHandler {
         loadMap();
     }
 
-    void loadMap(){
+    private void loadMap(){
         map.put(Constants.LOGIN_REQUEST, this::loginRequest );
         map.put(Constants.TAKE_DEV_CARD, this::takeDevCard );
         map.put(Constants.CHOOSE_PAYMENT_FOR_VENTURE_CARD, this::choosePaymentForVentureCard );

@@ -15,13 +15,13 @@ import java.util.Map;
  */
 public abstract class AbstractContext {
     Cli cli;
-    Actioner actioner;
+    private Actioner actioner;
     Map<String, Actioner> map;
     UnixColoredPrinter pYellow;
     UnixColoredPrinter pRed;
     UnixColoredPrinter pBlue;
 
-    public AbstractContext( Cli cli ){
+    AbstractContext(Cli cli){
         this.cli = cli;
         map = new HashMap<>();
         UnixColoredPrinter.Builder builder = new UnixColoredPrinter.Builder(0, false);
@@ -49,9 +49,9 @@ public abstract class AbstractContext {
     public void checkValidInput( String input ) throws InputException{
     }
 
-    public abstract void mainContextMethod(String action) throws InputException, IOException;
+    protected abstract void mainContextMethod(String action) throws InputException, IOException;
 
-    public void checkFamilyMemberColour( String colour ) throws InputException {
+    void checkFamilyMemberColour(String colour) throws InputException {
         if ( !(colour.equals(Constants.FAMILY_MEMBER_COLOUR_BLACK) ||
                 colour.equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL) ||
                 colour.equals(Constants.FAMILY_MEMBER_COLOUR_ORANGE) ||
@@ -59,7 +59,7 @@ public abstract class AbstractContext {
             throw new InputException();
     }
     
-    public void checkTowerColour( String towerColour ) throws InputException {
+    void checkTowerColour(String towerColour) throws InputException {
         if(!(towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_BUILDING_CARD) ||
                 towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_CHARACTER_CARD) ||
                 towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD) ||

@@ -10,10 +10,10 @@ import project.server.network.PlayerHandler;
  */
 public class BonusTowerActionYellow implements Effects {
 
-    String cardColour;
-    int diceValue;
-    String[] discountedResources;
-    int quantityDiscounted;
+    private String cardColour;
+    private int diceValue;
+    private String[] discountedResources;
+    private int quantityDiscounted;
 
     public BonusTowerActionYellow(String parameter, int quantity ){
         cardColour = "yellow";

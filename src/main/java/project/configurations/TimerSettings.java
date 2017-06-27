@@ -5,10 +5,10 @@ package project.configurations;
  */
 public class TimerSettings {
 
-    String startMatchTimerName;
-    int delayTimerStartMatch;
-    String skipTurnTimerName;
-    int delayTimerSkipTurn;
+    private String startMatchTimerName;
+    private int delayTimerStartMatch;
+    private String skipTurnTimerName;
+    private int delayTimerSkipTurn;
 
     public String getStartMatchTimerName() {
         return startMatchTimerName;

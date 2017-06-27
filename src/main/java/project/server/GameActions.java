@@ -21,9 +21,11 @@ public class GameActions {
 
     private Room room;
     private Timer timer;
+    private LeaderCardsEffects leaderCardEffect;
 
     public GameActions( Room room ){
         this.room = room;
+        leaderCardEffect = new LeaderCardsEffects();
         timer = new Timer();
     }
 
@@ -150,7 +152,7 @@ public class GameActions {
             return;
 
         } else {
-            System.out.println("fine round!" + currentPeriod);
+            System.out.println("fine round!" + currentRound);
             endRound();
             room.getBoard().getTurn().setRotation(0);
             nextRound();
@@ -254,13 +256,14 @@ public class GameActions {
         }
 
         PlayerHandler winner = findWinner();
+        System.out.println("IL VINCITORE È: " + winner.getName());
         //winner.YOUWIN();
       //todo  broadcastNotifications(new Notify("the winner is + " + winner.getName()));
 
     }
 
     private void finalPray(PlayerHandler playerHandler) {
-        if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[Constants.PERIOD_NUMBER])
+        if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[room.getBoard().getPeriod()])
             pray(playerHandler);
         else {
             takeExcommunication(playerHandler);
@@ -330,6 +333,15 @@ public class GameActions {
         refactorTowers();
         changePlayerOrder();
         clearAllPosition();
+        clearLeaderCardUsed();
+    }
+
+    private void clearLeaderCardUsed() {
+        for (PlayerHandler p: room.getListOfPlayers()){
+            for (LeaderCard l: p.getPersonalBoardReference().getMyLeaderCard())
+                if (l.isPlayed() && l.isOnePerTurn())
+                    l.setPlayed(false);
+        }
     }
 
     private void clearAllPosition() {
@@ -360,6 +372,7 @@ public class GameActions {
     }
 
     void refactorTowers() {
+        System.out.println("sto per rimettere a posto tutto le carte");
         int j;
         int i;
         int currentPeriod = room.getBoard().getPeriod();
@@ -368,7 +381,7 @@ public class GameActions {
         DevelopmentCard[][][] deck = room.getBoard().getDeckCard().getDevelopmentDeck();
         int roundsAdd = 0;
 
-        if (currentRound == 1)
+        if (currentRound == 0)
             roundsAdd = 4;
 
         else
@@ -384,6 +397,7 @@ public class GameActions {
         }
 
         room.getBoard().setTowers(tower);
+        broadcastUpdates(new TowersUpdate(room.getBoard().getAllTowers(),""));
 
     }
 
@@ -509,7 +523,7 @@ public class GameActions {
     public void playLeaderCard(String leaderName, PlayerHandler player) {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
-                BonusInteraction returnFromEffect = LeaderCardsEffects.doEffect(leaderName,player);
+                BonusInteraction returnFromEffect = leaderCardEffect.doEffect(leaderName,player);
                 if (returnFromEffect instanceof LorenzoMagnifico){
                     //todo fare cose per lorenzo magnifico
                 }
@@ -655,7 +669,7 @@ public class GameActions {
 
     }
 
-    public Timer myTimerSkipTurn(PlayerHandler player ) {
+    private Timer myTimerSkipTurn(PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override

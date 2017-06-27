@@ -6,8 +6,8 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 public class SetFamiliarFixedBonus implements Effects {
-    String parameter;
-    int quantity;
+    private String parameter;
+    private int quantity;
 
     public SetFamiliarFixedBonus(String parameter, int quantity){
         this.parameter = parameter;

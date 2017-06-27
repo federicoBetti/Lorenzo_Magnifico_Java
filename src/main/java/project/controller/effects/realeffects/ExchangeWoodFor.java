@@ -12,9 +12,9 @@ import project.server.network.PlayerHandler;
 //todo HashMap, si potrebbe mettere le cose sotto come un addWood, addoStone e cose cosi
 public class ExchangeWoodFor implements Effects {
 
-    int woodRequired;
-    int resourceEarned;
-    String resourceRewardered;
+    private int woodRequired;
+    private int resourceEarned;
+    private String resourceRewardered;
 
     public ExchangeWoodFor (int quantity, TotalCost effectCost, String resourceRewardered ){
         this.woodRequired = effectCost.getStoneRequired();

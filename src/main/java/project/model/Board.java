@@ -90,10 +90,13 @@ public final class Board {
 
     private int[] militaryPointsForTerritories;
 
-    Configuration configuration;
+    private Configuration configuration;
 
 
     public Board(int numberOfPlayer) throws FileNotFoundException {
+        round = 0;
+        period = 0;
+
         this.councilPrivileges = new CouncilPrivilege[Constants.PRIVILEDGE_NUMBER];
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
         this.victoryPointsInFaithTrack = new int[Constants.FAITH_TRACK];
@@ -140,8 +143,19 @@ public final class Board {
         configuration.loadBonusTile(getDeckCard());
 
 
-        round = 0;
-        period = 0;
+        finalPointsFromCharacterCards = new ArrayList<>();
+        finalPointsFromTerritoryCards = new ArrayList<>();
+
+        //da eliminare per prova
+        finalPointsFromTerritoryCards.add(1);
+        finalPointsFromTerritoryCards.add(1);
+        finalPointsFromTerritoryCards.add(1);
+        finalPointsFromTerritoryCards.add(1);
+
+        finalPointsFromCharacterCards.add(3);
+        finalPointsFromCharacterCards.add(3);
+        finalPointsFromCharacterCards.add(3);
+        finalPointsFromCharacterCards.add(3);
     }
 
     public Board() {
@@ -153,6 +167,7 @@ public final class Board {
         councilZone = new ArrayList<>();
         excommunicationZone = new ExcommunicationZone[3];
         turn = new Turn();
+        diceValue = new int[3];
     }
 
 
@@ -177,7 +192,7 @@ public final class Board {
         return victoryPointsInFaithTrack;
     }
 
-    public Tower[] getTower(int i) {
+    private Tower[] getTower(int i) {
         return towers[i];
     }
 

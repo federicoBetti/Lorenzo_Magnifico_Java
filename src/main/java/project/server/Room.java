@@ -8,6 +8,7 @@ import project.controller.supportfunctions.AllSupportFunctions;
 import project.controller.supportfunctions.BasicSupportFunctions;
 import project.messages.updatesmessages.*;
 import project.model.Board;
+import project.model.DevelopmentCard;
 import project.model.Player;
 import project.model.Tile;
 import project.server.network.PlayerHandler;
@@ -28,7 +29,7 @@ public class Room {
 
     private Board board;
 
-    int maxPlayers;
+    private int maxPlayers;
 
     private Map<Player,AllSupportFunctions> playerAllSupportFunctionsMap;
 
@@ -197,9 +198,11 @@ public class Room {
 
         int moreCoin = 0;
         for (PlayerHandler p: board.getTurn().getPlayerTurn()){
-            setResources(p, moreCoin);
+            //setResources(p, moreCoin);
             p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
             p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
+            p.sendUpdates(new MarketUpdate(board, p.getName()));
+            p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(),p.getName()));
             moreCoin++;
         }
 
@@ -210,7 +213,17 @@ public class Room {
             e.printStackTrace();
         }   */
 
-
+    /* prova per stampare le carte
+        DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
+        for (i = 0; i<4;i++){
+            for (int j=0;j<3;j++){
+                for (int k =0;k<8;k++){
+                    DevelopmentCard card = deck[i][j][k];
+                    System.out.println("c'è la carta " + card.getName() + " del tipo " + card.getClass());
+                }
+            }
+        }
+*/
         gameActions.rollDice();
         matchStarted = true;
         gameActions.firstTurn();

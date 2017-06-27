@@ -16,7 +16,7 @@ public class TowersController extends AbstractController {
 
 
     @FXML
-    protected Button submit;
+    private Button submit;
     @FXML
     private Button mainGameButton;
     @FXML
@@ -277,7 +277,7 @@ public class TowersController extends AbstractController {
     }
 
 
-    private void takeCard(int tower, int floor){
+    public void takeCard(int tower, int floor){
         if (myTower[tower][floor].getFamiliarName() == null) {
             lastFamiiarPlaced.setImage(null);
             lastFamiiarPlaced = myTower[tower][floor].getFamiliarImage();
@@ -367,7 +367,7 @@ public class TowersController extends AbstractController {
         sendChat(chatText);
     }
 
-    public void takeCard() {
+    private void takeCard() {
         if (floor != -1){
             String towerColourString = getTowerColour(towerColour);
             lastFamiiarPlaced = new ImageView();
@@ -404,12 +404,12 @@ public class TowersController extends AbstractController {
         this.bonusCardType = kindOfCard;
     }
 
-    protected void blockButton(){
+    private void blockButton(){
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeBonusCard());
     }
 
-    protected void unlockButton(){
+    private void unlockButton(){
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeCard());
     }

@@ -12,9 +12,9 @@ import java.util.ArrayList;
  */
 public abstract class Updates extends BonusInteraction implements Serializable{
 
-    String nicknameCurrentPlayer;
+    private String nicknameCurrentPlayer;
 
-    public Updates(String nicknameCurrentPlayer){
+    protected Updates(String nicknameCurrentPlayer){
         this.nicknameCurrentPlayer = nicknameCurrentPlayer;
     }
 
@@ -33,4 +33,7 @@ public abstract class Updates extends BonusInteraction implements Serializable{
         return null;
     }
     public abstract String toScreen();
+    public void stamp(){
+
+    }
 }

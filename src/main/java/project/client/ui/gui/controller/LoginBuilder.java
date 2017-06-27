@@ -22,7 +22,7 @@ import java.util.List;
 public class LoginBuilder extends Application {
 
     private BorderPane rootLayout;
-    protected Stage primaryStage;
+    private Stage primaryStage;
     private AnchorPane initialLoginScene;
     private AnchorPane waitingLoginScene;
     private ClientSetter clientSetter;
@@ -403,7 +403,7 @@ public class LoginBuilder extends Application {
     }
 
 
-    public void showDraft(String labelMessage, List<String> name, String type) {
+    private void showDraft(String labelMessage, List<String> name, String type) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
@@ -538,7 +538,7 @@ public class LoginBuilder extends Application {
         return turnOrder;
     }
 
-    public Stage getPrimaryStage() {
+    private Stage getPrimaryStage() {
         return primaryStage;
     }
 

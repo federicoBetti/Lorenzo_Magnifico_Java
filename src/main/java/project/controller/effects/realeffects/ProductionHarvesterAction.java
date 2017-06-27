@@ -7,7 +7,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.server.network.PlayerHandler;
 
 public class ProductionHarvesterAction implements Effects {
-    BonusProductionOrHarvesterAction bph;
+    private BonusProductionOrHarvesterAction bph;
     public ProductionHarvesterAction(String parameter, int quantity){
         bph = new BonusProductionOrHarvesterAction(parameter,quantity);
     }

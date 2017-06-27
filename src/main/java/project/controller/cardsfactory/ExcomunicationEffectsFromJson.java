@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * Created by raffaelebongo on 17/06/17.
  */
-public class ExcomunicationEffectsFromJson {
-    List<TrisIE> tris;
+class ExcomunicationEffectsFromJson {
+    private List<TrisIE> tris;
 
     public ExcomunicationEffectsFromJson(){
         this.tris = new ArrayList<>();

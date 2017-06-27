@@ -13,7 +13,7 @@ public class BuildExcommunicationEffects {
     //mi servono type, parameter, quantity
     //type sono: loseResource, downgrade, special, noEndPointsFromCard, loseFinalPoints
     private HashMap<String,ExcommunicationBuilder> typeEffect;
-    Gson gson;
+    private Gson gson;
     ExcommunicationBuilder excommunicationBuilder;
 
     public BuildExcommunicationEffects(){

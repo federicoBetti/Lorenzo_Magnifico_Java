@@ -15,7 +15,8 @@ import java.util.List;
 
 
 public class PersonalBoardController extends AbstractController {
-    public ImageView bonusTile;
+    @FXML
+    private  ImageView bonusTile;
     @FXML
     private Button goBackButton;
     @FXML

@@ -65,7 +65,7 @@ public class Server {
 
     public void loginRequest(String nickname, PlayerHandler player) throws IOException {
         if ( nicknameAlreadyUsed(nickname))
-            player.sendAnswer(Constants.NICKNAME_USED);
+            player.nicknameAlredyUsed();
 
         if (rooms.isEmpty() || roomsAreAllFull()) {
             createNewRoom(nickname, player);

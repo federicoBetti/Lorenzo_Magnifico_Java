@@ -11,8 +11,8 @@ import java.util.HashMap;
  * class for excommunication effect
  */
 public class LoseResourceEffect implements Effects {
-    String parameter;
-    int quantity;
+    private String parameter;
+    private int quantity;
     private HashMap<String, LoseResourceEffectBuilder> parameterEffect;
     
     public LoseResourceEffect(String parameter, int quantity){

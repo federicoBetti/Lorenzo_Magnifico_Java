@@ -3,7 +3,7 @@ package project.controller.supportfunctions;
 /**
  * 
  */
-public class CouncilPrivileges {
+class CouncilPrivileges {
 
 
     /**

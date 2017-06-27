@@ -11,7 +11,7 @@ import project.server.network.PlayerHandler;
  * sui privilegi
  */
 public class UsePrivilege implements Effects {
-    int quantityOfDifferentPrivilege;
+    private int quantityOfDifferentPrivilege;
 
     public UsePrivilege (int quantityOfDifferentPrivilege){
         this.quantityOfDifferentPrivilege = quantityOfDifferentPrivilege;

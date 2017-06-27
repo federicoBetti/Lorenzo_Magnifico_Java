@@ -35,9 +35,11 @@ class TowerZone {
     void setCardImage(String cardName) {
         if (cardName == null)
             card.setImage(null);
-        else
+        else{
+            System.out.println("sto aggiungendo la carta: " + cardName);
             card.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + cardName +".png"))));
-    }
+        }}
+
 
     void setFamiliarName(String familiarName) {
         this.familiarName = familiarName;

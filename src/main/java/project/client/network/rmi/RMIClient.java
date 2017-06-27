@@ -60,7 +60,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
     //QUA CI SONO I METODI DA CLIENT A SERVER
 
-    public void connect() throws ClientConnectionException {
+    private void connect() throws ClientConnectionException {
         try {
             Registry reg = LocateRegistry.getRegistry(8001);
             myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
@@ -357,6 +357,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     public int tileChoosen(ArrayList<Tile> tiles) throws RemoteException {
 
         return clientSetter.tileDraft(tiles);
+    }
+
+    @Override
+    public void nicknameAlreadyUsed() throws RemoteException {
+        clientSetter.nicknameAlreadyUsed();
     }
 
     @Override

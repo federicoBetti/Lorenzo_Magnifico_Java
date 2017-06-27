@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by raffaelebongo on 14/06/17.
  */
 public class FamilyMemberUpdate extends Updates implements Serializable {
-    FamilyMember[] familyMembers;
+    private FamilyMember[] familyMembers;
 
     public FamilyMemberUpdate(PlayerHandler player, String nickname) {
         super(nickname);

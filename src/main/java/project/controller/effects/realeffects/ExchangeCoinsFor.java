@@ -12,9 +12,9 @@ import project.server.network.PlayerHandler;
 //todo fare con HAshMap
 public class ExchangeCoinsFor implements Effects {
 
-    int coinsRequired;
-    int resourceEarned;
-    String resourceRewardered;
+    private int coinsRequired;
+    private int resourceEarned;
+    private String resourceRewardered;
 
     public ExchangeCoinsFor(int quantity, TotalCost effectCost, String resourceRewardered) {
         this.coinsRequired = effectCost.getCoinsRequired();

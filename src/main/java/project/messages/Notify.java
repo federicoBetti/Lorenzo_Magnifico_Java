@@ -8,7 +8,7 @@ import project.messages.updatesmessages.Updates;
  * todo questa è quella che manderà a tutti gli update e verrà interpretata da gui e cli
  */
 public class Notify extends Updates {
-    String notification;
+    private String notification;
 
     public Notify (String notification){
         super(Constants.TO_EVERYONE);

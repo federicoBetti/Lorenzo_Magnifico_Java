@@ -11,9 +11,9 @@ import project.server.network.PlayerHandler;
 
 //todo fare con HashMap
 public class ExchangeServantsFor implements Effects {
-    int servantsRequired;
-    int resourceEarned;
-    String resourceRewardered;
+    private int servantsRequired;
+    private int resourceEarned;
+    private String resourceRewardered;
 
     public ExchangeServantsFor (int quantity, TotalCost effectCost, String resourceRewardered ){
         this.servantsRequired = effectCost.getStoneRequired();

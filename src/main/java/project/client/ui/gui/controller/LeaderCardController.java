@@ -32,20 +32,27 @@ public class LeaderCardController extends AbstractController {
     public ImageView LorenzoMagnifico;
 
 
-    public TextField chatText;
-    public ImageView imageLeaderCard0;
-    public ImageView imageLeaderCard1;
-    public ImageView imageLeaderCard2;
-    public ImageView imageLeaderCard3;
-    public ImageView imageLeaderCard4;
-    public Button goBackButton;
+    @FXML
+    private  TextField chatText;
+    @FXML
+    private  ImageView imageLeaderCard0;
+    @FXML
+    private  ImageView imageLeaderCard1;
+    @FXML
+    private  ImageView imageLeaderCard2;
+    @FXML
+    private  ImageView imageLeaderCard3;
+    @FXML
+    private  ImageView imageLeaderCard4;
+    @FXML
+    private  Button goBackButton;
     private ArrayList<ImageView> arrayOfLeaderCard;
     private boolean[] leaderCardSelected;
     private boolean[] leaderCardPresent;
 
 
-    DropShadow borderGlow= new DropShadow();
-    DropShadow borderNull= new DropShadow();
+    private DropShadow borderGlow= new DropShadow();
+    private DropShadow borderNull= new DropShadow();
 
     public LeaderCardController(){
         super();
@@ -138,7 +145,7 @@ public class LeaderCardController extends AbstractController {
         selectLeaderCard(indexOfLeaderCard);
     }
 
-    public void goBack() {
+    private void goBack() {
         loginBuilder.setScene(SceneType.MAIN,SceneType.LEADER);
     }
 

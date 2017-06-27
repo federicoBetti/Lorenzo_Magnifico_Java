@@ -9,7 +9,7 @@ import project.server.network.PlayerHandler;
  */
 public class EarnOneCoinForEachColouredCard implements Effects {
 
-    String cardColor;
+    private String cardColor;
 
     public EarnOneCoinForEachColouredCard(String cardColor ) {
         this.cardColor = cardColor;

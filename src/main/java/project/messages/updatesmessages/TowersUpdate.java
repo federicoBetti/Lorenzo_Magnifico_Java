@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class TowersUpdate extends Updates implements Serializable {
 
-    Tower[][] towersZone;
+    private Tower[][] towersZone;
 
     public TowersUpdate(Tower[][] towers, String nickname ) {
         super(nickname);

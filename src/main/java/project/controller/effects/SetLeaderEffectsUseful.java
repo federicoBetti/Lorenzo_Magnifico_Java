@@ -9,7 +9,7 @@ import project.server.network.PlayerHandler;
 //todo cambiare con la HashMap
 
 public class SetLeaderEffectsUseful implements Effects {
-    String parameter;
+    private String parameter;
 
     public SetLeaderEffectsUseful(String parameter){
         this.parameter = parameter;

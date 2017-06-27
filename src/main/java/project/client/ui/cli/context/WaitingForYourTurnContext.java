@@ -27,43 +27,43 @@ public class WaitingForYourTurnContext extends AbstractContext {
         printHelp();
     }
 
-    public void showTowers() {
+    private void showTowers() {
         //to implement
     }
 
-    public void showProductionZone() {
+    private void showProductionZone() {
         //to implement
     }
 
-    public void showCouncilZone() {
+    private void showCouncilZone() {
         //to implement
     }
 
-    public void showMarketZone() {
+    private void showMarketZone() {
         //to implement
     }
 
-    public void showExcomunicationsTiles() {
+    private void showExcomunicationsTiles() {
         //to implement
     }
 
-    public void showPersonalBoard() {
+    private void showPersonalBoard() {
         //to implement
     }
 
-    public void showLeaderCards() {
+    private void showLeaderCards() {
         //to implement
     }
 
-    public void showDicesValue() {
+    private void showDicesValue() {
         //to implement
     }
 
-    public void showPoints() {
+    private void showPoints() {
         //to implement
     }
 
-    public void showHarvesterZone() {
+    private void showHarvesterZone() {
         //to implement
     }
 

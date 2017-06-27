@@ -3,10 +3,10 @@ package project.configurations;
 /**
  * 
  */
-public class SetupMethods {
+class SetupMethods {
 
     //da cancellare
-    int playersNumber;
+    private int playersNumber;
 
     public SetupMethods() {
         //i like it so

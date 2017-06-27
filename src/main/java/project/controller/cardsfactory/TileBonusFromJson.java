@@ -8,9 +8,9 @@ import java.util.ArrayList;
  * Created by raffaelebongo on 17/06/17.
  */
 public class TileBonusFromJson {
-    int tileNumber;
-    ArrayList<TrisIE> harvesterBonus;
-    ArrayList<TrisIE> productionBonus;
+    private int tileNumber;
+    private ArrayList<TrisIE> harvesterBonus;
+    private ArrayList<TrisIE> productionBonus;
 
     public int getTileNumber() {
         return tileNumber;

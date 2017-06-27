@@ -8,10 +8,10 @@ import project.server.network.PlayerHandler;
  * Created by raffaelebongo on 10/05/17.
  */
 public class ServantWoodStoneForSixVictoryPoints implements Effects {
-    int servantsRequired;
-    int woodrequired;
-    int stoneRequired;
-    int victoryPointsEarned;
+    private int servantsRequired;
+    private int woodrequired;
+    private int stoneRequired;
+    private int victoryPointsEarned;
 
     public ServantWoodStoneForSixVictoryPoints() {
         servantsRequired = 1;

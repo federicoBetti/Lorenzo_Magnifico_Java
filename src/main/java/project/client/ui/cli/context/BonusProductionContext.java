@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by raffaelebongo on 15/06/17.
  */
 public class BonusProductionContext extends AbstractContext {
-    BonusProductionOrHarvesterAction bonusProd;
+    private BonusProductionOrHarvesterAction bonusProd;
 
     public BonusProductionContext(BonusProductionOrHarvesterAction bonusProd, Cli cli) {
         super(cli);

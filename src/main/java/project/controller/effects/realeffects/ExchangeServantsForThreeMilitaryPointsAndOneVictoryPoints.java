@@ -8,9 +8,9 @@ import project.server.network.PlayerHandler;
  * Created by raffaelebongo on 10/05/17.
  */
 public class ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints implements Effects {
-    int servantsRequired;
-    int victoryPointsEarned;
-    int militaryPointsEarned;
+    private int servantsRequired;
+    private int victoryPointsEarned;
+    private int militaryPointsEarned;
 
     public ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints( ) {
         servantsRequired = 1;

@@ -10,7 +10,7 @@ import project.server.network.PlayerHandler;
 public abstract class CheckFunctionsDecorator implements AllCheckFunctions {
     AllCheckFunctions allCheckFunctions;
 
-    public CheckFunctionsDecorator(AllCheckFunctions allCheckFunctions){
+    CheckFunctionsDecorator(AllCheckFunctions allCheckFunctions){
         this.allCheckFunctions = allCheckFunctions;
     }
 

@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -9,11 +10,14 @@ import javafx.stage.Stage;
  * Created by federico on 19/06/17.
  */
 public class ChoiceController {
-    public Button buttonChoiche1;
-    public Button buttonChoiche2;
-    public Label message;
+    @FXML
+    private  Button buttonChoiche1;
+    @FXML
+    private  Button buttonChoiche2;
+    @FXML
+    private  Label message;
 
-    MainController mainController;
+    private MainController mainController;
     private LoginBuilder loginBuilder;
 
 

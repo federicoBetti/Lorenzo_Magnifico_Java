@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class Tile implements Serializable{
 
-    int tileNumber;
-    List<Effects> harvesterBonus;
-    List<Effects> productionBonus;
+    private int tileNumber;
+    private List<Effects> harvesterBonus;
+    private List<Effects> productionBonus;
 
 
     public Tile(TileBonusFromJson tile ){

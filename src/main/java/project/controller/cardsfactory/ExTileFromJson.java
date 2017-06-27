@@ -8,7 +8,7 @@ import project.controller.effects.effectsfactory.TrisIE;
 public class ExTileFromJson {
     private int period;
     private int idCard;
-    TrisIE excomunicationEffectsFromJson;
+    private TrisIE excomunicationEffectsFromJson;
 
     public int getPeriod() {
         return period;

@@ -14,7 +14,7 @@ import java.util.Map;
 
 //serve oppure non va scelto nulla??? cioè non si possono aggiungere schiavi in sostanza? chiedere
 public class BonusHarvesterContext extends AbstractContext {
-    BonusProductionOrHarvesterAction bonusHarv;
+    private BonusProductionOrHarvesterAction bonusHarv;
 
     public BonusHarvesterContext(BonusProductionOrHarvesterAction bonusHarv, Cli cli) {
         super(cli);

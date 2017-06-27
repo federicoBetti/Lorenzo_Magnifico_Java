@@ -4,9 +4,9 @@ package project.controller.cardsfactory;
  * Created by raffaelebongo on 19/05/17.
  */
 public class CardFromJson {
-    Anagrafic anagrafic;
-    ImmediateEffectsFromJson immediateEffect;
-    PermanentEffectFromJson permanentEffect;
+    private Anagrafic anagrafic;
+    private ImmediateEffectsFromJson immediateEffect;
+    private PermanentEffectFromJson permanentEffect;
 
     public CardFromJson(){
 
