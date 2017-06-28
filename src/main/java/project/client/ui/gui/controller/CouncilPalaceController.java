@@ -213,7 +213,7 @@ public class CouncilPalaceController extends AbstractController {
     }
 
 
-    private void goToCouncil() {
+    public void goToCouncil() {
         int privilegeSelected = -1;
         for (int i = 0; i < privilegeChoosen.length; i++) {
             if (privilegeChoosen[i]){
@@ -262,7 +262,7 @@ public class CouncilPalaceController extends AbstractController {
         sendChat(chatText);
     }
 
-    private void takePrivilege() {
+    public void takePrivilege() {
         ArrayList<Integer> privilegeSelected = new ArrayList<>();
         for (int i = 0; i < privilegeChoosen.length; i++) {
             if (privilegeChoosen[i]) privilegeSelected.add(i);

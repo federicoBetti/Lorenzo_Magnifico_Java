@@ -145,6 +145,7 @@ public class LeaderCardController extends AbstractController {
         selectLeaderCard(indexOfLeaderCard);
     }
 
+    @FXML
     private void goBack() {
         loginBuilder.setScene(SceneType.MAIN,SceneType.LEADER);
     }

@@ -37,7 +37,17 @@ public class Tower extends Position implements Serializable{
             towerZoneEffect = buildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
         }
         else {
-            towerZoneEffect = (Effects) player -> null;
+            towerZoneEffect = new Effects() {
+                @Override
+                public BonusInteraction doEffect(PlayerHandler player) {
+                    return null;
+                }
+
+                @Override
+                public String toScreen() {
+                    return "";
+                }
+            };
         }
 
         setOccupied(false);

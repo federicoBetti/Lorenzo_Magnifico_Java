@@ -82,6 +82,7 @@ public class HarvesterController extends AbstractController {
     private ImageView LorenzoMagnifico;
 
 
+    @FXML
     private TextField chatText;
     /**
      * the imageViews where the familiar will be placed
@@ -189,6 +190,7 @@ public class HarvesterController extends AbstractController {
 
 
 
+    @FXML
     private void doHarvester() {
         int servants = -1;
         if (familiarChosen.equals(""))

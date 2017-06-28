@@ -367,6 +367,7 @@ public class TowersController extends AbstractController {
         sendChat(chatText);
     }
 
+    @FXML
     private void takeCard() {
         if (floor != -1){
             String towerColourString = getTowerColour(towerColour);

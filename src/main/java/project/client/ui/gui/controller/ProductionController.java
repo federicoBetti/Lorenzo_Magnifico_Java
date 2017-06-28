@@ -196,6 +196,7 @@ public class ProductionController extends AbstractController{
         }
     }
 
+    @FXML
     private void doProduction() {
         if (familiarChosen.equals(""))
             return;

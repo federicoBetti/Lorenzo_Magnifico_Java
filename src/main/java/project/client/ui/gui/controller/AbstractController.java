@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -80,6 +81,7 @@ public abstract class AbstractController {
         familiarChosen = "";
     }
 
+    @FXML
     void goToMainGame(ActionEvent actionEvent) {
         loginBuilder.setScene(SceneType.MAIN, SceneType.HARVESTER);
     }
