@@ -2684,30 +2684,14 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
-		{"type":"takeRop", "parameter":"militaryPoint", "quantity":3 }
+		"tris":[
+			{"type":"takeRop", "parameter":"militaryPoint", "quantity":3 },
+			{"type":"increaseDiceValueForTakingCard", "parameter":"green", "quantity":2}
 		]
 	},
 
-	
-	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
-
-		"type":"increaseDiceValueForTakingCard",
-		"parameter":"green",
-		"quantity":2
-		}
 		]
 	}
 } ,
@@ -2729,7 +2713,10 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
+		"tris":[
+			{"type":"increaseDiceValueForTakingCard", "parameter":"yellow", "quantity":2},
+			{"type":"discountForTakingYellowCard", "parameter":"wood", "quantity":1},
+			{"type":"discountForTakingYellowCard", "parameter":"stone", "quantity":1}
 		]
 	},
 
@@ -2737,52 +2724,8 @@
 	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
 
-		"type":"increaseDiceValueForTakingCard",
-		"parameter":"yellow",
-		"quantity":2
-		},
-		
-		{	
-			"resourceEarnedFromExchange":"wood",
-			"effectCost":{
-				"stoneRequired":0,
-				"woodRequired":0,
-				"servantsRequired":0,
-				"coinsRequired":0,
-				"militaryRequired":0,
-				"militaryCost":0
-				},
-
-			"type":"discountForTakingCard",
-			"parameter":"yellow",
-			"quantity":1
-		},
-		{	
-			"resourceEarnedFromExchange":"stone",
-			"effectCost":{
-				"stoneRequired":0,
-				"woodRequired":1,
-				"servantsRequired":0,
-				"coinsRequired":0,
-				"militaryRequired":0,
-				"militaryCost":0
-				},
-
-			"type":"discountForTakingCard",
-			"parameter":"yellow",
-			"quantity":1
-		}]
+		]
 	}
 } ,
 
@@ -2804,7 +2747,9 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
+		"tris":[
+			{"type":"increaseDiceValueForTakingCard", "parameter":"blue", "quantity":2},
+			{"type":"discountForTakingBlueCard", "parameter":"coin", "quantity":1}
 		]
 	},
 
@@ -2812,37 +2757,7 @@
 	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
-
-		"type":"increaseDiceValueForTakingCard",
-		"parameter":"blue",
-		"quantity":2
-		},
-		
-		{	
-			"resourceEarnedFromExchange":"coin",
-			"effectCost":{
-				"stoneRequired":0,
-				"woodRequired":0,
-				"servantsRequired":0,
-				"coinsRequired":0,
-				"militaryRequired":0,
-				"militaryCost":0
-				},
-
-			"type":"discountForTakingCard",
-			"parameter":"blue",
-			"quantity":1
-		}]
+		]
 	}
 } ,
 {	
@@ -2863,30 +2778,14 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
-		{"type":"takeRop", "parameter":"privilege", "quantity":1 }
+		"tris":[
+			{"type":"takeRop", "parameter":"privilege", "quantity":1 },
+			{"type":"increaseDiceValueForTakingCard", "parameter":"purple", "quantity":2}
 		]
 	},
 
-	
-	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
-
-		"type":"increaseDiceValueForTakingCard",
-		"parameter":"purple",
-		"quantity":2
-		}
 		]
 	}
 } ,
@@ -2908,29 +2807,12 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
+		"tris":[ {"type":"bonusHarvesterOrProduction", "parameter":"harvester", "quantity":2}
 		]
 	},
-
-	
-	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
 
-		"type":"bonusForHarvesterOrProduction",
-		"parameter":"harvester",
-		"quantity":2
-		}
 		]
 	}
 } ,
@@ -2952,7 +2834,8 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
+		"tris":[
+			{"type":"bonusHarvesterOrProduction", "parameter":"production", "quantity":2}
 		]
 	},
 
@@ -2960,21 +2843,6 @@
 	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
-
-		"type":"bonusForHarvesterOrProduction",
-		"parameter":"production",
-		"quantity":2
-		}
 		]
 	}
 } ,
@@ -2996,8 +2864,9 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
-		{"type":"takeRop", "parameter":"faithPoint", "quantity":4 }
+		"tris":[
+			{"type":"takeRop", "parameter":"faithPoint", "quantity":4 },
+			{"type":"noImmediateEffectTwoHighestPositionsTower", "parameter":" ", "quantity":0}
 		]
 	},
 
@@ -3005,21 +2874,6 @@
 	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
-
-		"type":"noImmediateEffectTwoHighestPositionsTower",
-		"parameter":" ",
-		"quantity":0
-		}
 		]
 	}
 } ,
@@ -3194,7 +3048,8 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
+		"tris":[
+			{"type":"bonusHarvesterOrProduction", "parameter":"harvester", "quantity":3}
 		]
 	},
 
@@ -3202,21 +3057,6 @@
 	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
-
-		"type":"bonusForHarvesterOrProduction",
-		"parameter":"harvester",
-		"quantity":3
-		}
 		]
 	}
 } ,
@@ -3238,7 +3078,8 @@
 
 	
 	"immediateEffect":{
-		"tris":[ 
+		"tris":[
+			{"type":"bonusHarvesterOrProduction", "parameter":"production", "quantity":3}
 		]
 	},
 
@@ -3246,21 +3087,6 @@
 	
 	"permanentEffect":{
 		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
-
-		"type":"bonusForHarvesterOrProduction",
-		"parameter":"production",
-		"quantity":3
-		}
 		]
 	}
 } ,

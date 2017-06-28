@@ -508,10 +508,11 @@ public class GameActions {
 
         Effects e = room.getBoard().getMarketZone()[position].getEffect();
         e.doEffect(player);
-
+        System.out.println("effect class: " + e.getClass());
         player.sendActionOk();
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
+        System.out.println("Update mandato a : " + player.getName());
     }
 
 

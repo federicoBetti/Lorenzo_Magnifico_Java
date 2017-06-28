@@ -52,12 +52,29 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     public void run() {
         try {
 
-
             System.out.println("waiting for Request...");
             Object object = objectInputStream.readObject();
             System.out.println(object);
             System.out.println("the client wants to do " + object);
             serverDataHandler.handleRequest(object);
+
+
+        synchronized (token) {
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        while (true) {
+
+                object = objectInputStream.readObject();
+                System.out.println(object);
+                System.out.println("the client wants to do " + object);
+                serverDataHandler.handleRequest(object);
+
+        }
 
         } catch (CantDoActionException e) {
             cantDoAction();
@@ -67,45 +84,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             this.setOn(false);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-
-        synchronized (token) {
-            try {
-                token.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        while (true) {
-            try {
-
-
-                System.out.println("waiting for Request...");
-                Object object = objectInputStream.readObject();
-                System.out.println(object);
-                System.out.println("the client wants to do " + object);
-                serverDataHandler.handleRequest(object);
-
-            } catch (CantDoActionException e) {
-                cantDoAction();
-            } catch (CanUseBothPaymentMethodException e) {      //todo questa deve esserci?
-                canUseBothPaymentMethod();
-            } catch (IOException e) {   //todo queste due eccezioni qui
-                this.setOn(false);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                closeSocket(objectInputStream);
-                closeSocket(objectOutputStream);
-                closeSocket(socket);
-            }
-        }
+        }closeSocket(objectInputStream);
+         closeSocket(objectOutputStream);
+         closeSocket(socket);
     }
 
 
     //ok
     public void loginRequestAnswer(String nickname) throws IOException, ClassNotFoundException {
-        socketServer.loginRequest(nickname, this);
+        socketServer.loginRequest( nickname, this );
     }
 
     public void socketSkipTurn() {
@@ -171,6 +158,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
+        System.out.println("parametri mercato ricevuti :  " + familyMemberColour + " " + position);
 
         try {
             goToMarket(position, familyMember);
@@ -263,25 +251,21 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public String leaderCardChosen(List<LeaderCard> leaders) {
-        List<String> leadersName = new ArrayList<>();
-        for ( LeaderCard leaderCard : leaders ){
-            leadersName.add(leaderCard.getName());
-        }
 
         sendString(Constants.LEADER_DRAFT);
-        for (String leaderCard : leadersName ) {
-            try {
+
+        try {
+            objectOutputStream.writeObject(leaders.size());
+
+        for (LeaderCard leaderCard : leaders ) {
+
                 objectOutputStream.writeObject(leaderCard);
                 objectOutputStream.flush();
                 objectOutputStream.reset();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
-        try {
-            objectOutputStream.writeObject(Constants.STOP);
-            return (String) objectInputStream.readObject();
+        return (String) objectInputStream.readObject();
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

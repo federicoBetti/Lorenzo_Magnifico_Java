@@ -59,11 +59,7 @@ public class SocketClient extends AbstractClient {
                 message = (String) objectInputStream.readObject();
                 messageHandler.handleMessage(message);
             } catch (IOException e) {
-                try {
-                    wait();
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -412,27 +408,24 @@ public class SocketClient extends AbstractClient {
     }
 
     public void leaderDraft() {
-        //todo
-        List<String> leaders = new ArrayList<>();
-        String message;
+        List<LeaderCard> leaders = new ArrayList<>();
 
-        while (true) {
-            try {
-                message = (String) objectInputStream.readObject();
-                if (message.equals(Constants.STOP))
-                    break;
+        try {
+            int size = (int)objectInputStream.readObject();
 
-                leaders.add(message);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            for ( int i = 0; i < size; i++ ) {
+                LeaderCard leaderCard = (LeaderCard) objectInputStream.readObject();
+                leaders.add(leaderCard);
         }
 
-      //  clientSetter.getLeaderCardChosen(leaders);
+        String leaderCardChoosen = clientSetter.getLeaderCardChosen(leaders);
+        objectOutputStream.writeObject(leaderCardChoosen);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void tileDraft() throws IOException, ClassNotFoundException {

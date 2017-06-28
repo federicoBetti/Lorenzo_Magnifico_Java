@@ -454,28 +454,17 @@ public class Cli extends AbstractUI {
 
     @Override
     public String getLeaderCardChosen(List<LeaderCard> leaders) {
-        return null;
-    }
-
-
-    public String getChoiceString() {
-        SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
+        choice = true;
+        context = new LeaderCardDraftContext(this, leaders );
+        choiceQueue = new LinkedBlockingDeque<>();
+        String cardChoosen = null;
         try {
-            String ch = keyboard.readLine();
-            System.out.println(" passato nel get choice string " + ch);
-
-            return ch;
-        } catch (IOException e) {
+             cardChoosen = choiceQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return null;
-    }
-
-
-    @Override
-    public void matchStarted(int roomPlayers, String familyColour) {
-        context = new MatchStartedContext(this);
-        numberOfPlayers = roomPlayers;
-        playerColor = familyColour;
+        choice = false;
+        return cardChoosen;
     }
 
     @Override
@@ -496,6 +485,14 @@ public class Cli extends AbstractUI {
         choice = false;
         return Integer.parseInt(tileChosen);
 
+    }
+
+
+    @Override
+    public void matchStarted(int roomPlayers, String familyColour) {
+        context = new MatchStartedContext(this);
+        numberOfPlayers = roomPlayers;
+        playerColor = familyColour;
     }
 
     public int getNumberOfPlayers() {

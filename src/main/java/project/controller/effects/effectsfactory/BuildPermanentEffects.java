@@ -32,8 +32,10 @@ public class BuildPermanentEffects {
                         return new UsePrivilege(quantity);
                     case "stone":
                         return new AddStone(quantity);
+                    case"faithPoint":
+                        return new AddFaithPoints(quantity);
                     default:{
-                        System.out.println("non ho trovato l'effetto");
+                        System.out.println("non ho trovato l'effetto "+ " parameter " + parameter1);
                         return null;
                     }
 
@@ -52,7 +54,7 @@ public class BuildPermanentEffects {
                         return new ExchangeWoodFor( quantity, effectCost, parameter2 );
                     case"stoneFor":
                         return new ExchangeStoneFor ( quantity, effectCost, parameter2 );
-                    case"servantsFor":
+                    case"servantFor":
                         return new ExchangeServantsFor( quantity, effectCost, parameter2 );
                     case"servantsForThreeMilitaryPointsAndOneVictoryPoint":
                         return new ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints( );
@@ -61,27 +63,15 @@ public class BuildPermanentEffects {
                     case"faithPointForTwoCoinsAndTwoVictoryPoint":
                         return new FaithPointForTwoCoinsAndTwoVictoryPoints ();
                     default: {
-                        System.out.println("non ho trovato l'effetto");
+                        System.out.println("non ho trovato l'effetto. type  : " + type + " parameter " + parameter1);
                         return null;
                     }
                 }
 
-
-                //POKER
-            case"discountForTakingCard":
-                return new DiscountForTakingCards( quantity, parameter1, parameter2 );
-                //TRIS
-            case"bonusForHarvesterOrProduction":
-                return new IncreaseDiceValueForHoP(quantity, parameter1 ); //TODO
-            case"increaseDiceValueForTakingCard":
-                return new IncreaseDicevalueForTakingCards( quantity, parameter1 );  //TODO
             case"earnOneCoinForEachColouredCard":
                 return new EarnOneCoinForEachColouredCard(parameter1);
-            case"noImmediateEffectTwoHighestPositionsTower":
-                return new NoImmediateEffectTwoHighestPositionsTower();
-                //TODO
             default:
-                System.out.println("sono entrato nel default permanent");
+                System.out.println("sono entrato nel default permanent. type : " + type);
                 return null;
 
 

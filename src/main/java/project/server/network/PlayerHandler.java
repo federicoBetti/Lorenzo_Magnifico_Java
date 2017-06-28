@@ -243,7 +243,7 @@ public abstract class PlayerHandler extends Player {
     protected void goToMarket(int position, FamilyMember familyM) throws CantDoActionException {
         Position[] marketZone = room.getBoard().getMarketZone();
         boolean canGoToMarket = checkFunctions.checkPosition(position,marketZone,familyM);
-
+        System.out.println("posso andare li? : " + canGoToMarket );
         if (canGoToMarket)
             gameActions().goToMarket(position,familyM,this);
         else

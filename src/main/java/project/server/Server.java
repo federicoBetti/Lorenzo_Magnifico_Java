@@ -77,12 +77,14 @@ public class Server {
             if (!room.isMatchStarted()) { //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
                     System.out.println("riconnessione");
+                    player.setName(nickname);
                     player.setOn(true);
                     player.setRoom(room);
                     room.nicknamePlayersMap.replace(nickname, player);
                     checkAndStartTheTimer(room, player);
 
                 } else if (!room.isFull()) {
+                    player.setName(nickname);
                     player.setOn(true);
                     player.setRoom(room);
                     room.nicknamePlayersMap.put(nickname, player);
@@ -155,6 +157,7 @@ public class Server {
         System.out.println("new room created!");
         player.setOn(true);
         player.setRoom(room);
+        player.setName(nickname);
         room.nicknamePlayersMap.put(nickname, player);
 
         System.out.println(room.nicknamePlayersMap.entrySet());

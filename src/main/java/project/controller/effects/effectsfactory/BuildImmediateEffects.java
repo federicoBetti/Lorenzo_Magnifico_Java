@@ -62,8 +62,20 @@ public class BuildImmediateEffects {
 				return new AddWoodAndStone(quantity);
             case"marketSpecial":
                 return new AddMilitaryPointsAndCoins();
+
+			//NUOVE COSE
+			case"bonusHarvesterOrProduction":
+				return new IncreaseDiceValueForHoP(quantity, parameter );
+			case"discountForTakingYellowCard":
+				return new DiscountForTakingYellowCards(quantity, parameter);
+			case"discountForTakingBlueCard":
+				return new DiscountForTakingBlueCards(quantity, parameter);
+			case"increaseDiceValueForTakingCard":
+				return new IncreaseDicevalueForTakingCards( quantity, parameter );
+			case"noImmediateEffectTwoHighestPositionsTower":
+				return new NoImmediateEffectTwoHighestPositionsTower();
             default:
-            	System.out.println("effetto market nullo");
+            	System.out.println("effetto immediato nullo");
                 return null;
 
 

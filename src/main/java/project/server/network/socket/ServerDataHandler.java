@@ -74,6 +74,7 @@ class ServerDataHandler {
     }
 
     private void goToCouncilPalaceRequest() throws IOException, ClassNotFoundException {
+        System.out.println("sono nella handle del mercato");
         socketPlayerHandler.goToCouncilPalaceRequest();
     }
 
@@ -94,6 +95,7 @@ class ServerDataHandler {
     }
 
     private void goToMarketRequest() throws CantDoActionException, IOException, ClassNotFoundException {
+        System.out.println("sono nella handle del mercato");
         socketPlayerHandler.goToMarketRequest();
     }
 
