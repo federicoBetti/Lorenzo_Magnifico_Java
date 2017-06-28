@@ -1,7 +1,5 @@
 package project.controller.supportfunctions;
 
-import java.util.List;
-
 /**
  * Created by federico on 26/05/17.
  */
@@ -14,7 +12,7 @@ public class NoFinalPointsFromCharacter extends SupportFunctionsDecorator {
 
 
     @Override
-    public int finalPointsFromCharacterCard(List<Integer> victoryPoints) {
+    public int finalPointsFromCharacterCard(int[] victoryPoints) {
         return 0; //this is true
     }
 

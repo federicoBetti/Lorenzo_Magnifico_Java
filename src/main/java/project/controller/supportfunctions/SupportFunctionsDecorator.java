@@ -68,7 +68,7 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
     }
 
     @Override
-    public int finalPointsFromTerritoryCard(List<Integer> victoryPoints) {
+    public int finalPointsFromTerritoryCard(int[] victoryPoints) {
         return allSupportFunctions.finalPointsFromTerritoryCard(victoryPoints);
     }
 
@@ -78,7 +78,7 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
     }
 
     @Override
-    public int finalPointsFromCharacterCard(List<Integer> victoryPoints) {
+    public int finalPointsFromCharacterCard(int[] victoryPoints) {
         return allSupportFunctions.finalPointsFromCharacterCard(victoryPoints);
     }
 

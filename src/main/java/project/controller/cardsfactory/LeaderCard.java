@@ -13,6 +13,10 @@ public class LeaderCard implements Serializable{
 
     private boolean onePerTurn;
 
+    private String requirementsDescription;
+
+    private String cardDescription;
+
 
     public boolean isOnePerTurn() {
         return onePerTurn;
@@ -28,5 +32,9 @@ public class LeaderCard implements Serializable{
 
     public void setPlayed(boolean played) {
         isPlayed = played;
+    }
+
+    public String getCardDescription() {
+        return cardDescription;
     }
 }

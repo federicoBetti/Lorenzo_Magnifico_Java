@@ -30,11 +30,11 @@ public interface AllSupportFunctions {
 
     int payServants(int cost, int value);
 
-    int finalPointsFromTerritoryCard(List<Integer> victoryPoints);
+    int finalPointsFromTerritoryCard(int[] victoryPoints);
 
     void finalPointsFromVenturesCard();
 
-    int finalPointsFromCharacterCard(List<Integer> victoryPoints);
+    int finalPointsFromCharacterCard(int[] victoryPoints);
 
     int extraLostOfPoints(PlayerHandler playerHandler);
 

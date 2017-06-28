@@ -82,9 +82,9 @@ public final class Board {
 
     private Deck decks;
 
-    private List<Integer> finalPointsFromTerritoryCards;
+    private int[] finalPointsFromTerritoryCards;
 
-    private List<Integer> finalPointsFromCharacterCards;
+    private int[] finalPointsFromCharacterCards;
 
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
 
@@ -143,19 +143,7 @@ public final class Board {
         configuration.loadBonusTile(getDeckCard());
 
 
-        finalPointsFromCharacterCards = new ArrayList<>();
-        finalPointsFromTerritoryCards = new ArrayList<>();
 
-        //da eliminare per prova
-        finalPointsFromTerritoryCards.add(1);
-        finalPointsFromTerritoryCards.add(1);
-        finalPointsFromTerritoryCards.add(1);
-        finalPointsFromTerritoryCards.add(1);
-
-        finalPointsFromCharacterCards.add(3);
-        finalPointsFromCharacterCards.add(3);
-        finalPointsFromCharacterCards.add(3);
-        finalPointsFromCharacterCards.add(3);
     }
 
     public Board() {
@@ -259,11 +247,11 @@ public final class Board {
         this.towers = towers;
     }
 
-    public List<Integer> getFinalPointsFromTerritoryCards() {
+    public int[] getFinalPointsFromTerritoryCards() {
         return finalPointsFromTerritoryCards;
     }
 
-    public List<Integer> getFinalPointsFromCharacterCards() {
+    public int[] getFinalPointsFromCharacterCards() {
         return finalPointsFromCharacterCards;
     }
 

@@ -2,7 +2,6 @@ package project.controller.supportfunctions;
 
 import project.controller.cardsfactory.*;
 import project.controller.Constants;
-import project.controller.effects.realeffects.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
 import project.messages.BonusInteraction;
@@ -96,16 +95,16 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
     @Override
-    public int finalPointsFromTerritoryCard(List<Integer> victoryPoints) {
+    public int finalPointsFromTerritoryCard(int[] victoryPoints) {
         int cardNumber = player.getPersonalBoardReference().getTerritories().size();
-        return victoryPoints.get(cardNumber);
+        return victoryPoints[(cardNumber)];
 
     }
 
     @Override
-    public int finalPointsFromCharacterCard(List<Integer> victoryPoints) {
+    public int finalPointsFromCharacterCard(int[] victoryPoints) {
         int cardNumber = player.getPersonalBoardReference().getCharacters().size();
-        return victoryPoints.get(cardNumber);
+        return victoryPoints[(cardNumber)];
 
     }
 

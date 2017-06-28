@@ -1,101 +1,142 @@
 [
-{
-	"name":"francescoSforza",
-	"isPlayed":false
-},
-
-{
-	"name":"ludovicoAriosto",
-	"isPlayed":false
-},
-
-{
-	"name":"filippoBrunelleschi",
-	"isPlayed":false
-},
-
-{
-	"name":"federicoDaMontefeltro",
-	"isPlayed":false
-},
-
-{
-	"name":"girolamoSavonarola",
-	"isPlayed":false
-},
-
-{
-	"name":"giovanniDalleBandeNere",
-	"isPlayed":false
-},
-
-{
-	"name":"sandroBotticelli",
-	"isPlayed":false
-},
-
-{
-	"name":"michelangeloBuonarroti",
-	"isPlayed":false
-},
-
-{
-	"name":"ludovicoIIIGonzaga",
-	"isPlayed":false
-},
-
-{
-	"name":"leonardoDaVinci",
-	"isPlayed":false
-},
-
-{
-	"name":"picoDellaMirandola",
-	"isPlayed":false
-},
-
-{
-	"name":"sistoIV",
-	"isPlayed":false
-},
-
-{
-	"name":"lucreziaBorgia",
-	"isPlayed":false
-},
-
-{
-	"name":"sigismondoMalatesta",
-	"isPlayed":false
-},
-
-{
-	"name":"lorenzoDeMedici",
-	"isPlayed":false
-},
-
-{
-	"name":"ludovicoIlMoro",
-	"isPlayed":false
-},
-
-{
-	"name":"cesareBorgia",
-	"isPlayed":false
-},
-
-{
-	"name":"santaRita",
-	"isPlayed":false
-},
-
-{
-	"name":"cosimoDeMedici",
-	"isPlayed":false
-},
-
-{
-	"name":"bartolomeoColleoni",
-	"isPlayed":false
-}
+  {
+    "name": "francescoSforza",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "5 Venture Cards",
+    "cardDescription": "Once Per Round ability: Perform a Harvest action at value 1. \n(You can increase this action value only by spending servants;\n you can’t increase it with Farmer or Peasant Development Cards.)"
+  },
+  {
+    "name": "ludovicoAriosto",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "5 Character Cards",
+    "cardDescription": "Permanent ability: You can place your Family Members in occupied action spaces."
+  },
+  {
+    "name": "filippoBrunelleschi",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "5 Building Cards",
+    "cardDescription": "Permanent ability: You don’t have to spend 3 coins when you place \nyour Family Members in a Tower that is already occupied."
+  },
+  {
+    "name": "federicoDaMontefeltro",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "5 Territory Cards",
+    "cardDescription": "Once Per Round ability: One of your colored Family Members \nhas a value of 6, regardless of its related die."
+  },
+  {
+    "name": "girolamoSavonarola",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "18 coins",
+    "cardDescription": "Once Per Round ability: Gain 1 Faith Point."
+  },
+  {
+    "name": "giovanniDalleBandeNere",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "12 Military Points",
+    "cardDescription": "Once Per Round ability: Receive 1 wood, 1 stone, and 1 coin."
+  },
+  {
+    "name": "sandroBotticelli",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "10 wood",
+    "cardDescription": "Once Per Round ability: Gain 2 Military Points and 1 Victory Point."
+  },
+  {
+    "name": "michelangeloBuonarroti",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "10 stones",
+    "cardDescription": "Once Per Round ability: Receive 3 coins."
+  },
+  {
+    "name": "ludovicoIIIGonzaga",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "15 servants",
+    "cardDescription": "Once Per Round ability: Receive 1 Council Privilege."
+  },
+  {
+    "name": "leonardoDaVinci",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "4 Character Cards and 2 Territory Cards",
+    "cardDescription": "Once Per Round ability: Perform a Production action at value 0. \n(You can increase this action value only by spending servants;\n you can’t increase it with Artisan or Scholar Development Cards.)"
+  },
+  {
+    "name": "picoDellaMirandola",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "4 Venture Cards and 2 Building Cards",
+    "cardDescription": "Permanent ability: When you take Development Cards, you get a discount of 3 coins\n (if the card you are taking has coins in its cost.)"
+  },
+  {
+    "name": "sistoIV",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "6 wood, 6 stone, 6 coins, and 6 servants",
+    "cardDescription": "Permanent ability: You gain 5 additional Victory Points when you support \nthe Church in a Vatican Report phase."
+  },
+  {
+    "name": "lucreziaBorgia",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "6 Development Cards of the same type",
+    "cardDescription": "Permanent ability: Your colored Family Members have a bonus of +2 on their value."
+  },
+  {
+    "name": "sigismondoMalatesta",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "7 Military Points and 3 Faith Points",
+    "cardDescription": "Permanent ability: Your uncolored Family Member has a bonus of +3 on its value."
+  },
+  {
+    "name": "lorenzoDeMedici",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "35 Victory Points",
+    "cardDescription": "Permanent ability: Copy the ability of another Leader Card already played by another\n player. Once you decide the ability to copy, it can’t be changed."
+  },
+  {
+    "name": "ludovicoIlMoro",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "2 Territory Cards, 2 Character Cards, 2 Building Cards, and 2 Venture Cards",
+    "cardDescription": "Permanent ability: Your colored Family Members has a value of 5, regardless of their related dice. "
+  },
+  {
+    "name": "cesareBorgia",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "3 Building Cards, 12 coins, and 2 Faith Points",
+    "cardDescription": "Permanent ability: You don’t need to satisfy the Military Points requirement when you take Territory Cards."
+  },
+  {
+    "name": "santaRita",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "8 Faith Points",
+    "cardDescription": "Permanent ability: Each time you receive wood, stone, coins, or servants as an immediate effect\nfrom Development Cards (not from an action space), you receive the resources twice."
+  },
+  {
+    "name": "cosimoDeMedici",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "2 Character Cards and 4 Building Cards",
+    "cardDescription": "Once Per Round ability: Receive 3 servants and gain 1 Victory Point."
+  },
+  {
+    "name": "bartolomeoColleoni",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "2 Venture Cards and 4 Territory Cards",
+    "cardDescription": "Once Per Round ability: Gain 4 Victory Points."
+  }
 ]

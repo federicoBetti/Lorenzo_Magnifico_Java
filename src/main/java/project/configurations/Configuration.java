@@ -97,6 +97,7 @@ public class Configuration {
         for ( LeaderCard card : leaderCards )
             leaders.add(card);
 
+
         deck.setLeaderCardeck(leaders);
 
     }
