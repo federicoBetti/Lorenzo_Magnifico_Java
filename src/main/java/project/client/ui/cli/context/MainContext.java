@@ -15,18 +15,12 @@ public class MainContext extends AbstractContext {
 
     public MainContext(Cli cli){
         super(cli);
-        map.put(CliConstants.CHAT, this::chat );
-        map.put(CliConstants.SHOW_ALL_PLAYERS, this::showAllPlayers );
-        map.put(CliConstants.GAME_REPORT, this::gameReport);
+        cli.setFirstRound(false);
+        //map.put(CliConstants.CHAT, this:: chat );
+        //map.put(CliConstants.GAME_REPORT, this::gameReport);
         map.put(CliConstants.SHOW_POINTS, this::showPoints );
-        map.put(CliConstants.SHOW_TOWERS, this:: showTowers );
-        map.put(CliConstants.SHOW_HARVESTER_ZONE, this::showHarvesterZone );
-        map.put(CliConstants.SHOW_PRODUCTION_ZONE, this:: showProductionZone );
-        map.put(CliConstants.SHOW_COUNCIL_ZONE, this:: showCouncilZone );
-        map.put(CliConstants.SHOW_MARKET_ZONE, this:: showMarketZone );
         map.put(CliConstants.SHOW_EXCOMUNICATION_TILES, this:: showExcomunicationsTiles );
         map.put(CliConstants.SHOW_PERSONAL_BOARD, this:: showPersonalBoard );
-        map.put(CliConstants.SHOW_LEADER_CARDS, this:: showLeaderCards );
         map.put(CliConstants.SHOW_DICES_VALUE, this::showDicesValue );
         map.put(CliConstants.JUMP_TURN, this::jumpTurn );
         map.put(Constants.TAKE_DEV_CARD, this::takeDevCard );
@@ -37,8 +31,6 @@ public class MainContext extends AbstractContext {
         map.put(Constants.DISCARD_LEADER_CARD, this:: dLeaderCard );
         map.put(Constants.GO_TO_MARKET, this::marketContext );
         printHelp();
-        //todo creare costanti che chiamano metodi che aggiornano i contesti
-
     }
 
     private void marketContext() {
@@ -69,7 +61,7 @@ public class MainContext extends AbstractContext {
     public void printHelp() {
         pRed.println("You are in the main context! The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            pYellow.println(entry.getKey().toString());
+            pBlue.println(entry.getKey());
     }
 
     private void takeDevCard() {
@@ -80,59 +72,33 @@ public class MainContext extends AbstractContext {
         cli.skipTurn();
     }
 
-    private void showTowers() {
-        cli.showTowers();
-    }
-
-    private void showProductionZone() {
-        showProductionZone();
-    }
-
-    private void showCouncilZone() {
-        //to implement
-    }
-
-    private void showMarketZone() {
-        //to implement
-    }
 
     private void showExcomunicationsTiles() {
-        //to implement
+        cli.showExcomunicationsTiles();
     }
 
     private void showPersonalBoard() {
-        //to implement
-    }
-
-    private void showLeaderCards() {
-        //to implement
+        cli.showPersonalBoard();
     }
 
     private void showDicesValue() {
-        //to implement
+        cli.showDicesValue();
     }
 
     private void showPoints() {
+        cli.showPoints();
+    }
+
+  /*  private void gameReport() {
         //to implement
     }
 
-    private void showHarvesterZone() {
-        //to implement
-    }
-
-    private void gameReport() {
-        //to implement
-    }
-
-    private void showAllPlayers() {
-        //to implement
-    }
 
     private void chat(){
         //to implement
     }
+    */
 
-    public void login(){};
 
     @Override
     public void checkValidInput(String input) throws InputException {

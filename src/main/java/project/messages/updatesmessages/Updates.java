@@ -5,7 +5,6 @@ import project.messages.BonusInteraction;
 import project.model.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * this represent the abstract class of updates. its extenctions will inform every client of some moves
@@ -34,6 +33,9 @@ public abstract class Updates extends BonusInteraction implements Serializable{
     }
     public abstract String toScreen();
     public void stamp(){
+    }
 
+    public String getNicknameCurrentPlayer() {
+        return nicknameCurrentPlayer;
     }
 }

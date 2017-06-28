@@ -21,4 +21,9 @@ public class AddServants implements TakeRoPEffects {
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + quantity);
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen(){
+        return "Add " + quantity + " servants";
+    }
 }

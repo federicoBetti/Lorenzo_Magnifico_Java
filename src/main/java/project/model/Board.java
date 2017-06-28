@@ -141,9 +141,6 @@ public final class Board {
         configuration.loadLeaderCard(decks);
         configuration.loadExcommunicationTiles(decks);
         configuration.loadBonusTile(getDeckCard());
-
-
-
     }
 
     public Board() {

@@ -44,7 +44,7 @@ public class GameActions {
         zone.setCardOnThisFloor(null);
 
         TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowersUpdate(), player.getName());
-       player.sendActionOk();
+        player.sendActionOk();
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player,player.getName()));
         player.sendUpdates(new ScoreUpdate(player, player.getName()));

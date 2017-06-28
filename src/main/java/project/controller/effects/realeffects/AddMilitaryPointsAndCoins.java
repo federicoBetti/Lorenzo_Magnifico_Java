@@ -15,4 +15,9 @@ public class AddMilitaryPointsAndCoins implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen(){
+        return "Add 3 military points and 2 coins";
+    }
 }

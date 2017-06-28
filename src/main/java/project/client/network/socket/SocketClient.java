@@ -446,11 +446,9 @@ public class SocketClient extends AbstractClient {
             }
 
             int choice = clientSetter.tileDraft(tiles);
-        System.out.println("arrivata la scelta " + choice + " ora mando...");
             objectOutputStream.writeObject(choice);
             objectOutputStream.flush();
             objectOutputStream.reset();
-        System.out.println("mandato");
     }
 }
 

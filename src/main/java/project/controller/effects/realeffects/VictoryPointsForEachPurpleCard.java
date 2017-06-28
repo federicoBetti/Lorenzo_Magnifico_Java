@@ -27,4 +27,9 @@ public class VictoryPointsForEachPurpleCard implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Take " + quantity + " victory points for each purple card.";
+    }
 }

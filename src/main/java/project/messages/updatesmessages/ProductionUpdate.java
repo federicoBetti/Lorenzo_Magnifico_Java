@@ -31,6 +31,6 @@ public class ProductionUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-       return "The current player has performed a production action!";
+       return getNicknameCurrentPlayer() + " has performed a production action!";
     }
 }

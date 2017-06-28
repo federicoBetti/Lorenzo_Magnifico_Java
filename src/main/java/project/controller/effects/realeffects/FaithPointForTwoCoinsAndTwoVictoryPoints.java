@@ -29,4 +29,10 @@ public class FaithPointForTwoCoinsAndTwoVictoryPoints implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Exchange " + faithPointsrequired + " faith points" + " for taking " + coinsEarned + " of " + "coins\n" +
+                "and " + victoryPointsEarned + " of victory points";
+    }
 }

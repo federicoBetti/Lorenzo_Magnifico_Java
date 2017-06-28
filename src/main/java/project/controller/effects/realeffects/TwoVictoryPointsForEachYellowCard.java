@@ -15,4 +15,9 @@ public class TwoVictoryPointsForEachYellowCard implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Take2 victory points for each yellow card.";
+    }
 }

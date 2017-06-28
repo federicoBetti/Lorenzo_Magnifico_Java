@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class LoseFinalPointsFromResources implements Effects {
 
 
+    private String effectDescription;
     private String parameter;
     int quantity;
     private HashMap<String, LoseFinalPointsFromResourcesBuilder> parameterEffect;
@@ -27,6 +28,11 @@ public class LoseFinalPointsFromResources implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         return parameterEffect.get(parameter).realEffect(player);
+    }
+
+    @Override
+    public String toScreen() {
+        return null;
     }
 
     private void fillParameterEffect() {

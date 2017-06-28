@@ -25,6 +25,7 @@ public class ServantWoodStoneForSixVictoryPoints implements Effects {
         if (player.getPersonalBoardReference().getServants() >=  servantsRequired &&
                 player.getPersonalBoardReference().getWood() >= woodrequired &&
                 player.getPersonalBoardReference().getServants() >= stoneRequired) {
+
             player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsRequired);
             player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - woodrequired);
             player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - stoneRequired);
@@ -32,5 +33,10 @@ public class ServantWoodStoneForSixVictoryPoints implements Effects {
         }
 
         return new OkOrNo();
+    }
+
+    @Override
+    public String toScreen() {
+        return "Exchange 1 servant, 1 wood and 1 stone for 6 victory points.";
     }
 }

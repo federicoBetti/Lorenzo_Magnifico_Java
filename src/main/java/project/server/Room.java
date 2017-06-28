@@ -13,8 +13,10 @@ import project.model.Player;
 import project.model.Tile;
 import project.server.network.PlayerHandler;
 
+import javax.smartcardio.Card;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
@@ -144,13 +146,16 @@ public class Room {
 
         getGameActions().refactorTowers();
         Collections.shuffle(playerInTheMatch);
+        //todo non funziona ancora bene
+        board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
+
         board.getTurn().setPlayerTurn(playerInTheMatch);
 
         //todo aggiungere questa parte per il draft
 
         //draft leader
 
-        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+      /*  ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
             System.out.println("inizio richiest giro di leader");
@@ -169,11 +174,11 @@ public class Room {
                 leaders.remove(leaderToAdd);
             }
             listsForDraft = shiftLeaderList(listsForDraft);
-        }
+        }   */
 
         //draft tile
 
-        ArrayList<Tile> tiles = fillListTile();
+      /*  ArrayList<Tile> tiles = fillListTile();
         ListIterator<PlayerHandler> iterator = playerInTheMatch.listIterator();
         while (iterator.hasNext())
             iterator.next();
@@ -185,7 +190,8 @@ public class Room {
             Tile tile = getTrueTile(tileId, tiles);
             p.getPersonalBoardReference().setMyTile(tile);
             tiles.remove(tile);
-        }
+        } */
+
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
@@ -289,6 +295,21 @@ public class Room {
         colors[3] = Constants.BLUE;
 
         return colors;
+    }
+
+    private DevelopmentCard[][][] shuffleDeck(DevelopmentCard[][][] deck) {
+        Random rnd = ThreadLocalRandom.current();
+        for ( int j = 0; j < Constants.CARD_TYPE_NUMBER; j++) {
+            for ( int k = 0; k < Constants.PERIOD_NUMBER; k ++) {
+                for (int i = Constants.CARD_FOR_EACH_PERIOD - 1; i > 0; i--) {
+                    int index = rnd.nextInt(i + 1);
+                    DevelopmentCard card = deck[j][k][index];
+                    deck[j][k][index] = deck[j][k][i];
+                    deck[j][k][i] = card;
+                }
+            }
+        }
+        return deck;
     }
 
 

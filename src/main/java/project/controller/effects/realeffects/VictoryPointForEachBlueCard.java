@@ -22,4 +22,9 @@ public class VictoryPointForEachBlueCard implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Take " + quantity + " victory points " + "for each blue card.";
+    }
 }

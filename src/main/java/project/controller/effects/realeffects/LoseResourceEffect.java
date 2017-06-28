@@ -27,6 +27,11 @@ public class LoseResourceEffect implements Effects {
         return parameterEffect.get(parameter).realEffect(player);
     }
 
+    @Override
+    public String toScreen() {
+        return null;
+    }
+
     private void fillParameterEffect() {
         parameterEffect.put(EffectsConstants.MILITARY_POINTS,this::loseMilitaryPoints);
         parameterEffect.put(EffectsConstants.COINS,this::loseCoins);

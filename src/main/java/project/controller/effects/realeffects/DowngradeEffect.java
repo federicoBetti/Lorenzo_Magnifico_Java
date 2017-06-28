@@ -67,7 +67,7 @@ public class DowngradeEffect implements Effects {
 
     private BonusInteraction downgradeOnDices(PlayerHandler player){
         for (FamilyMember familyMember: player.getAllFamilyMembers()){
-            if (familyMember.getMyColour() != Constants.FAMILY_MEMBER_COLOUR_NEUTRAL)
+            if (!familyMember.getMyColour().equals(Constants.FAMILY_MEMBER_COLOUR_NEUTRAL));
                 familyMember.setFixedBonus(familyMember.getFixedBonus() - quantity);
         }
         return new OkOrNo();
@@ -76,6 +76,11 @@ public class DowngradeEffect implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         return parameterEffect.get(parameter).realEffect(player);
+    }
+
+    @Override
+    public String toScreen() {
+        return "The family members'value for doing " + parameter + " is downgraded of " + quantity + " points";
     }
 
     @FunctionalInterface

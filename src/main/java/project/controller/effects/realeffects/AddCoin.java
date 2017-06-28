@@ -16,11 +16,6 @@ public class AddCoin implements TakeRoPEffects {
 
 
     @Override
-    public String toString(){
-        return "Aggiungere soldi al giocatore che è molto ricco" + quantity;
-    }
-
-    @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         quantity += player.getPersonalBoardReference().getBonusOnActions().getCoinsBonus();
         if (quantity<0)
@@ -28,5 +23,10 @@ public class AddCoin implements TakeRoPEffects {
         player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + quantity);
         OkOrNo ok = new OkOrNo();
         return ok;
+    }
+
+    @Override
+    public String toScreen() {
+        return "Add " + quantity + " coins";
     }
 }

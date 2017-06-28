@@ -26,6 +26,14 @@ public class VenturesCost implements Cost, Serializable {
     }
 
 
+    @Override
+    public String toScreen() {
+        return "Stone required: " + stoneRequired +
+                "Wood required: " + woodRequired +
+                "Coins required: " + coinsRequired +
+                "Military points required: " + militaryRequired +
+                "Military points to pay: " + militaryCost;
+    }
 
     public boolean isToPaid() {
         return toPaid;
@@ -59,6 +67,8 @@ public class VenturesCost implements Cost, Serializable {
     public void picoDellaMirandolaDowngrade() {
         coinsRequired -= 3;
     }
+
+
 
     @Override
     public void addCoin(int i) {

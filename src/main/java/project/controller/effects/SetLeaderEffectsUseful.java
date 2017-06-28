@@ -63,4 +63,9 @@ public class SetLeaderEffectsUseful implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return null;
+    }
 }

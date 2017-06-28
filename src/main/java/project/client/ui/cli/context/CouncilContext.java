@@ -16,7 +16,11 @@ public class CouncilContext extends AbstractContext {
         super(cli);
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+        map.put(CliConstants.SHOW_COUNCIL_ZONE, this:: showCouncilZone );
         printHelp();
+    }
+
+    private void showCouncilZone() {
     }
 
     @Override

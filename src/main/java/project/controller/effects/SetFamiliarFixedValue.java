@@ -36,4 +36,9 @@ public class SetFamiliarFixedValue implements Effects {
 
        return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Set a familiar value at " + quantity + "every turn";
+    }
 }

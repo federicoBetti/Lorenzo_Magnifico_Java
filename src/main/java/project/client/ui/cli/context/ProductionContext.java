@@ -17,7 +17,11 @@ public class ProductionContext extends AbstractContext {
         super(cli);
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+        map.put(CliConstants.SHOW_PRODUCTION_ZONE, this:: showProductionZone );
         printHelp();
+    }
+
+    private void showProductionZone() {
     }
 
     @Override

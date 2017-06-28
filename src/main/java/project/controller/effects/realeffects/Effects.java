@@ -10,4 +10,6 @@ public interface Effects extends Serializable {
     int quantity = 0 ;
 
     BonusInteraction doEffect(PlayerHandler player);
+
+    String toScreen();
 }

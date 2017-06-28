@@ -96,7 +96,6 @@ class MessagesFromServerHandler {
         client.bonusProduction();
     }
 
-
     private void choicePe() {
         client.choicePe();
     }

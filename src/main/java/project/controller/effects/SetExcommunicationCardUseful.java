@@ -56,4 +56,9 @@ public class SetExcommunicationCardUseful implements Effects {
         //todo controllare qui l'ok or no
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return null;
+    }
 }

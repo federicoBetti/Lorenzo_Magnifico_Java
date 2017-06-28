@@ -22,10 +22,18 @@ public class TotalCost implements Cost, Serializable {
 
 
     public TotalCost() {
-        //da fare
+        //todo
     }
 
-
+    @Override
+    public String toScreen() {
+        return  "Stone required: " + stoneRequired +
+                "Wood required: " + woodRequired +
+                "Servants required: " + servantsRequired +
+                "Coins required: " + coinsRequired +
+                "Military points Required: " + militaryRequired +
+                "Military points to pay: " + militaryCost;
+    }
 
     public int getStoneRequired() {
         return stoneRequired;
@@ -80,6 +88,7 @@ public class TotalCost implements Cost, Serializable {
 
         coinsRequired -= 3;
     }
+
 
 
 

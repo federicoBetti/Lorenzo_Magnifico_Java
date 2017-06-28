@@ -68,6 +68,30 @@ public class PersonalBoard implements Serializable{
 		wood=i;
 	}
 
+	public String toScreen() {
+		return "Building Cards: \n" + createCardsString(getBuildings())+
+				"\nCharacter Cards: \n" + createCardsString(getCharacters()) +
+				"\nVenture Cards: \n" + createCardsString(getVentures()) +
+				"\nTerritory Cards: \n" + createCardsString(getTerritories()) +
+				"\nWood: " + String.valueOf(getWood()) + "\n" +
+				"Servants: " + String.valueOf(getServants()) + "\n" +
+				"Stone: " + String.valueOf(getStone()) + "\n" +
+				"Coins: " + String.valueOf(getCoins());
+	}
+
+	private String createCardsString(List<? extends DevelopmentCard> cards){
+
+		if ( cards.size() == 0 )
+			return " ";
+
+		int i = 0;
+		String res = i + ") ";
+		for ( DevelopmentCard card : cards ) {
+			res += card.getName() +"\n";
+			i++;
+		}
+		return res;
+	}
 
     public List<LeaderCard> getMyLeaderCard() {
         return myLeaderCard;

@@ -3,6 +3,9 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.controller.Constants;
+import project.controller.effects.realeffects.Effects;
+import project.model.Tower;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,33 +16,74 @@ import java.util.Map;
  */
 public class TowersContext extends AbstractContext {
 
-    public TowersContext ( Cli cli ) {
+    Tower[][] allTowers;    // allTowers[TORRE][PIANO];
+    public TowersContext(Cli cli, Tower[][] allTowers) {
         super(cli);
-        map.put(CliConstants.SHOW_TOWERS, this:: showTowers );
+        this.allTowers = allTowers;
+        map.put(CliConstants.SHOW_TOWERS_CARDS_COST, this:: showCardsCost );
+        map.put(CliConstants.SHOW_TOWERS_CARDS_EFFECTS, this::showCardsEffects);
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
         printHelp();
     }
 
-    private void showTowers() {
-        //todo
+    private void showCardsEffects() {
+        for ( int i = 0; i < Constants.NNUMBER_OF_TOWERS; i++ ) {
+            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
+            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
+                if ( allTowers[i][j].getCardOnThisFloor() == null ){
+                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
+                    continue;
+                }
+
+                pBlue.print("Floor: "); pRed.println( j );
+                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
+                pBlue.print("Immediate Effects: \n"); int count1 = 1;
+                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getImmediateCardEffects() ){
+                    pBlue.print( count1 + ") ");pYellow.println(effect.toScreen());
+                    count1++;
+                }
+                pBlue.print("Permanent Effects: \n"); int count2 = 1;
+                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getPermanentCardEffects() ){
+                    pBlue.print( count2 + ") ");pYellow.println(effect.toScreen());
+                    count2++;
+                }
+                pRed.println("");
+            }
+        }
+        pRed.println("Type help for see the available commands.");
+
     }
 
-    /*@Override
-    public void doAction(String action) throws IOException, InputException {
-        actioner = map.get(action);
-        actioner.action();
-    }*/
+    private void showCardsCost() {
+        for ( int i = 0; i < Constants.NNUMBER_OF_TOWERS; i++ ) {
+            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
+            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
+                if ( allTowers[i][j].getCardOnThisFloor() == null ){
+                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
+                    continue;
+                }
+
+                pBlue.print("Floor: "); pRed.println( j );
+                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
+                pBlue.print("Card cost: ");pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
+            }
+        }
+
+        pBlue.print("If you want to see the cards'effects type ");pRed.println("[show-cards-effects]");
+    }
 
     @Override
     public void printHelp() {
         pRed.println("You are in the Tower Context! The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            pYellow.println(entry.getKey().toString());
+            pBlue.println(entry.getKey());
 
         pRed.println("The main Action is:");
-        pYellow.println("[towerColour-floor-familiarColour]\ntowerColour: green, yellow, purple, blue " +
-                "\nfloor: 0, 1, 2, 3\nfamiliarColour: black, neutral, orange, white ");
+        pBlue.println("[towerColour-floor-familiarColour] ");
+        pRed.print("towerColour: "); pYellow.println("green, yellow, purple, blue");
+        pRed.print("floor: ");  pYellow.println("0, 1, 2, 3");
+        pRed.print("familiarColour: ");pYellow.println("black, neutral, orange, white ");
     }
 
     @Override
@@ -49,7 +93,7 @@ public class TowersContext extends AbstractContext {
         if(!( parameters.length == 3 ))
             throw new InputException();
 
-        if (Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3 )
+        if (!(Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3) )
             throw new InputException();
 
     }

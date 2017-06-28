@@ -17,4 +17,11 @@ public class BonusTowerAction implements Effects {
     public BonusInteraction doEffect(PlayerHandler player) {
         return towerAction;
     }
+
+    @Override
+    public String toScreen() {
+        return "Do a bonus tower action with the parameters that follows:\n" + towerAction.printBonusAction();
+    }
+
+
 }

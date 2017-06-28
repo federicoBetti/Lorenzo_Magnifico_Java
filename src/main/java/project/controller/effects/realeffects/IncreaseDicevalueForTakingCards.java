@@ -38,4 +38,9 @@ public class IncreaseDicevalueForTakingCards implements Effects {
 
             return new OkOrNo();
         }
+
+    @Override
+    public String toScreen() {
+        return "Increase dice value for taking " + kindOfCard + " card of " + quantityIncreased;
     }
+}

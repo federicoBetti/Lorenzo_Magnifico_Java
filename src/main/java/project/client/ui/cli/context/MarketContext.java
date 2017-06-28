@@ -3,6 +3,7 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.model.Market;
 
 
 import java.io.IOException;
@@ -12,12 +13,25 @@ import java.util.Map;
  * Created by raffaelebongo on 05/06/17.
  */
 public class MarketContext extends AbstractContext {
+    Market[] marketZone;
 
-    public MarketContext( Cli cli ){
+    public MarketContext(Cli cli, Market[] marketZone){
         super(cli);
+        this.marketZone = marketZone;
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
+        map.put(CliConstants.SHOW_MARKET_ZONE, this:: showMarketZone );
         printHelp();
+    }
+
+    private void showMarketZone() {
+        pBlue.println("The market's zone state is:");
+        int i = 0;
+        for ( Market market: marketZone ) {
+            pRed.print(i + ") ");pRed.print("occupied: ");pYellow.println( market.isOccupied());pYellow.print(" ");
+            pRed.print("Effect: ");pYellow.println(market.getEffect().toString());
+            i++;
+        }
     }
 
     @Override

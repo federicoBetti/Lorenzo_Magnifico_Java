@@ -23,6 +23,13 @@ public class UsePrivilege implements Effects {
     }
 
     @Override
+    public String toScreen() {
+        if ( quantityOfDifferentPrivilege == 1 )
+            return "Take 1 priviledge";
+        return "Take " + quantityOfDifferentPrivilege + " different priviledges.";
+    }
+
+    @Override
     public String toString(){
         return Constants.TAKE_PRIVILEDGE;
     }

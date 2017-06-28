@@ -56,4 +56,9 @@ public class ExchangeStoneFor implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Exchange " + stoneRequired + " stones" + " for taking " + resourceEarned + " of " + resourceRewardered;
+    }
 }

@@ -26,4 +26,9 @@ public class DiscountForTakingBlueCards implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "You have a discount of " + quantityDiscounted + " for taking blue cards";
+    }
 }

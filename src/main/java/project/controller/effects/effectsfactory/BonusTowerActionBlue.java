@@ -30,5 +30,10 @@ public class BonusTowerActionBlue implements Effects {
 
         return  towerAction;
     }
+
+    @Override
+    public String toScreen() {
+        return null;
+    }
 }
 

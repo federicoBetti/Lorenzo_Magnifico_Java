@@ -52,4 +52,8 @@ public class Deck {
         prodHaarvTiles[tileNumber] = tile;
         System.out.println( prodHaarvTiles[tileNumber] + "\n" +  prodHaarvTiles[tileNumber].getTileNumber());
     }
+
+    public void setDevelopmentDeck(DevelopmentCard[][][] developmentDeck) {
+        this.developmentDeck = developmentDeck;
+    }
 }

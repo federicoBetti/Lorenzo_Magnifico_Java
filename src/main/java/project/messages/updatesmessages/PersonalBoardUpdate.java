@@ -31,7 +31,7 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-        return  "The current player's personal board has updated:\n" +
+        return  getNicknameCurrentPlayer() + "'s personal board has updated:\n" +
                 "Building Cards: \n" + createCardsString(personalBoard.getBuildings())+
                 "\nCharacter Cards: \n" + createCardsString(personalBoard.getCharacters()) +
                 "\nVenture Cards: \n" + createCardsString(personalBoard.getVentures()) +
@@ -50,7 +50,7 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
         int i = 0;
         String res = i + ") ";
         for ( DevelopmentCard card : cards ) {
-            res += "                " + card.getName() +"\n";
+            res += card.getName() +"\n";
             i++;
         }
         return res;

@@ -16,7 +16,11 @@ public class HarvesterContext extends AbstractContext {
         super(cli);
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp );
+        map.put(CliConstants.SHOW_HARVESTER_ZONE, this::showHarvesterZone );
         printHelp();
+    }
+
+    private void showHarvesterZone() {
     }
 
     @Override

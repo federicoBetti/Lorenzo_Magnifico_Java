@@ -46,4 +46,5 @@ public abstract class Position implements Serializable{
     public void addFamiliar(FamilyMember familyMember) {
         ludovicoAriostoPosition.add(familyMember);
     }
+
 }

@@ -32,4 +32,9 @@ public class DiscountForTakingYellowCards implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Discount of " + quantityDiscounted +  " units of " +kindOfReasourceDiscounted + " for taking yellow cards";
+    }
 }

@@ -22,6 +22,11 @@ public class CharactersCost implements Cost, Serializable {
         coinsRequired -= 3;
     }
 
+    @Override
+    public String toScreen() {
+        return "Coins required: " + coinsRequired;
+    }
+
 
     @Override
     public void addCoin(int i) {

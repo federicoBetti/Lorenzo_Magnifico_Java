@@ -18,6 +18,13 @@ public class TerritoryCost implements Cost, Serializable {
         //da fare
     }
 
+    @Override
+    public String toScreen() {
+        return "Wood required: " + woodRequired +
+                "Stone required: " + stoneRequired +
+                "Dice value required: " + diceCost;
+    }
+
     public int getWoodRequired() {
         return woodRequired;
     }
@@ -41,6 +48,7 @@ public class TerritoryCost implements Cost, Serializable {
     @Override
     public void picoDellaMirandolaDowngrade() {
     }
+
 
 
 

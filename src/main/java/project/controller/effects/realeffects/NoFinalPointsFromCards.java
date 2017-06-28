@@ -30,6 +30,11 @@ public class NoFinalPointsFromCards implements Effects {
         return parameterEffect.get(parameter).realEffect(player);
     }
 
+    @Override
+    public String toScreen() {
+        return null;
+    }
+
     private void fillParameterEffect() {
         parameterEffect.put(EffectsConstants.CHARACTER_CARD,this::noPointsFromCharacter);
         parameterEffect.put(EffectsConstants.VENTURES_CARD,this::noPointsFromVentures);

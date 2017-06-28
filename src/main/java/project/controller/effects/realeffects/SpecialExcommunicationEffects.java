@@ -29,6 +29,11 @@ public class SpecialExcommunicationEffects implements Effects {
         return parameterEffect.get(parameter).realEffect(player);
     }
 
+    @Override
+    public String toScreen() {
+        return null;
+    }
+
     private void fillParameterEffect() {
         parameterEffect.put(EffectsConstants.MARKET,this::cantPlaceFamiliarInMarket);
         parameterEffect.put(EffectsConstants.SERVANTS,this::doubleServantsValue);

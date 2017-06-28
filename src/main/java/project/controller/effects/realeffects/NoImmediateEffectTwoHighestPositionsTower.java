@@ -10,8 +10,14 @@ import project.server.network.PlayerHandler;
 
 public class NoImmediateEffectTwoHighestPositionsTower implements Effects {
 
+    //todo
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         return null;
+    }
+
+    @Override
+    public String toScreen() {
+        return "You will not take more the two highest places in each tower";
     }
 }

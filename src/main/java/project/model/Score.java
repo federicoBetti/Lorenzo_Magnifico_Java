@@ -15,7 +15,12 @@ public class Score implements Serializable{
 
 
 
+    public String toScreen() {
+        return "Victory points: " + String.valueOf(getVictoryPoints()) + "\n" +
+                "Faith points: " + String.valueOf(getFaithPoints()) + "\n" +
+                "Military Points: " + String.valueOf(getMilitaryPoints()) + "\n";
 
+    }
     public int getVictoryPoints() {
         return victoryPoints;
     }

@@ -31,6 +31,6 @@ public class HarvesterUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-        return "The current player has performed an harvester action!";
+        return getNicknameCurrentPlayer() + " has performed an harvester action!";
     }
 }

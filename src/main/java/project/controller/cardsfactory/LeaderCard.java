@@ -37,4 +37,8 @@ public class LeaderCard implements Serializable{
     public String getCardDescription() {
         return cardDescription;
     }
+
+    public String getRequirementsDescription() {
+        return requirementsDescription;
+    }
 }

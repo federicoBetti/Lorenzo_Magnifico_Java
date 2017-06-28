@@ -37,4 +37,9 @@ public class SetFamiliarFixedBonus implements Effects {
 
             return new OkOrNo();
     }
+
+    @Override//todo vedere se c'è serve la print
+    public String toScreen() {
+        return null;
+    }
 }

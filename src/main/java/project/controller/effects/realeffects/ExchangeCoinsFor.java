@@ -56,5 +56,10 @@ public class ExchangeCoinsFor implements Effects {
         }
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Exchange " + coinsRequired + " coins" + " for taking " + resourceEarned + " of " + resourceRewardered;
+    }
 }
 

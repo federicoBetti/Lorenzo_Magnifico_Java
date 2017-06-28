@@ -14,6 +14,7 @@ public class Constants {
     public static final int CARD_TYPE_NUMBER = 4;
     public static final int NNUMBER_OF_TOWERS = 4;
     public static final int CARD_FOR_EACH_TOWER = 4;
+    public static final int NUMBER_OF_FLOORS = 4;
 
     public static final int ADD_COINS_IF_TOWER_IS_OCCUPIED = 3;
     public static final String COLOUR_OF_TOWER_WITH_VENTURES_CARD = "purple";

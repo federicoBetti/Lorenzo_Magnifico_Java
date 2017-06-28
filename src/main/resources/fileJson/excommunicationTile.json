@@ -2,6 +2,7 @@
   {
     "period": 1,
     "idCard": 1,
+    "effectDescription":"Each time you gain Military Points (from action spaces or from your Cards), gain 1 fewer Military Point. ",
     "excomunicationEffectsFromJson": {
       "type": "loseResource",
       "parameter": "militaryPoints",
@@ -11,6 +12,7 @@
   {
     "period": 1,
     "idCard": 2,
+    "effectDescription":"Each time you receive coins (from action spaces or from your Cards), you receive 1 fewer coin. ",
     "excomunicationEffectsFromJson": {
       "type": "loseResource",
       "parameter": "coins",
@@ -20,6 +22,7 @@
   {
     "period": 1,
     "idCard": 3,
+    "effectDescription":"Each time you receive servants (from action spaces or from your Cards), you receive 1 fewer servant. ",
     "excomunicationEffectsFromJson": {
       "type": "loseResource",
       "parameter": "servants",
@@ -29,6 +32,7 @@
   {
     "period": 1,
     "idCard": 4,
+    "effectDescription":"Each time you receive wood or stone (from action spaces or from your Cards), you receive 1 fewer wood or stone. ",
     "excomunicationEffectsFromJson": {
       "type": "loseResource",
       "parameter": "woodStone",
@@ -38,6 +42,7 @@
   {
     "period": 1,
     "idCard": 5,
+    "effectDescription":"Each time you perform a Harvest action (through the action space or as a Card effect),\n decrease its value by 3. You may still spend servants to increase the action value and you must\n apply your Card’s effects. ",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
       "parameter": "harvester",
@@ -47,6 +52,7 @@
   {
     "period": 1,
     "idCard": 6,
+    "effectDescription":"Each time you perform a Production action (through the action space or as a Card effect),\n decrease its value by 3. You may still spend servants to increase the action value \nand you must apply your Card’s effects. ",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
       "parameter": "production",
@@ -56,6 +62,7 @@
   {
     "period": 1,
     "idCard": 7,
+    "effectDescription":"All your colored Family Members receive a -1 reduction of their value each time you place them.\n (For example, if you roll a 5 on the black die, your Family Member with the\n black die symbol has a value of 4.) You may still spend \nservants to increase their value and you must apply your Card’s effects.",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
       "parameter": "dices",
@@ -65,6 +72,7 @@
   {
     "period": 2,
     "idCard": 1,
+    "effectDescription":"Each time you take a Territory Card (through the action space or as a Card effect), your action\n receives a -4 reduction of its value. You may still spend servants to increase\n the action value and you must apply your Card’s effects.",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
       "parameter": "territoryCard",
@@ -74,6 +82,7 @@
   {
     "period": 2,
     "idCard": 2,
+    "effectDescription":"Each time you take a Building Card (through the action space or as a Card effect), your action\n receives a reduction of -4 of its value. You may still spend servants to increase\n the action value and you must apply your Card’s effects.",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
       "parameter": "buildingCard",
@@ -83,6 +92,7 @@
   {
     "period": 2,
     "idCard": 3,
+    "effectDescription":"Each time you take a Character Card (through the action space or as a Card effect), your action\n receives a -4 reduction of its value. You may still spend servants to increase the\n action value,and you must apply your Card’s effects.",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
       "parameter": "characterCard",
@@ -92,6 +102,7 @@
   {
     "period": 2,
     "idCard": 4,
+    "effectDescription":"Each time you take a Venture Card (through the action space or as a Card effect), your action\n receives a -4 reduction of its value. You may still spend servants to increase the action\n value and you must apply your Card’s effects.",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
       "parameter": "ventureCard",
@@ -101,6 +112,7 @@
   {
     "period": 2,
     "idCard": 5,
+    "effectDescription":"You can’t place your Family Members in the Market action spaces.",
     "excomunicationEffectsFromJson": {
       "type": "special",
       "parameter": "market",
@@ -110,6 +122,7 @@
   {
     "period": 2,
     "idCard": 6,
+    "effectDescription":"You have to spend 2 servants to increase your action value by 1",
     "excomunicationEffectsFromJson": {
       "type": "special",
       "parameter": "servants",
@@ -119,6 +132,7 @@
   {
     "period": 2,
     "idCard": 7,
+    "effectDescription":"Each round, you skip your  rst turn. (When you have to place your\n first Family Member, you have to pass.) You start taking actions from the second turn (in the appropriate turn order.)\n When all players have taken all their turns, you may still place your last Family Member.",
     "excomunicationEffectsFromJson": {
       "type": "special",
       "parameter": "turn",
@@ -128,6 +142,7 @@
   {
     "period": 3,
     "idCard": 1,
+    "effectDescription":"At the end of the game, you don’t score points for any of your In uenced Characters.",
     "excomunicationEffectsFromJson": {
       "type": "noFinalPointsFromCards",
       "parameter": "characterCard",
@@ -137,6 +152,7 @@
   {
     "period": 3,
     "idCard": 2,
+    "effectDescription":"At the end of the game, you don’t score points for any of your Encouraged Ventures.",
     "excomunicationEffectsFromJson": {
       "type": "noFinalPointsFromCards",
       "parameter": "ventureCard",
@@ -146,6 +162,7 @@
   {
     "period": 3,
     "idCard": 3,
+    "effectDescription":"At the end of the game, you don’t score points for any of your Conquered Territories.",
     "excomunicationEffectsFromJson": {
       "type": "noFinalPointsFromCards",
       "parameter": "territoryCard",
@@ -155,6 +172,7 @@
   {
     "period": 3,
     "idCard": 4,
+    "effectDescription":"At the end of the game, before the Final Scoring, \nyou lose 1 Victory Point for every 5 Victory Points you have.",
     "excomunicationEffectsFromJson": {
       "type": "loseFinalPoints",
       "parameter": "victoryPoint",
@@ -164,6 +182,7 @@
   {
     "period": 3,
     "idCard": 5,
+    "effectDescription":"At the end of the game, you lose 1 Victory Point for every Military Point you have.",
     "excomunicationEffectsFromJson": {
       "type": "loseFinalPoints",
       "parameter": "militaryPoints",
@@ -173,6 +192,7 @@
   {
     "period": 3,
     "idCard": 6,
+    "effectDescription":"At the end of the game, you lose 1 Victory Point for every wood and stone on your Building Cards’ costs.",
     "excomunicationEffectsFromJson": {
       "type": "loseFinalPoints",
       "parameter": "woodStone",
@@ -182,6 +202,7 @@
   {
     "period": 3,
     "idCard": 7,
+    "effectDescription":"At the end of the game, you lose 1 Victory Point for every resource (wood, stone, coin, servant) in your supply on your Personal Board.";
     "excomunicationEffectsFromJson": {
       "type": "loseFinalPoints",
       "parameter": "allResources",

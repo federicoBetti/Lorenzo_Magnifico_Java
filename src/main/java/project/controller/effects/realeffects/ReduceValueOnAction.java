@@ -65,4 +65,9 @@ public class ReduceValueOnAction implements Effects {
         }
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Reduce dice value necessary for " + parameter +  " of " + quantity;
+    }
 }

@@ -12,4 +12,9 @@ public class VictoryPointsForEachTwoMilitaryPoints implements Effects {
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + bonus);
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Take 1 military points for every 2 military points.";
+    }
 }

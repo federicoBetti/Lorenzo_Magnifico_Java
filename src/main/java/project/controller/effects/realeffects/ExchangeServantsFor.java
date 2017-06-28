@@ -53,4 +53,9 @@ public class ExchangeServantsFor implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Exchange " + servantsRequired + " servants" + " for taking " + resourceEarned + " of " + resourceRewardered;
+    }
 }

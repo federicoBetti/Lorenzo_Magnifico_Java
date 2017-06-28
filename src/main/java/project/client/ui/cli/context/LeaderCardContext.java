@@ -3,17 +3,21 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.controller.cardsfactory.LeaderCard;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by raffaelebongo on 05/06/17.
  */
 public class LeaderCardContext extends AbstractContext {
+    List<LeaderCard> myLeadersCard;
 
-    public LeaderCardContext( Cli cli ){
+    public LeaderCardContext(Cli cli, List<LeaderCard> myLeadersCard){
         super(cli);
+        this.myLeadersCard = myLeadersCard;
         map.put(CliConstants.SHOW_LEADER_CARDS, this::showLeaderCards );
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
@@ -27,14 +31,17 @@ public class LeaderCardContext extends AbstractContext {
             pYellow.println(entry.getKey());
 
         pRed.println("The main action is:");
-        pYellow.print("Chose the "); pRed.println("[leaderCardName]");pYellow.print(" that you want to play");
+        pYellow.print("Chose the "); pRed.print("[leaderCardName] ");pYellow.println("that you want to play.");
 
     }
 
-
-    //todo implement
     private void showLeaderCards() {
-
+        for ( LeaderCard leaderCard : myLeadersCard ) {
+            pRed.println(leaderCard.getName());
+            pBlue.print("Requirements: ");pYellow.println(leaderCard.getRequirementsDescription());
+            pBlue.print("Effect Description:");pYellow.println(leaderCard.getCardDescription());
+            pYellow.println("");
+        }
     }
 
     @Override

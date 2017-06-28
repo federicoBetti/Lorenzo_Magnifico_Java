@@ -21,4 +21,9 @@ public class AddWoodAndStone implements Effects {
         player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + quantity);
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen(){
+        return "Add " + quantity + " stones and " + quantity + " wood";
+    }
 }

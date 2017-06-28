@@ -16,4 +16,9 @@ public class TwoVictoryPointsForEachGreenCard implements Effects {
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + 2*i);
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Take 2 victory points for each green card";
+    }
 }

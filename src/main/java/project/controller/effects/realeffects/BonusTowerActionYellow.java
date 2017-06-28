@@ -33,7 +33,12 @@ public class BonusTowerActionYellow implements Effects {
         return  towerAction;
     }
 
-@Override
+    @Override
+    public String toScreen() {
+        return null;
+    }
+
+    @Override
     public String toString(){
         return Constants.TOWER_ACTION_YELLOW;
     }

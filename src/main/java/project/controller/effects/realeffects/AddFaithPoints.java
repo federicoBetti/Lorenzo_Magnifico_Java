@@ -18,4 +18,9 @@ public class AddFaithPoints implements TakeRoPEffects {
         player.getScore().setFaithPoints(player.getScore().getFaithPoints() + quantity);
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen(){
+        return "Add " + quantity + " faith points";
+    }
 }

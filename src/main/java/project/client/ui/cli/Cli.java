@@ -4,11 +4,13 @@ import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
+import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
+import project.model.ExcommunicationZone;
 import project.model.Tile;
 import project.model.Tower;
 
@@ -29,10 +31,12 @@ public class Cli extends AbstractUI {
     private volatile boolean choice = false;
     private int numberOfPlayers;
     private String playerColor;
+    private boolean firstRound;
     private volatile BlockingDeque<String> choiceQueue;
 
 
     public Cli(ClientSetter clientSetter) {
+        firstRound = true;
         this.clientSetter = clientSetter;
         context = new ConnectionContext(this);
         new Keyboard().start();
@@ -41,26 +45,29 @@ public class Cli extends AbstractUI {
 
     @Override
     public void scoreUpdate(Updates update) {
-        context.getpBlue().println(update.toScreen());
-        context.getpRed().println("For further information type a show command.");
+        if ( !firstRound ) {
+            context.getpBlue().println(update.toScreen());
+
+        }
     }
 
     @Override
     public void personalBoardUpdate(Updates update) {
-        context.getpBlue().println(update.toScreen());
-        context.getpRed().println("For further information type a show command.");
+        if ( !firstRound ) {
+            context.getpBlue().println(update.toScreen());
+        }
     }
 
     @Override
     public void familyMemberUpdate(Updates update) {
-        context.getpBlue().println(update.toScreen());
-        context.getpRed().println("For further information type a show command.");
     }
 
     @Override
     public void boardUpdate(Updates update) {
-        context.getpBlue().println(update.toScreen());
-        context.getpRed().println("For further information type a show command.");
+        if ( !firstRound ) {
+            context.getpBlue().println(update.toScreen());
+            context.getpRed().println("For further information type a show command.");
+        }
     }
 
     //context methods
@@ -174,7 +181,7 @@ public class Cli extends AbstractUI {
 
 
     public void takeDevCard() {
-        context = new TowersContext(this);
+        context = new TowersContext(this, clientSetter.getUiBoard().getAllTowers());
     }
 
     public void harvester() {
@@ -190,7 +197,7 @@ public class Cli extends AbstractUI {
     }
 
     public void leaderCardContext() {
-        context = new LeaderCardContext(this);
+        context = new LeaderCardContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
     public void discardLeaderCardContext() {
@@ -202,7 +209,7 @@ public class Cli extends AbstractUI {
     }
 
     public void marketContext() {
-        context = new MarketContext(this);
+        context = new MarketContext(this, clientSetter.getUiBoard().getMarketZone());
     }
 
     public void loginRequest(String lineFromKeyBoard) throws InputException {
@@ -361,23 +368,27 @@ public class Cli extends AbstractUI {
     }
 
     public void showExcomunicationsTiles() {
-        //to implement
+        ExcommunicationZone[] toPrint = clientSetter.getUiBoard().getExcommunicationZone();
+        for(int i = 0; i < 3; i++ ) {
+            context.getpRed().print(i + ") ");
+            context.getpYellow().println(toPrint[i].getCardForThisPeriod().getExcommunicationEffect().toScreen());
+        }
     }
 
     public void showPersonalBoard() {
-        //to implement
-    }
-
-    public void showLeaderCards() {
-        //to implement
+        context.getpBlue().println(clientSetter.getUiPersonalBoard().toScreen());
     }
 
     public void showDicesValue() {
-        //to implement
+        int[] diceToPrint = clientSetter.getUiBoard().getDiceValue();
+        context.getpBlue().print("Black dice value: ");context.getpYellow().println(diceToPrint[0]);
+        context.getpBlue().print("White dice value: ");context.getpYellow().println(diceToPrint[1]);
+        context.getpBlue().print("Orange dice value: ");context.getpYellow().println(diceToPrint[2]);
+
     }
 
     public void showPoints() {
-        //to implement
+       context.getpBlue().println(clientSetter.getUiScore().toScreen());
     }
 
     public void showHarvesterZone() {
@@ -501,6 +512,10 @@ public class Cli extends AbstractUI {
 
     public String getPlayerColor() {
         return playerColor;
+    }
+
+    public void setFirstRound(boolean firstRound) {
+        this.firstRound = firstRound;
     }
 }
 

@@ -63,7 +63,7 @@ public abstract class PlayerHandler extends Player {
             System.out.println("canPayCard: " + canPayCard + "  postion: " + canPlaceFamiliar);
             if (canPayCard && canPlaceFamiliar) {
                 gameActions().takeNoVenturesCard(zone, familyM, this, towerOccupied);
-                gameActions().broadcastNotifications(new Notify(getName() + " has taken " + card.getName()));
+               //gameActions().broadcastNotifications(new Notify(getName() + " has taken " + card.getName()));
             }
             else {
                 throw new CantDoActionException();

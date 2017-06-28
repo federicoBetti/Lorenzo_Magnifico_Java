@@ -19,4 +19,9 @@ public class AddVicotryPoints implements TakeRoPEffects {
         return new OkOrNo();
 
     }
+
+    @Override
+    public String toScreen(){
+        return "Add " + quantity + " victory points";
+    }
 }

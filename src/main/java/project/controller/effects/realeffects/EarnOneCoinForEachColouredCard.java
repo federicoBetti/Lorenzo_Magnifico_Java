@@ -54,4 +54,9 @@ public class EarnOneCoinForEachColouredCard implements Effects {
 
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Earn one coin for each " + cardColor + " card";
+    }
 }

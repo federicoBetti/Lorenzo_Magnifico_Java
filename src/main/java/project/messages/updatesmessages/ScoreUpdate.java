@@ -30,7 +30,7 @@ public class ScoreUpdate extends Updates implements Serializable{
 
     @Override
     public String toScreen() {
-        return "The current player's score is changed:\n" +
+        return "\n" + getNicknameCurrentPlayer() + "'s score is :\n" +
         "Victory points: " + String.valueOf(score.getVictoryPoints()) + "\n" +
         "Faith points: " + String.valueOf(score.getFaithPoints()) + "\n" +
         "Military Points: " + String.valueOf(score.getMilitaryPoints()) + "\n";

@@ -22,6 +22,10 @@ public class AddMilitaryPoints implements TakeRoPEffects {
             quantity = 0;
         player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() + quantity);
         return new OkOrNo();
+    }
 
+    @Override
+    public String toScreen(){
+        return "Add " + quantity + " military points";
     }
 }

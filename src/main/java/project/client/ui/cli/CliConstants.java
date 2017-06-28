@@ -11,6 +11,7 @@ public class CliConstants {
     public static final String SHOW_POINTS = "show-points";
     public static final String SHOW_HARVESTER_ZONE = "show-harvester-zone";
     public static final String SHOW_TOWERS = "show-towers" ;
+    public static final String SHOW_CARDS_EFFECTS = "show-cards-effects";
     public static final String SHOW_PRODUCTION_ZONE = "show-production-zone";
     public static final String SHOW_COUNCIL_ZONE = "show-council-zone" ;
     public static final String SHOW_MARKET_ZONE = "show-market-zone";
@@ -32,5 +33,5 @@ public class CliConstants {
     public static final String ASK_FOR_PRAYING = "do you want to pray?";
     public static final String CHOOSE_PERMANENT_EFFECT = "which permanent effect do you want to use?";
     public static final String SHOW_TOWERS_CARDS_COST = "show-towers-cards-cost";
-    public static final String SHOW_TOWERS_CARDS_EFFECTS = "show-towers-cards-effects";
+    public static final String SHOW_TOWERS_CARDS_EFFECTS = "show-cards-effects";
 }

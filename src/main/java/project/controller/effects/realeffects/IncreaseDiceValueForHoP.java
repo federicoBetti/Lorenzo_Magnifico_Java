@@ -28,4 +28,9 @@ public class IncreaseDiceValueForHoP implements Effects {
             b.setProductionBonus(b.getProductionBonus() + increasingDiceValue);
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen() {
+        return "Increase the dice value for perfoming " + kindOfAction + " of " + increasingDiceValue;
+    }
 }

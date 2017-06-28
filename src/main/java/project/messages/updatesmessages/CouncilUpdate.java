@@ -27,7 +27,7 @@ public class CouncilUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-        return "The current player has placed a familiar in the Council palace!";
+        return  getNicknameCurrentPlayer() +" has placed a familiar in the Council palace!";
     }
 
     @Override

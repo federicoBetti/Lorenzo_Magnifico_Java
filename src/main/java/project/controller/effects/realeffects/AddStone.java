@@ -21,4 +21,9 @@ public class AddStone implements TakeRoPEffects {
         player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + quantity);
         return new OkOrNo();
     }
+
+    @Override
+    public String toScreen(){
+        return "Add " + quantity + " stones";
+    }
 }

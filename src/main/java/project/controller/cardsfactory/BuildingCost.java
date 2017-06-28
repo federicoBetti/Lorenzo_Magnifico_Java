@@ -12,7 +12,6 @@ public class BuildingCost extends TerritoryCost implements Serializable {
     private int servantRequired;
 
     public BuildingCost() {
-        //TODO
     }
 
     /**

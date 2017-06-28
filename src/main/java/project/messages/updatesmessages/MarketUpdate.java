@@ -30,7 +30,7 @@ public class MarketUpdate extends Updates implements Serializable{
 
     @Override
     public String toScreen() {
-        return "The current player has placed a familiar in the market!";
+        return getNicknameCurrentPlayer() + " has placed a familiar in the market!";
     }
 
     public void stamp(){

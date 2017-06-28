@@ -54,5 +54,10 @@ public class ExchangeWoodFor implements Effects {
 
             return new OkOrNo();
         }
+
+    @Override
+    public String toScreen() {
+        return "Exchange " + woodRequired + " wood" + " for taking " + resourceEarned + " of " + resourceRewardered;
     }
+}
 

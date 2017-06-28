@@ -215,7 +215,7 @@ public class ClientSetter {
 
     public synchronized void boardUpdate(Updates updates) {
         updates.doUpdate(uiBoard);
-        updates.stamp();
+        //updates.stamp();
         ui.boardUpdate(updates);
     }
 

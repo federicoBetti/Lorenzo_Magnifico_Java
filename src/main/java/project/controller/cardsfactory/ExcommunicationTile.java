@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class ExcommunicationTile implements Serializable{
 
     private int period;
+    private String effectDescription;
     private int idCard;
     private Effects excommunicationEffect;
 
@@ -31,5 +32,9 @@ public class ExcommunicationTile implements Serializable{
 
     public int getIdCard() {
         return idCard;
+    }
+
+    public Effects getExcommunicationEffect() {
+        return excommunicationEffect;
     }
 }
