@@ -38,4 +38,5 @@ public interface AllSupportFunctions {
 
     int extraLostOfPoints(PlayerHandler playerHandler);
 
+    void towerZoneEffect(Tower zone, PlayerHandler player);
 }

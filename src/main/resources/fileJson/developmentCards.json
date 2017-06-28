@@ -1408,7 +1408,7 @@
 {	
 	"anagrafic":{
 		"type":"buildingCard",
-		"name":"casa",
+		"name":"mint",
 		"period":1,
 		"choicePe": false,
 		"cost":[{
@@ -1501,7 +1501,7 @@
 {	
 	"anagrafic":{
 		"type":"buildingCard",
-		"name":"triunmphalArch",
+		"name":"triumphalArch",
 		"period":1,
 		"choicePe": false,
 		"cost":[{
@@ -1547,7 +1547,7 @@
 {	
 	"anagrafic":{
 		"type":"buildingCard",
-		"name":"theayer",
+		"name":"theater",
 		"period":1,
 		"choicePe": false,
 		"cost":[{
@@ -2185,7 +2185,7 @@
 {	
 	"anagrafic":{
 		"type":"buildingCard",
-		"name":"casa",
+		"name":"stronghold",
 		"period":2,
 		"choicePe": false,
 		"cost":[{
@@ -3503,7 +3503,7 @@
 	"immediateEffect":{
 		"tris":[ 
 		{"type":"takeRop", "parameter":"militaryPoint", "quantity":2 },
-		{"type":"harvOrProdAct", "parameter":"production", "quantity":1 }
+		{"type":"takeRop", "parameter":"privilege", "quantity":1 }
 		]
 	},
 
@@ -3548,7 +3548,7 @@
 	
 	"immediateEffect":{
 		"tris":[ 
-		{"type":"privilege", "parameter":" ", "quantity":2 }
+		{"type":"takeRop", "parameter":"privilege", "quantity":2 }
 		]
 	},
 

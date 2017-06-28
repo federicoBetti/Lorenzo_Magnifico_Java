@@ -114,6 +114,11 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
     @Override
+    public void towerZoneEffect(Tower zone, PlayerHandler player) {
+        zone.getTowerZoneEffect().doEffect(player);
+    }
+
+    @Override
     public void finalPointsFromVenturesCard() {
         for (VenturesCard venturesCard: player.getPersonalBoardReference().getVentures()){
             applyEffects(venturesCard,player);

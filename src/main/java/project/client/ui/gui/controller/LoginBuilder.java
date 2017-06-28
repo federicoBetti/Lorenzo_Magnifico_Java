@@ -130,13 +130,14 @@ public class LoginBuilder extends Application {
     }
 
     public void initalizeMainGame() {
+        System.out.println("inizio inizializzazione");
         inizializzaGeneralMainGame();
+        inizializzaCouncil();
         inizializzaTowers();
         inizializzaHarvester();
         inizializzaMarket();
         inizializzaPersonalBoard();
         inizializzaProduction();
-        inizializzaCouncil();
         inizializzaLeaderCard();
         System.out.println("finita inizializzazione");
     }
@@ -330,12 +331,12 @@ public class LoginBuilder extends Application {
             // Configuration the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/cardZoom.fxml"));
-            AnchorPane card = (AnchorPane) loader.load();
+            AnchorPane cardZoomed = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Card");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
-            Scene scene = new Scene(card);
+            Scene scene = new Scene(cardZoomed);
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
@@ -576,6 +577,12 @@ public class LoginBuilder extends Application {
         mainController.updateChat(stringBuffer);
     }
 
+    public void inFront() {
+        Stage s = getPrimaryStage();
+        s.toFront();
+        s.toFront();
+        s.toFront();
+    }
 }
 
 

@@ -2,15 +2,13 @@ package project.server;
 
 import project.configurations.TimerSettings;
 import project.controller.Constants;
+import project.controller.cardsfactory.ExcommunicationTile;
 import project.controller.cardsfactory.LeaderCard;
 import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.controller.supportfunctions.BasicSupportFunctions;
 import project.messages.updatesmessages.*;
-import project.model.Board;
-import project.model.DevelopmentCard;
-import project.model.Player;
-import project.model.Tile;
+import project.model.*;
 import project.server.network.PlayerHandler;
 
 import javax.smartcardio.Card;
@@ -143,9 +141,12 @@ public class Room {
             e.printStackTrace();
             //todo gestire
         }
+        gameActions.setBoard(board);
 
-        getGameActions().refactorTowers();
         Collections.shuffle(playerInTheMatch);
+        fillExcommunicationTile();
+        for (i=0;i<3;i++)
+            System.out.println("la carta scomunica è la numero " + board.getExcommunicationZone()[i].getCardForThisPeriod());
         //todo non funziona ancora bene
         board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
@@ -155,7 +156,7 @@ public class Room {
 
         //draft leader
 
-      /*  ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
             System.out.println("inizio richiest giro di leader");
@@ -174,11 +175,11 @@ public class Room {
                 leaders.remove(leaderToAdd);
             }
             listsForDraft = shiftLeaderList(listsForDraft);
-        }   */
+        }
 
         //draft tile
 
-      /*  ArrayList<Tile> tiles = fillListTile();
+        ArrayList<Tile> tiles = fillListTile();
         ListIterator<PlayerHandler> iterator = playerInTheMatch.listIterator();
         while (iterator.hasNext())
             iterator.next();
@@ -190,18 +191,14 @@ public class Room {
             Tile tile = getTrueTile(tileId, tiles);
             p.getPersonalBoardReference().setMyTile(tile);
             tiles.remove(tile);
-        } */
+        }
 
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
         }
 
-     /*   try {
-            Thread.sleep(8000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }   */
+        placeCardInTowers();
 
         int moreCoin = 0;
         for (PlayerHandler p : board.getTurn().getPlayerTurn()) {
@@ -213,28 +210,36 @@ public class Room {
             moreCoin++;
         }
 
-
-    /*    try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }   */
-
-    /* prova per stampare le carte
-        DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
-        for (i = 0; i<4;i++){
-            for (int j=0;j<3;j++){
-                for (int k =0;k<8;k++){
-                    DevelopmentCard card = deck[i][j][k];
-                    System.out.println("c'è la carta " + card.getName() + " del tipo " + card.getClass());
-                }
-            }
-        }
-*/
         gameActions.rollDice();
         matchStarted = true;
         gameActions.firstTurn();
 
+    }
+
+    private void placeCardInTowers() {
+        Tower[][] tower = board.getAllTowers();
+        DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
+        int i,j;
+        for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++) {
+            for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
+                tower[i][j].setCardOnThisFloor(deck[i][0][j]);
+            }
+        }
+        board.setTowers(tower);
+
+    }
+
+    private void fillExcommunicationTile() {
+        ExcommunicationTile[][] deck = board.getDeckCard().getExcomunicationCard();
+        ExcommunicationZone[] zone = new ExcommunicationZone[Constants.PERIOD_NUMBER];
+        Random r = new Random();
+        int rand;
+        for (int i = 0; i< Constants.PERIOD_NUMBER;i++){
+            rand = r.nextInt(Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD);
+            ExcommunicationTile ex = deck[i][rand];
+            zone[i] = new ExcommunicationZone(ex);
+        }
+        board.setExcommunicationZone(zone);
     }
 
     private void setResources(PlayerHandler player, int moreCoin) {

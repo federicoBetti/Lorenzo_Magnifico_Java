@@ -23,6 +23,8 @@ public class FamilyMember implements Serializable{
 
     protected FamilyMember(){
         this.fixedValue = 0;
+        this.fixedBonus = 0;
+        this.myValue = 0;
         this.isPlayed = false;
     }
 

@@ -24,7 +24,7 @@ public class Tower extends Position implements Serializable{
 
     private boolean used;
 
-    private Effects towerZoneEffect;  //todo riempire con effetto
+    private Effects towerZoneEffect;
 
 
     public Tower(String colour, int diceValueOfhisFloor, int towerNumber, TrisIE trisIE ) {

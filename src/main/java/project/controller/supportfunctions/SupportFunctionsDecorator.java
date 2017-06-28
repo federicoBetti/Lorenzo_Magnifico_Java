@@ -86,4 +86,9 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
     public int extraLostOfPoints(PlayerHandler playerHandler) {
         return allSupportFunctions.extraLostOfPoints(playerHandler);
     }
+
+    @Override
+    public void towerZoneEffect(Tower zone, PlayerHandler player) {
+        allSupportFunctions.towerZoneEffect(zone,player);
+    }
 }

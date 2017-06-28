@@ -43,6 +43,7 @@ public class MainController {
     private boolean myTurn;
 
     private Board board;
+    private int numberOfPrivelege;
 
 
     private MainController(){
@@ -256,10 +257,8 @@ public class MainController {
         board = clientSetter.getUiBoard();
         Platform.runLater(() -> {
             System.out.println("dadi: " + board.getDiceValue()[0] +" " +board.getDiceValue()[1] +" " +board.getDiceValue()[2]);
-            //productionController.updatePosition(board.getProductionZone());
-            //harvesterController.updatePosition(board.getHarvesterZone());
-            System.out.println("il consiglio è " + board.getCouncilZone());
-            System.out.println("il controller del consiglo è " + councilPalaceController);
+            productionController.updatePosition(board.getProductionZone());
+            harvesterController.updatePosition(board.getHarvesterZone());
             councilPalaceController.updatePosition(board.getCouncilZone());
             marketController.updatePosition(board.getMarketZone());
             towerController.updatePosition(board.getAllTowers());
@@ -290,10 +289,13 @@ public class MainController {
 
 
     public void takePrivilege(int quantityOfDifferentPrivileges) {
+        numberOfPrivelege = quantityOfDifferentPrivileges;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                councilPalaceController.takeImmediatePrivilege(quantityOfDifferentPrivileges);
+                System.out.println("sono nel runlater per i privilegi");
+                loginBuilder.setScene(SceneType.COUNCIL,SceneType.LEADER);
+                councilPalaceController.takeImmediatePrivilege(numberOfPrivelege);
             }
         });
     }
@@ -387,22 +389,7 @@ public class MainController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return i.intValue();
-        /*
-        while (true){
-            System.out.println("sono nel while true");
-        try {
-            return integerQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        */
+        return i;
     }
 
     public void wakeUp(int choiceDone) {
@@ -465,6 +452,7 @@ public class MainController {
         Platform.runLater(() -> {
             loginBuilder.writeOnMyChat("it's your turn, you can play!\n");
             loginBuilder.showPrimo();
+            loginBuilder.inFront();
         });
     }
 

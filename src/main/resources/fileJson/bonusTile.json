@@ -1,152 +1,130 @@
-[{
-	"tileNumber":0,
-
-	"harvesterBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"wood",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"stone",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"militaryPoint",
-		"quantity":1
-		}
-	],
-
-	"productionBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"servant",
-		"quantity":2},
-		{
-			"type":"takeRop",
-			"parameter":"coin",
-			"quantity":1
-		}
-	]
-},
-
-{
-	"tileNumber":1,
-
-	"harvesterBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"wood",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"stone",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"servant",
-		"quantity":1
-		}
-	],
-
-	"productionBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"militaryPoint",
-		"quantity":2},
-		{
-			"type":"takeRop",
-			"parameter":"coin",
-			"quantity":1
-		}
-	]
-},
-
-{
-	"tileNumber":2,
-
-	"harvesterBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"wood",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"stone",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"militaryPoint",
-		"quantity":1
-		}
-	],
-
-	"productionBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"servant",
-		"quantity":1},
-		{
-			"type":"takeRop",
-			"parameter":"coin",
-			"quantity":2
-		}
-	]
-},
-
-{
-	"tileNumber":3,
-
-	"harvesterBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"wood",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"stone",
-		"quantity":1
-		},
-
-		{
-		"type":"takeRop",
-		"parameter":"coin",
-		"quantity":1
-		}
-	],
-
-	"productionBonus":
-	[
-		{
-		"type":"takeRop",
-		"parameter":"servant",
-		"quantity":1},
-		{
-			"type":"takeRop",
-			"parameter":"militaryPoint",
-			"quantity":2
-		}
-	]
-}
+[
+  {
+    "tileNumber": 0,
+    "harvesterBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "wood",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "stone",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "militaryPoint",
+        "quantity": 1
+      }
+    ],
+    "productionBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "servant",
+        "quantity": 2
+      },
+      {
+        "type": "takeRop",
+        "parameter": "coin",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "tileNumber": 1,
+    "harvesterBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "wood",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "stone",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "servant",
+        "quantity": 1
+      }
+    ],
+    "productionBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "militaryPoint",
+        "quantity": 2
+      },
+      {
+        "type": "takeRop",
+        "parameter": "coin",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "tileNumber": 2,
+    "harvesterBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "wood",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "stone",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "militaryPoint",
+        "quantity": 1
+      }
+    ],
+    "productionBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "servant",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "coin",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "tileNumber": 3,
+    "harvesterBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "wood",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "stone",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "coin",
+        "quantity": 1
+      }
+    ],
+    "productionBonus": [
+      {
+        "type": "takeRop",
+        "parameter": "servant",
+        "quantity": 1
+      },
+      {
+        "type": "takeRop",
+        "parameter": "militaryPoint",
+        "quantity": 2
+      }
+    ]
+  }
 ]

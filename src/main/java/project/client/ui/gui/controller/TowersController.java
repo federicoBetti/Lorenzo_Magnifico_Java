@@ -145,6 +145,7 @@ public class TowersController extends AbstractController {
     private String bonusCardType;
     @FXML
     private Label chatArea;
+    private boolean bonusAction;
 
 
     public TowersController() {
@@ -153,6 +154,7 @@ public class TowersController extends AbstractController {
         myTower = new TowerZone[4][4];
         towerColour = -1;
         floor = -1;
+        bonusAction = false;
         familiarColour = null;
     }
 
@@ -278,11 +280,17 @@ public class TowersController extends AbstractController {
 
 
     public void takeCard(int tower, int floor){
-        if (myTower[tower][floor].getFamiliarName() == null) {
-            lastFamiiarPlaced.setImage(null);
-            lastFamiiarPlaced = myTower[tower][floor].getFamiliarImage();
-            myTower[tower][floor].setFamiliarImage(getTrueFamiliarImage());
+        if (!bonusAction) {
+            if (myTower[tower][floor].getFamiliarName() == null) {
+                lastFamiiarPlaced.setImage(null);
+                lastFamiiarPlaced = myTower[tower][floor].getFamiliarImage();
+                myTower[tower][floor].setFamiliarImage(getTrueFamiliarImage());
+                selectCard(tower, floor);
+            }
+        }
+        else {
             selectCard(tower, floor);
+            writeOnChat("you have chosen a bonus action!\n");
         }
 
     }
@@ -408,11 +416,13 @@ public class TowersController extends AbstractController {
     private void blockButton(){
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeBonusCard());
+        bonusAction = true;
     }
 
     private void unlockButton(){
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeCard());
+        bonusAction = false;
     }
 
     private void takeBonusCard() {

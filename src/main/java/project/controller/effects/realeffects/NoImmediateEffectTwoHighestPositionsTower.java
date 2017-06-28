@@ -1,19 +1,21 @@
 package project.controller.effects.realeffects;
 
+import project.controller.supportfunctions.NoBonusFromTower;
 import project.messages.BonusInteraction;
+import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 15/05/17.
+ * class used for effect of card preacher
  */
 
 
 public class NoImmediateEffectTwoHighestPositionsTower implements Effects {
 
-    //todo
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        return null;
+        player.getRoom().setMySupportFunction(new NoBonusFromTower(player.getRoom().getMySupportFunction(player)),player);
+        return new OkOrNo();
     }
 
     @Override

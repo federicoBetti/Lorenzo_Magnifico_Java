@@ -9,7 +9,6 @@ import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
-import project.server.Room;
 import project.server.network.PlayerHandler;
 
 import java.util.*;
@@ -20,6 +19,7 @@ import java.util.*;
 public class GameActions {
 
     private Room room;
+    private Board board;
     private Timer timer;
     private LeaderCardsEffects leaderCardEffect;
 
@@ -37,13 +37,14 @@ public class GameActions {
         DevelopmentCard card = zone.getCardOnThisFloor();
 
         getSupportFunctions(player).placeCardInPersonalBoard(card);
+        getSupportFunctions(player).towerZoneEffect(zone,player);
         zone.getTowerZoneEffect().doEffect(player);
 
         makeImmediateEffects(player, zone.getCardOnThisFloor());
 
         zone.setCardOnThisFloor(null);
 
-        TowersUpdate towersUpdate = new TowersUpdate(room.getBoard().getAllTowersUpdate(), player.getName());
+        TowersUpdate towersUpdate = new TowersUpdate(board.getAllTowersUpdate(), player.getName());
         player.sendActionOk();
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player,player.getName()));
@@ -66,6 +67,8 @@ public class GameActions {
         //prova
         System.out.println(zone.getFamiliarOnThisPosition());
 
+
+        player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
         takeDevelopmentCard(zone, player);
     }
 
@@ -86,6 +89,8 @@ public class GameActions {
 
         getSupportFunctions(player).payVenturesCard((VenturesCard) card, player, towerIsOccupied, diceCostValue, diceFamiliarValue, numberOfPayment);
         getSupportFunctions(player).setFamiliar(zone, familyM);
+
+        player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
         takeDevelopmentCard(zone, player);
     }
 
@@ -105,12 +110,12 @@ public class GameActions {
      */
     public void nextTurn(PlayerHandler playerHandler) {
         PlayerHandler next;
-        List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
+        List<PlayerHandler> turn = board.getTurn().getPlayerTurn();
 
         int indexOfMe = turn.indexOf(playerHandler);
         int playerNumbers = room.getRoomPlayers();
-        int currentPeriod = room.getBoard().getPeriod();
-        int currentRound = room.getBoard().getRound();
+        int currentPeriod = board.getPeriod();
+        int currentRound = board.getRound();
 
         if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
              next = turn.get(indexOfMe + 1);
@@ -123,9 +128,9 @@ public class GameActions {
              }
              nextTurn(next);
 
-        } else if ( room.getBoard().getTurn().getRotation() < 4) {// sono 'ultimo del turno ma non è finito round
-            System.out.println("sono l'ultimo del turno, metto la rotazione a "  +room.getBoard().getTurn().getRotation());
-            room.getBoard().getTurn().setRotation(room.getBoard().getTurn().getRotation() + 1);
+        } else if ( board.getTurn().getRotation() < 3) {// sono 'ultimo del turno ma non è finito round (è giusto che sia 3 il numero perchè si incrementa dopo)
+            System.out.println("sono l'ultimo del turno, metto la rotazione a "  + board.getTurn().getRotation());
+            board.getTurn().setRotation(board.getTurn().getRotation() + 1);
             next = turn.get(0);
              if (next.isOn()) {
                  timer.cancel();
@@ -144,7 +149,7 @@ public class GameActions {
             endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
-            room.getBoard().getTurn().setRotation(0);
+            board.getTurn().setRotation(0);
             setEndRound(true);
             timer.cancel();
             firstPlayerTurn();
@@ -154,7 +159,7 @@ public class GameActions {
         } else {
             System.out.println("fine round!" + currentRound);
             endRound();
-            room.getBoard().getTurn().setRotation(0);
+            board.getTurn().setRotation(0);
             nextRound();
             setEndRound(true);
             timer.cancel();
@@ -174,7 +179,7 @@ public class GameActions {
     }
 
     private void firstPlayerTurn() {
-        PlayerHandler firstPlayer = room.getBoard().getTurn().getPlayerTurn().get(0);
+        PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(0);
         if ( firstPlayer.isOn() )
             firstPlayer.itsMyTurn();
         nextTurn(firstPlayer);
@@ -192,8 +197,12 @@ public class GameActions {
     }
 
     public void firstTurn() {
-        room.getBoard().getTurn().getPlayerTurn().get(0).itsMyTurn();
-        timer = myTimerSkipTurn(room.getBoard().getTurn().getPlayerTurn().get(0));
+        board.getTurn().getPlayerTurn().get(0).itsMyTurn();
+        timer = myTimerSkipTurn(board.getTurn().getPlayerTurn().get(0));
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     class MilitaryComparator implements Comparator<PlayerHandler> {
@@ -263,7 +272,7 @@ public class GameActions {
     }
 
     private void finalPray(PlayerHandler playerHandler) {
-        if (playerHandler.getScore().getFaithPoints() >= room.getBoard().getFaithPointsRequiredEveryPeriod()[room.getBoard().getPeriod()])
+        if (playerHandler.getScore().getFaithPoints() >= board.getFaithPointsRequiredEveryPeriod()[board.getPeriod()])
             pray(playerHandler);
         else {
             takeExcommunication(playerHandler);
@@ -283,8 +292,8 @@ public class GameActions {
         int pointsToAdd = 0;
 
         pointsToAdd += getSupportFunctions(playerHandler).extraLostOfPoints(playerHandler);
-        pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromCharacterCard(room.getBoard().getFinalPointsFromCharacterCards());
-        pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromTerritoryCard(room.getBoard().getFinalPointsFromTerritoryCards());
+        pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromCharacterCard(board.getFinalPointsFromCharacterCards());
+        pointsToAdd += getSupportFunctions(playerHandler).finalPointsFromTerritoryCard(board.getFinalPointsFromTerritoryCards());
         getSupportFunctions(playerHandler).finalPointsFromVenturesCard();
 
         return pointsToAdd;
@@ -300,8 +309,8 @@ public class GameActions {
 
     private void changePlayerOrder() {
         List<PlayerHandler> newTurnOrder = new ArrayList<>();
-        List<Council> councilZone = room.getBoard().getCouncilZone();
-        List<PlayerHandler> oldTurnOrder = room.getBoard().getTurn().getPlayerTurn();
+        List<Council> councilZone = board.getCouncilZone();
+        List<PlayerHandler> oldTurnOrder = board.getTurn().getPlayerTurn();
 
         for (Council council : councilZone) {
             if (!newTurnOrder.contains(council.getPlayer())) {
@@ -313,15 +322,15 @@ public class GameActions {
                 newTurnOrder.add(player);
             }
         }
-        room.getBoard().getTurn().setPlayerTurn(newTurnOrder);
+        board.getTurn().setPlayerTurn(newTurnOrder);
     }
 
     private void nextPeriod() {
-        room.getBoard().nextPeriod();
+        board.nextPeriod();
     }
 
     private void nextRound() {
-        room.getBoard().nextRound();
+        board.nextRound();
     }
 
     private void endPeriod(int period) {
@@ -334,7 +343,16 @@ public class GameActions {
         changePlayerOrder();
         clearAllPosition();
         clearLeaderCardUsed();
+
+        //to check
+
+        for (PlayerHandler p: room.getListOfPlayers()){
+            for (FamilyMember f: p.getAllFamilyMembers())
+                if(f.isPlayed())
+                    System.out.println("giocatore ancora giocato: " + f);
+        }
     }
+
 
     private void clearLeaderCardUsed() {
         for (PlayerHandler p: room.getListOfPlayers()){
@@ -345,22 +363,29 @@ public class GameActions {
     }
 
     private void clearAllPosition() {
-        List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
-        List<Production> productionZone = room.getBoard().getProductionZone();
-        List<Council> councilZone = room.getBoard().getCouncilZone();
-        Market[] marketZone = room.getBoard().getMarketZone();
+        List<Harvester> harvesterZone = board.getHarvesterZone();
+        List<Production> productionZone = board.getProductionZone();
+        List<Council> councilZone = board.getCouncilZone();
+        Market[] marketZone = board.getMarketZone();
 
         for (Harvester harvester : harvesterZone)
             clearSinglePosition(harvester);
+        broadcastUpdates(new HarvesterUpdate(board.getHarvesterZone(),""));
 
         for (Production production : productionZone)
             clearSinglePosition(production);
+        broadcastUpdates(new ProductionUpdate(board.getProductionZone(),""));
 
         for (Market market : marketZone)
             clearSinglePosition(market);
+        broadcastUpdates(new MarketUpdate(board,""));
 
         for (Council council : councilZone)
             clearSinglePosition(council);
+        broadcastUpdates(new CouncilUpdate((ArrayList<Council>) board.getCouncilZone(),""));
+
+        for (PlayerHandler p: room.getListOfPlayers())
+            p.sendUpdates(new FamilyMemberUpdate(p,p.getName()));
     }
 
     private void clearSinglePosition(Position position) {
@@ -375,10 +400,10 @@ public class GameActions {
         System.out.println("sto per rimettere a posto tutto le carte");
         int j;
         int i;
-        int currentPeriod = room.getBoard().getPeriod();
-        int currentRound = room.getBoard().getRound();
-        Tower[][] tower = room.getBoard().getAllTowers();
-        DevelopmentCard[][][] deck = room.getBoard().getDeckCard().getDevelopmentDeck();
+        int currentPeriod = board.getPeriod();
+        int currentRound = board.getRound();
+        Tower[][] tower = board.getAllTowers();
+        DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
         int roundsAdd = 0;
 
         if (currentRound == 0)
@@ -392,21 +417,23 @@ public class GameActions {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 //ho fatto il ciclo passando per tutte le torri dal basso all'alto
                 clearSinglePosition(tower[i][j]);
+                tower[i][j].setCardOnThisFloor(null); //prova per vedere se cosi aggionra
                 tower[i][j].setCardOnThisFloor(deck[i][currentPeriod][roundsAdd + j]); //da testare!!!!
             }
         }
 
-        room.getBoard().setTowers(tower);
-        broadcastUpdates(new TowersUpdate(room.getBoard().getAllTowers(),""));
+        board.setTowers(tower);
+        broadcastUpdates(new TowersUpdate(board.getAllTowers(),""));
+
 
     }
 
     private void setEndRound(boolean choice) {
-        room.getBoard().setEndRound(choice);
+        board.setEndRound(choice);
     }
 
     private void askForPraying(int period) {
-        int faithPointsNeeded = room.getBoard().getFaithPointsRequiredEveryPeriod()[period];
+        int faithPointsNeeded = board.getFaithPointsRequiredEveryPeriod()[period];
 
         for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
@@ -420,6 +447,7 @@ public class GameActions {
 
 
     /**
+     * methods that perform harvester action
      * @param position
      * @param familyM
      * @param servantsNumber
@@ -429,7 +457,7 @@ public class GameActions {
         int malusByField;
         int actionValue;
         int cardBonus = player.getPersonalBoardReference().getBonusOnActions().getHarvesterBonus();
-        List<Harvester> harvesterList = room.getBoard().getHarvesterZone();
+        List<Harvester> harvesterList = board.getHarvesterZone();
         Harvester harvesterZone = new Harvester();
 
 
@@ -437,24 +465,30 @@ public class GameActions {
         if (position == 0) malusByField = 0;
         else malusByField = 3;
         actionValue = familyM.getMyValue() + servantsNumber - malusByField + cardBonus;
+        harvesterList.add(harvesterZone);
+
+        harvesterBonus(actionValue,servantsNumber,player);
+
+        player.sendActionOk();
+        player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
+        HarvesterUpdate harvesterUpdate = new HarvesterUpdate((ArrayList<Harvester>) board.getHarvesterZone(), player.getName());
+        broadcastUpdates(harvesterUpdate);
+    }
+
+
+    public void harvesterBonus(int harvesterValue, int intServantsNumber, PlayerHandler player) {
+        int servantsUsed = getSupportFunctions(player).payServants(intServantsNumber,0);
+        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+
         for (Effects e :player.getPersonalBoardReference().getMyTile().takeHarvesterResource())
             e.doEffect(player);
 
         for (TerritoryCard card : player.getPersonalBoardReference().getTerritories()) {
-            if (actionValue >= card.getCost().getDiceCost())
+            if (harvesterValue >= card.getCost().getDiceCost())
                 makePermanentEffects(player, card);
         }
-        harvesterList.add(harvesterZone);
 
-        player.sendActionOk();
-        HarvesterUpdate harvesterUpdate = new HarvesterUpdate((ArrayList<Harvester>) room.getBoard().getHarvesterZone(), player.getName());
-        broadcastUpdates(harvesterUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
-    }
-
-
-    public void havesterBonus(int harvesterValue, PlayerHandler playerHandler) {
-        //todo
     }
 
 
@@ -463,24 +497,32 @@ public class GameActions {
      * @param position
      * @param familyM
      * @param cardToProduct
+     * @param servantsToPay
      * @param player
      */
-    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, PlayerHandler player) {
-        List<Production> productionSpace = room.getBoard().getProductionZone();
+    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, int servantsToPay, PlayerHandler player) {
+        List<Production> productionSpace = board.getProductionZone();
         Production productionZone = new Production();
 
         getSupportFunctions(player).setFamiliar(productionZone, familyM);
         productionSpace.add(productionZone);
 
-        productionBonus(cardToProduct,player);
+        int servantsUsed = getSupportFunctions(player).payServants(servantsToPay,0);
+        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
 
-        ProductionUpdate productionUpdate = new ProductionUpdate((ArrayList<Production>) room.getBoard().getProductionZone(), player.getName());
+        player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
+        ProductionUpdate productionUpdate = new ProductionUpdate((ArrayList<Production>) board.getProductionZone(), player.getName());
         broadcastUpdates(productionUpdate);
+
+        productionBonus(cardToProduct, servantsToPay, player);
 
     }
 
 
-    public void productionBonus(List<BuildingCard> cards, PlayerHandler player) {
+    public void productionBonus(List<BuildingCard> cards, int servantsToPay, PlayerHandler player) {
+
+        int servantsUsed = getSupportFunctions(player).payServants(servantsToPay,0);
+        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
 
         for (Effects e: player.getPersonalBoardReference().getMyTile().takeProductionResource())
             e.doEffect(player);
@@ -500,17 +542,24 @@ public class GameActions {
      * @return
      */
     public void goToMarket(int position, FamilyMember familyM, PlayerHandler player) {
-        Position marketPosition = room.getBoard().getMarketZone()[position];
+        Position marketPosition = board.getMarketZone()[position];
 
         getSupportFunctions(player).setFamiliar(marketPosition, familyM);
 
-        MarketUpdate marketUpdate = new MarketUpdate(room.getBoard(), player.getName());
+        System.out.println("il mio familiare ha valore " + familyM.getMyValue());
+        if (!(familyM.getMyValue()>0)) {
+            int servantsUsed = getSupportFunctions(player).payServants(1, 0);
+            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+        }
 
-        Effects e = room.getBoard().getMarketZone()[position].getEffect();
+        MarketUpdate marketUpdate = new MarketUpdate(board, player.getName());
+
+        Effects e = board.getMarketZone()[position].getEffect();
         e.doEffect(player);
         System.out.println("effect class: " + e.getClass());
         player.sendActionOk();
         broadcastUpdates(marketUpdate);
+        player.sendUpdates(new FamilyMemberUpdate(player,player.getName()));
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
         System.out.println("Update mandato a : " + player.getName());
     }
@@ -563,7 +612,7 @@ public class GameActions {
         newDiceValue[1] = r.nextInt(6) + 1;
         newDiceValue[2] = r.nextInt(6) + 1;
 
-        room.getBoard().setDiceValue(newDiceValue);
+        board.setDiceValue(newDiceValue);
 
         for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
@@ -571,7 +620,7 @@ public class GameActions {
         }
         setEndRound(false);
 
-        broadcastUpdates(new DiceValueUpdate(room.getBoard().getDiceValue()));
+        broadcastUpdates(new DiceValueUpdate(board.getDiceValue()));
     }
 
     /**
@@ -580,7 +629,7 @@ public class GameActions {
      * @param player          @return
      */
     public void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler player) {
-        List<Council> councilZone = room.getBoard().getCouncilZone();
+        List<Council> councilZone = board.getCouncilZone();
 
         getSupportFunctions(player).setFamiliarInTheCouncilPalace(councilZone, familyMember);
 
@@ -589,9 +638,10 @@ public class GameActions {
         takeCouncilPrivilege(privilegeNumber, player);
 
         player.sendActionOk();
-        ArrayList<Council> council = (ArrayList<Council>) room.getBoard().getCouncilZone();
-        broadcastUpdates(new CouncilUpdate(council, player.getName()));
+        ArrayList<Council> council = (ArrayList<Council>) board.getCouncilZone();
+        player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
+        broadcastUpdates(new CouncilUpdate(council, player.getName()));
     }
 
     /**
@@ -600,7 +650,7 @@ public class GameActions {
      */
     public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player) {
 
-        CouncilPrivilege privilege = room.getBoard().getCouncilPrivileges()[privilegeNumber];
+        CouncilPrivilege privilege = board.getCouncilPrivileges()[privilegeNumber];
         Effects e = privilege.getEffect();
         e.doEffect(player);
 
@@ -612,19 +662,19 @@ public class GameActions {
     }
 
     public void pray(PlayerHandler player) {
-        int victoryPointsToAdd = room.getBoard().getVictoryPointsInFaithTrack()[player.getScore().getFaithPoints()];
+        int victoryPointsToAdd = board.getVictoryPointsInFaithTrack()[player.getScore().getFaithPoints()];
 
         getSupportFunctions(player).pray(victoryPointsToAdd);
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 
     public void takeExcommunication(PlayerHandler player) {
-        int period = room.getBoard().getPeriod();
-        ExcommunicationTile card = room.getBoard().getExcommunicationZone()[period].getCardForThisPeriod();
+        int period = board.getPeriod();
+        ExcommunicationTile card = board.getExcommunicationZone()[period].getCardForThisPeriod();
 
         card.makeEffect(player);
 
-        broadcastUpdates(new ExcomunicationUpdate( room.getBoard().getExcommunicationZone(), player.getName()));
+        broadcastUpdates(new ExcomunicationUpdate( board.getExcommunicationZone(), player.getName()));
     }
 
     public void broadcastNotifications(Notify notifications) {
@@ -652,8 +702,10 @@ public class GameActions {
                 player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
             } else if (returnFromEffect instanceof TakePrivilegesAction)
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+            else
+                player.sendActionOk();
         }
-        player.sendActionOk();
+        //player.sendActionOk();
     }
 
     private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {

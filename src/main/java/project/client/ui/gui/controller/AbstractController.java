@@ -202,9 +202,29 @@ public abstract class AbstractController {
     void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition) {
         Iterator<? extends Position> itPR = positions.iterator();
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
+        System.out.println("ora sono nell'update di " + positions.getClass());
 
-        while (itFP.hasNext() && itPR.hasNext()) {
-            FamiliarPosition familiarPosition = itFP.next();
+        System.out.println("ora stampo tutti i familiari nel clientSetter");
+        for (Position p: positions)
+            System.out.println(p.getFamiliarOnThisPosition());
+
+
+        System.out.println("ora stampo tutti i familiari nella GUI");
+        for (FamiliarPosition f: allPosition)
+            System.out.println(f.getFamiliarName());
+
+
+        while (itPR.hasNext()) {
+            FamiliarPosition familiarPosition;
+            if (itFP.hasNext()) {
+                familiarPosition = itFP.next();
+                System.out.println("c'è un altro familiare " + familiarPosition);
+            }
+            else {
+                System.out.println("ho creato una nuova posizione");
+                familiarPosition = new FamiliarPosition(allPosition.get(allPosition.size()-1));
+                allPosition.add(familiarPosition);
+            }
             Position position = itPR.next();
            if (position.getFamiliarOnThisPosition() == null) {
                 if (familiarPosition.getFamiliarName().equals("")) continue;
@@ -213,6 +233,7 @@ public abstract class AbstractController {
                     familiarPosition.setFamiliarName("");
                 }
             } else if (!(familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))){
+               System.out.println("devo modificare un familiare");
                     familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
                     familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
                 }
@@ -232,23 +253,19 @@ public abstract class AbstractController {
                if (serverTower.getCardOnThisFloor() == null) {
                     guiTower.setCardName(null);
                     guiTower.setCardImage(null);
-                } else {
-                   System.out.println("la carta sul server è " + serverTower.getCardOnThisFloor().getName());
-                   System.out.println("la carta qua sul client è " + guiTower.getCardName());
-                    if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())) {
-                        System.out.println("ho trovato una carta diversa da prima!");
+                }
+                else if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())) {
                         modifyCard(guiTower, serverTower.getCardOnThisFloor().getName());
                     }
-                }
+
 
                 if (!(serverTower.isOccupied())) {
                     guiTower.setFamiliarName(null);
                     guiTower.setFamiliarImage((Image) null);
-                } else {
-                     if (!serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())) {
+                } else if (!serverTower.getFamiliarOnThisPosition().toString().equals(guiTower.getFamiliarName())) {
                         modifyFamiliar(guiTower, serverTower.getFamiliarOnThisPosition().toString());
                     }
-                }
+
             }
         }
 

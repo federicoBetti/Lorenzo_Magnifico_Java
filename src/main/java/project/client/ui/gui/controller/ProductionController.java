@@ -281,7 +281,7 @@ public class ProductionController extends AbstractController{
     }
 
     public void bonusProduction(int diceValue) {
-        loginBuilder.setScene(SceneType.HARVESTER, SceneType.PERSONAL_BOARD);
+        loginBuilder.setScene(SceneType.PRODUCTION, SceneType.PERSONAL_BOARD);
         blockButton();
         this.diceValueBonus = diceValue;
         for (int i = 0; i < numberOfCard; i++){

@@ -193,7 +193,7 @@ public abstract class PlayerHandler extends Player {
     protected void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
         int harvesterValue = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() + intServantsNumber;
 
-        gameActions().havesterBonus(harvesterValue, this);
+        gameActions().harvesterBonus(harvesterValue, intServantsNumber,this);
     }
 
     /**
@@ -207,32 +207,37 @@ public abstract class PlayerHandler extends Player {
         boolean canTakeCards;
         int position = firstFreePosition(productionZone,familyM.getFamilyColour());
 
-        maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
+        maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
+
 
         if (position > 0)
             maxValueOfProduction = maxValueOfProduction - Constants.MALUS_PROD_HARV;
-        checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
+        int servantsToPay = checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
 
-        gameActions().production(position,familyM,cardToProduct,this);
+        gameActions().production(position,familyM,cardToProduct,servantsToPay,this);
     }
 
 
     protected void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
         int maxValueOfProduction;
         maxValueOfProduction =  returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
-        checkAvaiabiltyToProduct(cards,maxValueOfProduction);
-        gameActions().productionBonus(cards,this);
+        int servantsToPay = checkAvaiabiltyToProduct(cards,maxValueOfProduction);
+        gameActions().productionBonus(cards,servantsToPay,this);
     }
 
 
-    private void checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) throws CantDoActionException {
+    private int checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) throws CantDoActionException {
         BuildingCost totalCardCosts = new BuildingCost();
+        int servantsMax = 0;
         for (BuildingCard b: cardToProduct){
-            if (b.getCost().getDiceCost() > maxValueOfProduction)
+            if (b.getCost().getDiceCost() > maxValueOfProduction + checkFunctions.getServants(this))
                 throw new CantDoActionException();
+            int servnatsToPay = b.getCost().getDiceCost() - maxValueOfProduction;
+            if (servnatsToPay > servantsMax)
+                servantsMax = servnatsToPay;
         }
         //todo qua in teoria mancano dei controlli se hai abbastanza risorse per fare produzione con scambio
-        return ;
+        return servantsMax;
     }
 
     /**
@@ -243,6 +248,7 @@ public abstract class PlayerHandler extends Player {
     protected void goToMarket(int position, FamilyMember familyM) throws CantDoActionException {
         Position[] marketZone = room.getBoard().getMarketZone();
         boolean canGoToMarket = checkFunctions.checkPosition(position,marketZone,familyM);
+        canGoToMarket = canGoToMarket && ((familyM.getMyValue() + checkFunctions.getServants(this)) >0);
         System.out.println("posso andare li? : " + canGoToMarket );
         if (canGoToMarket)
             gameActions().goToMarket(position,familyM,this);
