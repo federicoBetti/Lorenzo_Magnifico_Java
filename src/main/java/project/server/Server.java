@@ -12,10 +12,7 @@ import project.server.network.socket.SocketServer;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * Created by raffaelebongo on 18/05/17.
@@ -64,20 +61,22 @@ public class Server {
      */
 
     public void loginRequest(String nickname, PlayerHandler player) throws IOException {
-        if ( nicknameAlreadyUsed(nickname))
+        if ( nicknameAlreadyUsed(nickname)) {
+            System.out.println("NICKNAME GIA USATO");
             player.nicknameAlredyUsed();
+        }
 
         if (rooms.isEmpty() || roomsAreAllFull()) {
+            System.out.println("CREO NUOVA ROOM");
             System.out.println(roomsAreAllFull());
             createNewRoom(nickname, player);
             return;
         }
 
-
         for (Room room : rooms) {
             if (!room.isMatchStarted()) { //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { // riconnessione giocatre andato down durante il collegament alla partita
-                    System.out.println("riconnessione");
+                    System.out.println("RICONNESSIONE MATCH NOT STARTED");
                     player.setName(nickname);
                     player.setOn(true);
                     player.setRoom(room);
@@ -85,6 +84,7 @@ public class Server {
                     checkAndStartTheTimer(room, player);
 
                 } else if (!room.isFull()) { //se la room non è piena aggiungo il giocatore
+                    System.out.println("ROOM NON PIENA AGGIUNGO IL GIOCATORE");
                     player.setName(nickname);
                     player.setOn(true);
                     player.setRoom(room);
@@ -99,14 +99,30 @@ public class Server {
                 }
             } else {    //partita iniziata
                 if( room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn() ){ //durante la partita
+                    System.out.println("RICONNESSIONE IN PARTITA");
                     player.setOn(true);
                     player.setRoom(room);
                     loadPlayerState(room, nickname, player );
                     room.nicknamePlayersMap.replace(nickname, player);
+                    if ( numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1 ) {
+                        System.out.println("sono qui");
+                        player.itsMyTurn();
+                        room.getGameActions().myTimerSkipTurn(player);
+                    }
+
                     player.loginSucceded();
                 }
             }
         }
+    }
+
+    private int numberOfPlayersOn(List<PlayerHandler> players ){
+        int count = 0;
+        for ( PlayerHandler player: players ){
+            if ( player.isOn() )
+                count++;
+        }
+        return count;
     }
 
     private void replaceInTurn(Turn turn, PlayerHandler oldPlayer, PlayerHandler newPlayer) {

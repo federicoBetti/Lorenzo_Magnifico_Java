@@ -120,7 +120,6 @@ public class GameActions {
 
         if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
              next = turn.get(indexOfMe + 1);
-            System.out.println(next);
              if ( next.isOn() ) {
                  timer.cancel();
                  next.itsMyTurn();
@@ -133,10 +132,12 @@ public class GameActions {
             System.out.println("sono l'ultimo del turno, metto la rotazione a "  + board.getTurn().getRotation());
             board.getTurn().setRotation(board.getTurn().getRotation() + 1);
             next = turn.get(0);
+            System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
              if (next.isOn()) {
                  timer.cancel();
                  next.itsMyTurn();
                  timer = this.myTimerSkipTurn(turn.get(0));
+                 System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
                  return;
              }
              nextTurn(next);
@@ -155,6 +156,7 @@ public class GameActions {
             timer.cancel();
             firstPlayerTurn();
             timer = this.myTimerSkipTurn(turn.get(0));
+            System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
             return;
 
         } else {
@@ -166,6 +168,7 @@ public class GameActions {
             timer.cancel();
             firstPlayerTurn();
             timer = this.myTimerSkipTurn(turn.get(0));
+            System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
             return;
         }
 
@@ -174,9 +177,12 @@ public class GameActions {
     }
 
 
-    //todo can we delete it?
-    private void allAreOff() {
-        //todo
+    private boolean allAreOff() {
+        for ( PlayerHandler player: board.getTurn().getPlayerTurn()){
+            if ( player.isOn() )
+                return false;
+        }
+        return true;
     }
 
     private void firstPlayerTurn() {
@@ -731,11 +737,15 @@ public class GameActions {
 
     }
 
-    private Timer myTimerSkipTurn(PlayerHandler player) {
+    Timer myTimerSkipTurn(PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
+                if ( allAreOff() ) {
+                    System.out.println("spento timer skip turn");
+                    return;
+                }
                 player.timerTurnDelayed();
                 nextTurn( player );
             }

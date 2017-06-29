@@ -134,7 +134,7 @@ public class Room {
             }
         }
 
-        maxPlayers = playerInTheMatch.size();
+        maxPlayers = i;
 
         try {
             board = new Board(playerInTheMatch.size());
