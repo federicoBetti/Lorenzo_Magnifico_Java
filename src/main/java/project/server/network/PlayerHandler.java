@@ -107,6 +107,7 @@ public abstract class PlayerHandler extends Player {
                 paymentChosen = checkOnVenturesCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
             } catch (CantDoActionException e) {
                 card.setCost(realCost);
+                throw new CantDoActionException();
             }
             gameActions().takeVenturesCard(zone, this, towerOccupied, paymentChosen, diceValueOfFamiliar);
         }
