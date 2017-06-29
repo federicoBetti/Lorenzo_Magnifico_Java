@@ -68,6 +68,7 @@ public class Server {
             player.nicknameAlredyUsed();
 
         if (rooms.isEmpty() || roomsAreAllFull()) {
+            System.out.println(roomsAreAllFull());
             createNewRoom(nickname, player);
             return;
         }
@@ -75,7 +76,7 @@ public class Server {
 
         for (Room room : rooms) {
             if (!room.isMatchStarted()) { //riconnessione
-                if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) {
+                if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { // riconnessione giocatre andato down durante il collegament alla partita
                     System.out.println("riconnessione");
                     player.setName(nickname);
                     player.setOn(true);
@@ -83,7 +84,7 @@ public class Server {
                     room.nicknamePlayersMap.replace(nickname, player);
                     checkAndStartTheTimer(room, player);
 
-                } else if (!room.isFull()) {
+                } else if (!room.isFull()) { //se la room non è piena aggiungo il giocatore
                     player.setName(nickname);
                     player.setOn(true);
                     player.setRoom(room);
@@ -96,7 +97,7 @@ public class Server {
                     }
                     break;
                 }
-            } else {
+            } else {    //partita iniziata
                 if( room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn() ){ //durante la partita
                     player.setOn(true);
                     player.setRoom(room);

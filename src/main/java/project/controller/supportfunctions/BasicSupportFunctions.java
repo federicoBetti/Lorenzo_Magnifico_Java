@@ -162,7 +162,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @Override
     public void setFamiliarInTheCouncilPalace(List<Council> councilZone, FamilyMember familyMember) {
-        councilZone.add(new Council(familyMember,player));
+        councilZone.add(new Council(familyMember));
         familyMember.setPlayed(true);
     }
 

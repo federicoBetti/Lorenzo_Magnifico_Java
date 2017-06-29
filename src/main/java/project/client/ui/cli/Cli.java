@@ -10,6 +10,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
+import project.model.Council;
 import project.model.ExcommunicationZone;
 import project.model.Tile;
 import project.model.Tower;
@@ -189,7 +190,7 @@ public class Cli extends AbstractUI {
     }
 
     public void goToCouncil() {
-        context = new CouncilContext(this);
+        context = new CouncilContext(this, clientSetter.getUiBoard().getCouncilZone());
     }
 
     public void production() {
@@ -348,18 +349,13 @@ public class Cli extends AbstractUI {
         clientSetter.sendExitToBonusAction();
     }
 
-    //todo show methods
-    public void showTowers() {
-        Tower[][] towers = clientSetter.getUiBoard().getAllTowers();
-        context = new ShowTowersContext(this, towers);
-    }
-
     public void showProductionZone() {
         //to implement
     }
 
     public void showCouncilZone() {
-        //to implement
+        List<Council> council = clientSetter.getUiBoard().getCouncilZone();
+
     }
 
     public void showMarketZone() {

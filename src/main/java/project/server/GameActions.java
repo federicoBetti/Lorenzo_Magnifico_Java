@@ -314,8 +314,8 @@ public class GameActions {
         List<PlayerHandler> oldTurnOrder = board.getTurn().getPlayerTurn();
 
         for (Council council : councilZone) {
-            if (!newTurnOrder.contains(council.getPlayer())) {
-                newTurnOrder.add((PlayerHandler) council.getPlayer());
+            if (!newTurnOrder.contains(council.findPlayer(board, council.getFamiliarOnThisPosition().getFamilyColour()))) {
+                newTurnOrder.add((PlayerHandler) council.findPlayer(board, council.getFamiliarOnThisPosition().getFamilyColour()));
             }
         }
         for (PlayerHandler player : oldTurnOrder) {
@@ -325,6 +325,7 @@ public class GameActions {
         }
         board.getTurn().setPlayerTurn(newTurnOrder);
     }
+
 
     private void nextPeriod() {
         board.nextPeriod();

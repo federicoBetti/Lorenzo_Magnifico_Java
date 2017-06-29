@@ -1,5 +1,7 @@
 package project.model;
 
+import project.server.network.PlayerHandler;
+
 import java.io.Serializable;
 
 /**
@@ -7,17 +9,20 @@ import java.io.Serializable;
  */
 public class Council extends Position implements Serializable{
 
-    private Player player;
     /**
      * Default constructor
      * @param familyMember
      */
-    public Council(FamilyMember familyMember, Player player) {
+    public Council(FamilyMember familyMember ) {
         setFamiliarOnThisPosition(familyMember);
-        this.player = player;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player findPlayer( Board board, String familyCoulor ){
+        for ( PlayerHandler player : board.getTurn().getPlayerTurn() ){
+            if ( player.getFamilyColour().equals(familyCoulor))
+                return player;
+        }
+        return null;
     }
+
 }

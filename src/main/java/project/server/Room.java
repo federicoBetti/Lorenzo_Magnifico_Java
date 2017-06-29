@@ -53,6 +53,7 @@ public class Room {
         gameActions = new GameActions(this);
         this.server = server;
         timerSettings = server.getTimerSettings();
+        maxPlayers = 4;
     }
 
     boolean isFull() {
@@ -132,6 +133,8 @@ public class Room {
                 i++;
             }
         }
+
+        maxPlayers = playerInTheMatch.size();
 
         try {
             board = new Board(playerInTheMatch.size());
