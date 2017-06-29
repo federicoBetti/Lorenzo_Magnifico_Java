@@ -228,7 +228,7 @@ public class Cli extends AbstractUI {
     }
 
     public void nicknameAlreadyUsed() {
-        System.out.println("Nickname already used! Please chose another one.");
+        context = new NicknameAlreadyUsedContext(this);
     }
 
     @Override
@@ -423,7 +423,6 @@ public class Cli extends AbstractUI {
 
 
                     lineFromKeyBoard = keyboard.readLine();
-                    System.out.println("ho preso da tastiera :" + lineFromKeyBoard);
                     if (choice) {
                         System.out.println("sono qui");
                         choiceQueue.add(lineFromKeyBoard);
@@ -491,6 +490,11 @@ public class Cli extends AbstractUI {
         choice = false;
         return Integer.parseInt(tileChosen);
 
+    }
+
+    @Override
+    public void newNickname(String nickname) {
+        clientSetter.newNickname(nickname);
     }
 
 

@@ -212,14 +212,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendAnswer(Object returnFromEffect) {
-        try {
-            objectOutputStream.writeObject(returnFromEffect.toString());
+        if ( isOn() ) {
+            try {
+                objectOutputStream.writeObject(returnFromEffect.toString());
 
-            objectOutputStream.writeObject(returnFromEffect);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-            e.printStackTrace();
+                objectOutputStream.writeObject(returnFromEffect);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -242,6 +244,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void nicknameAlredyUsed() {
         sendString(Constants.NICKNAME_USED);
+        try {
+            String newNickname = (String)objectInputStream.readObject();
+            loginRequestAnswer(newNickname);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -354,18 +364,21 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendAskForPraying() {
-        Notify notify = new Notify(Constants.ASK_FOR_PRAYING);
-        sendAnswer(notify);
+        if ( isOn() ) {
+            sendAnswer(Constants.ASK_FOR_PRAYING);
+        }
     }
 
     @Override
     public void sendString(String message) {
-        try {
-            objectOutputStream.writeObject(message);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-            System.out.println("errore invio su socket");
+        if ( isOn() ) {
+            try {
+                objectOutputStream.writeObject(message);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                System.out.println("errore invio su socket");
+            }
         }
     }
 
@@ -377,7 +390,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendUpdates(Updates updates) {
-        sendAnswer(updates);
+        if ( isOn() ) {
+            System.out.println(updates.getClass());
+            sendAnswer(updates);
+        }
     }
 
 

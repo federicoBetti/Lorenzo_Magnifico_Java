@@ -249,7 +249,7 @@ public class ClientSetter {
     }
 
     public void nicknameAlreadyUsed() {
-
+        ui.nicknameAlreadyUsed();
     }
 
     public void waitingForYourTurn() {
@@ -296,4 +296,7 @@ public class ClientSetter {
         ui.matchStarted(roomPlayers,familyColour);
     }
 
+    public void newNickname(String nickname) {
+        client.newNickname(nickname);
+    }
 }

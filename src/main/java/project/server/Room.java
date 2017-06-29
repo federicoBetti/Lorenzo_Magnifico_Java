@@ -62,7 +62,7 @@ public class Room {
             if (entry.getValue().isOn())
                 count++;
 
-        if (count == maxPlayers)
+        if (count == maxPlayers )
             return true;
         return false;
     }
@@ -147,9 +147,8 @@ public class Room {
 
         Collections.shuffle(playerInTheMatch);
         fillExcommunicationTile();
-        for (i=0;i<3;i++)
-            System.out.println("la carta scomunica è la numero " + board.getExcommunicationZone()[i].getCardForThisPeriod());
 
+        //todo mischia il mazzo, funge
         //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
         board.getTurn().setPlayerTurn(playerInTheMatch);
@@ -319,6 +318,9 @@ public class Room {
         return deck;
     }
 
+    public Server getServer() {
+        return server;
+    }
 
     public boolean isMatchStarted() {
         return matchStarted;

@@ -60,6 +60,8 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void cantDoAction();
 
+    public abstract void newNickname(String nickname);
+
 
     //da server a client
 }

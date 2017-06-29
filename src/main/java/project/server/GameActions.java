@@ -143,8 +143,15 @@ public class GameActions {
              nextTurn(next);
          }
 
-         else if (currentRound == 1 && currentPeriod == 2) { //fine partita
-            endMatch();
+         else if (currentRound == 1 && currentPeriod == 2) {//fine partita
+
+            if ( room.numberOfPlayerOn() == 0 ) {
+                room.getServer().getRooms().remove(room);
+                return;
+            }
+
+            else
+                endMatch();
 
         } else if (currentRound == 1) {//fine periodo
             System.out.println("fine periodo!" + currentPeriod);
@@ -179,8 +186,10 @@ public class GameActions {
 
     private boolean allAreOff() {
         for ( PlayerHandler player: board.getTurn().getPlayerTurn()){
-            if ( player.isOn() )
+            if ( player.isOn() ) {
+                System.out.println("player on per stoppare: " + player.isOn());
                 return false;
+            }
         }
         return true;
     }
@@ -742,10 +751,7 @@ public class GameActions {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                if ( allAreOff() ) {
-                    System.out.println("spento timer skip turn");
-                    return;
-                }
+
                 player.timerTurnDelayed();
                 nextTurn( player );
             }

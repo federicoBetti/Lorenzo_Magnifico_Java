@@ -322,6 +322,11 @@ public class SocketClient extends AbstractClient {
         clientSetter.cantDoAction();
     }
 
+    @Override
+    public void newNickname(String nickname) {
+        sendGenericObject(nickname);
+    }
+
     private void createWaitingForYourTurnContext() {
         clientSetter.waitingForYourTurn();
     }
