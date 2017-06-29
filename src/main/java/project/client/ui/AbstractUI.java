@@ -81,4 +81,6 @@ public abstract class AbstractUI {
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
     public abstract int tileDraft(List<Tile> tiles);
+
+    public abstract void newNickname(String nickname);
 }

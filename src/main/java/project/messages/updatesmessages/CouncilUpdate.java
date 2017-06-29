@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class CouncilUpdate extends Updates implements Serializable {
 
-    private ArrayList<Council> councilZone;
+    private List<Council> councilZone;
 
-    public CouncilUpdate( ArrayList<Council> council, String nickname ){
+    public CouncilUpdate( List<Council> council, String nickname ){
         super(nickname);
         councilZone = council;
     }

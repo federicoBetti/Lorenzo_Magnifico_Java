@@ -17,7 +17,7 @@ public class ExchangeWoodFor implements Effects {
     private String resourceRewardered;
 
     public ExchangeWoodFor (int quantity, TotalCost effectCost, String resourceRewardered ){
-        this.woodRequired = effectCost.getStoneRequired();
+        this.woodRequired = effectCost.getWoodRequired();
         this.resourceEarned = quantity;
         this.resourceRewardered = resourceRewardered;
     }

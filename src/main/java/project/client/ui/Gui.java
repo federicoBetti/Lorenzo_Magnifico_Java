@@ -150,6 +150,12 @@ public class Gui extends AbstractUI {
     }
 
     @Override
+    public void newNickname(String nickname) {
+        // //lo devo fare per reiterare la richiesta di un nuovo nickname. non posso in socket rimandare lo stesso
+        //metodo di login perchè di default manda la stringa LOGIN_REQUEST e devo mandare solo il nickname
+    }
+
+    @Override
     public void loginSucceded() {
         mainController.loginSucceded();
     }

@@ -13,12 +13,23 @@ import java.util.Map;
  */
 public class TakeBonusCard extends AbstractContext {
     private TowerAction towerAction;
-
+    AbstractContext context1;
+    
     public TakeBonusCard(Cli cli, TowerAction towerAction) {
         super(cli);
         this.towerAction = towerAction;
+        map.put(CliConstants.SHOW_TOWERS_CARDS_COST, this:: showCardCost );
+        map.put(CliConstants.SHOW_CARDS_EFFECTS, this:: showCardsEffects );
         map.put(CliConstants.EXIT, this::exitFromBonus );
         printHelp();
+    }
+
+    private void showCardsEffects() {
+        //todo
+    }
+
+    private void showCardCost() {
+        //todo
     }
 
     private void exitFromBonus() throws IOException, InputException {
@@ -26,9 +37,6 @@ public class TakeBonusCard extends AbstractContext {
         cli.sendExitToBonusAction();
     }
 
-    private void showTowers() {
-        cli.showTowers();
-    }
 
     @Override
     public void printHelp() {

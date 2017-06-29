@@ -63,7 +63,6 @@ public abstract class PlayerHandler extends Player {
             System.out.println("canPayCard: " + canPayCard + "  postion: " + canPlaceFamiliar);
             if (canPayCard && canPlaceFamiliar) {
                 gameActions().takeNoVenturesCard(zone, familyM, this, towerOccupied);
-               //gameActions().broadcastNotifications(new Notify(getName() + " has taken " + card.getName()));
             }
             else {
                 throw new CantDoActionException();
@@ -86,8 +85,10 @@ public abstract class PlayerHandler extends Player {
     }
 
     protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {
+        System.out.println("SONO IN CLIENT TAKE DEV CARD");
         if (!(returnFromEffect.getKindOfCard().equals(Constants.ALL_COLOURS) || returnFromEffect.getKindOfCard().equals(towerColour)))
             throw new CantDoActionException();
+
         DevelopmentCard card = getCard(towerColour,floor);
         Cost realCost = card.getCost();
         Cost costDiscounted = realCost.copyOf();
@@ -118,8 +119,8 @@ public abstract class PlayerHandler extends Player {
                 throw new CantDoActionException();
             }
             else {
+                System.out.println("eseguo takeNoVenturesCard");
                 gameActions().takeNoVenturesCard(zone, this, towerOccupied, diceValueOfFamiliar);
-                gameActions().broadcastNotifications(new Notify(getName() + " has taken " + card.getName()));
             }
         }
 

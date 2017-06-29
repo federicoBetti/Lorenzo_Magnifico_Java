@@ -212,14 +212,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendAnswer(Object returnFromEffect) {
-        try {
-            objectOutputStream.writeObject(returnFromEffect.toString());
+        if ( isOn() ) {
+            try {
+                objectOutputStream.writeObject(returnFromEffect.toString());
 
-            objectOutputStream.writeObject(returnFromEffect);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-            e.printStackTrace();
+                objectOutputStream.writeObject(returnFromEffect);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -242,6 +244,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void nicknameAlredyUsed() {
         sendString(Constants.NICKNAME_USED);
+        try {
+            String newNickname = (String)objectInputStream.readObject();
+            loginRequestAnswer(newNickname);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -354,18 +364,21 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendAskForPraying() {
-        Notify notify = new Notify(Constants.ASK_FOR_PRAYING);
-        sendAnswer(notify);
+        if ( isOn() ) {
+            sendAnswer(Constants.ASK_FOR_PRAYING);
+        }
     }
 
     @Override
     public void sendString(String message) {
-        try {
-            objectOutputStream.writeObject(message);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-            System.out.println("errore invio su socket");
+        if ( isOn() ) {
+            try {
+                objectOutputStream.writeObject(message);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException e) {
+                System.out.println("errore invio su socket");
+            }
         }
     }
 
@@ -377,7 +390,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendUpdates(Updates updates) {
-        sendAnswer(updates);
+        if ( isOn() ) {
+            System.out.println(updates.getClass());
+            sendAnswer(updates);
+        }
     }
 
 
@@ -406,31 +422,36 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         //todo riguarda questo metodo, ho cancellato delle cose per le eccezioni, in toeria solo roba relativa alle eccezioni ma non vorrei aver fatto qualche danno
         while ( true ) {
-
+            System.out.println("SONO QUI NEL SEND BONUS TOWER ACTION");
             sendAnswer(returnFromEffect);
             String answer = null;
             try {
                 answer = (String) objectInputStream.readObject();
+                System.out.println("è arrivato: " + answer);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
-            if (answer.equals(Constants.EXIT)) return;
+            if (answer.equals(Constants.EXIT))
+                return;
 
             //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
             try {
+                System.out.println("faccio takebonus");
                 takeBonusDevCard( answer, returnFromEffect );
+                System.out.println("faccio return");
+                return;
             } catch (CantDoActionException c) {
                 try {
+                    System.out.println("SONO IN ECCEZIONE");
                     objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
                     objectOutputStream.flush();
                     objectOutputStream.reset();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                continue;
             }
         }
 
@@ -504,7 +525,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         int floor = 0;
         try {
-            floor = Integer.parseInt((String)objectInputStream.readObject());
+            floor = (int)objectInputStream.readObject();
+            System.out.println("floor: "+ floor);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
