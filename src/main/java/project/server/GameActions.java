@@ -45,12 +45,12 @@ public class GameActions {
         zone.setCardOnThisFloor(null);
 
         TowersUpdate towersUpdate = new TowersUpdate(board.getAllTowersUpdate(), player.getName());
-        player.sendActionOk();
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player,player.getName()));
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
-
+        player.sendActionOk();
+        System.out.println("MANDATI TUTTTI GLI UPDATE");
     }
 
     public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
@@ -78,6 +78,7 @@ public class GameActions {
 
         getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
 
+        System.out.println("faccio takedevCard con zone: "+zone  + "e player: " + player);
         takeDevelopmentCard(zone, player);
     }
 
@@ -413,7 +414,7 @@ public class GameActions {
             currentPeriod++;
 
         //si potrebbe fare con iteratore..
-        for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++) {
+        for (i = 0; i < Constants.NUMBER_OF_TOWERS; i++) {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 //ho fatto il ciclo passando per tutte le torri dal basso all'alto
                 clearSinglePosition(tower[i][j]);
@@ -695,17 +696,24 @@ public class GameActions {
     private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card)  {
         for (Effects effect : card.getImmediateCardEffects()) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
+            System.out.println("stampo la return from effect: " + returnFromEffect);
 
             if (returnFromEffect instanceof TowerAction) {
+                System.out.println("if towerAction");
                 player.sendBonusTowerAction((TowerAction) returnFromEffect);
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+
             } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction) {
+                System.out.println("if BonusInteractionHarv");
                 player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
-            } else if (returnFromEffect instanceof TakePrivilegesAction)
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+
+            } else if (returnFromEffect instanceof TakePrivilegesAction) {
+                System.out.println("if TakePrivilege");
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
-            else
-                player.sendActionOk();
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+            }
         }
-        //player.sendActionOk();
     }
 
     private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {

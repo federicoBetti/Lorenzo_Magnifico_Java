@@ -23,7 +23,7 @@ class MessagesFromServerHandler {
 
         map.put(Constants.YOUR_TURN, this::mainContext );
         map.put(Constants.LOGIN_SUCCEDED, this:: loginSucceded );
-        map.put(CliConstants.TAKE_BONUS_CARD, this::takeBonusCard );
+        map.put(Constants.TOWER_ACTION, this::takeBonusCard );
         map.put(Constants.MATCH_STARTED, this:: matchStarted );
         //updates
         map.put(Constants.PERSONAL_BOARD_UPDATE, this::personalBoardUpdate);

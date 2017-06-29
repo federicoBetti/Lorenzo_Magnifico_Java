@@ -10,7 +10,6 @@ public interface Cost extends Serializable, Cloneable{
         return null;
     }
 
-
     void addCoin(int i);
 
     void addStone(int i);

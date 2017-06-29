@@ -28,7 +28,7 @@ public class TowersContext extends AbstractContext {
     }
 
     private void showCardsEffects() {
-        for ( int i = 0; i < Constants.NNUMBER_OF_TOWERS; i++ ) {
+        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
             for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
                 if ( allTowers[i][j].getCardOnThisFloor() == null ){
@@ -56,7 +56,7 @@ public class TowersContext extends AbstractContext {
     }
 
     private void showCardsCost() {
-        for ( int i = 0; i < Constants.NNUMBER_OF_TOWERS; i++ ) {
+        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
             for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
                 if ( allTowers[i][j].getCardOnThisFloor() == null ){

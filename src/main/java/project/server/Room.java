@@ -11,7 +11,6 @@ import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
-import javax.smartcardio.Card;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -147,8 +146,8 @@ public class Room {
         fillExcommunicationTile();
         for (i=0;i<3;i++)
             System.out.println("la carta scomunica è la numero " + board.getExcommunicationZone()[i].getCardForThisPeriod());
-        //todo non funziona ancora bene
-        board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
+
+        //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
         board.getTurn().setPlayerTurn(playerInTheMatch);
 
@@ -156,7 +155,7 @@ public class Room {
 
         //draft leader
 
-        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+    /*    ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
             System.out.println("inizio richiest giro di leader");
@@ -192,7 +191,7 @@ public class Room {
             p.getPersonalBoardReference().setMyTile(tile);
             tiles.remove(tile);
         }
-
+    */
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
@@ -220,7 +219,7 @@ public class Room {
         Tower[][] tower = board.getAllTowers();
         DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
         int i,j;
-        for (i = 0; i < Constants.NNUMBER_OF_TOWERS; i++) {
+        for (i = 0; i < Constants.NUMBER_OF_TOWERS; i++) {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 tower[i][j].setCardOnThisFloor(deck[i][0][j]);
             }

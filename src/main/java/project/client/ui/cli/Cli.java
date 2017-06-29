@@ -224,7 +224,6 @@ public class Cli extends AbstractUI {
     @Override
     public void takeBonusCard(TowerAction towerAction) {
         context = new TakeBonusCard(this, towerAction);
-        context.printHelp();
     }
 
     public void nicknameAlreadyUsed() {
