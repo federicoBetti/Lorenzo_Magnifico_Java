@@ -176,7 +176,7 @@ public class Room {
                 leaders.remove(leaderToAdd);
             }
             listsForDraft = shiftLeaderList(listsForDraft);
-        }
+        }*/
 
         //draft tile
 
@@ -193,7 +193,7 @@ public class Room {
             p.getPersonalBoardReference().setMyTile(tile);
             tiles.remove(tile);
         }
-    */
+
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
@@ -204,10 +204,18 @@ public class Room {
         int moreCoin = 0;
         for (PlayerHandler p : board.getTurn().getPlayerTurn()) {
             //setResources(p, moreCoin);
+            int fauthPoint = 3;
+            p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 10);
+            p.getScore().setFaithPoints(fauthPoint);
             p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
             p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
             p.sendUpdates(new MarketUpdate(board, p.getName()));
             p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
+            p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
+            p.sendUpdates(new ScoreUpdate(p, p.getName()));
+            //todo cancellare: aggiunto solo per provare il both payment
+
+            fauthPoint--;
             moreCoin++;
         }
 

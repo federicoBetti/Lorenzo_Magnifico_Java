@@ -1,6 +1,5 @@
 package project.server.network.socket;
 
-import project.configurations.Configuration;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
@@ -19,7 +18,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * questa classe rappresenta la casse ponte tra il model e la view. da qua ogni volta che vinee aggiornato qualcosa il player dice al suo
@@ -34,11 +32,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ObjectInputStream objectInputStream;
     private transient ObjectOutputStream objectOutputStream;
     private transient ServerDataHandler serverDataHandler;
-    private Object token;
+    boolean prayingtime = false;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
-        this.token = new Object();
         this.setOn(true);
         this.socketServer = socketServer;
         this.socket = socket;
@@ -46,6 +43,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         this.objectOutputStream.flush();
         this.objectInputStream = new ObjectInputStream(socket.getInputStream());
         serverDataHandler = new ServerDataHandler(this, objectInputStream, objectOutputStream);
+
     }
 
     @Override
@@ -59,22 +57,26 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             serverDataHandler.handleRequest(object);
 
 
-        synchronized (token) {
-            try {
-                token.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            synchronized (getToken()) {
+                try {
+                    getToken().wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-        while (true) {
-
+            while (true) {
                 object = objectInputStream.readObject();
                 System.out.println(object);
                 System.out.println("the client wants to do " + object);
                 serverDataHandler.handleRequest(object);
 
-        }
+                if ( prayingtime ){
+                    synchronized (getToken()) {
+                        getToken().wait();
+                    }
+                }
+            }
 
         } catch (CantDoActionException e) {
             cantDoAction();
@@ -84,15 +86,18 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             this.setOn(false);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }closeSocket(objectInputStream);
-         closeSocket(objectOutputStream);
-         closeSocket(socket);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        closeSocket(objectInputStream);
+        closeSocket(objectOutputStream);
+        closeSocket(socket);
     }
 
 
     //ok
     public void loginRequestAnswer(String nickname) throws IOException, ClassNotFoundException {
-        socketServer.loginRequest( nickname, this );
+        socketServer.loginRequest(nickname, this);
     }
 
     public void socketSkipTurn() {
@@ -116,22 +121,22 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
 
     public void choosePaymentForVentureCard() throws IOException, ClassNotFoundException {
-        int position = (int)objectInputStream.readObject();
+        int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
-        int paymentChosen = (int)objectInputStream.readObject();
+        int paymentChosen = (int) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
-        clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen );
+        clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen);
     }
 
     //ok
-    public void harvesterRequest() throws IOException, ClassNotFoundException{
+    public void harvesterRequest() throws IOException, ClassNotFoundException {
         String familyMemberColour = (String) objectInputStream.readObject();
-        int servantsNumber = (int)objectInputStream.readObject();
+        int servantsNumber = (int) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
         try {
-            harvester( familyMember, servantsNumber);
+            harvester(familyMember, servantsNumber);
         } catch (CantDoActionException e) {
             cantDoAction();
         }
@@ -141,11 +146,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     //int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct
     public void productionRequest() throws IOException, ClassNotFoundException {
         String familyMemberColour = (String) objectInputStream.readObject();
+        System.out.println("family colour: " + familyMemberColour);
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
+        System.out.println("familiar: " + familyMember);
         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
 
         try {
-            production(familyMember, cards );
+            production(familyMember, cards);
         } catch (CantDoActionException e) {
             cantDoAction();
         }
@@ -169,7 +176,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     //ok
     public void playLeaderCardRequest() throws IOException, ClassNotFoundException {
-        String leaderCardName =(String)objectInputStream.readObject();
+        String leaderCardName = (String) objectInputStream.readObject();
 
         try {
             playLeaderCard(leaderCardName);
@@ -180,7 +187,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     //ok
     public void discardLeaderCardRequest() throws IOException, ClassNotFoundException {
-        String leaderCardName =(String)objectInputStream.readObject();
+        String leaderCardName = (String) objectInputStream.readObject();
 
         try {
             discardLeaderCard(leaderCardName);
@@ -212,7 +219,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendAnswer(Object returnFromEffect) {
-        if ( isOn() ) {
+        if (isOn()) {
             try {
                 objectOutputStream.writeObject(returnFromEffect.toString());
 
@@ -226,7 +233,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendActionOk(){
+    public void sendActionOk() {
         try {
             objectOutputStream.writeObject(Constants.OK_OR_NO);
             objectOutputStream.flush();
@@ -245,7 +252,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     public void nicknameAlredyUsed() {
         sendString(Constants.NICKNAME_USED);
         try {
-            String newNickname = (String)objectInputStream.readObject();
+            String newNickname = (String) objectInputStream.readObject();
             loginRequestAnswer(newNickname);
         } catch (IOException e) {
             e.printStackTrace();
@@ -267,14 +274,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         try {
             objectOutputStream.writeObject(leaders.size());
 
-        for (LeaderCard leaderCard : leaders ) {
+            for (LeaderCard leaderCard : leaders) {
 
                 objectOutputStream.writeObject(leaderCard);
                 objectOutputStream.flush();
                 objectOutputStream.reset();
-        }
+            }
 
-        return (String) objectInputStream.readObject();
+            return (String) objectInputStream.readObject();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -304,12 +311,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
 
 
-     try {
+        try {
             System.out.println("sono in attesa qui");
-            Object choice =  objectInputStream.readObject();
-           System.out.println(choice.getClass());
-         System.out.println("la scelta è " + choice);
-            return (int)choice;
+            Object choice = objectInputStream.readObject();
+            System.out.println(choice.getClass());
+            System.out.println("la scelta è " + choice);
+            return (int) choice;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -321,8 +328,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
-            synchronized (token){
-                token.notify();
+            synchronized (getToken()) {
+                getToken().notify();
             }
             objectOutputStream.writeObject(Constants.MATCH_STARTED);
             objectOutputStream.writeObject(roomPlayers);
@@ -343,9 +350,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public int canUseBothPaymentMethod() {
         sendString(Constants.BOTH_PAYMENT_METHODS_AVAILABLE);
-        int choice = - 1;
+        int choice = -1;
         try {
-            choice =  (int)objectInputStream.readObject();
+            choice = (int) objectInputStream.readObject();
             return choice;
         } catch (IOException e) {
             e.printStackTrace();
@@ -363,15 +370,29 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendAskForPraying() {
-        if ( isOn() ) {
+    public int sendAskForPraying() {
+        if (isOn()) {
             sendAnswer(Constants.ASK_FOR_PRAYING);
+            int answer = -1;
+            try {
+                System.out.println("Ho mandato la richiesta di preghiere");
+                answer = (int) objectInputStream.readObject();
+                System.out.println(answer);
+                return answer;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
+        return -1;
     }
+
 
     @Override
     public void sendString(String message) {
-        if ( isOn() ) {
+        if (isOn()) {
             try {
                 objectOutputStream.writeObject(message);
                 objectOutputStream.flush();
@@ -390,7 +411,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendUpdates(Updates updates) {
-        if ( isOn() ) {
+        if (isOn()) {
             System.out.println(updates.getClass());
             sendAnswer(updates);
         }
@@ -403,12 +424,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         int choice = -1;
         try {
-        objectOutputStream.writeObject(kindOfChoice);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
+            objectOutputStream.writeObject(kindOfChoice);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
 
-        String choiceS = (String)objectInputStream.readObject();
-        choice = Integer.parseInt(choiceS);
+            String choiceS = (String) objectInputStream.readObject();
+            choice = Integer.parseInt(choiceS);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -418,10 +439,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendBonusTowerAction( TowerAction returnFromEffect ){
+    public void sendBonusTowerAction(TowerAction returnFromEffect) {
 
         //todo riguarda questo metodo, ho cancellato delle cose per le eccezioni, in toeria solo roba relativa alle eccezioni ma non vorrei aver fatto qualche danno
-        while ( true ) {
+        while (true) {
             System.out.println("SONO QUI NEL SEND BONUS TOWER ACTION");
             sendAnswer(returnFromEffect);
             String answer = null;
@@ -440,7 +461,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
             try {
                 System.out.println("faccio takebonus");
-                takeBonusDevCard( answer, returnFromEffect );
+                takeBonusDevCard(answer, returnFromEffect);
                 System.out.println("faccio return");
                 return;
             } catch (CantDoActionException c) {
@@ -458,8 +479,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect)  {
-        while ( true ) {
+    public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) {
+        while (true) {
             try {
 
                 sendAnswer(returnFromEffect);
@@ -501,14 +522,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
 
     @Override
-    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect)  {
+    public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
         sendAnswer(returnFromEffect);
         takePriviledgesInArow(returnFromEffect);
     }
 
 
-    private void takePriviledgesInArow(TakePrivilegesAction returnFromEffect)  {
-        for ( int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++ ){
+    private void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) {
+        for (int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++) {
             int privilegeNumber = 0;
             try {
                 privilegeNumber = (int) objectInputStream.readObject();
@@ -525,46 +546,49 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         int floor = 0;
         try {
-            floor = (int)objectInputStream.readObject();
-            System.out.println("floor: "+ floor);
+            floor = (int) objectInputStream.readObject();
+            System.out.println("floor: " + floor);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        clientTakeBonusDevelopementCard(towerColour, floor , returnFromEffect);
+        clientTakeBonusDevelopementCard(towerColour, floor, returnFromEffect);
 
     }
 
-    private ArrayList<BuildingCard> receiveListOfBuildingCard()  {
-        String messReceived = "start";
+    private ArrayList<BuildingCard> receiveListOfBuildingCard() {
+
         List<BuildingCard> myBuildings = takeMyProductionCards();
-        ListIterator<BuildingCard> iterator = myBuildings.listIterator();
+
         ArrayList<BuildingCard> cardsForProduction = new ArrayList<>();
+        try {
+            int size = (int) objectInputStream.readObject();
 
-        while (!messReceived.equals(Constants.STOP) ){
-            try {
-                messReceived = (String)objectInputStream.readObject();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            for (int i = 0; i < size; i++) {
+                String cardName = (String) objectInputStream.readObject();
+                for ( BuildingCard card : myBuildings ) {
+                    if (card.getName().equals(cardName))
+                        cardsForProduction.add(card);
+                }
             }
-
-            int currentCard = 0;
-            while ( iterator.hasNext() ){
-                if ( myBuildings.get(currentCard).getName().equals(messReceived))
-                    cardsForProduction.add(myBuildings.get(currentCard));
-                currentCard++;
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+
         return cardsForProduction;
     }
 
-    private void closeSocket(Closeable closeable ) {
+    private void closeSocket(Closeable closeable) {
         try {
             closeable.close();
         } catch (IOException e) {
         }
+    }
+
+    public void setPrayingtime(boolean prayingtime) {
+        this.prayingtime = prayingtime;
     }
 }

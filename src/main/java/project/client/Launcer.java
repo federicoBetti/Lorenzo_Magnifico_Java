@@ -3,6 +3,7 @@ package project.client;
 import com.diogonunes.jcdp.color.api.Ansi;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.ClientSetter;
+import project.client.ui.cli.InputException;
 
 import java.io.IOException;
 
@@ -31,6 +32,7 @@ class Launcer {
             int choice = 0;
             try {
                 choice = Integer.parseInt(keyboard.readLine());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

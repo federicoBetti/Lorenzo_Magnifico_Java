@@ -3,24 +3,58 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.controller.effects.realeffects.Effects;
+import project.model.FamilyMember;
+import project.model.Harvester;
+import project.model.Production;
+import project.model.Tile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by raffaelebongo on 05/06/17.
  */
 public class HarvesterContext extends AbstractContext {
+    List<Harvester> harvesterZone;
+    Tile bonusTile;
 
-    public HarvesterContext(Cli cli ){
+    public HarvesterContext(Cli cli, List<Harvester> harvesterZone, Tile bonusTile){
         super(cli);
+        this.harvesterZone = harvesterZone;
+        this.bonusTile = bonusTile;
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp );
         map.put(CliConstants.SHOW_HARVESTER_ZONE, this::showHarvesterZone );
+        map.put(CliConstants.SHOW_BONUS_TILE, this:: showBonusTile );
         printHelp();
     }
 
+    private void showBonusTile() {
+        pBlue.print(bonusTile.getTileNumber() + ") ");pRed.println("Production effects: ");
+
+        int i = 1;
+        for ( Effects effect : bonusTile.takeProductionResource() ){
+            pYellow.println( i + ") " + effect.toScreen());
+            i++;
+        }
+        pRed.println("\nHarvester Bonus: ");
+        int j = 1;
+        for ( Effects effect : bonusTile.takeHarvesterResource() ){
+            pYellow.println( j + ") " + effect.toScreen());
+            j++;
+        }
+    }
+
     private void showHarvesterZone() {
+        int i = 1;
+        pRed.println("Harvester zone: ");
+        for ( Harvester harvester : harvesterZone ){
+            pBlue.print(i + ") ");pRed.print("Player colour: ");pYellow.println(harvester.getFamiliarOnThisPosition().getFamilyColour());
+            pRed.print("   Familiar colour: ");pYellow.println(harvester.getFamiliarOnThisPosition().getMyColour());
+            i++;
+        }
     }
 
     @Override
@@ -30,26 +64,27 @@ public class HarvesterContext extends AbstractContext {
             pYellow.println(entry.getKey());
 
         pRed.println("The main action is:");
-        pYellow.println("[position(int)-familiarColour-servantsNumber(int)]\nposition: 0, 1, 2, 3 " +
-                "\ntowerColour: green, yellow, purple, blue\nservantsNumber: any number ");
+        pBlue.println("[familiarColour-servantsNumber(int)]");
+        pRed.print("Familiar Colour: ");
+        for (FamilyMember familyMember : cli.getMyFamilymembers() ){
+            if ( !familyMember.isPlayed() )
+                pYellow.print(familyMember.getMyColour() + "   ");
+        }
+        pRed.print("Servants number: ");pYellow.println("any number");
     }
 
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length == 3 ))
+        if(!( parameters.length == 2 ))
             throw new InputException();
 
-        if( parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))
-            throw new InputException();
-        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 )
+        checkFamilyMemberColour(parameters[0]);
+
+        if( !(Character.isDigit(parameters[1].charAt(0))))
             throw new InputException();
 
-        checkFamilyMemberColour(parameters[1]);
-
-        if( parameters[2].length() == 1 && Character.isDigit(parameters[2].charAt(0)))
-            throw new InputException();
     }
 
     @Override

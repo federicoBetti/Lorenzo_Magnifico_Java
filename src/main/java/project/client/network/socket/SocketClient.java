@@ -123,17 +123,17 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(name);
     }
 
-    @Override
-    public void prayOrNot(boolean action) {
-
-        if (action)
-            sendGenericObject(Constants.PRAY);
-        else
-            sendGenericObject(Constants.DONT_PRAY);
-    }
-
     public void askForPraying() {
-        clientSetter.askForPraying();
+        int answer = clientSetter.askForPraying();
+        System.out.println("il res viene mandato: " + clientSetter.askForPraying());
+
+        try {
+            objectOutputStream.writeObject(answer);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 
     public void itsMyTurn() {
@@ -232,7 +232,8 @@ public class SocketClient extends AbstractClient {
     }
 
     public void bothPaymentsAvailable() {
-        clientSetter.bothPaymentsAvailable();
+        int costChoice = clientSetter.bothPaymentsAvailable();
+        sendGenericObject(costChoice);
     }
 
     @Override
@@ -327,6 +328,11 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(nickname);
     }
 
+    @Override
+    public void prayed() {
+        clientSetter.prayed();
+    }
+
     private void createWaitingForYourTurnContext() {
         clientSetter.waitingForYourTurn();
     }
@@ -367,8 +373,9 @@ public class SocketClient extends AbstractClient {
     }
 
     private void sendAllStrings(List<String> parameters) {
-
+        sendGenericObject(parameters.size());
         for (String elem : parameters) {
+
             try {
                 objectOutputStream.writeObject(elem);
                 objectOutputStream.flush();

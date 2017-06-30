@@ -80,6 +80,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         int coinsMore = 0;
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
+
         int diceBonus = personalBoard(player).getBonusOnActions().getVenturesBonus();
         boolean[] canTakeCardFromEffect = new boolean[2];
         int i = 0;
@@ -88,21 +89,24 @@ public class BasicCheckFunctions implements AllCheckFunctions{
                     v.getStoneRequired() <= personalBoard(player).getStone() &&
                     (v.getCoinsRequired() + coinsMore)<= personalBoard(player).getCoins() &&
                     v.getMilitaryRequired() <= player.getScore().getMilitaryPoints() &&
-                    (valueOfFamilyMember + diceBonus + getServants(player) )>= zoneDiceCost
-                    )
+                    (valueOfFamilyMember + diceBonus + getServants(player) )>= zoneDiceCost)
                 canTakeCardFromEffect[i] = true;
             i++;
         }
+
         if (canTakeCardFromEffect[0] && canTakeCardFromEffect[1])
             return 3;
+
         else if (canTakeCardFromEffect[0] && !canTakeCardFromEffect[1]){
             card.getVenturesCost().get(0).setToPaid(true);
             return 1;
         }
+
         else if (!canTakeCardFromEffect[0] && canTakeCardFromEffect[1]){
             card.getVenturesCost().get(1).setToPaid(true);
             return 2;
         }
+
         else
             return 0;
 

@@ -20,6 +20,11 @@ public class MatchStartedContext extends AbstractContext {
     }
 
     @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
+
+    @Override
     public void mainContextMethod(String action) throws InputException, IOException {
 
     }

@@ -12,7 +12,6 @@ import project.model.Tile;
 import project.server.network.rmi.RMIClientToServerInterface;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -133,7 +132,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
-    @Override
+  //todo non dobbiamo usare solo askForPraying?
     public void prayOrNot(boolean action) {
         try {
             myServer.prayOrNot(myUniqueId,action);
@@ -316,8 +315,13 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
+    public void prayed() {
+        //todo arriva alla Ui per confermare che la scelta della preghiera, cioè che la preghiera è stata fatta.
+    }
+
+    @Override
     public int canUseBothPaymentMethod() {
-        return clientSetter.bothPaymentsAvailableRMI();
+        return clientSetter.bothPaymentsAvailable();
     }
 
     @Override

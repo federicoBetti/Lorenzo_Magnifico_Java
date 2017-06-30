@@ -12,7 +12,6 @@ import project.server.network.PlayerHandler;
 import project.server.network.exception.CantDoActionException;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -181,12 +180,13 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
-    public void sendAskForPraying() {
+    public int sendAskForPraying() {
         try {
             myClient.askForPraying();
         } catch (RemoteException e) {
             //todo gestire eccezzione di rete
         }
+        return 0;
     }
 
     @Override

@@ -36,10 +36,12 @@ public class Gui extends AbstractUI {
         mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() ); //todo towerAction.printBonusAction());
     }
 
-    @Override
+    //todo ho rinominato both payment availableRMI con bothPaymentAvailable visto che lo dovevo usare pure io ma mi sa che ce l'avevi già
+    //todo cmq ce l'avevi in todo sotto. non ho cancellato nulla, solo cambiato il nome. controlla un secondo la situa.
+   /* @Override
     public void bothPaymentsAvailable() {
         mainController.bothPaymentAvaiable();
-    }
+    }   */
 
 
     @Override
@@ -72,8 +74,8 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void askForPraying() {
-        mainController.askForPraying();
+    public int askForPraying() {
+        return mainController.askForPraying();
     }
 
     @Override
@@ -156,6 +158,11 @@ public class Gui extends AbstractUI {
     }
 
     @Override
+    public void prayed() {
+        //todo lo uso quando si sceglie di pregare. Nella cli arriva e stampa una stringa dicendo che la preghiera è stata fatta
+    }
+
+    @Override
     public void loginSucceded() {
         mainController.loginSucceded();
     }
@@ -165,9 +172,8 @@ public class Gui extends AbstractUI {
         return null;
     }
     @Override
-    public int booleanChoosingRMI() {
-        //todo
-        return 0;
+    public int bothPaymentsAvailable() {
+        return mainController.bothPaymentAvaiable();
     }
 
     @Override

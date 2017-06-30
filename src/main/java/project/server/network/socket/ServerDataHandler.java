@@ -29,12 +29,14 @@ class ServerDataHandler {
     private ObjectOutputStream objectOutputStream;
     private Map<String, MethodsHadler> map;
     private MethodsHadler methodsHadler;
+    int counterSkipTurn;
 
     public ServerDataHandler(SocketPlayerHandler socketPlayerHandler, ObjectInputStream input, ObjectOutputStream output ){
         map = new HashMap<>();
         this.socketPlayerHandler = socketPlayerHandler;
         objectInputStream = input;
         objectOutputStream = output;
+        counterSkipTurn = 0;
         loadMap();
     }
 
@@ -57,7 +59,12 @@ class ServerDataHandler {
         //todo completare con tutte le stringhe giuste e i metodi
     }
 
-    private void skipTurn() {
+    private void skipTurn() {//todo cercare di sicnronizzare qui
+        if ( counterSkipTurn == 4 ) {
+            socketPlayerHandler.setPrayingtime(true);
+            counterSkipTurn = 0;
+            socketPlayerHandler.socketSkipTurn();
+        }
         socketPlayerHandler.socketSkipTurn();
     }
 

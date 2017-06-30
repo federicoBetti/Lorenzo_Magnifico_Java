@@ -47,7 +47,7 @@ public class PersonalBoardUpdate extends Updates implements Serializable {
         if ( cards.size() == 0 )
             return " ";
 
-        int i = 0;
+        int i = 1;
         String res = i + ") ";
         for ( DevelopmentCard card : cards ) {
             res += card.getName() +"\n";

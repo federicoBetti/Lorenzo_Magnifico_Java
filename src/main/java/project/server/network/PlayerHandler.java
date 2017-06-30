@@ -21,9 +21,11 @@ public abstract class PlayerHandler extends Player {
     private transient AllCheckFunctions checkFunctions;
     final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
     private LeaderCardRequirements leaderCardRequirements;
+    Object token;
 
     protected PlayerHandler(){
         super();
+        token = new Object();
         leaderCardRequirements = new LeaderCardRequirements();
         checkFunctions = new BasicCheckFunctions();
     }
@@ -81,7 +83,7 @@ public abstract class PlayerHandler extends Player {
             return canUseBothPaymentMethod();
         }
         else
-            return canTakeVenturesCard - 1;
+            return canTakeVenturesCard - 1; //indice del costo pagabile
     }
 
     protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {
@@ -175,15 +177,15 @@ public abstract class PlayerHandler extends Player {
         gameActions().harvester(position,familyM,servantsNumber,this);
     }
 
-    private int firstFreePosition(List<? extends Position> harvesterZone, String familyColour) throws CantDoActionException {
-        for (Position p: harvesterZone){
+    private int firstFreePosition(List<? extends Position> zone, String familyColour) throws CantDoActionException {
+        for (Position p: zone){
             if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour))
                 throw new CantDoActionException();
         }
-        if (room.numberOfPlayerOn() > 2 && harvesterZone.size() > 0)
+        if (room.numberOfPlayerOn() > 2 && zone.size() > 0)
             throw new CantDoActionException();
 
-        return harvesterZone.size();
+        return zone.size();
     }
 
     /**
@@ -207,7 +209,16 @@ public abstract class PlayerHandler extends Player {
         int maxValueOfProduction;
         List<Production> productionZone = room.getBoard().getProductionZone();
         boolean canTakeCards;
-        int position = firstFreePosition(productionZone,familyM.getFamilyColour());
+        int position;
+
+        if ( productionZone.isEmpty() )
+            position = 0;
+        else
+            position = firstFreePosition(productionZone,familyM.getFamilyColour());
+
+        System.out.println("fM: " + familyM.getMyValue());
+        System.out.println("personalBoard bonus on action: " + getPersonalBoardReference().getBonusOnActions());
+        System.out.println("production Bonus: " + getPersonalBoardReference().getBonusOnActions().getProductionBonus());
 
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
 
@@ -383,7 +394,7 @@ public abstract class PlayerHandler extends Player {
     /**
      * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto
      */
-    public abstract void sendAskForPraying(); //
+    public abstract int sendAskForPraying(); //
 
     public abstract void sendString( String message );
 
@@ -443,4 +454,8 @@ public abstract class PlayerHandler extends Player {
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
     public abstract int chooseTile(ArrayList<Tile> tiles);
+
+    public Object getToken() {
+        return token;
+    }
 }

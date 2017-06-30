@@ -25,7 +25,6 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void discardLeaderCard(String name)  ;
 
-    public abstract void prayOrNot(boolean action)  ;
 
     public abstract void sendExitToBonusAction()  ;
 
@@ -61,6 +60,8 @@ public abstract class AbstractClient implements Serializable{
     public abstract void cantDoAction();
 
     public abstract void newNickname(String nickname);
+
+    public abstract void prayed();
 
 
     //da server a client

@@ -30,7 +30,7 @@ public abstract class AbstractUI {
 
     public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd);
 
-    public abstract void askForPraying();
+    public abstract int askForPraying();
 
     public abstract void actionOk();
 
@@ -38,7 +38,7 @@ public abstract class AbstractUI {
 
     public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
 
-    public abstract void bothPaymentsAvailable();
+
 
 
 
@@ -67,7 +67,7 @@ public abstract class AbstractUI {
 
     public abstract void loginSucceded();
 
-    public abstract int booleanChoosingRMI();
+    public abstract int bothPaymentsAvailable();
 
 
     //astratto?
@@ -83,4 +83,6 @@ public abstract class AbstractUI {
     public abstract int tileDraft(List<Tile> tiles);
 
     public abstract void newNickname(String nickname);
+
+    public abstract void prayed();
 }

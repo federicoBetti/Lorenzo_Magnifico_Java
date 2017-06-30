@@ -46,8 +46,7 @@ public abstract class AbstractContext {
 
     public abstract void printHelp();
 
-    public void checkValidInput( String input ) throws InputException{
-    }
+    public abstract void checkValidInput( String input ) throws InputException;
 
     protected abstract void mainContextMethod(String action) throws InputException, IOException;
 

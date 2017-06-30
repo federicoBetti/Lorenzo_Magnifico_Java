@@ -3469,6 +3469,61 @@
 		]
 	}
 } ,
+
+
+	{
+		"anagrafic":{
+			"type":"ventureCard",
+			"name":"supportToTheBishop",
+			"period":1,
+			"choicePe": true,
+			"cost":[
+				{
+					"stoneRequired":1,
+					"woodRequired":1,
+					"coinsRequired":2,
+					"diceCost":0,
+					"militaryRequired":0,
+					"militaryCost":0
+				},
+				{
+					"militaryRequired":4,
+					"militaryCost":2
+				}
+			]
+		},
+
+
+
+		"immediateEffect":{
+			"tris":[
+				{"type":"takeRop", "parameter":"faithPoint", "quantity":3 }
+			]
+		},
+
+
+
+		"permanentEffect":{
+			"poker":[
+				{"resourceEarnedFromExchange":" ",
+
+					"effectCost":{
+						"stoneRequired":0,
+						"woodRequired":0,
+						"servantsRequired":0,
+						"coinsRequired":0,
+						"militaryRequired":0,
+						"militaryCost":0
+					},
+
+					"type":"takeRop",
+					"parameter":"victoryPoint",
+					"quantity":1
+				}
+			]
+		}
+	} ,
+
 {	
 	"anagrafic":{
 		"type":"ventureCard",
@@ -3740,57 +3795,13 @@
 		]
 	}
 } ,
-{	
-	"anagrafic":{
-		"type":"ventureCard",
-		"name":"supportToTheBishop",
-		"period":0,
-		"choicePe": true,
-		"cost":[
-		{
-			"stoneRequired":1,
-			"woodRequired":1,
-			"coinsRequired":2,
-			"diceCost":0,
-			"militaryRequired":0,
-			"militaryCost":0
-		},
-		{
-			"militaryRequired":4,
-			"militaryCost":2
-		}
-		]	//todo mettere array a tutti i costi
-	},
 
-	
-	"immediateEffect":{
-		"tris":[ 
-		{"type":"takeRop", "parameter":"faithPoint", "quantity":3 }
-		]
-	},
 
-	
-	
-	"permanentEffect":{
-		"poker":[
-		{"resourceEarnedFromExchange":" ",
-		
-		"effectCost":{
-			"stoneRequired":0,
-			"woodRequired":0,
-			"servantsRequired":0,
-			"coinsRequired":0,
-			"militaryRequired":0,
-			"militaryCost":0
-			},
 
-		"type":"takeRop",
-		"parameter":"victoryPoint",
-		"quantity":1
-		}
-		]
-	}
-} ,
+	//todo support to the bishop va qua
+
+
+
 {	
 	"anagrafic":{
 		"type":"ventureCard",

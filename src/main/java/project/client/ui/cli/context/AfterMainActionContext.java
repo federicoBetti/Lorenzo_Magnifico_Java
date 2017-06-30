@@ -1,6 +1,7 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
+import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
 
@@ -17,7 +18,12 @@ public class AfterMainActionContext extends AbstractContext {
         map.put(Constants.SKIP_TURN, this::skipTurn );
         map.put(Constants.PLAY_LEADER_CARD_AMA, this:: playLeaderCardAma );
         map.put(Constants.DISCARD_LEADER_CARD_AMA, this:: discardLeaderCardAma );
+        map.put(CliConstants.SHOW_POINTS, this::showPoints );
         printHelp();
+    }
+
+    private void showPoints() {
+        cli.showPoints();
     }
 
     private void discardLeaderCardAma() {
@@ -37,6 +43,11 @@ public class AfterMainActionContext extends AbstractContext {
         pRed.println("You have done successfully your main action. The currents available actions are:\n");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             pYellow.println(entry.getKey());
+    }
+
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
     }
 
     @Override

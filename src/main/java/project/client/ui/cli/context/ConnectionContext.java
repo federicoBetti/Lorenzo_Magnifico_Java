@@ -21,6 +21,11 @@ public class ConnectionContext extends AbstractContext {
     }
 
     @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
+
+    @Override
     public void mainContextMethod(String kindOfConnection) throws InputException, IOException {
         cli.setConnectionType(kindOfConnection);
     }

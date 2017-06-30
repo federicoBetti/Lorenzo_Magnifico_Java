@@ -43,6 +43,11 @@ class MessagesFromServerHandler {
         map.put(Constants.TIMER_TURN_DELAYED, this:: timerTurnDelayed );
         map.put(Constants.TILE_DRAFT, this::tileDraft );
         map.put(Constants.LEADER_DRAFT, this:: leaderDraft );
+        map.put(Constants.PRAYED, this:: prayed );
+    }
+
+    private void prayed() {
+        client.prayed();
     }
 
     private void leaderDraft() {

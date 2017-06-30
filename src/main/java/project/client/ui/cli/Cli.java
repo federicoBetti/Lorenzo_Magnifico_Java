@@ -4,16 +4,12 @@ import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
-import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.Updates;
-import project.model.Council;
-import project.model.ExcommunicationZone;
-import project.model.Tile;
-import project.model.Tower;
+import project.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +21,6 @@ import java.util.concurrent.LinkedBlockingDeque;
  * Created by raffaelebongo on 01/06/17.
  */
 public class Cli extends AbstractUI {
-    //todo fare end turn context e tutto il via dicendo
 
     private ClientSetter clientSetter; //all the operation have to pass across this class
     private AbstractContext context;
@@ -33,7 +28,9 @@ public class Cli extends AbstractUI {
     private int numberOfPlayers;
     private String playerColor;
     private boolean firstRound;
+    FamilyMember[] myFamilymembers;
     private volatile BlockingDeque<String> choiceQueue;
+    Tile bonusTile;
 
 
     public Cli(ClientSetter clientSetter) {
@@ -61,21 +58,17 @@ public class Cli extends AbstractUI {
 
     @Override
     public void familyMemberUpdate(Updates update) {
+        myFamilymembers = update.doUpdateFamilyMembers();
     }
 
     @Override
     public void boardUpdate(Updates update) {
         if ( !firstRound ) {
             context.getpBlue().println(update.toScreen());
-            context.getpRed().println("For further information type a show command.");
         }
     }
 
     //context methods
-    @Override
-    public void bothPaymentsAvailable() {
-        context = new BothPaymentsVentureCardsContext(this);
-    }
 
 
     public void mainContext() {
@@ -120,24 +113,7 @@ public class Cli extends AbstractUI {
         context = new WaitingForMatchStart(this);
     }
 
-    @Override
-    public int booleanChoosingRMI() {
-        //todo fare la print che chiedo qualcosa
-        try {
-            return Integer.parseInt(SingletonKeyboard.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
-
-    public void bonusHarvesterParameters(String input) throws InputException {
-        context.checkValidInput(input);
-        String[] parameters = input.split("-");
-        clientSetter.bonusHarvesterAction(Integer.parseInt(parameters[0]));
-
-    }
 
     @Override
     public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) {
@@ -186,7 +162,7 @@ public class Cli extends AbstractUI {
     }
 
     public void harvester() {
-        context = new HarvesterContext(this);
+        context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), bonusTile );
     }
 
     public void goToCouncil() {
@@ -194,7 +170,7 @@ public class Cli extends AbstractUI {
     }
 
     public void production() {
-        context = new ProductionContext(this);
+        context = new ProductionContext(this, clientSetter.getUiBoard().getProductionZone(), bonusTile, clientSetter.getUiPersonalBoard().getBuildings());
     }
 
     public void leaderCardContext() {
@@ -203,10 +179,6 @@ public class Cli extends AbstractUI {
 
     public void discardLeaderCardContext() {
         context = new DiscardLeaderCardContext(this);
-    }
-
-    public void askForPraying() {
-        context = new ExcomunicationContext(this);
     }
 
     public void marketContext() {
@@ -224,7 +196,7 @@ public class Cli extends AbstractUI {
 
     @Override
     public void takeBonusCard(TowerAction towerAction) {
-        context = new TakeBonusCard(this, towerAction);
+        context = new TakeBonusCard(this, towerAction, clientSetter.getUiBoard().getAllTowers());
     }
 
     public void nicknameAlreadyUsed() {
@@ -276,7 +248,6 @@ public class Cli extends AbstractUI {
     }
 
     public void chooseHarversterParameters(String lineFromKeyBoard) {
-        System.out.println("QUI");
         try {
             context.checkValidInput(lineFromKeyBoard);
         } catch (InputException e) {
@@ -318,21 +289,6 @@ public class Cli extends AbstractUI {
 
     public void discardLeaderCard(String name) {    //todo va controllato sul server
         clientSetter.discardLeaderCard(name);
-    }
-
-    public void prayOrNot(String action) {
-        boolean yesOrNo;
-        try {
-            context.checkValidInput(action);
-        } catch (InputException e) {
-            context.printHelp();
-            return;
-        }
-        if (action.equals("yes"))
-            yesOrNo = true;
-        else
-            yesOrNo = false;
-        clientSetter.prayOrNot(yesOrNo);
     }
 
     public void choosePayment(String payment) {
@@ -424,12 +380,11 @@ public class Cli extends AbstractUI {
 
                     lineFromKeyBoard = keyboard.readLine();
                     if (choice) {
-                        System.out.println("sono qui");
+                        System.out.println("Sono in scelta");
                         choiceQueue.add(lineFromKeyBoard);
-                        System.out.println("fattooo ");
-                        continue;
                     }
                     else if (context != null) {
+                        System.out.println("Sono in Contesto");
                         context.doAction(lineFromKeyBoard);
                     }
                     } catch(InputException e){
@@ -442,7 +397,70 @@ public class Cli extends AbstractUI {
             }
         }
 
+    @Override
+    public int askForPraying() {
+        choice = true;
+        context = new ExcomunicationContext(this);
+        String prayOrNot;
 
+        try {
+            prayOrNot = choiceQueue.take();
+            System.out.println("stringa presa da tastiera" + prayOrNot);
+            choice = false;
+            return Integer.parseInt(prayOrNot);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int bothPaymentsAvailable() {
+        choice = true;
+        context = new BothPaymentsVentureCardsContext(this);
+        String costChoosen;
+        while (true) {
+            try {
+                costChoosen = choiceQueue.take();
+                context.checkValidInput(costChoosen);
+                break;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InputException e) {
+                context.printHelp();
+            }
+        }
+        choice = false;
+        return Integer.parseInt(costChoosen);
+    }
+
+    @Override
+    public String getLeaderCardChosen(List<LeaderCard> leaders) {
+        choice = true;
+        context = new LeaderCardDraftContext(this, leaders );
+        choiceQueue = new LinkedBlockingDeque<>();
+        String cardChoosen;
+        while (true) {
+            try {
+                cardChoosen = choiceQueue.take();
+                context.checkValidInput(cardChoosen);
+                break;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InputException e) {
+                context.printHelp();
+            }
+        }
+        choice = false;
+        return cardChoosen;
+    }
+
+    public void bonusHarvesterParameters(String input) throws InputException {
+        context.checkValidInput(input);
+        String[] parameters = input.split("-");
+        clientSetter.bonusHarvesterAction(Integer.parseInt(parameters[0]));
+
+    }
 
     @Override
     public int getScelta() {
@@ -458,36 +476,31 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public String getLeaderCardChosen(List<LeaderCard> leaders) {
-        choice = true;
-        context = new LeaderCardDraftContext(this, leaders );
-        choiceQueue = new LinkedBlockingDeque<>();
-        String cardChoosen = null;
-        try {
-             cardChoosen = choiceQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        choice = false;
-        return cardChoosen;
-    }
-
-    @Override
     public int tileDraft(List<Tile> tiles) {
 
         choice = true;
         context = new TileDraftContext(this, tiles);
         choiceQueue = new LinkedBlockingDeque<>();
-        String tileChosen = null;
-        System.out.println("aspetto di scegliere");
-        try {
-            tileChosen = choiceQueue.take();
-        } catch (InterruptedException e) {
-            System.out.println("eccezione qui");
+        String tileChosen;
+
+        while (true) {
+            try {
+                tileChosen = choiceQueue.take();
+                context.checkValidInput(tileChosen);
+                break;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InputException e) {
+                context.printHelp();
+            }
         }
 
-        System.out.println("SCELTO " + tileChosen);
+        for ( Tile tile : tiles )
+            if ( tile.getTileNumber() == Integer.parseInt(tileChosen) )
+                bonusTile = tile;
+
         choice = false;
+        context.getpBlue().println("Bonus Tile choosen! Wait for the other players'choice");
         return Integer.parseInt(tileChosen);
 
     }
@@ -495,6 +508,11 @@ public class Cli extends AbstractUI {
     @Override
     public void newNickname(String nickname) {
         clientSetter.newNickname(nickname);
+    }
+
+    @Override
+    public void prayed() {
+        context.getpRed().println("You have prayed and you did not take the excommunication!");
     }
 
 
@@ -516,9 +534,8 @@ public class Cli extends AbstractUI {
     public void setFirstRound(boolean firstRound) {
         this.firstRound = firstRound;
     }
+
+    public FamilyMember[] getMyFamilymembers() {
+        return myFamilymembers;
+    }
 }
-
-
-
-
-

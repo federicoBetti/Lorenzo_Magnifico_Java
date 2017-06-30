@@ -18,8 +18,8 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
     @Override
     public void printHelp() {
         pRed.println("The main action is:");
-        pYellow.println("[0] for the first cost\n" +
-                        "[1] for the second cost");
+        pBlue.print("[0]");pYellow.println(" for choosing the first cost");
+        pBlue.print("[1]");pYellow.println(" for choosing the second cost");
     }
 
     public void checkValidInput( String input ) throws InputException{
@@ -31,6 +31,6 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-        cli.choosePayment(action);
+
     }
 }

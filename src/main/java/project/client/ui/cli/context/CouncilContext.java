@@ -4,6 +4,7 @@ import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.model.Council;
+import project.model.FamilyMember;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,7 +42,12 @@ public class CouncilContext extends AbstractContext {
         pRed.println("The main action is:");
         pBlue.println("[priviledgeNumber(int)-familiarColour]");
         pRed.print("priviledgeNumber: "); pYellow.println("0, 1, 2, 3, 4, 5 ");
-        pRed.print("familiarColour: "); pYellow.println("black, neutral, orange, white");
+        pRed.print("Familiar Colour: ");
+        for (FamilyMember familyMember : cli.getMyFamilymembers() ){
+            if ( !familyMember.isPlayed() )
+                pYellow.print(familyMember.getMyColour() + "   ");
+        }
+        pYellow.println("");
     }
 
     @Override
