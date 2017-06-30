@@ -22,7 +22,7 @@ public class MainContext extends AbstractContext {
         map.put(CliConstants.SHOW_EXCOMUNICATION_TILES, this:: showExcomunicationsTiles );
         map.put(CliConstants.SHOW_PERSONAL_BOARD, this:: showPersonalBoard );
         map.put(CliConstants.SHOW_DICES_VALUE, this::showDicesValue );
-        map.put(CliConstants.JUMP_TURN, this::jumpTurn );
+        map.put(Constants.SKIP_TURN, this::jumpTurn );
         map.put(Constants.TAKE_DEV_CARD, this::takeDevCard );
         map.put(Constants.GO_TO_COUNCIL_PALACE, this::goToCouncil);
         map.put(Constants.PRODUCTION, this::production );
@@ -62,6 +62,7 @@ public class MainContext extends AbstractContext {
         pRed.println("You are in the main context! The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             pBlue.println(entry.getKey());
+        pRed.println("Type a command");
     }
 
     private void takeDevCard() {
@@ -79,6 +80,7 @@ public class MainContext extends AbstractContext {
 
     private void showPersonalBoard() {
         cli.showPersonalBoard();
+        pYellow.print("Type ");pRed.print("[help] ");pYellow.println("for watch the list of commands available");
     }
 
     private void showDicesValue() {

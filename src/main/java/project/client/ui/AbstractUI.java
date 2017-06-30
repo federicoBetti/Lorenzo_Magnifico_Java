@@ -38,7 +38,7 @@ public abstract class AbstractUI {
 
     public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
 
-    public abstract void bothPaymentsAvailable();
+
 
 
 
@@ -67,7 +67,7 @@ public abstract class AbstractUI {
 
     public abstract void loginSucceded();
 
-    public abstract int booleanChoosingRMI();
+    public abstract int bothPaymentsAvailable();
 
 
     //astratto?

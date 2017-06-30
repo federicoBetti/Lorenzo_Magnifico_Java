@@ -81,7 +81,7 @@ public abstract class PlayerHandler extends Player {
             return canUseBothPaymentMethod();
         }
         else
-            return canTakeVenturesCard - 1;
+            return canTakeVenturesCard - 1; //indice del costo pagabile
     }
 
     protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {
@@ -174,15 +174,15 @@ public abstract class PlayerHandler extends Player {
         gameActions().harvester(position,familyM,servantsNumber,this);
     }
 
-    private int firstFreePosition(List<? extends Position> harvesterZone, String familyColour) throws CantDoActionException {
-        for (Position p: harvesterZone){
+    private int firstFreePosition(List<? extends Position> zone, String familyColour) throws CantDoActionException {
+        for (Position p: zone){
             if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour))
                 throw new CantDoActionException();
         }
-        if (room.numberOfPlayerOn() > 2 && harvesterZone.size() > 0)
+        if (room.numberOfPlayerOn() > 2 && zone.size() > 0)
             throw new CantDoActionException();
 
-        return harvesterZone.size();
+        return zone.size();
     }
 
     /**
@@ -206,7 +206,16 @@ public abstract class PlayerHandler extends Player {
         int maxValueOfProduction;
         List<Production> productionZone = room.getBoard().getProductionZone();
         boolean canTakeCards;
-        int position = firstFreePosition(productionZone,familyM.getFamilyColour());
+        int position;
+
+        if ( productionZone.isEmpty() )
+            position = 0;
+        else
+            position = firstFreePosition(productionZone,familyM.getFamilyColour());
+
+        System.out.println("fM: " + familyM.getMyValue());
+        System.out.println("personalBoard bonus on action: " + getPersonalBoardReference().getBonusOnActions());
+        System.out.println("production Bonus: " + getPersonalBoardReference().getBonusOnActions().getProductionBonus());
 
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
 

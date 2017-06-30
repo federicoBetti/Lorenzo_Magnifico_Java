@@ -1,5 +1,6 @@
 package project.controller.effects.realeffects;
 
+import project.controller.cardsfactory.*;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
@@ -21,30 +22,26 @@ public class EarnOneCoinForEachColouredCard implements Effects {
         int coinsToAdd = 0;
         switch( cardColor ){
             case"yellow":
-                while ( player.getPersonalBoardReference().getBuildings().get(coinsToAdd) != null ){
+                for (BuildingCard card : player.getPersonalBoardReference().getBuildings() )
                     coinsToAdd++;
-                }
                 player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsToAdd);
                 break;
 
             case"green":
-                while ( player.getPersonalBoardReference().getTerritories().get(coinsToAdd) != null ){
+                for (TerritoryCard card : player.getPersonalBoardReference().getTerritories() )
                     coinsToAdd++;
-                }
                 player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsToAdd);
                 break;
 
             case"blue":
-                while ( player.getPersonalBoardReference().getCharacters().get(coinsToAdd) != null ){
+                for (CharacterCard card : player.getPersonalBoardReference().getCharacters() )
                     coinsToAdd++;
-                }
                 player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsToAdd);
                 break;
 
             case"purple":
-                while ( player.getPersonalBoardReference().getVentures().get(coinsToAdd) != null ){
+                for (VenturesCard card : player.getPersonalBoardReference().getVentures() )
                     coinsToAdd++;
-                }
                 player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsToAdd);
                 break;
 

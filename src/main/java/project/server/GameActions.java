@@ -96,6 +96,7 @@ public class GameActions {
     }
 
 
+    //todo perchè ce ne sono due uguali? questo è solo per le bonus?
     public void takeVenturesCard(Tower zone, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment, int diceFamiliarValue) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -479,8 +480,10 @@ public class GameActions {
 
 
         getSupportFunctions(player).setFamiliar(harvesterZone, familyM);
-        if (position == 0) malusByField = 0;
-        else malusByField = 3;
+        if (position == 0)
+            malusByField = 0;
+        else
+            malusByField = 3;
         actionValue = familyM.getMyValue() + servantsNumber - malusByField + cardBonus;
         harvesterList.add(harvesterZone);
 
@@ -488,7 +491,7 @@ public class GameActions {
 
         player.sendActionOk();
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
-        HarvesterUpdate harvesterUpdate = new HarvesterUpdate((ArrayList<Harvester>) board.getHarvesterZone(), player.getName());
+        HarvesterUpdate harvesterUpdate = new HarvesterUpdate( board.getHarvesterZone(), player.getName());
         broadcastUpdates(harvesterUpdate);
     }
 
@@ -497,8 +500,10 @@ public class GameActions {
         int servantsUsed = getSupportFunctions(player).payServants(intServantsNumber,0);
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
 
-        for (Effects e :player.getPersonalBoardReference().getMyTile().takeHarvesterResource())
+        for (Effects e :player.getPersonalBoardReference().getMyTile().takeHarvesterResource()) {
             e.doEffect(player);
+            System.out.println("effetto della tile è: " + e.getClass());
+        }
 
         for (TerritoryCard card : player.getPersonalBoardReference().getTerritories()) {
             if (harvesterValue >= card.getCost().getDiceCost())
@@ -506,6 +511,7 @@ public class GameActions {
         }
 
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
+        player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 
 

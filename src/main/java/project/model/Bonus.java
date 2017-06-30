@@ -8,30 +8,30 @@ import java.io.Serializable;
 public class Bonus implements Serializable {
 
 
-    private int bonusForTakingTerritory = 0;
+    private int bonusForTakingTerritory;
 
-    private int productionBonus = 0;
+    private int productionBonus;
 
-    private int harvesterBonus = 0;
+    private int harvesterBonus;
 
     private BonusForTakingCharacter charactersBonus;
 
     private BonusForTakingBuilding buildingsBonus;
 
-    private int bonusForTakingVentures = 0;
+    private int bonusForTakingVentures;
 
 
     //todo mettere lo 0 nella creazione della carta, togliere il todo quando sono stati messi anche negli effetti
 
-    private int militaryPointsBonus = 0;
+    private int militaryPointsBonus;
 
-    private int coinsBonus = 0;
+    private int coinsBonus;
 
-    private int servantsBonus = 0;
+    private int servantsBonus;
 
-    private int stoneBonus = 0;
+    private int stoneBonus;
 
-    private int woodBonus = 0;
+    private int woodBonus;
 
     //Aggiustare per ReduceValueOnAction
 
@@ -39,6 +39,14 @@ public class Bonus implements Serializable {
     public Bonus (){
         this.charactersBonus = new BonusForTakingCharacter();
         this.buildingsBonus = new BonusForTakingBuilding();
+        bonusForTakingTerritory = 0;
+        productionBonus = 0;
+        harvesterBonus = 0;
+        bonusForTakingVentures = 0;
+        militaryPointsBonus = 0;
+        coinsBonus = 0;
+        stoneBonus = 0;
+        woodBonus = 0;
 
     }
 

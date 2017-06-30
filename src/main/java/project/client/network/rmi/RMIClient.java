@@ -12,7 +12,6 @@ import project.model.Tile;
 import project.server.network.rmi.RMIClientToServerInterface;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -317,7 +316,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public int canUseBothPaymentMethod() {
-        return clientSetter.bothPaymentsAvailableRMI();
+        return clientSetter.bothPaymentsAvailable();
     }
 
     @Override

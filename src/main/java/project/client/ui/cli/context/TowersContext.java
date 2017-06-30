@@ -5,6 +5,7 @@ import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
 import project.controller.effects.realeffects.Effects;
+import project.model.FamilyMember;
 import project.model.Tower;
 
 import java.io.IOException;
@@ -83,7 +84,12 @@ public class TowersContext extends AbstractContext {
         pBlue.println("[towerColour-floor-familiarColour] ");
         pRed.print("towerColour: "); pYellow.println("green, yellow, purple, blue");
         pRed.print("floor: ");  pYellow.println("0, 1, 2, 3");
-        pRed.print("familiarColour: ");pYellow.println("black, neutral, orange, white ");
+        pRed.print("Familiar Colour: ");
+        for (FamilyMember familyMember : cli.getMyFamilymembers() ){
+            if ( !familyMember.isPlayed() )
+                pYellow.print(familyMember.getMyColour() + "   ");
+        }
+        pYellow.println("");
     }
 
     @Override

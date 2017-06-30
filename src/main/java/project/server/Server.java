@@ -4,8 +4,6 @@ import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.messages.updatesmessages.*;
-import project.model.Board;
-import project.model.Deck;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;

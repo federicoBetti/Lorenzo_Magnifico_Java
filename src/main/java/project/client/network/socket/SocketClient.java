@@ -232,7 +232,8 @@ public class SocketClient extends AbstractClient {
     }
 
     public void bothPaymentsAvailable() {
-        clientSetter.bothPaymentsAvailable();
+        int costChoice = clientSetter.bothPaymentsAvailable();
+        sendGenericObject(costChoice);
     }
 
     @Override
@@ -367,8 +368,9 @@ public class SocketClient extends AbstractClient {
     }
 
     private void sendAllStrings(List<String> parameters) {
-
+        sendGenericObject(parameters.size());
         for (String elem : parameters) {
+
             try {
                 objectOutputStream.writeObject(elem);
                 objectOutputStream.flush();

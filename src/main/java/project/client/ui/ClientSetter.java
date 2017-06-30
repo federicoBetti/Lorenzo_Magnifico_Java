@@ -71,7 +71,6 @@ public class ClientSetter {
     //these methods call other methods on the client
 
     public void loginRequest(String loginParameter){
-        System.out.println("sto facendo la login con nome: " + loginParameter);
         client.loginRequest(loginParameter);
     }
 
@@ -190,9 +189,6 @@ public class ClientSetter {
     public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction)  {
         ui.takeImmediatePrivilege(privilegesAction);
     }
-    public void bothPaymentsAvailable() {
-        ui.bothPaymentsAvailable();
-    }
 
 
     //updates methods
@@ -272,8 +268,8 @@ public class ClientSetter {
         ui.loginSucceded();
     }
 
-    public int bothPaymentsAvailableRMI() {
-        return  ui.booleanChoosingRMI();
+    public int bothPaymentsAvailable() {
+        return  ui.bothPaymentsAvailable();
     }
 
     public void timerTurnDelayed() {

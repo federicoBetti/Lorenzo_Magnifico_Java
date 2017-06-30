@@ -3,6 +3,7 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.model.FamilyMember;
 import project.model.Market;
 
 
@@ -41,9 +42,14 @@ public class MarketContext extends AbstractContext {
             pYellow.println(entry.getKey().toString());
 
         pRed.println("The main Action is:");
-        pYellow.println("[position-familiarColour]\n" +
-                "position: 0, 1, 2, 3\nfamiliarColour: black, neutral, orange, white ");
-
+        pBlue.println("[position-familiarColour]");
+        pRed.print("position: ");pYellow.println(" 0, 1, 2, 3 ");
+        pRed.print("Familiar Colour: ");
+        for (FamilyMember familyMember : cli.getMyFamilymembers() ){
+            if ( !familyMember.isPlayed() )
+                pYellow.print(familyMember.getMyColour() + "   ");
+        }
+        pYellow.println("");
     }
 
     @Override
