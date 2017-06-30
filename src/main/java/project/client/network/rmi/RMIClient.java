@@ -132,7 +132,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
-    @Override
+  //todo non dobbiamo usare solo askForPraying?
     public void prayOrNot(boolean action) {
         try {
             myServer.prayOrNot(myUniqueId,action);
@@ -312,6 +312,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     public void newNickname(String nickname) {
         //lo devo fare per reiterare la richiesta di un nuovo nickname. non posso in socket rimandare lo stesso
         //metodo di login perchè di default manda la stringa LOGIN_REQUEST e devo mandare solo il nickname
+    }
+
+    @Override
+    public void prayed() {
+        //todo arriva alla Ui per confermare che la scelta della preghiera, cioè che la preghiera è stata fatta.
     }
 
     @Override

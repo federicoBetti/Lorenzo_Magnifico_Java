@@ -35,6 +35,11 @@ public class LeaderCardContext extends AbstractContext {
 
     }
 
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
+
     private void showLeaderCards() {
         for ( LeaderCard leaderCard : myLeadersCard ) {
             pRed.println(leaderCard.getName());

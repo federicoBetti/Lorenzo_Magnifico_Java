@@ -56,6 +56,7 @@ public class TowersContext extends AbstractContext {
 
     }
 
+    //todo controllare questa show
     private void showCardsCost() {
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
@@ -68,10 +69,11 @@ public class TowersContext extends AbstractContext {
                 pBlue.print("Floor: "); pRed.println( j );
                 pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
                 pBlue.print("Card cost: ");pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
+                pYellow.println("");
             }
         }
 
-        pBlue.print("If you want to see the cards'effects type ");pRed.println("[show-cards-effects]");
+        pRed.println("Type ");pBlue.print("[help]");pRed.println("for watching the other commands.");
     }
 
     @Override

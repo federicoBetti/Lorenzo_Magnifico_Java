@@ -1,5 +1,6 @@
 package project.client.ui.cli.context;
 
+import com.sun.tools.internal.jxc.ap.Const;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
@@ -30,6 +31,7 @@ public class MainContext extends AbstractContext {
         map.put(Constants.PLAY_LEADER_CARD, this:: leaderCard );
         map.put(Constants.DISCARD_LEADER_CARD, this:: dLeaderCard );
         map.put(Constants.GO_TO_MARKET, this::marketContext );
+        map.put(CliConstants.HELP, this::printHelp);
         printHelp();
     }
 

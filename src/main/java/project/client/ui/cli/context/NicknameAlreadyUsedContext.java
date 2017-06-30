@@ -20,6 +20,11 @@ public class NicknameAlreadyUsedContext extends AbstractContext {
     }
 
     @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
+
+    @Override
     protected void mainContextMethod(String nickname) throws InputException, IOException {
         cli.newNickname(nickname);
     }

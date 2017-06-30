@@ -74,8 +74,8 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void askForPraying() {
-        mainController.askForPraying();
+    public int askForPraying() {
+        return mainController.askForPraying();
     }
 
     @Override
@@ -158,6 +158,11 @@ public class Gui extends AbstractUI {
     }
 
     @Override
+    public void prayed() {
+        //todo lo uso quando si sceglie di pregare. Nella cli arriva e stampa una stringa dicendo che la preghiera è stata fatta
+    }
+
+    @Override
     public void loginSucceded() {
         mainController.loginSucceded();
     }
@@ -168,8 +173,7 @@ public class Gui extends AbstractUI {
     }
     @Override
     public int bothPaymentsAvailable() {
-        //todo
-        return 0;
+        return mainController.bothPaymentAvaiable();
     }
 
     @Override

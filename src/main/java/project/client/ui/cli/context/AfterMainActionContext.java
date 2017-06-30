@@ -46,6 +46,11 @@ public class AfterMainActionContext extends AbstractContext {
     }
 
     @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
+
+    @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         System.out.println();
         printHelp();

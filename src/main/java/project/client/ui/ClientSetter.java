@@ -116,10 +116,6 @@ public class ClientSetter {
         playLeaderCard(leaderName);
     }
 
-    public void prayOrNot(boolean yesNo)   {
-        client.prayOrNot(yesNo);
-    }
-
     public void sendExitToBonusAction()   {
         client.sendExitToBonusAction();
     }
@@ -174,8 +170,10 @@ public class ClientSetter {
         ui.bonusProduction(bonusProd);
     }
 
-    public void askForPraying(){
-        ui.askForPraying();
+    public int askForPraying(){
+        int res =  ui.askForPraying();
+        System.out.println("il res è qui: " + res);
+        return res;
     }
 
     public void actionOk() {
@@ -294,5 +292,9 @@ public class ClientSetter {
 
     public void newNickname(String nickname) {
         client.newNickname(nickname);
+    }
+
+    public void prayed() {
+        ui.prayed();
     }
 }

@@ -4,7 +4,6 @@ import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
-import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
@@ -182,10 +181,6 @@ public class Cli extends AbstractUI {
         context = new DiscardLeaderCardContext(this);
     }
 
-    public void askForPraying() {
-        context = new ExcomunicationContext(this);
-    }
-
     public void marketContext() {
         context = new MarketContext(this, clientSetter.getUiBoard().getMarketZone());
     }
@@ -296,21 +291,6 @@ public class Cli extends AbstractUI {
         clientSetter.discardLeaderCard(name);
     }
 
-    public void prayOrNot(String action) {
-        boolean yesOrNo;
-        try {
-            context.checkValidInput(action);
-        } catch (InputException e) {
-            context.printHelp();
-            return;
-        }
-        if (action.equals("yes"))
-            yesOrNo = true;
-        else
-            yesOrNo = false;
-        clientSetter.prayOrNot(yesOrNo);
-    }
-
     public void choosePayment(String payment) {
         try {
             context.checkValidInput(payment);
@@ -400,10 +380,11 @@ public class Cli extends AbstractUI {
 
                     lineFromKeyBoard = keyboard.readLine();
                     if (choice) {
+                        System.out.println("Sono in scelta");
                         choiceQueue.add(lineFromKeyBoard);
-                        continue;
                     }
                     else if (context != null) {
+                        System.out.println("Sono in Contesto");
                         context.doAction(lineFromKeyBoard);
                     }
                     } catch(InputException e){
@@ -417,14 +398,37 @@ public class Cli extends AbstractUI {
         }
 
     @Override
+    public int askForPraying() {
+        choice = true;
+        context = new ExcomunicationContext(this);
+        String prayOrNot;
+
+        try {
+            prayOrNot = choiceQueue.take();
+            System.out.println("stringa presa da tastiera" + prayOrNot);
+            choice = false;
+            return Integer.parseInt(prayOrNot);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
     public int bothPaymentsAvailable() {
         choice = true;
         context = new BothPaymentsVentureCardsContext(this);
-        String costChoosen = null;
-        try {
-            costChoosen = choiceQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        String costChoosen;
+        while (true) {
+            try {
+                costChoosen = choiceQueue.take();
+                context.checkValidInput(costChoosen);
+                break;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InputException e) {
+                context.printHelp();
+            }
         }
         choice = false;
         return Integer.parseInt(costChoosen);
@@ -435,11 +439,17 @@ public class Cli extends AbstractUI {
         choice = true;
         context = new LeaderCardDraftContext(this, leaders );
         choiceQueue = new LinkedBlockingDeque<>();
-        String cardChoosen = null;
-        try {
-            cardChoosen = choiceQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        String cardChoosen;
+        while (true) {
+            try {
+                cardChoosen = choiceQueue.take();
+                context.checkValidInput(cardChoosen);
+                break;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InputException e) {
+                context.printHelp();
+            }
         }
         choice = false;
         return cardChoosen;
@@ -471,16 +481,26 @@ public class Cli extends AbstractUI {
         choice = true;
         context = new TileDraftContext(this, tiles);
         choiceQueue = new LinkedBlockingDeque<>();
-        String tileChosen = null;
+        String tileChosen;
 
-        try {
-            tileChosen = choiceQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (true) {
+            try {
+                tileChosen = choiceQueue.take();
+                context.checkValidInput(tileChosen);
+                break;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InputException e) {
+                context.printHelp();
+            }
         }
 
-        bonusTile = tiles.get(Integer.parseInt(tileChosen));
+        for ( Tile tile : tiles )
+            if ( tile.getTileNumber() == Integer.parseInt(tileChosen) )
+                bonusTile = tile;
+
         choice = false;
+        context.getpBlue().println("Bonus Tile choosen! Wait for the other players'choice");
         return Integer.parseInt(tileChosen);
 
     }
@@ -488,6 +508,11 @@ public class Cli extends AbstractUI {
     @Override
     public void newNickname(String nickname) {
         clientSetter.newNickname(nickname);
+    }
+
+    @Override
+    public void prayed() {
+        context.getpRed().println("You have prayed and you did not take the excommunication!");
     }
 
 

@@ -37,6 +37,11 @@ public class DiscardLeaderCardContext extends AbstractContext {
     }
 
     @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
+
+    @Override
     public void mainContextMethod(String name) throws InputException, IOException {
         cli.discardLeaderCard(name);
     }

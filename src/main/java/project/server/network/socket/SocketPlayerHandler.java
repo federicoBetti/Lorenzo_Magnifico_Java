@@ -1,9 +1,7 @@
 package project.server.network.socket;
 
-import project.configurations.Configuration;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
-import project.controller.cardsfactory.BuildingCost;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
@@ -20,7 +18,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * questa classe rappresenta la casse ponte tra il model e la view. da qua ogni volta che vinee aggiornato qualcosa il player dice al suo
@@ -35,11 +32,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ObjectInputStream objectInputStream;
     private transient ObjectOutputStream objectOutputStream;
     private transient ServerDataHandler serverDataHandler;
-    private Object token;
+    boolean prayingtime = false;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
-        this.token = new Object();
         this.setOn(true);
         this.socketServer = socketServer;
         this.socket = socket;
@@ -47,6 +43,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         this.objectOutputStream.flush();
         this.objectInputStream = new ObjectInputStream(socket.getInputStream());
         serverDataHandler = new ServerDataHandler(this, objectInputStream, objectOutputStream);
+
     }
 
     @Override
@@ -60,21 +57,25 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             serverDataHandler.handleRequest(object);
 
 
-            synchronized (token) {
+            synchronized (getToken()) {
                 try {
-                    token.wait();
+                    getToken().wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
             while (true) {
-
                 object = objectInputStream.readObject();
                 System.out.println(object);
                 System.out.println("the client wants to do " + object);
                 serverDataHandler.handleRequest(object);
 
+                if ( prayingtime ){
+                    synchronized (getToken()) {
+                        getToken().wait();
+                    }
+                }
             }
 
         } catch (CantDoActionException e) {
@@ -84,6 +85,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (IOException e) {   //todo queste due eccezioni qui
             this.setOn(false);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         closeSocket(objectInputStream);
@@ -325,8 +328,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
-            synchronized (token) {
-                token.notify();
+            synchronized (getToken()) {
+                getToken().notify();
             }
             objectOutputStream.writeObject(Constants.MATCH_STARTED);
             objectOutputStream.writeObject(roomPlayers);
@@ -367,11 +370,25 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void sendAskForPraying() {
+    public int sendAskForPraying() {
         if (isOn()) {
             sendAnswer(Constants.ASK_FOR_PRAYING);
+            int answer = -1;
+            try {
+                System.out.println("Ho mandato la richiesta di preghiere");
+                answer = (int) objectInputStream.readObject();
+                System.out.println(answer);
+                return answer;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
+        return -1;
     }
+
 
     @Override
     public void sendString(String message) {
@@ -569,5 +586,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             closeable.close();
         } catch (IOException e) {
         }
+    }
+
+    public void setPrayingtime(boolean prayingtime) {
+        this.prayingtime = prayingtime;
     }
 }

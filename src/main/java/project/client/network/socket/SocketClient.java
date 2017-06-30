@@ -123,17 +123,17 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(name);
     }
 
-    @Override
-    public void prayOrNot(boolean action) {
-
-        if (action)
-            sendGenericObject(Constants.PRAY);
-        else
-            sendGenericObject(Constants.DONT_PRAY);
-    }
-
     public void askForPraying() {
-        clientSetter.askForPraying();
+        int answer = clientSetter.askForPraying();
+        System.out.println("il res viene mandato: " + clientSetter.askForPraying());
+
+        try {
+            objectOutputStream.writeObject(answer);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 
     public void itsMyTurn() {
@@ -326,6 +326,11 @@ public class SocketClient extends AbstractClient {
     @Override
     public void newNickname(String nickname) {
         sendGenericObject(nickname);
+    }
+
+    @Override
+    public void prayed() {
+        clientSetter.prayed();
     }
 
     private void createWaitingForYourTurnContext() {

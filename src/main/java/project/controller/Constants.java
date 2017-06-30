@@ -114,6 +114,8 @@ public class Constants {
     public static final String TILE_DRAFT = "tile-draft";
     public static final String LEADER_DRAFT = "leader-draft";
     public static final Object BONUS_CARD_CHOOSEN = "bonus-card-choosen";
+    public static final String PRAYED = "prayed";
+    public static final String EXCOMMUNICATION_TAKEN = "excommunication-taken";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

@@ -41,6 +41,19 @@ public class TileDraftContext extends AbstractContext {
 
     }
 
+    @Override
+    public void checkValidInput(String input) throws InputException {
+        if ( input.length() != 1 )
+            throw new InputException();
+
+        if ( !Character.isDigit(input.charAt(0)))
+            throw new InputException();
+
+        for ( Tile tile : tiles )
+            if ( Integer.parseInt(input) == tile.getTileNumber() )
+                return;
+        throw new InputException();
+    }
 
 
     @Override
