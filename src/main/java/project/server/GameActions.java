@@ -191,12 +191,11 @@ public class GameActions {
     private void firstPlayerTurn() {
         int i = 0;
         PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(i);
-        while (i < board.getTurn().getPlayerTurn().size() ) {
+        while (i < board.getTurn().getPlayerTurn().size()) {
             if (firstPlayer.isOn()) {
                 firstPlayer.itsMyTurn();
                 return;
-            }
-            else
+            } else
                 firstPlayer = board.getTurn().getPlayerTurn().get(i + 1);
         }
         //nextTurn(firstPlayer);
@@ -458,34 +457,31 @@ public class GameActions {
     private void askForPraying(int period) {
         int faithPointsNeeded = board.getFaithPointsRequiredEveryPeriod()[period];
         List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
-        for (PlayerHandler player : turn ) {
+        for (PlayerHandler player : turn) {
             if (player.isOn()) {
                 if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
 
-              /*     if (room.getListOfPlayers().indexOf(this) == room.getListOfPlayers().size() - 1)
-                        timer = myTimerSkipTurn(player);
-                    else {
-                        System.out.println("SCATTA QUELLO DELLA PREGHIERA");
-                       timer = myTimerPraying(player);
-                   }        */
+                    //senza il timer va
+                    timer = myTimerPraying(player);
+                    //todo con il timer gli update vanno mandati solo alla fine della preghiera, cioè quando il while
+                    //todo true dei socket client è ristabilito altrimenti il thread di ascolto del timer sclera.
+                    //todo da lavorarci su...
 
                     int choice = player.sendAskForPraying(turn);
-                    //timer.cancel();
+
                     if (choice == 1)
                         takeExcommunication(player);
                     else
                         faithPointsForVictoryPoints(player);
+                    timer.cancel();
                 }
-            }
-            else {
+            } else {
                 System.out.println("prendo scomunica");
                 takeExcommunication(player);
             }
         }
         System.out.println("\nFinita preghiera");
     }
-
-
 
 
     private void faithPointsForVictoryPoints(PlayerHandler player) {
@@ -728,8 +724,9 @@ public class GameActions {
         ExcommunicationTile exTile = board.getExcommunicationZone()[period].getCardForThisPeriod();
 
         exTile.makeEffect(player);
-        broadcastUpdates(new ExcommunicationTaken(player, exTile.getEffectDescription()));
+     /*   broadcastUpdates(new ExcommunicationTaken(player, exTile.getEffectDescription()));
         broadcastUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(), player.getName()));
+        */
     }
 
 
@@ -761,7 +758,6 @@ public class GameActions {
             public void run() {
 
                 player.timerTurnDelayed();
-                player.sendString(Constants.ACTION_DONE_ON_TIME);
                 nextTurn(player);
             }
         };
@@ -771,12 +767,13 @@ public class GameActions {
         return timer;
     }
 
-    private Timer myTimerPraying( PlayerHandler player) {
+    private Timer myTimerPraying(PlayerHandler player) {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 System.out.println("scattato!");
                 player.timerTurnDelayed();
+                player.sendString(Constants.ACTION_DONE_ON_TIME);
             }
         };
 

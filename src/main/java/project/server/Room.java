@@ -153,6 +153,10 @@ public class Room {
 
         board.getTurn().setPlayerTurn(playerInTheMatch);
 
+        System.out.println("I TURNI SONO: ");
+        for ( PlayerHandler player : playerInTheMatch)
+            System.out.println("NOME: " + player.getName() + " INDIRIZZO: " + player );
+
         //todo aggiungere questa parte per il draft
 
         //draft leader

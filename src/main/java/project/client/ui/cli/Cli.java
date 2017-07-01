@@ -231,6 +231,7 @@ public class Cli extends AbstractUI {
             //praying interrupted
             else if (context instanceof ExcomunicationContext) {
                 choiceQueue.add("1");
+                return;
             }
 
             else if (context instanceof BothPaymentsVentureCardsContext) {
@@ -417,10 +418,9 @@ public class Cli extends AbstractUI {
                 prayOrNot = choiceQueue.take();
                 //context.checkValidInput(prayOrNot);
                 choice = false;
-                context.getpRed().println("il numero della preghiera è: " + prayOrNot);
                 return Integer.parseInt(prayOrNot);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("sono in eccezione");
             }
         }
     }
@@ -428,10 +428,11 @@ public class Cli extends AbstractUI {
     @Override
     public int bothPaymentsAvailable() {
         choice = true;
-        context = new BothPaymentsVentureCardsContext(this);
         choiceQueue = new LinkedBlockingDeque<>();
+        context = new BothPaymentsVentureCardsContext(this);
 
-            String costChoosen;
+
+        String costChoosen;
             while (true) {
                 try {
 

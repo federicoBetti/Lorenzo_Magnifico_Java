@@ -350,6 +350,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         try {
             choice = (int) objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
+            System.out.println("CHOICE E': " + choice );
             return choice;
         } catch (IOException e) {
             e.printStackTrace();

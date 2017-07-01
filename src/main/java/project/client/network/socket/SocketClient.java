@@ -31,6 +31,7 @@ public class SocketClient extends AbstractClient {
     private Socket socket;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
+    Object token = new Object();
 
 
     // cosi si collega con la user interface scelta e creata appositamente
@@ -60,6 +61,7 @@ public class SocketClient extends AbstractClient {
             try {
 
                 message = (String) objectInputStream.readObject();
+                System.out.println("IL MESSAGE é: " +  message);
                 messageHandler.handleMessage(message);
 
             } catch (IOException e) {
@@ -129,32 +131,37 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void askForPrayingLastPlayer() {
-        //new TimerReader().start();
+        //thread che ascolta il timer
+        new TimerReader().start();
         int answer = clientSetter.askForPraying();
 
-        try {
-            objectOutputStream.writeObject(answer);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-            e.printStackTrace();
+        sendGenericObject(answer);
+        synchronized (token){
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        System.out.println("il res è stato mandato");
     }
 
 
     public void askForPraying() {
         sendGenericObject(Constants.PRAYING_REQUEST_RECEIVED);
+        //thread che ascolta il timer
+        new TimerReader().start();
         System.out.println("mandata costante per far bloccare server read");
         int answer = clientSetter.askForPraying();
         System.out.println("il res viene mandato: " + clientSetter.askForPraying());
-
-        try {
-            objectOutputStream.writeObject(answer);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-        e.printStackTrace();
-    }
+        sendGenericObject(answer);
+        synchronized (token){
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void itsMyTurn() {
@@ -257,6 +264,13 @@ public class SocketClient extends AbstractClient {
         int costChoice = clientSetter.bothPaymentsAvailable();
         System.out.println("mandata la scelta del prezzo!");
         sendGenericObject(costChoice);
+        synchronized (token){
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -516,6 +530,9 @@ public class SocketClient extends AbstractClient {
 
                     if ( message.equals(Constants.ACTION_DONE_ON_TIME)) {
                         System.out.println("VADO A DORMIRE...CIAO!");
+                        synchronized (token){
+                            token.notify();
+                        }
                         return;
                     }
 
