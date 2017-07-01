@@ -7,10 +7,10 @@ import project.server.network.PlayerHandler;
 /**
  * Created by raffaelebongo on 30/06/17.
  */
-public class ExcommunicationTake extends Updates {
-    ExcommunicationTile exTile;
+public class ExcommunicationTaken extends Updates {
+    String exTile;
 
-    public ExcommunicationTake(PlayerHandler player, ExcommunicationTile exTile) {
+    public ExcommunicationTaken(PlayerHandler player, String exTile) {
         super(player.getName());
         this.exTile = exTile;
     }
@@ -22,6 +22,10 @@ public class ExcommunicationTake extends Updates {
 
     @Override
     public String toScreen() {
-        return getNicknameCurrentPlayer() + "has take this excommunication:\n" + exTile.getExcommunicationEffect().toScreen();
+        return getNicknameCurrentPlayer() + "has take this excommunication:\n";
+    }
+
+    public String getExTile() {
+        return exTile;
     }
 }

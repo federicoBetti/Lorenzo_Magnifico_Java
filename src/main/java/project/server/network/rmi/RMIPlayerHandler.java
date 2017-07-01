@@ -180,7 +180,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
-    public int sendAskForPraying() {
+    public int sendAskForPraying(List<PlayerHandler> playerTurn) {
         try {
             myClient.askForPraying();
         } catch (RemoteException e) {

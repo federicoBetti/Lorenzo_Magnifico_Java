@@ -7,12 +7,13 @@ import project.server.network.PlayerHandler;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by federico on 26/05/17.
  */
-public class DowngradeEffect implements Effects {
+public class DowngradeEffect implements Effects, Serializable {
 
     private String parameter;
     private int quantity;

@@ -6,12 +6,13 @@ import project.server.network.PlayerHandler;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by federico on 26/05/17.
  */
-public class LoseFinalPointsFromResources implements Effects {
+public class LoseFinalPointsFromResources implements Effects, Serializable {
 
 
     private String effectDescription;

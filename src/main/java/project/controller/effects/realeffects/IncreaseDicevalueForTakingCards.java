@@ -4,10 +4,12 @@ import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class IncreaseDicevalueForTakingCards implements Effects {
+public class IncreaseDicevalueForTakingCards implements Effects, Serializable {
 
     private int quantityIncreased;
     private String kindOfCard;

@@ -9,6 +9,7 @@ public class ExTileFromJson {
     private int period;
     private int idCard;
     private TrisIE excomunicationEffectsFromJson;
+    private String effectDescription;
 
     public int getPeriod() {
         return period;
@@ -20,5 +21,9 @@ public class ExTileFromJson {
 
     public TrisIE getExcomunicationEffectsFromJson() {
         return excomunicationEffectsFromJson;
+    }
+
+    public String getEffectDescription() {
+        return effectDescription;
     }
 }

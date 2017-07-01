@@ -195,6 +195,7 @@ public class GameActions {
         PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(0);
         if (firstPlayer.isOn())
             firstPlayer.itsMyTurn();
+        System.out.println("mando primo nel round");
         nextTurn(firstPlayer);
     }
 
@@ -451,16 +452,16 @@ public class GameActions {
             if (player.isOn()) {
                 if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
                     System.out.println("mando richiesta di preghiera a : " +  player.getName());
-                    int choice = player.sendAskForPraying();
-                    if (choice == 1)
+                    int choice = player.sendAskForPraying(board.getTurn().getPlayerTurn());
+                    if (choice == 1) {
+                        System.out.println("HO SCELTO DI PRENDERE LA SCOMUNICA E LA PIGLIO");
                         takeExcommunication(player);
-                    else
-                        faithPointsForVictoryPoints(player);
-                    synchronized (player.getToken()) {
-                        player.getToken().notify();
                     }
+                    else if ( choice == 0 )
+                        faithPointsForVictoryPoints(player);
                     continue;
                 }
+                takeExcommunication(player);
             }
             System.out.println("prendo scomunica");
             takeExcommunication(player);
@@ -708,7 +709,8 @@ public class GameActions {
         ExcommunicationTile exTile = board.getExcommunicationZone()[period].getCardForThisPeriod();
 
         exTile.makeEffect(player);
-        broadcastUpdates(new ExcommunicationTake(player, exTile));
+
+        broadcastUpdates(new ExcommunicationTaken(player, exTile.getEffectDescription()));
         broadcastUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(), player.getName()));
     }
 

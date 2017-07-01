@@ -56,15 +56,15 @@ class ServerDataHandler {
         map.put(Constants.PRAY, this::prayRequest );
         map.put(Constants.DONT_PRAY, this::dontPrayRequest );
         map.put(Constants.SKIP_TURN, this::skipTurn );
+        map.put(Constants.PRAYING_REQUEST_RECEIVED, this:: waitForPraying );
         //todo completare con tutte le stringhe giuste e i metodi
     }
 
+    private void waitForPraying() {
+        socketPlayerHandler.waitForPraying();
+    }
+
     private void skipTurn() {//todo cercare di sicnronizzare qui
-        if ( counterSkipTurn == 4 ) {
-            socketPlayerHandler.setPrayingtime(true);
-            counterSkipTurn = 0;
-            socketPlayerHandler.socketSkipTurn();
-        }
         socketPlayerHandler.socketSkipTurn();
     }
 

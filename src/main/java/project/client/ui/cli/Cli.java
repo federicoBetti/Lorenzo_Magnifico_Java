@@ -8,6 +8,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.ExcommunicationTaken;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
 
@@ -403,15 +404,18 @@ public class Cli extends AbstractUI {
         context = new ExcomunicationContext(this);
         String prayOrNot;
 
-        try {
-            prayOrNot = choiceQueue.take();
-            System.out.println("stringa presa da tastiera" + prayOrNot);
-            choice = false;
-            return Integer.parseInt(prayOrNot);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (true ) {
+            try {
+                prayOrNot = choiceQueue.take();
+                context.checkValidInput(prayOrNot);
+                choice = false;
+                return Integer.parseInt(prayOrNot);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InputException e) {
+                e.printStackTrace();
+            }
         }
-        return 0;
     }
 
     @Override
@@ -513,6 +517,12 @@ public class Cli extends AbstractUI {
     @Override
     public void prayed() {
         context.getpRed().println("You have prayed and you did not take the excommunication!");
+    }
+
+    @Override
+    public void excommunicationTaken(ExcommunicationTaken update) {
+        context.getpRed().println(update.toScreen());
+        context.getpBlue().println(update.getExTile());
     }
 
 

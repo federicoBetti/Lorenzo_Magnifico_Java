@@ -16,11 +16,12 @@ public class ExcommunicationTile implements Serializable{
     private int period;
     private String effectDescription;
     private int idCard;
-    private Effects excommunicationEffect;
+    transient private Effects excommunicationEffect;
 
-    public ExcommunicationTile(int idCard, int period, TrisIE myEffect) {
+    public ExcommunicationTile(int idCard, int period, TrisIE myEffect, String effectDescription ) {
         this.idCard = idCard;
         this.period = period;
+        this.effectDescription = effectDescription;
         BuildExcommunicationEffects buildExcommunicationEffects = new BuildExcommunicationEffects();
         this.excommunicationEffect = buildExcommunicationEffects.searchEffectType(myEffect.getType(),myEffect.getParameter(),myEffect.getQuantity());
     }
@@ -36,5 +37,9 @@ public class ExcommunicationTile implements Serializable{
 
     public Effects getExcommunicationEffect() {
         return excommunicationEffect;
+    }
+
+    public String getEffectDescription() {
+        return effectDescription;
     }
 }

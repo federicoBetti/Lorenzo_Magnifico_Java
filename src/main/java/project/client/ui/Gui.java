@@ -9,6 +9,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.ExcommunicationTaken;
 import project.messages.updatesmessages.Updates;
 import project.model.Tile;
 
@@ -160,6 +161,11 @@ public class Gui extends AbstractUI {
     @Override
     public void prayed() {
         //todo lo uso quando si sceglie di pregare. Nella cli arriva e stampa una stringa dicendo che la preghiera è stata fatta
+    }
+
+    @Override
+    public void excommunicationTaken(ExcommunicationTaken update) {
+        //todo notifica che dice che hai preso la scomunica
     }
 
     @Override

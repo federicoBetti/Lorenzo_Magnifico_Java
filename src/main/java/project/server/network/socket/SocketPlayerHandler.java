@@ -32,10 +32,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ObjectInputStream objectInputStream;
     private transient ObjectOutputStream objectOutputStream;
     private transient ServerDataHandler serverDataHandler;
-    boolean prayingtime = false;
+    Object token;
+    Object token1;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
+        token = new Object();
+        token1 = new Object();
         this.setOn(true);
         this.socketServer = socketServer;
         this.socket = socket;
@@ -57,25 +60,20 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             serverDataHandler.handleRequest(object);
 
 
-            synchronized (getToken()) {
+            synchronized (token) {
                 try {
-                    getToken().wait();
+                    token.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
             while (true) {
+                System.out.println("SONO NEL WHILE TRUE. PLAYER: " + this);
                 object = objectInputStream.readObject();
                 System.out.println(object);
                 System.out.println("the client wants to do " + object);
                 serverDataHandler.handleRequest(object);
-
-                if ( prayingtime ){
-                    synchronized (getToken()) {
-                        getToken().wait();
-                    }
-                }
             }
 
         } catch (CantDoActionException e) {
@@ -85,8 +83,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (IOException e) {   //todo queste due eccezioni qui
             this.setOn(false);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         closeSocket(objectInputStream);
@@ -328,8 +324,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
-            synchronized (getToken()) {
-                getToken().notify();
+            synchronized (token) {
+                token.notify();
             }
             objectOutputStream.writeObject(Constants.MATCH_STARTED);
             objectOutputStream.writeObject(roomPlayers);
@@ -370,6 +366,53 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
+    public int sendAskForPraying(List<PlayerHandler> playerTurn) {
+        System.out.println("SONO IL PLAYER: " + this );
+        if (isOn()) {
+            try {
+                if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
+                    sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
+                    return (int) objectInputStream.readObject();
+                }
+
+                sendString(Constants.ASK_FOR_PRAYING);
+                synchronized (token) {
+                    token.wait();
+                }
+                int answer = (int) objectInputStream.readObject();
+                synchronized (token1) {
+                    token1.notify();
+                }
+                return answer;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    public void waitForPraying() {
+        System.out.println("SBLOCCO LA READ SULLA PREGHIERA\n");
+        synchronized (token) {
+            token.notify();
+        }
+        System.out.println("BLOCCO LA READ DEL WHILE TRUE\n");
+        synchronized (token1) {
+            try {
+                token1.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("SBLOCCO LA READ Del while true\n");
+        }
+    }
+
+/*    @Override
     public int sendAskForPraying() {
         if (isOn()) {
             sendAnswer(Constants.ASK_FOR_PRAYING);
@@ -387,7 +430,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         }
         return -1;
-    }
+    }   */
 
 
     @Override
@@ -567,7 +610,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             for (int i = 0; i < size; i++) {
                 String cardName = (String) objectInputStream.readObject();
-                for ( BuildingCard card : myBuildings ) {
+                for (BuildingCard card : myBuildings) {
                     if (card.getName().equals(cardName))
                         cardsForProduction.add(card);
                 }
@@ -586,9 +629,5 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             closeable.close();
         } catch (IOException e) {
         }
-    }
-
-    public void setPrayingtime(boolean prayingtime) {
-        this.prayingtime = prayingtime;
     }
 }
