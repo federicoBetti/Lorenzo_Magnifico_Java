@@ -66,8 +66,9 @@ public class Configuration {
         ExTileFromJson[] exTilesFromJson = gson.fromJson(reader, ExTileFromJson[].class);
 
         for ( ExTileFromJson tile : exTilesFromJson ) {
-            ExcommunicationTile excommunicationTile = new ExcommunicationTile(tile.getIdCard(), tile.getPeriod(), tile.getExcomunicationEffectsFromJson());
+            ExcommunicationTile excommunicationTile = new ExcommunicationTile(tile.getIdCard(), tile.getPeriod(), tile.getExcomunicationEffectsFromJson(), tile.getEffectDescription());
             deck.getExcomunicationCard()[tile.getPeriod() - 1][tile.getIdCard() - 1] = excommunicationTile;
+            System.out.println(excommunicationTile.getEffectDescription());
         }
 
     }

@@ -320,6 +320,16 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
+    public void excommunicationTake() {
+        //todo è la notifica che dice che hai preso la scomunica
+    }
+
+    @Override
+    public void askForPrayingLastPlayer() {
+        //todo prova per vedere se funziona una cosa con socket. se vedi questo commento significa che ho scordato di cambiarlo o toglierlo se funziona tutto
+    }
+
+    @Override
     public int canUseBothPaymentMethod() {
         return clientSetter.bothPaymentsAvailable();
     }

@@ -123,7 +123,23 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(name);
     }
 
+    @Override
+    public void askForPrayingLastPlayer() {
+        int answer = clientSetter.askForPraying();
+        System.out.println("il res viene mandato: " + clientSetter.askForPraying());
+
+        try {
+            objectOutputStream.writeObject(answer);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void askForPraying() {
+        sendGenericObject(Constants.PRAYING_REQUEST_RECEIVED);
+        System.out.println("mandata costante per far bloccare server read");
         int answer = clientSetter.askForPraying();
         System.out.println("il res viene mandato: " + clientSetter.askForPraying());
 
@@ -332,6 +348,21 @@ public class SocketClient extends AbstractClient {
     public void prayed() {
         clientSetter.prayed();
     }
+
+    @Override
+    public void excommunicationTake() {
+        try {
+            Updates update =(Updates)objectInputStream.readObject();
+            clientSetter.excommunicationTake(update);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     private void createWaitingForYourTurnContext() {
         clientSetter.waitingForYourTurn();

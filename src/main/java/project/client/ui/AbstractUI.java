@@ -5,6 +5,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.ExcommunicationTaken;
 import project.messages.updatesmessages.Updates;
 import project.model.Tile;
 
@@ -85,4 +86,6 @@ public abstract class AbstractUI {
     public abstract void newNickname(String nickname);
 
     public abstract void prayed();
+
+    public abstract void excommunicationTaken(ExcommunicationTaken update);
 }

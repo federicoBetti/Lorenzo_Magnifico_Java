@@ -5,12 +5,13 @@ import project.server.network.PlayerHandler;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * class for excommunication effect
  */
-public class LoseResourceEffect implements Effects {
+public class LoseResourceEffect implements Effects, Serializable {
     private String parameter;
     private int quantity;
     private HashMap<String, LoseResourceEffectBuilder> parameterEffect;

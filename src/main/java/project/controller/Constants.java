@@ -116,6 +116,8 @@ public class Constants {
     public static final Object BONUS_CARD_CHOOSEN = "bonus-card-choosen";
     public static final String PRAYED = "prayed";
     public static final String EXCOMMUNICATION_TAKEN = "excommunication-taken";
+    public static final String PRAYING_REQUEST_RECEIVED = "praying-request-received";
+    public static final String ASK_FOR_PRAYING_LAST_PLAYER = "ask-for-praying-last-player";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

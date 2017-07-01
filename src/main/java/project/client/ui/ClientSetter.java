@@ -11,6 +11,7 @@ import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
+import project.messages.updatesmessages.ExcommunicationTaken;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
 
@@ -296,5 +297,9 @@ public class ClientSetter {
 
     public void prayed() {
         ui.prayed();
+    }
+
+    public void excommunicationTake(Updates update) {
+        ui.excommunicationTaken((ExcommunicationTaken)update);
     }
 }

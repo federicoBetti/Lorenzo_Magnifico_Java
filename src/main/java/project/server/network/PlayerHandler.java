@@ -21,11 +21,10 @@ public abstract class PlayerHandler extends Player {
     private transient AllCheckFunctions checkFunctions;
     final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
     private LeaderCardRequirements leaderCardRequirements;
-    Object token;
+
 
     protected PlayerHandler(){
         super();
-        token = new Object();
         leaderCardRequirements = new LeaderCardRequirements();
         checkFunctions = new BasicCheckFunctions();
     }
@@ -393,8 +392,9 @@ public abstract class PlayerHandler extends Player {
 
     /**
      * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto
+     * @param playerTurn
      */
-    public abstract int sendAskForPraying(); //
+    public abstract int sendAskForPraying(List<PlayerHandler> playerTurn); //
 
     public abstract void sendString( String message );
 
@@ -455,7 +455,4 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int chooseTile(ArrayList<Tile> tiles);
 
-    public Object getToken() {
-        return token;
-    }
 }

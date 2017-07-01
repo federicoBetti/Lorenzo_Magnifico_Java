@@ -44,6 +44,16 @@ class MessagesFromServerHandler {
         map.put(Constants.TILE_DRAFT, this::tileDraft );
         map.put(Constants.LEADER_DRAFT, this:: leaderDraft );
         map.put(Constants.PRAYED, this:: prayed );
+        map.put(Constants.EXCOMMUNICATION_TAKEN, this:: excommunicationTake );
+        map.put(Constants.ASK_FOR_PRAYING_LAST_PLAYER, this:: askForPrayingLastPlayer);
+    }
+
+    private void askForPrayingLastPlayer() {
+        client.askForPrayingLastPlayer();
+    }
+
+    private void excommunicationTake() {
+        client.excommunicationTake();
     }
 
     private void prayed() {

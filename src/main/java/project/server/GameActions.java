@@ -49,7 +49,7 @@ public class GameActions {
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
-        //player.sendActionOk();
+        player.sendActionOk();
         System.out.println("MANDATI TUTTTI GLI UPDATE");
     }
 
@@ -466,6 +466,7 @@ public class GameActions {
                     synchronized (player.getToken()) {
                         player.getToken().notify();
                     }
+                    continue;
                 }
             }
             else {
@@ -702,7 +703,6 @@ public class GameActions {
         } else {
             player.sendUpdates(new ScoreUpdate(player, player.getName()));
         }
-
     }
 
     public void pray(PlayerHandler player) {
