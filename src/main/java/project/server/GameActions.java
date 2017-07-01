@@ -10,6 +10,7 @@ import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
+import project.messages.updatesmessages.ExcommunicationTaken;
 
 import java.util.*;
 
@@ -458,14 +459,11 @@ public class GameActions {
             if (player.isOn()) {
                 if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
                     System.out.println("mando richiesta di preghiera a : " +  player.getName());
-                    int choice = player.sendAskForPraying();
+                    int choice = player.sendAskForPraying(room.getListOfPlayers());
                     if (choice == 1)
                         takeExcommunication(player);
                     else
                         faithPointsForVictoryPoints(player);
-                    synchronized (player.getToken()) {
-                        player.getToken().notify();
-                    }
                     continue;
                 }
             }
@@ -717,7 +715,7 @@ public class GameActions {
         ExcommunicationTile exTile = board.getExcommunicationZone()[period].getCardForThisPeriod();
 
         exTile.makeEffect(player);
-        broadcastUpdates(new ExcommunicationTake(player, exTile));
+        //broadcastUpdates(new ExcommunicationTake(player, exTile));
         broadcastUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(), player.getName()));
     }
 
