@@ -22,8 +22,7 @@ public class ExcomunicationContext extends AbstractContext{
 
     @Override
     public void checkValidInput(String input) throws InputException {
-        if  (!(input.equals("0")))
-            if ( !(input.equals("1")))
+        if  (!(input.equals("0") || input.equals("1")) )
                 throw new InputException();
     }
 

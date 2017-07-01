@@ -1,7 +1,6 @@
 package project.messages.updatesmessages;
 
 import project.controller.Constants;
-import project.controller.cardsfactory.ExcommunicationTile;
 import project.server.network.PlayerHandler;
 
 /**

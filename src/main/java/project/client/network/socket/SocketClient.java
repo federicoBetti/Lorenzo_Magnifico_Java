@@ -1,5 +1,6 @@
 package project.client.network.socket;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
@@ -31,6 +32,7 @@ public class SocketClient extends AbstractClient {
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
 
+
     // cosi si collega con la user interface scelta e creata appositamente
     public SocketClient(ClientSetter clientSetter) throws ClientConnectionException {
         this.clientSetter = clientSetter;
@@ -56,8 +58,10 @@ public class SocketClient extends AbstractClient {
         String message;
         while (true) {
             try {
+
                 message = (String) objectInputStream.readObject();
                 messageHandler.handleMessage(message);
+
             } catch (IOException e) {
 
             } catch (ClassNotFoundException e) {
@@ -125,8 +129,8 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void askForPrayingLastPlayer() {
+        //new TimerReader().start();
         int answer = clientSetter.askForPraying();
-        System.out.println("il res viene mandato: " + clientSetter.askForPraying());
 
         try {
             objectOutputStream.writeObject(answer);
@@ -136,6 +140,7 @@ public class SocketClient extends AbstractClient {
             e.printStackTrace();
         }
     }
+
 
     public void askForPraying() {
         sendGenericObject(Constants.PRAYING_REQUEST_RECEIVED);
@@ -248,7 +253,9 @@ public class SocketClient extends AbstractClient {
     }
 
     public void bothPaymentsAvailable() {
+        new TimerReader().start();
         int costChoice = clientSetter.bothPaymentsAvailable();
+        System.out.println("mandata la scelta del prezzo!");
         sendGenericObject(costChoice);
     }
 
@@ -493,5 +500,34 @@ public class SocketClient extends AbstractClient {
             objectOutputStream.flush();
             objectOutputStream.reset();
     }
+
+    private class TimerReader extends Thread {
+
+        @Override
+        public void run() {
+            try {
+                while ( true ) {
+                    String message = (String) objectInputStream.readObject();
+
+                    if (message.equals(Constants.TIMER_TURN_DELAYED)) {
+                        System.out.println("RICEVUTO");
+                        timerTurnDelayed();
+                    }
+
+                    if ( message.equals(Constants.ACTION_DONE_ON_TIME)) {
+                        System.out.println("VADO A DORMIRE...CIAO!");
+                        return;
+                    }
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
 }
 

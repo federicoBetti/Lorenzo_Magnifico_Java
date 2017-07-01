@@ -9,6 +9,8 @@ public class TimerSettings {
     private int delayTimerStartMatch;
     private String skipTurnTimerName;
     private int delayTimerSkipTurn;
+    private String delayTimerPrayingName;
+    private int delayTimerPraying;
 
     public String getStartMatchTimerName() {
         return startMatchTimerName;
@@ -40,5 +42,13 @@ public class TimerSettings {
 
     public void setDelayTimerSkipTurn(int delayTimerSkipTurn) {
         this.delayTimerSkipTurn = delayTimerSkipTurn;
+    }
+
+    public long getDelayTimerPraying() {
+        return delayTimerPraying;
+    }
+
+    public String getDelayTimerPrayingName() {
+        return delayTimerPrayingName;
     }
 }

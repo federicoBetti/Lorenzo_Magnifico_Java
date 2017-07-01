@@ -349,6 +349,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         int choice = -1;
         try {
             choice = (int) objectInputStream.readObject();
+            sendString(Constants.ACTION_DONE_ON_TIME);
             return choice;
         } catch (IOException e) {
             e.printStackTrace();
@@ -367,11 +368,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public int sendAskForPraying(List<PlayerHandler> playerTurn) {
-        System.out.println("SONO IL PLAYER: " + this );
-        if (isOn()) {
+        System.out.println("SONO IL PLAYER: " + this);
+
+        while ( true ) {
             try {
-                if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
-                    sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
+             if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
+                   sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
                     return (int) objectInputStream.readObject();
                 }
 
@@ -379,11 +381,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 synchronized (token) {
                     token.wait();
                 }
-                int answer = (int) objectInputStream.readObject();
+
+                int answer =  (int) objectInputStream.readObject();
+                //sendString(Constants.ACTION_DONE_ON_TIME);
+
                 synchronized (token1) {
                     token1.notify();
                 }
-                return answer;
+
+            return answer;
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -393,7 +399,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 e.printStackTrace();
             }
         }
-        return -1;
     }
 
     public void waitForPraying() {

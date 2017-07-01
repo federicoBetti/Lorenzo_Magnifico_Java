@@ -152,7 +152,6 @@ public class GameActions {
                 endMatch();
 
         } else if (currentRound == 1) {//fine periodo
-            System.out.println("fine periodo!" + currentPeriod);
             endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
@@ -161,24 +160,21 @@ public class GameActions {
             timer.cancel();
             firstPlayerTurn();
             timer = this.myTimerSkipTurn(turn.get(0));
-            System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
             return;
 
         } else {
             System.out.println("fine round!" + currentRound);
+            timer.cancel();
             endRound();
             board.getTurn().setRotation(0);
             nextRound();
             setEndRound(true);
-            timer.cancel();
+            //il timer cancel era qui
             firstPlayerTurn();
             timer = this.myTimerSkipTurn(turn.get(0));
             System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
-            return;
         }
-
         //todo se rimane solo un giocatore nella partita?
-        //todo se non ne rimane nessuno?
     }
 
 
@@ -193,10 +189,17 @@ public class GameActions {
     }
 
     private void firstPlayerTurn() {
-        PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(0);
-        if (firstPlayer.isOn())
-            firstPlayer.itsMyTurn();
-        nextTurn(firstPlayer);
+        int i = 0;
+        PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(i);
+        while (i < board.getTurn().getPlayerTurn().size() ) {
+            if (firstPlayer.isOn()) {
+                firstPlayer.itsMyTurn();
+                return;
+            }
+            else
+                firstPlayer = board.getTurn().getPlayerTurn().get(i + 1);
+        }
+        //nextTurn(firstPlayer);
     }
 
     //todo can we delete it?
@@ -454,17 +457,24 @@ public class GameActions {
 
     private void askForPraying(int period) {
         int faithPointsNeeded = board.getFaithPointsRequiredEveryPeriod()[period];
-
-        for (PlayerHandler player : room.getBoard().getTurn().getPlayerTurn()) {
+        List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
+        for (PlayerHandler player : turn ) {
             if (player.isOn()) {
                 if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
-                    System.out.println("mando richiesta di preghiera a : " +  player.getName());
-                    int choice = player.sendAskForPraying(room.getListOfPlayers());
+
+              /*     if (room.getListOfPlayers().indexOf(this) == room.getListOfPlayers().size() - 1)
+                        timer = myTimerSkipTurn(player);
+                    else {
+                        System.out.println("SCATTA QUELLO DELLA PREGHIERA");
+                       timer = myTimerPraying(player);
+                   }        */
+
+                    int choice = player.sendAskForPraying(turn);
+                    //timer.cancel();
                     if (choice == 1)
                         takeExcommunication(player);
                     else
                         faithPointsForVictoryPoints(player);
-                    continue;
                 }
             }
             else {
@@ -472,8 +482,11 @@ public class GameActions {
                 takeExcommunication(player);
             }
         }
-
+        System.out.println("\nFinita preghiera");
     }
+
+
+
 
     private void faithPointsForVictoryPoints(PlayerHandler player) {
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + player.getScore().getFaithPoints());
@@ -715,17 +728,10 @@ public class GameActions {
         ExcommunicationTile exTile = board.getExcommunicationZone()[period].getCardForThisPeriod();
 
         exTile.makeEffect(player);
-        //broadcastUpdates(new ExcommunicationTake(player, exTile));
+        broadcastUpdates(new ExcommunicationTaken(player, exTile.getEffectDescription()));
         broadcastUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(), player.getName()));
     }
 
-   /* public void broadcastNotifications(Notify notifications) {
-        for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
-            PlayerHandler player = entry.getValue();
-            player.sendNotification(notifications);
-        }
-    }
-        */
 
     private void broadcastUpdates(Updates updates) {
         for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
@@ -755,6 +761,7 @@ public class GameActions {
             public void run() {
 
                 player.timerTurnDelayed();
+                player.sendString(Constants.ACTION_DONE_ON_TIME);
                 nextTurn(player);
             }
         };
@@ -763,4 +770,20 @@ public class GameActions {
         timer.schedule(timerTask, room.timerSettings.getDelayTimerSkipTurn());
         return timer;
     }
+
+    private Timer myTimerPraying( PlayerHandler player) {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("scattato!");
+                player.timerTurnDelayed();
+            }
+        };
+
+
+        Timer timer = new Timer(room.timerSettings.getDelayTimerPrayingName());
+        timer.schedule(timerTask, room.timerSettings.getDelayTimerPraying());
+        return timer;
+    }
+
 }
