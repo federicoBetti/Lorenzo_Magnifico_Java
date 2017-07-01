@@ -177,6 +177,8 @@ public class HarvesterController extends AbstractController {
 
     public void refresh(){
         super.refresh();
+        unlockButton();
+
         chatArea.setText(loginBuilder.getChat().toString());
 
         if (positionSelected){
@@ -285,7 +287,6 @@ public class HarvesterController extends AbstractController {
         }
 
         mainController.doBonusHarvester(servants);
-        unlockButton();
 
     }
 

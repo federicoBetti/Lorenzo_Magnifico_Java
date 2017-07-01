@@ -4,13 +4,12 @@ package project.controller.supportfunctions;
 import project.controller.cardsfactory.VenturesCard;
 import project.model.*;
 import project.server.network.PlayerHandler;
-import project.messages.BonusInteraction;
 
 import java.util.List;
 
 public interface AllSupportFunctions {
 
-    BonusInteraction applyEffects(DevelopmentCard card, PlayerHandler player);
+    void applyEffects(DevelopmentCard card, PlayerHandler player);
 
     void setFamiliar(Position zone, FamilyMember familyMember);
 

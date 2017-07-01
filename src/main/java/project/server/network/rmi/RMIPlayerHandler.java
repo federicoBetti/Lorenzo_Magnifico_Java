@@ -30,12 +30,17 @@ public class RMIPlayerHandler extends PlayerHandler {
 
 
     private BonusProductionOrHarvesterAction lastHarvProd;
-    private TowerAction lastTowerAction;
+    private final Object tokenn;
+    transient private String towerColourChosen;
+    private int floorChosen;
+    private int servantsNumber;
+    private ArrayList<BuildingCard> productionCards;
 
     RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
         this.myClient = rmiServerToClientInterface;
         bonusType = new HashMap<>(4);
         fillHashMapBonusType();
+        tokenn = new Object();
     }
 
     private void fillHashMapBonusType() {
@@ -46,10 +51,10 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     public void doBonusHarvester(int servantsNumber) {
-        try {
-            doBonusHarv(lastHarvProd,servantsNumber);
-        } catch (CantDoActionException e) {
-            e.printStackTrace();
+        this.servantsNumber = servantsNumber;
+
+        synchronized (tokenn){
+            tokenn.notify();
         }
     }
 
@@ -60,24 +65,24 @@ public class RMIPlayerHandler extends PlayerHandler {
                 buildingCards.add(buildingCard);
             }
         }
-        try {
-            doBonusProduct(lastHarvProd, buildingCards);
-        } catch (CantDoActionException e) {
-            e.printStackTrace();
+        this.productionCards = buildingCards;
+
+        synchronized (tokenn){
+            tokenn.notify();
         }
     }
 
     public void takeBonusCardAction(int floor, String towerColour) {
-        try {
-            clientTakeBonusDevelopementCard(towerColour,floor,lastTowerAction);
-        } catch (CantDoActionException e) {
-            e.printStackTrace();
+        this.floorChosen = floor;
+        this.towerColourChosen = towerColour;
+        synchronized (tokenn){
+            tokenn.notify();
         }
     }
 
     public void takeImmediatePrivileges(List<Integer> privileges) {
         for (Integer i: privileges)
-            takePrivilege(i.intValue());
+            takePrivilege(i);
     }
 
 
@@ -123,31 +128,68 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void sendBonusTowerAction(TowerAction returnFromEffect){
-        lastTowerAction = returnFromEffect;
-        try {
-            myClient.bonusTowerAction(returnFromEffect);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        while (true) {
+            try {
+                myClient.bonusTowerAction(returnFromEffect);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            synchronized (tokenn){
+                try {
+                    tokenn.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                clientTakeBonusDevelopementCard(towerColourChosen, floorChosen, returnFromEffect);
+                break;
+            } catch (CantDoActionException e) {
+                //it's correct that continue
+            }
+
         }
     }
 
     @Override
     public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) {
-        try {
-            this.lastHarvProd = returnFromEffect;
-            myClient.sendBonusProdHarv(returnFromEffect);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        while (true) {
+            try {
+                myClient.sendBonusProdHarv(returnFromEffect);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+            synchronized (tokenn){
+                try {
+                    tokenn.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            try {
+
+                if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER)) doBonusHarv(returnFromEffect, servantsNumber);
+                else doBonusProduct(returnFromEffect, productionCards);
+
+                break;
+            }
+            catch (CantDoActionException e){
+
+            }
         }
     }
 
     @Override
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
+        List<Integer> privileges = null;
         try {
-            myClient.sendRequestForPrivileges(returnFromEffect);
+             privileges = myClient.sendRequestForPrivileges(returnFromEffect);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        takeImmediatePrivileges(privileges);
     }
 
 
@@ -182,7 +224,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public int sendAskForPraying() {
         try {
-            myClient.askForPraying();
+            return myClient.askForPraying();
         } catch (RemoteException e) {
             //todo gestire eccezzione di rete
         }

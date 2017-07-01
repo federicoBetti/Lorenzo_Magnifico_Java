@@ -178,7 +178,14 @@ public class MainController {
     }
 
     void takeBonusCardAction(int floor, String towerColourString) {
-        clientSetter.takeBonusCardAction(floor,towerColourString);
+        Runnable a = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("ho fatto partire il nuovo thread per richiesta per la torre BONUS");
+                clientSetter.takeBonusCardAction(floor,towerColourString);
+            }
+        };
+        new Thread(a).start();
     }
 
 
@@ -382,7 +389,7 @@ public class MainController {
                 generalGameController.setScelta(bothPaymentAvaiable,s,s1);
             }
         });
-        Integer i = new Integer(0);
+        Integer i = 0;
         try {
             System.out.println("mi metto in attesa della integerQueue");
              i = integerQueue.take();
@@ -393,7 +400,7 @@ public class MainController {
     }
 
     public void wakeUp(int choiceDone) {
-        integerQueue.add(new Integer(choiceDone));
+        integerQueue.add(choiceDone);
         }
 
     public void addStringQueue(String s) {
@@ -408,9 +415,11 @@ public class MainController {
         this.myTurn = myTurn;
     }
 
-    public void updateChat(StringBuffer stringBuffer) {
-        for (AbstractController c: controllers)
-            c.refresh();
+    public void updateChat() {
+        Platform.runLater(() -> {
+            for (AbstractController c: controllers)
+                c.refresh();
+        });
     }
 
     public String getLeaderCardChosen(List<LeaderCard> leaders) {

@@ -25,7 +25,7 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
 
-    void askForPraying() throws RemoteException;
+    int askForPraying() throws RemoteException;
 
     void ok(BonusInteraction bonusInteraction) throws RemoteException;
 
@@ -43,7 +43,7 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void sendBonusProdHarv(BonusProductionOrHarvesterAction returnFromEffect)throws RemoteException;
 
-    void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
+    List<Integer> sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
 
     void actionOk() throws  RemoteException;
 

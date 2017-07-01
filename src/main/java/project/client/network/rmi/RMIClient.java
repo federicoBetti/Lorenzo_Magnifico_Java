@@ -20,6 +20,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * qua devono essere implementati sia i metodi di AbstracClient (cioè tutti quelli che il client deve chiamare sul server, sia quelli della
@@ -41,6 +43,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     private String myUniqueId;
     private ClientSetter clientSetter;
     private HashMap<String,UpdateMethods> updateHashMap;
+
+    private BlockingQueue<List<Integer>> integerListQueue;
 
     public RMIClient(ClientSetter clientSetter) throws ClientConnectionException {
         super();
@@ -196,11 +200,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void immediatePriviledgeAction(List<Integer> privileges) {
-        try {
-            myServer.sendImmediatePrivileges(myUniqueId, privileges);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        integerListQueue.add(privileges);
     }
 
     public void takeImmediatePrivilege(TakePrivilegesAction action) {
@@ -294,8 +294,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public void askForPraying() {
-        clientSetter.askForPraying();
+    public int askForPraying() {
+        return clientSetter.askForPraying();
     }
 
     @Override
@@ -353,8 +353,18 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect) {
+    public List<Integer> sendRequestForPrivileges(TakePrivilegesAction returnFromEffect) {
+        integerListQueue = new LinkedBlockingQueue<>();
+        List<Integer> privileges = null;
         clientSetter.takeImmediatePrivilege(returnFromEffect);
+        try {
+            System.out.println("mi metto in attesa della lista di privilegi");
+            privileges = integerListQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("mando la lista di privilegi " + privileges);
+        return privileges;
     }
 
 

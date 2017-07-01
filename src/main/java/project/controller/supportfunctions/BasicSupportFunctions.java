@@ -2,6 +2,10 @@ package project.controller.supportfunctions;
 
 import project.controller.cardsfactory.*;
 import project.controller.Constants;
+import project.controller.effects.realeffects.Effects;
+import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.TakePrivilegesAction;
+import project.messages.TowerAction;
 import project.model.*;
 import project.server.network.PlayerHandler;
 import project.messages.BonusInteraction;
@@ -135,8 +139,28 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
 
     @Override
-    public BonusInteraction applyEffects(DevelopmentCard card, PlayerHandler player) {
-        return null;
+    public void applyEffects(DevelopmentCard card, PlayerHandler player) {
+        for (Effects effect : card.getImmediateCardEffects()) {
+            BonusInteraction returnFromEffect = effect.doEffect(player);
+            System.out.println("stampo la return from effect: " + returnFromEffect);
+
+            if (returnFromEffect instanceof TowerAction) {
+                System.out.println("if towerAction");
+                player.sendBonusTowerAction((TowerAction) returnFromEffect);
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+
+            } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction) {
+                System.out.println("if BonusInteractionHarv");
+                player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+
+            } else if (returnFromEffect instanceof TakePrivilegesAction) {
+                System.out.println("if TakePrivilege");
+                player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+            }
+        }
+        player.sendActionOk();
     }
 
     @Override

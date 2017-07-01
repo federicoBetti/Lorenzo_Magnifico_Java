@@ -40,7 +40,7 @@ public class GameActions {
         getSupportFunctions(player).towerZoneEffect(zone, player);
         zone.getTowerZoneEffect().doEffect(player);
 
-        makeImmediateEffects(player, zone.getCardOnThisFloor());
+        getSupportFunctions(player).applyEffects(zone.getCardOnThisFloor(), player);
 
         zone.setCardOnThisFloor(null);
 
@@ -49,7 +49,7 @@ public class GameActions {
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
-        player.sendActionOk();
+        //player.sendActionOk();
         System.out.println("MANDATI TUTTTI GLI UPDATE");
     }
 
@@ -324,8 +324,9 @@ public class GameActions {
         List<PlayerHandler> oldTurnOrder = board.getTurn().getPlayerTurn();
 
         for (Council council : councilZone) {
-            if (!newTurnOrder.contains(council.findPlayer(board, council.getFamiliarOnThisPosition().getFamilyColour()))) {
-                newTurnOrder.add((PlayerHandler) council.findPlayer(board, council.getFamiliarOnThisPosition().getFamilyColour()));
+            PlayerHandler player = council.findPlayer(board, council.getFamiliarOnThisPosition().getFamilyColour());
+            if (!newTurnOrder.contains(player)) {
+                newTurnOrder.add(player);
             }
         }
         for (PlayerHandler player : oldTurnOrder) {
@@ -382,10 +383,14 @@ public class GameActions {
 
         for (Harvester harvester : harvesterZone)
             clearSinglePosition(harvester);
+        harvesterZone = new ArrayList<>();
+        board.setHarvesterZone(harvesterZone);
         broadcastUpdates(new HarvesterUpdate(board.getHarvesterZone(), ""));
 
         for (Production production : productionZone)
             clearSinglePosition(production);
+        productionZone = new ArrayList<>();
+        board.setProductionZone(productionZone);
         broadcastUpdates(new ProductionUpdate(board.getProductionZone(), ""));
 
         for (Market market : marketZone)
@@ -394,6 +399,8 @@ public class GameActions {
 
         for (Council council : councilZone)
             clearSinglePosition(council);
+        councilZone = new ArrayList<>();
+        board.setCouncilZone(councilZone);
         broadcastUpdates(new CouncilUpdate((ArrayList<Council>) board.getCouncilZone(), ""));
 
         for (PlayerHandler p : room.getListOfPlayers())
@@ -459,11 +466,12 @@ public class GameActions {
                     synchronized (player.getToken()) {
                         player.getToken().notify();
                     }
-                    continue;
                 }
             }
-            System.out.println("prendo scomunica");
-            takeExcommunication(player);
+            else {
+                System.out.println("prendo scomunica");
+                takeExcommunication(player);
+            }
         }
 
     }
@@ -694,6 +702,7 @@ public class GameActions {
         } else {
             player.sendUpdates(new ScoreUpdate(player, player.getName()));
         }
+
     }
 
     public void pray(PlayerHandler player) {
@@ -724,29 +733,6 @@ public class GameActions {
         for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
             PlayerHandler player = entry.getValue();
             player.sendUpdates(updates);
-        }
-    }
-
-    private void makeImmediateEffects(PlayerHandler player, DevelopmentCard card) {
-        for (Effects effect : card.getImmediateCardEffects()) {
-            BonusInteraction returnFromEffect = effect.doEffect(player);
-            System.out.println("stampo la return from effect: " + returnFromEffect);
-
-            if (returnFromEffect instanceof TowerAction) {
-                System.out.println("if towerAction");
-                player.sendBonusTowerAction((TowerAction) returnFromEffect);
-                System.out.println("stampo la return from effect: " + returnFromEffect);
-
-            } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction) {
-                System.out.println("if BonusInteractionHarv");
-                player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
-                System.out.println("stampo la return from effect: " + returnFromEffect);
-
-            } else if (returnFromEffect instanceof TakePrivilegesAction) {
-                System.out.println("if TakePrivilege");
-                player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
-                System.out.println("stampo la return from effect: " + returnFromEffect);
-            }
         }
     }
 

@@ -91,9 +91,9 @@ public abstract class AbstractController {
         writeOnChat(text);
     }
 
-    public StringBuffer writeOnChat(String s) {
+    public void writeOnChat(String s) {
         loginBuilder.stringBufferAppend(s);
-        return loginBuilder.getStringBuffer();
+        mainController.updateChat();
 
     }
 

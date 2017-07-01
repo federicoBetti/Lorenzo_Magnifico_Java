@@ -2,7 +2,6 @@ package project.controller.supportfunctions;
 
 
 import project.controller.cardsfactory.VenturesCard;
-import project.messages.BonusInteraction;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
@@ -18,8 +17,8 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
     }
 
     @Override
-    public BonusInteraction applyEffects(DevelopmentCard card, PlayerHandler player) {
-        return allSupportFunctions.applyEffects(card,player);
+    public void applyEffects(DevelopmentCard card, PlayerHandler player) {
+        allSupportFunctions.applyEffects(card,player);
     }
 
     @Override

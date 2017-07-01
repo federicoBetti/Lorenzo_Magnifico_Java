@@ -29,13 +29,13 @@ public class ChoiceController {
 
     public void choice1(ActionEvent actionEvent) {
 
-        loginBuilder.setChoiceDone(1);
+        loginBuilder.setChoiceDone(0);
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
         stage.hide();
     }
 
     public void choice2(ActionEvent actionEvent) {
-        loginBuilder.setChoiceDone(2);
+        loginBuilder.setChoiceDone(1);
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
         stage.hide();
     }

@@ -184,6 +184,7 @@ public class ProductionController extends AbstractController{
     @Override
     public void refresh(){
         super.refresh();
+        unlockButton();
         chatArea.setText(loginBuilder.getChat().toString());
 
         if (positionSelected)
@@ -308,7 +309,6 @@ public class ProductionController extends AbstractController{
         }
 
         mainController.doBonusProduction(buildingCardSelected);
-        unlockButton();
 
     }
 

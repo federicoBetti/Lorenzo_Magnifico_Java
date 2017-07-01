@@ -574,7 +574,7 @@ public class LoginBuilder extends Application {
 
     public void writeOnMyChat(String s) {
         stringBuffer.append(s);
-        mainController.updateChat(stringBuffer);
+        mainController.updateChat();
     }
 
     public void inFront() {

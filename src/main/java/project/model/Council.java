@@ -17,7 +17,7 @@ public class Council extends Position implements Serializable{
         setFamiliarOnThisPosition(familyMember);
     }
 
-    public Player findPlayer( Board board, String familyCoulor ){
+    public PlayerHandler findPlayer( Board board, String familyCoulor ){
         for ( PlayerHandler player : board.getTurn().getPlayerTurn() ){
             if ( player.getFamilyColour().equals(familyCoulor))
                 return player;

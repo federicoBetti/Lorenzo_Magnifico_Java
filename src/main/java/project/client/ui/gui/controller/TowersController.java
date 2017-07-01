@@ -156,6 +156,7 @@ public class TowersController extends AbstractController {
         floor = -1;
         bonusAction = false;
         familiarColour = null;
+        buttonPlaceFamiliar = new Button();
     }
 
     @Override
@@ -167,6 +168,7 @@ public class TowersController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
+        unlockButton();
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiiarPlaced.setImage(null);
 
@@ -407,8 +409,9 @@ public class TowersController extends AbstractController {
 
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
+        bonusAction = true;
         writeOnChat(printBonusAction);
-        writeOnChat("you can use a random familiar to select the card"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
+        writeOnChat("click on the position next to the card you want"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
         blockButton();
         this.bonusCardType = kindOfCard;
     }
@@ -416,7 +419,6 @@ public class TowersController extends AbstractController {
     private void blockButton(){
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeBonusCard());
-        bonusAction = true;
     }
 
     private void unlockButton(){
@@ -428,8 +430,8 @@ public class TowersController extends AbstractController {
     private void takeBonusCard() {
         String towerColourString = getTowerColour(towerColour);
         if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)){
+            System.out.println("sono nel tasto prendere la carta di azione bonus");
             mainController.takeBonusCardAction(floor,towerColourString);
-            unlockButton();
         }
     }
 }
