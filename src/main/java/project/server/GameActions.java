@@ -462,7 +462,7 @@ public class GameActions {
                 if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
 
                     //senza il timer va
-                    timer = myTimerPraying(player);
+                    //timer = myTimerPraying(player);
                     //todo con il timer gli update vanno mandati solo alla fine della preghiera, cioè quando il while
                     //todo true dei socket client è ristabilito altrimenti il thread di ascolto del timer sclera.
                     //todo da lavorarci su...

@@ -132,17 +132,17 @@ public class SocketClient extends AbstractClient {
     @Override
     public void askForPrayingLastPlayer() {
         //thread che ascolta il timer
-        new TimerReader().start();
+       // new TimerReader().start();
         int answer = clientSetter.askForPraying();
-
+        System.out.println("il res viene mandato: " + clientSetter.askForPraying());
         sendGenericObject(answer);
-        synchronized (token){
+     /*   synchronized (token){
             try {
                 token.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         System.out.println("il res è stato mandato");
     }
 
@@ -150,18 +150,17 @@ public class SocketClient extends AbstractClient {
     public void askForPraying() {
         sendGenericObject(Constants.PRAYING_REQUEST_RECEIVED);
         //thread che ascolta il timer
-        new TimerReader().start();
-        System.out.println("mandata costante per far bloccare server read");
+        //new TimerReader().start();
         int answer = clientSetter.askForPraying();
         System.out.println("il res viene mandato: " + clientSetter.askForPraying());
         sendGenericObject(answer);
-        synchronized (token){
+   /*     synchronized (token){
             try {
                 token.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }   */
     }
 
     public void itsMyTurn() {

@@ -54,6 +54,7 @@ class MessagesFromServerHandler {
     }
 
     private void askForPrayingLastPlayer() {
+        System.out.println("ASK FOR PRAYING LAST PLAYER");
         client.askForPrayingLastPlayer();
     }
 
@@ -101,6 +102,7 @@ class MessagesFromServerHandler {
     }
 
     private void askForPraying() {
+        System.out.println("ASK FOR PRAYING");
         client.askForPraying();
     }
 
