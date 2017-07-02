@@ -461,12 +461,7 @@ public class GameActions {
             if (player.isOn()) {
                 if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
 
-                    //senza il timer va
-                    //timer = myTimerPraying(player);
-                    //todo con il timer gli update vanno mandati solo alla fine della preghiera, cioè quando il while
-                    //todo true dei socket client è ristabilito altrimenti il thread di ascolto del timer sclera.
-                    //todo da lavorarci su...
-
+                    timer = myTimerPraying(player);
                     int choice = player.sendAskForPraying(turn);
 
                     if (choice == 1)
@@ -724,9 +719,9 @@ public class GameActions {
         ExcommunicationTile exTile = board.getExcommunicationZone()[period].getCardForThisPeriod();
 
         exTile.makeEffect(player);
-     /*   broadcastUpdates(new ExcommunicationTaken(player, exTile.getEffectDescription()));
+        broadcastUpdates(new ExcommunicationTaken(player, exTile.getEffectDescription()));
         broadcastUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(), player.getName()));
-        */
+
     }
 
 
@@ -771,9 +766,7 @@ public class GameActions {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("scattato!");
                 player.timerTurnDelayed();
-                player.sendString(Constants.ACTION_DONE_ON_TIME);
             }
         };
 

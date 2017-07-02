@@ -31,13 +31,16 @@ public class SocketClient extends AbstractClient {
     private Socket socket;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
-    Object token = new Object();
+    Object token;
+    Object token1;
 
 
     // cosi si collega con la user interface scelta e creata appositamente
     public SocketClient(ClientSetter clientSetter) throws ClientConnectionException {
         this.clientSetter = clientSetter;
         this.messageHandler = new MessagesFromServerHandler(this);
+        token = new Object();
+        token1 = new Object();
         try {
             socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -61,7 +64,7 @@ public class SocketClient extends AbstractClient {
             try {
 
                 message = (String) objectInputStream.readObject();
-                System.out.println("IL MESSAGE é: " +  message);
+                System.out.println("IL MESSAGE é: " + message);
                 messageHandler.handleMessage(message);
 
             } catch (IOException e) {
@@ -132,35 +135,43 @@ public class SocketClient extends AbstractClient {
     @Override
     public void askForPrayingLastPlayer() {
         //thread che ascolta il timer
-       // new TimerReader().start();
+        new TimerReader().start();
         int answer = clientSetter.askForPraying();
-        System.out.println("il res viene mandato: " + clientSetter.askForPraying());
         sendGenericObject(answer);
-     /*   synchronized (token){
-            try {
-                token.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            synchronized (token1) {
+                token1.notify();
             }
-        }*/
-        System.out.println("il res è stato mandato");
+            synchronized (token) {
+                token.wait();
+            }
+            System.out.println("il res è stato mandato");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void askForPraying() {
         sendGenericObject(Constants.PRAYING_REQUEST_RECEIVED);
         //thread che ascolta il timer
-        //new TimerReader().start();
+        new TimerReader().start();
         int answer = clientSetter.askForPraying();
-        System.out.println("il res viene mandato: " + clientSetter.askForPraying());
+        System.out.println("Il thread nel socket client è: " + Thread.currentThread());
         sendGenericObject(answer);
-   /*     synchronized (token){
-            try {
-                token.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            synchronized (token1) {
+                token1.notify();
             }
-        }   */
+            synchronized (token) {
+                token.wait();
+            }
+            System.out.println("il res è stato mandato");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("il res viene mandato: " + answer);
     }
 
     public void itsMyTurn() {
@@ -263,7 +274,7 @@ public class SocketClient extends AbstractClient {
         int costChoice = clientSetter.bothPaymentsAvailable();
         System.out.println("mandata la scelta del prezzo!");
         sendGenericObject(costChoice);
-        synchronized (token){
+        synchronized (token) {
             try {
                 token.wait();
             } catch (InterruptedException e) {
@@ -372,7 +383,7 @@ public class SocketClient extends AbstractClient {
     @Override
     public void excommunicationTake() {
         try {
-            Updates update =(Updates)objectInputStream.readObject();
+            Updates update = (Updates) objectInputStream.readObject();
             clientSetter.excommunicationTake(update);
         } catch (IOException e) {
             e.printStackTrace();
@@ -381,7 +392,6 @@ public class SocketClient extends AbstractClient {
         }
 
     }
-
 
 
     private void createWaitingForYourTurnContext() {
@@ -474,15 +484,15 @@ public class SocketClient extends AbstractClient {
         List<LeaderCard> leaders = new ArrayList<>();
 
         try {
-            int size = (int)objectInputStream.readObject();
+            int size = (int) objectInputStream.readObject();
 
-            for ( int i = 0; i < size; i++ ) {
+            for (int i = 0; i < size; i++) {
                 LeaderCard leaderCard = (LeaderCard) objectInputStream.readObject();
                 leaders.add(leaderCard);
-        }
+            }
 
-        String leaderCardChoosen = clientSetter.getLeaderCardChosen(leaders);
-        objectOutputStream.writeObject(leaderCardChoosen);
+            String leaderCardChoosen = clientSetter.getLeaderCardChosen(leaders);
+            objectOutputStream.writeObject(leaderCardChoosen);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -494,24 +504,24 @@ public class SocketClient extends AbstractClient {
     public void tileDraft() throws IOException, ClassNotFoundException {
         List<Tile> tiles = new ArrayList<>();
 
-            int size = (int) objectInputStream.readObject();
+        int size = (int) objectInputStream.readObject();
 
-            for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
 
-                try {
-                    Tile tile = (Tile) objectInputStream.readObject();
-                    tiles.add(tile);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+            try {
+                Tile tile = (Tile) objectInputStream.readObject();
+                tiles.add(tile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
+        }
 
-            int choice = clientSetter.tileDraft(tiles);
-            objectOutputStream.writeObject(choice);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
+        int choice = clientSetter.tileDraft(tiles);
+        objectOutputStream.writeObject(choice);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
     }
 
     private class TimerReader extends Thread {
@@ -519,26 +529,31 @@ public class SocketClient extends AbstractClient {
         @Override
         public void run() {
             try {
-                while ( true ) {
-                    String message = (String) objectInputStream.readObject();
 
-                    if (message.equals(Constants.TIMER_TURN_DELAYED)) {
-                        System.out.println("RICEVUTO");
-                        timerTurnDelayed();
+                String message = (String) objectInputStream.readObject();
+
+                if (message.equals(Constants.TIMER_TURN_DELAYED)) {
+                    System.out.println("RICEVUTO");
+                    timerTurnDelayed();
+                    synchronized (token1) {
+                        token1.wait();
                     }
-
-                    if ( message.equals(Constants.ACTION_DONE_ON_TIME)) {
-                        System.out.println("VADO A DORMIRE...CIAO!");
-                        synchronized (token){
-                            token.notify();
-                        }
-                        return;
+                    synchronized (token) {
+                        token.notify();
                     }
-
                 }
+
+                if (message.equals(Constants.ACTION_DONE_ON_TIME)){
+                    synchronized (token) {
+                        token.notify();
+                    }
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 

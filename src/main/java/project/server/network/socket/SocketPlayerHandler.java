@@ -375,7 +375,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             try {
              if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
                    sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
-                    return (int) objectInputStream.readObject();
+                    int answer = (int) objectInputStream.readObject();
+                    sendString(Constants.ACTION_DONE_ON_TIME);
+                    return answer;
                 }
 
                 sendString(Constants.ASK_FOR_PRAYING);
@@ -384,7 +386,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 }
 
                 int answer =  (int) objectInputStream.readObject();
-                //sendString(Constants.ACTION_DONE_ON_TIME);
+                sendString(Constants.ACTION_DONE_ON_TIME);
 
                 synchronized (token1) {
                     token1.notify();

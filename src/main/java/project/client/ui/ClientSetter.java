@@ -173,7 +173,6 @@ public class ClientSetter {
 
     public int askForPraying(){
         int res =  ui.askForPraying();
-        System.out.println("il res è qui: " + res);
         return res;
     }
 
