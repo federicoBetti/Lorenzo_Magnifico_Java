@@ -16,7 +16,7 @@ public class Player implements Serializable{
 
 	private PersonalBoard personalBoardReference;
 
-	private boolean isOn;
+	volatile private boolean isOn;
 
 	private Score score;
 

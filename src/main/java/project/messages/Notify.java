@@ -22,6 +22,6 @@ public class Notify extends Updates {
 
     @Override
     public String toScreen() {
-        return null;
+        return notification;
     }
 }

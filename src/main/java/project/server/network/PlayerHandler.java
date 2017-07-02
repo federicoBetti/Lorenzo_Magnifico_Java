@@ -19,7 +19,7 @@ public abstract class PlayerHandler extends Player {
 
     private transient Room room;
     private transient AllCheckFunctions checkFunctions;
-    final static String NO_ACTION_CAN_BE_DONE = "no action can be done";
+    final static String NO_AbCTION_CAN_BE_DONE = "no action can be done";
     private LeaderCardRequirements leaderCardRequirements;
 
 

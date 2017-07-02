@@ -341,6 +341,16 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
+    public void notifyPlayer() {
+
+    }
+
+    @Override
+    public void reconnect() {
+
+    }
+
+    @Override
     public int canUseBothPaymentMethod() {
         return clientSetter.bothPaymentsAvailable();
     }

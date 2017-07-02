@@ -112,8 +112,12 @@ public class GameActions {
      * @param playerHandler
      */
     public void nextTurn(PlayerHandler playerHandler) {
+        System.out.println("Sono in next Turn");
         PlayerHandler next;
         List<PlayerHandler> turn = board.getTurn().getPlayerTurn();
+
+        for ( PlayerHandler player : turn )
+            System.out.println("Player : " + player.isOn());
 
         int indexOfMe = turn.indexOf(playerHandler);
         int playerNumbers = room.getRoomPlayers();
@@ -125,7 +129,7 @@ public class GameActions {
             if (next.isOn()) {
                 timer.cancel();
                 next.itsMyTurn();
-                timer = this.myTimerSkipTurn(turn.get(indexOfMe + 1));
+                timer = this.myTimerSkipTurn(turn.get(indexOfMe + 1), turn);
                 return;
             }
             nextTurn(next);
@@ -138,13 +142,13 @@ public class GameActions {
             if (next.isOn()) {
                 timer.cancel();
                 next.itsMyTurn();
-                timer = this.myTimerSkipTurn(turn.get(0));
+                timer = this.myTimerSkipTurn(turn.get(0), turn);
                 System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
                 return;
             }
             nextTurn(next);
         } else if (currentRound == 1 && currentPeriod == 2) {//fine partita
-
+            timer.cancel();
             if (room.numberOfPlayerOn() == 0) {
                 room.getServer().getRooms().remove(room);
                 return;
@@ -159,7 +163,7 @@ public class GameActions {
             setEndRound(true);
             timer.cancel();
             firstPlayerTurn();
-            timer = this.myTimerSkipTurn(turn.get(0));
+            timer = this.myTimerSkipTurn(turn.get(0), turn);
             return;
 
         } else {
@@ -171,7 +175,7 @@ public class GameActions {
             setEndRound(true);
             //il timer cancel era qui
             firstPlayerTurn();
-            timer = this.myTimerSkipTurn(turn.get(0));
+            timer = this.myTimerSkipTurn(turn.get(0), turn);
             System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
         }
         //todo se rimane solo un giocatore nella partita?
@@ -212,9 +216,9 @@ public class GameActions {
         return true;
     }
 
-    public void firstTurn() {
+    public void firstTurn(List<PlayerHandler> playerInTheMatch) {
         board.getTurn().getPlayerTurn().get(0).itsMyTurn();
-        timer = myTimerSkipTurn(board.getTurn().getPlayerTurn().get(0));
+        timer = myTimerSkipTurn(board.getTurn().getPlayerTurn().get(0), playerInTheMatch );
     }
 
     public void setBoard(Board board) {
@@ -754,6 +758,15 @@ public class GameActions {
 
                 player.timerTurnDelayed();
                 player.setOn(false);
+                player.setOn(false);
+                //todo aggiunto questo perchè ho letto nei requirements che bisogna fare una cosa del genere
+               /* for ( PlayerHandler playerToInform : playersInTheMatch ){
+                    if ( playerToInform == player )
+                        player.setOn(false);
+                    else
+                        playerToInform.sendNotification(notify);
+                }   */
+
                 nextTurn(player);
             }
         };

@@ -6,6 +6,7 @@ import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.ExcommunicationTaken;
@@ -80,9 +81,7 @@ public class Cli extends AbstractUI {
     }
 
     public void actionOk() {
-        if ( timerDelayed ) {
-            context = new WaitingForYourTurnContext(this);
-            timerDelayed = false;
+        if ( context instanceof TimerDelayedContext ) {
             return;
         }
 
@@ -221,8 +220,43 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void waitingForYourTurn() {
+    public void timerDelayed() {
         try {//bonus action interrupted
+            if (context instanceof TakeBonusCard || context instanceof BonusHarvesterContext || context instanceof BonusProductionContext) {
+                System.out.println("mando exit");
+                context = new TimerDelayedContext(this);
+                sendExitToBonusAction();
+
+            }
+            //praying interrupted
+            else if (context instanceof ExcomunicationContext) {
+                choiceQueue.add("1");
+                context = new TimerDelayedContext(this);
+                return;
+            }
+
+            else if (context instanceof BothPaymentsVentureCardsContext) {
+                int randomNum = ThreadLocalRandom.current().nextInt(0, 1 + 1);
+                choiceQueue.add(String.valueOf(randomNum));
+                context = new TimerDelayedContext(this);
+                return;
+            }
+
+        } catch (InputException e) {
+            e.printStackTrace();
+        }
+
+        context = new TimerDelayedContext(this);
+    }
+
+    @Override
+    public void reconnect() {
+        clientSetter.reconnect();
+    }
+
+    @Override
+    public void waitingForYourTurn() {
+     /*   try {//bonus action interrupted
             if (context instanceof TakeBonusCard || context instanceof BonusHarvesterContext || context instanceof BonusProductionContext) {
                 System.out.println("mando exit");
                 sendExitToBonusAction();
@@ -243,7 +277,7 @@ public class Cli extends AbstractUI {
 
         } catch (InputException e) {
             e.printStackTrace();
-        }
+        }       */
 
         context = new WaitingForYourTurnContext(this);
     }
@@ -535,6 +569,13 @@ public class Cli extends AbstractUI {
         context.getpRed().println(update.toScreen());
         context.getpBlue().println(update.getExTile());
     }
+
+    @Override
+    public void notifyPlayer(Notify notify) {
+        context.getpBlue().println(notify.toScreen());
+    }
+
+
 
 
     @Override

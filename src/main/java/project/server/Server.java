@@ -1,5 +1,7 @@
 package project.server;
 
+import com.google.gson.Gson;
+import project.PlayerFile;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
@@ -9,6 +11,8 @@ import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
 import project.server.network.socket.SocketServer;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.util.*;
@@ -65,6 +69,7 @@ public class Server {
         System.out.println(player);
         System.out.println(roomsAreAllFull());
 
+        createPlayerFile(nickname);
 
         if (nicknameAlreadyUsed(nickname)) {
             System.out.println("NICKNAME GIA USATO");
@@ -115,7 +120,7 @@ public class Server {
                         room.nicknamePlayersMap.replace(nickname, player);
                         if (numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1) {
                             player.itsMyTurn();
-                            room.getGameActions().myTimerSkipTurn(player);
+                            room.getGameActions().myTimerSkipTurn(player, room.getListOfPlayers() );
                         }
 
                         player.loginSucceded();
@@ -125,6 +130,22 @@ public class Server {
                 }
         if ( allMatchStarted() )
             createNewRoom(nickname, player);
+    }
+
+    private void createPlayerFile(String nickname) {
+        PlayerFile playerFile = new PlayerFile();
+        playerFile.setPlayerName(nickname);
+        Gson gson = new Gson();
+        String playerFileJson = gson.toJson(playerFile);
+
+        File file = new File("/persistance/persistance.json");
+        try {
+            FileWriter f = new FileWriter(file, true );
+            f.write(playerFileJson);
+            f.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean allMatchStarted() {

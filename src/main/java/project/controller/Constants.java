@@ -119,6 +119,8 @@ public class Constants {
     public static final String PRAYING_REQUEST_RECEIVED = "praying-request-received";
     public static final String ASK_FOR_PRAYING_LAST_PLAYER = "ask-for-praying-last-player";
     public static final String ACTION_DONE_ON_TIME = "action-done-on-time";
+    public static final String RECONNECT = "reconnect";
+    public static final String WAITING_FOR_YOUR_TURN = "waiting-for-your-turn";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;
