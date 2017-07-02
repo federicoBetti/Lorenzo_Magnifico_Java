@@ -131,7 +131,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void waitingForYourTurn() {
-        mainController.timerDelayed();
+        mainController.waitForYourTurn();
     }
 
     @Override
@@ -178,7 +178,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void timerDelayed() {
-
+        mainController.timerDelayed();
     }
 
     @Override

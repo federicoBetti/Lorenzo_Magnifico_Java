@@ -315,7 +315,8 @@ public abstract class PlayerHandler extends Player {
      */
     protected void goToCouncilPalace(int privelgeNumber, FamilyMember familyMember){
         // ho supposto che posso andare nel palazzo del consiglio anche se c'è gia un altro del mio colore
-        gameActions().goToCouncilPalace(privelgeNumber,familyMember,this);
+        if (familyMember.getMyValue() + checkFunctions.getServants(this) > 1)
+            gameActions().goToCouncilPalace(privelgeNumber,familyMember,this);
     }
 
     /**
@@ -373,6 +374,10 @@ public abstract class PlayerHandler extends Player {
         return card;
     }
 
+    public void reconnectClient() {
+        this.setOn(true);
+        System.out.println("Client reconnexted!");
+    }
 
 
     /**
@@ -432,8 +437,11 @@ public abstract class PlayerHandler extends Player {
     public abstract void loginSucceded();
 
     public void skipTurn(){
+        this.waitForYourTurn();
         room.getGameActions().nextTurn(this);
     }
+
+    protected abstract void waitForYourTurn();
 
     public void setRoom(Room room) {
         this.room = room;

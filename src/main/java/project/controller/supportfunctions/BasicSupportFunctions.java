@@ -125,7 +125,8 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     @Override
     public void finalPointsFromVenturesCard() {
         for (VenturesCard venturesCard: player.getPersonalBoardReference().getVentures()){
-            applyEffects(venturesCard,player);
+            for (Effects e: venturesCard.getImmediateCardEffects())
+                applyEffects(e,player);
         }
     }
 
@@ -139,8 +140,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
 
     @Override
-    public void applyEffects(DevelopmentCard card, PlayerHandler player) {
-        for (Effects effect : card.getImmediateCardEffects()) {
+    public void applyEffects(Effects effect, PlayerHandler player) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
             System.out.println("stampo la return from effect: " + returnFromEffect);
 
@@ -159,8 +159,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
                 System.out.println("stampo la return from effect: " + returnFromEffect);
             }
-        }
-        player.sendActionOk();
     }
 
     @Override

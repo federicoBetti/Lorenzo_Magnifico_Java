@@ -2,6 +2,7 @@ package project.controller.supportfunctions;
 
 
 import project.controller.cardsfactory.VenturesCard;
+import project.controller.effects.realeffects.Effects;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
@@ -17,7 +18,7 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
     }
 
     @Override
-    public void applyEffects(DevelopmentCard card, PlayerHandler player) {
+    public void applyEffects(Effects card, PlayerHandler player) {
         allSupportFunctions.applyEffects(card,player);
     }
 

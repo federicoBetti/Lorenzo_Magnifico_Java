@@ -47,6 +47,7 @@ public class MainController {
     private int numberOfPrivelege;
     private boolean actionBonusOn;
     private InitialLogin initialLoginController;
+    private ChoiceController choicheController;
 
 
     private MainController(){
@@ -221,11 +222,16 @@ public class MainController {
     }
 
     public void playLeaderCard(int cardSelected) {
-        clientSetter.playLeaderCard(cardSelected);
+
+        Runnable a = () -> clientSetter.playLeaderCard(cardSelected);;
+        new Thread(a).start();
+
     }
 
     public void discardLeaderCard(int cardSelected) {
-        clientSetter.discardLeaderCard(cardSelected);
+        Runnable a = () -> clientSetter.discardLeaderCard(cardSelected);;
+        new Thread(a).start();
+
     }
 
     public void goToMarket(int positionSelected, String familiarChosen) {
@@ -496,19 +502,31 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Stage s = loginBuilder.getLastStageOpened();
-                if (s != null){
-                    loginBuilder.setChoiceDone(1);
-                    s.hide();
-                }
-                else
-                    loginBuilder.popUp("turn finished due timer");
+                clearStages();
                 cleanActionBonus();
                 loginBuilder.writeOnMyChat("the turn is over\n");
                 loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
                 myTurn = false;
             }
         });
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.popUp("you are disconnected, click ok to reconnect");
+            }
+        });
+    }
+
+    private void clearStages() {
+        if (choicheController != null)
+            choicheController.closeStage();
     }
 
     private void cleanActionBonus() {
@@ -573,4 +591,17 @@ public class MainController {
     }
 
 
+    public void waitForYourTurn() {
+        myTurn = false;
+    }
+
+    public void reconnect() {
+        Runnable a = () -> clientSetter.reconnect();
+        new Thread(a).start();
+
+    }
+
+    public void setChoicheController(ChoiceController choicheController) {
+        this.choicheController = choicheController;
+    }
 }

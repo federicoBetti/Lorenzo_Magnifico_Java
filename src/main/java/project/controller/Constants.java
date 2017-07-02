@@ -65,7 +65,7 @@ public class Constants {
     public static final String LUCREZIA_BORGIA = "lucreziaBorgia";
     public static final String FEDERICO_DA_MONTEFELTRO = "federicoDaMontefeltro";
     public static final String LORENZO_DE_MEDICI = "lorenzoDeMedici";
-    public static final String SISTO_IV = "sistoIv";
+    public static final String SISTO_IV = "sistoIV";
     public static final String CESARE_BORGIA = "cesareBorgia";
     public static final String SANTA_RITA = "santaRita";
     public static final String COSIMO_DE_MEDICI = "cosimoDeMedici";

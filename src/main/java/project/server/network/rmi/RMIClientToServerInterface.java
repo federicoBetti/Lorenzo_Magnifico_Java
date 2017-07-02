@@ -57,4 +57,5 @@ import java.util.List;
 
      void scelta(String myUniqueId) throws RemoteException;
 
+     void reconnect(String myUniqueId) throws RemoteException;
  }

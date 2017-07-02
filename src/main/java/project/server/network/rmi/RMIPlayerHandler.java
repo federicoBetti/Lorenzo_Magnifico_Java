@@ -102,6 +102,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         prayingChoice = 1;
 
         synchronized (tokenn){
+            System.out.println("sto per notificare tutti che mi è scaduto anche il timer");
             tokenn.notify();
         }
     }
@@ -240,6 +241,7 @@ public class RMIPlayerHandler extends PlayerHandler {
 
         synchronized (tokenn){
             try {
+                System.out.println("sto andando nel wait dei privilegi");
                 tokenn.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -323,6 +325,15 @@ public class RMIPlayerHandler extends PlayerHandler {
         System.out.println("login RMI succeded");
         try {
             myClient.loginSucceded();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void waitForYourTurn() {
+        try {
+            myClient.waitForYourTurn();
         } catch (RemoteException e) {
             e.printStackTrace();
         }

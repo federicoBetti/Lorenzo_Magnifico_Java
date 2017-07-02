@@ -5,7 +5,6 @@ import project.controller.effects.realeffects.TakeRoPEffects;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
-import project.model.*;
 import project.messages.BonusInteraction;
 import project.server.network.PlayerHandler;
 
@@ -17,9 +16,7 @@ public class SantaRita extends SupportFunctionsDecorator {
     }
 
     @Override
-    public void applyEffects(DevelopmentCard card, PlayerHandler player) {
-
-        for (Effects effect : card.getImmediateCardEffects()) {
+    public void applyEffects(Effects effect, PlayerHandler player) {
             BonusInteraction returnFromEffect = effect.doEffect(player);
             System.out.println("stampo la return from effect: " + returnFromEffect);
 
@@ -42,7 +39,5 @@ public class SantaRita extends SupportFunctionsDecorator {
                 effect.doEffect(player);
             }
         }
-        player.sendActionOk();
-    }
 
 }

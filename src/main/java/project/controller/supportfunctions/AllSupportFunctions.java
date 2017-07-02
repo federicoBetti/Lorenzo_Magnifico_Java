@@ -2,6 +2,7 @@ package project.controller.supportfunctions;
 
 
 import project.controller.cardsfactory.VenturesCard;
+import project.controller.effects.realeffects.Effects;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface AllSupportFunctions {
 
-    void applyEffects(DevelopmentCard card, PlayerHandler player);
+    void applyEffects(Effects card, PlayerHandler player);
 
     void setFamiliar(Position zone, FamilyMember familyMember);
 

@@ -90,11 +90,11 @@
                   <Image url="/images/immaginiSetUp/finestra.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imageLeaderCard0" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#leaderCardChosen0"/>
-            <ImageView fx:id="imageLeaderCard1" fitHeight="210.0" fitWidth="128.0" layoutX="369.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#leaderCardChosen1"/>
-            <ImageView fx:id="imageLeaderCard2" fitHeight="210.0" fitWidth="128.0" layoutX="228.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#leaderCardChosen2"/>
-            <ImageView fx:id="imageLeaderCard3" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#leaderCardChosen3"/>
-            <ImageView fx:id="imageLeaderCard4" fitHeight="210.0" fitWidth="128.0" layoutX="369.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#leaderCardChosen4"/>
+            <ImageView fx:id="imageLeaderCard0" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="imageLeaderCard1" fitHeight="210.0" fitWidth="128.0" layoutX="369.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageLeaderCard2" fitHeight="210.0" fitWidth="128.0" layoutX="228.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="imageLeaderCard3" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageLeaderCard4" fitHeight="210.0" fitWidth="128.0" layoutX="369.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true"/>
             
          </children>
       </Pane>

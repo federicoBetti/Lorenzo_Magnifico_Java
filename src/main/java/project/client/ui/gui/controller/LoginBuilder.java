@@ -462,6 +462,7 @@ public class LoginBuilder extends Application {
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
+            mainController.reconnect();
             return ;
         } catch (IOException e) {
             e.printStackTrace();

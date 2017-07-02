@@ -23,6 +23,7 @@ public class ChoiceController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+        mainController.setChoicheController(this);
     }
 
 
@@ -37,6 +38,12 @@ public class ChoiceController {
     public void choice2(ActionEvent actionEvent) {
         loginBuilder.setChoiceDone(1);
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
+        stage.hide();
+    }
+
+    public void closeStage(){
+        Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
+        mainController.setChoicheController(null);
         stage.hide();
     }
 

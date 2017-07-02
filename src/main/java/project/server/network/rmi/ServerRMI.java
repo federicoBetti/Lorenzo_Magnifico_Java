@@ -195,6 +195,11 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
         getPlayerHandler(myUniqueId).scelta();
     }
 
+    @Override
+    public void reconnect(String myUniqueId) throws RemoteException {
+        getPlayerHandler(myUniqueId).reconnectClient();
+    }
+
     //da qua in poi ci saranno i metodi che ritornano scelte
 
 

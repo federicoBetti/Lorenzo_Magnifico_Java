@@ -171,8 +171,11 @@ public class TowersController extends AbstractController {
         unlockButton();
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiiarPlaced.setImage(null);
-
+        if (floor != -1){
+            myTower[towerColour][floor].setFamiliarName("");
+        }
         floor = -1;
+        towerColour = -1;
         familiarChosen = "";
 
     }
@@ -283,7 +286,7 @@ public class TowersController extends AbstractController {
 
     public void takeCard(int tower, int floor){
         if (!bonusAction) {
-            if (myTower[tower][floor].getFamiliarName() == null) {
+            if (myTower[tower][floor].getFamiliarImage().getImage() == null) {
                 lastFamiiarPlaced.setImage(null);
                 lastFamiiarPlaced = myTower[tower][floor].getFamiliarImage();
                 myTower[tower][floor].setFamiliarImage(getTrueFamiliarImage());
@@ -383,6 +386,8 @@ public class TowersController extends AbstractController {
             String towerColourString = getTowerColour(towerColour);
             lastFamiiarPlaced = new ImageView();
             mainController.takeDevCard(towerColourString,floor, familiarChosen);
+            floor = -1;
+            towerColour = -1;
         }
     }
 

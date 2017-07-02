@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,8 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import project.controller.cardsfactory.LeaderCard;
+import project.model.FamilyMember;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +49,8 @@ public class LeaderCardController extends AbstractController {
     private  ImageView imageLeaderCard4;
     @FXML
     private  Button goBackButton;
-    private ArrayList<ImageView> arrayOfLeaderCard;
+    private ArrayList<FamiliarPosition> arrayOfLeaderCard;
     private boolean[] leaderCardSelected;
-    private boolean[] leaderCardPresent;
 
 
     private DropShadow borderGlow= new DropShadow();
@@ -86,16 +88,21 @@ public class LeaderCardController extends AbstractController {
     public void initialize(){
         super.initialize();
         arrayOfLeaderCard = new ArrayList<>();
-        arrayOfLeaderCard.add(imageLeaderCard0);
-        arrayOfLeaderCard.add(imageLeaderCard1);
-        arrayOfLeaderCard.add(imageLeaderCard2);
-        arrayOfLeaderCard.add(imageLeaderCard3);
-        arrayOfLeaderCard.add(imageLeaderCard4);
+        arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard0));
+        arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard1));
+        arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard2));
+        arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard3));
+        arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard4));
         leaderCardSelected = new boolean[5];
-        leaderCardPresent = new boolean[5];
 
     }
 
+    public void uploadImages(){
+        for (FamiliarPosition f: arrayOfLeaderCard){
+        ImageView imageView = f.getImage();
+        imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/leaders.jpg"))));
+    }
+    }
 
     public void sendChat(ActionEvent actionEvent){
         sendChat(chatText);
@@ -104,46 +111,32 @@ public class LeaderCardController extends AbstractController {
     private void unselectAllCards() {
         for (int i=0; i<leaderCardSelected.length;i++){
             if (leaderCardSelected[i]){
-                arrayOfLeaderCard.get(i).setEffect(borderNull);
+                arrayOfLeaderCard.get(i).getImage().setEffect(borderNull);
                 leaderCardSelected[i]=false;
             }
         }
     }
-    private void selectLeaderCard(int index){
+
+
+    private void leaderCardChosen(String name) {
+        int index = findIndex(name);
         if (!leaderCardSelected[index]){
             System.out.println("cambio selezione");
             unselectAllCards();
             leaderCardSelected[index] = true;
-            ImageView imageView = arrayOfLeaderCard.get(index);
+            ImageView imageView = arrayOfLeaderCard.get(index).getImage();
             imageView.setEffect(borderGlow);
         }
     }
 
-    public void leaderCardChosen0() {
-        int indexOfLeaderCard = 0;
-        selectLeaderCard(indexOfLeaderCard);
+    private int findIndex(String name) {
+        for (FamiliarPosition f: arrayOfLeaderCard){
+            if (f.getFamiliarName().equals(name))
+                return arrayOfLeaderCard.indexOf(f);
+        }
+        return -1;
     }
 
-
-    public void leaderCardChosen1() {
-        int indexOfLeaderCard = 1;
-        selectLeaderCard(indexOfLeaderCard);
-    }
-
-    public void leaderCardChosen2() {
-        int indexOfLeaderCard = 2;
-        selectLeaderCard(indexOfLeaderCard);
-    }
-
-    public void leaderCardChosen3() {
-        int indexOfLeaderCard = 3;
-        selectLeaderCard(indexOfLeaderCard);
-    }
-
-    public void leaderCardChosen4() {
-        int indexOfLeaderCard = 4;
-        selectLeaderCard(indexOfLeaderCard);
-    }
 
     @FXML
     private void goBack() {
@@ -170,23 +163,19 @@ public class LeaderCardController extends AbstractController {
     public void updateCards(List<LeaderCard> leaderCards){
         for (int i = 0; i<leaderCards.size(); i++){
             LeaderCard l = leaderCards.get(i);
-            if (l == null){
-                if (leaderCardPresent[i]){
-                    ImageView imageView = arrayOfLeaderCard.get(i);
-                    imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/back.png"))));
-                    leaderCardPresent[i] = false;
-                }
+            if ((arrayOfLeaderCard.get(i).getFamiliarName().equals(""))){
+                    ImageView imageView = arrayOfLeaderCard.get(i).getImage();
+                    arrayOfLeaderCard.get(i).setFamiliarName(l.getName());
+                    imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCards/" + l.getName() + ".png"))));
+                    imageView.setOnMouseClicked(event -> leaderCardChosen(l.getName()));
             }
-            else {
-                if (!leaderCardPresent[i]){
-                    ImageView imageView = arrayOfLeaderCard.get(i);
-                     imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCards/" + l.getName() + ".png"))));
-
-                     leaderCardPresent[i] = true;
-                }
+            else if (l == null){
+                ImageView imageView = arrayOfLeaderCard.get(i).getImage();
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/back.png"))));
             }
         }
     }
+
 
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.LEADER);

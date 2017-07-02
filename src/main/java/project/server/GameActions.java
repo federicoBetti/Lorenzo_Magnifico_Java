@@ -11,6 +11,7 @@ import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
 import project.messages.updatesmessages.ExcommunicationTaken;
+import project.server.network.exception.CantDoActionException;
 
 import java.util.*;
 
@@ -41,7 +42,10 @@ public class GameActions {
         getSupportFunctions(player).towerZoneEffect(zone, player);
         zone.getTowerZoneEffect().doEffect(player);
 
-        getSupportFunctions(player).applyEffects(zone.getCardOnThisFloor(), player);
+        for (Effects e: zone.getCardOnThisFloor().getImmediateCardEffects())
+            getSupportFunctions(player).applyEffects(e, player);
+
+        player.sendActionOk();
 
         zone.setCardOnThisFloor(null);
 
@@ -150,6 +154,7 @@ public class GameActions {
         } else if (currentRound == 1 && currentPeriod == 2) {//fine partita
             timer.cancel();
             if (room.numberOfPlayerOn() == 0) {
+                System.out.println("finita la partita senza nessun giocatore");
                 room.getServer().getRooms().remove(room);
                 return;
             } else
@@ -620,13 +625,20 @@ public class GameActions {
      * @param player
      */
     //todo modify
-    public void playLeaderCard(String leaderName, PlayerHandler player) {
+    public void playLeaderCard(String leaderName, PlayerHandler player) throws CantDoActionException {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
+                if (leaderCard.isPlayed())
+                    throw new CantDoActionException();
                 BonusInteraction returnFromEffect = leaderCardEffect.doEffect(leaderName, player);
                 if (returnFromEffect instanceof LorenzoMagnifico) {
                     //todo fare cose per lorenzo magnifico
                 }
+                else if (returnFromEffect instanceof BonusProductionOrHarvesterAction)
+                    player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
+                else if (returnFromEffect instanceof TakePrivilegesAction)
+                    player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+
                 leaderCard.setPlayed(true);
             }
         }
@@ -682,6 +694,11 @@ public class GameActions {
         List<Council> councilZone = board.getCouncilZone();
 
         getSupportFunctions(player).setFamiliarInTheCouncilPalace(councilZone, familyMember);
+
+        if (familyMember.getMyValue() < 1) {
+            int servantsUsed = getSupportFunctions(player).payServants(1, 0);
+            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+        }
 
         Effects e = new AddCoin(1);
         e.doEffect(player);
@@ -750,7 +767,7 @@ public class GameActions {
 
     }
 
-    Timer myTimerSkipTurn(PlayerHandler player) {
+    Timer myTimerSkipTurn(PlayerHandler player, List<PlayerHandler> playersInTheMatch) {
 
         TimerTask timerTask = new TimerTask() {
             @Override

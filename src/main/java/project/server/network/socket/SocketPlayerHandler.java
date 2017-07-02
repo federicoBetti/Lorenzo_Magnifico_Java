@@ -98,7 +98,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     public void socketSkipTurn() {
-        sendString(Constants.WAITING_FOR_YOUR_TURN);
         skipTurn();
     }
 
@@ -265,6 +264,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void loginSucceded() {
         sendString(Constants.LOGIN_SUCCEDED);
+    }
+
+    @Override
+    protected void waitForYourTurn() {
+        sendString(Constants.WAITING_FOR_YOUR_TURN);
     }
 
     @Override
@@ -639,8 +643,5 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    public void reconnectClient() {
-        this.setOn(true);
-        System.out.println("Client reconnexted!");
-    }
+
 }

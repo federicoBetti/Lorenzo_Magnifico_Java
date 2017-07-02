@@ -1865,7 +1865,7 @@
 {	
 	"anagrafic":{
 		"type":"characterCard",
-		"name":"papaMessenger",
+		"name":"papalMessenger",
 		"period":2,
 		"choicePe": false,
 		"cost":[{

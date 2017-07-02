@@ -1,5 +1,6 @@
 package project.client.network.rmi;
 
+import com.sun.org.apache.regexp.internal.RE;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
@@ -62,4 +63,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     int tileChoosen(ArrayList<Tile> tiles) throws RemoteException;
 
     void nicknameAlreadyUsed() throws RemoteException;
+
+    void waitForYourTurn() throws RemoteException;
 }

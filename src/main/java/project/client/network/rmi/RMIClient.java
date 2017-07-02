@@ -347,7 +347,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void reconnect() {
-
+        try {
+            myServer.reconnect(myUniqueId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -403,6 +407,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void nicknameAlreadyUsed() throws RemoteException {
         clientSetter.nicknameAlreadyUsed();
+    }
+
+    @Override
+    public void waitForYourTurn() throws RemoteException {
+        clientSetter.waitingForYourTurn();
     }
 
     @Override
