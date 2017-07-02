@@ -6,6 +6,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
+import project.model.Player;
 import project.model.Tile;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CanUseBothPaymentMethodException;
@@ -32,8 +33,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ObjectInputStream objectInputStream;
     private transient ObjectOutputStream objectOutputStream;
     private transient ServerDataHandler serverDataHandler;
-    Object token;
-    Object token1;
+    final Object token;
+    final Object token1;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
@@ -97,6 +98,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     public void socketSkipTurn() {
+        sendString(Constants.WAITING_FOR_YOUR_TURN);
         skipTurn();
     }
 
@@ -230,12 +232,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendActionOk() {
-        try {
-            objectOutputStream.writeObject(Constants.OK_OR_NO);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if ( isOn() ) {
+            try {
+                objectOutputStream.writeObject(Constants.OK_OR_NO);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -338,6 +343,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
+
+
     @Override
     public void cantDoAction() {
         sendString(Constants.CANT_DO_ACTION);
@@ -346,19 +353,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public int canUseBothPaymentMethod() {
         sendString(Constants.BOTH_PAYMENT_METHODS_AVAILABLE);
-        int choice = -1;
         try {
-            choice = (int) objectInputStream.readObject();
+            int choice = (int) objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
+
             System.out.println("CHOICE E': " + choice );
             return choice;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-        return choice;
+        return -1;
     }
 
 
@@ -394,11 +398,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             return answer;
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
+            } catch (IOException | ClassNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -443,7 +443,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendString(String message) {
-        if (isOn()) {
+
             try {
                 objectOutputStream.writeObject(message);
                 objectOutputStream.flush();
@@ -451,7 +451,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             } catch (IOException e) {
                 System.out.println("errore invio su socket");
             }
-        }
+
     }
 
     //todo check utility
@@ -637,5 +637,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             closeable.close();
         } catch (IOException e) {
         }
+    }
+
+    public void reconnectClient() {
+        this.setOn(true);
+        System.out.println("Client reconnexted!");
     }
 }

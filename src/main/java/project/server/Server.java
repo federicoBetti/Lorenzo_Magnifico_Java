@@ -115,7 +115,7 @@ public class Server {
                         room.nicknamePlayersMap.replace(nickname, player);
                         if (numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1) {
                             player.itsMyTurn();
-                            room.getGameActions().myTimerSkipTurn(player);
+                            room.getGameActions().myTimerSkipTurn(player, room.getListOfPlayers() );
                         }
 
                         player.loginSucceded();

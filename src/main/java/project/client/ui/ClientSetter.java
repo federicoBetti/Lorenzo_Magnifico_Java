@@ -271,7 +271,7 @@ public class ClientSetter {
     }
 
     public void timerTurnDelayed() {
-        ui.waitingForYourTurn();
+        ui.timerDelayed();
     }
 
     public int getScelta() {
@@ -300,5 +300,13 @@ public class ClientSetter {
 
     public void excommunicationTake(Updates update) {
         ui.excommunicationTaken((ExcommunicationTaken)update);
+    }
+
+    public void notifyPlayer(Notify notify) {
+        ui.notifyPlayer(notify);
+    }
+
+    public void reconnect() {
+        client.reconnect();
     }
 }

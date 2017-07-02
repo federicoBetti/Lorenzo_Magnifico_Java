@@ -7,6 +7,7 @@ import project.client.ui.ClientSetter;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
@@ -63,6 +64,7 @@ public class SocketClient extends AbstractClient {
         while (true) {
             try {
 
+                System.out.println("SONO NEL WHIOLE TRUE");
                 message = (String) objectInputStream.readObject();
                 System.out.println("IL MESSAGE é: " + message);
                 messageHandler.handleMessage(message);
@@ -139,9 +141,7 @@ public class SocketClient extends AbstractClient {
         int answer = clientSetter.askForPraying();
         sendGenericObject(answer);
         try {
-            synchronized (token1) {
-                token1.notify();
-            }
+
             synchronized (token) {
                 token.wait();
             }
@@ -151,18 +151,31 @@ public class SocketClient extends AbstractClient {
         }
     }
 
+    @Override
+    public void notifyPlayer() {
+        try {
+            Notify notify = (Notify) objectInputStream.readObject();
+            clientSetter.notifyPlayer(notify);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void reconnect() {
+        sendGenericObject(Constants.RECONNECT);
+        createWaitingForYourTurnContext();
+    }
+
 
     public void askForPraying() {
         sendGenericObject(Constants.PRAYING_REQUEST_RECEIVED);
         //thread che ascolta il timer
         new TimerReader().start();
         int answer = clientSetter.askForPraying();
-        System.out.println("Il thread nel socket client è: " + Thread.currentThread());
         sendGenericObject(answer);
         try {
-            synchronized (token1) {
-                token1.notify();
-            }
+
             synchronized (token) {
                 token.wait();
             }
@@ -214,15 +227,24 @@ public class SocketClient extends AbstractClient {
     }
 
     public void takeImmediatePrivilege() {
-        TakePrivilegesAction privilegesAction = null;
         try {
-            privilegesAction = (TakePrivilegesAction) objectInputStream.readObject();
+
+            TakePrivilegesAction privilegesAction = (TakePrivilegesAction) objectInputStream.readObject();
+            new TimerReader().start();
+            clientSetter.takeImmediatePrivilege(privilegesAction);
+
+            synchronized (token) {
+                token.wait();
+            }
+            System.out.println("il res è stato mandato");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        clientSetter.takeImmediatePrivilege(privilegesAction);
+
     }
 
     public void bonusHarvesterAction(int servantsNumber) {
@@ -272,8 +294,12 @@ public class SocketClient extends AbstractClient {
     public void bothPaymentsAvailable() {
         new TimerReader().start();
         int costChoice = clientSetter.bothPaymentsAvailable();
-        System.out.println("mandata la scelta del prezzo!");
+
+
+        System.out.println("mandato! e vado in wait");
+
         sendGenericObject(costChoice);
+
         synchronized (token) {
             try {
                 token.wait();
@@ -281,7 +307,45 @@ public class SocketClient extends AbstractClient {
                 e.printStackTrace();
             }
         }
+        System.out.println("Svegliato e vado in wait");
     }
+
+    private class TimerReader extends Thread {
+
+        @Override
+        public void run() {
+            try {
+
+                String message = (String) objectInputStream.readObject();
+
+                if (message.equals(Constants.TIMER_TURN_DELAYED)) {
+                    timerTurnDelayed();
+
+                    System.out.println("Dormo...");
+
+                    System.out.println("mi hanno svegliato e aspetto di ricevere");
+
+                    message = (String) objectInputStream.readObject();
+                    while (!message.equals(Constants.ACTION_DONE_ON_TIME)) {
+                        message = (String) objectInputStream.readObject();
+                        System.out.println("ricevuto:" + message);
+                    }
+
+                        synchronized (token) {
+                            token.notify();
+                        }
+
+                        System.out.println("NOTIFY");
+
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 
     @Override
     public void sendChoicePaymentVc(int payment) {
@@ -294,9 +358,7 @@ public class SocketClient extends AbstractClient {
         Updates update = null;
         try {
             update = (ScoreUpdate) objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         clientSetter.scoreUpdate(update);
@@ -306,9 +368,7 @@ public class SocketClient extends AbstractClient {
         Updates update = null;
         try {
             update = (PersonalBoardUpdate) objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         clientSetter.personalBoardUpdate(update);
@@ -318,9 +378,7 @@ public class SocketClient extends AbstractClient {
         Updates update = null;
         try {
             update = (FamilyMemberUpdate) objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         clientSetter.familyMemberUpdate(update);
@@ -329,7 +387,6 @@ public class SocketClient extends AbstractClient {
 
     public void skipTurn() {
         sendGenericObject(Constants.SKIP_TURN);
-        createWaitingForYourTurnContext();
     }
 
     @Override
@@ -342,9 +399,7 @@ public class SocketClient extends AbstractClient {
         Updates update = null;
         try {
             update = (Updates) objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         clientSetter.boardUpdate(update);
@@ -358,9 +413,7 @@ public class SocketClient extends AbstractClient {
             String playerFamilyColour = (String) objectInputStream.readObject();
             clientSetter.matchStarted(roomPlayersNumber, playerFamilyColour);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -385,16 +438,14 @@ public class SocketClient extends AbstractClient {
         try {
             Updates update = (Updates) objectInputStream.readObject();
             clientSetter.excommunicationTake(update);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
     }
 
 
-    private void createWaitingForYourTurnContext() {
+    public void createWaitingForYourTurnContext() {
         clientSetter.waitingForYourTurn();
     }
 
@@ -494,9 +545,7 @@ public class SocketClient extends AbstractClient {
             String leaderCardChoosen = clientSetter.getLeaderCardChosen(leaders);
             objectOutputStream.writeObject(leaderCardChoosen);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -511,9 +560,7 @@ public class SocketClient extends AbstractClient {
             try {
                 Tile tile = (Tile) objectInputStream.readObject();
                 tiles.add(tile);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
@@ -523,42 +570,5 @@ public class SocketClient extends AbstractClient {
         objectOutputStream.flush();
         objectOutputStream.reset();
     }
-
-    private class TimerReader extends Thread {
-
-        @Override
-        public void run() {
-            try {
-
-                String message = (String) objectInputStream.readObject();
-
-                if (message.equals(Constants.TIMER_TURN_DELAYED)) {
-                    System.out.println("RICEVUTO");
-                    timerTurnDelayed();
-                    synchronized (token1) {
-                        token1.wait();
-                    }
-                    synchronized (token) {
-                        token.notify();
-                    }
-                }
-
-                if (message.equals(Constants.ACTION_DONE_ON_TIME)){
-                    synchronized (token) {
-                        token.notify();
-                    }
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
 }
 

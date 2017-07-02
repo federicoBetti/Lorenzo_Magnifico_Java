@@ -47,6 +47,16 @@ class MessagesFromServerHandler {
         map.put(Constants.EXCOMMUNICATION_TAKEN, this:: excommunicationTake );
         map.put(Constants.ASK_FOR_PRAYING_LAST_PLAYER, this:: askForPrayingLastPlayer);
         map.put(Constants.ACTION_DONE_ON_TIME, this:: actionDone );
+        map.put(Constants.NOTIFY, this:: notifyPlayer);
+        map.put(Constants.WAITING_FOR_YOUR_TURN, this::waitingForYourTurn);
+    }
+
+    private void waitingForYourTurn() {
+        client.createWaitingForYourTurnContext();
+    }
+
+    private void notifyPlayer() {
+        client.notifyPlayer();
     }
 
     private void actionDone() {

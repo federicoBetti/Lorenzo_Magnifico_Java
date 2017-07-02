@@ -67,5 +67,9 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void askForPrayingLastPlayer();
 
+    public abstract void notifyPlayer();
+
+    public abstract void reconnect();
+
     //da server a client
 }

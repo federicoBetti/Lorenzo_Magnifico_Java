@@ -7,6 +7,7 @@ import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
+import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.ExcommunicationTaken;
@@ -166,6 +167,21 @@ public class Gui extends AbstractUI {
     @Override
     public void excommunicationTaken(ExcommunicationTaken update) {
         //todo notifica che dice che hai preso la scomunica
+    }
+
+    @Override
+    public void notifyPlayer(Notify notify) {
+
+    }
+
+    @Override
+    public void timerDelayed() {
+
+    }
+
+    @Override
+    public void reconnect() {
+
     }
 
     @Override
