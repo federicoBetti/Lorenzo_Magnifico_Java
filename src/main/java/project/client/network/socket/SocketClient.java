@@ -336,8 +336,15 @@ public class SocketClient extends AbstractClient {
                         }
 
                         System.out.println("NOTIFY");
-
                 }
+
+                if ( message.equals(Constants.ACTION_DONE_ON_TIME)){
+
+                    synchronized (token) {
+                        token.notify();
+                    }
+                }
+
 
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
