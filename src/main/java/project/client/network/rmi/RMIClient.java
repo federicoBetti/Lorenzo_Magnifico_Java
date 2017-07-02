@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * qua devono essere implementati sia i metodi di AbstracClient (cioè tutti quelli che il client deve chiamare sul server, sia quelli della
@@ -60,7 +59,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         updateHashMap.put(Constants.PERSONAL_BOARD_UPDATE,this::personalBoardUpdate);
         updateHashMap.put(Constants.FAMILY_MEMBER_UPDATE,this::familyMemberUpdate);
         updateHashMap.put(Constants.SCORE_UPDATE,this::scoreUpdate);
+        updateHashMap.put(Constants.EXCOMMUNICATION_TAKEN_UPDATE,this::excommunicationTaken);
     }
+
     //QUA CI SONO I METODI DA CLIENT A SERVER
 
     private void connect() throws ClientConnectionException {
@@ -200,7 +201,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void immediatePriviledgeAction(List<Integer> privileges) {
-        integerListQueue.add(privileges);
+        try {
+            myServer.sendImmediatePrivileges(myUniqueId,privileges);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     public void takeImmediatePrivilege(TakePrivilegesAction action) {
@@ -257,7 +262,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     private void boardUpdate(Updates updates){
-        System.out.println(updates.toScreen());
         clientSetter.boardUpdate(updates);
     }
     private void personalBoardUpdate(Updates updates){
@@ -270,6 +274,10 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.familyMemberUpdate(updates);
     }
 
+
+    private void excommunicationTaken(Updates updates) {
+        clientSetter.excommunicationTake(updates);
+    }
 
     //QUA CI SONO I METODI DI RITORNO DA SERVER A CLIENT
 
@@ -310,8 +318,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void newNickname(String nickname) {
-        //lo devo fare per reiterare la richiesta di un nuovo nickname. non posso in socket rimandare lo stesso
-        //metodo di login perchè di default manda la stringa LOGIN_REQUEST e devo mandare solo il nickname
+        try {
+            myServer.loginRequest(myUniqueId,nickname);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -363,18 +374,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public List<Integer> sendRequestForPrivileges(TakePrivilegesAction returnFromEffect) {
-        integerListQueue = new LinkedBlockingQueue<>();
-        List<Integer> privileges = null;
+    public void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect) {
         clientSetter.takeImmediatePrivilege(returnFromEffect);
-        try {
-            System.out.println("mi metto in attesa della lista di privilegi");
-            privileges = integerListQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("mando la lista di privilegi " + privileges);
-        return privileges;
     }
 
 

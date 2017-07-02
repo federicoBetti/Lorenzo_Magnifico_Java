@@ -115,7 +115,7 @@ public class Constants {
     public static final String LEADER_DRAFT = "leader-draft";
     public static final Object BONUS_CARD_CHOOSEN = "bonus-card-choosen";
     public static final String PRAYED = "prayed";
-    public static final String EXCOMMUNICATION_TAKEN = "excommunication-taken";
+    public static final String EXCOMMUNICATION_TAKEN_UPDATE = "excommunication-taken";
     public static final String PRAYING_REQUEST_RECEIVED = "praying-request-received";
     public static final String ASK_FOR_PRAYING_LAST_PLAYER = "ask-for-praying-last-player";
     public static final String ACTION_DONE_ON_TIME = "action-done-on-time";

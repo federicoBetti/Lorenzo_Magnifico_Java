@@ -35,6 +35,9 @@ public class RMIPlayerHandler extends PlayerHandler {
     private int floorChosen;
     private int servantsNumber;
     private ArrayList<BuildingCard> productionCards;
+    List<Integer> privileges;
+    private int prayingChoice;
+    private int paymentMethodChosen;
 
     RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
         this.myClient = rmiServerToClientInterface;
@@ -75,14 +78,46 @@ public class RMIPlayerHandler extends PlayerHandler {
     public void takeBonusCardAction(int floor, String towerColour) {
         this.floorChosen = floor;
         this.towerColourChosen = towerColour;
+
+        synchronized (tokenn){
+            tokenn.notify();
+        }
+
+    }
+
+    public void takeImmediatePrivileges(List<Integer> privileges) {
+        this.privileges = privileges;
+
+        synchronized (tokenn) {
+            tokenn.notify();
+        }
+    }
+
+    public void exitOnBonusAction() {
+        towerColourChosen = null;
+        productionCards= null;
+        servantsNumber = -1;
+        privileges = null;
+        prayingChoice = 1;
+
         synchronized (tokenn){
             tokenn.notify();
         }
     }
 
-    public void takeImmediatePrivileges(List<Integer> privileges) {
-        for (Integer i: privileges)
-            takePrivilege(i);
+    public void anserAskForPraying(int choice) {
+        prayingChoice = choice;
+        synchronized (tokenn){
+            tokenn.notify();
+        }
+    }
+
+    public void answerBothPayment(int choice) {
+        paymentMethodChosen = choice;
+
+        synchronized (tokenn){
+            tokenn.notify();
+        }
     }
 
 
@@ -113,7 +148,6 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public void sendUpdates(Updates updates) {
         try {
-            System.out.println(updates.toScreen());
             myClient.sendUpdates(updates);
         } catch (RemoteException e) {
             System.out.println(e.getCause());
@@ -141,6 +175,10 @@ public class RMIPlayerHandler extends PlayerHandler {
                     e.printStackTrace();
                 }
             }
+
+            if (towerColourChosen == null)
+                return;
+
             try {
                 clientTakeBonusDevelopementCard(towerColourChosen, floorChosen, returnFromEffect);
                 break;
@@ -168,10 +206,19 @@ public class RMIPlayerHandler extends PlayerHandler {
                 }
             }
 
+            if (productionCards == null )
+                return;
+
             try {
 
-                if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER)) doBonusHarv(returnFromEffect, servantsNumber);
-                else doBonusProduct(returnFromEffect, productionCards);
+                if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER)) {
+                    if (servantsNumber == -1) return;
+                    doBonusHarv(returnFromEffect, servantsNumber);
+                }
+                else{
+                    if (productionCards == null) return;
+                    doBonusProduct(returnFromEffect, productionCards);
+                }
 
                 break;
             }
@@ -183,12 +230,23 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
-        List<Integer> privileges = null;
+        privileges = new ArrayList<>();
         try {
-             privileges = myClient.sendRequestForPrivileges(returnFromEffect);
+             myClient.sendRequestForPrivileges(returnFromEffect);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+        synchronized (tokenn){
+            try {
+                tokenn.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if (privileges == null)
+            return;
+
         takeImmediatePrivileges(privileges);
     }
 

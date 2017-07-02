@@ -43,7 +43,7 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void sendBonusProdHarv(BonusProductionOrHarvesterAction returnFromEffect)throws RemoteException;
 
-    List<Integer> sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
+    void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
 
     void actionOk() throws  RemoteException;
 

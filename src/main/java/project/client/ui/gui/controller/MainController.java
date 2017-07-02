@@ -2,6 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
@@ -44,6 +45,8 @@ public class MainController {
 
     private Board board;
     private int numberOfPrivelege;
+    private boolean actionBonusOn;
+    private InitialLogin initialLoginController;
 
 
     private MainController(){
@@ -166,18 +169,22 @@ public class MainController {
     }
 
     void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
+        actionBonusOn = false;
         clientSetter.immediatePriviledgeAction(privilegeSelected);
     }
 
     void doBonusHarvester(int servants) {
+        actionBonusOn = false;
         clientSetter.bonusHarvesterAction(servants);
     }
 
     void doBonusProduction(List<String> buildingCardSelected) {
+        actionBonusOn = false;
         clientSetter.bonusProductionAction(buildingCardSelected);
     }
 
     void takeBonusCardAction(int floor, String towerColourString) {
+        actionBonusOn = false;
         Runnable a = new Runnable() {
             @Override
             public void run() {
@@ -237,6 +244,10 @@ public class MainController {
         clientSetter.loginRequest(usernameChosen);
     }
 
+
+    public void takeNickname(String usernameChosen) {
+        clientSetter.newNickname(usernameChosen);
+    }
     //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
 
     
@@ -296,6 +307,7 @@ public class MainController {
 
 
     public void takePrivilege(int quantityOfDifferentPrivileges) {
+        actionBonusOn = true;
         numberOfPrivelege = quantityOfDifferentPrivileges;
         Platform.runLater(new Runnable() {
             @Override
@@ -308,14 +320,17 @@ public class MainController {
     }
 
     public void bonusHarvester(int diceValue) {
+        actionBonusOn = true;
         harvesterController.bonusHarvester(diceValue);
     }
 
     public void bonusProduction(int diceValue) {
+        actionBonusOn = true;
         productionController.bonusProduction(diceValue);
     }
 
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
+        actionBonusOn = true;
         towerController.takeBonusCard(kindOfCard,printBonusAction);
     }
 
@@ -396,6 +411,7 @@ public class MainController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        integerQueue = null;
         return i;
     }
 
@@ -469,7 +485,9 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                initialLoginController.nicknameUsed();
                 loginBuilder.popUp("nickname already used");
+                loginBuilder.showFirstPage();
             }
         });
     }
@@ -478,11 +496,34 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                Stage s = loginBuilder.getLastStageOpened();
+                if (s != null){
+                    loginBuilder.setChoiceDone(1);
+                    s.hide();
+                }
+                else
+                    loginBuilder.popUp("turn finished due timer");
+                cleanActionBonus();
                 loginBuilder.writeOnMyChat("the turn is over\n");
-                loginBuilder.popUp("turn finished due timer");
+                loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
                 myTurn = false;
             }
         });
+    }
+
+    private void cleanActionBonus() {
+        if (actionBonusOn){
+            actionBonusOn = false;
+            clientSetter.sendExitToBonusAction();
+        }
+    }
+
+    private void cleanQueue() {
+        if (integerQueue != null) {
+            integerQueue.add(1);
+            System.out.println("ho pulito la coda");
+        }
+        else System.out.println("non ho pulito la coda");
     }
 
     public void cantDoAction() {
@@ -522,4 +563,14 @@ public class MainController {
         Integer num = new Integer(i);
         integerQueue.add(num);
     }
+
+    public void sendExitOnChoice() {
+        clientSetter.sendExitToBonusAction();
+    }
+
+    public void setInitialLoginController(InitialLogin initialLoginController) {
+        this.initialLoginController = initialLoginController;
+    }
+
+
 }

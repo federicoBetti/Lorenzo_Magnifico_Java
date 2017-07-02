@@ -1,6 +1,5 @@
 package project.client.network.socket;
 
-import project.client.ui.cli.CliConstants;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -44,7 +43,7 @@ class MessagesFromServerHandler {
         map.put(Constants.TILE_DRAFT, this::tileDraft );
         map.put(Constants.LEADER_DRAFT, this:: leaderDraft );
         map.put(Constants.PRAYED, this:: prayed );
-        map.put(Constants.EXCOMMUNICATION_TAKEN, this:: excommunicationTake );
+        map.put(Constants.EXCOMMUNICATION_TAKEN_UPDATE, this:: excommunicationTake );
         map.put(Constants.ASK_FOR_PRAYING_LAST_PLAYER, this:: askForPrayingLastPlayer);
         map.put(Constants.ACTION_DONE_ON_TIME, this:: actionDone );
     }

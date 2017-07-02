@@ -16,7 +16,7 @@ public class ExcommunicationTaken extends Updates {
 
     @Override
     public String toString() {
-        return Constants.EXCOMMUNICATION_TAKEN;
+        return Constants.EXCOMMUNICATION_TAKEN_UPDATE;
     }
 
     @Override

@@ -753,6 +753,7 @@ public class GameActions {
             public void run() {
 
                 player.timerTurnDelayed();
+                player.setOn(false);
                 nextTurn(player);
             }
         };
@@ -766,6 +767,7 @@ public class GameActions {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
+                player.setOn(false);
                 player.timerTurnDelayed();
             }
         };

@@ -1,5 +1,7 @@
 package project.client.ui.gui.controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -49,6 +51,7 @@ public class InitialLogin {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+        mainController.setInitialLoginController(this);
     }
 
     public void socketClicked() {
@@ -60,28 +63,19 @@ public class InitialLogin {
     }
 
     public void doConnection() {
-        if (i == 0) {
             usernameChosen = username.getText();
             System.out.println("invio richiesta connessione");
             mainController.setConnectionType(connectionType,usernameChosen);
-            i++;
-        }else if (i==1){
-
-            //loginBuilder.initalizeMainGame();
-            System.out.println("ho finito di inizializzare");
-            i++;
-        }
-        else {/*
-            usernameChosen = username.getText();
-            passwordChosen = password.getText();
-            username.setText("ciaovecchio");
-            password.setText("ciaomerda");
-            loginBuilder.waitingScene();
-            mainController.takeNickname();
-            System.out.println("ciao");
-            */
-        }
     }
 
 
+    public void nicknameUsed() {
+        connect.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                usernameChosen = username.getText();
+                mainController.takeNickname(usernameChosen);
+            }
+        });
+    }
 }

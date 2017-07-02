@@ -173,7 +173,6 @@ public class Server {
         newPlayer.setAllFamilyMembers(oldPlayer.getAllFamilyMembers());
         newPlayer.setTurnOrder(oldPlayer.getTurnOrder());
         newPlayer.setFamilyColour(oldPlayer.getFamilyColour());
-        newPlayer.setLeaderEffectsUsefull(oldPlayer.getLeaderEffectsUsefull());
         newPlayer.setExcommunicationEffectsUseful(oldPlayer.getExcommunicationEffectsUseful());
 
         replaceInTurn(room.getBoard().getTurn(), oldPlayer, newPlayer);

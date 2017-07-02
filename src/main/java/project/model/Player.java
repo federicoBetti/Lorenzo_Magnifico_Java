@@ -3,7 +3,6 @@ package project.model;
 import project.configurations.Configuration;
 import project.controller.Constants;
 import project.controller.cardsfactory.*;
-import project.messages.LeaderEffectsUsefull;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
@@ -27,8 +26,6 @@ public class Player implements Serializable{
 
 	private String familyColour;
 
-    private transient LeaderEffectsUsefull leaderEffectsUsefull;
-
     private transient ExcommunicationEffectsUseful excommunicationEffectsUseful;
 
 
@@ -44,7 +41,6 @@ public class Player implements Serializable{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		leaderEffectsUsefull = new LeaderEffectsUsefull();
     	excommunicationEffectsUseful = new ExcommunicationEffectsUseful();
 	}
 
@@ -119,14 +115,6 @@ public class Player implements Serializable{
 
 	public void setExcommunicationEffectsUseful(ExcommunicationEffectsUseful excommunicationEffectsUseful) {
 		this.excommunicationEffectsUseful = excommunicationEffectsUseful;
-	}
-
-	public LeaderEffectsUsefull getLeaderEffectsUsefull() {
-		return leaderEffectsUsefull;
-	}
-
-	public void setLeaderEffectsUsefull(LeaderEffectsUsefull leaderEffectsUsefull) {
-		this.leaderEffectsUsefull = leaderEffectsUsefull;
 	}
 
 	public String getFamilyColour() {

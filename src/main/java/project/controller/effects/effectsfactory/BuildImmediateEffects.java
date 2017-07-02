@@ -53,8 +53,6 @@ public class BuildImmediateEffects {
                 return new SetFamiliarFixedValue(parameter, quantity);
             case "setFamiliarFixedBonus":
                 return new SetFamiliarFixedBonus(parameter, quantity);
-            case "setLeaderEffectsUseful":
-                return new SetLeaderEffectsUseful(parameter);
             case "setExcommunicationCardUseful":
                 return new SetExcommunicationCardUseful(parameter);
 

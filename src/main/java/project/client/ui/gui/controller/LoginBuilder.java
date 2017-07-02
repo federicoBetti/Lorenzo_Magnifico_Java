@@ -61,6 +61,7 @@ public class LoginBuilder extends Application {
     private StringBuffer stringBuffer;
     private int choiceDone;
     private DraftController draftController;
+    private Stage lastStageOpened;
 
 
     public void start(Stage primaryStage) {
@@ -299,7 +300,7 @@ public class LoginBuilder extends Application {
 
 
 
-    private void showFirstPage() {
+    void showFirstPage() {
         rootLayout.setCenter(initialLoginScene);
     }
 
@@ -377,8 +378,10 @@ public class LoginBuilder extends Application {
             controller.setCoiche2(choice2);
             System.out.println("sto per disegnare lo stage");
             // Show the dialog and wait until the user closes it
+            lastStageOpened = dialogStage;
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
+            lastStageOpened = null;
             return ;
         } catch (IOException e) {
             e.printStackTrace();
@@ -582,6 +585,11 @@ public class LoginBuilder extends Application {
         s.toFront();
         s.toFront();
         s.toFront();
+    }
+
+
+    public Stage getLastStageOpened() {
+        return lastStageOpened;
     }
 }
 

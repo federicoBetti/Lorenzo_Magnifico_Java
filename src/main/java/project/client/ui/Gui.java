@@ -1,6 +1,7 @@
 package project.client.ui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
@@ -30,6 +31,7 @@ public class Gui extends AbstractUI {
         mainController = MainController.getInstance();
         mainController.setClientSetter(clientSetter);
         Application.launch(LoginBuilder.class);
+        Platform.setImplicitExit(true);
     }
 
     @Override
