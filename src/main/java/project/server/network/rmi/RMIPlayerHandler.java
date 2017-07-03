@@ -61,7 +61,8 @@ public class RMIPlayerHandler extends PlayerHandler {
         }
     }
 
-    public void doBonusProduction(List<String> parameters) {
+    public void
+    doBonusProduction(List<String> parameters) {
         ArrayList<BuildingCard> buildingCards = new ArrayList<>();
         for (BuildingCard buildingCard : getPersonalBoardReference().getBuildings()) {
             if (parameters.contains(buildingCard.getName())) {
@@ -159,7 +160,12 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public int sendPossibleChoice(String kindOfChoice) {
-        return 1;
+        try {
+            return myClient.getScelta();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     @Override

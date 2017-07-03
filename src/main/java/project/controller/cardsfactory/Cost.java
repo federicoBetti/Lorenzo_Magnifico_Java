@@ -6,7 +6,11 @@ public interface Cost extends Serializable, Cloneable{
     String toScreen();
 
     default Cost copyOf() {
-        //return (Cost) ((Cost)this).clone();//todo
+       /* try {
+            //return (Cost) (this).clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }*/
         return null;
     }
 

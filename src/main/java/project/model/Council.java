@@ -20,7 +20,7 @@ public class Council extends Position implements Serializable{
 
     public PlayerHandler findPlayer( Board board, String familyCoulor ){
         for ( PlayerHandler player : board.getTurn().getPlayerTurn() ){
-            if ( player.getFamilyColour().equals(familyCoulor))
+            if (familyCoulor.contains(player.getFamilyColour()))
                 return player;
         }
         return null;

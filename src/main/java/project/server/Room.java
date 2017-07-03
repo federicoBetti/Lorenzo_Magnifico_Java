@@ -200,6 +200,11 @@ public class Room {
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
         }
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         placeCardInTowers();
 
         int moreCoin = 0;

@@ -599,12 +599,7 @@ public class GameActions {
         getSupportFunctions(player).setFamiliar(productionZone, familyM);
         productionSpace.add(productionZone);
 
-        int servantsUsed = getSupportFunctions(player).payServants(servantsToPay, 0);
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
-
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
-        ProductionUpdate productionUpdate = new ProductionUpdate((ArrayList<Production>) board.getProductionZone(), player.getName());
-        broadcastUpdates(productionUpdate);
 
         productionBonus(cardToProduct, servantsToPay, player);
 
@@ -624,6 +619,8 @@ public class GameActions {
         }
 
         player.sendActionOk();
+        ProductionUpdate productionUpdate = new ProductionUpdate((ArrayList<Production>) board.getProductionZone(), player.getName());
+        broadcastUpdates(productionUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
 
     }
@@ -675,6 +672,7 @@ public class GameActions {
                 else if (returnFromEffect instanceof TakePrivilegesAction)
                     player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
 
+                player.sendActionOk();
                 leaderCard.setPlayed(true);
             }
         }
@@ -794,6 +792,8 @@ public class GameActions {
         for (Effects effect : card.getPermanentCardEffects()) {
             if (card.isChoicePe()) {
                 int choice = player.sendPossibleChoice(Constants.CHOICE_PE);
+                if (choice == -1)
+                    return;
                 card.getPermanentCardEffects().get(choice).doEffect(player);
             } else {
                 effect.doEffect(player);

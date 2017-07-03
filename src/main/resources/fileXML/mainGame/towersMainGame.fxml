@@ -31,17 +31,17 @@
 
             <VBox layoutX="363.0" prefHeight="122.0" prefWidth="215.0">
                <children>
-                  <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="41.0" prefWidth="213.0" text="show personal board">
+                  <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard"  style="-fx-background-color: transparent; -fx-border-color: black;" prefHeight="41.0" prefWidth="213.0" text="show personal board">
                      <font>
                         <Font name="Lucida Blackletter" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="submit" mnemonicParsing="false" onAction="#takeCard" prefHeight="41.0" prefWidth="213.0" text="submit">
+                  <Button fx:id="submit" mnemonicParsing="false" onAction="#takeCard"  style="-fx-background-color: transparent; -fx-border-color: black;" prefHeight="41.0" prefWidth="213.0" text="submit">
                      <font>
                         <Font name="Lucida Blackletter" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="mainGameButton" mnemonicParsing="false" onAction="#goToMainGame" prefHeight="41.0" prefWidth="213.0" text="back to main game">
+                  <Button fx:id="mainGameButton" mnemonicParsing="false" onAction="#goToMainGame"  style="-fx-background-color: transparent; -fx-border-color: black;" prefHeight="41.0" prefWidth="213.0" text="back to main game">
                      <font>
                         <Font name="Lucida Blackletter" size="21.0" />
                      </font>

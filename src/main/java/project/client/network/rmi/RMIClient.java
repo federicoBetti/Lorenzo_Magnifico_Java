@@ -124,7 +124,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.playLeaderCardRequest(myUniqueId,action);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
         }
     }
 

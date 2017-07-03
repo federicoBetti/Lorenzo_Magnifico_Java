@@ -417,6 +417,13 @@ public class TowersController extends AbstractController {
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
         bonusAction = true;
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
+
         writeOnChat(printBonusAction);
         writeOnChat("click on the position next to the card you want"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
         blockButton();

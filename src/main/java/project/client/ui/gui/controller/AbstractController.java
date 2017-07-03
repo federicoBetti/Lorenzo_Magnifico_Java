@@ -210,6 +210,8 @@ public abstract class AbstractController {
 
         if (positions.isEmpty()){
             //new round
+            if (allPosition.isEmpty())
+                return;
             FamiliarPosition familiarPositionn = allPosition.get(0);
             familiarPositionn.setImage(null);
             familiarPositionn.setFamiliarName("");
@@ -219,6 +221,7 @@ public abstract class AbstractController {
                 return true;
             });
         }
+
 
         while (itPR.hasNext()) {
             FamiliarPosition familiarPosition;
