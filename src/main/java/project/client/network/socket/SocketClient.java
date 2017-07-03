@@ -118,6 +118,7 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void immediatePriviledgeAction(List<Integer> privileges) {
+        sendGenericObject(Constants.ACTION_DONE_ON_TIME);
         sendAllIntegers(privileges);
     }
 
@@ -236,20 +237,12 @@ public class SocketClient extends AbstractClient {
 
     public void takeImmediatePrivilege() {
         try {
-
             TakePrivilegesAction privilegesAction = (TakePrivilegesAction) objectInputStream.readObject();
-            new TimerReader().start();
             clientSetter.takeImmediatePrivilege(privilegesAction);
-
-            synchronized (token) {
-                token.wait();
-            }
+            
             System.out.println("il res è stato mandato");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

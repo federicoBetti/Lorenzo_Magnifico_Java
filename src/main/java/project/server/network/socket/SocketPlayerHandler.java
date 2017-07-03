@@ -231,7 +231,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void sendActionOk() {
-        if ( isOn() ) {
+        if (isOn()) {
             try {
                 objectOutputStream.writeObject(Constants.OK_OR_NO);
                 objectOutputStream.flush();
@@ -348,8 +348,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-
-
     @Override
     public void cantDoAction() {
         sendString(Constants.CANT_DO_ACTION);
@@ -362,7 +360,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             int choice = (int) objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
 
-            System.out.println("CHOICE E': " + choice );
+            System.out.println("CHOICE E': " + choice);
             return choice;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -380,30 +378,30 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     public int sendAskForPraying(List<PlayerHandler> playerTurn) {
         System.out.println("SONO IL PLAYER: " + this);
 
-        while ( true ) {
+        while (true) {
             try {
-             if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
-                   sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
+                if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
+                    sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
                     int answer = (int) objectInputStream.readObject();
                     sendString(Constants.ACTION_DONE_ON_TIME);
                     return answer;
                 }
 
                 sendString(Constants.ASK_FOR_PRAYING);
-                System.out.println(" mandata ask " );
+                System.out.println(" mandata ask ");
                 synchronized (token) {
                     token.wait();
                 }
 
-                int answer =  (int) objectInputStream.readObject();
-                System.out.println("risposta arrivata " +answer);
+                int answer = (int) objectInputStream.readObject();
+                System.out.println("risposta arrivata " + answer);
                 sendString(Constants.ACTION_DONE_ON_TIME);
 
                 synchronized (token1) {
                     token1.notify();
                 }
 
-            return answer;
+                return answer;
 
             } catch (IOException | ClassNotFoundException | InterruptedException e) {
                 e.printStackTrace();
@@ -451,13 +449,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void sendString(String message) {
 
-            try {
-                objectOutputStream.writeObject(message);
-                objectOutputStream.flush();
-                objectOutputStream.reset();
-            } catch (IOException e) {
-                System.out.println("errore invio su socket");
-            }
+        try {
+            objectOutputStream.writeObject(message);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            System.out.println("errore invio su socket");
+        }
 
     }
 
@@ -587,18 +585,28 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
 
     private void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) {
-        for (int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++) {
-            int privilegeNumber = 0;
-            try {
-                privilegeNumber = (int) objectInputStream.readObject();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            takePrivilege(privilegeNumber);
+
+        try {
+            String message = (String) objectInputStream.readObject();
+            if ( message.equals(Constants.ACTION_DONE_ON_TIME)) {
+
+                for (int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++) {
+                    int privilegeNumber = 0;
+
+                    privilegeNumber = (int) objectInputStream.readObject();
+                    System.out.println();
+                    takePrivilege(privilegeNumber);
+                }
+            } else if ( message.equals(Constants.EXIT ))
+                return;
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
+
+
     }
+
 
     private void takeBonusDevCard(String towerColour, TowerAction returnFromEffect) throws CantDoActionException {
 

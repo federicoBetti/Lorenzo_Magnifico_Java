@@ -157,7 +157,7 @@ public class Cli extends AbstractUI {
         String[] privileges = input.split("-");
         List<Integer> privilegesChosen = new ArrayList<>();
         for (String priviledge : privileges)
-            privilegesChosen.add(new Integer(Integer.parseInt(priviledge)));
+            privilegesChosen.add(Integer.parseInt(priviledge));
 
         clientSetter.immediatePriviledgeAction(privilegesChosen);
     }
@@ -241,6 +241,10 @@ public class Cli extends AbstractUI {
                 choiceQueue.add(String.valueOf(randomNum));
                 context = new TimerDelayedContext(this);
                 return;
+            }
+
+            else if ( context instanceof ImmediatePriviledgesContext ){
+                clientSetter.sendExitToBonusAction();
             }
 
         } catch (InputException e) {

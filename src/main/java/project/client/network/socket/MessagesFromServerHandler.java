@@ -4,6 +4,7 @@ import project.controller.Constants;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -115,8 +116,8 @@ class MessagesFromServerHandler {
         client.askForPraying();
     }
 
-    private void takeImmediatePriviledge() throws IOException, ClassNotFoundException {
-        client.takeImmediatePrivilege();
+    public void takeImmediatePriviledge() throws IOException, ClassNotFoundException {
+       client.takeImmediatePrivilege();
     }
 
     private void bonusHarvester() throws IOException, ClassNotFoundException {
