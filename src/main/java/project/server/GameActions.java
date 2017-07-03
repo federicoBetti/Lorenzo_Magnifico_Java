@@ -307,13 +307,20 @@ public class GameActions {
         //todo  broadcastNotifications(new Notify("the winner is + " + winner.getName()));
         //todo queste tre righe servono per eliminare la room quando la partita è finita senno i giocatori si possono riconnettere ad una paritta finita
         //todo funziona tutto il metodo?
+
+        afterGame();
+
         ArrayList<Room> rooms = room.getServer().getRooms();
         rooms.remove(room);
         room.getServer().setRooms(rooms);
         room = null;
 
-
     }
+
+    private void afterGame() {
+        room.broadcastMessage(Constants.AFTER_GAME);
+    }
+
 
     private void finalPray(PlayerHandler playerHandler) {
         if (playerHandler.getScore().getFaithPoints() >= board.getFaithPointsRequiredEveryPeriod()[board.getPeriod()])

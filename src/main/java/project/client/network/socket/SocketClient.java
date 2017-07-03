@@ -168,6 +168,11 @@ public class SocketClient extends AbstractClient {
         createWaitingForYourTurnContext();
     }
 
+    @Override
+    public void afterGame() {
+
+    }
+
 
     public void askForPraying() {
         new TimerReader().start();
@@ -239,7 +244,7 @@ public class SocketClient extends AbstractClient {
         try {
             TakePrivilegesAction privilegesAction = (TakePrivilegesAction) objectInputStream.readObject();
             clientSetter.takeImmediatePrivilege(privilegesAction);
-            
+
             System.out.println("il res è stato mandato");
 
         } catch (IOException | ClassNotFoundException e) {

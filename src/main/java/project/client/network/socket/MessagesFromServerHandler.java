@@ -49,6 +49,11 @@ class MessagesFromServerHandler {
         map.put(Constants.ACTION_DONE_ON_TIME, this:: actionDone );
         map.put(Constants.NOTIFY, this:: notifyPlayer);
         map.put(Constants.WAITING_FOR_YOUR_TURN, this::waitingForYourTurn);
+        map.put(Constants.AFTER_GAME, this:: afterGame );
+    }
+
+    private void afterGame() {
+        client.afterGame();
     }
 
     private void waitingForYourTurn() {

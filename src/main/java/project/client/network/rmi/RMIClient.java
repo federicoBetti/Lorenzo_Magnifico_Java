@@ -355,6 +355,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
+    public void afterGame() {
+
+    }
+
+    @Override
     public int canUseBothPaymentMethod() {
         return clientSetter.bothPaymentsAvailable();
     }

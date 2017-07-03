@@ -559,23 +559,19 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                         break;
                 }
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (CantDoActionException e) {
                 try {
                     objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
                     objectOutputStream.flush();
                     objectOutputStream.reset();
-                    continue;
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }
         }
     }
-
 
     @Override
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
@@ -603,8 +599,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
