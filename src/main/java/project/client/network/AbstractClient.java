@@ -71,5 +71,7 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void reconnect();
 
+    public abstract void afterGame();
+
     //da server a client
 }

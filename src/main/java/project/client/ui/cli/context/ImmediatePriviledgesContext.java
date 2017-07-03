@@ -23,7 +23,7 @@ public class ImmediatePriviledgesContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        pRed.println("Type" + numberOfpriviledges.getQuantityOfDifferentPrivileges() + " priviledges'numbers that you prefer" +
+        pRed.println("Type " + numberOfpriviledges.getQuantityOfDifferentPrivileges() + " priviledges'numbers that you prefer" +
         " but different each others");
     }
 
@@ -35,9 +35,9 @@ public class ImmediatePriviledgesContext extends AbstractContext {
             throw new InputException();
 
         for ( String priviledgeNumber: parameters ){
-            if (priviledgeNumber.length() == 1 && Character.isDigit(parameters[0].charAt(0)))
+            if (!(priviledgeNumber.length() == 1 && Character.isDigit(parameters[0].charAt(0))))
                 throw new InputException();
-            if (Integer.parseInt(priviledgeNumber) >= 0 && Integer.parseInt(priviledgeNumber) < 5)
+            if (!(Integer.parseInt(priviledgeNumber) >= 0 && Integer.parseInt(priviledgeNumber) < 5))
                 throw new InputException();
             if( priviledgesTakenInArow[Integer.parseInt(priviledgeNumber)] ==  1 )
                 throw new InputException();

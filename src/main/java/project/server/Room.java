@@ -334,4 +334,11 @@ public class Room {
     public boolean isMatchStarted() {
         return matchStarted;
     }
+
+    public void broadcastMessage(String afterGame) {
+        for ( PlayerHandler player : getListOfPlayers() ){
+            if ( player.isOn() )
+                player.sendString(afterGame);
+        }
+    }
 }
