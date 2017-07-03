@@ -41,8 +41,42 @@ public class Configuration {
         map.put(Constants.VENTURE_CARD, this::buildVentureCard);
     }
 
-    public void loadPointsTracks(){
+    public void loadFaithPointsTracks(Board board ){
+        InputStream is = getClass().getResourceAsStream("/fileJson/victoryPointsInFaithTrack.json");
+        Reader reader = new InputStreamReader(is);
 
+        board.setVictoryPointsInFaithTrack(gson.fromJson(reader, int[].class));
+
+    }
+
+    public void loadFinalPointsFromTerritoryCards(Board board) {
+        InputStream is = getClass().getResourceAsStream("/fileJson/finalPointsFromTerritoryCards.json");
+        Reader reader = new InputStreamReader(is);
+
+        board.setFinalPointsFromTerritoryCards(gson.fromJson(reader, int[].class));
+
+    }
+
+    public void loadFinalPointsFromCharacterCards(Board board) {
+        InputStream is = getClass().getResourceAsStream("/fileJson/finalPointsFromCharacterCards.json");
+        Reader reader = new InputStreamReader(is);
+
+        board.setFinalPointsFromCharacterCards(gson.fromJson(reader, int[].class));
+
+    }
+
+    public void loadFaithPointsRequiredEveryPeriod(Board board) {
+        InputStream is = getClass().getResourceAsStream("/fileJson/faithPointsRequiredEveryPeriod.json");
+        Reader reader = new InputStreamReader(is);
+
+        board.setFaithPointsRequiredEveryPeriod(gson.fromJson(reader, int[].class));
+    }
+
+    public void loadMilitaryPointsForTerritories(Board board) {
+        InputStream is = getClass().getResourceAsStream("/fileJson/militaryPointsForTerritories.json");
+        Reader reader = new InputStreamReader(is);
+
+        board.setMilitaryPointsForTerritories(gson.fromJson(reader, int[].class));
     }
 
     public void loadDevelopmentCards(Deck deck) throws FileNotFoundException {
@@ -89,7 +123,6 @@ public class Configuration {
         }
 
     }
-
 
     public void loadLeaderCard(Deck deck) throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream("/fileJson/leaderCards.json");
@@ -210,6 +243,7 @@ public class Configuration {
         TerritoryCost cost = aCost[0];
         return new TerritoryCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
+
 
     @FunctionalInterface
     private interface BuilderHandler {

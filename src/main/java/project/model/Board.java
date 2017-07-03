@@ -78,15 +78,15 @@ public final class Board {
     /**
      * qiesto array di interi rappresenta i punti vittori ottenuti pregando per ognuno dei 15 posti del tracciato di punti fede
      */
-    private int[] victoryPointsInFaithTrack; //todo
-
     private Deck decks;
 
-    private int[] finalPointsFromTerritoryCards;    //todo
+    private int[] victoryPointsInFaithTrack;
 
-    private int[] finalPointsFromCharacterCards;    //todo
+    private int[] finalPointsFromTerritoryCards;
 
-    private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
+    private int[] finalPointsFromCharacterCards;
+
+    private int[] faithPointsRequiredEveryPeriod;
 
     private int[] militaryPointsForTerritories;
 
@@ -96,17 +96,19 @@ public final class Board {
     public Board(int numberOfPlayer) throws FileNotFoundException {
         round = 0;
         period = 0;
+        configuration = new Configuration();
 
         this.councilPrivileges = new CouncilPrivilege[Constants.PRIVILEDGE_NUMBER];
         this.faithPointsRequiredEveryPeriod = new int[Constants.PERIOD_NUMBER];
-        this.victoryPointsInFaithTrack = new int[Constants.FAITH_TRACK];
+        configuration.loadFaithPointsTracks(this);
+        configuration.loadMilitaryPointsForTerritories(this);
+        configuration.loadFaithPointsRequiredEveryPeriod(this);
+        configuration.loadFinalPointsFromCharacterCards(this);
+        configuration.loadFinalPointsFromTerritoryCards(this);
         this.turn = new Turn();
         this.decks = new Deck();
 
         //questi sotto sono da importare da file, li inizializzo poer testare
-        militaryPointsForTerritories = new int[]{0, 0, 0, 0, 0, 0};
-
-        configuration = new Configuration();
 
         if (numberOfPlayer == Constants.FOUR_PLAYERS) {
             marketZone = new Market[Constants.FOUR_PLAYERS];
@@ -325,5 +327,29 @@ public final class Board {
 
     public Tower[][] getAllTowersUpdate() {
         return towers.clone();
+    }
+
+    public void setVictoryPointsInFaithTrack(int[] victoryPointsInFaithTrack) {
+        this.victoryPointsInFaithTrack = victoryPointsInFaithTrack;
+    }
+
+    public void setDecks(Deck decks) {
+        this.decks = decks;
+    }
+
+    public void setFinalPointsFromTerritoryCards(int[] finalPointsFromTerritoryCards) {
+        this.finalPointsFromTerritoryCards = finalPointsFromTerritoryCards;
+    }
+
+    public void setFinalPointsFromCharacterCards(int[] finalPointsFromCharacterCards) {
+        this.finalPointsFromCharacterCards = finalPointsFromCharacterCards;
+    }
+
+    public void setFaithPointsRequiredEveryPeriod(int[] faithPointsRequiredEveryPeriod) {
+        this.faithPointsRequiredEveryPeriod = faithPointsRequiredEveryPeriod;
+    }
+
+    public void setMilitaryPointsForTerritories(int[] militaryPointsForTerritories) {
+        this.militaryPointsForTerritories = militaryPointsForTerritories;
     }
 }
