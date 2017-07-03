@@ -247,6 +247,9 @@ public class Cli extends AbstractUI {
                 clientSetter.sendExitToBonusAction();
             }
 
+            else if ( context instanceof ChoicePeContext )
+                sendExitToBonusAction();
+
         } catch (InputException e) {
             e.printStackTrace();
         }

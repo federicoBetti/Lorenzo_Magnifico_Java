@@ -299,6 +299,7 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void sendChoicePe(int input) {
+        sendGenericObject(Constants.ACTION_DONE_ON_TIME);
         sendGenericObject(input);
     }
 
