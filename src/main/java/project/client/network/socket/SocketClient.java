@@ -169,9 +169,10 @@ public class SocketClient extends AbstractClient {
 
 
     public void askForPraying() {
+        new TimerReader().start();
         sendGenericObject(Constants.PRAYING_REQUEST_RECEIVED);
         //thread che ascolta il timer
-        new TimerReader().start();
+
         int answer = clientSetter.askForPraying();
         sendGenericObject(answer);
         try {

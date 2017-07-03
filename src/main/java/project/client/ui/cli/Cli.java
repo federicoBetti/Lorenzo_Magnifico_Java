@@ -229,9 +229,10 @@ public class Cli extends AbstractUI {
 
             }
             //praying interrupted
-            else if (context instanceof ExcomunicationContext) {
+            else if (context instanceof ExcomunicationContext ) {
                 choiceQueue.add("1");
                 context = new TimerDelayedContext(this);
+                System.out.println("SONO IN EX CONTEXT");
                 return;
             }
 

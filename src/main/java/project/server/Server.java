@@ -1,19 +1,25 @@
 package project.server;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import jdk.nashorn.internal.parser.JSONParser;
 import project.PlayerFile;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.messages.updatesmessages.*;
+import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
 import project.server.network.socket.SocketServer;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.rmi.AlreadyBoundException;
 import java.util.*;
 
@@ -69,6 +75,7 @@ public class Server {
         System.out.println(player);
         System.out.println(roomsAreAllFull());
 
+
         createPlayerFile(nickname);
 
         if (nicknameAlreadyUsed(nickname)) {
@@ -78,89 +85,218 @@ public class Server {
         }
 
 
-        if ( rooms.isEmpty() || roomsAreAllFull()) {
+        if (rooms.isEmpty() || roomsAreAllFull()) {
             System.out.println("CREO NUOVA ROOM");
             createNewRoom(nickname, player);
             return;
         }
 
-            for (Room room : rooms) {
-                if (!room.isMatchStarted()) {
-                    //riconnessione
-                    if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { // riconnessione giocatre andato down durante il collegament alla partita
-                        System.out.println("RICONNESSIONE MATCH NOT STARTED");
-                        player.setName(nickname);
-                        player.setOn(true);
-                        player.setRoom(room);
-                        room.nicknamePlayersMap.replace(nickname, player);
-                        checkAndStartTheTimer(room, player);
-                        return;
+        for (Room room : rooms) {
+            if (!room.isMatchStarted()) {
+                //riconnessione
+                if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { // riconnessione giocatre andato down durante il collegament alla partita
+                    System.out.println("RICONNESSIONE MATCH NOT STARTED");
+                    player.setName(nickname);
+                    player.setOn(true);
+                    player.setRoom(room);
+                    room.nicknamePlayersMap.replace(nickname, player);
+                    checkAndStartTheTimer(room, player);
+                    return;
 
-                    } else if (!room.isFull() && !room.isMatchStarted()) { //se la room non è piena aggiungo il giocatore
-                        System.out.println("ROOM NON PIENA AGGIUNGO IL GIOCATORE");
-                        player.setName(nickname);
-                        player.setOn(true);
-                        player.setRoom(room);
-                        room.nicknamePlayersMap.put(nickname, player);
-                        player.loginSucceded();
-                        checkAndStartTheTimer(room, player);
+                } else if (!room.isFull() && !room.isMatchStarted()) { //se la room non è piena aggiungo il giocatore
+                    System.out.println("ROOM NON PIENA AGGIUNGO IL GIOCATORE");
+                    player.setName(nickname);
+                    player.setOn(true);
+                    player.setRoom(room);
+                    room.nicknamePlayersMap.put(nickname, player);
+                    player.loginSucceded();
+                    checkAndStartTheTimer(room, player);
 
-                        if (room.isFull()) {
-                            startMatch(room);
-                        }
-                        return;
+                    if (room.isFull()) {
+                        startMatch(room);
                     }
-
-                } else if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { //durante la partita
-                        System.out.println("RICONNESSIONE IN PARTITA");
-                        player.setOn(true);
-                        player.setRoom(room);
-                        loadPlayerState(room, nickname, player);
-                        sendAllUpdates(player, room, nickname);
-                        room.nicknamePlayersMap.replace(nickname, player);
-                        if (numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1) {
-                            player.itsMyTurn();
-                            room.getGameActions().myTimerSkipTurn(player, room.getListOfPlayers() );
-                        }
-
-                        player.loginSucceded();
-                        return;
-
-                    }
+                    return;
                 }
-        if ( allMatchStarted() )
+
+            } else if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { //durante la partita
+                System.out.println("RICONNESSIONE IN PARTITA");
+                player.setOn(true);
+                player.setRoom(room);
+                loadPlayerState(room, nickname, player);
+                sendAllUpdates(player, room, nickname);
+                room.nicknamePlayersMap.replace(nickname, player);
+                if (numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1) {
+                    player.itsMyTurn();
+                    room.getGameActions().myTimerSkipTurn(player, room.getListOfPlayers());
+                }
+
+                player.loginSucceded();
+                return;
+
+            }
+        }
+        if (allMatchStarted())
             createNewRoom(nickname, player);
     }
 
     private void createPlayerFile(String nickname) {
         PlayerFile playerFile = new PlayerFile();
         playerFile.setPlayerName(nickname);
-        Gson gson = new Gson();
-        String playerFileJson = gson.toJson(playerFile);
+        String fileUpgraded = null;
 
-        File file = new File("/persistance/persistance.json");
+        Gson gson = new Gson();
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+
         try {
-            FileWriter f = new FileWriter(file, true );
-            f.write(playerFileJson);
-            f.close();
+            String filename = "E:\\test\\PlayerFile.json";
+            File file = new File(filename);
+
+            if (!file.exists()) {
+                System.out.println("CREO IL FILE");
+                file.createNewFile();
+                fw = new FileWriter(file.getAbsoluteFile(), true);
+                bw = new BufferedWriter(fw);
+                PlayerFile[] array = new PlayerFile[1];
+                array[0] = playerFile;
+                String data = gson.toJson(array);
+                bw.write(data);
+                return;
+            }
+
+            String currentFile = readFile(filename, StandardCharsets.UTF_8);
+            System.out.println("Il file in questo momento è: " +  currentFile);
+
+            PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
+
+            for (PlayerFile player : arrayPlayers)
+                if (player.getPlayerName().equals(nickname)) {
+                    player.setNumberOfGames(player.getNumberOfGames() + 1);{
+                        fileUpgraded = gson.toJson(arrayPlayers);
+                        break;
+                    }
+                }
+
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+            RandomAccessFile randomAccessFile = new RandomAccessFile(filename, "rw");
+
+            long pos = randomAccessFile.length();
+            while (randomAccessFile.length() > 0) {
+                pos--;
+                randomAccessFile.seek(pos);
+                if (randomAccessFile.readByte() == ']') {
+                    randomAccessFile.seek(pos);
+                    break;
+                }
+            }
+
+            // se non è stato trovato il player nel file
+            if ( fileUpgraded == null ) { // aggiungo l'elemento
+                String jsonElement = gson.toJson(playerFile);
+                randomAccessFile.writeBytes("," + jsonElement + "]" );
+
+            } else {
+                System.out.println("STO AGGIUNGENDO IL SECONDO PEZZO AL FILE");
+                System.out.println(fileUpgraded);
+                fw = new FileWriter(file.getAbsoluteFile(), false);
+                bw = new BufferedWriter(fw);
+                bw.write(fileUpgraded);
+
+            }
+            randomAccessFile.close();
+
         } catch (IOException e) {
+
             e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
         }
     }
 
+    private String readFile(String path, Charset encoding)
+            throws IOException
+    {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
+    }
+
+    private String playerIsInTheFile(String nickname, String filename) {
+        Gson gson = new Gson();
+        try {
+
+            FileInputStream fis = new FileInputStream(filename);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+            //StringBuilder sb = new StringBuilder();
+            String finalString ="";
+            String line;
+            while ((line = bufferedReader.readLine()) != null) { //stringhifico il file
+                finalString += line;
+                //sb.append(line);
+            }
+
+            //String json = sb.toString();
+
+            System.out.println(finalString);
+            PlayerFile[] arrayPlayers = gson.fromJson(finalString, PlayerFile[].class); //lo trasformo in oggetto
+
+            for (PlayerFile player : arrayPlayers)
+                if (player.getPlayerName().equals(nickname)) {
+                    player.setNumberOfGames(player.getNumberOfGames() + 1);{
+                        return gson.toJson(arrayPlayers);
+                    }
+                }
+
+            /* br = new BufferedReader(new FileReader(filename));
+
+
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                sb.append(line);
+                line = br.readLine();
+            }*/
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     private boolean allMatchStarted() {
-        for ( Room room : getRooms() )
-            if ( !room.isMatchStarted() )
+        for (Room room : getRooms())
+            if (!room.isMatchStarted())
                 return false;
         return true;
     }
 
-    private void sendAllUpdates( PlayerHandler player, Room room, String nickname ) {
+    private void sendAllUpdates(PlayerHandler player, Room room, String nickname) {
         player.sendUpdates(new PersonalBoardUpdate(player, nickname));
         player.sendUpdates(new TowersUpdate(room.getBoard().getAllTowers(), nickname));
         player.sendUpdates(new ScoreUpdate(player, nickname));
         player.sendUpdates(new CouncilUpdate(room.getBoard().getCouncilZone(), nickname));
-       // player.sendUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone(), nickname));
+        // player.sendUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone(), nickname));
         player.sendUpdates(new HarvesterUpdate(room.getBoard().getHarvesterZone(), nickname));
         player.sendUpdates(new DiceValueUpdate(room.getBoard().getDiceValue()));
         player.sendUpdates(new FamilyMemberUpdate(player, nickname));
@@ -269,4 +405,6 @@ public class Server {
     public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }
+
+    
 }
