@@ -360,6 +360,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
+    public void showStatistic() {
+
+    }
+
+    @Override
     public int canUseBothPaymentMethod() {
         return clientSetter.bothPaymentsAvailable();
     }

@@ -187,6 +187,16 @@ public class Gui extends AbstractUI {
     }
 
     @Override
+    public void afterGame() {
+
+    }
+
+    @Override
+    public void showStatistic() {
+
+    }
+
+    @Override
     public void loginSucceded() {
         mainController.loginSucceded();
     }

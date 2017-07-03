@@ -25,7 +25,7 @@ public class BonusProductionContext extends AbstractContext {
 
         pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            pYellow.println(entry.getKey().toString());
+            pYellow.println(entry.getKey());
 
         pRed.println("The main action is:");
         pYellow.println(bonusProd.actionString());

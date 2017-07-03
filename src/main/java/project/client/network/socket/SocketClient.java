@@ -170,7 +170,12 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void afterGame() {
+        clientSetter.afterGame();
+    }
 
+    @Override
+    public void showStatistic() {
+        sendGenericObject(Constants.SHOW_STATISTICS);
     }
 
 

@@ -332,6 +332,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
+    public void showStatistics() {
+        String nickname = getName();
+        String statistics = getRoom().takeStatistics(nickname);
+        sendString(statistics);
+    }
+
+    @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
             synchronized (token) {
@@ -380,7 +387,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         while (true) {
             try {
-                if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
+                if (getRoom().getLastPlayer() == this) {
                     sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
                     int answer = (int) objectInputStream.readObject();
                     sendString(Constants.ACTION_DONE_ON_TIME);
@@ -411,6 +418,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     public void waitForPraying() {
         System.out.println("SBLOCCO LA READ SULLA PREGHIERA\n");
+        setCallPray(true);
         synchronized (token) {
             token.notify();
         }
@@ -548,7 +556,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                         return;
 
                     case Constants.BONUS_PRODUCTION:
-                        intServantsNumber = Integer.parseInt((String) objectInputStream.readObject());
                         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
                         doBonusProduct(returnFromEffect, cards);
                         break;

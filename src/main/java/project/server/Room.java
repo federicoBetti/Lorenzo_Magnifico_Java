@@ -1,5 +1,7 @@
 package project.server;
 
+import com.google.gson.Gson;
+import project.PlayerFile;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.cardsfactory.ExcommunicationTile;
@@ -11,7 +13,13 @@ import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -44,6 +52,8 @@ public class Room {
 
     TimerSettings timerSettings;
 
+    PlayerHandler lastPlayer;
+
 
     Room(Server server) {
         playerAllSupportFunctionsMap = new HashMap<>();
@@ -62,7 +72,7 @@ public class Room {
             if (entry.getValue().isOn())
                 count++;
 
-        if (count == maxPlayers )
+        if (count == maxPlayers)
             return true;
         return false;
     }
@@ -228,7 +238,7 @@ public class Room {
     private void placeCardInTowers() {
         Tower[][] tower = board.getAllTowers();
         DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
-        int i,j;
+        int i, j;
         for (i = 0; i < Constants.NUMBER_OF_TOWERS; i++) {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 tower[i][j].setCardOnThisFloor(deck[i][0][j]);
@@ -243,7 +253,7 @@ public class Room {
         ExcommunicationZone[] zone = new ExcommunicationZone[Constants.PERIOD_NUMBER];
         Random r = new Random();
         int rand;
-        for (int i = 0; i< Constants.PERIOD_NUMBER;i++){
+        for (int i = 0; i < Constants.PERIOD_NUMBER; i++) {
             rand = r.nextInt(Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD);
             ExcommunicationTile ex = deck[i][rand];
             zone[i] = new ExcommunicationZone(ex);
@@ -313,8 +323,8 @@ public class Room {
 
     private DevelopmentCard[][][] shuffleDeck(DevelopmentCard[][][] deck) {
         Random rnd = ThreadLocalRandom.current();
-        for ( int j = 0; j < Constants.CARD_TYPE_NUMBER; j++) {
-            for ( int k = 0; k < Constants.PERIOD_NUMBER; k ++) {
+        for (int j = 0; j < Constants.CARD_TYPE_NUMBER; j++) {
+            for (int k = 0; k < Constants.PERIOD_NUMBER; k++) {
                 for (int i = Constants.CARD_FOR_EACH_PERIOD - 1; i > 0; i--) {
                     int index = rnd.nextInt(i + 1);
                     DevelopmentCard card = deck[j][k][index];
@@ -335,9 +345,46 @@ public class Room {
     }
 
     public void broadcastMessage(String afterGame) {
-        for ( PlayerHandler player : getListOfPlayers() ){
-            if ( player.isOn() )
+        for (PlayerHandler player : getListOfPlayers()) {
+            if (player.isOn())
                 player.sendString(afterGame);
         }
+    }
+
+    public String takeStatistics(String nickname) {
+        String currentFile;
+        Gson gson = new Gson();
+
+        try {
+            currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
+
+            System.out.println("Il file in questo momento è: " + currentFile);
+
+            PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
+
+            for (PlayerFile player : arrayPlayers)
+                if (player.getPlayerName().equals(nickname)) {
+                    String playerStat = gson.toJson(player);
+                    return playerStat;
+                }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String readFile(String path, Charset encoding)
+            throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
+    }
+
+    public PlayerHandler getLastPlayer() {
+        return lastPlayer;
+    }
+
+    public void setLastPlayer(PlayerHandler lastPlayer) {
+        this.lastPlayer = lastPlayer;
     }
 }

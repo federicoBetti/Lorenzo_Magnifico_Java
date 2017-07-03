@@ -26,6 +26,7 @@ import java.util.*;
 /**
  * Created by raffaelebongo on 18/05/17.
  */
+
 public class Server {
 
     private static final int RMI_PORT = 2;
@@ -149,8 +150,7 @@ public class Server {
         FileWriter fw = null;
 
         try {
-            String filename = "E:\\test\\PlayerFile.json";
-            File file = new File(filename);
+            File file = new File(Constants.FILENAME);
 
             if (!file.exists()) {
                 System.out.println("CREO IL FILE");
@@ -164,22 +164,22 @@ public class Server {
                 return;
             }
 
-            String currentFile = readFile(filename, StandardCharsets.UTF_8);
+            String currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
             System.out.println("Il file in questo momento è: " +  currentFile);
 
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
 
             for (PlayerFile player : arrayPlayers)
                 if (player.getPlayerName().equals(nickname)) {
-                    player.setNumberOfGames(player.getNumberOfGames() + 1);{
+                    player.setNumberOfGames(player.getNumberOfGames() + 1);
                         fileUpgraded = gson.toJson(arrayPlayers);
                         break;
-                    }
+
                 }
 
             fw = new FileWriter(file.getAbsoluteFile(), true);
             bw = new BufferedWriter(fw);
-            RandomAccessFile randomAccessFile = new RandomAccessFile(filename, "rw");
+            RandomAccessFile randomAccessFile = new RandomAccessFile(Constants.FILENAME, "rw");
 
             long pos = randomAccessFile.length();
             while (randomAccessFile.length() > 0) {

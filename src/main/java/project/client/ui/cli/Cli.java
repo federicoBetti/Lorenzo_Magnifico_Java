@@ -260,6 +260,16 @@ public class Cli extends AbstractUI {
     }
 
     @Override
+    public void afterGame() {
+        context = new AfterGameContext(this);
+    }
+
+    @Override
+    public void showStatistic() {
+        clientSetter.showStatistic();
+    }
+
+    @Override
     public void waitingForYourTurn() {
      /*   try {//bonus action interrupted
             if (context instanceof TakeBonusCard || context instanceof BonusHarvesterContext || context instanceof BonusProductionContext) {

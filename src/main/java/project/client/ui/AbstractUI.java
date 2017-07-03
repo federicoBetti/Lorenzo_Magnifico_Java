@@ -95,4 +95,8 @@ public abstract class AbstractUI {
     public abstract void timerDelayed();
 
     public abstract void reconnect();
+
+    public abstract void afterGame();
+
+    public abstract void showStatistic();
 }

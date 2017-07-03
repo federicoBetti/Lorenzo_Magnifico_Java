@@ -122,6 +122,8 @@ public class Constants {
     public static final String RECONNECT = "reconnect";
     public static final String WAITING_FOR_YOUR_TURN = "waiting-for-your-turn";
     public static final String AFTER_GAME = "after-game";
+    public static final String SHOW_STATISTICS = "show-statistics";
+    public static final String FILENAME = "E:\\test\\PlayerFile.json";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;
@@ -133,6 +135,7 @@ public class Constants {
     public static String RED = "red";
     public static String YELLOW ="yellow";
     public static String BLUE ="blue";
+    public static String SHOW_RANKING  =  "show-ranking";
 
 
     private Constants(){}

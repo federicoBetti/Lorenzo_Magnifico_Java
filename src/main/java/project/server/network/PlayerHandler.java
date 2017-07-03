@@ -21,10 +21,12 @@ public abstract class PlayerHandler extends Player {
     private transient AllCheckFunctions checkFunctions;
     final static String NO_AbCTION_CAN_BE_DONE = "no action can be done";
     private LeaderCardRequirements leaderCardRequirements;
+    boolean callPray;
 
 
     protected PlayerHandler(){
         super();
+        callPray = false;
         leaderCardRequirements = new LeaderCardRequirements();
         checkFunctions = new BasicCheckFunctions();
     }
@@ -438,6 +440,7 @@ public abstract class PlayerHandler extends Player {
 
     public void skipTurn(){
         this.waitForYourTurn();
+        room.setLastPlayer(this);
         room.getGameActions().nextTurn(this);
     }
 
@@ -463,4 +466,13 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int chooseTile(ArrayList<Tile> tiles);
 
+    public abstract void showStatistics();
+
+    public boolean isCallPray() {
+        return callPray;
+    }
+
+    public void setCallPray(boolean callPray) {
+        this.callPray = callPray;
+    }
 }

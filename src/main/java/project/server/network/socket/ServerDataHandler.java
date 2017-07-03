@@ -58,7 +58,12 @@ class ServerDataHandler {
         map.put(Constants.SKIP_TURN, this::skipTurn );
         map.put(Constants.PRAYING_REQUEST_RECEIVED, this:: waitForPraying );
         map.put(Constants.RECONNECT, this:: reconnectClient);
+        map.put(Constants.SHOW_STATISTICS, this:: showStatistics );
         //todo completare con tutte le stringhe giuste e i metodi
+    }
+
+    private void showStatistics() {
+        socketPlayerHandler.showStatistics();
     }
 
     private void reconnectClient() {

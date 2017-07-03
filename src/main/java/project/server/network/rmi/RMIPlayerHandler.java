@@ -370,6 +370,11 @@ public class RMIPlayerHandler extends PlayerHandler {
         return 0;
     }
 
+    @Override
+    public void showStatistics() {
+
+    }
+
 
     @Override
     public void sendString(String message) {

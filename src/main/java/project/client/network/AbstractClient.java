@@ -73,5 +73,7 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void afterGame();
 
+    public abstract void showStatistic();
+
     //da server a client
 }
