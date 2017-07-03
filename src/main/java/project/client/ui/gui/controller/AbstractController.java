@@ -20,6 +20,7 @@ import project.model.Tower;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by federico on 13/06/17.
@@ -206,6 +207,18 @@ public abstract class AbstractController {
     void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition) {
         Iterator<? extends Position> itPR = positions.iterator();
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
+
+        if (positions.isEmpty()){
+            //new round
+            FamiliarPosition familiarPositionn = allPosition.get(0);
+            familiarPositionn.setImage(null);
+            familiarPositionn.setFamiliarName("");
+            allPosition.removeIf(familiarPosition -> {
+                if (familiarPosition != familiarPositionn)
+                    return true;
+                return true;
+            });
+        }
 
         while (itPR.hasNext()) {
             FamiliarPosition familiarPosition;

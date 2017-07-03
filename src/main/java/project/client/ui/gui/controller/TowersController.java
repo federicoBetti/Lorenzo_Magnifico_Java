@@ -420,10 +420,12 @@ public class TowersController extends AbstractController {
         writeOnChat(printBonusAction);
         writeOnChat("click on the position next to the card you want"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
         blockButton();
+        System.out.println("HO CHIUSO I BOTTONIFF");
         this.bonusCardType = kindOfCard;
     }
 
     private void blockButton(){
+        System.out.println("STO CHIUDENDO I BOTTONI");
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeBonusCard());
     }

@@ -18,6 +18,7 @@ public class PopUpController {
 
     @FXML
     private Label message;
+    private MainController mainController;
 
     public void setLabel(String labelMessage) {
         message.setText(labelMessage);
@@ -26,6 +27,12 @@ public class PopUpController {
 
     public void ok(ActionEvent actionEvent) {
         Stage stage = (Stage) message.getScene().getWindow();
+        if (message.getText().equals("you are disconnected, click ok to reconnect"))
+            mainController.reconnect();
         stage.hide();
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 }

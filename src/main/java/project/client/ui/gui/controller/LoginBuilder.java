@@ -458,11 +458,11 @@ public class LoginBuilder extends Application {
             // Set the person into the controller.
             PopUpController controller = loader.getController();
             controller.setLabel(s);
+            controller.setMainController(mainController);
             System.out.println("sto per disegnare lo stage");
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
-            mainController.reconnect();
             return ;
         } catch (IOException e) {
             e.printStackTrace();

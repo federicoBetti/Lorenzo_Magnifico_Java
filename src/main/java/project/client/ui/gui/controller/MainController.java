@@ -337,7 +337,13 @@ public class MainController {
 
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         actionBonusOn = true;
-        towerController.takeBonusCard(kindOfCard,printBonusAction);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
+                towerController.takeBonusCard(kindOfCard,printBonusAction);
+            }
+        });
     }
 
     public int bothPaymentAvaiable() {
@@ -511,7 +517,7 @@ public class MainController {
         });
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

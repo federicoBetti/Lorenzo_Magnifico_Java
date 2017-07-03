@@ -172,11 +172,14 @@ public class RMIPlayerHandler extends PlayerHandler {
             }
             synchronized (tokenn){
                 try {
+                    System.out.println("STO ANDANDO IN WAIT TOWER ACTION");
                     tokenn.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+
+            System.out.println("MI SONO SVEGLIATO DAL TOWER ACTION");
 
             if (towerColourChosen == null)
                 return;
