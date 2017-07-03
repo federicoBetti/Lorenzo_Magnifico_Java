@@ -41,6 +41,9 @@ public class Configuration {
         map.put(Constants.VENTURE_CARD, this::buildVentureCard);
     }
 
+    public void loadPointsTracks(){
+
+    }
 
     public void loadDevelopmentCards(Deck deck) throws FileNotFoundException {
 

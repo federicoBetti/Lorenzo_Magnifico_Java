@@ -78,13 +78,13 @@ public final class Board {
     /**
      * qiesto array di interi rappresenta i punti vittori ottenuti pregando per ognuno dei 15 posti del tracciato di punti fede
      */
-    private int[] victoryPointsInFaithTrack;
+    private int[] victoryPointsInFaithTrack; //todo
 
     private Deck decks;
 
-    private int[] finalPointsFromTerritoryCards;
+    private int[] finalPointsFromTerritoryCards;    //todo
 
-    private int[] finalPointsFromCharacterCards;
+    private int[] finalPointsFromCharacterCards;    //todo
 
     private int[] faithPointsRequiredEveryPeriod; //todo bisogna scrivere dentro i numeri, in teoria sono 3 4 5
 
