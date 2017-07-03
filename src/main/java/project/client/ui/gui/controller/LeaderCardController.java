@@ -148,32 +148,42 @@ public class LeaderCardController extends AbstractController {
             if (leaderCardSelected[i])
                 return i;
         }
-        return 0;
+        return -1;
     }
     public void playCard() {
         int cardSelected = getLeaderSelected();
-        mainController.playLeaderCard(cardSelected);
+        if (cardSelected!=-1) {
+            String leaderName = arrayOfLeaderCard.get(cardSelected).getFamiliarName();
+            unselectAllCards();
+            mainController.playLeaderCard(leaderName);
+        }
     }
 
     public void discardCard() {
         int cardSelected = getLeaderSelected();
-        mainController.discardLeaderCard(cardSelected);
+        if (cardSelected!=-1) {
+            String leaderName = arrayOfLeaderCard.get(cardSelected).getFamiliarName();
+            unselectAllCards();
+            mainController.discardLeaderCard(leaderName);
+        }
     }
 
     public void updateCards(List<LeaderCard> leaderCards){
-        for (int i = 0; i<leaderCards.size(); i++){
+        int i;
+        for (i = 0; i<leaderCards.size(); i++) {
             LeaderCard l = leaderCards.get(i);
-            if ((arrayOfLeaderCard.get(i).getFamiliarName().equals(""))){
-                    ImageView imageView = arrayOfLeaderCard.get(i).getImage();
-                    arrayOfLeaderCard.get(i).setFamiliarName(l.getName());
-                    imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCards/" + l.getName() + ".png"))));
-                    imageView.setOnMouseClicked(event -> leaderCardChosen(l.getName()));
-            }
-            else if (l == null){
+            if (!(arrayOfLeaderCard.get(i).getFamiliarName().equals(l.getName()))) {
                 ImageView imageView = arrayOfLeaderCard.get(i).getImage();
-                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCard/back.png"))));
+                arrayOfLeaderCard.get(i).setFamiliarName(l.getName());
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/leaderCards/" + l.getName() + ".png"))));
+                imageView.setOnMouseClicked(event -> leaderCardChosen(l.getName()));
             }
         }
+        for (;i< arrayOfLeaderCard.size(); i++){
+                ImageView imageView = arrayOfLeaderCard.get(i).getImage();
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/leaders.jpg"))));
+            }
+
     }
 
 

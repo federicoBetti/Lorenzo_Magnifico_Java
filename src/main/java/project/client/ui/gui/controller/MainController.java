@@ -157,16 +157,21 @@ public class MainController {
 
 
     void doProduction(String familiarChosen, List<String> buildingCardSelected) {
-        clientSetter.productionAction(familiarChosen, buildingCardSelected);
+        Runnable a = () -> clientSetter.productionAction(familiarChosen, buildingCardSelected);;;
+        new Thread(a).start();
+
     }
 
     void doHarvester(int servants, String familiarChosen) {
+        Runnable a = () -> clientSetter.harvesterAction(familiarChosen,servants);
+        new Thread(a).start();
         System.out.println("sto mandando ichiesta di harvester con numero di familiari: " + servants);
-        clientSetter.harvesterAction(familiarChosen,servants);
+
     }
 
     void goToCouncil(int privilegeSelected, String familiarChosen) {
-        clientSetter.councilAction(privilegeSelected,familiarChosen);
+        Runnable a = () -> clientSetter.councilAction(privilegeSelected,familiarChosen);
+        new Thread(a).start();
     }
 
     void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
@@ -221,14 +226,14 @@ public class MainController {
 
     }
 
-    public void playLeaderCard(int cardSelected) {
+    public void playLeaderCard(String cardSelected) {
 
         Runnable a = () -> clientSetter.playLeaderCard(cardSelected);;
         new Thread(a).start();
 
     }
 
-    public void discardLeaderCard(int cardSelected) {
+    public void discardLeaderCard(String cardSelected) {
         Runnable a = () -> clientSetter.discardLeaderCard(cardSelected);;
         new Thread(a).start();
 
@@ -281,8 +286,8 @@ public class MainController {
         board = clientSetter.getUiBoard();
         Platform.runLater(() -> {
             System.out.println("dadi: " + board.getDiceValue()[0] +" " +board.getDiceValue()[1] +" " +board.getDiceValue()[2]);
-            productionController.updatePosition(board.getProductionZone());
             harvesterController.updatePosition(board.getHarvesterZone());
+            productionController.updatePosition(board.getProductionZone());
             councilPalaceController.updatePosition(board.getCouncilZone());
             marketController.updatePosition(board.getMarketZone());
             towerController.updatePosition(board.getAllTowers());
@@ -327,17 +332,35 @@ public class MainController {
 
     public void bonusHarvester(int diceValue) {
         actionBonusOn = true;
-        harvesterController.bonusHarvester(diceValue);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.setScene(SceneType.HARVESTER,SceneType.PERSONAL_BOARD);
+                harvesterController.bonusHarvester(diceValue);
+            }
+        });
     }
 
     public void bonusProduction(int diceValue) {
         actionBonusOn = true;
-        productionController.bonusProduction(diceValue);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.setScene(SceneType.PRODUCTION, SceneType.PERSONAL_BOARD);
+                productionController.bonusProduction(diceValue);
+            }
+        });
     }
 
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         actionBonusOn = true;
-        towerController.takeBonusCard(kindOfCard,printBonusAction);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.setScene(SceneType.MARKET,SceneType.PERSONAL_BOARD);
+                towerController.takeBonusCard(kindOfCard,printBonusAction);
+            }
+        });
     }
 
     public int bothPaymentAvaiable() {
@@ -511,7 +534,7 @@ public class MainController {
         });
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

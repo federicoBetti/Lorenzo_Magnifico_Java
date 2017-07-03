@@ -20,6 +20,7 @@ import project.model.Tower;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by federico on 13/06/17.
@@ -183,12 +184,16 @@ public abstract class AbstractController {
             }
         }
         System.out.println("creo un nuovo posto per un mio familiare");
-        FamiliarPosition newPosition = new FamiliarPosition(allPosition.get(allPosition.size() - 1));
+        FamiliarPosition newPosition = new FamiliarPosition("hbox");
         ImageView imageView = newPosition.getImage();
         imageView.setImage(getTrueFamiliarImage());
+
+        //ArrayList<ImageView> toAddHbox = imageFromFamiliars(allPosition);
         familiarBox.getChildren().addAll(imageView);
+
         allPosition.add(newPosition);
     }
+
 
     int familiarPlaced(List<FamiliarPosition> allPosition) {
         int i = 0;
@@ -202,27 +207,29 @@ public abstract class AbstractController {
     void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition) {
         Iterator<? extends Position> itPR = positions.iterator();
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
-        System.out.println("ora sono nell'update di " + positions.getClass());
 
-        System.out.println("ora stampo tutti i familiari nel clientSetter");
-        for (Position p: positions)
-            System.out.println(p.getFamiliarOnThisPosition());
-
-
-        System.out.println("ora stampo tutti i familiari nella GUI");
-        for (FamiliarPosition f: allPosition)
-            System.out.println(f.getFamiliarName());
+        if (positions.isEmpty()){
+            //new round
+            if (allPosition.isEmpty())
+                return;
+            FamiliarPosition familiarPositionn = allPosition.get(0);
+            familiarPositionn.setImage(null);
+            familiarPositionn.setFamiliarName("");
+            allPosition.removeIf(familiarPosition -> {
+                if (familiarPosition != familiarPositionn)
+                    return true;
+                return true;
+            });
+        }
 
 
         while (itPR.hasNext()) {
             FamiliarPosition familiarPosition;
             if (itFP.hasNext()) {
                 familiarPosition = itFP.next();
-                System.out.println("c'è un altro familiare " + familiarPosition);
             }
             else {
-                System.out.println("ho creato una nuova posizione");
-                familiarPosition = new FamiliarPosition(allPosition.get(allPosition.size()-1));
+                familiarPosition = new FamiliarPosition("");
                 allPosition.add(familiarPosition);
             }
             Position position = itPR.next();
@@ -233,7 +240,6 @@ public abstract class AbstractController {
                     familiarPosition.setFamiliarName("");
                 }
             } else if (!(familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))){
-               System.out.println("devo modificare un familiare");
                     familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
                     familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
                 }
@@ -297,4 +303,24 @@ public abstract class AbstractController {
     }
 
     public abstract void updateResources(int coins, int wood, int stone, int servants);
+
+    public void updateHBox(List<FamiliarPosition> familiarInTheCouncil, HBox familiarBox) {
+        for (int i = 0; i < familiarInTheCouncil.size(); i++){
+            System.out.println(i);
+            if (!familiarBox.getChildren().contains(familiarInTheCouncil.get(i).getImage())) {
+                familiarBox.getChildren().add(familiarInTheCouncil.get(i).getImage());
+                System.out.println("ho aggiunto un familiare");
+            }
+        }
+    }
+
+
+    private ArrayList<ImageView> imageFromFamiliars(List<FamiliarPosition> allPosition) {
+        ArrayList<ImageView> toAdd = new ArrayList<>();
+        for (FamiliarPosition f: allPosition) {
+            ImageView im = f.getImage();
+            toAdd.add(im);
+        }
+        return toAdd;
+    }
 }

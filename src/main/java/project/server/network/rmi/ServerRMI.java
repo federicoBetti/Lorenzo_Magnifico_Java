@@ -172,7 +172,7 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
 
     @Override
     public void sendImmediatePrivileges(String myUniqueId, List<Integer> privileges) throws RemoteException {
-        getPlayerHandler(myUniqueId).takeImmediatePrivileges(privileges);
+        getPlayerHandler(myUniqueId).takeImmediatePrivilegesNotify(privileges);
     }
 
     @Override

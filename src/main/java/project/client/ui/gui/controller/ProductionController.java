@@ -142,12 +142,8 @@ public class ProductionController extends AbstractController{
     public void initialize(){
         super.initialize();
 
-        //example
-        buildingCard0.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/commercialHub.png"))));
-
         nameOfBuilding = new ArrayList<>(6);
         allBuildingCard = new ArrayList<>(6);
-        allPosition = new ArrayList<>();
 
     }
 
@@ -169,6 +165,7 @@ public class ProductionController extends AbstractController{
         allBuildingCard.add(buildingCard4);
         allBuildingCard.add(buildingCard5);
 
+        allPosition = new ArrayList<>();
         allPosition.add(new FamiliarPosition(imageProduction0));
     }
 
@@ -210,6 +207,7 @@ public class ProductionController extends AbstractController{
         }
 
         positionSelected = false;
+        writeOnChat("production done!\n");
         mainController.doProduction(familiarChosen,buildingCardSelected);
     }
 
@@ -279,6 +277,9 @@ public class ProductionController extends AbstractController{
 
     public void updatePosition(List<Production> productions){
         super.updatePosition(productions,allPosition);
+        if (allPosition.size()>1){
+            super.updateHBox(allPosition.subList(1,allPosition.size()),familiarBox);
+        }
     }
 
     public void bonusProduction(int diceValue) {

@@ -107,11 +107,6 @@ public class ClientSetter {
         client.discardLeaderCard(name);
     }
 
-    public void discardLeaderCard(int cardSelected) {
-        String leaderName = uiPersonalBoard.getMyLeaderCard().get(cardSelected).getName();
-        discardLeaderCard(leaderName);
-    }
-
     public void playLeaderCard(int cardSelected) {
         String leaderName = uiPersonalBoard.getMyLeaderCard().get(cardSelected).getName();
         playLeaderCard(leaderName);

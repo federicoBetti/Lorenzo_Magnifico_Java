@@ -293,12 +293,17 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     protected void discardLeaderCard(String leaderName) throws CantDoActionException {
+        boolean found = false;
+
         for (LeaderCard l: getPersonalBoardReference().getMyLeaderCard()){
             if (l.getName().equals(leaderName)){
-                gameActions().discardLeaderCard(leaderName,this);
+                found = true;
             }
         }
-        throw new CantDoActionException();
+        if (found)
+            gameActions().discardLeaderCard(leaderName,this);
+        else
+            throw new CantDoActionException();
     }
 
     /**

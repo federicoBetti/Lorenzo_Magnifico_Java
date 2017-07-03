@@ -294,6 +294,8 @@ public class TowersController extends AbstractController {
             }
         }
         else {
+            //todo cambiare il greenneutral qua con uno bianco tipo fake
+            myTower[tower][floor].setFamiliarImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + "emptygreenneutral" +".png"))));
             selectCard(tower, floor);
             writeOnChat("you have chosen a bonus action!\n");
         }
@@ -415,13 +417,22 @@ public class TowersController extends AbstractController {
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
         bonusAction = true;
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
+
         writeOnChat(printBonusAction);
         writeOnChat("click on the position next to the card you want"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
         blockButton();
+        System.out.println("HO CHIUSO I BOTTONIFF");
         this.bonusCardType = kindOfCard;
     }
 
     private void blockButton(){
+        System.out.println("STO CHIUDENDO I BOTTONI");
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeBonusCard());
     }
