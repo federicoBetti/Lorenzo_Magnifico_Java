@@ -279,6 +279,9 @@ public class ProductionController extends AbstractController{
 
     public void updatePosition(List<Production> productions){
         super.updatePosition(productions,allPosition);
+        if (allPosition.size()>1){
+            super.updateHBox(allPosition.subList(1,allPosition.size()),familiarBox);
+        }
     }
 
     public void bonusProduction(int diceValue) {

@@ -265,6 +265,10 @@ public class HarvesterController extends AbstractController {
 
     public void updatePosition(List<Harvester> harvesterZone) {
         super.updatePosition(harvesterZone,allPosition);
+
+        if (allPosition.size()>1){
+            super.updateHBox(allPosition.subList(1,allPosition.size()),familiarBox);
+        }
     }
 
     public void bonusHarvester(int diceValue) {

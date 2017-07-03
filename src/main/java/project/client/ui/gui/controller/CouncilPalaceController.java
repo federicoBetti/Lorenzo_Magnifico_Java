@@ -2,6 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -116,7 +117,6 @@ public class CouncilPalaceController extends AbstractController {
     public void initialize() {
         super.initialize();
         familiarInTheCouncil.add(new FamiliarPosition(imageInTheCouncil0));
-        familiarBox.getChildren().addAll(imageInTheCouncil0);
 
         privilegeButtons[0] = buttonStoneWood;
         privilegeButtons[1] = buttonServants;
@@ -201,8 +201,10 @@ public class CouncilPalaceController extends AbstractController {
             System.out.println("devo cambiare familiare perchè lho gia piazzato");
             if (familiarInTheCouncil.size() > 1)
                 familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
-            else
+            else {
                 familiarInTheCouncil.get(0).setFamiliarName("");
+                familiarInTheCouncil.get(0).setImage(null);
+            }
             super.placeFamiliar(familiarInTheCouncil, familiarBox);
         }
         else {
@@ -292,6 +294,10 @@ public class CouncilPalaceController extends AbstractController {
     }
 
     public void updatePosition(List<Council> councilZone) {
+
         super.updatePosition(councilZone,familiarInTheCouncil);
+
+        super.updateHBox(familiarInTheCouncil,familiarBox);
+
     }
 }

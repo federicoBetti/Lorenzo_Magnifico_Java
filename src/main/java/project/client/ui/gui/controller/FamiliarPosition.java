@@ -21,6 +21,13 @@ class FamiliarPosition {
         this.familiarPosition = toClone.getImage();
         familiarName = "";
     }
+
+    FamiliarPosition(String type){
+        this.familiarPosition = new ImageView();
+        familiarPosition.setFitWidth(94);
+        familiarPosition.setFitHeight(86);
+        familiarName = "";
+    }
     public String getFamiliarName() {
         return familiarName;
     }

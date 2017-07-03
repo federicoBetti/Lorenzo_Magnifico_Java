@@ -7,7 +7,6 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
-import project.model.Player;
 import project.model.Tile;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CantDoActionException;
@@ -86,12 +85,13 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     }
 
-    public void takeImmediatePrivileges(List<Integer> privileges) {
+    public void takeImmediatePrivilegesNotify(List<Integer> privileges) {
         this.privileges = privileges;
-
+        System.out.println("ora faccio notify dei privilegi");
         synchronized (tokenn) {
             tokenn.notify();
         }
+        System.out.println("ho notificato i privilegi");
     }
 
     public void exitOnBonusAction() {
@@ -250,7 +250,8 @@ public class RMIPlayerHandler extends PlayerHandler {
         if (privileges == null)
             return;
 
-        takeImmediatePrivileges(privileges);
+        for (Integer i: privileges)
+            takePrivilege(i);
     }
 
 

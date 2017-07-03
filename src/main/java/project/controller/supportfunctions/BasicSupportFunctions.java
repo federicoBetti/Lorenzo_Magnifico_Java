@@ -186,6 +186,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     public void setFamiliarInTheCouncilPalace(List<Council> councilZone, FamilyMember familyMember) {
         councilZone.add(new Council(familyMember));
         familyMember.setPlayed(true);
+
     }
 
 

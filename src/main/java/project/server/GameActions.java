@@ -716,8 +716,8 @@ public class GameActions {
      * @param player
      */
     public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player) {
-
         CouncilPrivilege privilege = board.getCouncilPrivileges()[privilegeNumber];
+
         Effects e = privilege.getEffect();
         e.doEffect(player);
 

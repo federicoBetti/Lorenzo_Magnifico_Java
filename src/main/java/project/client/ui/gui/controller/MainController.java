@@ -221,14 +221,14 @@ public class MainController {
 
     }
 
-    public void playLeaderCard(int cardSelected) {
+    public void playLeaderCard(String cardSelected) {
 
         Runnable a = () -> clientSetter.playLeaderCard(cardSelected);;
         new Thread(a).start();
 
     }
 
-    public void discardLeaderCard(int cardSelected) {
+    public void discardLeaderCard(String cardSelected) {
         Runnable a = () -> clientSetter.discardLeaderCard(cardSelected);;
         new Thread(a).start();
 

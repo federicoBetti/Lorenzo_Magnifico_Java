@@ -15,6 +15,7 @@ public class Council extends Position implements Serializable{
      */
     public Council(FamilyMember familyMember ) {
         setFamiliarOnThisPosition(familyMember);
+        setOccupied(true);
     }
 
     public PlayerHandler findPlayer( Board board, String familyCoulor ){
