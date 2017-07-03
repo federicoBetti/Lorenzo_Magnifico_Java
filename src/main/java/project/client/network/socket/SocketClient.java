@@ -205,7 +205,14 @@ public class SocketClient extends AbstractClient {
     }
 
     public void takeBonusCardAction(int floor, String towerColour) {
-        send2Parameters(towerColour, floor);
+        try {
+            objectOutputStream.writeObject(towerColour);
+            objectOutputStream.writeObject(floor);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -332,14 +339,14 @@ public class SocketClient extends AbstractClient {
                         System.out.println("ricevuto:" + message);
                     }
 
-                        synchronized (token) {
-                            token.notify();
-                        }
+                    synchronized (token) {
+                        token.notify();
+                    }
 
-                        System.out.println("NOTIFY");
+                    System.out.println("NOTIFY");
                 }
 
-                if ( message.equals(Constants.ACTION_DONE_ON_TIME)){
+                if (message.equals(Constants.ACTION_DONE_ON_TIME)) {
 
                     synchronized (token) {
                         token.notify();

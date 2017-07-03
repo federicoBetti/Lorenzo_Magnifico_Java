@@ -3,7 +3,7 @@
   "delayTimerStartMatch":3000,
 
   "skipTurnTimerName":"timer-finish-turn",
-  "delayTimerSkipTurn":7000,
+  "delayTimerSkipTurn":20000,
 
   "delayTimerPrayingName":"timer-finish-praying",
   "delayTimerPraying": 7000
