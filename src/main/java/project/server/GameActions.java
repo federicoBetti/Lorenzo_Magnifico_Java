@@ -25,7 +25,7 @@ public class GameActions {
     private Timer timer;
     private LeaderCardsEffects leaderCardEffect;
 
-    public GameActions(Room room) {
+    GameActions(Room room) {
         this.room = room;
         leaderCardEffect = new LeaderCardsEffects();
         timer = new Timer();
@@ -42,7 +42,7 @@ public class GameActions {
         getSupportFunctions(player).towerZoneEffect(zone, player);
         zone.getTowerZoneEffect().doEffect(player);
 
-        for (Effects e: zone.getCardOnThisFloor().getImmediateCardEffects())
+        for (Effects e : zone.getCardOnThisFloor().getImmediateCardEffects())
             getSupportFunctions(player).applyEffects(e, player);
 
         player.sendActionOk();
@@ -120,7 +120,7 @@ public class GameActions {
         PlayerHandler next;
         List<PlayerHandler> turn = board.getTurn().getPlayerTurn();
 
-        for ( PlayerHandler player : turn )
+        for (PlayerHandler player : turn)
             System.out.println("Player : " + player.isOn());
 
         int indexOfMe = turn.indexOf(playerHandler);
@@ -161,14 +161,17 @@ public class GameActions {
                 endMatch();
 
         } else if (currentRound == 1) {//fine periodo
+            timer.cancel();
             endPeriod(currentPeriod);
             nextRound();
             nextPeriod();
             board.getTurn().setRotation(0);
             setEndRound(true);
-            timer.cancel();
-            firstPlayerTurn();
-            timer = this.myTimerSkipTurn(turn.get(0), turn);
+            int playerIndex = firstPlayerTurn();
+            if (playerIndex == -1)
+                return;
+
+            timer = this.myTimerSkipTurn(turn.get(playerIndex), turn);
             return;
 
         } else {
@@ -179,8 +182,11 @@ public class GameActions {
             nextRound();
             setEndRound(true);
             //il timer cancel era qui
-            firstPlayerTurn();
-            timer = this.myTimerSkipTurn(turn.get(0), turn);
+            int playerIndex = firstPlayerTurn();
+            if (playerIndex == -1)
+                return;
+
+            timer = this.myTimerSkipTurn(turn.get(playerIndex), turn);
             System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
         }
         //todo se rimane solo un giocatore nella partita?
@@ -197,18 +203,25 @@ public class GameActions {
         return true;
     }
 
-    private void firstPlayerTurn() {
+    private int firstPlayerTurn() {
         int i = 0;
-        PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(i);
         while (i < board.getTurn().getPlayerTurn().size()) {
+            PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(i);
             if (firstPlayer.isOn()) {
                 firstPlayer.itsMyTurn();
-                return;
-            } else
-                firstPlayer = board.getTurn().getPlayerTurn().get(i + 1);
+                return i;
+            }
+            i++;
         }
-        //nextTurn(firstPlayer);
+        ArrayList<Room> rooms = room.getServer().getRooms();
+        rooms.remove(room);
+        room.getServer().setRooms(rooms);
+        room = null;
+        System.out.println("PARTITA FINITA PER DISCONNESSIONE DI ENTRAMBI I GIOCATORI");
+
+        return -1;
     }
+
 
     //todo can we delete it?
     private boolean allFamiliarPlayed() {
@@ -223,7 +236,7 @@ public class GameActions {
 
     public void firstTurn(List<PlayerHandler> playerInTheMatch) {
         board.getTurn().getPlayerTurn().get(0).itsMyTurn();
-        timer = myTimerSkipTurn(board.getTurn().getPlayerTurn().get(0), playerInTheMatch );
+        timer = myTimerSkipTurn(board.getTurn().getPlayerTurn().get(0), playerInTheMatch);
     }
 
     public void setBoard(Board board) {
@@ -249,6 +262,7 @@ public class GameActions {
                 else return -1;
             } else return -1;
         }
+
     }
 
     private int getMilitaryPoints(PlayerHandler playerHandler) {
@@ -291,6 +305,13 @@ public class GameActions {
         System.out.println("IL VINCITORE È: " + winner.getName());
         //winner.YOUWIN();
         //todo  broadcastNotifications(new Notify("the winner is + " + winner.getName()));
+        //todo queste tre righe servono per eliminare la room quando la partita è finita senno i giocatori si possono riconnettere ad una paritta finita
+        //todo funziona tutto il metodo?
+        ArrayList<Room> rooms = room.getServer().getRooms();
+        rooms.remove(room);
+        room.getServer().setRooms(rooms);
+        room = null;
+
 
     }
 
@@ -364,10 +385,19 @@ public class GameActions {
     }
 
     private void endRound() {//cambiare le carte, pulire spazi azione, settare i familiari a false
+        int count = 0;
+        for (PlayerHandler player : room.getListOfPlayers())
+            if (!player.isOn())
+                count++;
+
         refactorTowers();
+        System.out.println("dopo refactor");
         changePlayerOrder();
+        System.out.println("dopo change");
         clearAllPosition();
+        System.out.println("dopo clear");
         clearLeaderCardUsed();
+        System.out.println("dopo leader");
 
         //to check
 
@@ -467,18 +497,18 @@ public class GameActions {
         int faithPointsNeeded = board.getFaithPointsRequiredEveryPeriod()[period];
         List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
         for (PlayerHandler player : turn) {
-            if (player.isOn()) {
-                if (player.getScore().getFaithPoints() >= faithPointsNeeded) {
+            if (player.isOn() && player.getScore().getFaithPoints() >= faithPointsNeeded) {
 
-                    timer = myTimerPraying(player);
-                    int choice = player.sendAskForPraying(turn);
+                timer = myTimerPraying(player);
+                System.out.println(player.getName());
+                int choice = player.sendAskForPraying(turn);
 
-                    if (choice == 1)
-                        takeExcommunication(player);
-                    else
-                        faithPointsForVictoryPoints(player);
-                    timer.cancel();
-                }
+                if (choice == 1)
+                    takeExcommunication(player);
+                else
+                    faithPointsForVictoryPoints(player);
+                timer.cancel();
+
             } else {
                 System.out.println("prendo scomunica");
                 takeExcommunication(player);
@@ -633,8 +663,7 @@ public class GameActions {
                 BonusInteraction returnFromEffect = leaderCardEffect.doEffect(leaderName, player);
                 if (returnFromEffect instanceof LorenzoMagnifico) {
                     //todo fare cose per lorenzo magnifico
-                }
-                else if (returnFromEffect instanceof BonusProductionOrHarvesterAction)
+                } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction)
                     player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
                 else if (returnFromEffect instanceof TakePrivilegesAction)
                     player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
@@ -773,9 +802,10 @@ public class GameActions {
             @Override
             public void run() {
 
+                player.setOn(false);
                 player.timerTurnDelayed();
-                player.setOn(false);
-                player.setOn(false);
+                System.out.println("TIMER TURNO");
+
                 //todo aggiunto questo perchè ho letto nei requirements che bisogna fare una cosa del genere
                /* for ( PlayerHandler playerToInform : playersInTheMatch ){
                     if ( playerToInform == player )
@@ -797,7 +827,8 @@ public class GameActions {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                player.setOn(false);
+                System.out.println("TIMER PREGHIERA");
+                System.out.println(player.getName());
                 player.timerTurnDelayed();
             }
         };

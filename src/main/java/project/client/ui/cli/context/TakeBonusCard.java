@@ -96,9 +96,9 @@ public class TakeBonusCard extends AbstractContext {
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if( parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))
+        if( !(parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0))))
             throw new InputException();
-        if (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 )
+        if (! (Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) <= 3 ))
             throw new InputException();
 
         if(!( parameters.length == 2 ))

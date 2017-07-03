@@ -246,6 +246,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void timerTurnDelayed() {
         sendString(Constants.TIMER_TURN_DELAYED);
+        setOn(false);
     }
 
     @Override
@@ -389,11 +390,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 }
 
                 sendString(Constants.ASK_FOR_PRAYING);
+                System.out.println(" mandata ask " );
                 synchronized (token) {
                     token.wait();
                 }
 
                 int answer =  (int) objectInputStream.readObject();
+                System.out.println("risposta arrivata " +answer);
                 sendString(Constants.ACTION_DONE_ON_TIME);
 
                 synchronized (token1) {

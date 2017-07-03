@@ -10,11 +10,11 @@ import java.io.IOException;
 /**
  * Created by raffaelebongo on 20/05/17.
  */
-class Launcer {
+class Launcher {
 
     //todo completare
     private int x;
-    public Launcer(int x){
+    public Launcher(int x){
         this.x = x;
     }
 

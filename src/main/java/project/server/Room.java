@@ -157,7 +157,7 @@ public class Room {
 
         //draft leader
 
-        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+     /*   ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
             System.out.println("inizio richiest giro di leader");
@@ -192,7 +192,7 @@ public class Room {
             Tile tile = getTrueTile(tileId, tiles);
             p.getPersonalBoardReference().setMyTile(tile);
             tiles.remove(tile);
-        }
+        }   */
 
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {
