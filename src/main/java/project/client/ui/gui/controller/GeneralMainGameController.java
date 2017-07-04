@@ -33,8 +33,9 @@ public class GeneralMainGameController extends AbstractController{
     public ImageView excommunication1;
     public ImageView excommunication3;
     public ImageView excommunication2;
+    public Label name;
     @FXML
-    private Pane gameboard;
+    private ImageView gameboard;
     @FXML
     private Label numberOfCoins;
 
@@ -297,8 +298,7 @@ public class GeneralMainGameController extends AbstractController{
         super.uploadImages();
         int faithPoints = loginBuilder.getFaithPoints();
         int turnOrder = loginBuilder.getTurnOrder();
-        String urlImage = "/images/immaginiSetUp/gameboard" + mainController.getNumberOfPlayer() + "Giocatori.png";
-        gameboard.setStyle("-fx-background-image: url(" + urlImage + ")");
+        gameboard.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/gameboard"  + mainController.getNumberOfPlayer() + "Giocatori.png"))));
     }
 
     @Override
@@ -375,6 +375,7 @@ public class GeneralMainGameController extends AbstractController{
 
 
     public void updatePosition(Tower[][] towers) {
+        System.out.println("SONO NELL'UPDATE DELLA GENERAL TORRI");
         super.updatePosition(towers, myTower);
     }
 
@@ -404,5 +405,17 @@ public class GeneralMainGameController extends AbstractController{
         excommunication1.setOnMouseClicked(event -> loginBuilder.showCardZoomed(excommunication1.getImage()));
         excommunication2.setOnMouseClicked(event -> loginBuilder.showCardZoomed(excommunication2.getImage()));
         excommunication3.setOnMouseClicked(event -> loginBuilder.showCardZoomed(excommunication3.getImage()));
+    }
+
+    public void setName(String usernameChosen) {
+        name.setText(usernameChosen);
+    }
+
+    public void resize(double width, double height) {
+        for (int i=0; i< 4; i++) {
+            for (TowerZone t : myTower[i]) {
+                loginBuilder.setDimensions(t.getCard());
+            }
+        }
     }
 }

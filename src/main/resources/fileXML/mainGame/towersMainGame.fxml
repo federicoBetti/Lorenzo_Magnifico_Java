@@ -13,139 +13,213 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.TowersController">
-   <children>
-      <ImageView fitHeight="709.0" fitWidth="806.0" layoutX="25.0" layoutY="22.0">
-         <image>
-            <Image url="/images/immaginiSetUp/torri.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="752.0" fitWidth="863.0" layoutX="-2.0">
-         <image>
-            <Image url="/images/cornici/cornice25x27.png" />
-         </image>
-      </ImageView>
-
-      <Pane layoutX="27.0" layoutY="777.0" prefHeight="122.0" prefWidth="1019.0">
-         <children>
-
-            <VBox layoutX="363.0" prefHeight="122.0" prefWidth="215.0">
-               <children>
-                  <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard"  style="-fx-background-color: transparent; -fx-border-color: black;" prefHeight="41.0" prefWidth="213.0" text="show personal board">
-                     <font>
-                        <Font name="Lucida Blackletter" size="21.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="submit" mnemonicParsing="false" onAction="#takeCard"  style="-fx-background-color: transparent; -fx-border-color: black;" prefHeight="41.0" prefWidth="213.0" text="submit">
-                     <font>
-                        <Font name="Lucida Blackletter" size="21.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="mainGameButton" mnemonicParsing="false" onAction="#goToMainGame"  style="-fx-background-color: transparent; -fx-border-color: black;" prefHeight="41.0" prefWidth="213.0" text="back to main game">
-                     <font>
-                        <Font name="Lucida Blackletter" size="21.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <Label layoutX="576.0" prefHeight="122.0" prefWidth="437.0" style="-fx-background-color: transparent;" text="select the familiar and place it in thr right spot. click on the card to zooming in" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Lucida Blackletter" size="27.0" />
-               </font>
-            </Label>
-
-            <SplitPane dividerPositions="0.75" orientation="VERTICAL" prefHeight="122.0" prefWidth="363.0">
-               <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                     <children>
-                        <Label fx:id="chatArea" layoutX="5.0" layoutY="2.0" prefHeight="195.0" prefWidth="349.0" text="chat" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                     <children>
-                        <SplitPane dividerPositions="0.755223880597015" layoutX="-3.0" layoutY="1.0" prefHeight="38.0" prefWidth="361.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <items>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                 <children>
-                                    <TextField fx:id="chatText" layoutY="1.0" prefHeight="29.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="155.0">
-                                 <children>
-                                    <Button fx:id="send" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#sendChat" prefHeight="29.0" prefWidth="84.0" text="Send" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                           </items>
-                        </SplitPane>
-                     </children>
-                  </AnchorPane>
-               </items>
-            </SplitPane>
-         </children>
-      </Pane>
-      <ImageView fitHeight="170.0" fitWidth="1076.0" layoutY="753.0">
-         <image>
-            <Image url="/images/cornici/cornice37x5.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="green3" fitHeight="163.0" fitWidth="106.0" layoutX="34.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardGreen3" />
-      <ImageView fx:id="green2" fitHeight="163.0" fitWidth="106.0" layoutX="35.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardGreen2"/>
-      <ImageView fx:id="green1" fitHeight="163.0" fitWidth="106.0" layoutX="34.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardGreen1" />
-      <ImageView fx:id="green0" fitHeight="163.0" fitWidth="106.0" layoutX="34.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardGreen0"/>
-      <ImageView fx:id="blue3" fitHeight="163.0" fitWidth="106.0" layoutX="232.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardBlue3"/>
-      <ImageView fx:id="blue2" fitHeight="163.0" fitWidth="106.0" layoutX="233.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardBlue2"/>
-      <ImageView fx:id="blue1" fitHeight="163.0" fitWidth="106.0" layoutX="233.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardBlue1"/>
-      <ImageView fx:id="blue0" fitHeight="163.0" fitWidth="106.0" layoutX="234.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardBlue0"/>
-      <ImageView fx:id="yellow0" fitHeight="163.0" fitWidth="106.0" layoutX="432.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardYellow0" />
-      <ImageView fx:id="yellow1" fitHeight="163.0" fitWidth="106.0" layoutX="433.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardYellow1" />
-      <ImageView fx:id="yellow2" fitHeight="163.0" fitWidth="106.0" layoutX="432.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardYellow2" />
-      <ImageView fx:id="yellow3" fitHeight="163.0" fitWidth="106.0" layoutX="433.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#showCardYellow3" />
-      <ImageView fx:id="purple0" fitHeight="163.0" fitWidth="106.0" layoutX="632.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#showCardPurple0"/>
-      <ImageView fx:id="purple1" fitHeight="163.0" fitWidth="106.0" layoutX="633.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#showCardPurple1"/>
-      <ImageView fx:id="purple2" fitHeight="163.0" fitWidth="106.0" layoutX="632.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#showCardPurple2"/>
-      <ImageView fx:id="purple3" fitHeight="163.0" fitWidth="106.0" layoutX="632.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#showCardPurple3"/>
-
-      <ImageView fx:id="familiarGreen3" fitHeight="42.0" fitWidth="42.0" layoutX="161.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardGreen3"/>
-      <ImageView fx:id="familiarGreen2" fitHeight="42.0" fitWidth="42.0" layoutX="163.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardGreen2"/>
-      <ImageView fx:id="familiarGreen1" fitHeight="42.0" fitWidth="42.0" layoutX="163.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardGreen1"/>
-      <ImageView fx:id="familiarGreen0" fitHeight="42.0" fitWidth="42.0" layoutX="163.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardGreen0"/>
-      <ImageView fx:id="familiarBlue3" fitHeight="42.0" fitWidth="42.0" layoutX="360.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardBlue3"/>
-      <ImageView fx:id="familiarBlue2" fitHeight="42.0" fitWidth="42.0" layoutX="362.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardBlue2"/>
-      <ImageView fx:id="familiarBlue1" fitHeight="42.0" fitWidth="42.0" layoutX="360.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardBlue1"/>
-      <ImageView fx:id="familiarBlue0" fitHeight="42.0" fitWidth="42.0" layoutX="363.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardBlue0"/>
-      <ImageView fx:id="familiarYellow3" fitHeight="42.0" fitWidth="42.0" layoutX="560.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardYellow3"/>
-      <ImageView fx:id="familiarYellow2" fitHeight="42.0" fitWidth="42.0" layoutX="559.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardYellow2"/>
-      <ImageView fx:id="familiarYellow1" fitHeight="42.0" fitWidth="42.0" layoutX="562.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardYellow1"/>
-      <ImageView fx:id="familiarYellow0" fitHeight="42.0" fitWidth="42.0" layoutX="559.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#takeCardYellow0"/>
-      <ImageView fx:id="familiarPurple3" fitHeight="42.0" fitWidth="42.0" layoutX="760.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#takeCardPurple3" />
-      <ImageView fx:id="familiarPurple2" fitHeight="42.0" fitWidth="42.0" layoutX="761.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#takeCardPurple2" />
-      <ImageView fx:id="familiarPurple1" fitHeight="42.0" fitWidth="42.0" layoutX="757.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#takeCardPurple1" />
-      <ImageView fx:id="familiarPurple0" fitHeight="42.0" fitWidth="42.0" layoutX="760.0" layoutY="619.0" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#takeCardPurple0" />
-      <ImageView fitHeight="752.0" fitWidth="218.0" layoutX="857.0" layoutY="1.0">
-         <image>
-            <Image url="/images/cornici/cornice5x27.png" />
-         </image>
-      </ImageView>
-      <Pane layoutX="886.0" layoutY="32.0" prefHeight="693.0" prefWidth="159.0">
-         <children>
-            <VBox alignment="TOP_CENTER" layoutY="92.0" prefHeight="496.0" prefWidth="159.0" spacing="8.0">
-               <children>
-                  <ImageView fx:id="imageFamiliarNull" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"   >
-                     <toggleGroup>
-                        <ToggleGroup fx:id="familiar" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <ImageView fx:id="imageFamiliarBlack" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen" toggleGroup="$familiar" />
-                  <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                  <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen" toggleGroup="$familiar" />
-                  <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-            <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen" toggleGroup="$familiar"/>
-
-               </children>
-            </VBox>
-         </children>
-      </Pane>
-   </children>
+<AnchorPane prefHeight="784.55" prefWidth="909.5" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.TowersController">
+    <children>
+        <ImageView fitHeight="639.1999999999999" fitWidth="733.55" layoutX="-1.7">
+            <image>
+                <Image url="/images/cornici/cornice25x27.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="602.65" fitWidth="685.1" layoutX="21.25" layoutY="18.7">
+            <image>
+                <Image url="@../../images/immaginiSetUp/torriFighe.png"/>
+            </image>
+        </ImageView>
+        <Pane layoutX="22.95" layoutY="660.4499999999999" prefHeight="103.7" prefWidth="866.15">
+            <children>
+                <VBox layoutX="308.55" prefHeight="103.7" prefWidth="182.75">
+                    <children>
+                        <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard"
+                                prefHeight="34.85" prefWidth="181.04999999999998"
+                                style="-fx-background-color: transparent; -fx-border-color: black;"
+                                text="show personal board">
+                            <font>
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="submit" mnemonicParsing="false" onAction="#takeCard" prefHeight="34.85"
+                                prefWidth="181.04999999999998"
+                                style="-fx-background-color: transparent; -fx-border-color: black;" text="submit">
+                            <font>
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="mainGameButton" mnemonicParsing="false" onAction="#goToMainGame"
+                                prefHeight="34.85" prefWidth="181.04999999999998"
+                                style="-fx-background-color: transparent; -fx-border-color: black;"
+                                text="back to main game">
+                            <font>
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+                <Label layoutX="489.59999999999997" prefHeight="103.7" prefWidth="371.45"
+                       style="-fx-background-color: transparent;"
+                       text="select the familiar and place it in thr right spot. click on the card to zooming in"
+                       textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font name="Lucida Blackletter" size="22.95"/>
+                    </font>
+                </Label>
+                <SplitPane dividerPositions="0.6375" orientation="VERTICAL" prefHeight="103.7" prefWidth="308.55">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
+                            <children>
+                                <Label fx:id="chatArea" layoutX="4.25" layoutY="1.7" prefHeight="165.75"
+                                       prefWidth="296.65" text="chat" AnchorPane.bottomAnchor="0.0"
+                                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                       AnchorPane.topAnchor="0.0"/>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
+                            <children>
+                                <SplitPane dividerPositions="0.6419402985074627" layoutX="-2.55" layoutY="0.85"
+                                           prefHeight="32.3" prefWidth="306.84999999999997"
+                                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="85.0">
+                                            <children>
+                                                <TextField fx:id="chatText" layoutY="0.85" prefHeight="24.65"
+                                                           prefWidth="300.9" AnchorPane.bottomAnchor="0.0"
+                                                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                           AnchorPane.topAnchor="0.0"/>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
+                                                    prefWidth="131.75">
+                                            <children>
+                                                <Button fx:id="send" layoutX="3.4" layoutY="1.7" mnemonicParsing="false"
+                                                        onAction="#sendChat" prefHeight="24.65"
+                                                        prefWidth="71.39999999999999" text="Send"
+                                                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                                        AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </Pane>
+        <ImageView fitHeight="144.5" fitWidth="914.6" layoutY="640.05">
+            <image>
+                <Image url="/images/cornici/cornice37x5.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="green3" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="38.25" layoutY="40.8"
+                   onMouseClicked="#showCardGreen3" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="green2" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="38.25" layoutY="184.45"
+                   onMouseClicked="#showCardGreen2" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="green1" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="38.25" layoutY="330.65"
+                   onMouseClicked="#showCardGreen1" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="green0" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="38.25" layoutY="475.15"
+                   onMouseClicked="#showCardGreen0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="blue3" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="202.29999999999998"
+                   layoutY="40.8" onMouseClicked="#showCardBlue3" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="blue2" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="202.29999999999998"
+                   layoutY="185.29999999999998" onMouseClicked="#showCardBlue2" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="blue1" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="202.29999999999998"
+                   layoutY="329.8" onMouseClicked="#showCardBlue1" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="blue0" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="203.15" layoutY="475.15"
+                   onMouseClicked="#showCardBlue0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="yellow0" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="368.05" layoutY="473.45"
+                   onMouseClicked="#showCardYellow0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="yellow1" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="368.05" layoutY="330.65"
+                   onMouseClicked="#showCardYellow1" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="yellow2" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="367.2"
+                   layoutY="185.29999999999998" onMouseClicked="#showCardYellow2" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="yellow3" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="368.05"
+                   layoutY="39.949999999999996" onMouseClicked="#showCardYellow3" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="purple0" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="532.9499999999999"
+                   layoutY="475.15" onMouseClicked="#showCardPurple0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="purple1" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="532.9499999999999"
+                   layoutY="330.65" onMouseClicked="#showCardPurple1" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="purple2" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="533.8"
+                   layoutY="185.29999999999998" onMouseClicked="#showCardPurple2" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="purple3" fitHeight="138.54999999999998" fitWidth="90.1" layoutX="532.1" layoutY="40.8"
+                   onMouseClicked="#showCardPurple3" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarGreen3" fitHeight="35.699999999999996" fitWidth="35.699999999999996"
+                   layoutX="147.04999999999998" layoutY="89.25" onMouseClicked="#takeCardGreen3" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarGreen2" fitHeight="35.699999999999996" fitWidth="35.699999999999996"
+                   layoutX="147.04999999999998" layoutY="235.45" onMouseClicked="#takeCardGreen2" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarGreen1" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="145.35"
+                   layoutY="379.09999999999997" onMouseClicked="#takeCardGreen1" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarGreen0" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="146.2"
+                   layoutY="526.15" onMouseClicked="#takeCardGreen0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarBlue3" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="311.95"
+                   layoutY="88.39999999999999" onMouseClicked="#takeCardBlue3" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarBlue2" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="310.25"
+                   layoutY="233.75" onMouseClicked="#takeCardBlue2" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarBlue1" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="310.25"
+                   layoutY="379.95" onMouseClicked="#takeCardBlue1" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarBlue0" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="311.95"
+                   layoutY="526.15" onMouseClicked="#takeCardBlue0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarYellow3" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="473.45"
+                   layoutY="88.39999999999999" onMouseClicked="#takeCardYellow3" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarYellow2" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="475.15"
+                   layoutY="233.75" onMouseClicked="#takeCardYellow2" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarYellow1" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="474.3"
+                   layoutY="379.09999999999997" onMouseClicked="#takeCardYellow1" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarYellow0" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="476.0"
+                   layoutY="525.3" onMouseClicked="#takeCardYellow0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarPurple3" fitHeight="35.699999999999996" fitWidth="35.699999999999996"
+                   layoutX="639.1999999999999" layoutY="87.55" onMouseClicked="#takeCardPurple3" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarPurple2" fitHeight="35.699999999999996" fitWidth="35.699999999999996"
+                   layoutX="639.1999999999999" layoutY="233.75" onMouseClicked="#takeCardPurple2" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="familiarPurple1" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="640.05"
+                   layoutY="379.95" onMouseClicked="#takeCardPurple1" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="familiarPurple0" fitHeight="35.699999999999996" fitWidth="35.699999999999996" layoutX="638.35"
+                   layoutY="525.3" onMouseClicked="#takeCardPurple0" pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fitHeight="639.1999999999999" fitWidth="185.29999999999998" layoutX="728.4499999999999"
+                   layoutY="0.85">
+            <image>
+                <Image url="/images/cornici/cornice5x27.png"/>
+            </image>
+        </ImageView>
+        <Pane layoutX="753.1" layoutY="27.2" prefHeight="589.05" prefWidth="135.15">
+            <children>
+                <VBox alignment="TOP_CENTER" layoutY="78.2" prefHeight="421.59999999999997" prefWidth="135.15"
+                      spacing="6.8">
+                    <children>
+                        <ImageView fx:id="imageFamiliarNull" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="familiar"/>
+                            </toggleGroup>
+                        </RadioButton>
+                        <ImageView fx:id="imageFamiliarBlack" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen"
+                                     toggleGroup="$familiar"/>
+                        <ImageView fx:id="imageFamiliarWhite" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen"
+                                     toggleGroup="$familiar"/>
+                        <ImageView fx:id="imageFamiliarOrange" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen"
+                                     toggleGroup="$familiar"/>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

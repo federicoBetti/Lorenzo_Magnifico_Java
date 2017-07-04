@@ -7,16 +7,18 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="489.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.DraftController">
-   <children>
-      <Label fx:id="title" alignment="CENTER" layoutY="6.0" prefHeight="76.0" prefWidth="681.0" style="-fx-background-color: transparent;" >
-         <font>
-            <Font name="Lucida Blackletter" size="24.0" />
-         </font>
-      </Label>
-      <HBox fx:id="cardBox" layoutX="4.0" layoutY="107.0" prefHeight="335.0" prefWidth="672.0" spacing="5" alignment="CENTER">
-         <children>
-         </children>
-      </HBox>
-   </children>
+<AnchorPane prefHeight="415.65" prefWidth="578.85" xmlns="http://javafx.com/javafx/8.0.112"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.DraftController">
+    <children>
+        <Label fx:id="title" alignment="CENTER" layoutY="5.1" prefHeight="64.6" prefWidth="578.85"
+               style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Lucida Blackletter" size="20.4"/>
+            </font>
+        </Label>
+        <HBox fx:id="cardBox" layoutX="3.4" layoutY="90.95" prefHeight="284.75" prefWidth="571.1999999999999"
+              spacing="4.25" alignment="CENTER">
+            <children></children>
+        </HBox>
+    </children>
 </AnchorPane>

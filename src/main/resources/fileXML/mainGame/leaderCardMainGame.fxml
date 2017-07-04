@@ -11,66 +11,89 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.LeaderCardController">
+<AnchorPane prefHeight="784.55" prefWidth="909.5" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.LeaderCardController">
     <children>
-        <ImageView fitHeight="923.0" fitWidth="422.0" layoutX="648.0">
+        <ImageView fitHeight="784.55" fitWidth="358.7" layoutX="550.8">
             <image>
-                <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
+                <Image url="/images/cornici/ritaglioCornice10Quadretti.png"/>
             </image>
         </ImageView>
-        <ImageView fitHeight="923.0" fitWidth="648.0">
+        <ImageView fitHeight="784.55" fitWidth="550.8">
             <image>
-                <Image url="/images/cornici/ritaglioCornice.png" />
+                <Image url="/images/cornici/ritaglioCornice.png"/>
             </image>
         </ImageView>
-        <Pane layoutX="680.0" layoutY="30.0" prefHeight="854.0" prefWidth="361.0">
+        <Pane layoutX="578.0" layoutY="25.5" prefHeight="725.9" prefWidth="306.84999999999997">
             <children>
-            <ImageView fitHeight="415.0" fitWidth="360.0" opacity="0.64">
-               <image>
-                  <Image url="/images/immaginiSetUp/finestraPiccola.png" />
-               </image>
-            </ImageView>
-                <VBox alignment="BOTTOM_LEFT" prefHeight="861.0" prefWidth="363.0">
+                <ImageView fitHeight="352.75" fitWidth="306.0" opacity="0.544">
+                    <image>
+                        <Image url="/images/immaginiSetUp/finestraPiccola.png"/>
+                    </image>
+                </ImageView>
+                <VBox alignment="BOTTOM_LEFT" prefHeight="731.85" prefWidth="308.55">
                     <children>
-                  <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="78.0" prefWidth="363.0" text="show personal board">
-                     <font>
-                        <Font name="Lucida Blackletter" size="21.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="playCardButton" mnemonicParsing="false" onAction="#playCard" prefHeight="78.0" prefWidth="363.0" text="play card">
-                     <font>
-                        <Font name="Lucida Blackletter" size="21.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="discardCardButton" mnemonicParsing="false" onAction="#discardCard" prefHeight="78.0" prefWidth="363.0" text="discard card">
-                     <font>
-                        <Font name="Lucida Blackletter" size="21.0" />
-                     </font>
-                  </Button>
-                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBack" prefHeight="78.0" prefWidth="363.0" text="go back">
+                        <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard"
+                                prefHeight="66.3" prefWidth="308.55" text="show personal board">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Button>
-                        <SplitPane dividerPositions="0.85" orientation="VERTICAL" prefHeight="234.0" prefWidth="363.0">
+                        <Button fx:id="playCardButton" mnemonicParsing="false" onAction="#playCard" prefHeight="66.3"
+                                prefWidth="308.55" text="play card">
+                            <font>
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="discardCardButton" mnemonicParsing="false" onAction="#discardCard"
+                                prefHeight="66.3" prefWidth="308.55" text="discard card">
+                            <font>
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBack" prefHeight="66.3"
+                                prefWidth="308.55" text="go back">
+                            <font>
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                            </font>
+                        </Button>
+                        <SplitPane dividerPositions="0.7224999999999999" orientation="VERTICAL" prefHeight="198.9"
+                                   prefWidth="308.55">
                             <items>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="235.0" prefWidth="361.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="199.75"
+                                            prefWidth="306.84999999999997">
                                     <children>
-                                        <Label fx:id="chatArea" layoutX="5.0" layoutY="154.0" prefHeight="213.0" prefWidth="361.0" text="chat" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="154.0" />
+                                        <Label fx:id="chatArea" layoutX="4.25" layoutY="130.9"
+                                               prefHeight="181.04999999999998" prefWidth="306.84999999999997"
+                                               text="chat" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.9"/>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
                                     <children>
-                                        <SplitPane dividerPositions="0.755223880597015" layoutX="-3.0" layoutY="1.0" prefHeight="31.0" prefWidth="345.0">
+                                        <SplitPane dividerPositions="0.6419402985074627" layoutX="-2.55" layoutY="0.85"
+                                                   prefHeight="26.349999999999998" prefWidth="293.25">
                                             <items>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="230.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
+                                                            prefWidth="195.5">
                                                     <children>
-                                                        <TextField layoutX="24.0" layoutY="1.0" prefHeight="29.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                        <TextField layoutX="20.4" layoutY="0.85" prefHeight="24.65"
+                                                                   prefWidth="196.35" AnchorPane.bottomAnchor="0.0"
+                                                                   AnchorPane.leftAnchor="20.4"
+                                                                   AnchorPane.rightAnchor="0.0"
+                                                                   AnchorPane.topAnchor="0.0"/>
                                                     </children>
                                                 </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="155.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
+                                                            prefWidth="131.75">
                                                     <children>
-                                                        <Button fx:id="send" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#sendChat" prefHeight="29.0" prefWidth="86.0" text="Send" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0" />
+                                                        <Button fx:id="send" layoutX="3.4" layoutY="1.7"
+                                                                mnemonicParsing="false" onAction="#sendChat"
+                                                                prefHeight="24.65" prefWidth="73.1" text="Send"
+                                                                AnchorPane.bottomAnchor="0.0"
+                                                                AnchorPane.leftAnchor="0.0"
+                                                                AnchorPane.rightAnchor="-1.7"
+                                                                AnchorPane.topAnchor="0.0"/>
                                                     </children>
                                                 </AnchorPane>
                                             </items>
@@ -83,19 +106,22 @@
                 </VBox>
             </children>
         </Pane>
-      <Pane layoutX="30.0" layoutY="30.0" prefHeight="861.0" prefWidth="589.0">
-         <children>
-            <ImageView fitHeight="861.0" fitWidth="589.0" opacity="0.64">
-               <image>
-                  <Image url="/images/immaginiSetUp/finestra.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imageLeaderCard0" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageLeaderCard1" fitHeight="210.0" fitWidth="128.0" layoutX="369.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageLeaderCard2" fitHeight="210.0" fitWidth="128.0" layoutX="79.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageLeaderCard3" fitHeight="210.0" fitWidth="128.0" layoutX="369.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true" />
-            
-         </children>
-      </Pane>
+        <Pane layoutX="25.5" layoutY="25.5" prefHeight="731.85" prefWidth="500.65">
+            <children>
+                <ImageView fitHeight="731.85" fitWidth="500.65" opacity="0.544">
+                    <image>
+                        <Image url="/images/immaginiSetUp/finestra.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fx:id="imageLeaderCard0" fitHeight="178.5" fitWidth="108.8" layoutX="67.14999999999999"
+                           layoutY="47.6" pickOnBounds="true" preserveRatio="true"/>
+                <ImageView fx:id="imageLeaderCard1" fitHeight="178.5" fitWidth="108.8" layoutX="313.65" layoutY="47.6"
+                           pickOnBounds="true" preserveRatio="true"/>
+                <ImageView fx:id="imageLeaderCard2" fitHeight="178.5" fitWidth="108.8" layoutX="67.14999999999999"
+                           layoutY="493.0" pickOnBounds="true" preserveRatio="true"/>
+                <ImageView fx:id="imageLeaderCard3" fitHeight="178.5" fitWidth="108.8" layoutX="313.65" layoutY="493.0"
+                           pickOnBounds="true" preserveRatio="true"/>
+            </children>
+        </Pane>
     </children>
 </AnchorPane>

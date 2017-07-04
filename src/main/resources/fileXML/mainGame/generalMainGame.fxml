@@ -12,168 +12,179 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.GeneralMainGameController">
-   <children>
-      <ImageView fitHeight="923.0" fitWidth="422.0" layoutX="648.0" layoutY="0">
-         <image>
-            <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="towerGreen_3" fitHeight="107.0" fitWidth="72.0" layoutX="45.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerGreen_2" fitHeight="107.0" fitWidth="72.0" layoutX="44.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerGreen_1" fitHeight="107.0" fitWidth="72.0" layoutX="44.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerGreen_0" fitHeight="107.0" fitWidth="72.0" layoutX="45.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerBlue_0" fitHeight="107.0" fitWidth="72.0" layoutX="168.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerBlue_1" fitHeight="107.0" fitWidth="72.0" layoutX="168.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerBlue_2" fitHeight="107.0" fitWidth="72.0" layoutX="168.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerBlue_3" fitHeight="107.0" fitWidth="72.0" layoutX="167.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerYellow_0" fitHeight="107.0" fitWidth="70.0" layoutX="293.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerYellow_1" fitHeight="107.0" fitWidth="70.0" layoutX="292.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerYellow_2" fitHeight="107.0" fitWidth="70.0" layoutX="292.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerYellow_3" fitHeight="107.0" fitWidth="70.0" layoutX="292.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerPurple_0" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerPurple_1" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerPurple_2" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="towerPurple_3" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane fx:id="gameboard" prefHeight="923.0" prefWidth="648.0">
-         <children>
-            <Button fx:id="goToTowersButton" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="482.0" prefWidth="519.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToProductionButton" layoutX="36.0" layoutY="732.0" mnemonicParsing="false" onAction="#goToProduction" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToMarketButton" layoutX="331.0" layoutY="727.0" mnemonicParsing="false" onAction="#goToMarket" prefHeight="121.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToCouncilPalaceButton" layoutX="280.0" layoutY="500.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="84.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToHarvesterButton" layoutX="38.0" layoutY="809.0" mnemonicParsing="false" onAction="#goToHarvester" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <ImageView fx:id="excommunication1" fitHeight="96.0" fitWidth="50.0" layoutX="124.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="excommunication2" fitHeight="96.0" fitWidth="50.0" layoutX="171.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="excommunication3" fitHeight="96.0" fitWidth="50.0" layoutX="219.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true" />
-         </children></Pane>
-      <Pane layoutX="687.0" layoutY="32.0" prefHeight="851.0" prefWidth="350.0">
-         <children>
-            <ImageView fitHeight="138.0" fitWidth="356.0" layoutX="-5.0" layoutY="200.0" opacity="0.74">
-               <image>
-                  <Image url="@../../images/immaginiSetUp/dadi.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="69.0" layoutX="114.0" layoutY="26.0" style="-fx-alignment: center">
-               <image>
-                  <Image url="/images/risorse/wood.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="70.0" layoutX="187.0" layoutY="27.0" style="-fx-alignment: center">
-               <image>
-                  <Image url="/images/risorse/stone.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="84.0" fitWidth="57.0" layoutX="266.0" layoutY="10.0" style="-fx-alignment: center">
-               <image>
-                  <Image url="/images/risorse/servant.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="numberOfCoins" layoutX="12.0" layoutY="98.0" prefHeight="28.0" prefWidth="96.0" style="-fx-alignment: center" text="75" textAlignment="CENTER">
-               <font>
-                  <Font name="Lucida Blackletter" size="21.0" />
-               </font>
-            </Label>
-            <Label fx:id="numberOfWood" layoutX="104.0" layoutY="99.0" prefHeight="28.0" prefWidth="80.0" style="-fx-alignment: center" text="7" textAlignment="CENTER">
-               <font>
-                  <Font name="Lucida Blackletter" size="21.0" />
-               </font>
-            </Label>
-            <Label fx:id="numberOfStone" layoutX="175.0" layoutY="102.0" prefHeight="28.0" prefWidth="85.0" style="-fx-alignment: center" text="8" textAlignment="CENTER">
-               <font>
-                  <Font name="Lucida Blackletter" size="21.0" />
-               </font>
-            </Label>
-            <Label fx:id="numberOfServants" layoutX="255.0" layoutY="102.0" prefHeight="28.0" prefWidth="79.0" style="-fx-alignment: center" text="89" textAlignment="CENTER">
-               <font>
-                  <Font name="Lucida Blackletter" size="21.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="76.0" fitWidth="81.0" layoutX="23.0" layoutY="19.0" style="-fx-alignment: center">
-               <image>
-                  <Image url="/images/risorse/soldo.png" />
-               </image>
-            </ImageView>
-            <VBox layoutY="347.0" prefHeight="505.0" prefWidth="356.0">
-               <children>
-                  <Button fx:id="personalBoardButton" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="65.0" prefWidth="361.0" text="show personal board">
-                     <font>
-                        <Font name="Lucida Blackletter" size="32.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="pointsButton" mnemonicParsing="false" onAction="#showPoints" prefHeight="65.0" prefWidth="358.0" text="show points" textAlignment="CENTER">
-                     <font>
-                        <Font name="Lucida Blackletter" size="32.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="leaderCardButton" mnemonicParsing="false" onAction="#showLeaderCard" prefHeight="65.0" prefWidth="358.0" text="leader card">
-                     <font>
-                        <Font name="Lucida Blackletter" size="32.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="skipTurnButton" mnemonicParsing="false" onAction="#skipTurn" prefHeight="65.0" prefWidth="362.0" text="skip turn">
-                     <font>
-                        <Font name="Lucida Blackletter" size="32.0" />
-                     </font>
-                  </Button>
-                  <ScrollPane fx:id="chatArea" prefHeight="213.0" prefWidth="356.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-
-                  <HBox prefHeight="35.0" prefWidth="356.0">
-                     <children>
-                                 <TextField fx:id="chatText" prefHeight="35.0" prefWidth="257.0" />
-                                 <Button fx:id="send" mnemonicParsing="false" onAction="#sendChat" prefHeight="35.0" prefWidth="99.0" text="Send" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <ImageView fx:id="imageFamiliarNull" fitHeight="84.0" fitWidth="85.0" layoutX="80.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageFamiliarOrange" fitHeight="84.0" fitWidth="85.0" layoutX="80.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageFamiliarBlack" fitHeight="84.0" fitWidth="85.0" layoutX="192.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageFamiliarWhite" fitHeight="84.0" fitWidth="85.0" layoutX="192.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="diceValueWhite" layoutX="54.0" layoutY="244.0" prefHeight="42.0" prefWidth="39.0" text="5">
-               <font>
-                  <Font name="Lucida Blackletter" size="37.0" />
-               </font>
-            </Label>
-            <Label fx:id="diceValueBlack" layoutX="165.0" layoutY="245.0" prefHeight="42.0" prefWidth="39.0" text="5" textFill="WHITE">
-               <font>
-                  <Font name="Lucida Blackletter" size="34.0" />
-               </font>
-            </Label>
-            <Label fx:id="diceValueOrange" layoutX="271.0" layoutY="244.0" prefHeight="42.0" prefWidth="39.0" text="8">
-               <font>
-                  <Font name="Lucida Blackletter" size="38.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane layoutX="43.0" layoutY="666.0" prefHeight="34.0" prefWidth="504.0">
-         <children>
-            <ImageView fx:id="faithPoint0" fitHeight="22.0" fitWidth="21.0" layoutX="4.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint1" fitHeight="22.0" fitWidth="21.0" layoutX="32.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint2" fitHeight="22.0" fitWidth="21.0" layoutX="61.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint3" fitHeight="22.0" fitWidth="21.0" layoutX="96.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint4" fitHeight="22.0" fitWidth="21.0" layoutX="143.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint5" fitHeight="22.0" fitWidth="21.0" layoutX="189.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint6" fitHeight="22.0" fitWidth="21.0" layoutX="225.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint7" fitHeight="22.0" fitWidth="21.0" layoutX="253.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint8" fitHeight="22.0" fitWidth="21.0" layoutX="281.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint9" fitHeight="22.0" fitWidth="21.0" layoutX="310.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint10" fitHeight="22.0" fitWidth="21.0" layoutX="338.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint11" fitHeight="22.0" fitWidth="21.0" layoutX="366.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint12" fitHeight="22.0" fitWidth="21.0" layoutX="394.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint13" fitHeight="22.0" fitWidth="21.0" layoutX="423.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint14" fitHeight="22.0" fitWidth="21.0" layoutX="450.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="faithPoint15" fitHeight="22.0" fitWidth="21.0" layoutX="480.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane layoutX="488.0" layoutY="483.0" prefHeight="138.0" prefWidth="50.0">
-         <children>
-            <ImageView fx:id="turnOrder1" fitHeight="22.0" fitWidth="21.0" layoutX="15.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="turnOrder2" fitHeight="22.0" fitWidth="21.0" layoutX="14.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="turnOrder3" fitHeight="22.0" fitWidth="21.0" layoutX="16.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="turnOrder4" fitHeight="22.0" fitWidth="21.0" layoutX="15.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Button fx:id="goToCouncilButton" layoutX="293.0" layoutY="498.0" mnemonicParsing="false" onAction="#goToCouncil" prefHeight="121.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-   </children>
+<AnchorPane prefHeight="784.55" prefWidth="909.5" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.GeneralMainGameController">
+    <children>
+        <Pane fx:id="gameboardPane" prefHeight="784.55" prefWidth="550.8">
+            <children>
+            <ImageView fx:id="gameboard" fitHeight="785.0" fitWidth="551.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="goToTowersButton" layoutX="31.45" layoutY="24.65" mnemonicParsing="false" onAction="#goToTowers" prefHeight="409.7" prefWidth="441.15" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+                <Button fx:id="goToProductionButton" layoutX="30.599999999999998" layoutY="622.1999999999999" mnemonicParsing="false" onAction="#goToProduction" prefHeight="64.6" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+                <Button fx:id="goToMarketButton" layoutX="281.34999999999997" layoutY="617.9499999999999" mnemonicParsing="false" onAction="#goToMarket" prefHeight="102.85" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+                <Button fx:id="goToCouncilPalaceButton" layoutX="238.0" layoutY="425.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="71.39999999999999" prefWidth="163.2" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+                <Button fx:id="goToHarvesterButton" layoutX="32.3" layoutY="687.65" mnemonicParsing="false" onAction="#goToHarvester" prefHeight="64.6" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+                <ImageView fx:id="excommunication1" fitHeight="81.6" fitWidth="42.5" layoutX="105.39999999999999" layoutY="468.34999999999997" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="excommunication2" fitHeight="81.6" fitWidth="42.5" layoutX="145.35" layoutY="475.15" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="excommunication3" fitHeight="81.6" fitWidth="42.5" layoutX="186.15" layoutY="467.5" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </Pane>
+        <ImageView fitHeight="784.55" fitWidth="358.7" layoutX="550.8" layoutY="0.0">
+            <image>
+                <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="towerGreen_3" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="38.25" layoutY="44.199999999999996" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerGreen_2" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="37.4" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerGreen_1" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="37.4" layoutY="239.7" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerGreen_0" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="38.25" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue_0" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue_1" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="238.85" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue_2" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue_3" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="141.95" layoutY="45.05" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow_0" fitHeight="90.95" fitWidth="59.5" layoutX="249.04999999999998" layoutY="336.59999999999997" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow_1" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="239.7" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow_2" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="141.1" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow_3" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="43.35" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple_0" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple_1" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="238.85" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple_2" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple_3" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="44.199999999999996" pickOnBounds="true" preserveRatio="true" />
+        <Pane layoutX="583.9499999999999" layoutY="27.2" prefHeight="723.35" prefWidth="297.5">
+            <children>
+                <VBox layoutY="0.85" prefHeight="723.35" prefWidth="302.59999999999997">
+                    <children>
+                        <ImageView fitHeight="305.15" fitWidth="302.59999999999997" opacity="0.646" pickOnBounds="true">
+                            <image>
+                                <Image url="@../../images/immaginiSetUp/finestraSenaFinestra.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="personalBoardButton" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="55.25" prefWidth="306.84999999999997" text="show personal board">
+                            <font>
+                                <Font name="Lucida Blackletter" size="27.2" />
+                            </font>
+                        </Button>
+                        <Button fx:id="pointsButton" mnemonicParsing="false" onAction="#showPoints" prefHeight="55.25" prefWidth="304.3" text="show points" textAlignment="CENTER">
+                            <font>
+                                <Font name="Lucida Blackletter" size="27.2" />
+                            </font>
+                        </Button>
+                        <Button fx:id="leaderCardButton" mnemonicParsing="false" onAction="#showLeaderCard" prefHeight="55.25" prefWidth="304.3" text="leader card">
+                            <font>
+                                <Font name="Lucida Blackletter" size="27.2" />
+                            </font>
+                        </Button>
+                        <Button fx:id="skipTurnButton" mnemonicParsing="false" onAction="#skipTurn" prefHeight="55.25" prefWidth="307.7" text="skip turn">
+                            <font>
+                                <Font name="Lucida Blackletter" size="27.2" />
+                            </font>
+                        </Button>
+                        <ScrollPane fx:id="chatArea" prefHeight="181.04999999999998" prefWidth="302.59999999999997" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <HBox prefHeight="29.75" prefWidth="302.59999999999997">
+                            <children>
+                                <TextField fx:id="chatText" prefHeight="29.75" prefWidth="218.45" />
+                                <Button fx:id="send" mnemonicParsing="false" onAction="#sendChat" prefHeight="29.75" prefWidth="84.14999999999999" text="Send" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <ImageView fitHeight="117.3" fitWidth="302.59999999999997" layoutX="-4.25" layoutY="170.0" opacity="0.629">
+                    <image>
+                        <Image url="@../../images/immaginiSetUp/dadi.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="48.449999999999996" fitWidth="58.65" layoutX="96.89999999999999" layoutY="22.099999999999998" style="-fx-alignment: center">
+                    <image>
+                        <Image url="/images/risorse/wood.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="48.449999999999996" fitWidth="59.5" layoutX="158.95" layoutY="22.95" style="-fx-alignment: center">
+                    <image>
+                        <Image url="/images/risorse/stone.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="71.39999999999999" fitWidth="48.449999999999996" layoutX="226.1" layoutY="8.5" style="-fx-alignment: center">
+                    <image>
+                        <Image url="/images/risorse/servant.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="numberOfCoins" layoutX="10.2" layoutY="83.3" prefHeight="23.8" prefWidth="81.6" style="-fx-alignment: center" text="63.75" textAlignment="CENTER">
+                    <font>
+                        <Font name="Lucida Blackletter" size="17.849999999999998" />
+                    </font>
+                </Label>
+                <Label fx:id="numberOfWood" layoutX="88.39999999999999" layoutY="84.14999999999999" prefHeight="23.8" prefWidth="68.0" style="-fx-alignment: center" text="5.95" textAlignment="CENTER">
+                    <font>
+                        <Font name="Lucida Blackletter" size="17.849999999999998" />
+                    </font>
+                </Label>
+                <Label fx:id="numberOfStone" layoutX="148.75" layoutY="86.7" prefHeight="23.8" prefWidth="72.25" style="-fx-alignment: center" text="6.8" textAlignment="CENTER">
+                    <font>
+                        <Font name="Lucida Blackletter" size="17.849999999999998" />
+                    </font>
+                </Label>
+                <Label fx:id="numberOfServants" layoutX="216.75" layoutY="86.7" prefHeight="23.8" prefWidth="67.14999999999999" style="-fx-alignment: center" text="75.64999999999999" textAlignment="CENTER">
+                    <font>
+                        <Font name="Lucida Blackletter" size="17.849999999999998" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="64.6" fitWidth="68.85" layoutX="19.55" layoutY="16.15" style="-fx-alignment: center">
+                    <image>
+                        <Image url="/images/risorse/soldo.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="imageFamiliarNull" fitHeight="71.39999999999999" fitWidth="72.25" layoutX="68.0" layoutY="119.85" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imageFamiliarOrange" fitHeight="71.39999999999999" fitWidth="72.25" layoutX="68.0" layoutY="204.85" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imageFamiliarBlack" fitHeight="71.39999999999999" fitWidth="72.25" layoutX="163.2" layoutY="119.85" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imageFamiliarWhite" fitHeight="71.39999999999999" fitWidth="72.25" layoutX="163.2" layoutY="204.85" pickOnBounds="true" preserveRatio="true" />
+                <Label fx:id="diceValueWhite" layoutX="45.9" layoutY="207.4" prefHeight="35.699999999999996" prefWidth="33.15" text="4.25">
+                    <font>
+                        <Font name="Lucida Blackletter" size="31.45" />
+                    </font>
+                </Label>
+                <Label fx:id="diceValueBlack" layoutX="140.25" layoutY="208.25" prefHeight="35.699999999999996" prefWidth="33.15" text="4.25" textFill="WHITE">
+                    <font>
+                        <Font name="Lucida Blackletter" size="28.9" />
+                    </font>
+                </Label>
+                <Label fx:id="diceValueOrange" layoutX="230.35" layoutY="207.4" prefHeight="35.699999999999996" prefWidth="33.15" text="6.8">
+                    <font>
+                        <Font name="Lucida Blackletter" size="32.3" />
+                    </font>
+                </Label>
+                <Label fx:id="name" alignment="CENTER" layoutX="1.7" layoutY="125.8" prefHeight="39.1" prefWidth="297.5" text="l">
+                    <font>
+                        <Font name="Lucida Blackletter" size="28.9" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutX="36.55" layoutY="566.1" prefHeight="28.9" prefWidth="428.4">
+            <children>
+                <ImageView fx:id="faithPoint0" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="3.4" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint1" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="27.2" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint2" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="51.85" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint3" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="81.6" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint4" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="121.55" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint5" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="160.65" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint6" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="191.25" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint7" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="215.04999999999998" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint8" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="238.85" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint9" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="263.5" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint10" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="287.3" layoutY="7.6499999999999995" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint11" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="311.09999999999997" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint12" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="334.9" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint13" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="359.55" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint14" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="382.5" layoutY="5.95" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="faithPoint15" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="408.0" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </Pane>
+        <Pane layoutX="414.8" layoutY="410.55" prefHeight="117.3" prefWidth="42.5">
+            <children>
+                <ImageView fx:id="turnOrder1" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="12.75" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="turnOrder2" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="11.9" layoutY="35.699999999999996" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="turnOrder3" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="13.6" layoutY="64.6" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="turnOrder4" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="12.75" layoutY="91.8" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </Pane>
+        <Button fx:id="goToCouncilButton" layoutX="249.04999999999998" layoutY="423.3" mnemonicParsing="false" onAction="#goToCouncil" prefHeight="102.85" prefWidth="163.2" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+    </children>
 </AnchorPane>

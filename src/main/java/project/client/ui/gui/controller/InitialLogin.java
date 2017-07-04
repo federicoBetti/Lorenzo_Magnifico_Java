@@ -65,6 +65,7 @@ public class InitialLogin {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setInitialLoginController(this);
+        sfondo.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/login.jpg"))));
     }
 
     public void socketClicked() {

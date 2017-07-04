@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -23,8 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 //TODO FARE ALTEZZA MAX 900
-public class LoginBuilder extends Application implements ChangeListener<Number>{
+public class LoginBuilder extends Application implements ChangeListener<Number> {
 
+    private static final double WINDOW_WIDTH = 1070;
+    private static final double WINDOW_HEIGHT = 923;
     private BorderPane rootLayout;
     private Stage primaryStage;
     private AnchorPane initialLoginScene;
@@ -67,6 +70,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
     private DraftController draftController;
     private Stage lastStageOpened;
     private Score uiScore;
+    private boolean rezieOn = false;
 
 
     public void start(Stage primaryStage) {
@@ -75,7 +79,6 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
         this.primaryStage.setResizable(true);
         mainController = MainController.getInstance();
         mainController.setLoginBuilder(this);
-
 
 
         this.primaryStage.widthProperty().addListener((javafx.beans.value.ChangeListener<? super Number>) this);
@@ -91,10 +94,10 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
     }
 
     private void resize(double width, double height) {
-        rootLayout.setPrefWidth(width);
-        rootLayout.setPrefHeight(height);
-        System.out.println("DEVO RESIZARE TUTTO con nuovo altezza : " + rootLayout.getHeight() + " e nuova larghezza: " + rootLayout.getWidth());
-
+        if (rezieOn) {
+            System.out.println("NUOVA MISURA: "+ width + " " + height);
+            //generalMainGameController.resize(width, height);
+        }
     }
 
     public BorderPane getRootLayout() {
@@ -103,7 +106,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
 
     @Override
     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-       resize(primaryStage.getWidth(), primaryStage.getHeight());
+        resize(primaryStage.getWidth(), primaryStage.getHeight());
     }
 
     /**
@@ -205,7 +208,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
         }
     }
 
-    private  void inizializzaCouncil() {
+    private void inizializzaCouncil() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -222,7 +225,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
         }
     }
 
-    private  void inizializzaLeaderCard() {
+    private void inizializzaLeaderCard() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -325,7 +328,6 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
     }
 
 
-
     void showFirstPage() {
         rootLayout.setCenter(initialLoginScene);
     }
@@ -345,15 +347,14 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
     }
 
 
-    public  void showPrimo() {
+    public void showPrimo() {
         rootLayoutMainGame.setCenter(generalScene);
         System.out.print("faccio vedere il primo");
     }
 
 
     public void showCardZoomed(Image imageView) {
-        if (imageView==null)
-            return;
+        if (imageView == null) return;
         try {
             // Configuration the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -408,17 +409,17 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
             lastStageOpened = null;
-            return ;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return ;
+            return;
         }
     }
 
     public void setDraft(List<LeaderCard> leaderName) {
         List<String> stringLeaderName = new ArrayList<>();
-        for (LeaderCard l: leaderName)
+        for (LeaderCard l : leaderName)
             stringLeaderName.add(l.getName());
 
         showDraft("draft of Leader Card", stringLeaderName, "leader");
@@ -427,7 +428,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
 
     public void setDraft(ArrayList<Tile> tiles) {
         List<String> stringTile = new ArrayList<>();
-        for (Tile t: tiles)
+        for (Tile t : tiles)
             stringTile.add(String.valueOf(t.getTileNumber()));
         showDraft("choose one tile", stringTile, "tile");
     }
@@ -450,22 +451,18 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
             controller.setMainController(mainController);
             controller.setLabel(labelMessage);
 
-            if (type.equals("tile"))
-                controller.uploadImagesTile(name);
-            else
-                controller.uploadImagesLeader(name);
+            if (type.equals("tile")) controller.uploadImagesTile(name);
+            else controller.uploadImagesLeader(name);
 
             dialogStage.setAlwaysOnTop(true);
             dialogStage.showAndWait();
-            return ;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return ;
+            return;
         }
     }
-
-
 
 
     public void popUp(String s) {
@@ -489,11 +486,11 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
-            return ;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return ;
+            return;
         }
     }
 
@@ -514,32 +511,32 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
                 rootLayoutMainGame.setCenter(towersScene);
                 break;
             }
-            case MARKET:{
+            case MARKET: {
                 marketController.refresh();
                 rootLayoutMainGame.setCenter(marketScene);
                 break;
             }
-            case HARVESTER:{
+            case HARVESTER: {
                 harvesterController.refresh();
                 rootLayoutMainGame.setCenter(harvesterScene);
                 break;
             }
-            case PERSONAL_BOARD:{
+            case PERSONAL_BOARD: {
                 personalBoardController.refresh();
                 rootLayoutMainGame.setCenter(personalBoardScene);
                 break;
             }
-            case PRODUCTION:{
+            case PRODUCTION: {
                 productionController.refresh();
                 rootLayoutMainGame.setCenter(productionScene);
                 break;
             }
-            case COUNCIL:{
+            case COUNCIL: {
                 councilPalaceController.refresh();
                 rootLayoutMainGame.setCenter(councilScene);
                 break;
             }
-            case LEADER:{
+            case LEADER: {
                 leaderCardController.refresh();
                 rootLayoutMainGame.setCenter(leaderScene);
                 break;
@@ -576,7 +573,8 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
     public void waitingScene() {
         rootLayout.setCenter(waitingLoginScene);
         Task task = new Task<Void>() {
-            @Override public Void call() {
+            @Override
+            public Void call() {
                 mainController.takeNickname();
                 return null;
             }
@@ -642,16 +640,34 @@ public class LoginBuilder extends Application implements ChangeListener<Number>{
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
-            return ;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return ;
+            return;
         }
     }
 
     public void setUiScore(Score uiScore) {
         this.uiScore = uiScore;
+    }
+
+    public void setDimensions(ImageView imageView) {
+        int oldWidth = (int) imageView.getFitWidth();
+        int oldHeight = (int) imageView.getFitHeight();
+
+        imageView.setFitWidth(((oldWidth * primaryStage.getWidth()) / WINDOW_WIDTH));
+        imageView.setFitHeight(((oldHeight * primaryStage.getHeight()) / WINDOW_HEIGHT));
+
+        int oldX = (int) imageView.getLayoutX();
+        int oldY = (int) imageView.getLayoutY();
+
+        imageView.setLayoutX(((oldX * primaryStage.getWidth()) / WINDOW_WIDTH));
+        imageView.setLayoutY(((oldY * primaryStage.getHeight()) / WINDOW_HEIGHT));
+    }
+
+    public void setResizeOn(boolean resizeOn) {
+        this.rezieOn = resizeOn;
     }
 }
 

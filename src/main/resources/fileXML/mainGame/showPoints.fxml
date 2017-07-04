@@ -31,9 +31,9 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="61.0" prefWidth="278.0" spacing="20.0">
                <children>
-                  <Label fx:id="faithLabel" prefHeight="38.0" prefWidth="79.0" text="ciao" textAlignment="CENTER" />
-                  <Label fx:id="victoryLabel" prefHeight="38.0" prefWidth="79.0" text="Label" textAlignment="CENTER" />
-                  <Label fx:id="militaryLabel" prefHeight="38.0" prefWidth="79.0" text="Label" textAlignment="CENTER" />
+                  <Label fx:id="faithLabel" alignment="CENTER" prefHeight="38.0" prefWidth="79.0" text="ciao" textAlignment="CENTER" />
+                  <Label fx:id="victoryLabel" alignment="CENTER" prefHeight="38.0" prefWidth="79.0" text="Label" textAlignment="CENTER" />
+                  <Label fx:id="militaryLabel" alignment="CENTER" prefHeight="38.0" prefWidth="79.0" text="Label" textAlignment="CENTER" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="58.0" prefWidth="278.0">

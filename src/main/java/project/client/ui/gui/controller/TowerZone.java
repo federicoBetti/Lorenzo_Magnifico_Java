@@ -60,4 +60,8 @@ class TowerZone {
     void setFamiliarImage(Image trueFamiliarImage) {
         familiar.setImage(trueFamiliarImage);
     }
+
+    public ImageView getCard() {
+        return card;
+    }
 }

@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" style="-fx-background-image: url('/images/immaginiSetUp/login.jpg'); -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.WaitingLogin">
-   <children>
-      <Label layoutX="141.0" layoutY="793.0" text="waiting..">
-         <font>
-            <Font name="Lucida Blackletter" size="71.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane id="ancora" prefHeight="827.9" prefWidth="484.5" style="-fx-background-image: url('/images/immaginiSetUp/login.jpg'); -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.WaitingLogin">
+    <children>
+      <ImageView fitHeight="828.0" fitWidth="485.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/immaginiSetUp/login.jpg" />
+         </image>
+      </ImageView>
+        <Label alignment="CENTER" layoutX="97.0" layoutY="650.0" prefHeight="116.0" prefWidth="292.0" text="waiting..">
+            <font>
+                <Font name="Lucida Blackletter" size="60.35" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

@@ -503,6 +503,8 @@ public class MainController {
                 loginBuilder.initalizeMainGame();
                 loginBuilder.startMainGame();
                 System.out.println("fine inizializzazione");
+                generalGameController.setName(usernameChosen);
+                loginBuilder.setResizeOn(true);
             }
         });
     }
