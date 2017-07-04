@@ -48,11 +48,13 @@ public class MainController {
     private boolean actionBonusOn;
     private InitialLogin initialLoginController;
     private ChoiceController choicheController;
+    private boolean firstTime;
 
 
     private MainController(){
         controllers = new ArrayList<>();
         token = new Object();
+        firstTime = true;
     }
     public static MainController getInstance(){
         if (instance == null) {
@@ -285,7 +287,9 @@ public class MainController {
     public void boardUpdate() {
         board = clientSetter.getUiBoard();
         Platform.runLater(() -> {
-            System.out.println("dadi: " + board.getDiceValue()[0] +" " +board.getDiceValue()[1] +" " +board.getDiceValue()[2]);
+            if (firstTime){
+                firstTime = false;
+            }
             harvesterController.updatePosition(board.getHarvesterZone());
             productionController.updatePosition(board.getProductionZone());
             councilPalaceController.updatePosition(board.getCouncilZone());
@@ -293,6 +297,8 @@ public class MainController {
             towerController.updatePosition(board.getAllTowers());
             generalGameController.updatePosition(board.getAllTowers());
             generalGameController.updateTurn(board.getTurn().getPlayerTurn());
+            generalGameController.excommunicationUpdate(board.getExcommunicationZone());
+            generalGameController.setDice(board.getDiceValue());
         });
     }
 
@@ -300,7 +306,7 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                generalGameController.setScore(clientSetter.getUiScore());
+                loginBuilder.setUiScore(clientSetter.getUiScore());
             }
         });
     }

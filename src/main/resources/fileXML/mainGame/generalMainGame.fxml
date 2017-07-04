@@ -12,16 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.GeneralMainGameController">
+<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.GeneralMainGameController">
    <children>
-      <Pane fx:id="gameboard" prefHeight="923.0" prefWidth="648.0" >
-         <children>
-            <Button fx:id="goToTowersButton" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="482.0" prefWidth="519.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToProductionButton" layoutX="36.0" layoutY="732.0" mnemonicParsing="false" onAction="#goToProduction" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToMarketButton" layoutX="331.0" layoutY="727.0" mnemonicParsing="false" onAction="#goToMarket" prefHeight="121.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToCouncilPalaceButton" layoutX="280.0" layoutY="500.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="84.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="goToHarvesterButton" layoutX="38.0" layoutY="809.0" mnemonicParsing="false" onAction="#goToHarvester" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-         </children></Pane>
       <ImageView fitHeight="923.0" fitWidth="422.0" layoutX="648.0" layoutY="0">
          <image>
             <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
@@ -43,11 +35,22 @@
       <ImageView fx:id="towerPurple_1" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="towerPurple_2" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="towerPurple_3" fitHeight="107.0" fitWidth="69.0" layoutX="417.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="gameboard" prefHeight="923.0" prefWidth="648.0">
+         <children>
+            <Button fx:id="goToTowersButton" layoutX="37.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="482.0" prefWidth="519.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToProductionButton" layoutX="36.0" layoutY="732.0" mnemonicParsing="false" onAction="#goToProduction" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToMarketButton" layoutX="331.0" layoutY="727.0" mnemonicParsing="false" onAction="#goToMarket" prefHeight="121.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToCouncilPalaceButton" layoutX="280.0" layoutY="500.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="84.0" prefWidth="192.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button fx:id="goToHarvesterButton" layoutX="38.0" layoutY="809.0" mnemonicParsing="false" onAction="#goToHarvester" prefHeight="76.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <ImageView fx:id="excommunication1" fitHeight="96.0" fitWidth="50.0" layoutX="124.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="excommunication2" fitHeight="96.0" fitWidth="50.0" layoutX="171.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="excommunication3" fitHeight="96.0" fitWidth="50.0" layoutX="219.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true" />
+         </children></Pane>
       <Pane layoutX="687.0" layoutY="32.0" prefHeight="851.0" prefWidth="350.0">
          <children>
-            <ImageView fitHeight="352.0" fitWidth="356.0" layoutX="-5.0" layoutY="-2.0" opacity="0.74">
+            <ImageView fitHeight="138.0" fitWidth="356.0" layoutX="-5.0" layoutY="200.0" opacity="0.74">
                <image>
-                  <Image url="/images/immaginiSetUp/finestraPiccola.png" />
+                  <Image url="@../../images/immaginiSetUp/dadi.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="57.0" fitWidth="69.0" layoutX="114.0" layoutY="26.0" style="-fx-alignment: center">
@@ -112,7 +115,7 @@
                         <Font name="Lucida Blackletter" size="32.0" />
                      </font>
                   </Button>
-                  <ScrollPane fx:id="chatArea"  prefHeight="213.0" prefWidth="356.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ScrollPane fx:id="chatArea" prefHeight="213.0" prefWidth="356.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 
                   <HBox prefHeight="35.0" prefWidth="356.0">
                      <children>
@@ -126,6 +129,21 @@
             <ImageView fx:id="imageFamiliarOrange" fitHeight="84.0" fitWidth="85.0" layoutX="80.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageFamiliarBlack" fitHeight="84.0" fitWidth="85.0" layoutX="192.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageFamiliarWhite" fitHeight="84.0" fitWidth="85.0" layoutX="192.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="diceValueWhite" layoutX="54.0" layoutY="244.0" prefHeight="42.0" prefWidth="39.0" text="5">
+               <font>
+                  <Font name="Lucida Blackletter" size="37.0" />
+               </font>
+            </Label>
+            <Label fx:id="diceValueBlack" layoutX="165.0" layoutY="245.0" prefHeight="42.0" prefWidth="39.0" text="5" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Blackletter" size="34.0" />
+               </font>
+            </Label>
+            <Label fx:id="diceValueOrange" layoutX="271.0" layoutY="244.0" prefHeight="42.0" prefWidth="39.0" text="8">
+               <font>
+                  <Font name="Lucida Blackletter" size="38.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutX="43.0" layoutY="666.0" prefHeight="34.0" prefWidth="504.0">

@@ -1,6 +1,8 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,14 +14,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 import project.controller.cardsfactory.LeaderCard;
+import project.model.Score;
 import project.model.Tile;
 
+import javax.swing.event.ChangeEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 //TODO FARE ALTEZZA MAX 900
-public class LoginBuilder extends Application {
+public class LoginBuilder extends Application implements ChangeListener<Number>{
 
     private BorderPane rootLayout;
     private Stage primaryStage;
@@ -62,6 +66,7 @@ public class LoginBuilder extends Application {
     private int choiceDone;
     private DraftController draftController;
     private Stage lastStageOpened;
+    private Score uiScore;
 
 
     public void start(Stage primaryStage) {
@@ -71,12 +76,34 @@ public class LoginBuilder extends Application {
         mainController = MainController.getInstance();
         mainController.setLoginBuilder(this);
 
+
+
+        this.primaryStage.widthProperty().addListener((javafx.beans.value.ChangeListener<? super Number>) this);
+        this.primaryStage.heightProperty().addListener((javafx.beans.value.ChangeListener<? super Number>) this);
+
+        //resize(this.primaryStage.getWidth(), this.primaryStage.getHeight());
         initRootLayout();
 
         initializeInitialLogin();
         initializeWaitingLogin();
         //initalizeMainGame();
         showFirstPage();
+    }
+
+    private void resize(double width, double height) {
+        rootLayout.setPrefWidth(width);
+        rootLayout.setPrefHeight(height);
+        System.out.println("DEVO RESIZARE TUTTO con nuovo altezza : " + rootLayout.getHeight() + " e nuova larghezza: " + rootLayout.getWidth());
+
+    }
+
+    public BorderPane getRootLayout() {
+        return rootLayout;
+    }
+
+    @Override
+    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+       resize(primaryStage.getWidth(), primaryStage.getHeight());
     }
 
     /**
@@ -87,7 +114,6 @@ public class LoginBuilder extends Application {
             // Configuration root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/login/rootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -591,6 +617,41 @@ public class LoginBuilder extends Application {
 
     public Stage getLastStageOpened() {
         return lastStageOpened;
+    }
+
+
+    public void showPoints() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/showPoints.fxml"));
+            AnchorPane popUp = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Points");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(popUp);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            PointsController controller = loader.getController();
+            controller.setMainController(mainController);
+            controller.updatePoints(uiScore);
+            System.out.println("sto per disegnare lo stage");
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return ;
+        }
+    }
+
+    public void setUiScore(Score uiScore) {
+        this.uiScore = uiScore;
     }
 }
 

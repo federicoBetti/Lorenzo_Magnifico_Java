@@ -7,11 +7,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" style="-fx-background-image: url('/images/immaginiSetUp/login.jpg'); -fx-background-repeat: stretch; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.InitialLogin">
+<AnchorPane id="ancora" fx:id="anchr" prefHeight="974.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.InitialLogin">
    <children>
+      <Pane prefHeight="974.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="sfondo" fitHeight="974.0" fitWidth="570.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
       <ImageView id="cornicedestra" fitHeight="157.0" fitWidth="200.0" layoutX="50.0" layoutY="768.0" style="-fx-rotate: 0;">
          <image>
             <Image url="/images/cornici/cornice.png" />
@@ -22,19 +28,14 @@
             <Image url="/images/cornici/cornice.png" />
          </image>
       </ImageView>
-      <VBox layoutX="99.0" layoutY="807.0" prefHeight="76.0" prefWidth="100.0" spacing="20.0">
-         <children>
-            <TextField id="username" fx:id="username" prefHeight="59.0" prefWidth="100.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
-            <TextField id="password" fx:id="password" promptText="Password" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
-         </children>
-      </VBox>
+      <TextField id="username" fx:id="username" layoutX="99.0" layoutY="833.0" prefHeight="36.0" prefWidth="100.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
       <Button id="connect" fx:id="connect" layoutX="244.0" layoutY="829.0" mnemonicParsing="false" onAction="#doConnection" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="connect">
          <font>
             <Font name="Lucida Blackletter" size="21.0" />
          </font></Button>
       <VBox layoutX="392.0" layoutY="814.0" prefHeight="68.0" prefWidth="100.0" spacing="25.0">
          <children>
-            <RadioButton id="rmi" fx:id="rmi" mnemonicParsing="false" onAction="#rmiClicked" selected="true" text="RMI">
+            <RadioButton id="rmi" fx:id="rmi" mnemonicParsing="false" onAction="#rmiClicked" selected="true" text="rmi">
                <toggleGroup>
                   <ToggleGroup fx:id="connection" />
                </toggleGroup>
@@ -42,7 +43,7 @@
                   <Font name="Lucida Blackletter" size="18.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="socket" mnemonicParsing="false" onAction="#socketClicked" text="Socket" toggleGroup="$connection">
+            <RadioButton fx:id="socket" mnemonicParsing="false" onAction="#socketClicked" text="socket" toggleGroup="$connection">
                <font>
                   <Font name="Lucida Blackletter" size="18.0" />
                </font></RadioButton>

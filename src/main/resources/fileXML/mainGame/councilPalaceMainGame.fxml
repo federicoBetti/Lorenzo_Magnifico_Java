@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.CouncilPalaceController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.CouncilPalaceController">
     <children>
 
         <ImageView fitHeight="516.0" fitWidth="863.0">
@@ -25,23 +25,21 @@
         <Pane layoutX="28.0" layoutY="26.0" prefHeight="466.0" prefWidth="805.0">
             <children>
                 <ImageView fitHeight="466.0" fitWidth="802.0">
-                    <image>
-                        <Image url="/images/immaginiSetUp/councilPalace.png" />
-                    </image>
+               <image>
+                  <Image url="@../../images/immaginiSetUp/councilPalace.png" />
+               </image>
                 </ImageView>
                <Button fx:id="buttonStoneWood" layoutX="212.0" layoutY="289.0" onAction="#takeStoneWood" pickOnBounds="true" prefHeight="57.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="buttonServants" layoutX="269.0" layoutY="287.0" onAction="#takeTwoServants" pickOnBounds="true" prefHeight="63.0" prefWidth="35.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="buttonTwoCoins" layoutX="318.0" layoutY="292.0" onAction="#takeTwoCoins" pickOnBounds="true" prefHeight="57.0" prefWidth="35.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="buttonMilitaryPoints" layoutX="365.0" layoutY="293.0" onAction="#takeTwoMiliaryPoints" pickOnBounds="true" prefHeight="57.0" prefWidth="44.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
             <Button fx:id="buttonFaithPoints" layoutX="415.0" layoutY="290.0" onAction="#takeOneFaithPoint" pickOnBounds="true" prefHeight="57.0" prefWidth="44.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-            <Button fx:id="buttonPlaceFamiliar" layoutX="70.0" layoutY="90.0" onAction="#placeFamiliarInCouncil" pickOnBounds="true" prefHeight="178.0" prefWidth="622.0" style="-fx-background-color: transparent; -fx-border-color: transparent;">
-               <graphic>
-                  <HBox fx:id="familiarBox" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="622.0" spacing="5">
-                     <children>
-                            <ImageView fx:id="imageInTheCouncil0" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </HBox>
-               </graphic></Button>
+            <HBox fx:id="familiarBox" alignment="CENTER_LEFT" layoutX="92.0" layoutY="109.0" prefHeight="140.0" prefWidth="611.0" spacing="5">
+               <children>
+                      <ImageView fx:id="imageInTheCouncil0" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <Button fx:id="buttonPlaceFamiliar" layoutX="76.0" layoutY="90.0" onAction="#placeFamiliarInCouncil" pickOnBounds="true" prefHeight="178.0" prefWidth="622.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
             </children>
         </Pane>
 

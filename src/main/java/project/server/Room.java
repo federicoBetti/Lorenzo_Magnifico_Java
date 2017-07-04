@@ -147,7 +147,7 @@ public class Room {
 
         Collections.shuffle(playerInTheMatch);
         fillExcommunicationTile();
-
+        System.out.println(board.getExcommunicationZone()[0].getCardForThisPeriod().getIdCard() + "È LA CARTA EX 0");
         //todo mischia il mazzo, funge
         //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
@@ -215,6 +215,7 @@ public class Room {
             p.getScore().setFaithPoints(fauthPoint);
             p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
             p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
+            p.sendUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(),p.getName()));
             p.sendUpdates(new MarketUpdate(board, p.getName()));
             p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
             p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
