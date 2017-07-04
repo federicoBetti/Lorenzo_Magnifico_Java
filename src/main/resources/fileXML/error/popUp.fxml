@@ -6,18 +6,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="175.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.PopUpController">
+<AnchorPane prefHeight="175.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.PopUpController">
     <children>
-        <HBox alignment="CENTER" layoutX="1.0" layoutY="7.0" prefHeight="81.0" prefWidth="297.0">
+        <HBox alignment="CENTER" layoutX="1.0" prefHeight="112.0" prefWidth="297.0">
             <children>
-                <Label fx:id="message" text="Label">
+                <Label fx:id="message" prefHeight="93.0" prefWidth="297.0" text="LabelFWFSAFDSAFDSAFSDAFSADFSADFSADFSDAFAS" wrapText="true">
                     <font>
                         <Font name="Lucida Blackletter" size="26.0" />
                     </font>
                 </Label>
             </children>
         </HBox>
-      <HBox layoutX="5.0" layoutY="91.0" prefHeight="81.0" prefWidth="290.0" alignment="CENTER">
+      <HBox alignment="CENTER" layoutX="5.0" layoutY="109.0" prefHeight="63.0" prefWidth="290.0">
          <children>
               <Button fx:id="button" mnemonicParsing="false" onAction="#ok" text="ok">
                   <font>

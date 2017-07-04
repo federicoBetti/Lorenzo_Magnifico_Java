@@ -3,7 +3,7 @@ package project.controller.checkfunctions;
 import project.model.*;
 
 /**
- * TODO METTERE TUTTI I RITORNI DELLE ALTRE FUNZIONI COME ALLCHECKFUNCTION.altrafunzione
+ * this is a class used for the effect of the leader card ...
  */
 public class CantPlaceFamiliarInMarket extends CheckFunctionsDecorator {
 

@@ -41,6 +41,8 @@ public abstract class PlayerHandler extends Player {
      * @param familyM
      */
     protected void clientTakeDevelopmentCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException{
+        if (familyM == null)
+            throw new CantDoActionException();
         Position[] tower;
         DevelopmentCard card;
         int diceCost;
