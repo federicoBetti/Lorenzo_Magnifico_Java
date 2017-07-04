@@ -27,6 +27,11 @@ public class CharactersCost implements Cost, Serializable {
         return "Coins required: " + coinsRequired;
     }
 
+    @Override
+    public Cost copyOf() {
+        return null;
+    }
+
 
     @Override
     public void addCoin(int i) {

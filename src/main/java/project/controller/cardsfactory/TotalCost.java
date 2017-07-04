@@ -35,6 +35,11 @@ public class TotalCost implements Cost, Serializable {
                 "Military points to pay: " + militaryCost;
     }
 
+    @Override
+    public Cost copyOf() {
+        return null;
+    }
+
     public int getStoneRequired() {
         return stoneRequired;
     }

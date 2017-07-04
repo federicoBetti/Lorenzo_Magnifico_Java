@@ -35,6 +35,11 @@ public class VenturesCost implements Cost, Serializable {
                 "Military points to pay: " + militaryCost;
     }
 
+    @Override
+    public Cost copyOf() {
+        return new VenturesCost();
+    }
+
     public boolean isToPaid() {
         return toPaid;
     }

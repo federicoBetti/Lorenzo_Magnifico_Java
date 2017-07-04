@@ -7,15 +7,22 @@ import java.io.Serializable;
  */
 public class TerritoryCost implements Cost, Serializable {
 
-    private int woodRequired;
+    protected int woodRequired;
 
-    private int stoneRequired;
+    protected int stoneRequired;
 
-    private int diceCost;
+    protected int diceCost;
 
 
     TerritoryCost() {
         //da fare
+    }
+
+    public TerritoryCost(int woodRequired, int stoneRequired, int diceCost) {
+        super();
+        this.woodRequired = woodRequired;
+        this.stoneRequired = stoneRequired;
+        this.diceCost = diceCost;
     }
 
     @Override
@@ -23,6 +30,11 @@ public class TerritoryCost implements Cost, Serializable {
         return "Wood required: " + woodRequired +
                 "Stone required: " + stoneRequired +
                 "Dice value required: " + diceCost;
+    }
+
+    @Override
+    public Cost copyOf() {
+        return new TerritoryCost(woodRequired,stoneRequired,diceCost);
     }
 
     public int getWoodRequired() {

@@ -14,6 +14,12 @@ public class BuildingCost extends TerritoryCost implements Serializable {
     public BuildingCost() {
     }
 
+    public BuildingCost(int coinsRequired, int servantRequired) {
+        super(woodRequired,stoneRequired,diceCost);
+        this.coinsRequired = coinsRequired;
+        this.servantRequired = servantRequired;
+    }
+
     /**
      * 
      */
@@ -32,6 +38,10 @@ public class BuildingCost extends TerritoryCost implements Serializable {
         coinsRequired -= 3;
     }
 
+    @Override
+    public Cost copyOf() {
+        return new BuildingCost(coinsRequired, servantRequired);
+    }
 
 
     @Override
