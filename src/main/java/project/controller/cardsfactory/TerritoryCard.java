@@ -20,6 +20,13 @@ public class TerritoryCard extends DevelopmentCard implements Serializable {
         this.cardCost = cost;
     }
 
+    /**
+     * for testing
+     */
+    public TerritoryCard(){
+        //for testing
+    }
+
 
     @Override
     public void addToPersonalBoard(PersonalBoard personalBoardReference) {

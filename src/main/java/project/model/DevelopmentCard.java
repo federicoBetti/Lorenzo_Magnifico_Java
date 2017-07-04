@@ -69,5 +69,13 @@ public abstract class DevelopmentCard implements Serializable{
     public void setCost(Cost cost) {
         this.cardCost = cost;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setChoicePe(boolean choicePe) {
+        this.choicePe = choicePe;
+    }
 }
 

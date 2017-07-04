@@ -57,7 +57,7 @@ public abstract class PlayerHandler extends Player {
         canPlaceFamiliar = checkFunctions.checkPosition(floor, tower, familyM);
         towerOccupied = checkFunctions.checkTowerOccupied((Tower[])tower);
 
-        if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {
+        if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {//todo un giocatore non puo prendere piu di 6 carte dello stetsso tipo
             int paymentChosen = checkOnVenturesCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
             gameActions().takeVenturesCard(zone, familyM, this, towerOccupied, paymentChosen);
         }

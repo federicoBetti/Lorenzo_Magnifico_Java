@@ -50,6 +50,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     }
 
+    /**
+     * for testing
+     */
+    public SocketPlayerHandler(){
+        token = new Object();
+        token1 = new Object();
+        //for testing
+    }
+
     @Override
     public void run() {
         try {
