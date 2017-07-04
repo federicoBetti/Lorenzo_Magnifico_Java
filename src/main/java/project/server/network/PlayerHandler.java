@@ -394,7 +394,7 @@ public abstract class PlayerHandler extends Player {
 
     public void reconnectClient() {
         this.setOn(true);
-        System.out.println("Client reconnexted!");
+        System.out.println("CLIENT RECONNECTED!");
     }
 
 

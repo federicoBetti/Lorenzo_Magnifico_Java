@@ -69,9 +69,7 @@ public class SocketClient extends AbstractClient {
                 System.out.println("IL MESSAGE é: " + message);
                 messageHandler.handleMessage(message);
 
-            } catch (IOException e) {
-
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
@@ -164,8 +162,16 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void reconnect() {
-        sendGenericObject(Constants.RECONNECT);
+        try {
+            objectOutputStream.writeObject(Constants.RECONNECT);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         createWaitingForYourTurnContext();
+        System.out.println("MANDATA RECONNECT");
     }
 
     @Override

@@ -246,7 +246,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void timerTurnDelayed() {
         sendString(Constants.TIMER_TURN_DELAYED);
-        setOn(false);
         System.out.println("Il player è a : " + isOn());
     }
 

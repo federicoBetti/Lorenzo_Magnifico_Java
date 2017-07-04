@@ -226,7 +226,6 @@ public class Cli extends AbstractUI {
                 System.out.println("mando exit");
                 context = new TimerDelayedContext(this);
                 sendExitToBonusAction();
-
             }
             //praying interrupted
             else if (context instanceof ExcomunicationContext) {
@@ -275,6 +274,7 @@ public class Cli extends AbstractUI {
 
     @Override
     public void waitingForYourTurn() {
+
      /*   try {//bonus action interrupted
             if (context instanceof TakeBonusCard || context instanceof BonusHarvesterContext || context instanceof BonusProductionContext) {
                 System.out.println("mando exit");

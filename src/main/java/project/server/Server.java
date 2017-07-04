@@ -1,14 +1,11 @@
 package project.server;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import jdk.nashorn.internal.parser.JSONParser;
 import project.PlayerFile;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.messages.updatesmessages.*;
-import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -18,7 +15,6 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.AlreadyBoundException;
 import java.util.*;
@@ -128,7 +124,7 @@ public class Server {
                 room.nicknamePlayersMap.replace(nickname, player);
                 if (numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1) {
                     player.itsMyTurn();
-                    room.getGameActions().myTimerSkipTurn(player, room.getListOfPlayers());
+                    room.getGameActions().myTimerSkipTurn(player);
                 }
 
                 player.loginSucceded();
