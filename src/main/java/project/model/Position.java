@@ -40,7 +40,8 @@ public abstract class Position implements Serializable{
 
     public void ludovicoAriosto() {
         ludovicoAriostoPosition = new ArrayList<>();
-        ludovicoAriostoPosition.add(familiarOnThisPosition);
+        if (familiarOnThisPosition!=null)
+            ludovicoAriostoPosition.add(familiarOnThisPosition);
     }
 
     public void addFamiliar(FamilyMember familyMember) {

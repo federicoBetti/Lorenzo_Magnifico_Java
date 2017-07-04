@@ -431,6 +431,10 @@ public class Room {
         this.lastPlayer = lastPlayer;
     }
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     public Map<Player, AllSupportFunctions> getPlayerAllSupportFunctionsMap() {
         return playerAllSupportFunctionsMap;
     }

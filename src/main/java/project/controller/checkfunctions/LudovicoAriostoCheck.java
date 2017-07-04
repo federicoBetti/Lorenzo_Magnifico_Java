@@ -19,9 +19,24 @@ public class LudovicoAriostoCheck extends CheckFunctionsDecorator {
      */
     @Override
     public boolean checkPosition(int position, Position[] zone, FamilyMember familyMember) {
-        zone[position].ludovicoAriosto();
-        return true;
 
+        if (nobodyOfMyFamily(zone, familyMember.getFamilyColour())){
+            if (zone[position].isOccupied()) {
+                zone[position].ludovicoAriosto();
+                return true;
+            }
+            else return true;
+        }
+        return false;
+    }
+
+    private boolean nobodyOfMyFamily(Position[] zone, String familyColour){
+        for (int i=0;i<zone.length;i++){
+            if ( zone[i].getFamiliarOnThisPosition() != null )
+                if (zone[i].getFamiliarOnThisPosition().getFamilyColour().equals(familyColour))
+                    return false;
+        }
+        return true;
     }
 
 }

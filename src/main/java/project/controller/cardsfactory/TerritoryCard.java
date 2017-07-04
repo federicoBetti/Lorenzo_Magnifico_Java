@@ -23,7 +23,7 @@ public class TerritoryCard extends DevelopmentCard implements Serializable {
     /**
      * for testing
      */
-    public TerritoryCard(){
+    public TerritoryCard() {
         //for testing
     }
 

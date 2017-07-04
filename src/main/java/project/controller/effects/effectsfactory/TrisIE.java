@@ -31,7 +31,7 @@ public class TrisIE {
 	 */
 	private int quantity;
 
-    TrisIE(String type, String parameter, int quantity){
+    public TrisIE(String type, String parameter, int quantity){
     	this.type = type;
 		this.parameter = parameter;
     	this.quantity = quantity;
