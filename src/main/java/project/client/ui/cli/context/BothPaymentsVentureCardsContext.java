@@ -25,8 +25,11 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
     public void checkValidInput( String input ) throws InputException{
         String[] parameters = input.split("-");
 
-        if ( !((parameters.length == 1) && Character.isDigit(Integer.parseInt(parameters[0]))))
+        if ( (!(parameters.length == 1) && !Character.isDigit(Integer.parseInt(parameters[0]))))
            throw new InputException();
+
+        if ( !(parameters[0].equals("0") || parameters[0].equals("1")))
+            throw new InputException();
     }
 
     @Override

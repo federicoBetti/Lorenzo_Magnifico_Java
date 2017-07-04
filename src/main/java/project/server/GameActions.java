@@ -133,7 +133,7 @@ public class GameActions {
             if (next.isOn()) {
                 timer.cancel();
                 next.itsMyTurn();
-                timer = this.myTimerSkipTurn(turn.get(indexOfMe + 1), turn);
+                timer = this.myTimerSkipTurn(turn.get(indexOfMe + 1));
                 return;
             }
             nextTurn(next);
@@ -146,7 +146,7 @@ public class GameActions {
             if (next.isOn()) {
                 timer.cancel();
                 next.itsMyTurn();
-                timer = this.myTimerSkipTurn(turn.get(0), turn);
+                timer = this.myTimerSkipTurn(turn.get(0));
                 System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
                 return;
             }
@@ -171,7 +171,6 @@ public class GameActions {
             if (playerIndex == -1)
                 return;
 
-            timer = this.myTimerSkipTurn(turn.get(playerIndex), turn);
             return;
 
         } else {
@@ -186,7 +185,6 @@ public class GameActions {
             if (playerIndex == -1)
                 return;
 
-            timer = this.myTimerSkipTurn(turn.get(playerIndex), turn);
             System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
         }
         //todo se rimane solo un giocatore nella partita?
@@ -203,16 +201,18 @@ public class GameActions {
         return true;
     }
 
-    private int firstPlayerTurn() {
+    int firstPlayerTurn() {
         int i = 0;
         while (i < board.getTurn().getPlayerTurn().size()) {
             PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(i);
             if (firstPlayer.isOn()) {
+                timer = this.myTimerSkipTurn(firstPlayer);
                 firstPlayer.itsMyTurn();
                 return i;
             }
             i++;
         }
+
         ArrayList<Room> rooms = room.getServer().getRooms();
         rooms.remove(room);
         room.getServer().setRooms(rooms);
@@ -233,12 +233,7 @@ public class GameActions {
         }
         return true;
     }
-
-    public void firstTurn(List<PlayerHandler> playerInTheMatch) {
-        board.getTurn().getPlayerTurn().get(0).itsMyTurn();
-        timer = myTimerSkipTurn(board.getTurn().getPlayerTurn().get(0), playerInTheMatch);
-    }
-
+    
     public void setBoard(Board board) {
         this.board = board;
     }
@@ -662,9 +657,12 @@ public class GameActions {
     public void playLeaderCard(String leaderName, PlayerHandler player) throws CantDoActionException {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
+
                 if (leaderCard.isPlayed())
                     throw new CantDoActionException();
+
                 BonusInteraction returnFromEffect = leaderCardEffect.doEffect(leaderName, player);
+
                 if (returnFromEffect instanceof LorenzoMagnifico) {
                     //todo fare cose per lorenzo magnifico
                 } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction)
@@ -675,6 +673,7 @@ public class GameActions {
                 player.sendActionOk();
                 leaderCard.setPlayed(true);
             }
+
         }
 
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
@@ -788,22 +787,21 @@ public class GameActions {
     }
 
     private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {
+        if (card.isChoicePe()) {
+            int choice = player.sendPossibleChoice(Constants.CHOICE_PE);
+            if (choice == -1)
+                return;
+            card.getPermanentCardEffects().get(choice).doEffect(player);
+            return;
+        }
 
         for (Effects effect : card.getPermanentCardEffects()) {
-            if (card.isChoicePe()) {
-                int choice = player.sendPossibleChoice(Constants.CHOICE_PE);
-                if (choice == -1)
-                    return;
-                card.getPermanentCardEffects().get(choice).doEffect(player);
-            } else {
                 effect.doEffect(player);
                 System.out.println(" effetto permanente stampato " + effect.getClass());
             }
-        }
-
     }
 
-    Timer myTimerSkipTurn(PlayerHandler player, List<PlayerHandler> playersInTheMatch) {
+    Timer myTimerSkipTurn(PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override

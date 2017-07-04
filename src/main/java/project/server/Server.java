@@ -1,14 +1,11 @@
 package project.server;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import jdk.nashorn.internal.parser.JSONParser;
 import project.PlayerFile;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.messages.updatesmessages.*;
-import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -18,7 +15,6 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.AlreadyBoundException;
 import java.util.*;
@@ -26,6 +22,7 @@ import java.util.*;
 /**
  * Created by raffaelebongo on 18/05/17.
  */
+
 public class Server {
 
     private static final int RMI_PORT = 2;
@@ -127,10 +124,11 @@ public class Server {
                 room.nicknamePlayersMap.replace(nickname, player);
                 if (numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1) {
                     player.itsMyTurn();
-                    room.getGameActions().myTimerSkipTurn(player, room.getListOfPlayers());
+                    room.getGameActions().myTimerSkipTurn(player);
                 }
 
                 player.loginSucceded();
+                player.matchStarted(room.getRoomPlayers(), player.getFamilyColour());
                 return;
 
             }
@@ -149,8 +147,7 @@ public class Server {
         FileWriter fw = null;
 
         try {
-            String filename = "E:\\test\\PlayerFile.json";
-            File file = new File(filename);
+            File file = new File(Constants.FILENAME);
 
             if (!file.exists()) {
                 System.out.println("CREO IL FILE");
@@ -164,22 +161,22 @@ public class Server {
                 return;
             }
 
-            String currentFile = readFile(filename, StandardCharsets.UTF_8);
+            String currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
             System.out.println("Il file in questo momento è: " +  currentFile);
 
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
 
             for (PlayerFile player : arrayPlayers)
                 if (player.getPlayerName().equals(nickname)) {
-                    player.setNumberOfGames(player.getNumberOfGames() + 1);{
+                    player.setNumberOfGames(player.getNumberOfGames() + 1);
                         fileUpgraded = gson.toJson(arrayPlayers);
                         break;
-                    }
+
                 }
 
             fw = new FileWriter(file.getAbsoluteFile(), true);
             bw = new BufferedWriter(fw);
-            RandomAccessFile randomAccessFile = new RandomAccessFile(filename, "rw");
+            RandomAccessFile randomAccessFile = new RandomAccessFile(Constants.FILENAME, "rw");
 
             long pos = randomAccessFile.length();
             while (randomAccessFile.length() > 0) {

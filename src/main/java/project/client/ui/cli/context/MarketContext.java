@@ -63,13 +63,13 @@ public class MarketContext extends AbstractContext {
         if( !(parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))) {
             throw new InputException();
         }
-        if( cli.getNumberOfPlayers() == 2 ) {
+        if( cli.getNumberOfPlayers() < 4 ) {
             if ((Integer.parseInt(parameters[0]) > 1)) {
                 throw new InputException();
             }
         }
 
-        else if ( cli.getNumberOfPlayers() > 2 )
+        else if ( cli.getNumberOfPlayers() == 2 )
             if( Integer.parseInt(parameters[0]) > 3 )
                 throw new InputException();
 

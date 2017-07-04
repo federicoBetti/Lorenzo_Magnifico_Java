@@ -33,7 +33,13 @@ public class LeaderCardDraftContext extends AbstractContext {
 
     @Override
     public void checkValidInput(String input) throws InputException {
-
+        boolean cardExist = false;
+        for ( LeaderCard card : leaders ){
+            if ( card.getName().equals(input))
+                cardExist = true;
+        }
+        if ( !cardExist )
+            throw new InputException();
     }
 
     @Override

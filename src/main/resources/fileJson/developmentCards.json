@@ -2165,6 +2165,67 @@
 		]
 	}
 } ,
+
+	{
+		"anagrafic":{
+			"type":"buildingCard",
+			"name":"carpentersShop",
+			"period":1,
+			"choicePe": true,
+			"cost":[{
+				"stoneRequired":0,
+				"woodRequired":2,
+				"coinsRequired":1,
+				"diceCost":4,
+				"militaryRequired":0,
+				"militaryCost":0
+			}]
+		},
+
+
+		"immediateEffect":{
+			"tris":[
+				{"type":"takeRop", "parameter":"victoryPoint", "quantity":3 }
+			]
+		},
+
+
+
+		"permanentEffect":{
+			"poker":[
+				{"resourceEarnedFromExchange":"coin",
+
+					"effectCost":{
+						"stoneRequired":0,
+						"woodRequired":1,
+						"servantsRequired":0,
+						"coinsRequired":0,
+						"militaryRequired":0,
+						"militaryCost":0
+					},
+
+					"type":"exchangeRes",
+					"parameter":"woodFor",
+					"quantity":3
+				},
+
+				{	"resourceEarnedFromExchange":"coin",
+					"effectCost":{
+						"stoneRequired":0,
+						"woodRequired":2,
+						"servantsRequired":0,
+						"coinsRequired":0,
+						"militaryRequired":0,
+						"militaryCost":0
+					},
+
+					"type":"exchangeRes",
+					"parameter":"woodFor",
+					"quantity":5
+				}]
+		}
+	},
+
 	{
 		"anagrafic":{
 			"type":"buildingCard",
@@ -2350,7 +2411,7 @@
 		}
 	}
 ,
-	{
+/*	{
 		"anagrafic":{
 			"type":"buildingCard",
 			"name":"carpentersShop",
@@ -2409,7 +2470,7 @@
 				}]
 		}
 	}
-,
+,*/
 	{
 		"anagrafic":{
 			"type":"buildingCard",

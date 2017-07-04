@@ -1,5 +1,7 @@
 package project.server;
 
+import com.google.gson.Gson;
+import project.PlayerFile;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.cardsfactory.ExcommunicationTile;
@@ -11,7 +13,13 @@ import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -43,6 +51,8 @@ public class Room {
     AllSupportFunctions allSupportFunctions;
 
     TimerSettings timerSettings;
+
+    PlayerHandler lastPlayer;
 
 
     Room(Server server) {
@@ -147,7 +157,7 @@ public class Room {
 
         Collections.shuffle(playerInTheMatch);
         fillExcommunicationTile();
-        System.out.println(board.getExcommunicationZone()[0].getCardForThisPeriod().getIdCard() + "È LA CARTA EX 0");
+
         //todo mischia il mazzo, funge
         //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
@@ -157,27 +167,41 @@ public class Room {
 
         //draft leader
 
-/*
-        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+
+     /*   ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
             System.out.println("inizio richiest giro di leader");
             ListIterator<ArrayList<LeaderCard>> leaderIterator = listsForDraft.listIterator();
             ListIterator<PlayerHandler> playerIterator = playerInTheMatch.listIterator();
+            String leaderName = null;
 
             while (leaderIterator.hasNext() && playerIterator.hasNext()) {
                 PlayerHandler player = playerIterator.next();
                 ArrayList<LeaderCard> leaders = leaderIterator.next();
                 System.out.println("mando scelta carta leader");
-                String leaderName = player.leaderCardChosen(leaders);
-                LeaderCard leaderToAdd = getLeader(leaderName, leaders);
-                System.out.println("ho messo carta leader: " + leaderName + "    nel giocatore");
+                if ( player.isOn() ) {
+                    leaderName = player.leaderCardChosen(leaders);
 
-                player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
-                leaders.remove(leaderToAdd);
+                    if ( leaderName.equals("-1")){
+                        player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
+                        System.out.println("Sono disconnesso e piglio primoooo: " +leaders.get(0).getName());
+                        leaders.remove(leaders.get(0));
+                        continue;
+                    }
+
+                    LeaderCard leaderToAdd = getLeader(leaderName, leaders);
+                    System.out.println("ho messo carta leader: " + leaderName + "    nel giocatore");
+                    player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
+                    leaders.remove(leaderToAdd);
+                }
+                else {
+                    player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
+                    leaders.remove(leaders.get(0));
+                }
             }
             listsForDraft = shiftLeaderList(listsForDraft);
-        }*/
+        }
 
         //draft tile
 
@@ -188,20 +212,35 @@ public class Room {
 
         while (iterator.hasPrevious()) {
             PlayerHandler p = iterator.previous();
-            int tileId = p.chooseTile(tiles);
-            System.out.println("ha scelto la tile numero " + tileId);
-            Tile tile = getTrueTile(tileId, tiles);
-            p.getPersonalBoardReference().setMyTile(tile);
-            tiles.remove(tile);
-        }
+            if (p.isOn()) {
+                int tileId = p.chooseTile(tiles);
+                if (tileId == -1) {
+                    System.out.println("Sono disconnesso è piglio la prima tile che capita");
+                    p.getPersonalBoardReference().setMyTile(tiles.get(0));
+                    tiles.remove(tiles.get(0));
+                    continue;
+                }
+
+                System.out.println("ha scelto la tile numero " + tileId);
+                Tile tile = getTrueTile(tileId, tiles);
+                p.getPersonalBoardReference().setMyTile(tile);
+                tiles.remove(tile);
+            } else {
+                p.getPersonalBoardReference().setMyTile(tiles.get(0));
+                tiles.remove(tiles.get(0));
+            } //todo vedere qua perchè non fa partire partita
+        }   */
 
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {
-            p.matchStarted(getRoomPlayers(), p.getFamilyColour());
+            if (p.isOn()) {
+                p.matchStarted(getRoomPlayers(), p.getFamilyColour());
+                System.out.println("mando MATCH STARTED");
+            }
         }
 
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -210,32 +249,33 @@ public class Room {
         int moreCoin = 0;
         for (PlayerHandler p : board.getTurn().getPlayerTurn()) {
             //setResources(p, moreCoin);
-            int fauthPoint = 3;
-            p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 10);
-            p.getScore().setFaithPoints(fauthPoint);
-            p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
-            p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
-            p.sendUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(),p.getName()));
-            p.sendUpdates(new MarketUpdate(board, p.getName()));
-            p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
-            p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
-            p.sendUpdates(new ScoreUpdate(p, p.getName()));
-            //todo cancellare: aggiunto solo per provare il both payment
-
-            fauthPoint--;
-            moreCoin++;
+            if ( p.isOn() ) {
+                int fauthPoint = 3;
+                p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 10);
+                p.getScore().setFaithPoints(fauthPoint);
+                p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
+                p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
+                p.sendUpdates(new MarketUpdate(board, p.getName()));
+                p.sendUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(),p.getName()));
+                p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
+                p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
+                p.sendUpdates(new ScoreUpdate(p, p.getName()));
+                //todo cancellare: aggiunto solo per provare il both payment
+                System.out.println("mando UPDATES");
+                moreCoin++;
+            }
         }
 
         gameActions.rollDice();
         matchStarted = true;
-        gameActions.firstTurn(playerInTheMatch);
+        gameActions.firstPlayerTurn();
 
     }
 
     private void placeCardInTowers() {
         Tower[][] tower = board.getAllTowers();
         DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
-        int i,j;
+        int i, j;
         for (i = 0; i < Constants.NUMBER_OF_TOWERS; i++) {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 tower[i][j].setCardOnThisFloor(deck[i][0][j]);
@@ -250,7 +290,7 @@ public class Room {
         ExcommunicationZone[] zone = new ExcommunicationZone[Constants.PERIOD_NUMBER];
         Random r = new Random();
         int rand;
-        for (int i = 0; i< Constants.PERIOD_NUMBER;i++){
+        for (int i = 0; i < Constants.PERIOD_NUMBER; i++) {
             rand = r.nextInt(Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD);
             ExcommunicationTile ex = deck[i][rand];
             zone[i] = new ExcommunicationZone(ex);
@@ -320,8 +360,8 @@ public class Room {
 
     private DevelopmentCard[][][] shuffleDeck(DevelopmentCard[][][] deck) {
         Random rnd = ThreadLocalRandom.current();
-        for ( int j = 0; j < Constants.CARD_TYPE_NUMBER; j++) {
-            for ( int k = 0; k < Constants.PERIOD_NUMBER; k ++) {
+        for (int j = 0; j < Constants.CARD_TYPE_NUMBER; j++) {
+            for (int k = 0; k < Constants.PERIOD_NUMBER; k++) {
                 for (int i = Constants.CARD_FOR_EACH_PERIOD - 1; i > 0; i--) {
                     int index = rnd.nextInt(i + 1);
                     DevelopmentCard card = deck[j][k][index];
@@ -342,9 +382,46 @@ public class Room {
     }
 
     public void broadcastMessage(String afterGame) {
-        for ( PlayerHandler player : getListOfPlayers() ){
-            if ( player.isOn() )
+        for (PlayerHandler player : getListOfPlayers()) {
+            if (player.isOn())
                 player.sendString(afterGame);
         }
+    }
+
+    public String takeStatistics(String nickname) {
+        String currentFile;
+        Gson gson = new Gson();
+
+        try {
+            currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
+
+            System.out.println("Il file in questo momento è: " + currentFile);
+
+            PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
+
+            for (PlayerFile player : arrayPlayers)
+                if (player.getPlayerName().equals(nickname)) {
+                    String playerStat = gson.toJson(player);
+                    return playerStat;
+                }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String readFile(String path, Charset encoding)
+            throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
+    }
+
+    public PlayerHandler getLastPlayer() {
+        return lastPlayer;
+    }
+
+    public void setLastPlayer(PlayerHandler lastPlayer) {
+        this.lastPlayer = lastPlayer;
     }
 }

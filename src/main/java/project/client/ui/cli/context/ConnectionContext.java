@@ -22,7 +22,8 @@ public class ConnectionContext extends AbstractContext {
 
     @Override
     public void checkValidInput(String input) throws InputException {
-
+        if ( !(input.equals("socket") || input.equals("RMI")))
+            throw new InputException();
     }
 
     @Override

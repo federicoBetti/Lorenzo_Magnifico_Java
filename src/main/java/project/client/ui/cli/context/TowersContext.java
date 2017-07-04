@@ -4,11 +4,15 @@ import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
+import project.controller.cardsfactory.VenturesCard;
+import project.controller.cardsfactory.VenturesCost;
 import project.controller.effects.realeffects.Effects;
 import project.model.FamilyMember;
 import project.model.Tower;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -68,8 +72,21 @@ public class TowersContext extends AbstractContext {
 
                 pBlue.print("Floor: "); pRed.println( j );
                 pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
-                pBlue.print("Card cost: ");pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
-                pYellow.println("");
+
+                if ( allTowers[i][j].getCardOnThisFloor() instanceof VenturesCard ) {
+                    VenturesCard card = (VenturesCard) allTowers[i][j].getCardOnThisFloor();
+                    pBlue.print("Card cost: ");
+                    List<VenturesCost> costs = card.getPossibleCost();
+                    for ( VenturesCost cost : costs )
+                        pYellow.print(cost.toScreen() + " ");
+                    pYellow.println("");
+                }
+
+                else {
+                    pBlue.print("Card cost: ");
+                    pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
+                    pYellow.println("");
+                }
             }
         }
 

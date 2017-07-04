@@ -21,10 +21,12 @@ public abstract class PlayerHandler extends Player {
     private transient AllCheckFunctions checkFunctions;
     final static String NO_AbCTION_CAN_BE_DONE = "no action can be done";
     private LeaderCardRequirements leaderCardRequirements;
+    boolean callPray;
 
 
     protected PlayerHandler(){
         super();
+        callPray = false;
         leaderCardRequirements = new LeaderCardRequirements();
         checkFunctions = new BasicCheckFunctions();
     }
@@ -169,6 +171,9 @@ public abstract class PlayerHandler extends Player {
      */
 
     protected void harvester(FamilyMember familyM, int servantsNumber) throws CantDoActionException {
+        if ( servantsNumber > getPersonalBoardReference().getServants() )
+            throw new CantDoActionException();
+
         List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
         boolean canTakeCard;
         int position = firstFreePosition(harvesterZone, familyM.getFamilyColour());
@@ -280,10 +285,18 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     protected void playLeaderCard(String leaderName) throws CantDoActionException {
-        if (leaderCardRequirements.checkRequirements(leaderName,this))
-            gameActions().playLeaderCard(leaderName,this);
-        else
-            throw new CantDoActionException();
+        for (LeaderCard leaderCard : getPersonalBoardReference().getMyLeaderCard()) {
+            if (leaderCard.getName().equals(leaderName)) {
+                if (leaderCardRequirements.checkRequirements(leaderName, this)) {
+                    gameActions().playLeaderCard(leaderName, this);
+                    return;
+                }
+                else
+                    throw new CantDoActionException();
+            }
+
+        }
+        throw new CantDoActionException();
     }
 
     /**
@@ -381,7 +394,7 @@ public abstract class PlayerHandler extends Player {
 
     public void reconnectClient() {
         this.setOn(true);
-        System.out.println("Client reconnexted!");
+        System.out.println("CLIENT RECONNECTED!");
     }
 
 
@@ -443,6 +456,7 @@ public abstract class PlayerHandler extends Player {
 
     public void skipTurn(){
         this.waitForYourTurn();
+        room.setLastPlayer(this);
         room.getGameActions().nextTurn(this);
     }
 
@@ -468,4 +482,13 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int chooseTile(ArrayList<Tile> tiles);
 
+    public abstract void showStatistics();
+
+    public boolean isCallPray() {
+        return callPray;
+    }
+
+    public void setCallPray(boolean callPray) {
+        this.callPray = callPray;
+    }
 }

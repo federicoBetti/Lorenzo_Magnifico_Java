@@ -69,9 +69,7 @@ public class SocketClient extends AbstractClient {
                 System.out.println("IL MESSAGE é: " + message);
                 messageHandler.handleMessage(message);
 
-            } catch (IOException e) {
-
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
@@ -166,11 +164,17 @@ public class SocketClient extends AbstractClient {
     public void reconnect() {
         sendGenericObject(Constants.RECONNECT);
         createWaitingForYourTurnContext();
+        System.out.println("MANDATA RECONNECT");
     }
 
     @Override
     public void afterGame() {
+        clientSetter.afterGame();
+    }
 
+    @Override
+    public void showStatistic() {
+        sendGenericObject(Constants.SHOW_STATISTICS);
     }
 
 
@@ -294,6 +298,7 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void sendChoicePe(int input) {
+        sendGenericObject(Constants.ACTION_DONE_ON_TIME);
         sendGenericObject(input);
     }
 

@@ -304,4 +304,12 @@ public class ClientSetter {
     public void reconnect() {
         client.reconnect();
     }
+
+    public void afterGame() {
+        ui.afterGame();
+    }
+
+    public void showStatistic() {
+        client.showStatistic();
+    }
 }

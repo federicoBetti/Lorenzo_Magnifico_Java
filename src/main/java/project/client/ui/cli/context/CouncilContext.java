@@ -59,6 +59,7 @@ public class CouncilContext extends AbstractContext {
 
         if( !(parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0))))
             throw new InputException();
+
         if (!(Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) < 6 ))
             throw new InputException();
 

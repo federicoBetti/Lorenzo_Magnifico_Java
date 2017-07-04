@@ -246,7 +246,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void timerTurnDelayed() {
         sendString(Constants.TIMER_TURN_DELAYED);
-        setOn(false);
+        System.out.println("Il player è a : " + isOn());
     }
 
     @Override
@@ -290,12 +290,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             return (String) objectInputStream.readObject();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            setOn(false);
+            return "-1";
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return "-1";
     }
+
 
     @Override
     public int chooseTile(ArrayList<Tile> tiles) {
@@ -303,32 +305,32 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         sendString(Constants.TILE_DRAFT);
         try {
             objectOutputStream.writeObject(tiles.size());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (Tile tile : tiles) {
-            try {
+
+            for (Tile tile : tiles) {
+
                 objectOutputStream.writeObject(tile);
                 objectOutputStream.flush();
                 objectOutputStream.reset();
-            } catch (IOException e) {
-                e.printStackTrace();
+
             }
-        }
 
-
-        try {
             System.out.println("sono in attesa qui");
             Object choice = objectInputStream.readObject();
             System.out.println(choice.getClass());
             System.out.println("la scelta è " + choice);
             return (int) choice;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException e) {
+            setOn(false);
+            return -1;
         }
-        return 0;
+    }
+
+
+    @Override
+    public void showStatistics() {
+        String nickname = getName();
+        String statistics = getRoom().takeStatistics(nickname);
+        sendString(statistics);
     }
 
     @Override
@@ -343,7 +345,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
-            e.printStackTrace();
+            setOn(false);
         }
     }
 
@@ -380,7 +382,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         while (true) {
             try {
-                if (playerTurn.indexOf(this) == playerTurn.size() - 1) {
+                if (getRoom().getLastPlayer() == this) {
                     sendString(Constants.ASK_FOR_PRAYING_LAST_PLAYER);
                     int answer = (int) objectInputStream.readObject();
                     sendString(Constants.ACTION_DONE_ON_TIME);
@@ -411,6 +413,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     public void waitForPraying() {
         System.out.println("SBLOCCO LA READ SULLA PREGHIERA\n");
+        setCallPray(true);
         synchronized (token) {
             token.notify();
         }
@@ -455,6 +458,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.reset();
         } catch (IOException e) {
             System.out.println("errore invio su socket");
+            setOn(false);
         }
 
     }
@@ -483,9 +487,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.writeObject(kindOfChoice);
             objectOutputStream.flush();
             objectOutputStream.reset();
-
             String choiceS = (String) objectInputStream.readObject();
-            choice = Integer.parseInt(choiceS);
+            System.out.println("la scelta è: " + choiceS);
+            if (choiceS.equals(Constants.ACTION_DONE_ON_TIME))
+                choice = (int) objectInputStream.readObject();
+            if (choiceS.equals(Constants.EXIT))
+                return choice;
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -548,7 +556,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                         return;
 
                     case Constants.BONUS_PRODUCTION:
-                        intServantsNumber = Integer.parseInt((String) objectInputStream.readObject());
                         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
                         doBonusProduct(returnFromEffect, cards);
                         break;
@@ -584,7 +591,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         try {
             String message = (String) objectInputStream.readObject();
-            if ( message.equals(Constants.ACTION_DONE_ON_TIME)) {
+            if (message.equals(Constants.ACTION_DONE_ON_TIME)) {
 
                 for (int count = 0; count < returnFromEffect.getQuantityOfDifferentPrivileges(); count++) {
                     int privilegeNumber = 0;
@@ -593,7 +600,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                     System.out.println();
                     takePrivilege(privilegeNumber);
                 }
-            } else if ( message.equals(Constants.EXIT ))
+            } else if (message.equals(Constants.EXIT))
                 return;
 
         } catch (IOException | ClassNotFoundException e) {

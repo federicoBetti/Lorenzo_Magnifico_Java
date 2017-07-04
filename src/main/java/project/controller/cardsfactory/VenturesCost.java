@@ -3,7 +3,7 @@ package project.controller.cardsfactory;
 import java.io.Serializable;
 
 /**
- * 
+ *
  */
 public class VenturesCost implements Cost, Serializable {
 
@@ -22,17 +22,32 @@ public class VenturesCost implements Cost, Serializable {
 
 
     public VenturesCost() {
-        //da fare
+
     }
 
 
     @Override
     public String toScreen() {
-        return "Stone required: " + stoneRequired +
-                "Wood required: " + woodRequired +
-                "Coins required: " + coinsRequired +
-                "Military points required: " + militaryRequired +
-                "Military points to pay: " + militaryCost;
+        String toScreen = "";
+
+        if (stoneRequired != 0)
+            toScreen += "Stone required: " + stoneRequired;
+
+        if (woodRequired != 0)
+            toScreen += " Wood required: " + woodRequired;
+
+        if (coinsRequired != 0)
+            toScreen += " Coins required: " + coinsRequired;
+
+        if (militaryRequired == 0)
+            return toScreen;
+
+            toScreen += " or you can pay Military points required: " + militaryRequired;
+
+        if (militaryCost != 0)
+            toScreen += " Military points to pay: " + militaryCost;
+
+        return toScreen;
     }
 
     @Override
@@ -72,7 +87,6 @@ public class VenturesCost implements Cost, Serializable {
     public void picoDellaMirandolaDowngrade() {
         coinsRequired -= 3;
     }
-
 
 
     @Override
