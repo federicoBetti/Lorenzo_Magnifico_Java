@@ -197,7 +197,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
 
-
     @Override
     public void takeMarketAction(int position) {
         takeFromMarket.get((Integer)position).takeMarketAction();

@@ -35,9 +35,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ServerDataHandler serverDataHandler;
     final Object token;
     final Object token1;
+    private boolean firstConnection;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
+        firstConnection = true;
         token = new Object();
         token1 = new Object();
         this.setOn(true);
@@ -69,17 +71,20 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             System.out.println("the client wants to do " + object);
             serverDataHandler.handleRequest(object);
 
-
-            synchronized (token) {
-                try {
-                    token.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            if (firstConnection) {
+                synchronized (token) {
+                    System.out.println(this.getName() + " WAIT");
+                    try {
+                        token.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+            System.out.println(this.getName() + " WAITTT");
 
             while (true) {
-                System.out.println("SONO NEL WHILE TRUE. PLAYER: " + this);
+                System.out.println("SONO NEL WHILE TRUE. PLAYER: " + this.getName());
                 object = objectInputStream.readObject();
                 System.out.println(object);
                 System.out.println("the client wants to do " + object);
@@ -343,11 +348,17 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
+    public void tokenNotify() {
+        firstConnection = false;
+    }
+
+    @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
             synchronized (token) {
                 token.notify();
             }
+            System.out.println(this.getName() + " SVEGLIATO");
             objectOutputStream.writeObject(Constants.MATCH_STARTED);
             objectOutputStream.writeObject(roomPlayers);
             objectOutputStream.writeObject(familyColour);

@@ -393,6 +393,11 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     }
 
+    @Override
+    public void tokenNotify() {
+
+    }
+
 
     @Override
     public void sendString(String message) {

@@ -25,6 +25,13 @@ public class VenturesCard extends DevelopmentCard implements Serializable{
 
     }
 
+    /**
+     * for testing
+     */
+    public VenturesCard(){
+        //for testing
+    }
+
 
     @Override
     public void addToPersonalBoard(PersonalBoard personalBoardReference) {

@@ -118,8 +118,13 @@ public class TowersContext extends AbstractContext {
         if(!( parameters.length == 3 ))
             throw new InputException();
 
-        if (!(Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3) )
+        try {
+            if (!(Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3))
+                throw new InputException();
+        }
+        catch (NumberFormatException e){
             throw new InputException();
+        }
 
     }
 

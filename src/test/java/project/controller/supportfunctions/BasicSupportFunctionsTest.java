@@ -2,6 +2,7 @@ package project.controller.supportfunctions;
 
 import com.google.gson.Gson;
 import org.junit.Test;
+import project.controller.cardsfactory.BuildingCard;
 import project.controller.cardsfactory.CharacterCard;
 import project.controller.cardsfactory.TerritoryCard;
 import project.controller.cardsfactory.VenturesCard;
@@ -124,7 +125,31 @@ public class BasicSupportFunctionsTest {
 
     @Test
     public void placeCardInPersonalBoard() throws Exception {
+
+        BuildingCard card = new BuildingCard();
+        BasicSupportFunctions bsf = new BasicSupportFunctions();
+        PlayerHandler player = new SocketPlayerHandler();
+        PersonalBoard personalBoard = new PersonalBoard();
+        player.setPersonalBoardReference(personalBoard);
+        bsf.setPlayer(player);
+        bsf.placeCardInPersonalBoard(card);
+
+        assertEquals(card, personalBoard.getBuildings().get(personalBoard.getBuildings().size() - 1 ));
+
+        VenturesCard venturesCard = new VenturesCard();
+        bsf.placeCardInPersonalBoard(venturesCard);
+
+        assertEquals(venturesCard, personalBoard.getVentures().get(personalBoard.getBuildings().size() - 1 ));
+
+        CharacterCard characterCard = new CharacterCard();
+        bsf.placeCardInPersonalBoard(characterCard);
+        assertEquals(characterCard, personalBoard.getCharacters().get(personalBoard.getBuildings().size() - 1 ));
+
+        TerritoryCard territoryCard = new TerritoryCard();
+        bsf.placeCardInPersonalBoard(territoryCard);
+        assertEquals(territoryCard, personalBoard.getTerritories().get(personalBoard.getBuildings().size() - 1 ));
     }
+
 
     @Test
     public void setDicesValue() throws Exception {

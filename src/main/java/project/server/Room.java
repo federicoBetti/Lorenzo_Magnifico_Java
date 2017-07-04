@@ -424,4 +424,12 @@ public class Room {
     public void setLastPlayer(PlayerHandler lastPlayer) {
         this.lastPlayer = lastPlayer;
     }
+
+    public Map<Player, AllSupportFunctions> getPlayerAllSupportFunctionsMap() {
+        return playerAllSupportFunctionsMap;
+    }
+
+    public void setPlayerAllSupportFunctionsMap(Map<Player, AllSupportFunctions> playerAllSupportFunctionsMap) {
+        this.playerAllSupportFunctionsMap = playerAllSupportFunctionsMap;
+    }
 }

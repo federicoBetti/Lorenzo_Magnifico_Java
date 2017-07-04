@@ -60,7 +60,7 @@ public class MarketContext extends AbstractContext {
             throw new InputException();
         }
 
-        if( !(parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0)))) {
+        if( !(parameters[0].length() == 1) && !(Character.isDigit(parameters[0].charAt(0)))) {
             throw new InputException();
         }
         if( cli.getNumberOfPlayers() < 4 ) {
