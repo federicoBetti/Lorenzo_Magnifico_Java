@@ -68,7 +68,7 @@ public class ProductionContext extends AbstractContext {
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             pYellow.println(entry.getKey());
 
-        pBlue.println("[positionInBuildingZone(int)-familiarColour-buildingCard-...(max 6 buildingCard in your personal board]");
+        pBlue.println("[familiarColour-buildingCard-...(max 6 buildingCard in your personal board]");
         pRed.print("familiarColour: ");
         for (FamilyMember familyMember : cli.getMyFamilymembers() ){
             if ( !familyMember.isPlayed() )
@@ -81,6 +81,7 @@ public class ProductionContext extends AbstractContext {
 
     @Override
     public void checkValidInput(String input) throws InputException {
+        boolean cardAvailable = false;
         String[] parameters = input.split("-");
 
         if ( !(parameters.length < 7))
@@ -88,12 +89,17 @@ public class ProductionContext extends AbstractContext {
 
         checkFamilyMemberColour(parameters[0]);
 
-        for ( int i = 0; i < buildings.size(); i++ )
-            for ( int j = 1; j < parameters.length; j++ )
-                if ( buildings.get(i).getName().equals(parameters[j])) {
-                    return;
+        for ( int j = 1; j < parameters.length; j++  ) {
+            for (int i = 0; i < buildings.size(); i++) {
+                if (buildings.get(i).getName().equals(parameters[j])) {
+                    cardAvailable = true;
+                    break;
                 }
-        throw new InputException();
+            }
+            if (!cardAvailable )
+                throw new InputException();
+            cardAvailable = false;
+        }
     }
 
     @Override

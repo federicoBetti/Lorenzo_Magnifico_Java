@@ -174,17 +174,31 @@ public class Room {
             System.out.println("inizio richiest giro di leader");
             ListIterator<ArrayList<LeaderCard>> leaderIterator = listsForDraft.listIterator();
             ListIterator<PlayerHandler> playerIterator = playerInTheMatch.listIterator();
+            String leaderName = null;
 
             while (leaderIterator.hasNext() && playerIterator.hasNext()) {
                 PlayerHandler player = playerIterator.next();
                 ArrayList<LeaderCard> leaders = leaderIterator.next();
                 System.out.println("mando scelta carta leader");
-                String leaderName = player.leaderCardChosen(leaders);
-                LeaderCard leaderToAdd = getLeader(leaderName, leaders);
-                System.out.println("ho messo carta leader: " + leaderName + "    nel giocatore");
+                if ( player.isOn() ) {
+                    leaderName = player.leaderCardChosen(leaders);
 
-                player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
-                leaders.remove(leaderToAdd);
+                    if ( leaderName.equals("-1")){
+                        player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
+                        System.out.println("Sono disconnesso e piglio primoooo: " +leaders.get(0).getName());
+                        leaders.remove(leaders.get(0));
+                        continue;
+                    }
+
+                    LeaderCard leaderToAdd = getLeader(leaderName, leaders);
+                    System.out.println("ho messo carta leader: " + leaderName + "    nel giocatore");
+                    player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
+                    leaders.remove(leaderToAdd);
+                }
+                else {
+                    player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
+                    leaders.remove(leaders.get(0));
+                }
             }
             listsForDraft = shiftLeaderList(listsForDraft);
         }
@@ -198,20 +212,35 @@ public class Room {
 
         while (iterator.hasPrevious()) {
             PlayerHandler p = iterator.previous();
-            int tileId = p.chooseTile(tiles);
-            System.out.println("ha scelto la tile numero " + tileId);
-            Tile tile = getTrueTile(tileId, tiles);
-            p.getPersonalBoardReference().setMyTile(tile);
-            tiles.remove(tile);
+            if (p.isOn()) {
+                int tileId = p.chooseTile(tiles);
+                if (tileId == -1) {
+                    System.out.println("Sono disconnesso è piglio la prima tile che capita");
+                    p.getPersonalBoardReference().setMyTile(tiles.get(0));
+                    tiles.remove(tiles.get(0));
+                    continue;
+                }
+
+                System.out.println("ha scelto la tile numero " + tileId);
+                Tile tile = getTrueTile(tileId, tiles);
+                p.getPersonalBoardReference().setMyTile(tile);
+                tiles.remove(tile);
+            } else {
+                p.getPersonalBoardReference().setMyTile(tiles.get(0));
+                tiles.remove(tiles.get(0));
+            } //todo vedere qua perchè non fa partire partita
         }
 
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {
-            p.matchStarted(getRoomPlayers(), p.getFamilyColour());
+            if (p.isOn()) {
+                p.matchStarted(getRoomPlayers(), p.getFamilyColour());
+                System.out.println("mando MATCH STARTED");
+            }
         }
 
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -223,21 +252,22 @@ public class Room {
             int fauthPoint = 3;
             p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 10);
             p.getScore().setFaithPoints(fauthPoint);
-            p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
-            p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
-            p.sendUpdates(new MarketUpdate(board, p.getName()));
-            p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
-            p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
-            p.sendUpdates(new ScoreUpdate(p, p.getName()));
-            //todo cancellare: aggiunto solo per provare il both payment
-
-            fauthPoint--;
-            moreCoin++;
+            if ( p.isOn() ) {
+                p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
+                p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
+                p.sendUpdates(new MarketUpdate(board, p.getName()));
+                p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
+                p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
+                p.sendUpdates(new ScoreUpdate(p, p.getName()));
+                //todo cancellare: aggiunto solo per provare il both payment
+                System.out.println("mando UPDATES");
+                moreCoin++;
+            }
         }
 
         gameActions.rollDice();
         matchStarted = true;
-        gameActions.firstTurn(playerInTheMatch);
+        gameActions.firstPlayerTurn();
 
     }
 

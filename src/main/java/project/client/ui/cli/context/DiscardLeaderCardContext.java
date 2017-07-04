@@ -3,17 +3,21 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.controller.cardsfactory.LeaderCard;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by raffaelebongo on 08/06/17.
  */
 public class DiscardLeaderCardContext extends AbstractContext {
+    List<LeaderCard> leaderCards;
 
-    public DiscardLeaderCardContext(Cli cli) {
+    public DiscardLeaderCardContext(Cli cli, List<LeaderCard> leaderCards ) {
         super(cli);
+        this.leaderCards = leaderCards;
         map.put(CliConstants.SHOW_LEADER_CARDS, this:: showLeaderCards );
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp);
@@ -22,7 +26,12 @@ public class DiscardLeaderCardContext extends AbstractContext {
 
     //todo implement
     private void showLeaderCards() {
-
+        for ( LeaderCard leaderCard : leaderCards ) {
+            pRed.println(leaderCard.getName());
+            pBlue.print("Requirements: ");pYellow.println(leaderCard.getRequirementsDescription());
+            pBlue.print("Effect Description:");pYellow.println(leaderCard.getCardDescription());
+            pYellow.println("");
+        }
     }
 
     @Override

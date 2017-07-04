@@ -34,14 +34,14 @@ public class ChoicePeContext extends AbstractContext {
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length > 1 ))
+        if( !(parameters.length == 1) )
             throw new InputException();
 
         if( !(Character.isDigit(parameters[0].charAt(0))))
             throw new InputException();
-        if (Integer.parseInt(parameters[0]) < 0 && Integer.parseInt(parameters[0]) > 1 )
-            throw new InputException();
 
+        if (!(Integer.parseInt(parameters[0]) == 0 || Integer.parseInt(parameters[0]) == 1) )
+            throw new InputException();
     }
 
     @Override

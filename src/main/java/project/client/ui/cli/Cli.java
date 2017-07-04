@@ -15,6 +15,7 @@ import project.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -33,7 +34,6 @@ public class Cli extends AbstractUI {
     private boolean firstRound;
     FamilyMember[] myFamilymembers;
     private volatile BlockingDeque<String> choiceQueue;
-    Tile bonusTile;
     boolean timerDelayed;
 
 
@@ -80,15 +80,15 @@ public class Cli extends AbstractUI {
         context = new MainContext(this);
     }
 
-    public void actionOk() {
-        if ( context instanceof TimerDelayedContext ) {
+    public void actionOk( ) {
+        if (context instanceof TimerDelayedContext) {
             return;
         }
 
         if (context instanceof WaitingForYourTurnContext)
             return;
 
-        context = new AfterMainActionContext(this);
+        context = new AfterMainActionContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
     public void cantDoAction() {
@@ -128,22 +128,22 @@ public class Cli extends AbstractUI {
 
     @Override
     public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) {
-        context = new BonusProductionContext(bonusProd, this);
+        context = new BonusProductionContext(bonusProd, this, clientSetter.getUiPersonalBoard().getBuildings());
     }
 
     public void bonusProductionParameters(String lineFromKeyBoard) {
         try {
             context.checkValidInput(lineFromKeyBoard);
+            String[] parameters = lineFromKeyBoard.split("-");
+
+            List<String> buildingCards = new ArrayList<>();
+            Collections.addAll(buildingCards, parameters);
+
+            clientSetter.bonusProductionAction(buildingCards);
         } catch (InputException e) {
-            e.printStackTrace();
+            context.printHelp();
         }
-        String[] parameters = lineFromKeyBoard.split("-");
 
-        List<String> buildingCards = new ArrayList<>();
-        for (String buildingCard : parameters)
-            buildingCards.add(buildingCard);
-
-        clientSetter.bonusProductionAction(buildingCards);
     }
 
     public void takeBonusCardParameters(String input) throws InputException {
@@ -173,7 +173,7 @@ public class Cli extends AbstractUI {
     }
 
     public void harvester() {
-        context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), bonusTile);
+        context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), clientSetter.getUiPersonalBoard().getMyTile());
     }
 
     public void goToCouncil() {
@@ -181,7 +181,7 @@ public class Cli extends AbstractUI {
     }
 
     public void production() {
-        context = new ProductionContext(this, clientSetter.getUiBoard().getProductionZone(), bonusTile, clientSetter.getUiPersonalBoard().getBuildings());
+        context = new ProductionContext(this, clientSetter.getUiBoard().getProductionZone(), clientSetter.getUiPersonalBoard().getMyTile(), clientSetter.getUiPersonalBoard().getBuildings());
     }
 
     public void leaderCardContext() {
@@ -189,7 +189,7 @@ public class Cli extends AbstractUI {
     }
 
     public void discardLeaderCardContext() {
-        context = new DiscardLeaderCardContext(this);
+        context = new DiscardLeaderCardContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
     public void marketContext() {
@@ -229,26 +229,27 @@ public class Cli extends AbstractUI {
 
             }
             //praying interrupted
-            else if (context instanceof ExcomunicationContext ) {
+            else if (context instanceof ExcomunicationContext) {
                 choiceQueue.add("1");
                 context = new TimerDelayedContext(this);
                 System.out.println("SONO IN EX CONTEXT");
                 return;
-            }
-
-            else if (context instanceof BothPaymentsVentureCardsContext) {
+            } else if (context instanceof BothPaymentsVentureCardsContext) {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, 1 + 1);
                 choiceQueue.add(String.valueOf(randomNum));
                 context = new TimerDelayedContext(this);
                 return;
-            }
-
-            else if ( context instanceof ImmediatePriviledgesContext ){
+            } else if (context instanceof ImmediatePriviledgesContext) {
                 clientSetter.sendExitToBonusAction();
-            }
 
-            else if ( context instanceof ChoicePeContext )
+            } else if (context instanceof ChoicePeContext) {
                 sendExitToBonusAction();
+
+            } else if ( context instanceof LeaderCardDraftContext || context instanceof TileDraftContext ) {
+                choiceQueue.add("-1");
+                context = new TimerDelayedContext(this);
+                return;
+            }
 
         } catch (InputException e) {
             e.printStackTrace();
@@ -302,76 +303,89 @@ public class Cli extends AbstractUI {
 
     @Override
     public void setConnectionType(String kindOfConnection) {
-        clientSetter.setConnectionType(kindOfConnection);
+
+        try {
+            context.checkValidInput(kindOfConnection);
+            clientSetter.setConnectionType(kindOfConnection);
+        } catch (InputException e) {
+            context.printHelp();
+        }
+
+
     }
 
     public void choseAndTakeDevCard(String lineFromKeyBoard) {
 
         try {
             context.checkValidInput(lineFromKeyBoard);
+            String[] parameters = lineFromKeyBoard.split("-");
+            clientSetter.takeDevCard(parameters[0], Integer.parseInt(parameters[1]), parameters[2]);
         } catch (InputException e) {
             context.printHelp();
-            return;
         }
-        String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.takeDevCard(parameters[0], Integer.parseInt(parameters[1]), parameters[2]);
+
 
     }
 
     //todo aggiustare come parametri giusti la chiamata
     public void chooseProductionParameters(String lineFromKeyBoard) {
+
         try {
             context.checkValidInput(lineFromKeyBoard);
+            String[] parameters = lineFromKeyBoard.split("-");
+            List<String> buildingCards = new ArrayList<>();
+            for (int i = 1; i < parameters.length; i++)
+                buildingCards.add(parameters[i]);
+
+            clientSetter.productionAction(parameters[0], buildingCards);
         } catch (InputException e) {
             context.printHelp();
-            return;
         }
-        String[] parameters = lineFromKeyBoard.split("-");
-        List<String> buildingCards = new ArrayList<>();
-        for (int i = 1; i < parameters.length; i++)
-            buildingCards.add(parameters[i]);
 
-        clientSetter.productionAction(parameters[0], buildingCards);
     }
 
     public void chooseHarversterParameters(String lineFromKeyBoard) {
         try {
             context.checkValidInput(lineFromKeyBoard);
+            String[] parameters = lineFromKeyBoard.split("-");
+            clientSetter.harvesterAction(parameters[0], Integer.parseInt(parameters[1]));
         } catch (InputException e) {
             context.printHelp();
-            return;
         }
-        String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.harvesterAction(parameters[0], Integer.parseInt(parameters[1]));
+
     }
 
     public void chooseMarketActionParameters(String lineFromKeyBoard) {
 
         try {
             context.checkValidInput(lineFromKeyBoard);
+            String[] parameters = lineFromKeyBoard.split("-");
+            clientSetter.marketAction(Integer.parseInt(parameters[0]), parameters[1]);
         } catch (InputException e) {
             context.printHelp();
-            return;
         }
-
-        String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.marketAction(Integer.parseInt(parameters[0]), parameters[1]);
     }
 
     public void chooseCouncilParameters(String lineFromKeyBoard) {
 
         try {
             context.checkValidInput(lineFromKeyBoard);
+            String[] parameters = lineFromKeyBoard.split("-");
+            clientSetter.councilAction(Integer.parseInt(parameters[0]), parameters[1]);
         } catch (InputException e) {
             context.printHelp();
-            return;
         }
-        String[] parameters = lineFromKeyBoard.split("-");
-        clientSetter.councilAction(Integer.parseInt(parameters[0]), parameters[1]);
+
     }
 
     public void chooseLeaderCardToPlay(String action) {    //todo va controllato sul server
-        clientSetter.playLeaderCard(action);
+        try {
+            context.checkValidInput(action);
+            clientSetter.playLeaderCard(action);
+        } catch (InputException e) {
+            context.printHelp();
+        }
+
     }
 
     public void discardLeaderCard(String name) {    //todo va controllato sul server
@@ -449,13 +463,12 @@ public class Cli extends AbstractUI {
     }
 
     public void discardLeaderCardAma() {
-        context = new DiscardLeaderCardAmaContext(this);
+        context = new DiscardLeaderCardAmaContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
-    public void playLeaderCardAma() {
-        context = new PlayLeadercardAmaContext(this);
+    public void playLeaderCardAma(List<LeaderCard> leaderCards ) {
+        context = new PlayLeadercardAmaContext(this, leaderCards);
     }
-
 
 
     @Override
@@ -468,11 +481,13 @@ public class Cli extends AbstractUI {
         while (true) {
             try {
                 prayOrNot = choiceQueue.take();
-                //context.checkValidInput(prayOrNot);
+                context.checkValidInput(prayOrNot);
                 choice = false;
                 return Integer.parseInt(prayOrNot);
             } catch (InterruptedException e) {
                 System.out.println("sono in eccezione");
+            } catch (InputException e) {
+                context.printHelp();
             }
         }
     }
@@ -485,19 +500,21 @@ public class Cli extends AbstractUI {
 
 
         String costChoosen;
-            while (true) {
-                try {
+        while (true) {
+            try {
 
                 costChoosen = choiceQueue.take();
                 System.out.println("cost choosen è: " + costChoosen);
-                //context.checkValidInput(costChoosen);
+                context.checkValidInput(costChoosen);
                 choice = false;
                 System.out.println("preso e chiamo giu dal both payment 1");
                 return Integer.parseInt(costChoosen);
 
             } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                e.printStackTrace();
+            } catch (InputException e) {
+               context.printHelp();
+            }
         }
     }
 
@@ -511,21 +528,26 @@ public class Cli extends AbstractUI {
             try {
                 cardChoosen = choiceQueue.take();
                 context.checkValidInput(cardChoosen);
-                break;
+                choice = false;
+                return cardChoosen;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InputException e) {
                 context.printHelp();
             }
         }
-        choice = false;
-        return cardChoosen;
+
     }
 
-    public void bonusHarvesterParameters(String input) throws InputException {
-        context.checkValidInput(input);
-        String[] parameters = input.split("-");
-        clientSetter.bonusHarvesterAction(Integer.parseInt(parameters[0]));
+    public void bonusHarvesterParameters(String input) {
+        try {
+            context.checkValidInput(input);
+            String[] parameters = input.split("-");
+            clientSetter.bonusHarvesterAction(Integer.parseInt(parameters[0]));
+        } catch (InputException e) {
+            context.printHelp();
+        }
+
 
     }
 
@@ -562,10 +584,6 @@ public class Cli extends AbstractUI {
             }
         }
 
-        for (Tile tile : tiles)
-            if (tile.getTileNumber() == Integer.parseInt(tileChosen))
-                bonusTile = tile;
-
         choice = false;
         context.getpBlue().println("Bonus Tile choosen! Wait for the other players'choice");
         return Integer.parseInt(tileChosen);
@@ -592,8 +610,6 @@ public class Cli extends AbstractUI {
     public void notifyPlayer(Notify notify) {
         context.getpBlue().println(notify.toScreen());
     }
-
-
 
 
     @Override

@@ -21,8 +21,8 @@ public class TerritoryCost implements Cost, Serializable {
     @Override
     public String toScreen() {
         return "Wood required: " + woodRequired +
-                "Stone required: " + stoneRequired +
-                "Dice value required: " + diceCost;
+                " Stone required: " + stoneRequired +
+                " Dice value required: " + diceCost;
     }
 
     public int getWoodRequired() {

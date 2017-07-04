@@ -3,7 +3,6 @@ package project.client;
 import com.diogonunes.jcdp.color.api.Ansi;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.ClientSetter;
-import project.client.ui.cli.InputException;
 
 import java.io.IOException;
 
@@ -14,7 +13,8 @@ class Launcher {
 
     //todo completare
     private int x;
-    public Launcher(int x){
+
+    public Launcher(int x) {
         this.x = x;
     }
 
@@ -29,25 +29,32 @@ class Launcher {
         while (true) {
             p.println("1: CLI");
             p.println("2: GUI");
-            int choice = 0;
+            String choice = null;
+            int choiceNum = 0;
             try {
-                choice = Integer.parseInt(keyboard.readLine());
+                choice = keyboard.readLine();
+
+                for (int i = 0; i < choice.length(); i++)
+                    if (!(Character.isDigit(choice.charAt(i))))
+                        continue;
+
+                choiceNum = Integer.parseInt(choice);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            switch (choice) {
-                    case 1:
-                        return "CLI";
-                    case 2:
-                        return "GUI";
-                    default:
-                        throw new NumberFormatException("Not a valid choice");
-                }
+            switch (choiceNum) {
+                case 1:
+                    return "CLI";
+                case 2:
+                    return "GUI";
+                default:
+
+            }
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new ClientSetter(selectUi());
     }
 

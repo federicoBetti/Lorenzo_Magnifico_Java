@@ -194,6 +194,7 @@ public class ClientSetter {
 
     public synchronized void personalBoardUpdate(Updates update) {
         uiPersonalBoard = update.doUpdate(uiPersonalBoard);
+        System.out.println(uiPersonalBoard.getMyTile().getTileNumber());
         ui.personalBoardUpdate(update);
     }
 

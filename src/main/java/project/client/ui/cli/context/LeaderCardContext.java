@@ -31,13 +31,19 @@ public class LeaderCardContext extends AbstractContext {
             pYellow.println(entry.getKey());
 
         pRed.println("The main action is:");
-        pYellow.print("Chose the "); pRed.print("[leaderCardName] ");pYellow.println("that you want to play.");
+        pYellow.print("Choose the "); pRed.print("[leaderCardName] ");pYellow.println("that you want to play.");
 
     }
 
     @Override
     public void checkValidInput(String input) throws InputException {
-
+        boolean cardExist = false;
+        for ( LeaderCard card : myLeadersCard ){
+            if ( card.getName().equals(input))
+                cardExist = true;
+        }
+        if ( !cardExist )
+            throw new InputException();
     }
 
     private void showLeaderCards() {

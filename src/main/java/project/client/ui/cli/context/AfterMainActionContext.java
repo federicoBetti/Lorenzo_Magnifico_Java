@@ -4,17 +4,21 @@ import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
+import project.controller.cardsfactory.LeaderCard;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by raffaelebongo on 16/06/17.
  */
 public class AfterMainActionContext extends AbstractContext {
+    List<LeaderCard> leaderCards;
 
-    public AfterMainActionContext(Cli cli) {
+    public AfterMainActionContext(Cli cli, List<LeaderCard> leaderCards) {
         super(cli);
+        this.leaderCards = leaderCards;
         map.put(Constants.SKIP_TURN, this::skipTurn );
         map.put(Constants.PLAY_LEADER_CARD_AMA, this:: playLeaderCardAma );
         map.put(Constants.DISCARD_LEADER_CARD_AMA, this:: discardLeaderCardAma );
@@ -31,7 +35,7 @@ public class AfterMainActionContext extends AbstractContext {
     }
 
     private void playLeaderCardAma() {
-        cli.playLeaderCardAma();
+        cli.playLeaderCardAma(leaderCards);
     }
 
     private void skipTurn() {
@@ -52,7 +56,6 @@ public class AfterMainActionContext extends AbstractContext {
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-        System.out.println();
         printHelp();
     }
 }

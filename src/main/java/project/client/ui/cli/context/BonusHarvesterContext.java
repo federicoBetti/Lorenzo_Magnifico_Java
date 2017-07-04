@@ -11,8 +11,6 @@ import java.util.Map;
  * Created by raffaelebongo on 15/06/17.
  */
 
-
-//serve oppure non va scelto nulla??? cioè non si possono aggiungere schiavi in sostanza? chiedere
 public class BonusHarvesterContext extends AbstractContext {
     private BonusProductionOrHarvesterAction bonusHarv;
 
@@ -40,8 +38,10 @@ public class BonusHarvesterContext extends AbstractContext {
         if(!( parameters.length == 1 ))
             throw new InputException();
 
-        if( parameters[1].length() == 1 && Character.isDigit(parameters[1].charAt(0)))
-            throw new InputException();
+        for ( int i = 0; i < parameters[0].length(); i++ ) {
+                if (!Character.isDigit(parameters[0].charAt(i)))
+                    throw new InputException();
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="ancora" prefHeight="974.0" prefWidth="570.0" style="-fx-background-image: url('/images/immaginiSetUp/login.jpg'); -fx-background-repeat: stretch; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.InitialLogin">
+<AnchorPane id="ancora" prefHeight="850.0" prefWidth="570.0" style="-fx-background-image: url('/images/immaginiSetUp/login.jpg'); -fx-background-repeat: stretch; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.InitialLogin">
    <children>
       <ImageView id="cornicedestra" fitHeight="157.0" fitWidth="200.0" layoutX="50.0" layoutY="768.0" style="-fx-rotate: 0;">
          <image>

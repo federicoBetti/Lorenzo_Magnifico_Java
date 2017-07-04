@@ -171,6 +171,9 @@ public abstract class PlayerHandler extends Player {
      */
 
     protected void harvester(FamilyMember familyM, int servantsNumber) throws CantDoActionException {
+        if ( servantsNumber > getPersonalBoardReference().getServants() )
+            throw new CantDoActionException();
+
         List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
         boolean canTakeCard;
         int position = firstFreePosition(harvesterZone, familyM.getFamilyColour());
@@ -282,10 +285,18 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     protected void playLeaderCard(String leaderName) throws CantDoActionException {
-        if (leaderCardRequirements.checkRequirements(leaderName,this))
-            gameActions().playLeaderCard(leaderName,this);
-        else
-            throw new CantDoActionException();
+        for (LeaderCard leaderCard : getPersonalBoardReference().getMyLeaderCard()) {
+            if (leaderCard.getName().equals(leaderName)) {
+                if (leaderCardRequirements.checkRequirements(leaderName, this)) {
+                    gameActions().playLeaderCard(leaderName, this);
+                    return;
+                }
+                else
+                    throw new CantDoActionException();
+            }
+
+        }
+        throw new CantDoActionException();
     }
 
     /**

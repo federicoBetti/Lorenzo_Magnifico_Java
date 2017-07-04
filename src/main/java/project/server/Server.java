@@ -132,6 +132,7 @@ public class Server {
                 }
 
                 player.loginSucceded();
+                player.matchStarted(room.getRoomPlayers(), player.getFamilyColour());
                 return;
 
             }
