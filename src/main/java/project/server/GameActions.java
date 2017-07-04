@@ -359,7 +359,7 @@ public class GameActions {
         List<PlayerHandler> oldTurnOrder = board.getTurn().getPlayerTurn();
 
         for (Council council : councilZone) {
-            PlayerHandler player = council.findPlayer(board, council.getFamiliarOnThisPosition().getFamilyColour());
+            PlayerHandler player = council.findPlayer(room.getListOfPlayers());
             if (!newTurnOrder.contains(player)) {
                 newTurnOrder.add(player);
             }

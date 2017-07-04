@@ -13,6 +13,10 @@ public class CharactersCost implements Cost, Serializable {
         //da fare
     }
 
+    public CharactersCost(int coinsRequired) {
+        this.coinsRequired = coinsRequired;
+    }
+
     public int getCoinsRequired() {
         return coinsRequired;
     }
@@ -29,7 +33,7 @@ public class CharactersCost implements Cost, Serializable {
 
     @Override
     public Cost copyOf() {
-        return null;
+        return new CharactersCost(coinsRequired);
     }
 
 

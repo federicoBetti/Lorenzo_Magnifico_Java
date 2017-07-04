@@ -39,10 +39,18 @@ public class RMIPlayerHandler extends PlayerHandler {
     private int prayingChoice;
     private int paymentMethodChosen;
 
-    RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
+    protected RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
         this.myClient = rmiServerToClientInterface;
         bonusType = new HashMap<>(4);
         fillHashMapBonusType();
+        tokenn = new Object();
+    }
+
+    /**
+     * constructur used for testing
+     */
+    public RMIPlayerHandler() {
+
         tokenn = new Object();
     }
 

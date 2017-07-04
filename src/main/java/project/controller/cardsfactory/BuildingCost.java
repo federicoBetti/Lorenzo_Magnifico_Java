@@ -14,7 +14,7 @@ public class BuildingCost extends TerritoryCost implements Serializable {
     public BuildingCost() {
     }
 
-    public BuildingCost(int coinsRequired, int servantRequired) {
+    public BuildingCost(int coinsRequired, int servantRequired, int woodRequired, int stoneRequired, int diceCost) {
         super(woodRequired,stoneRequired,diceCost);
         this.coinsRequired = coinsRequired;
         this.servantRequired = servantRequired;
@@ -40,7 +40,7 @@ public class BuildingCost extends TerritoryCost implements Serializable {
 
     @Override
     public Cost copyOf() {
-        return new BuildingCost(coinsRequired, servantRequired);
+        return new BuildingCost(coinsRequired, servantRequired, woodRequired, stoneRequired, diceCost);
     }
 
 

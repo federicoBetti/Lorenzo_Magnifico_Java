@@ -25,6 +25,14 @@ public class VenturesCost implements Cost, Serializable {
 
     }
 
+    public VenturesCost(int stoneRequired, int woodRequired, int coinsRequired, int militaryRequired, int militaryCost) {
+        this.stoneRequired = stoneRequired;
+        this.woodRequired = woodRequired;
+        this.coinsRequired = coinsRequired;
+        this.militaryCost = militaryCost;
+        this.militaryRequired = militaryRequired;
+    }
+
 
     @Override
     public String toScreen() {
@@ -52,7 +60,7 @@ public class VenturesCost implements Cost, Serializable {
 
     @Override
     public Cost copyOf() {
-        return new VenturesCost();
+        return new VenturesCost(stoneRequired,woodRequired,coinsRequired,militaryRequired,militaryCost);
     }
 
     public boolean isToPaid() {

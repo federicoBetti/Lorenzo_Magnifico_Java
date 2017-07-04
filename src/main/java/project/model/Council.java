@@ -3,6 +3,7 @@ package project.model;
 import project.server.network.PlayerHandler;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -18,9 +19,9 @@ public class Council extends Position implements Serializable{
         setOccupied(true);
     }
 
-    public PlayerHandler findPlayer( Board board, String familyCoulor ){
-        for ( PlayerHandler player : board.getTurn().getPlayerTurn() ){
-            if (familyCoulor.contains(player.getFamilyColour()))
+    public PlayerHandler findPlayer(List<PlayerHandler> players ){
+        for ( PlayerHandler player : players ){
+            if (getFamiliarOnThisPosition().getFamilyColour().contains(player.getFamilyColour()))
                 return player;
         }
         return null;

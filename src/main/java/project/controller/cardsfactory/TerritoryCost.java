@@ -19,7 +19,6 @@ public class TerritoryCost implements Cost, Serializable {
     }
 
     public TerritoryCost(int woodRequired, int stoneRequired, int diceCost) {
-        super();
         this.woodRequired = woodRequired;
         this.stoneRequired = stoneRequired;
         this.diceCost = diceCost;
