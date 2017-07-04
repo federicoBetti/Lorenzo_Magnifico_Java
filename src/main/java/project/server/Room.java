@@ -55,7 +55,7 @@ public class Room {
     PlayerHandler lastPlayer;
 
 
-    Room(Server server) {
+    public Room(Server server) {
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
         buildExcommunicationEffects = new BuildExcommunicationEffects();
@@ -423,5 +423,9 @@ public class Room {
 
     public void setLastPlayer(PlayerHandler lastPlayer) {
         this.lastPlayer = lastPlayer;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 }

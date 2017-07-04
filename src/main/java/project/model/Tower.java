@@ -53,6 +53,13 @@ public class Tower extends Position implements Serializable{
         setOccupied(false);
     }
 
+    /**
+     * for testing
+     */
+    public Tower() {
+//for testing
+    }
+
     public DevelopmentCard getCardOnThisFloor() {
         return cardOnThisFloor;
     }

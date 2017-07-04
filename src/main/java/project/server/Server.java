@@ -37,7 +37,7 @@ public class Server {
 
     private Configuration configuration;
 
-    private Server() throws IOException {
+    public Server() throws IOException {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);

@@ -11,6 +11,7 @@ import project.server.network.PlayerHandler;
 
 public interface AllCheckFunctions {
 
+    
     boolean checkPosition(int position, Position[] zone, FamilyMember familyMember);
     int checkCardCostVentures(VenturesCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
    boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);

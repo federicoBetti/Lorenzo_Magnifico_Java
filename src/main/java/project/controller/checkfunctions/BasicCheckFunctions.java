@@ -8,6 +8,13 @@ import project.server.network.PlayerHandler;
 
 public class BasicCheckFunctions implements AllCheckFunctions{
 
+    /**
+     * this method checks if the spot where you want to place the familiar is occuped or not and if there are other your familiars
+     * @param position number of position to check
+     * @param zone group of positions where to check
+     * @param familyMember familiar that you have placed
+     * @return true if you can place the familiar
+     */
     @Override
     public boolean checkPosition(int position, Position[] zone, FamilyMember familyMember) {
 
@@ -117,7 +124,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
         int diceBonus = personalBoard(player).getBonusOnActions().getTerritoryBonus();
-        int length = personalBoard(player).getTerritories().size();
+        int length = personalBoard(player).getTerritories().size() -1;
         System.out.println(coinsFee);
         System.out.println(zoneDiceCost);
         System.out.println(valueOfFamilyMember);
