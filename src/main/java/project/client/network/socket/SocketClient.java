@@ -162,14 +162,7 @@ public class SocketClient extends AbstractClient {
 
     @Override
     public void reconnect() {
-        try {
-            objectOutputStream.writeObject(Constants.RECONNECT);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendGenericObject(Constants.RECONNECT);
         createWaitingForYourTurnContext();
         System.out.println("MANDATA RECONNECT");
     }
