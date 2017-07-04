@@ -380,7 +380,7 @@ public class Server {
         return true;
     }
 
-    private void myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
+    void myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override

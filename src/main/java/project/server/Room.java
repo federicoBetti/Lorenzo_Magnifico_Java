@@ -20,6 +20,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -168,33 +169,34 @@ public class Room {
         //draft leader
 
 
-     /*   ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
-            System.out.println("inizio richiest giro di leader");
             ListIterator<ArrayList<LeaderCard>> leaderIterator = listsForDraft.listIterator();
             ListIterator<PlayerHandler> playerIterator = playerInTheMatch.listIterator();
-            String leaderName = null;
+            String leaderName;
 
             while (leaderIterator.hasNext() && playerIterator.hasNext()) {
                 PlayerHandler player = playerIterator.next();
                 ArrayList<LeaderCard> leaders = leaderIterator.next();
-                System.out.println("mando scelta carta leader");
                 if ( player.isOn() ) {
+                    Timer timer = gameActions.myTimerActions(player);
                     leaderName = player.leaderCardChosen(leaders);
+                    timer.cancel();
 
                     if ( leaderName.equals("-1")){
+                        System.out.println("SONO QUI");
                         player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
-                        System.out.println("Sono disconnesso e piglio primoooo: " +leaders.get(0).getName());
                         leaders.remove(leaders.get(0));
                         continue;
                     }
 
+                    System.out.println("DRAFT NORMALE");
                     LeaderCard leaderToAdd = getLeader(leaderName, leaders);
-                    System.out.println("ho messo carta leader: " + leaderName + "    nel giocatore");
                     player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
                     leaders.remove(leaderToAdd);
                 }
+
                 else {
                     player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
                     leaders.remove(leaders.get(0));
@@ -213,7 +215,9 @@ public class Room {
         while (iterator.hasPrevious()) {
             PlayerHandler p = iterator.previous();
             if (p.isOn()) {
+                Timer timer = gameActions.myTimerActions(p);
                 int tileId = p.chooseTile(tiles);
+                timer.cancel();
                 if (tileId == -1) {
                     System.out.println("Sono disconnesso è piglio la prima tile che capita");
                     p.getPersonalBoardReference().setMyTile(tiles.get(0));
@@ -229,7 +233,7 @@ public class Room {
                 p.getPersonalBoardReference().setMyTile(tiles.get(0));
                 tiles.remove(tiles.get(0));
             } //todo vedere qua perchè non fa partire partita
-        }   */
+        }
 
         //inizia la partita
         for (PlayerHandler p : playerInTheMatch) {

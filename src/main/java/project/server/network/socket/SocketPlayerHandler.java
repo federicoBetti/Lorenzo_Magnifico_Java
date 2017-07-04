@@ -301,8 +301,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 objectOutputStream.reset();
             }
 
-            return (String) objectInputStream.readObject();
-
+            String res = (String) objectInputStream.readObject();
+            sendString(Constants.ACTION_DONE_ON_TIME);
+            System.out.println(res + " result");
+            return res;
         } catch (IOException e) {
             setOn(false);
             return "-1";
@@ -330,6 +332,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             System.out.println("sono in attesa qui");
             Object choice = objectInputStream.readObject();
+            sendString(Constants.ACTION_DONE_ON_TIME);
             System.out.println(choice.getClass());
             System.out.println("la scelta è " + choice);
             return (int) choice;
@@ -533,9 +536,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             try {
                 answer = (String) objectInputStream.readObject();
                 System.out.println("è arrivato: " + answer);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 

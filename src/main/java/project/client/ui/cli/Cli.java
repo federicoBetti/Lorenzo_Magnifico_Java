@@ -239,7 +239,7 @@ public class Cli extends AbstractUI {
                 context = new TimerDelayedContext(this);
                 return;
             } else if (context instanceof ImmediatePriviledgesContext) {
-                clientSetter.sendExitToBonusAction();
+                sendExitToBonusAction();
 
             } else if (context instanceof ChoicePeContext) {
                 sendExitToBonusAction();
