@@ -59,7 +59,7 @@ public abstract class PlayerHandler extends Player {
         canPlaceFamiliar = checkFunctions.checkPosition(floor, tower, familyM);
         towerOccupied = checkFunctions.checkTowerOccupied((Tower[])tower);
 
-        if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {
+        if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {//todo un giocatore non puo prendere piu di 6 carte dello stetsso tipo
             int paymentChosen = checkOnVenturesCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
             gameActions().takeVenturesCard(zone, familyM, this, towerOccupied, paymentChosen);
         }
@@ -95,11 +95,6 @@ public abstract class PlayerHandler extends Player {
             throw new CantDoActionException();
 
         DevelopmentCard card = getCard(towerColour,floor);
-        Cost realCost = card.getCost();
-        Cost costDiscounted = realCost.copyOf();
-        costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource1(), returnFromEffect.getQuantityDiscounted1());
-        costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource2(), returnFromEffect.getQuantityDiscounted2());
-        card.setCost(costDiscounted);
 
         int diceValueOfFamiliar = returnFromEffect.getNewCardDicevalue();
         int diceCost = getDiceCost(towerColour,floor);
@@ -108,16 +103,15 @@ public abstract class PlayerHandler extends Player {
         boolean towerOccupied = checkFunctions.checkTowerOccupied((Tower[])tower);
 
         if (towerColour.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {
-            int paymentChosen = 0;
-            try {
-                paymentChosen = checkOnVenturesCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
-            } catch (CantDoActionException e) {
-                card.setCost(realCost);
-                throw new CantDoActionException();
-            }
+            int paymentChosen = checkOnVenturesCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
             gameActions().takeVenturesCard(zone, this, towerOccupied, paymentChosen, diceValueOfFamiliar);
         }
         else {
+            Cost realCost = card.getCost();
+            Cost costDiscounted = realCost.copyOf();
+            costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource1(), returnFromEffect.getQuantityDiscounted1());
+            costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource2(), returnFromEffect.getQuantityDiscounted2());
+            card.setCost(costDiscounted);
             boolean canPayCard = checkFunctions.checkCardCost(card, this, towerOccupied,diceCost,diceValueOfFamiliar);
             if (!canPayCard) {
                 card.setCost(realCost);
@@ -493,4 +487,6 @@ public abstract class PlayerHandler extends Player {
     public void setCallPray(boolean callPray) {
         this.callPray = callPray;
     }
+
+    public abstract void tokenNotify();
 }

@@ -15,6 +15,12 @@ public class BuildingCard extends DevelopmentCard implements Serializable {
     private BuildingCost cardCost;
     private ArrayList<TotalCost> effectCost;
 
+    /**
+     * for testing
+     */
+    public BuildingCard(){
+        //for testing
+    }
 
     public BuildingCard(String name, int period, boolean choicePe, BuildingCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
         super(name, period, choicePe, immediateEffects, permanentEffects);
@@ -37,5 +43,9 @@ public class BuildingCard extends DevelopmentCard implements Serializable {
     @Override
     public BuildingCost getCost() {
         return cardCost;
+    }
+
+    public void setCardCost(BuildingCost cardCost) {
+        this.cardCost = cardCost;
     }
 }

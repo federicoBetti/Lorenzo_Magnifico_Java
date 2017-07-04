@@ -38,6 +38,13 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         fillHashMapPayments();
     }
 
+    /**
+     * for testing
+     */
+    public BasicSupportFunctions(){
+        //for testing
+    }
+
     private void fillHashMapPayments() {
         payments.put(TerritoryCard.class.toString(), this::payTerritoryCard);
         payments.put(BuildingCard.class.toString(),  this::payBuildingCard);
@@ -100,14 +107,14 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     @Override
     public int finalPointsFromTerritoryCard(int[] victoryPoints) {
-        int cardNumber = player.getPersonalBoardReference().getTerritories().size();
+        int cardNumber = player.getPersonalBoardReference().getTerritories().size() - 1;
         return victoryPoints[(cardNumber)];
 
     }
 
     @Override
     public int finalPointsFromCharacterCard(int[] victoryPoints) {
-        int cardNumber = player.getPersonalBoardReference().getCharacters().size();
+        int cardNumber = player.getPersonalBoardReference().getCharacters().size() - 1;
         return victoryPoints[(cardNumber)];
 
     }
@@ -125,7 +132,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     @Override
     public void finalPointsFromVenturesCard() {
         for (VenturesCard venturesCard: player.getPersonalBoardReference().getVentures()){
-            for (Effects e: venturesCard.getImmediateCardEffects())
+            for (Effects e: venturesCard.getPermanentCardEffects())
                 applyEffects(e,player);
         }
     }
@@ -190,7 +197,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     }
 
 
-
     @Override
     public void takeMarketAction(int position) {
         takeFromMarket.get((Integer)position).takeMarketAction();
@@ -238,4 +244,7 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         void takeMarketAction();
     }
 
+    public void setPlayer(PlayerHandler player) {
+        this.player = player;
+    }
 }

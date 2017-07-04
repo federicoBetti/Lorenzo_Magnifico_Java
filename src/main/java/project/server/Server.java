@@ -5,7 +5,9 @@ import project.PlayerFile;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
+import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.updatesmessages.*;
+import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -110,6 +112,7 @@ public class Server {
                     checkAndStartTheTimer(room, player);
 
                     if (room.isFull()) {
+                        player.tokenNotify();
                         startMatch(room);
                     }
                     return;
@@ -120,15 +123,16 @@ public class Server {
                 player.setOn(true);
                 player.setRoom(room);
                 loadPlayerState(room, nickname, player);
-                sendAllUpdates(player, room, nickname);
-                room.nicknamePlayersMap.replace(nickname, player);
-                if (numberOfPlayersOn(room.getBoard().getTurn().getPlayerTurn()) == 1) {
-                    player.itsMyTurn();
-                    room.getGameActions().myTimerSkipTurn(player);
-                }
 
+                PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
+                room.nicknamePlayersMap.replace(nickname, player);
+                AllSupportFunctions element = room.getPlayerAllSupportFunctionsMap().get(oldPlayer);
+                room.getPlayerAllSupportFunctionsMap().remove(oldPlayer);
+                room.getPlayerAllSupportFunctionsMap().put(player, element);
                 player.loginSucceded();
+                player.tokenNotify();
                 player.matchStarted(room.getRoomPlayers(), player.getFamilyColour());
+                sendAllUpdates(player, room, nickname);
                 return;
 
             }
@@ -313,8 +317,10 @@ public class Server {
 
     private void replaceInTurn(Turn turn, PlayerHandler oldPlayer, PlayerHandler newPlayer) {
         for (int i = 0; i < turn.getPlayerTurn().size(); i++) {
-            if (turn.getPlayerTurn().get(i) == oldPlayer)
+            if (turn.getPlayerTurn().get(i) == oldPlayer) {
                 turn.getPlayerTurn().set(i, newPlayer);
+                return;
+            }
         }
     }
 
