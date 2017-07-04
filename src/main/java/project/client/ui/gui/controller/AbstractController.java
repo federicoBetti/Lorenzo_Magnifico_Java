@@ -257,10 +257,12 @@ public abstract class AbstractController {
 
 
                if (serverTower.getCardOnThisFloor() == null) {
+                   System.out.println("ELIMONO CARTA DALLE TORRI");
                     guiTower.setCardName(null);
                     guiTower.setCardImage(null);
                 }
                 else if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())) {
+                   System.out.println("AGGIUNGO CARTA");
                         modifyCard(guiTower, serverTower.getCardOnThisFloor().getName());
                     }
 

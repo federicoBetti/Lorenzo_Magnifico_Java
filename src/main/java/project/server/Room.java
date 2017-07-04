@@ -72,7 +72,7 @@ public class Room {
             if (entry.getValue().isOn())
                 count++;
 
-        if (count == maxPlayers)
+        if (count == maxPlayers )
             return true;
         return false;
     }
@@ -168,7 +168,7 @@ public class Room {
         //draft leader
 
 
-   /*     ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
             System.out.println("inizio richiest giro di leader");
@@ -252,6 +252,17 @@ public class Room {
             int fauthPoint = 3;
             p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 10);
             p.getScore().setFaithPoints(fauthPoint);
+            p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
+            p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
+            p.sendUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(),p.getName()));
+            p.sendUpdates(new MarketUpdate(board, p.getName()));
+            p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
+            p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
+            p.sendUpdates(new ScoreUpdate(p, p.getName()));
+            //todo cancellare: aggiunto solo per provare il both payment
+
+            fauthPoint--;
+            moreCoin++;
             if ( p.isOn() ) {
                 p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
                 p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));

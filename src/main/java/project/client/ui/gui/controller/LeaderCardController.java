@@ -46,8 +46,6 @@ public class LeaderCardController extends AbstractController {
     @FXML
     private  ImageView imageLeaderCard3;
     @FXML
-    private  ImageView imageLeaderCard4;
-    @FXML
     private  Button goBackButton;
     private ArrayList<FamiliarPosition> arrayOfLeaderCard;
     private boolean[] leaderCardSelected;
@@ -92,7 +90,6 @@ public class LeaderCardController extends AbstractController {
         arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard1));
         arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard2));
         arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard3));
-        arrayOfLeaderCard.add(new FamiliarPosition(imageLeaderCard4));
         leaderCardSelected = new boolean[5];
 
     }

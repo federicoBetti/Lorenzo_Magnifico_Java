@@ -12,144 +12,192 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.PersonalBoardController">
-   <children>
-      <ImageView fitHeight="861.0" fitWidth="589.0" layoutX="35.0" layoutY="31.0">
-         <image>
-            <Image url="/images/board4carte-iloveimg-resized.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="923.0" fitWidth="648.0">
-         <image>
-            <Image url="/images/cornici/ritaglioCornice.png" />
-         </image>
-      </ImageView>
-      <HBox fx:id="territoryCard" layoutX="41.0" layoutY="605.0" prefHeight="182.0" prefWidth="568.0" spacing="12.0">
-         <children>
-            <ImageView fx:id="territory0" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnTerritory0"/>
-            <ImageView fx:id="territory1" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnTerritory1"/>
-            <ImageView fx:id="territory2" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnTerritory2"/>
-            <ImageView fx:id="territory3" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnTerritory3"/>
-            <ImageView fx:id="territory4" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnTerritory4"/>
-            <ImageView fx:id="territory5" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnTerritory5"/>
-         </children>
-      </HBox>
-      <HBox fx:id="characterCard" layoutX="41.0" layoutY="387.0" prefHeight="182.0" prefWidth="568.0" spacing="12.0">
-         <children>
-            <ImageView fx:id="character0" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnCharacter0"/>
-            <ImageView fx:id="character1" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnCharacter1"/>
-            <ImageView fx:id="character2" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnCharacter2"/>
-            <ImageView fx:id="character3" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnCharacter3"/>
-            <ImageView fx:id="character4" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnCharacter4"/>
-            <ImageView fx:id="character5" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnCharacter5"/>
-         </children>
-      </HBox>
-      <HBox fx:id="buildingCard" layoutX="43.0" layoutY="215.0" prefHeight="182.0" prefWidth="568.0" spacing="12.0">
-         <children>
-            <ImageView fx:id="building0" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#zoomOnBuilding0" />
-            <ImageView fx:id="building1" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#zoomOnBuilding1" />
-            <ImageView fx:id="building2" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#zoomOnBuilding2" />
-            <ImageView fx:id="building3" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#zoomOnBuilding3" />
-            <ImageView fx:id="building4" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#zoomOnBuilding4" />
-            <ImageView fx:id="building5" fitHeight="139.0" fitWidth="86" pickOnBounds="true" preserveRatio="true"  onMouseClicked="#zoomOnBuilding5" />
-         </children>
-      </HBox>
-      <HBox fx:id="venturesCard" layoutX="42.0" layoutY="44.0" prefHeight="182.0" prefWidth="568.0" spacing="12.0">
-         <children>
-            <ImageView fx:id="ventures0" fitHeight="139.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnVentures0"/>
-            <ImageView fx:id="ventures1" fitHeight="139.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnVentures1"/>
-            <ImageView fx:id="ventures2" fitHeight="139.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnVentures2"/>
-            <ImageView fx:id="ventures3" fitHeight="139.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnVentures3"/>
-            <ImageView fx:id="ventures4" fitHeight="139.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnVentures4"/>
-            <ImageView fx:id="ventures5" fitHeight="139.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#zoomOnVentures5"/>
-         </children>
-      </HBox>
-       <HBox layoutX="68.0" layoutY="738.0" prefHeight="57.0" prefWidth="242.0" spacing="55.0">
-         <children>
-            <Label fx:id="numberOfCoins" prefHeight="41.0" prefWidth="98.0" text="88">
-               <font>
-                  <Font name="Lucida Blackletter" size="30.0" />
-               </font>
-            </Label>
-            <Label fx:id="numberOfWood" prefHeight="41.0" prefWidth="87.0" text="27">
-               <font>
-                  <Font name="Lucida Blackletter" size="30.0" />
-               </font>
-            </Label>
-            <Label fx:id="numberOfStone" prefHeight="41.0" prefWidth="90.0" text="44">
-               <font>
-                  <Font name="Lucida Blackletter" size="30.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <Label fx:id="numberOfServants" layoutX="358.0" layoutY="739.0" text="0">
-         <font>
-            <Font name="Lucida Blackletter" size="30.0" />
-         </font>
-      </Label>
-      <Pane layoutX="680.0" layoutY="30.0" prefHeight="854.0" prefWidth="361.0">
-         <children>
-            <ImageView fitHeight="549.0" fitWidth="361.0" opacity="0.72">
-               <image>
-                  <Image url="/images/immaginiSetUp/finestraPiccola.png" />
-               </image>
-            </ImageView>
-            <VBox alignment="BOTTOM_LEFT" prefHeight="861.0" prefWidth="363.0">
-               <children>
-                  <ImageView fx:id="bonusTile" fitHeight="550.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-
-                  </ImageView>
-                  <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBack" prefHeight="78.0" prefWidth="363.0" text="go back">
-                     <font>
-                        <Font name="Lucida Blackletter" size="21.0" />
-                     </font>
-                  </Button>
-                    <SplitPane dividerPositions="0.85" orientation="VERTICAL" prefHeight="234.0" prefWidth="363.0">
-                        <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="235.0" prefWidth="361.0">
-                                <children>
-                                    <Label fx:id="chatArea" layoutX="5.0" layoutY="154.0" prefHeight="213.0" prefWidth="361.0" text="chat" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="154.0" />
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                <children>
-                                    <SplitPane dividerPositions="0.755223880597015" layoutX="-3.0" layoutY="1.0" prefHeight="31.0" prefWidth="345.0">
-                                        <items>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="230.0">
-                                                <children>
-                                                    <TextField fx:id="chatText" layoutX="24.0" layoutY="1.0" prefHeight="29.0" prefWidth="231.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                </children>
-                                            </AnchorPane>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="155.0">
-                                                <children>
-                                                    <Button fx:id="send" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#sendChat" prefHeight="29.0" prefWidth="86.0" text="Send" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0" />
-                                                </children>
-                                            </AnchorPane>
-                                        </items>
-                                    </SplitPane>
-                                </children>
-                            </AnchorPane>
-                        </items>
-                    </SplitPane>
-               </children>
-            </VBox>
-            <Label layoutX="80.0" layoutY="45.0" text="bonus on production">
-               <font>
-                  <Font name="Lucida Blackletter" size="21.0" />
-               </font>
-            </Label>
-            <Label layoutX="80.0" layoutY="368.0" text="bonus on harvester">
-               <font>
-                  <Font name="Lucida Blackletter" size="21.0" />
-               </font>
-            </Label>
-          </children>
-      </Pane>
-      <ImageView fitHeight="923.0" fitWidth="422.0" layoutX="648.0">
-         <image>
-            <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane prefHeight="784.55" prefWidth="909.5" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.client.ui.gui.controller.PersonalBoardController">
+    <children>
+        <ImageView fitHeight="731.85" fitWidth="500.65" layoutX="29.75" layoutY="26.349999999999998">
+            <image>
+                <Image url="/images/board4carte-iloveimg-resized.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="784.55" fitWidth="550.8">
+            <image>
+                <Image url="/images/cornici/ritaglioCornice.png"/>
+            </image>
+        </ImageView>
+        <HBox fx:id="territoryCard" layoutX="34.85" layoutY="514.25" prefHeight="154.7" prefWidth="482.8"
+              spacing="10.2">
+            <children>
+                <ImageView fx:id="territory0" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnTerritory0"/>
+                <ImageView fx:id="territory1" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnTerritory1"/>
+                <ImageView fx:id="territory2" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnTerritory2"/>
+                <ImageView fx:id="territory3" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnTerritory3"/>
+                <ImageView fx:id="territory4" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnTerritory4"/>
+                <ImageView fx:id="territory5" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnTerritory5"/>
+            </children>
+        </HBox>
+        <HBox fx:id="characterCard" layoutX="34.85" layoutY="328.95" prefHeight="154.7" prefWidth="482.8"
+              spacing="10.2">
+            <children>
+                <ImageView fx:id="character0" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnCharacter0"/>
+                <ImageView fx:id="character1" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnCharacter1"/>
+                <ImageView fx:id="character2" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnCharacter2"/>
+                <ImageView fx:id="character3" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnCharacter3"/>
+                <ImageView fx:id="character4" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnCharacter4"/>
+                <ImageView fx:id="character5" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnCharacter5"/>
+            </children>
+        </HBox>
+        <HBox fx:id="buildingCard" layoutX="36.55" layoutY="182.75" prefHeight="154.7" prefWidth="482.8" spacing="10.2">
+            <children>
+                <ImageView fx:id="building0" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnBuilding0"/>
+                <ImageView fx:id="building1" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnBuilding1"/>
+                <ImageView fx:id="building2" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnBuilding2"/>
+                <ImageView fx:id="building3" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnBuilding3"/>
+                <ImageView fx:id="building4" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnBuilding4"/>
+                <ImageView fx:id="building5" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnBuilding5"/>
+            </children>
+        </HBox>
+        <HBox fx:id="venturesCard" layoutX="35.699999999999996" layoutY="37.4" prefHeight="154.7" prefWidth="482.8"
+              spacing="10.2">
+            <children>
+                <ImageView fx:id="ventures0" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnVentures0"/>
+                <ImageView fx:id="ventures1" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnVentures1"/>
+                <ImageView fx:id="ventures2" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnVentures2"/>
+                <ImageView fx:id="ventures3" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnVentures3"/>
+                <ImageView fx:id="ventures4" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnVentures4"/>
+                <ImageView fx:id="ventures5" fitHeight="118.14999999999999" fitWidth="73.1" pickOnBounds="true"
+                           preserveRatio="true" onMouseClicked="#zoomOnVentures5"/>
+            </children>
+        </HBox>
+        <HBox layoutX="57.8" layoutY="627.3" prefHeight="48.449999999999996" prefWidth="205.7" spacing="46.75">
+            <children>
+                <Label fx:id="numberOfCoins" prefHeight="34.85" prefWidth="83.3" text="74.8">
+                    <font>
+                        <Font name="Lucida Blackletter" size="25.5"/>
+                    </font>
+                </Label>
+                <Label fx:id="numberOfWood" prefHeight="34.85" prefWidth="73.95" text="22.95">
+                    <font>
+                        <Font name="Lucida Blackletter" size="25.5"/>
+                    </font>
+                </Label>
+                <Label fx:id="numberOfStone" prefHeight="34.85" prefWidth="76.5" text="37.4">
+                    <font>
+                        <Font name="Lucida Blackletter" size="25.5"/>
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <Label fx:id="numberOfServants" layoutX="304.3" layoutY="628.15" text="0.0">
+            <font>
+                <Font name="Lucida Blackletter" size="25.5"/>
+            </font>
+        </Label>
+        <Pane layoutX="578.0" layoutY="25.5" prefHeight="725.9" prefWidth="306.84999999999997">
+            <children>
+                <ImageView fitHeight="466.65" fitWidth="306.84999999999997" opacity="0.612">
+                    <image>
+                        <Image url="/images/immaginiSetUp/finestraPiccola.png"/>
+                    </image>
+                </ImageView>
+                <VBox alignment="BOTTOM_LEFT" prefHeight="731.85" prefWidth="308.55">
+                    <children>
+                        <ImageView fx:id="bonusTile" fitHeight="467.5" fitWidth="56.949999999999996" pickOnBounds="true"
+                                   preserveRatio="true"></ImageView>
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBack" prefHeight="66.3"
+                                prefWidth="308.55" text="go back">
+                            <font>
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                            </font>
+                        </Button>
+                        <SplitPane dividerPositions="0.7224999999999999" orientation="VERTICAL" prefHeight="198.9"
+                                   prefWidth="308.55">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="199.75"
+                                            prefWidth="306.84999999999997">
+                                    <children>
+                                        <Label fx:id="chatArea" layoutX="4.25" layoutY="130.9"
+                                               prefHeight="181.04999999999998" prefWidth="306.84999999999997"
+                                               text="chat" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.9"/>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
+                                    <children>
+                                        <SplitPane dividerPositions="0.6419402985074627" layoutX="-2.55" layoutY="0.85"
+                                                   prefHeight="26.349999999999998" prefWidth="293.25">
+                                            <items>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
+                                                            prefWidth="195.5">
+                                                    <children>
+                                                        <TextField fx:id="chatText" layoutX="20.4" layoutY="0.85"
+                                                                   prefHeight="24.65" prefWidth="196.35"
+                                                                   AnchorPane.bottomAnchor="0.0"
+                                                                   AnchorPane.leftAnchor="20.4"
+                                                                   AnchorPane.rightAnchor="0.0"
+                                                                   AnchorPane.topAnchor="0.0"/>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
+                                                            prefWidth="131.75">
+                                                    <children>
+                                                        <Button fx:id="send" layoutX="3.4" layoutY="1.7"
+                                                                mnemonicParsing="false" onAction="#sendChat"
+                                                                prefHeight="24.65" prefWidth="73.1" text="Send"
+                                                                AnchorPane.bottomAnchor="0.0"
+                                                                AnchorPane.leftAnchor="0.0"
+                                                                AnchorPane.rightAnchor="-1.7"
+                                                                AnchorPane.topAnchor="0.0"/>
+                                                    </children>
+                                                </AnchorPane>
+                                            </items>
+                                        </SplitPane>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </VBox>
+                <Label layoutX="68.0" layoutY="38.25" text="bonus on production">
+                    <font>
+                        <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                    </font>
+                </Label>
+                <Label layoutX="68.0" layoutY="312.8" text="bonus on harvester">
+                    <font>
+                        <Font name="Lucida Blackletter" size="17.849999999999998"/>
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <ImageView fitHeight="784.55" fitWidth="358.7" layoutX="550.8">
+            <image>
+                <Image url="/images/cornici/ritaglioCornice10Quadretti.png"/>
+            </image>
+        </ImageView>
+    </children>
 </AnchorPane>

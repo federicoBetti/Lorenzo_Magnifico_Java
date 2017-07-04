@@ -1,26 +1,33 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 import project.controller.cardsfactory.LeaderCard;
+import project.model.Score;
 import project.model.Tile;
 
+import javax.swing.event.ChangeEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 //TODO FARE ALTEZZA MAX 900
-public class LoginBuilder extends Application {
+public class LoginBuilder extends Application implements ChangeListener<Number> {
 
+    private static final double WINDOW_WIDTH = 1070;
+    private static final double WINDOW_HEIGHT = 923;
     private BorderPane rootLayout;
     private Stage primaryStage;
     private AnchorPane initialLoginScene;
@@ -62,6 +69,8 @@ public class LoginBuilder extends Application {
     private int choiceDone;
     private DraftController draftController;
     private Stage lastStageOpened;
+    private Score uiScore;
+    private boolean rezieOn = false;
 
 
     public void start(Stage primaryStage) {
@@ -71,12 +80,33 @@ public class LoginBuilder extends Application {
         mainController = MainController.getInstance();
         mainController.setLoginBuilder(this);
 
+
+        this.primaryStage.widthProperty().addListener((javafx.beans.value.ChangeListener<? super Number>) this);
+        this.primaryStage.heightProperty().addListener((javafx.beans.value.ChangeListener<? super Number>) this);
+
+        //resize(this.primaryStage.getWidth(), this.primaryStage.getHeight());
         initRootLayout();
 
         initializeInitialLogin();
         initializeWaitingLogin();
         //initalizeMainGame();
         showFirstPage();
+    }
+
+    private void resize(double width, double height) {
+        if (rezieOn) {
+            System.out.println("NUOVA MISURA: "+ width + " " + height);
+            //generalMainGameController.resize(width, height);
+        }
+    }
+
+    public BorderPane getRootLayout() {
+        return rootLayout;
+    }
+
+    @Override
+    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+        resize(primaryStage.getWidth(), primaryStage.getHeight());
     }
 
     /**
@@ -87,7 +117,6 @@ public class LoginBuilder extends Application {
             // Configuration root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/login/rootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -179,7 +208,7 @@ public class LoginBuilder extends Application {
         }
     }
 
-    private  void inizializzaCouncil() {
+    private void inizializzaCouncil() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -196,7 +225,7 @@ public class LoginBuilder extends Application {
         }
     }
 
-    private  void inizializzaLeaderCard() {
+    private void inizializzaLeaderCard() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -299,7 +328,6 @@ public class LoginBuilder extends Application {
     }
 
 
-
     void showFirstPage() {
         rootLayout.setCenter(initialLoginScene);
     }
@@ -319,15 +347,14 @@ public class LoginBuilder extends Application {
     }
 
 
-    public  void showPrimo() {
+    public void showPrimo() {
         rootLayoutMainGame.setCenter(generalScene);
         System.out.print("faccio vedere il primo");
     }
 
 
     public void showCardZoomed(Image imageView) {
-        if (imageView==null)
-            return;
+        if (imageView == null) return;
         try {
             // Configuration the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -382,17 +409,17 @@ public class LoginBuilder extends Application {
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
             lastStageOpened = null;
-            return ;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return ;
+            return;
         }
     }
 
     public void setDraft(List<LeaderCard> leaderName) {
         List<String> stringLeaderName = new ArrayList<>();
-        for (LeaderCard l: leaderName)
+        for (LeaderCard l : leaderName)
             stringLeaderName.add(l.getName());
 
         showDraft("draft of Leader Card", stringLeaderName, "leader");
@@ -401,7 +428,7 @@ public class LoginBuilder extends Application {
 
     public void setDraft(ArrayList<Tile> tiles) {
         List<String> stringTile = new ArrayList<>();
-        for (Tile t: tiles)
+        for (Tile t : tiles)
             stringTile.add(String.valueOf(t.getTileNumber()));
         showDraft("choose one tile", stringTile, "tile");
     }
@@ -424,22 +451,18 @@ public class LoginBuilder extends Application {
             controller.setMainController(mainController);
             controller.setLabel(labelMessage);
 
-            if (type.equals("tile"))
-                controller.uploadImagesTile(name);
-            else
-                controller.uploadImagesLeader(name);
+            if (type.equals("tile")) controller.uploadImagesTile(name);
+            else controller.uploadImagesLeader(name);
 
             dialogStage.setAlwaysOnTop(true);
             dialogStage.showAndWait();
-            return ;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return ;
+            return;
         }
     }
-
-
 
 
     public void popUp(String s) {
@@ -463,11 +486,11 @@ public class LoginBuilder extends Application {
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             System.out.println("sono dopo che ho disegnato lo stage");
-            return ;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("sono uscito dalla visione della carta");
-            return ;
+            return;
         }
     }
 
@@ -488,32 +511,32 @@ public class LoginBuilder extends Application {
                 rootLayoutMainGame.setCenter(towersScene);
                 break;
             }
-            case MARKET:{
+            case MARKET: {
                 marketController.refresh();
                 rootLayoutMainGame.setCenter(marketScene);
                 break;
             }
-            case HARVESTER:{
+            case HARVESTER: {
                 harvesterController.refresh();
                 rootLayoutMainGame.setCenter(harvesterScene);
                 break;
             }
-            case PERSONAL_BOARD:{
+            case PERSONAL_BOARD: {
                 personalBoardController.refresh();
                 rootLayoutMainGame.setCenter(personalBoardScene);
                 break;
             }
-            case PRODUCTION:{
+            case PRODUCTION: {
                 productionController.refresh();
                 rootLayoutMainGame.setCenter(productionScene);
                 break;
             }
-            case COUNCIL:{
+            case COUNCIL: {
                 councilPalaceController.refresh();
                 rootLayoutMainGame.setCenter(councilScene);
                 break;
             }
-            case LEADER:{
+            case LEADER: {
                 leaderCardController.refresh();
                 rootLayoutMainGame.setCenter(leaderScene);
                 break;
@@ -550,7 +573,8 @@ public class LoginBuilder extends Application {
     public void waitingScene() {
         rootLayout.setCenter(waitingLoginScene);
         Task task = new Task<Void>() {
-            @Override public Void call() {
+            @Override
+            public Void call() {
                 mainController.takeNickname();
                 return null;
             }
@@ -591,6 +615,59 @@ public class LoginBuilder extends Application {
 
     public Stage getLastStageOpened() {
         return lastStageOpened;
+    }
+
+
+    public void showPoints() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/showPoints.fxml"));
+            AnchorPane popUp = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Points");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(popUp);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            PointsController controller = loader.getController();
+            controller.setMainController(mainController);
+            controller.updatePoints(uiScore);
+            System.out.println("sto per disegnare lo stage");
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            System.out.println("sono dopo che ho disegnato lo stage");
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return;
+        }
+    }
+
+    public void setUiScore(Score uiScore) {
+        this.uiScore = uiScore;
+    }
+
+    public void setDimensions(ImageView imageView) {
+        int oldWidth = (int) imageView.getFitWidth();
+        int oldHeight = (int) imageView.getFitHeight();
+
+        imageView.setFitWidth(((oldWidth * primaryStage.getWidth()) / WINDOW_WIDTH));
+        imageView.setFitHeight(((oldHeight * primaryStage.getHeight()) / WINDOW_HEIGHT));
+
+        int oldX = (int) imageView.getLayoutX();
+        int oldY = (int) imageView.getLayoutY();
+
+        imageView.setLayoutX(((oldX * primaryStage.getWidth()) / WINDOW_WIDTH));
+        imageView.setLayoutY(((oldY * primaryStage.getHeight()) / WINDOW_HEIGHT));
+    }
+
+    public void setResizeOn(boolean resizeOn) {
+        this.rezieOn = resizeOn;
     }
 }
 

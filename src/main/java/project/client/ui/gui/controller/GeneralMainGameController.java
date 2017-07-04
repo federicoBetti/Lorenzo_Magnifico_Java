@@ -2,6 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,8 +10,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import project.model.ExcommunicationZone;
 import project.model.Score;
 import project.model.Tower;
 import project.server.network.PlayerHandler;
@@ -24,8 +27,15 @@ import java.util.List;
 public class GeneralMainGameController extends AbstractController{
 
 
+    public Label diceValueWhite;
+    public Label diceValueBlack;
+    public Label diceValueOrange;
+    public ImageView excommunication1;
+    public ImageView excommunication3;
+    public ImageView excommunication2;
+    public Label name;
     @FXML
-    private Pane gameboard;
+    private ImageView gameboard;
     @FXML
     private Label numberOfCoins;
 
@@ -288,8 +298,7 @@ public class GeneralMainGameController extends AbstractController{
         super.uploadImages();
         int faithPoints = loginBuilder.getFaithPoints();
         int turnOrder = loginBuilder.getTurnOrder();
-        String urlImage = "/images/immaginiSetUp/gameboard" + mainController.getNumberOfPlayer() + "Giocatori.png";
-        gameboard.setStyle("-fx-background-image: url(" + urlImage + ")");
+        gameboard.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/gameboard"  + mainController.getNumberOfPlayer() + "Giocatori.png"))));
     }
 
     @Override
@@ -320,7 +329,7 @@ public class GeneralMainGameController extends AbstractController{
 
 
     public void showPoints() {
-        loginBuilder.showChoice("dimmi la scelta ","primo", "secondo");
+        loginBuilder.showPoints();
     }
 
     public void showLeaderCard() {
@@ -366,6 +375,7 @@ public class GeneralMainGameController extends AbstractController{
 
 
     public void updatePosition(Tower[][] towers) {
+        System.out.println("SONO NELL'UPDATE DELLA GENERAL TORRI");
         super.updatePosition(towers, myTower);
     }
 
@@ -379,5 +389,33 @@ public class GeneralMainGameController extends AbstractController{
         ImageView faith = faithPointsArray.get(uiScore.getFaithPoints());
         faith.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "Pedone.png"))));
         lastImageFaith = faith;
+    }
+
+    public void setDice(int[] diceValue){
+        diceValueBlack.setText(String.valueOf(diceValue[0]));
+        diceValueWhite.setText(String.valueOf(diceValue[1]));
+        diceValueOrange.setText(String.valueOf(diceValue[2]));
+    }
+
+    public void excommunicationUpdate(ExcommunicationZone[] excommunicationZone) {
+        excommunication1.setImage(new Image(String.valueOf(getClass().getResource("/images/excommunication/excomm_1_" + excommunicationZone[0].getCardForThisPeriod().getIdCard() + ".png"))));
+        excommunication2.setImage(new Image(String.valueOf(getClass().getResource("/images/excommunication/excomm_2_" + excommunicationZone[1].getCardForThisPeriod().getIdCard() + ".png"))));
+        excommunication3.setImage(new Image(String.valueOf(getClass().getResource("/images/excommunication/excomm_3_" + excommunicationZone[2].getCardForThisPeriod().getIdCard() + ".png"))));
+
+        excommunication1.setOnMouseClicked(event -> loginBuilder.showCardZoomed(excommunication1.getImage()));
+        excommunication2.setOnMouseClicked(event -> loginBuilder.showCardZoomed(excommunication2.getImage()));
+        excommunication3.setOnMouseClicked(event -> loginBuilder.showCardZoomed(excommunication3.getImage()));
+    }
+
+    public void setName(String usernameChosen) {
+        name.setText(usernameChosen);
+    }
+
+    public void resize(double width, double height) {
+        for (int i=0; i< 4; i++) {
+            for (TowerZone t : myTower[i]) {
+                loginBuilder.setDimensions(t.getCard());
+            }
+        }
     }
 }

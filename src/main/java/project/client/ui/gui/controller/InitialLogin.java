@@ -7,11 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * Created by federico on 08/06/17.
  */
 public class InitialLogin {
+    public ImageView sfondo;
+    public AnchorPane anchr;
     @FXML
     private  TextField username;
     @FXML
@@ -43,15 +48,24 @@ public class InitialLogin {
     //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
 
     public void initialize(){
+        //style="-fx-background-image: url('/images/immaginiSetUp/login.jpg'); -fx-background-repeat: stretch; -fx-background-position: center;"
     }
 
     public void setLoginBuilder(LoginBuilder loginBuilder) {
         this.loginBuilder = loginBuilder;
+        /*
+        anchr.resize(loginBuilder.getRootLayout().getWidth(), loginBuilder.getRootLayout().getHeight());
+
+        sfondo.fitWidthProperty().bind(anchr.widthProperty());
+        sfondo.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/leaders.jpg"))));
+        sfondo.setPreserveRatio(true);
+        */
     }
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setInitialLoginController(this);
+        sfondo.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/login.jpg"))));
     }
 
     public void socketClicked() {

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="210.0" prefWidth="278.0" style="-fx-background-image: url('/images/immaginiSetUp/finestraSenaFinestra.png'); -fx-background-repeat: stretch; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.PointsController">
+   <children>
+      <VBox prefHeight="210.0" prefWidth="278.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <ImageView fx:id="faithImage" fitHeight="88.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/immaginiSetUp/faithPoints.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="vicotryImage" fitHeight="88.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/immaginiSetUp/victoryPoints.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="militaryImage" fitHeight="88.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/immaginiSetUp/militaryPoints.png" />
+                     </image></ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="61.0" prefWidth="278.0" spacing="20.0">
+               <children>
+                  <Label fx:id="faithLabel" alignment="CENTER" prefHeight="38.0" prefWidth="79.0" text="ciao" textAlignment="CENTER" />
+                  <Label fx:id="victoryLabel" alignment="CENTER" prefHeight="38.0" prefWidth="79.0" text="Label" textAlignment="CENTER" />
+                  <Label fx:id="militaryLabel" alignment="CENTER" prefHeight="38.0" prefWidth="79.0" text="Label" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="58.0" prefWidth="278.0">
+               <children>
+                  <Button fx:id="ok" mnemonicParsing="false" onAction="#done" text="ok">
+                     <font>
+                        <Font name="Lucida Blackletter" size="21.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

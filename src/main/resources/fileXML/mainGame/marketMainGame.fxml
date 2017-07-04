@@ -13,76 +13,106 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.MarketController">
+<AnchorPane prefHeight="784.55" prefWidth="909.5" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.MarketController">
     <children>
-        <Pane layoutX="28.0" layoutY="26.0" prefHeight="466.0" prefWidth="805.0">
+        <Pane layoutX="23.8" layoutY="22.099999999999998" prefHeight="396.09999999999997" prefWidth="684.25">
             <children>
-                        <ImageView fx:id="market" fitHeight="466.0" fitWidth="802.0">
-                        </ImageView>
-                <ImageView fx:id="imageMarket0" fitHeight="86.0" fitWidth="94.0" layoutX="260.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnMarket0"/>
-                <ImageView fx:id="imageMarket1" fitHeight="86.0" fitWidth="94.0" layoutX="412.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnMarket1"/>
-                <ImageView fx:id="imageMarket2" fitHeight="86.0" fitWidth="94.0" layoutX="563.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnMarket2"/>
-                <ImageView fx:id="imageMarket3" fitHeight="86.0" fitWidth="94.0" layoutX="679.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#placeFamiliarOnMarket3"/>
-           </children>
+                <ImageView fx:id="market" fitHeight="396.09999999999997" fitWidth="681.6999999999999"></ImageView>
+                <ImageView fx:id="imageMarket0" fitHeight="73.1" fitWidth="79.89999999999999" layoutX="221.0"
+                           layoutY="71.39999999999999" pickOnBounds="true" preserveRatio="true"
+                           onMouseClicked="#placeFamiliarOnMarket0"/>
+                <ImageView fx:id="imageMarket1" fitHeight="73.1" fitWidth="79.89999999999999" layoutX="350.2"
+                           layoutY="70.55" pickOnBounds="true" preserveRatio="true"
+                           onMouseClicked="#placeFamiliarOnMarket1"/>
+                <ImageView fx:id="imageMarket2" fitHeight="73.1" fitWidth="79.89999999999999" layoutX="478.55"
+                           layoutY="96.05" pickOnBounds="true" preserveRatio="true"
+                           onMouseClicked="#placeFamiliarOnMarket2"/>
+                <ImageView fx:id="imageMarket3" fitHeight="73.1" fitWidth="79.89999999999999" layoutX="577.15"
+                           layoutY="186.15" pickOnBounds="true" preserveRatio="true"
+                           onMouseClicked="#placeFamiliarOnMarket3"/>
+            </children>
         </Pane>
-
-        <ImageView fitHeight="516.0" fitWidth="863.0">
+        <ImageView fitHeight="438.59999999999997" fitWidth="733.55">
             <image>
-                <Image url="/images/cornici/cornice18x27.png" />
+                <Image url="/images/cornici/cornice18x27.png"/>
             </image>
         </ImageView>
-
-        <Pane layoutX="886.0" layoutY="32.0" prefHeight="653.0" prefWidth="159.0">
+        <Pane layoutX="753.1" layoutY="27.2" prefHeight="555.05" prefWidth="135.15">
             <children>
-                <ImageView fitHeight="653.0" fitWidth="159.0" layoutX="-4.0" opacity="0.58">
+                <ImageView fitHeight="555.05" fitWidth="135.15" layoutX="-3.4" opacity="0.49299999999999994">
                     <image>
-                        <Image url="/images/immaginiSetUp/finestra.png" />
+                        <Image url="/images/immaginiSetUp/finestra.png"/>
                     </image>
                 </ImageView>
-                <VBox alignment="TOP_CENTER" layoutY="92.0" prefHeight="496.0" prefWidth="159.0" spacing="8.0">
+                <VBox alignment="TOP_CENTER" layoutY="78.2" prefHeight="421.59999999999997" prefWidth="135.15"
+                      spacing="6.8">
                     <children>
-                        <ImageView fx:id="imageFamiliarNull" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen"   >
+                        <ImageView fx:id="imageFamiliarNull" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarNull" mnemonicParsing="false" onAction="#familiarNullChosen">
                             <toggleGroup>
-                                <ToggleGroup fx:id="familiar" />
+                                <ToggleGroup fx:id="familiar"/>
                             </toggleGroup>
                         </RadioButton>
-                        <ImageView fx:id="imageFamiliarBlack" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen" toggleGroup="$familiar" />
-                        <ImageView fx:id="imageFamiliarWhite" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen" toggleGroup="$familiar" />
-                        <ImageView fx:id="imageFamiliarOrange" fitHeight="86.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen" toggleGroup="$familiar"/>
+                        <ImageView fx:id="imageFamiliarBlack" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarBlack" mnemonicParsing="false" onAction="#familiarBlackChosen"
+                                     toggleGroup="$familiar"/>
+                        <ImageView fx:id="imageFamiliarWhite" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarWhite" mnemonicParsing="false" onAction="#familiarWhiteChosen"
+                                     toggleGroup="$familiar"/>
+                        <ImageView fx:id="imageFamiliarOrange" fitHeight="73.1" fitWidth="79.89999999999999"
+                                   pickOnBounds="true" preserveRatio="true"/>
+                        <RadioButton fx:id="familiarOrange" mnemonicParsing="false" onAction="#familiarOrangeChosen"
+                                     toggleGroup="$familiar"/>
                     </children>
                 </VBox>
             </children>
         </Pane>
-        <Pane layoutX="33.0" layoutY="543.0" prefHeight="361.0" prefWidth="801.0">
+        <Pane layoutX="28.05" layoutY="461.55" prefHeight="306.84999999999997" prefWidth="680.85">
             <children>
-                <ImageView fitHeight="361.0" fitWidth="218.0" layoutX="578.0" layoutY="-2.0" opacity="0.58">
+                <ImageView fitHeight="306.84999999999997" fitWidth="185.29999999999998" layoutX="491.3" layoutY="-1.7"
+                           opacity="0.49299999999999994">
                     <image>
-                        <Image url="/images/immaginiSetUp/finestra.png" />
+                        <Image url="/images/immaginiSetUp/finestra.png"/>
                     </image>
                 </ImageView>
-                <SplitPane dividerPositions="0.9080779944289693" orientation="VERTICAL" prefHeight="361.0" prefWidth="363.0">
+                <SplitPane dividerPositions="0.7718662952646239" orientation="VERTICAL" prefHeight="306.84999999999997"
+                           prefWidth="308.55">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
                             <children>
-                                <Label fx:id="chatArea" layoutX="5.0" layoutY="2.0" prefHeight="195.0" prefWidth="349.0" text="chat" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                <Label fx:id="chatArea" layoutX="4.25" layoutY="1.7" prefHeight="165.75"
+                                       prefWidth="296.65" text="chat" AnchorPane.bottomAnchor="0.0"
+                                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                       AnchorPane.topAnchor="0.0"/>
                             </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
                             <children>
-                                <SplitPane dividerPositions="0.755223880597015" layoutX="-3.0" layoutY="1.0" prefHeight="38.0" prefWidth="361.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <SplitPane dividerPositions="0.6419402985074627" layoutX="-2.55" layoutY="0.85"
+                                           prefHeight="32.3" prefWidth="306.84999999999997"
+                                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="85.0">
                                             <children>
-                                                <TextField fx:id="chatText" layoutY="1.0" prefHeight="29.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <TextField fx:id="chatText" layoutY="0.85" prefHeight="24.65"
+                                                           prefWidth="300.9" AnchorPane.bottomAnchor="0.0"
+                                                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                           AnchorPane.topAnchor="0.0"/>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="155.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
+                                                    prefWidth="131.75">
                                             <children>
-                                                <Button fx:id="send" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#sendChat" prefHeight="29.0" prefWidth="84.0" text="Send" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <Button fx:id="send" layoutX="3.4" layoutY="1.7" mnemonicParsing="false"
+                                                        onAction="#sendChat" prefHeight="24.65"
+                                                        prefWidth="71.39999999999999" text="Send"
+                                                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                                        AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
                                             </children>
                                         </AnchorPane>
                                     </items>
@@ -91,96 +121,115 @@
                         </AnchorPane>
                     </items>
                 </SplitPane>
-                <ImageView fitHeight="361.0" fitWidth="218.0" layoutX="362.0" opacity="0.58">
+                <ImageView fitHeight="306.84999999999997" fitWidth="185.29999999999998" layoutX="307.7"
+                           opacity="0.49299999999999994">
                     <image>
-                        <Image url="/images/immaginiSetUp/finestra.png" />
+                        <Image url="/images/immaginiSetUp/finestra.png"/>
                     </image>
                 </ImageView>
-                <VBox layoutX="363.0" prefHeight="361.0" prefWidth="215.0">
+                <VBox layoutX="308.55" prefHeight="306.84999999999997" prefWidth="182.75">
                     <children>
-                        <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard" prefHeight="44.0" prefWidth="224.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="show personal board">
+                        <Button fx:id="personalBoard" mnemonicParsing="false" onAction="#showPersonalBoard"
+                                prefHeight="37.4" prefWidth="190.4"
+                                style="-fx-background-color: transparent; -fx-border-color: black;"
+                                text="show personal board">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Button>
-                        <Button fx:id="submit" mnemonicParsing="false" onAction="#goToMarket" prefHeight="44.0" prefWidth="223.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="submit">
+                        <Button fx:id="submit" mnemonicParsing="false" onAction="#goToMarket" prefHeight="37.4"
+                                prefWidth="189.54999999999998"
+                                style="-fx-background-color: transparent; -fx-border-color: black;" text="submit">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Button>
-                        <Button fx:id="mainGameButton" mnemonicParsing="false" onAction="#goToMainGame" prefHeight="44.0" prefWidth="222.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="back to main game">
+                        <Button fx:id="mainGameButton" mnemonicParsing="false" onAction="#goToMainGame"
+                                prefHeight="37.4" prefWidth="188.7"
+                                style="-fx-background-color: transparent; -fx-border-color: black;"
+                                text="back to main game">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Button>
-                        <Label prefHeight="232.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="select the family member and place it on the right position. Click submit to play" textAlignment="CENTER" wrapText="true">
+                        <Label prefHeight="197.2" prefWidth="182.75"
+                               style="-fx-background-color: transparent; -fx-border-color: black;"
+                               text="select the family member and place it on the right position. Click submit to play"
+                               textAlignment="CENTER" wrapText="true">
                             <font>
-                                <Font name="Lucida Blackletter" size="19.0" />
+                                <Font name="Lucida Blackletter" size="16.15"/>
                             </font>
                         </Label>
                     </children>
                 </VBox>
-                <Pane layoutX="578.0" prefHeight="361.0" prefWidth="218.0">
+                <Pane layoutX="491.3" prefHeight="306.84999999999997" prefWidth="185.29999999999998">
                     <children>
-                        <ImageView fitHeight="57.0" fitWidth="69.0" layoutX="29.0" layoutY="125.0" style="-fx-alignment: center">
+                        <ImageView fitHeight="48.449999999999996" fitWidth="58.65" layoutX="24.65" layoutY="106.25"
+                                   style="-fx-alignment: center">
                             <image>
-                                <Image url="/images/risorse/wood.png" />
+                                <Image url="/images/risorse/wood.png"/>
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="57.0" fitWidth="70.0" layoutX="28.0" layoutY="196.0" style="-fx-alignment: center">
+                        <ImageView fitHeight="48.449999999999996" fitWidth="59.5" layoutX="23.8" layoutY="166.6"
+                                   style="-fx-alignment: center">
                             <image>
-                                <Image url="/images/risorse/stone.png" />
+                                <Image url="/images/risorse/stone.png"/>
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="84.0" fitWidth="57.0" layoutX="31.0" layoutY="264.0" style="-fx-alignment: center">
+                        <ImageView fitHeight="71.39999999999999" fitWidth="48.449999999999996"
+                                   layoutX="26.349999999999998" layoutY="224.4" style="-fx-alignment: center">
                             <image>
-                                <Image url="/images/risorse/servant.png" />
+                                <Image url="/images/risorse/servant.png"/>
                             </image>
                         </ImageView>
-                        <Label fx:id="numberOfCoins" layoutX="110.0" layoutY="43.0" prefHeight="28.0" prefWidth="96.0" style="-fx-alignment: center" text="75" textAlignment="CENTER">
+                        <Label fx:id="numberOfCoins" layoutX="93.5" layoutY="36.55" prefHeight="23.8" prefWidth="81.6"
+                               style="-fx-alignment: center" text="63.75" textAlignment="CENTER">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Label>
-                        <Label fx:id="numberOfWood" layoutX="110.0" layoutY="140.0" prefHeight="28.0" prefWidth="80.0" style="-fx-alignment: center" text="7" textAlignment="CENTER">
+                        <Label fx:id="numberOfWood" layoutX="93.5" layoutY="119.0" prefHeight="23.8" prefWidth="68.0"
+                               style="-fx-alignment: center" text="5.95" textAlignment="CENTER">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Label>
-                        <Label fx:id="numberOfStone" layoutX="110.0" layoutY="210.0" prefHeight="28.0" prefWidth="85.0" style="-fx-alignment: center" text="8" textAlignment="CENTER">
+                        <Label fx:id="numberOfStone" layoutX="93.5" layoutY="178.5" prefHeight="23.8" prefWidth="72.25"
+                               style="-fx-alignment: center" text="6.8" textAlignment="CENTER">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Label>
-                        <Label fx:id="numberOfServants" layoutX="110.0" layoutY="287.0" prefHeight="28.0" prefWidth="79.0" style="-fx-alignment: center" text="89" textAlignment="CENTER">
+                        <Label fx:id="numberOfServants" layoutX="93.5" layoutY="243.95" prefHeight="23.8"
+                               prefWidth="67.14999999999999" style="-fx-alignment: center" text="75.64999999999999"
+                               textAlignment="CENTER">
                             <font>
-                                <Font name="Lucida Blackletter" size="21.0" />
+                                <Font name="Lucida Blackletter" size="17.849999999999998"/>
                             </font>
                         </Label>
-                        <ImageView fitHeight="76.0" fitWidth="81.0" layoutX="23.0" layoutY="19.0" style="-fx-alignment: center">
+                        <ImageView fitHeight="64.6" fitWidth="68.85" layoutX="19.55" layoutY="16.15"
+                                   style="-fx-alignment: center">
                             <image>
-                                <Image url="/images/risorse/soldo.png" />
+                                <Image url="/images/risorse/soldo.png"/>
                             </image>
                         </ImageView>
-
-                    </children></Pane>
-
-
+                    </children>
+                </Pane>
             </children>
         </Pane>
-        <ImageView fitHeight="713.0" fitWidth="218.0" layoutX="857.0">
+        <ImageView fitHeight="606.05" fitWidth="185.29999999999998" layoutX="728.4499999999999">
             <image>
-                <Image url="/images/cornici/cornice5x27.png" />
+                <Image url="/images/cornici/cornice5x27.png"/>
             </image>
         </ImageView>
-        <ImageView fitHeight="412.0" fitWidth="860.0" layoutY="516.0">
+        <ImageView fitHeight="350.2" fitWidth="731.0" layoutY="438.59999999999997">
             <image>
-                <Image url="/images/cornici/cornice14x27.png" />
+                <Image url="/images/cornici/cornice14x27.png"/>
             </image>
         </ImageView>
-        <ImageView fx:id="LorenzoMagnifico" fitHeight="215.0" fitWidth="215.0" layoutX="860.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-            </image></ImageView>
+        <ImageView fx:id="LorenzoMagnifico" fitHeight="182.75" fitWidth="182.75" layoutX="731.0" layoutY="606.05"
+                   pickOnBounds="true" preserveRatio="true">
+            <image></image>
+        </ImageView>
     </children>
-
 </AnchorPane>

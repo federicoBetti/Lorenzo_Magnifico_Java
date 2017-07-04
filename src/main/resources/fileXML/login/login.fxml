@@ -7,46 +7,49 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="ancora" prefHeight="850.0" prefWidth="570.0" style="-fx-background-image: url('/images/immaginiSetUp/login.jpg'); -fx-background-repeat: stretch; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.InitialLogin">
-   <children>
-      <ImageView id="cornicedestra" fitHeight="157.0" fitWidth="200.0" layoutX="50.0" layoutY="768.0" style="-fx-rotate: 0;">
-         <image>
-            <Image url="/images/cornici/cornice.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="157.0" fitWidth="200.0" layoutX="341.0" layoutY="766.0">
-         <image>
-            <Image url="/images/cornici/cornice.png" />
-         </image>
-      </ImageView>
-      <VBox layoutX="99.0" layoutY="807.0" prefHeight="76.0" prefWidth="100.0" spacing="20.0">
-         <children>
-            <TextField id="username" fx:id="username" prefHeight="59.0" prefWidth="100.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
-            <TextField id="password" fx:id="password" promptText="Password" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
-         </children>
-      </VBox>
-      <Button id="connect" fx:id="connect" layoutX="244.0" layoutY="829.0" mnemonicParsing="false" onAction="#doConnection" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="connect">
-         <font>
-            <Font name="Lucida Blackletter" size="21.0" />
-         </font></Button>
-      <VBox layoutX="392.0" layoutY="814.0" prefHeight="68.0" prefWidth="100.0" spacing="25.0">
-         <children>
-            <RadioButton id="rmi" fx:id="rmi" mnemonicParsing="false" onAction="#rmiClicked" selected="true" text="RMI">
-               <toggleGroup>
-                  <ToggleGroup fx:id="connection" />
-               </toggleGroup>
-               <font>
-                  <Font name="Lucida Blackletter" size="18.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="socket" mnemonicParsing="false" onAction="#socketClicked" text="Socket" toggleGroup="$connection">
-               <font>
-                  <Font name="Lucida Blackletter" size="18.0" />
-               </font></RadioButton>
-         </children>
-      </VBox>
-   </children>
+<AnchorPane id="ancora" fx:id="anchr" prefHeight="827.9" prefWidth="484.5" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.InitialLogin">
+    <children>
+        <Pane prefHeight="827.9" prefWidth="484.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fx:id="sfondo" fitHeight="827.9" fitWidth="484.5" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </Pane>
+        <ImageView id="cornicedestra" fitHeight="133.45" fitWidth="170.0" layoutX="42.5" layoutY="652.8" style="-fx-rotate: 0;">
+            <image>
+                <Image url="/images/cornici/cornice.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="133.45" fitWidth="170.0" layoutX="289.84999999999997" layoutY="651.1">
+            <image>
+                <Image url="/images/cornici/cornice.png" />
+            </image>
+        </ImageView>
+        <TextField id="username" fx:id="username" layoutX="84.14999999999999" layoutY="708.05" prefHeight="30.599999999999998" prefWidth="85.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
+        <Button id="connect" fx:id="connect" layoutX="207.4" layoutY="704.65" mnemonicParsing="false" onAction="#doConnection" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="connect">
+            <font>
+                <Font name="Lucida Blackletter" size="17.849999999999998" />
+            </font>
+        </Button>
+        <VBox layoutX="333.2" layoutY="691.9" prefHeight="57.8" prefWidth="85.0" spacing="21.25">
+            <children>
+                <RadioButton id="rmi" fx:id="rmi" mnemonicParsing="false" onAction="#rmiClicked" selected="true" text="rmi">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="connection" />
+                    </toggleGroup>
+                    <font>
+                        <Font name="Lucida Blackletter" size="15.299999999999999" />
+                    </font>
+                </RadioButton>
+                <RadioButton fx:id="socket" mnemonicParsing="false" onAction="#socketClicked" text="socket" toggleGroup="$connection">
+                    <font>
+                        <Font name="Lucida Blackletter" size="15.299999999999999" />
+                    </font>
+                </RadioButton>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
