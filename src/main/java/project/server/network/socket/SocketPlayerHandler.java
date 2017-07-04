@@ -331,11 +331,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             }
 
             System.out.println("sono in attesa qui");
-            Object choice = objectInputStream.readObject();
+            int choice = (int)objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
-            System.out.println(choice.getClass());
-            System.out.println("la scelta è " + choice);
-            return (int) choice;
+            System.out.println("Arrivato choice " + choice);
+            return choice;
         } catch (IOException | ClassNotFoundException e) {
             setOn(false);
             return -1;

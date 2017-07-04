@@ -572,8 +572,11 @@ public class Cli extends AbstractUI {
         choiceQueue = new LinkedBlockingDeque<>();
         String tileChosen;
 
+        context.getpBlue().println("Bonus Tile choosen! Wait for the other players'choiceeeee");
+
         while (true) {
             try {
+                context.getpBlue().println("Bonus Tile choosen! Wait foe");
                 tileChosen = choiceQueue.take();
                 context.checkValidInput(tileChosen);
                 break;
@@ -581,6 +584,7 @@ public class Cli extends AbstractUI {
                 e.printStackTrace();
             } catch (InputException e) {
                 context.printHelp();
+                context.getpBlue().println("Bonus Tile exceptionnnnnchoosen! Wait for the other players'choice");
             }
         }
 

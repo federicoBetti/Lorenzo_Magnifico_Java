@@ -241,6 +241,8 @@ public class Room {
                 p.matchStarted(getRoomPlayers(), p.getFamilyColour());
                 System.out.println("mando MATCH STARTED");
             }
+            else
+                p.tokenNotify();
         }
 
         try {

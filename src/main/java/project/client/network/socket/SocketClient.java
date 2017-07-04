@@ -379,7 +379,7 @@ public class SocketClient extends AbstractClient {
                     System.out.println("NOTIFY");
                 }
 
-                else if (message.equals(Constants.ACTION_DONE_ON_TIME)) {
+                else if (message.equals(Constants.ACTION_DONE_ON_TIME)) { //era solo if
 
                     synchronized (token) {
                         token.notify();
