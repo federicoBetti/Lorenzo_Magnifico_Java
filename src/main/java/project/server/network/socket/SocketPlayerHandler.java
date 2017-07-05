@@ -354,22 +354,27 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         firstConnection = false;
     }
 
+    //todo: si blocca perchè non ha ricevuto match started e quindi è in wait il server se la connessione cade nel draft
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
             synchronized (token) {
                 token.notify();
             }
-            System.out.println(this.getName() + " SVEGLIATO");
-            objectOutputStream.writeObject(Constants.MATCH_STARTED);
-            objectOutputStream.writeObject(roomPlayers);
-            objectOutputStream.writeObject(familyColour);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
+            if ( isOn() ) {
+                setMatchStartedVar(true);
+                System.out.println(this.getName() + " SVEGLIATO");
+                objectOutputStream.writeObject(Constants.MATCH_STARTED);
+                objectOutputStream.writeObject(roomPlayers);
+                objectOutputStream.writeObject(familyColour);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            }
         } catch (IOException e) {
             setOn(false);
         }
     }
+
 
 
     @Override

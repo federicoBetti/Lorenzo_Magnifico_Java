@@ -22,6 +22,8 @@ public abstract class PlayerHandler extends Player {
     final static String NO_AbCTION_CAN_BE_DONE = "no action can be done";
     private LeaderCardRequirements leaderCardRequirements;
     boolean callPray;
+    public boolean disconnectedInDraft = false;
+    boolean matchStartedVar = false;
 
 
     protected PlayerHandler(){
@@ -390,6 +392,10 @@ public abstract class PlayerHandler extends Player {
 
     public void reconnectClient() {
         this.setOn(true);
+        if ( !matchStartedVar )
+            matchStarted(room.getRoomPlayers(), getFamilyColour());
+
+
         System.out.println("CLIENT RECONNECTED!");
     }
 
@@ -489,4 +495,20 @@ public abstract class PlayerHandler extends Player {
     }
 
     public abstract void tokenNotify();
+
+    public boolean isDisconnectedInDraft() {
+        return disconnectedInDraft;
+    }
+
+    public void setDisconnectedInDraft(boolean disconnectedInDraft) {
+        this.disconnectedInDraft = disconnectedInDraft;
+    }
+
+    public boolean isMatchStartedVar() {
+        return matchStartedVar;
+    }
+
+    public void setMatchStartedVar(boolean matchStartedVar) {
+        this.matchStartedVar = matchStartedVar;
+    }
 }

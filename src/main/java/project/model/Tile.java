@@ -28,12 +28,10 @@ public class Tile implements Serializable{
 
         for(TrisIE tris : tile.getHarvesterBonus() ) {
             harvesterBonus.add(BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
-            System.out.println("Harvester bonus. L'effetto nella tile è: " + BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()).getClass());
         }
 
         for(TrisIE tris : tile.getProductionBonus() ){
             productionBonus.add(BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
-            System.out.println("Production bonus. L'effetto nella tile è: " + BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()).getClass());
         }
     }
     /**

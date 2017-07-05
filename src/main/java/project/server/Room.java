@@ -54,9 +54,10 @@ public class Room {
     TimerSettings timerSettings;
 
     PlayerHandler lastPlayer;
+    public boolean draftTime = false;
 
 
-    Room(Server server) {
+    public Room(Server server) {
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
         buildExcommunicationEffects = new BuildExcommunicationEffects();
@@ -131,6 +132,7 @@ public class Room {
     }
 
     public void startMatch() {
+        draftTime = true;
         String[] colors = fillColors();
         int i = 0;
         List<PlayerHandler> playerInTheMatch = new ArrayList<>();
@@ -141,6 +143,7 @@ public class Room {
                 playerInTheMatch.add(player.getValue());
                 player.getValue().setFamilyColour(colors[i]);
                 player.getValue().setFamilyColourInFamilyMembers();
+               // player.getValue().setDisconnectedInDraft(true);
                 i++;
             }
         }
@@ -162,7 +165,6 @@ public class Room {
         //todo mischia il mazzo, funge
         //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
-        board.getTurn().setPlayerTurn(playerInTheMatch);
 
         //todo aggiungere questa parte per il draft
 
@@ -236,13 +238,21 @@ public class Room {
         }
 
         //inizia la partita
-        for (PlayerHandler p : playerInTheMatch) {
-            if (p.isOn()) {
+        for (PlayerHandler p : getListOfPlayers()) {
+
+                if ( p.disconnectedInDraft ) {
+                    PlayerHandler oldPlayer = null;
+                    p.setOn(true);
+                    for ( PlayerHandler player : playerInTheMatch )
+                        if ( p.getName().equals(player.getName()))
+                            oldPlayer = player;
+                    System.out.println("Old player : "  + oldPlayer);
+                    server.loadPlayerState(this, p, oldPlayer);
+                }
+
                 p.matchStarted(getRoomPlayers(), p.getFamilyColour());
                 System.out.println("mando MATCH STARTED");
-            }
-            else
-                p.tokenNotify();
+
         }
 
         try {
@@ -253,7 +263,7 @@ public class Room {
         placeCardInTowers();
 
         int moreCoin = 0;
-        for (PlayerHandler p : board.getTurn().getPlayerTurn()) {
+        for (PlayerHandler p : getListOfPlayers() ) {
             //setResources(p, moreCoin);
             if ( p.isOn() ) {
                 int fauthPoint = 3;
@@ -274,6 +284,8 @@ public class Room {
 
         gameActions.rollDice();
         matchStarted = true;
+
+        board.getTurn().setPlayerTurn(getListOfPlayers());
         gameActions.firstPlayerTurn();
 
     }
