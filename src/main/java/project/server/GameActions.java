@@ -156,8 +156,7 @@ public class GameActions {
                 System.out.println("finita la partita senza nessun giocatore");
                 room.getServer().getRooms().remove(room);
                 return;
-            } else
-                endMatch();
+            } else endMatch();
 
         } else if (currentRound == 1) {//fine periodo
             timer.cancel();
@@ -167,8 +166,7 @@ public class GameActions {
             board.getTurn().setRotation(0);
             setEndRound(true);
             int playerIndex = firstPlayerTurn();
-            if (playerIndex == -1)
-                return;
+            if (playerIndex == -1) return;
 
             return;
 
@@ -181,8 +179,7 @@ public class GameActions {
             setEndRound(true);
             //il timer cancel era qui
             int playerIndex = firstPlayerTurn();
-            if (playerIndex == -1)
-                return;
+            if (playerIndex == -1) return;
 
             System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
         }
@@ -226,13 +223,12 @@ public class GameActions {
     private boolean allFamiliarPlayed() {
         for (PlayerHandler player : room.getListOfPlayers()) {
             for (FamilyMember familyMember : player.getAllFamilyMembers()) {
-                if (!familyMember.isPlayed())
-                    return false;
+                if (!familyMember.isPlayed()) return false;
             }
         }
         return true;
     }
-    
+
     public void setBoard(Board board) {
         this.board = board;
     }
@@ -399,8 +395,7 @@ public class GameActions {
     private void clearLeaderCardUsed() {
         for (PlayerHandler p : room.getListOfPlayers()) {
             for (LeaderCard l : p.getPersonalBoardReference().getMyLeaderCard())
-                if (l.isPlayed() && l.isOnePerTurn())
-                    l.setPlayed(false);
+                if (l.isPlayed() && l.isOnePerTurn()) l.setPlayed(false);
         }
     }
 
@@ -454,11 +449,9 @@ public class GameActions {
         DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
         int roundsAdd = 0;
 
-        if (currentRound == 0)
-            roundsAdd = 4;
+        if (currentRound == 0) roundsAdd = 4;
 
-        else
-            currentPeriod++;
+        else currentPeriod++;
 
         //si potrebbe fare con iteratore..
         for (i = 0; i < Constants.NUMBER_OF_TOWERS; i++) {
@@ -490,10 +483,8 @@ public class GameActions {
                 System.out.println(player.getName());
                 int choice = player.sendAskForPraying(turn);
 
-                if (choice == 1 || choice ==-1)
-                    takeExcommunication(player);
-                else
-                    faithPointsForVictoryPoints(player);
+                if (choice == 1 || choice == -1) takeExcommunication(player);
+                else faithPointsForVictoryPoints(player);
                 timer.cancel();
 
             } else {
@@ -530,10 +521,8 @@ public class GameActions {
 
 
         getSupportFunctions(player).setFamiliar(harvesterZone, familyM);
-        if (position == 0)
-            malusByField = 0;
-        else
-            malusByField = 3;
+        if (position == 0) malusByField = 0;
+        else malusByField = 3;
         actionValue = familyM.getMyValue() + servantsNumber - malusByField + cardBonus;
         harvesterList.add(harvesterZone);
 
@@ -556,8 +545,7 @@ public class GameActions {
         }
 
         for (TerritoryCard card : player.getPersonalBoardReference().getTerritories()) {
-            if (harvesterValue >= card.getCost().getDiceCost())
-                makePermanentEffects(player, card);
+            if (harvesterValue >= card.getCost().getDiceCost()) makePermanentEffects(player, card);
         }
 
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
@@ -582,7 +570,7 @@ public class GameActions {
 
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
 
-        productionBonus(cardToProduct, servantsToPay, choichePE,  player);
+        productionBonus(cardToProduct, servantsToPay, choichePE, player);
 
     }
 
@@ -642,26 +630,23 @@ public class GameActions {
      */
     //todo modify
     public void playLeaderCard(String leaderName, PlayerHandler player) throws CantDoActionException {
+        LeaderCard leaderToPlay = null;
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
-
-                if (leaderCard.isPlayed())
-                    throw new CantDoActionException();
-
-                BonusInteraction returnFromEffect = leaderCardEffect.doEffect(leaderName, player);
-
-                if (returnFromEffect instanceof LorenzoMagnifico) {
-                    //todo fare cose per lorenzo magnifico
-                } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction)
-                    player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
-                else if (returnFromEffect instanceof TakePrivilegesAction)
-                    player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
-
-                player.sendActionOk();
-                leaderCard.setPlayed(true);
+                leaderToPlay = leaderCard;
+                break;
             }
 
         }
+
+        BonusInteraction returnFromEffect = leaderCardEffect.doEffect(leaderName, player);
+
+        if (returnFromEffect instanceof BonusProductionOrHarvesterAction)
+            player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
+        else if (returnFromEffect instanceof TakePrivilegesAction)
+            player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+
+        leaderToPlay.setPlayed(true);
 
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }
@@ -766,8 +751,8 @@ public class GameActions {
     }
 
 
-    private void broadcastUpdates(Updates updates){
-        for(PlayerHandler player: room.getListOfPlayers()){
+    private void broadcastUpdates(Updates updates) {
+        for (PlayerHandler player : room.getListOfPlayers()) {
             player.sendUpdates(updates);
         }
     }
@@ -776,8 +761,7 @@ public class GameActions {
     private void makePermanentEffectsProduction(PlayerHandler player, BuildingCard card, List<Integer> choichePE) {
         if (card.isChoicePe()) {
             int choice = choichePE.get(0);
-            if (choice == -1)
-                return;
+            if (choice == -1) return;
             Effects e = card.getPermanentCardEffects().get(choice);
             BonusInteraction returnFromEffect = e.doEffect(player);
 
@@ -808,9 +792,9 @@ public class GameActions {
     private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {
 
         for (Effects effect : card.getPermanentCardEffects()) {
-                effect.doEffect(player);
-                System.out.println(" effetto permanente stampato " + effect.getClass());
-            }
+            effect.doEffect(player);
+            System.out.println(" effetto permanente stampato " + effect.getClass());
+        }
     }
 
     Timer myTimerSkipTurn(PlayerHandler player) {

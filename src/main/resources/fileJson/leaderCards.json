@@ -7,6 +7,48 @@
     "cardDescription": "Once Per Round ability: Perform a Harvest action at value 1. \n(You can increase this action value only by spending servants;\n you can’t increase it with Farmer or Peasant Development Cards.)"
   },
   {
+    "name": "giovanniDalleBandeNere",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "12 Military Points",
+    "cardDescription": "Once Per Round ability: Receive 1 wood, 1 stone, and 1 coin."
+  },
+  {
+    "name": "sandroBotticelli",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "10 wood",
+    "cardDescription": "Once Per Round ability: Gain 2 Military Points and 1 Victory Point."
+  },
+  {
+    "name": "ludovicoIIIGonzaga",
+    "isPlayed": false,
+    "onePerTurn": true,
+    "requirementsDescription": "15 servants",
+    "cardDescription": "Once Per Round ability: Receive 1 Council Privilege."
+  },
+  {
+    "name": "sistoIV",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "6 wood, 6 stone, 6 coins, and 6 servants",
+    "cardDescription": "Permanent ability: You gain 5 additional Victory Points when you support \nthe Church in a Vatican Report phase."
+  },
+  {
+    "name": "santaRita",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "8 Faith Points",
+    "cardDescription": "Permanent ability: Each time you receive wood, stone, coins, or servants as an immediate effect\nfrom Development Cards (not from an action space), you receive the resources twice."
+  },
+  {
+    "name": "lorenzoDeMedici",
+    "isPlayed": false,
+    "onePerTurn": false,
+    "requirementsDescription": "35 Victory Points",
+    "cardDescription": "Permanent ability: Copy the ability of another Leader Card already played by another\n player. Once you decide the ability to copy, it can’t be changed."
+  },
+  {
     "name": "ludovicoAriosto",
     "isPlayed": false,
     "onePerTurn": false,
@@ -35,32 +77,11 @@
     "cardDescription": "Once Per Round ability: Gain 1 Faith Point."
   },
   {
-    "name": "giovanniDalleBandeNere",
-    "isPlayed": false,
-    "onePerTurn": true,
-    "requirementsDescription": "12 Military Points",
-    "cardDescription": "Once Per Round ability: Receive 1 wood, 1 stone, and 1 coin."
-  },
-  {
-    "name": "sandroBotticelli",
-    "isPlayed": false,
-    "onePerTurn": true,
-    "requirementsDescription": "10 wood",
-    "cardDescription": "Once Per Round ability: Gain 2 Military Points and 1 Victory Point."
-  },
-  {
     "name": "michelangeloBuonarroti",
     "isPlayed": false,
     "onePerTurn": true,
     "requirementsDescription": "10 stones",
     "cardDescription": "Once Per Round ability: Receive 3 coins."
-  },
-  {
-    "name": "ludovicoIIIGonzaga",
-    "isPlayed": false,
-    "onePerTurn": true,
-    "requirementsDescription": "15 servants",
-    "cardDescription": "Once Per Round ability: Receive 1 Council Privilege."
   },
   {
     "name": "leonardoDaVinci",
@@ -98,13 +119,6 @@
     "cardDescription": "Permanent ability: Your uncolored Family Member has a bonus of +3 on its value."
   },
   {
-    "name": "lorenzoDeMedici",
-    "isPlayed": false,
-    "onePerTurn": false,
-    "requirementsDescription": "35 Victory Points",
-    "cardDescription": "Permanent ability: Copy the ability of another Leader Card already played by another\n player. Once you decide the ability to copy, it can’t be changed."
-  },
-  {
     "name": "ludovicoIlMoro",
     "isPlayed": false,
     "onePerTurn": false,
@@ -117,13 +131,6 @@
     "onePerTurn": false,
     "requirementsDescription": "3 Building Cards, 12 coins, and 2 Faith Points",
     "cardDescription": "Permanent ability: You don’t need to satisfy the Military Points requirement when you take Territory Cards."
-  },
-  {
-    "name": "santaRita",
-    "isPlayed": false,
-    "onePerTurn": false,
-    "requirementsDescription": "8 Faith Points",
-    "cardDescription": "Permanent ability: Each time you receive wood, stone, coins, or servants as an immediate effect\nfrom Development Cards (not from an action space), you receive the resources twice."
   },
   {
     "name": "cosimoDeMedici",

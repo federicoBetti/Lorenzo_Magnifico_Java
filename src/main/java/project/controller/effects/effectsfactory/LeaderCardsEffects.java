@@ -1,20 +1,20 @@
 package project.controller.effects.effectsfactory;
 
 import project.controller.Constants;
+import project.controller.cardsfactory.LeaderCard;
 import project.controller.checkfunctions.DontPayForTerritories;
 import project.controller.checkfunctions.DontPayMoneyForTower;
 import project.controller.checkfunctions.LudovicoAriostoCheck;
 import project.controller.checkfunctions.PicoDellaMirandolaCheck;
 import project.controller.effects.realeffects.*;
-import project.controller.supportfunctions.FivePointsMoreForPray;
-import project.controller.supportfunctions.LudovicoAriostoSupport;
-import project.controller.supportfunctions.PicoDellaMirandolaSupport;
-import project.controller.supportfunctions.SantaRita;
+import project.controller.supportfunctions.*;
 import project.messages.*;
 import project.model.PersonalBoard;
 import project.server.network.PlayerHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -26,12 +26,15 @@ public class LeaderCardsEffects {
 
     private  HashMap<String, EffectsBuilder> effects;
     private OkOrNo okOrNo;
+    private String leaderNameLorenzoMagnifico;
+
     /**
      * Default constructor
      */
     public LeaderCardsEffects() {
         okOrNo = new OkOrNo();
         effects = new HashMap<>();
+        leaderNameLorenzoMagnifico = null;
         fillHashMapRequirements();
     }
 
@@ -108,11 +111,38 @@ public class LeaderCardsEffects {
     }
 
     private BonusInteraction lorenzoDeMedici(PlayerHandler player) {
-        return new LorenzoMagnifico();
+        if (leaderNameLorenzoMagnifico != null){
+            return doEffect(leaderNameLorenzoMagnifico,player);
+        }
+        List<LeaderCard> leaderPlayed = new ArrayList<>();
+        for (PlayerHandler p: player.getRoom().getListOfPlayers()){
+            for (LeaderCard l: p.getPersonalBoardReference().getMyLeaderCard())
+                if (l.isRequirementsSatisfied())
+                    leaderPlayed.add(l);
+        }
+        leaderNameLorenzoMagnifico = player.leaderCardChosen(leaderPlayed);
+        if (leaderNameLorenzoMagnifico.equals(-1))
+            return null;
+
+        LeaderCard newLeader = null;
+        for (LeaderCard l: leaderPlayed)
+            if (l.getName().equals(leaderNameLorenzoMagnifico))
+                newLeader = l;
+
+        LeaderCard lorenzo = null;
+        for (LeaderCard l: player.getPersonalBoardReference().getMyLeaderCard())
+            if (l.getName().equals(Constants.LORENZO_DE_MEDICI))
+                lorenzo = l;
+
+        player.getPersonalBoardReference().getMyLeaderCard().remove(lorenzo);
+        player.getPersonalBoardReference().getMyLeaderCard().add(newLeader);
+
+
+        return doEffect(leaderNameLorenzoMagnifico,player);
     }
 
     private BonusInteraction federicoDaMontefeltro(PlayerHandler player) {
-        //todo
+        player.getRoom().setMySupportFunction(new FedericoDaMontefeltroSupport(player.getRoom().getMySupportFunction(player)),player);
         return okOrNo;
     }
 

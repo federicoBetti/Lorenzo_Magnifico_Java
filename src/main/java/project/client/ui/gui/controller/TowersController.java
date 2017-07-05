@@ -295,7 +295,7 @@ public class TowersController extends AbstractController {
         }
         else {
             //todo cambiare il greenneutral qua con uno bianco tipo fake
-            myTower[tower][floor].setFamiliarImage(new Image(String.valueOf(getClass().getResource("/images/familiar/empty" + loginBuilder.getColour() + "neutral" +".png"))));
+            myTower[tower][floor].setFamiliarImage(new Image(String.valueOf(getClass().getResource("/images/familiar/empty" + mainController.getColour() + "neutral.png"))));
             selectCard(tower, floor);
             writeOnChat("you have chosen a bonus action!\n");
         }

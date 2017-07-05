@@ -181,7 +181,12 @@ public class ProductionController extends AbstractController {
         super.refresh();
         chatArea.setText(loginBuilder.getChat().toString());
 
-        if (positionSelected) allPosition.remove(allPosition.size() - 1);
+        if (positionSelected) {
+            FamiliarPosition f = allPosition.get(allPosition.size() - 1);
+            f.setFamiliarName("");
+            f.setImage(null);
+            if (allPosition.size() > 1) allPosition.remove(allPosition.size() - 1);
+        }
         positionSelected = false;
 
         for (int i = 0; i < cardSelected.length; i++) {
@@ -246,15 +251,8 @@ public class ProductionController extends AbstractController {
     }
 
     public void placeFamiliar() {
-        if (familiarChosen.equals("")) return;
-        if (positionSelected) {
-            if (allPosition.size() > 1) allPosition.remove(allPosition.size() - 1);
-            else allPosition.get(0).setFamiliarName("");
-            super.placeFamiliar(allPosition, familiarBox);
-        }
-        if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0) return;
-        super.placeFamiliar(allPosition, familiarBox);
-        positionSelected = true;
+        if (super.placeFamiliarHarvProd(positionSelected,allPosition,familiarBox))
+            positionSelected = true;
     }
 
     public void showPersonalBoard() {

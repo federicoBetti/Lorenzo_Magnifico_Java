@@ -77,7 +77,7 @@
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
                                                             prefWidth="195.5">
                                                     <children>
-                                                        <TextField layoutX="20.4" layoutY="0.85" prefHeight="24.65"
+                                                        <TextField fx:id="chatText" layoutX="20.4" layoutY="0.85" prefHeight="24.65"
                                                                    prefWidth="196.35" AnchorPane.bottomAnchor="0.0"
                                                                    AnchorPane.leftAnchor="20.4"
                                                                    AnchorPane.rightAnchor="0.0"

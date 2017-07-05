@@ -23,7 +23,7 @@ public class ChoiceController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
-        mainController.setChoicheController(this);
+        mainController.setChoiceController(this);
     }
 
 
@@ -43,7 +43,7 @@ public class ChoiceController {
 
     public void closeStage(){
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
-        mainController.setChoicheController(null);
+        mainController.setChoiceController(null);
         stage.hide();
     }
 

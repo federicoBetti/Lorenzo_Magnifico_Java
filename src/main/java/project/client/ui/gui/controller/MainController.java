@@ -1,7 +1,6 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
-import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
@@ -13,13 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Logger;
 
 
+/**
+ *
+ */
 public class MainController {
     private static MainController instance;
     private ClientSetter clientSetter;
     private LoginBuilder loginBuilder;
-    private TextField chatText;
     private HarvesterController harvesterController;
     private CouncilPalaceController councilPalaceController;
     private GeneralMainGameController generalGameController;
@@ -30,11 +32,9 @@ public class MainController {
     private TowersController towerController;
 
     private List<AbstractController> controllers;
-    private Object token;
 
     private int numberOfPlayer = 2;
     private String colour = "rosso";
-    private String nickName;
     private String usernameChosen;
 
     private BlockingQueue<Integer> integerQueue;
@@ -42,18 +42,16 @@ public class MainController {
 
     private boolean myTurn;
 
-    private Board board;
     private int numberOfPrivelege;
     private boolean actionBonusOn;
     private InitialLogin initialLoginController;
-    private ChoiceController choicheController;
     private boolean firstTime;
     private boolean draft = true;
 
 
     private MainController(){
         controllers = new ArrayList<>();
-        token = new Object();
+        Object token = new Object();
         firstTime = true;
     }
     public static MainController getInstance(){
@@ -65,67 +63,112 @@ public class MainController {
             return instance;
     }
 
+    /**
+     *setter
+     * @param clientSetter parameter to set
+     */
     public void setClientSetter(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
     }
 
+    /**
+     *setter
+     * @param loginBuilder parameter to set
+     */
     public void setLoginBuilder(LoginBuilder loginBuilder) {
         this.loginBuilder = loginBuilder;
     }
 
+    /**
+     *method to show main page on gui
+     */
     public void showMainGame() {
         loginBuilder.showPrimo();
     }
 
-
-    public void setNumberOfPlayers(int numberOfPlayers) {
-        this.numberOfPlayer = numberOfPlayers;
-    }
-
+    /**
+     *getter
+     * @return number of players in the match
+     */
     int getNumberOfPlayer() {
         return numberOfPlayer;
     }
 
+    /**
+     *getter
+     * @return colour of the family
+     */
     public String getColour() {
         return colour;
     }
 
+    /**
+     *setter
+     * @param harvesterController parameter to set
+     */
     void setHarvesterController(HarvesterController harvesterController) {
         this.harvesterController = harvesterController;
         controllers.add(this.harvesterController);
     }
 
-
+    /**
+     *setter
+     * @param councilPalaceController parameter to set
+     */
     void setCouncilPalaceController(CouncilPalaceController councilPalaceController) {
         this.councilPalaceController = councilPalaceController;
         controllers.add(this.councilPalaceController);
     }
 
-    void setGeneralGameController(GeneralMainGameController generalGameController) {
+    /**
+     *setter
+     * @param generalGameController parameter to set
+     */
+   void setGeneralGameController(GeneralMainGameController generalGameController) {
         this.generalGameController = generalGameController;
         controllers.add(this.generalGameController);
     }
 
+    /**
+     *setter
+     * @param leaderCardController parameter to set
+     */
     void setLeaderCardController(LeaderCardController leaderCardController) {
         this.leaderCardController = leaderCardController;
         controllers.add(this.leaderCardController);
     }
 
+    /**
+     *setter
+     * @param marketController parameter to set
+     */
     void setMarketController(MarketController marketController) {
         this.marketController = marketController;
         controllers.add(this.marketController);
     }
 
+    /**
+     *setter
+     * @param personalBoardController parameter to set
+     */
     void setPersonalBoardController(PersonalBoardController personalBoardController) {
         this.personalBoardController = personalBoardController;
         controllers.add(this.personalBoardController);
     }
 
+    /**
+     *setter
+     * @param productionController parameter to set
+     */
     void setProductionController(ProductionController productionController) {
         this.productionController = productionController;
         controllers.add(this.productionController);
     }
 
+    /**
+     *setter
+     * @param towerController parameter to set
+     */
     void setTowerController(TowersController towerController) {
         this.towerController = towerController;
         controllers.add(this.towerController);
@@ -134,100 +177,117 @@ public class MainController {
 
     //DA QUA IN GIU LE COSE CHIAMATE SUL CLIENT SETTER
 
+    /**
+     *method called by gui when connect button is pressed
+     * @param connectionType type of connection
+     * @param usernameChosen usernamen of the player
+     */
     void setConnectionType(String connectionType, String usernameChosen) {
         this.usernameChosen = usernameChosen;
         clientSetter.setConnectionType(connectionType);
     }
 
-    void connect(String connectionType, String usernameChosen, String passwordChosen) {
-        nickName = usernameChosen;
-        System.out.println(nickName);
-        clientSetter.setConnectionType(connectionType);
+    /**
+     * setter
+     * @param initialLoginController parameter to sett
+     */
+    void setInitialLoginController(InitialLogin initialLoginController) {
+        this.initialLoginController = initialLoginController;
     }
 
+    /**
+     * setter
+     * @param choiceController parameter to set
+     */
+    void setChoiceController(ChoiceController choiceController) {
+        ChoiceController choiceController1 = choiceController;
+    }
+    /**
+     * main method to take a development card
+     * @param towerColour colour of the tower of the card
+     * @param floor floor of the card
+     * @param familiarColour colour of familiar chosen
+     */
     public void takeDevCard(String towerColour, int floor, String familiarColour )  {
 
-        Runnable a = new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("ho fatto partire il nuovo thread per richiesta per la torre");
-                clientSetter.takeDevCard(towerColour, floor, familiarColour);
-            }
-        };
+        Runnable a = () -> clientSetter.takeDevCard(towerColour, floor, familiarColour);
         new Thread(a).start();
     }
 
-
+    /**
+     *method to do the production
+     * @param familiarChosen colour of familiar chosen
+     * @param buildingCardSelected building card selected by the user
+     */
     void doProduction(String familiarChosen, List<String> buildingCardSelected) {
-        Runnable a = () -> clientSetter.productionAction(familiarChosen, buildingCardSelected);;;
+        Runnable a = () -> clientSetter.productionAction(familiarChosen, buildingCardSelected);
         new Thread(a).start();
 
     }
 
+    /**
+     *main method to do the harvester
+     * @param servants number of servants used in the harvester action
+     * @param familiarChosen colour of familiar chosen
+     */
     void doHarvester(int servants, String familiarChosen) {
         Runnable a = () -> clientSetter.harvesterAction(familiarChosen,servants);
         new Thread(a).start();
-        System.out.println("sto mandando ichiesta di harvester con numero di familiari: " + servants);
 
     }
 
+    /**
+     *main method to go to the palace of council
+     * @param privilegeSelected number of the privilege selected
+     * @param familiarChosen colour of familiar chosen
+     */
     void goToCouncil(int privilegeSelected, String familiarChosen) {
         Runnable a = () -> clientSetter.councilAction(privilegeSelected,familiarChosen);
         new Thread(a).start();
     }
 
+    /**
+     *action bonus in which you can take privileges
+     * @param privilegeSelected array that indicates the privileges you want to take
+     */
     void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
         actionBonusOn = false;
         clientSetter.immediatePriviledgeAction(privilegeSelected);
     }
 
+    /**
+     *bonus action on harvester
+     * @param servants number of servants used
+     */
     void doBonusHarvester(int servants) {
         actionBonusOn = false;
         clientSetter.bonusHarvesterAction(servants);
     }
 
+    /**
+     *bonus action of production
+     * @param buildingCardSelected building card selected fr the production
+     */
     void doBonusProduction(List<String> buildingCardSelected) {
         actionBonusOn = false;
         clientSetter.bonusProductionAction(buildingCardSelected);
     }
 
+    /**
+     *bonus action of take development card
+     * @param floor floor of the card
+     * @param towerColourString tower color of the card
+     */
     void takeBonusCardAction(int floor, String towerColourString) {
         actionBonusOn = false;
-        Runnable a = new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("ho fatto partire il nuovo thread per richiesta per la torre BONUS");
-                clientSetter.takeBonusCardAction(floor,towerColourString);
-            }
-        };
+        Runnable a = () -> clientSetter.takeBonusCardAction(floor,towerColourString);
         new Thread(a).start();
     }
 
-
-    void setChoice(String text, int i) {
-        integerQueue.add(new Integer(i));
-        /*
-        switch (text){
-            case CliConstants.BOTH_PAYMENT_AVAIABLE:{
-                clientSetter.sendChoicePaymentVc(i);
-                break;
-            }
-            case CliConstants.ASK_FOR_PRAYING:{
-                if (i==1)
-                    clientSetter.prayOrNot(true);
-                else
-                    clientSetter.prayOrNot(false);
-                break;
-            }
-            case CliConstants.CHOOSE_PERMANENT_EFFECT:{
-                clientSetter.sendChoicePe(i);
-                break;
-            }
-        }
-        */
-
-    }
-
+    /**
+     *method used to play a leader card
+     * @param cardSelected name of the card selected
+     */
     public void playLeaderCard(String cardSelected) {
 
         Runnable a = () -> clientSetter.playLeaderCard(cardSelected);;
@@ -235,36 +295,46 @@ public class MainController {
 
     }
 
+    /**
+     *method used to discarda leader card
+     * @param cardSelected name of the leader card
+     */
     public void discardLeaderCard(String cardSelected) {
         Runnable a = () -> clientSetter.discardLeaderCard(cardSelected);;
         new Thread(a).start();
 
     }
 
+    /**
+     *method used to go to market
+     * @param positionSelected position of the market selcted
+     * @param familiarChosen colour of familiar chosen
+     */
     void goToMarket(int positionSelected, String familiarChosen) {
-        Runnable a = new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("ho fatto partire il nuovo thread per richiesta mercato con parametri" + positionSelected +"  "+familiarChosen);
-                clientSetter.marketAction(positionSelected,familiarChosen);
-            }
-        };
+        Runnable a = () -> clientSetter.marketAction(positionSelected,familiarChosen);
         new Thread(a).start();
 
     }
 
+    /**
+     * method to call the login method with the selcted username
+     */
     void takeNickname() {
         clientSetter.loginRequest(usernameChosen);
     }
 
 
+    /**
+     *method to reconnect if the nickname is already used
+     * @param usernameChosen username chosen by the user
+     */
     void takeNickname(String usernameChosen) {
         clientSetter.newNickname(usernameChosen);
     }
-    //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
 
-    
-
+    /**
+     *to update the gui following an update message from the server
+     */
     public void personalBoardUpdate(){
         Platform.runLater(() -> {
             PersonalBoard personalBoard = clientSetter.getUiPersonalBoard();
@@ -284,8 +354,11 @@ public class MainController {
         });
     }
 
+    /**
+     *to update the gui following an update message from the server
+     */
     public void boardUpdate() {
-        board = clientSetter.getUiBoard();
+        Board board = clientSetter.getUiBoard();
         Platform.runLater(() -> {
             if (firstTime){
                 firstTime = false;
@@ -302,15 +375,16 @@ public class MainController {
         });
     }
 
+    /**
+     *to update the gui following an update message from the server
+     */
     public void scoreUpdate() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                loginBuilder.setUiScore(clientSetter.getUiScore());
-            }
-        });
+        Platform.runLater(() -> loginBuilder.setUiScore(clientSetter.getUiScore()));
     }
 
+    /**
+     *to update the gui following an update message from the server
+     */
     public void familyMemberUpdate() {
         Platform.runLater(() -> {
             generalGameController.updateFamilyMember(clientSetter.getUiFamilyMembers());
@@ -322,104 +396,129 @@ public class MainController {
         });
     }
 
-
+    /**
+     * method that notify the gui to perform a bonus action of privileges
+     * @param quantityOfDifferentPrivileges number of different privileges that you can take
+     */
     public void takePrivilege(int quantityOfDifferentPrivileges) {
         actionBonusOn = true;
         numberOfPrivelege = quantityOfDifferentPrivileges;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("sono nel runlater per i privilegi");
-                loginBuilder.setScene(SceneType.COUNCIL,SceneType.LEADER);
-                councilPalaceController.takeImmediatePrivilege(numberOfPrivelege);
-            }
+        Platform.runLater(() -> {
+            loginBuilder.setScene(SceneType.COUNCIL,SceneType.LEADER);
+            councilPalaceController.takeImmediatePrivilege(numberOfPrivelege);
         });
     }
 
+    /**
+     *method that notify the gui to perform a bonus action of harvester
+     * @param diceValue dice value of the action
+     */
     public void bonusHarvester(int diceValue) {
         actionBonusOn = true;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                loginBuilder.setScene(SceneType.HARVESTER,SceneType.PERSONAL_BOARD);
-                harvesterController.bonusHarvester(diceValue);
-            }
+        Platform.runLater(() -> {
+            loginBuilder.setScene(SceneType.HARVESTER,SceneType.PERSONAL_BOARD);
+            harvesterController.bonusHarvester(diceValue);
         });
     }
 
+    /**
+     * method that notify the gui to perform a bonus action of production
+     * @param diceValue dice value of the action
+     */
     public void bonusProduction(int diceValue) {
         actionBonusOn = true;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                loginBuilder.setScene(SceneType.PRODUCTION, SceneType.PERSONAL_BOARD);
-                productionController.bonusProduction(diceValue);
-            }
+        Platform.runLater(() -> {
+            loginBuilder.setScene(SceneType.PRODUCTION, SceneType.PERSONAL_BOARD);
+            productionController.bonusProduction(diceValue);
         });
     }
 
+    /**
+     * method that notify the gui to perform a bonus action of take a development card
+     * @param kindOfCard tower of the card
+     * @param printBonusAction string to print
+     */
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         actionBonusOn = true;
-        String kind = kindOfCard;
-        String print = printBonusAction;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                towerController.takeBonusCard(kind,print);
-            }
-        });
+        Platform.runLater(() -> towerController.takeBonusCard(kindOfCard, printBonusAction));
     }
 
+    /**
+     * method used to chose which payment of ventures card use
+     * @return number of the payment to use
+     */
     public int bothPaymentAvaiable() {
         return getChoice(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
     }
 
+    /**
+     * method to chose between two different permanent effect of a building card
+     * @return user's choice
+     */
     public int choosePermanentEffect() {
-        int paymentChosen = getChoice(CliConstants.CHOOSE_PERMANENT_EFFECT, "effect 1", "effect 2");
-        return paymentChosen;
+        return getChoice(CliConstants.CHOOSE_PERMANENT_EFFECT, "effect 1", "effect 2");
     }
 
+    /**
+     * method used to ask to pray or not
+     * @return user's choice
+     */
     public int askForPraying() {
         return getChoice(CliConstants.ASK_FOR_PRAYING, "yes", "no");
     }
 
+    /**
+     * method to set the gui in the end turn context
+     */
     public void endTurnContext() {
         Platform.runLater(() -> {
-            System.out.println("metto il contesto di fine turno");
             loginBuilder.setScene(SceneType.LEADER,SceneType.MAIN);
             leaderCardController.endTurnContext();
 
         });
     }
 
+    /**
+     *method to send a message in the chat
+     * @param s message
+     */
     public void sendChat(String s) {
         generalGameController.writeOnChat(s);
     }
 
+    /**
+     *method that confirm the login
+     */
     public void loginSucceded() {
         //correct void
     }
 
+    /**
+     *method to change scene in waiting scene
+     */
     public void waitingLogin() {
         loginBuilder.waitingScene();
     }
 
 // da qui in giu prove per risposta
 
+    /**
+     * method called to skip turn
+     */
     public void skipTurn() {
         myTurn = false;
         loginBuilder.writeOnMyChat("you have finished your turn\n");
-        Runnable a = new Runnable() {
-            @Override
-            public void run() {
-
-                clientSetter.skipTurn();
-            }
-        };
+        Runnable a = () -> clientSetter.skipTurn();
         new Thread(a).start();
     }
 
-
+    /**
+     * method that wat for user's choice
+     * @param choiceType choiche typw
+     * @param s first choice
+     * @param s1 second choice
+     * @return choice done
+     */
     public int getChoice(String choiceType, String s, String s1) {
         integerQueue = new LinkedBlockingQueue<>(1);
         Platform.runLater(() -> generalGameController.setScelta(choiceType,s,s1));
@@ -427,29 +526,46 @@ public class MainController {
         try {
              i = integerQueue.take();
         } catch (InterruptedException e) {
-            System.err.println("integer queue interrupted: " + e.getMessage());
         }
         integerQueue = null;
-        System.out.println("STO RITORNANDO DALLLA GETCHOICE " + i);
         return i;
     }
 
+    /**
+     * add integer in the queue
+     * @param choiceDone integer to add
+     */
     void addIntegerQueue(int choiceDone) {
         integerQueue.add(choiceDone);
         }
 
+    /**
+     * add string in the queue
+     * @param s string to add
+     */
     void addStringQueue(String s) {
         stringQueue.add(s);
     }
 
+    /**
+     * getter
+     * @return myTurn variable
+     */
     boolean isMyTurn() {
         return myTurn;
     }
 
+    /**
+     * setter
+     * @param myTurn variable
+     */
     private void setMyTurn(boolean myTurn) {
         this.myTurn = myTurn;
     }
 
+    /**
+     * method used to update chat of all scene
+     */
     void updateChat() {
         Platform.runLater(() -> {
             for (AbstractController c: controllers)
@@ -457,19 +573,19 @@ public class MainController {
         });
     }
 
+    /**
+     * methd used in leader draft
+     * @param leaders leader to choose
+     * @return leader chosen
+     */
     public String getLeaderCardChosen(List<LeaderCard> leaders) {
         stringQueue = new LinkedBlockingQueue<>(1);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
+        Platform.runLater(() -> {
 
-                System.out.println("sono nel runlater");
-                loginBuilder.setDraft(leaders);
-            }
+            loginBuilder.setDraft(leaders);
         });
         String i = "";
         try {
-            System.out.println("mi metto in attesa della integerQueue");
             i = stringQueue.take();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -478,23 +594,26 @@ public class MainController {
         return i;
     }
 
+    /**
+     * methd to notify the match started
+     * @param roomPlayers number of player in the room
+     * @param familyColour your family color
+     */
     public void matchStarted(int roomPlayers, String familyColour) {
         this.numberOfPlayer = roomPlayers;
         this.colour = familyColour;
         draft = false;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("comincio inizializzo main game");
-                loginBuilder.initalizeMainGame();
-                loginBuilder.startMainGame();
-                System.out.println("fine inizializzazione");
-                generalGameController.setName(usernameChosen);
-                loginBuilder.setResizeOn(true);
-            }
+        Platform.runLater(() -> {
+            loginBuilder.initalizeMainGame();
+            loginBuilder.startMainGame();
+            generalGameController.setName(usernameChosen);
+            loginBuilder.setResizeOn(true);
         });
     }
 
+    /**
+     * method to notify that it is your turn
+     */
     public void startTurn() {
         setMyTurn(true);
         Platform.runLater(() -> {
@@ -504,49 +623,47 @@ public class MainController {
         });
     }
 
+    /**
+     * method to notify that the nickname is already used
+     */
     public void nicknameAlreadyUsed() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                initialLoginController.nicknameUsed();
-                loginBuilder.popUp("nickname already used");
-                loginBuilder.showFirstPage();
-            }
+        Platform.runLater(() -> {
+            initialLoginController.nicknameUsed();
+            loginBuilder.popUp("nickname already used");
+            loginBuilder.showFirstPage();
         });
     }
 
+    /**
+     * method to notify that the timer is delayed
+     */
     public void timerDelayed() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                if (!draft) {
-                    loginBuilder.writeOnMyChat("the turn is over\n");
-                    loginBuilder.setScene(SceneType.MAIN, SceneType.PERSONAL_BOARD);
-                }
-                myTurn = false;
-
-                if (clearStages()){
-                    clearBlockingQueue();
-                }
-                else
-                    cleanActionBonus();
+        Platform.runLater(() -> {
+            if (!draft) {
+                loginBuilder.writeOnMyChat("the turn is over\n");
+                loginBuilder.setScene(SceneType.MAIN, SceneType.PERSONAL_BOARD);
             }
+            myTurn = false;
+
+            if (clearStages()){
+                clearBlockingQueue();
+            }
+            else
+                cleanActionBonus();
         });
 
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            //
         }
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                loginBuilder.popUp("you are disconnected, click ok to reconnect");
-            }
-        });
+        Platform.runLater(() -> loginBuilder.popUp("you are disconnected, click ok to reconnect"));
     }
 
+    /**
+     * methos ude to clear the queues
+     */
     private void clearBlockingQueue() {
         if (integerQueue!=null){
             integerQueue.add(-1);
@@ -556,6 +673,10 @@ public class MainController {
             stringQueue.add("-1");
     }
 
+    /**
+     * method used to close the stages
+     * @return if there is a stage open
+     */
     private boolean clearStages() {
         if (loginBuilder.getLastStageOpened() != null) {
             loginBuilder.getLastStageOpened().hide();
@@ -564,51 +685,47 @@ public class MainController {
         return false;
     }
 
+    /**
+     * unlock button used for bonus actions
+     */
     private void cleanActionBonus() {
         if (actionBonusOn){
             actionBonusOn = false;
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
-                    towerController.unlockButton();
-                    councilPalaceController.unlockButton();
-                    harvesterController.unlockButton();
-                    productionController.unlockButton();
-                    generalGameController.writeOnChat("timer delyed to do bonus action!\n");
-                }
+            Platform.runLater(() -> {
+                loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
+                towerController.unlockButton();
+                councilPalaceController.unlockButton();
+                harvesterController.unlockButton();
+                productionController.unlockButton();
+                generalGameController.writeOnChat("timer delyed to do bonus action!\n");
             });
             clientSetter.sendExitToBonusAction();
         }
     }
 
-
+    /**
+     * method called when you can't do actions
+     */
     public void cantDoAction() {
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                loginBuilder.writeOnMyChat("you can't perform this action\n");
-                loginBuilder.popUp("you can't do thi action");
-                myTurn = false;
-            }
+        Platform.runLater(() -> {
+            loginBuilder.writeOnMyChat("you can't perform this action\n");
+            loginBuilder.popUp("you can't do thi action");
+            myTurn = false;
         });
     }
 
+    /**
+     * used in tile draft
+     * @param tiles tile to chose
+     * @return tile chosen
+     */
     public int tileDraft(List<Tile> tiles) {
         integerQueue = new LinkedBlockingQueue<>();
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-                System.out.println("sono nel runlater");
-                loginBuilder.setDraft((ArrayList<Tile>) tiles);
-            }
-        });
+        Platform.runLater(() -> loginBuilder.setDraft((ArrayList<Tile>) tiles));
         int i = 0;
         try {
-            System.out.println("mi metto in attesa della integerQueue");
             i = integerQueue.take();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -616,27 +733,29 @@ public class MainController {
         return i;
     }
 
+    /**
+     * method used to add an integer in the queue
+     * @param i int to add
+     */
     void addIntQueue(int i) {
-        Integer num = new Integer(i);
+        Integer num = i;
         integerQueue.add(num);
     }
 
-    void setInitialLoginController(InitialLogin initialLoginController) {
-        this.initialLoginController = initialLoginController;
-    }
-
-
+    /**
+     * your turn is finished
+     */
     public void waitForYourTurn() {
         myTurn = false;
     }
 
+    /**
+     * method used to reconnect the player
+     */
     public void reconnect() {
         Runnable a = () -> clientSetter.reconnect();
         new Thread(a).start();
 
     }
 
-    void setChoicheController(ChoiceController choicheController) {
-        this.choicheController = choicheController;
-    }
 }

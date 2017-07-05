@@ -15,6 +15,10 @@ import project.messages.updatesmessages.ExcommunicationTaken;
 import project.messages.updatesmessages.Updates;
 import project.model.Tile;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class Gui extends AbstractUI {
@@ -31,8 +35,26 @@ public class Gui extends AbstractUI {
         matchStarted = false;
         mainController = MainController.getInstance();
         mainController.setClientSetter(clientSetter);
+        //uploadFont();
         Application.launch(LoginBuilder.class);
         Platform.setImplicitExit(true);
+    }
+
+    private void uploadFont() {
+
+        String fileName = "customFont/Aro.TFF";
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();try {
+            //create the font to use. Specify the size!
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("customFont/Aro.TFF")).deriveFont(12f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+           // ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Fonts\\custom_font.ttf")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch(FontFormatException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

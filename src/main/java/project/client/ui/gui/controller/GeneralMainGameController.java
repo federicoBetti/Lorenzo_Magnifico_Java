@@ -292,8 +292,6 @@ public class GeneralMainGameController extends AbstractController{
 
     public void uploadImages(){
         super.uploadImages();
-        int faithPoints = loginBuilder.getFaithPoints();
-        int turnOrder = loginBuilder.getTurnOrder();
         gameboard.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/gameboard"  + mainController.getNumberOfPlayer() + "Giocatori.png"))));
     }
 

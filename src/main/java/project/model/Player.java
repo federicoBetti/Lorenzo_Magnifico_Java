@@ -33,7 +33,7 @@ public class Player implements Serializable{
     	Configuration configuration = new Configuration();
     	
     	//personalBoardReference = new PersonalBoard();
-		personalBoardReference = new PersonalBoard(10);
+		personalBoardReference = new PersonalBoard(1000);
     	score = new Score();
 		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
 		try {
