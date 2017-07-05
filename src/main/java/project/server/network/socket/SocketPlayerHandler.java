@@ -301,8 +301,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 objectOutputStream.reset();
             }
 
-            return (String) objectInputStream.readObject();
-
+            String res = (String) objectInputStream.readObject();
+            sendString(Constants.ACTION_DONE_ON_TIME);
+            System.out.println(res + " result");
+            return res;
         } catch (IOException e) {
             setOn(false);
             return "-1";
@@ -329,10 +331,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             }
 
             System.out.println("sono in attesa qui");
-            Object choice = objectInputStream.readObject();
-            System.out.println(choice.getClass());
-            System.out.println("la scelta è " + choice);
-            return (int) choice;
+            int choice = (int)objectInputStream.readObject();
+            sendString(Constants.ACTION_DONE_ON_TIME);
+            System.out.println("Arrivato choice " + choice);
+            return choice;
         } catch (IOException | ClassNotFoundException e) {
             setOn(false);
             return -1;
@@ -352,6 +354,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         firstConnection = false;
     }
 
+    //todo: si blocca perchè non ha ricevuto match started e quindi è in wait il server se la connessione cade nel draft
     @Override
     public void prayed() {
         sendString(Constants.PRAYED);
@@ -363,16 +366,20 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             synchronized (token) {
                 token.notify();
             }
-            System.out.println(this.getName() + " SVEGLIATO");
-            objectOutputStream.writeObject(Constants.MATCH_STARTED);
-            objectOutputStream.writeObject(roomPlayers);
-            objectOutputStream.writeObject(familyColour);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
+            if ( isOn() ) {
+                setMatchStartedVar(true);
+                System.out.println(this.getName() + " SVEGLIATO");
+                objectOutputStream.writeObject(Constants.MATCH_STARTED);
+                objectOutputStream.writeObject(roomPlayers);
+                objectOutputStream.writeObject(familyColour);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            }
         } catch (IOException e) {
             setOn(false);
         }
     }
+
 
 
     @Override
@@ -538,9 +545,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             try {
                 answer = (String) objectInputStream.readObject();
                 System.out.println("è arrivato: " + answer);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 

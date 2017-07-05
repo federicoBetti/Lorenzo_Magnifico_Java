@@ -325,6 +325,30 @@ public class SocketClient extends AbstractClient {
         }
         System.out.println("Svegliato e vado in wait");
     }
+    public void leaderDraft() {
+        List<LeaderCard> leaders = new ArrayList<>();
+
+
+        try {
+            int size = (int) objectInputStream.readObject();
+
+            for (int i = 0; i < size; i++) {
+                LeaderCard leaderCard = (LeaderCard) objectInputStream.readObject();
+                leaders.add(leaderCard);
+            }
+
+            new TimerReader().start();
+            String leaderCardChoosen = clientSetter.getLeaderCardChosen(leaders);
+            objectOutputStream.writeObject(leaderCardChoosen);
+
+            synchronized (token) {
+                token.wait();
+            }
+
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     private class TimerReader extends Thread {
 
@@ -354,7 +378,7 @@ public class SocketClient extends AbstractClient {
                     System.out.println("NOTIFY");
                 }
 
-                if (message.equals(Constants.ACTION_DONE_ON_TIME)) {
+                else if (message.equals(Constants.ACTION_DONE_ON_TIME)) { //era solo if
 
                     synchronized (token) {
                         token.notify();
@@ -552,44 +576,34 @@ public class SocketClient extends AbstractClient {
         clientSetter.loginSucceded();
     }
 
-    public void leaderDraft() {
-        List<LeaderCard> leaders = new ArrayList<>();
 
-        try {
-            int size = (int) objectInputStream.readObject();
-
-            for (int i = 0; i < size; i++) {
-                LeaderCard leaderCard = (LeaderCard) objectInputStream.readObject();
-                leaders.add(leaderCard);
-            }
-
-            String leaderCardChoosen = clientSetter.getLeaderCardChosen(leaders);
-            objectOutputStream.writeObject(leaderCardChoosen);
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void tileDraft() throws IOException, ClassNotFoundException {
         List<Tile> tiles = new ArrayList<>();
 
         int size = (int) objectInputStream.readObject();
 
-        for (int i = 0; i < size; i++) {
+        try {
+            for (int i = 0; i < size; i++) {
 
-            try {
                 Tile tile = (Tile) objectInputStream.readObject();
                 tiles.add(tile);
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
 
-        int choice = clientSetter.tileDraft(tiles);
-        objectOutputStream.writeObject(choice);
-        objectOutputStream.flush();
-        objectOutputStream.reset();
+            }
+            new TimerReader().start();
+            int choice = clientSetter.tileDraft(tiles);
+            objectOutputStream.writeObject(choice);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+
+            synchronized (token) {
+                token.wait();
+            }
+
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
+
 

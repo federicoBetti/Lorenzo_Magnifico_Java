@@ -95,11 +95,24 @@ public class Server {
                 //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { // riconnessione giocatre andato down durante il collegament alla partita
                     System.out.println("RICONNESSIONE MATCH NOT STARTED");
+
+                    PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
                     player.setName(nickname);
-                    player.setOn(true);
                     player.setRoom(room);
                     room.nicknamePlayersMap.replace(nickname, player);
-                    checkAndStartTheTimer(room, player);
+                    AllSupportFunctions element = room.getPlayerAllSupportFunctionsMap().get(oldPlayer);
+                    room.getPlayerAllSupportFunctionsMap().remove(oldPlayer);
+                    room.getPlayerAllSupportFunctionsMap().put(player, element);
+
+                    if (!room.draftTime) {
+                        player.setOn(true);
+                        checkAndStartTheTimer(room, player);
+                    }
+                    else {
+                        player.disconnectedInDraft = true;
+                    }
+
+
                     return;
 
                 } else if (!room.isFull() && !room.isMatchStarted()) { //se la room non è piena aggiungo il giocatore
@@ -122,9 +135,8 @@ public class Server {
                 System.out.println("RICONNESSIONE IN PARTITA");
                 player.setOn(true);
                 player.setRoom(room);
-                loadPlayerState(room, nickname, player);
-
                 PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
+                loadPlayerState(room, player, oldPlayer);
                 room.nicknamePlayersMap.replace(nickname, player);
                 AllSupportFunctions element = room.getPlayerAllSupportFunctionsMap().get(oldPlayer);
                 room.getPlayerAllSupportFunctionsMap().remove(oldPlayer);
@@ -166,15 +178,15 @@ public class Server {
             }
 
             String currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
-            System.out.println("Il file in questo momento è: " +  currentFile);
+            System.out.println("Il file in questo momento è: " + currentFile);
 
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
 
             for (PlayerFile player : arrayPlayers)
                 if (player.getPlayerName().equals(nickname)) {
                     player.setNumberOfGames(player.getNumberOfGames() + 1);
-                        fileUpgraded = gson.toJson(arrayPlayers);
-                        break;
+                    fileUpgraded = gson.toJson(arrayPlayers);
+                    break;
 
                 }
 
@@ -193,9 +205,9 @@ public class Server {
             }
 
             // se non è stato trovato il player nel file
-            if ( fileUpgraded == null ) { // aggiungo l'elemento
+            if (fileUpgraded == null) { // aggiungo l'elemento
                 String jsonElement = gson.toJson(playerFile);
-                randomAccessFile.writeBytes("," + jsonElement + "]" );
+                randomAccessFile.writeBytes("," + jsonElement + "]");
 
             } else {
                 System.out.println("STO AGGIUNGENDO IL SECONDO PEZZO AL FILE");
@@ -231,8 +243,7 @@ public class Server {
     }
 
     private String readFile(String path, Charset encoding)
-            throws IOException
-    {
+            throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
@@ -245,7 +256,7 @@ public class Server {
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
             //StringBuilder sb = new StringBuilder();
-            String finalString ="";
+            String finalString = "";
             String line;
             while ((line = bufferedReader.readLine()) != null) { //stringhifico il file
                 finalString += line;
@@ -259,7 +270,8 @@ public class Server {
 
             for (PlayerFile player : arrayPlayers)
                 if (player.getPlayerName().equals(nickname)) {
-                    player.setNumberOfGames(player.getNumberOfGames() + 1);{
+                    player.setNumberOfGames(player.getNumberOfGames() + 1);
+                    {
                         return gson.toJson(arrayPlayers);
                     }
                 }
@@ -324,8 +336,7 @@ public class Server {
         }
     }
 
-    private void loadPlayerState(Room room, String nickname, PlayerHandler newPlayer) {
-        PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
+    void loadPlayerState(Room room, PlayerHandler newPlayer, PlayerHandler oldPlayer ) {
 
         newPlayer.setName(oldPlayer.getName());
         newPlayer.setPersonalBoardReference(oldPlayer.getPersonalBoardReference());
@@ -380,7 +391,7 @@ public class Server {
         return true;
     }
 
-    private void myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
+    void myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -409,5 +420,5 @@ public class Server {
         this.rooms = rooms;
     }
 
-    
+
 }

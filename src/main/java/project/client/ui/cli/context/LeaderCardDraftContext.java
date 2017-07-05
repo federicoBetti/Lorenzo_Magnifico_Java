@@ -38,6 +38,9 @@ public class LeaderCardDraftContext extends AbstractContext {
             if ( card.getName().equals(input))
                 cardExist = true;
         }
+        if ( input.equals("-1"))
+            return;
+
         if ( !cardExist )
             throw new InputException();
     }

@@ -487,7 +487,7 @@ public class GameActions {
         for (PlayerHandler player : turn) {
             if (player.isOn() && player.getScore().getFaithPoints() >= faithPointsNeeded) {
 
-                timer = myTimerPraying(player);
+                timer = myTimerActions(player);
                 System.out.println(player.getName());
                 int choice = player.sendAskForPraying(turn);
 
@@ -814,12 +814,13 @@ public class GameActions {
         return timer;
     }
 
-    private Timer myTimerPraying(PlayerHandler player) {
+    Timer myTimerActions(PlayerHandler player) {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 System.out.println("TIMER PREGHIERA");
                 System.out.println(player.getName());
+                player.setOn(false);
                 player.timerTurnDelayed();
             }
         };
