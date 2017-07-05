@@ -168,7 +168,7 @@ public class Room {
 
         //draft leader
 
-
+/*
         ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
@@ -204,7 +204,7 @@ public class Room {
             }
             listsForDraft = shiftLeaderList(listsForDraft);
         }
-
+*/
         //draft tile
 
         ArrayList<Tile> tiles = fillListTile();

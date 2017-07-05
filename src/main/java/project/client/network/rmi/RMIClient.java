@@ -158,15 +158,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
 
-    @Override
-    public void sendChoicePe(int input) {
-        try {
-            myServer.setChoicePe(myUniqueId,input);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void bonusHarvester(BonusProductionOrHarvesterAction action) {
         clientSetter.bonusHarvester(action);
     }

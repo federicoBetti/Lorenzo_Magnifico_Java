@@ -54,7 +54,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     /**
      * for testing
      */
-    public SocketPlayerHandler(){
+    public SocketPlayerHandler() {
         super();
         token = new Object();
         token1 = new Object();
@@ -329,7 +329,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             }
 
             System.out.println("sono in attesa qui");
-            int choice = (int)objectInputStream.readObject();
+            int choice = (int) objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
             System.out.println("Arrivato choice " + choice);
             return choice;
@@ -365,7 +365,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 token.notify();
                 System.out.println(this.getName() + " SVEGLIATO");
             }
-            if ( isOn() ) {
+            if (isOn()) {
                 setMatchStartedVar(true);
 
                 objectOutputStream.writeObject(Constants.MATCH_STARTED);
@@ -378,7 +378,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             setOn(false);
         }
     }
-
 
 
     @Override
@@ -513,20 +512,19 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public int sendChoicePE() {
         String kindOfChoice = Constants.CHOICE_PE;
-        int choice = -1;
+
         try {
             objectOutputStream.writeObject(kindOfChoice);
             objectOutputStream.flush();
             objectOutputStream.reset();
-            String choiceS = (String) objectInputStream.readObject();
-            System.out.println("la scelta è: " + choiceS);
-            if (choiceS.equals(Constants.ACTION_DONE_ON_TIME))
-                choice = (int) objectInputStream.readObject();
-
+            int choice = (int) objectInputStream.readObject();
+            System.out.println("la scelta è: " + choice);
+            sendString(Constants.ACTION_DONE_ON_TIME);
+            return choice;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return choice;
+        return -1;
     }
 
     @Override
