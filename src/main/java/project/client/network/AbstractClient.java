@@ -28,7 +28,6 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void sendExitToBonusAction()  ;
 
-    public abstract void sendChoicePe(int input)  ;
 
     public abstract void bonusHarvesterAction(int servantsNumber)  ;
 

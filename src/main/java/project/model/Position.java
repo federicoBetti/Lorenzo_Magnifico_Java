@@ -48,4 +48,11 @@ public abstract class Position implements Serializable{
         ludovicoAriostoPosition.add(familyMember);
     }
 
+    public List<FamilyMember> getLudovicoAriostoPosition() {
+        return ludovicoAriostoPosition;
+    }
+
+    public void setLudovicoAriostoPosition(List<FamilyMember> ludovicoAriostoPosition) {
+        this.ludovicoAriostoPosition = ludovicoAriostoPosition;
+    }
 }

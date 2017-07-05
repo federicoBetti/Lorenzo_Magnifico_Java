@@ -173,4 +173,7 @@ public class PersonalBoard implements Serializable{
 		this.endBonus = endBonus;
 	}
 
+	public void setBuildings(List<BuildingCard> buildings) {
+		this.buildings = buildings;
+	}
 }

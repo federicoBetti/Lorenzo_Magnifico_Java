@@ -116,11 +116,6 @@ public class ClientSetter {
         client.sendExitToBonusAction();
     }
 
-    public void sendChoicePe(int selection)   {
-        //da me arrivano 1 o 2
-        client.sendChoicePe(selection);
-    }
-
     public void bonusHarvesterAction(int servantsNumber)   {
         client.bonusHarvesterAction( servantsNumber );
     }
@@ -154,8 +149,9 @@ public class ClientSetter {
         ui.takeBonusCard(towerAction);
     }
 
-    public void choicePe() {
-        ui.choicePe();
+    public int choicePe() {
+        return ui.choicePe();
+
     }
 
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {

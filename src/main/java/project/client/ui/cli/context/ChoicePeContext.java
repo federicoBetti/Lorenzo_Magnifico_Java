@@ -32,20 +32,22 @@ public class ChoicePeContext extends AbstractContext {
 
     @Override
     public void checkValidInput(String input) throws InputException {
-        String[] parameters = input.split("-");
 
-        if( !(parameters.length == 1) )
+        if ( input.equals("-1"))
+            return;
+
+        if( !(input.length() < 2))
             throw new InputException();
 
-        if( !(Character.isDigit(parameters[0].charAt(0))))
+        if( !(Character.isDigit(input.charAt(0))) )
             throw new InputException();
 
-        if (!(Integer.parseInt(parameters[0]) == 0 || Integer.parseInt(parameters[0]) == 1) )
+        if (!(Integer.parseInt(input) == 0) && !(Integer.parseInt(input) == 1) )
             throw new InputException();
     }
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-        cli.sendChoicePe(action);
+
     }
 }

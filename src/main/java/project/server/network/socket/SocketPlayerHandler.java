@@ -518,12 +518,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             System.out.println("la scelta è: " + choiceS);
             if (choiceS.equals(Constants.ACTION_DONE_ON_TIME))
                 choice = (int) objectInputStream.readObject();
-            if (choiceS.equals(Constants.EXIT))
-                return choice;
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return choice;

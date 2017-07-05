@@ -95,20 +95,6 @@ public class Cli extends AbstractUI {
         context.cantDoAction();
     }
 
-    @Override
-    public void choicePe() {
-        context = new ChoicePeContext(this);
-    }
-
-    public void sendChoicePe(String input) {
-        try {
-            context.checkValidInput(input);
-        } catch (InputException e) {
-            context.printHelp();
-            return;
-        }
-        clientSetter.sendChoicePe(Integer.parseInt(input));
-    }
 
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
@@ -241,10 +227,7 @@ public class Cli extends AbstractUI {
             } else if (context instanceof ImmediatePriviledgesContext) {
                 sendExitToBonusAction();
 
-            } else if (context instanceof ChoicePeContext) {
-                sendExitToBonusAction();
-
-            } else if ( context instanceof LeaderCardDraftContext || context instanceof TileDraftContext ) {
+            }  else if ( context instanceof LeaderCardDraftContext || context instanceof TileDraftContext || context instanceof ChoicePeContext ) {
                 choiceQueue.add("-1");
                 context = new TimerDelayedContext(this);
                 return;
@@ -493,6 +476,27 @@ public class Cli extends AbstractUI {
     }
 
     @Override
+    public int choicePe() {
+        choice = true;
+        choiceQueue = new LinkedBlockingDeque<>();
+        context = new ChoicePeContext(this);
+
+        String effectChoosen;
+
+        while (true){
+            try {
+                effectChoosen = choiceQueue.take();
+                context.checkValidInput(effectChoosen);
+                choice = false;
+                return Integer.parseInt(effectChoosen);
+            } catch (InterruptedException | InputException | NumberFormatException e ) {
+                context.printHelp();
+            }
+        }
+    }
+
+
+    @Override
     public int bothPaymentsAvailable() {
         choice = true;
         choiceQueue = new LinkedBlockingDeque<>();
@@ -536,7 +540,6 @@ public class Cli extends AbstractUI {
                 context.printHelp();
             }
         }
-
     }
 
     public void bonusHarvesterParameters(String input) {

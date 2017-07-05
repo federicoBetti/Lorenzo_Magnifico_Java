@@ -299,16 +299,21 @@ public class SocketClient extends AbstractClient {
 
 
     public void choicePe() {
-        clientSetter.choicePe();
+        new TimerReader().start();
+        int peChoosen = clientSetter.choicePe();
+        sendGenericObject(peChoosen);
+
+        synchronized (token) {
+            try {
+                token.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
-    @Override
-    public void sendChoicePe(int input) {
-        sendGenericObject(Constants.ACTION_DONE_ON_TIME);
-        sendGenericObject(input);
-    }
-
-    public void bothPaymentsAvailable() {
+    void bothPaymentsAvailable() {
         new TimerReader().start();
         int costChoice = clientSetter.bothPaymentsAvailable();
 

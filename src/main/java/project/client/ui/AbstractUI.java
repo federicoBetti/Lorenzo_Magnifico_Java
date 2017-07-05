@@ -26,7 +26,7 @@ public abstract class AbstractUI {
 
     public abstract void takeBonusCard(TowerAction towerAction);
 
-    public abstract void choicePe();
+    public abstract int choicePe();
 
     public abstract void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv);
 

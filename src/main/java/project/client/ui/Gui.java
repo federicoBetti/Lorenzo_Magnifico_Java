@@ -55,8 +55,9 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void choicePe() {
+    public int choicePe() {
         mainController.choosePermanentEffect();
+        return 0;
     }
 
 
