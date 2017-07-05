@@ -1,5 +1,6 @@
 package project.client.network.socket;
 
+import project.PlayerFile;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
@@ -78,7 +79,7 @@ public class SocketClient extends AbstractClient {
     public void loginRequest(String loginParameter) {
         sendGenericObject(Constants.LOGIN_REQUEST);
         sendGenericObject(loginParameter);
-        nickname = loginParameter;
+        setNickname(loginParameter);
         waitingForTheNewInteraction();
     }
 
@@ -328,6 +329,7 @@ public class SocketClient extends AbstractClient {
         }
         System.out.println("Svegliato e vado in wait");
     }
+
     public void leaderDraft() {
         List<LeaderCard> leaders = new ArrayList<>();
 
@@ -379,9 +381,7 @@ public class SocketClient extends AbstractClient {
                     }
 
                     System.out.println("NOTIFY");
-                }
-
-                else if (message.equals(Constants.ACTION_DONE_ON_TIME)) { //era solo if
+                } else if (message.equals(Constants.ACTION_DONE_ON_TIME)) { //era solo if
 
                     synchronized (token) {
                         token.notify();
@@ -473,8 +473,49 @@ public class SocketClient extends AbstractClient {
         clientSetter.cantDoAction();
     }
 
+
     @Override
     public void newNickname(String nickname) {
+        sendGenericObject(nickname);
+    }
+
+    @Override
+    public void terminate() {
+        System.exit(1);
+    }
+
+    @Override
+    public void receiveStatistics() {
+        try {
+            PlayerFile statistics = (PlayerFile) objectInputStream.readObject();
+            clientSetter.receiveStatistics(statistics);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void showRanking() {
+        sendGenericObject(Constants.SHOW_RANKING);
+    }
+
+    @Override
+    public void ranking() {
+        try {
+            List<PlayerFile> ranking = (List<PlayerFile>)objectInputStream.readObject();
+            clientSetter.ranking(ranking);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void newGameRequest() {
+        sendGenericObject(Constants.NEW_GAME);
         sendGenericObject(nickname);
     }
 
@@ -580,7 +621,6 @@ public class SocketClient extends AbstractClient {
     }
 
 
-
     public void tileDraft() throws IOException, ClassNotFoundException {
         List<Tile> tiles = new ArrayList<>();
 
@@ -606,6 +646,14 @@ public class SocketClient extends AbstractClient {
         } catch (IOException | ClassNotFoundException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }
 

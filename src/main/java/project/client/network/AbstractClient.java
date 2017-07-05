@@ -58,7 +58,6 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void cantDoAction();
 
-    public abstract void newNickname(String nickname);
 
     public abstract void notifyPlayer();
 
@@ -67,6 +66,18 @@ public abstract class AbstractClient implements Serializable{
     public abstract void afterGame();
 
     public abstract void showStatistic();
+
+    public abstract void newGameRequest();
+
+    public abstract void newNickname(String username);
+
+    public abstract void terminate();
+
+    public abstract void receiveStatistics();
+
+    public abstract void showRanking();
+
+    public abstract void ranking();
 
     //da server a client
 }

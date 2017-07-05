@@ -2,6 +2,7 @@ package project.client.ui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import project.PlayerFile;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
@@ -193,6 +194,30 @@ public class Gui extends AbstractUI {
 
     @Override
     public void showStatistic() {
+
+    }
+
+    @Override
+    public void newGameRequest() {
+
+    }
+
+    @Override
+    public void terminate() {
+
+    }
+
+    @Override
+    public void receiveStatistics(PlayerFile statistics) {
+    }
+
+    @Override
+    public void showRanking() {
+
+    }
+
+    @Override
+    public void ranking(List<PlayerFile> ranking) {
 
     }
 

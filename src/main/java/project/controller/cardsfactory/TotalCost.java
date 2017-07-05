@@ -123,4 +123,12 @@ public class TotalCost implements Cost, Serializable {
     public int getFaithPoints() {
         return faithPonts;
     }
+
+    public int getFaithPonts() {
+        return faithPonts;
+    }
+
+    public void setFaithPonts(int faithPonts) {
+        this.faithPonts = faithPonts;
+    }
 }

@@ -7,6 +7,7 @@ import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.updatesmessages.*;
+import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -82,7 +83,6 @@ public class Server {
             return;
         }
 
-
         if (rooms.isEmpty() || roomsAreAllFull()) {
             System.out.println("CREO NUOVA ROOM");
             createNewRoom(nickname, player);
@@ -106,8 +106,7 @@ public class Server {
                     if (!room.draftTime) {
                         player.setOn(true);
                         checkAndStartTheTimer(room, player);
-                    }
-                    else {
+                    } else {
                         player.disconnectedInDraft = true;
                     }
 
@@ -152,6 +151,74 @@ public class Server {
             createNewRoom(nickname, player);
     }
 
+    void addWinnersToTheFile(String winnerName) {
+
+        Gson gson = new Gson();
+        String currentFile;
+        try {
+
+            currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
+            System.out.println("Il file è: " + currentFile);
+            PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class);
+
+            for (PlayerFile player : arrayPlayers)
+                if (player.getPlayerName().equals(winnerName))
+                    player.setNumberOfVictories(player.getNumberOfVictories() + 1);
+                else
+                    player.setNumberOfDefeats(player.getNumberOfDefeats() + 1);
+
+            String fileUpgraded = gson.toJson(arrayPlayers);
+            System.out.println("FILE UPGRADED IS: " + fileUpgraded);
+
+            FileWriter f2 = new FileWriter(Constants.FILENAME, false);
+            f2.write(fileUpgraded);
+            f2.close();
+
+            System.out.println(readFile(Constants.FILENAME, StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    class VictoriesComparator implements Comparator<PlayerFile> {
+
+        @Override
+        public int compare(PlayerFile o1, PlayerFile o2) {
+            if (o1.getNumberOfVictories() > o2.getNumberOfVictories())
+                return 1;
+            else if ( o1.getNumberOfVictories() == o2.getNumberOfVictories() )
+                if ( o1.getNumberOfDefeats() < o2.getNumberOfDefeats() ) {
+                    return 1;
+                }else
+                    return 0;
+
+            else
+                return -1;
+        }
+    }
+
+
+    List<PlayerFile> generateRanking() {
+        Gson gson = new Gson();
+        String currentFile;
+        List<PlayerFile> playerFileList = new ArrayList<>();
+        try {
+
+            currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
+
+            PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class);
+            VictoriesComparator comparator = new VictoriesComparator();
+            Collections.addAll(playerFileList, arrayPlayers);
+            Collections.sort(playerFileList, comparator);
+            Collections.reverse(playerFileList);
+
+            return playerFileList;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return playerFileList;
+    }
+
     private void createPlayerFile(String nickname) {
         PlayerFile playerFile = new PlayerFile();
         playerFile.setPlayerName(nickname);
@@ -164,7 +231,7 @@ public class Server {
         try {
             File file = new File(Constants.FILENAME);
 
-            if (!file.exists()) {
+            if (!file.exists() ) {
                 System.out.println("CREO IL FILE");
                 file.createNewFile();
                 fw = new FileWriter(file.getAbsoluteFile(), true);
@@ -209,8 +276,7 @@ public class Server {
                 randomAccessFile.writeBytes("," + jsonElement + "]");
 
             } else {
-                System.out.println("STO AGGIUNGENDO IL SECONDO PEZZO AL FILE");
-                System.out.println(fileUpgraded);
+
                 fw = new FileWriter(file.getAbsoluteFile(), false);
                 bw = new BufferedWriter(fw);
                 bw.write(fileUpgraded);
@@ -335,7 +401,7 @@ public class Server {
         }
     }
 
-    void loadPlayerState(Room room, PlayerHandler newPlayer, PlayerHandler oldPlayer ) {
+    void loadPlayerState(Room room, PlayerHandler newPlayer, PlayerHandler oldPlayer) {
 
         newPlayer.setName(oldPlayer.getName());
         newPlayer.setPersonalBoardReference(oldPlayer.getPersonalBoardReference());

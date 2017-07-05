@@ -402,6 +402,21 @@ public class RMIPlayerHandler extends PlayerHandler {
         }
     }
 
+    @Override
+    public void afterMatch() {
+
+    }
+
+    @Override
+    public void newGame(String nickname) {
+        //to implement
+    }
+
+    @Override
+    public void takeRanking() {
+
+    }
+
 
     @Override
     public void sendString(String message) {

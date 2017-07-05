@@ -1,9 +1,11 @@
 package project;
 
+import java.io.Serializable;
+
 /**
  * Created by raffaelebongo on 02/07/17.
  */
-public class PlayerFile {
+public class PlayerFile implements Serializable{
 
     String playerName;
     int numberOfVictories;

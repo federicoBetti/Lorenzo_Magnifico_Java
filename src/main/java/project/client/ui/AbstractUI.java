@@ -1,5 +1,6 @@
 package project.client.ui;
 
+import project.PlayerFile;
 import project.client.ui.cli.InputException;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
@@ -84,7 +85,7 @@ public abstract class AbstractUI {
 
     public abstract int tileDraft(List<Tile> tiles);
 
-    public abstract void newNickname(String nickname);
+    public abstract void newNickname(String nickname );
 
     public abstract void prayed();
 
@@ -99,4 +100,14 @@ public abstract class AbstractUI {
     public abstract void afterGame();
 
     public abstract void showStatistic();
+
+    public abstract void newGameRequest();
+
+    public abstract void terminate();
+
+    public abstract void receiveStatistics(PlayerFile statistics);
+
+    public abstract void showRanking();
+
+    public abstract void ranking(List<PlayerFile> ranking);
 }
