@@ -42,10 +42,6 @@ public abstract class SupportFunctionsDecorator implements AllSupportFunctions {
         allSupportFunctions.setFamiliarInTheCouncilPalace(councilZone,familyMember);
     }
 
-    @Override
-    public void takeMarketAction(int position) {
-        allSupportFunctions.takeMarketAction(position);
-    }
 
     @Override
     public void payCard(DevelopmentCard cardOnThisFloor, boolean towerIsOccupied, int zoneDiceCost, int valueOfFamilyMember) {

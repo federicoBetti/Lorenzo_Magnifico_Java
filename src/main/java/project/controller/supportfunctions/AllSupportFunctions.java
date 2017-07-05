@@ -20,8 +20,6 @@ public interface AllSupportFunctions {
 
     void setFamiliarInTheCouncilPalace(List<Council> councilZone, FamilyMember familyMember);
 
-    void takeMarketAction(int position);
-
     void payCard(DevelopmentCard cardOnThisFloor, boolean towerIsOccupied, int zoneDiceCost, int valueOfFamilyMember);
 
     void payVenturesCard(VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen);

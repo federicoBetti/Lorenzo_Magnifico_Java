@@ -14,6 +14,6 @@ public class LoseFinalPointsEveryFive extends SupportFunctionsDecorator {
 
     @Override
     public int extraLostOfPoints(PlayerHandler playerHandler) {
-        return playerHandler.getScore().getVictoryPoints();
+        return playerHandler.getScore().getVictoryPoints()/5;
     }
 }

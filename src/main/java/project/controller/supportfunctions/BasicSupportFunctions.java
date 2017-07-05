@@ -22,10 +22,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
     private PlayerHandler player;
 
-    private Map<Integer,PrivilegeTaker> privileges;
-
-    private Map<Integer,MarketTaker> takeFromMarket;
-
     private Map<String,CardPayment> payments;
 
 
@@ -33,8 +29,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     public BasicSupportFunctions(PlayerHandler player) {
         this.player = player;
         this.payments = new HashMap<>();
-        privileges = new HashMap<>(5);
-        takeFromMarket = new HashMap<>(4);
         fillHashMapPayments();
     }
 
@@ -174,7 +168,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         zone.setOccupied(true);
         familyMember.setPlayed(true);
         System.out.println("sono nel set familiar e ho appena messo " + familyMember);
-        return;
     }
 
     @Override
@@ -194,12 +187,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         councilZone.add(new Council(familyMember));
         familyMember.setPlayed(true);
 
-    }
-
-
-    @Override
-    public void takeMarketAction(int position) {
-        takeFromMarket.get((Integer)position).takeMarketAction();
     }
 
     @Override
@@ -224,25 +211,18 @@ public class BasicSupportFunctions implements AllSupportFunctions {
 
 
     @Override
-    public void pray(int victoryPointsToAdd){
+    public void pray( int victoryPointsToAdd ){
         player.getScore().setFaithPoints(0);
+        System.out.println(victoryPointsToAdd);
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsToAdd);
     }
 
-    @FunctionalInterface
-    private interface PrivilegeTaker{
-        void takePrivilege();
-    }
 
     @FunctionalInterface
     private interface CardPayment{
         void pay(DevelopmentCard card, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
     }
 
-    @FunctionalInterface
-    private interface MarketTaker{
-        void takeMarketAction();
-    }
 
     public void setPlayer(PlayerHandler player) {
         this.player = player;

@@ -91,6 +91,26 @@ public class VenturesCost implements Cost, Serializable {
         return militaryCost;
     }
 
+    public void setStoneRequired(int stoneRequired) {
+        this.stoneRequired = stoneRequired;
+    }
+
+    public void setWoodRequired(int woodRequired) {
+        this.woodRequired = woodRequired;
+    }
+
+    public void setCoinsRequired(int coinsRequired) {
+        this.coinsRequired = coinsRequired;
+    }
+
+    public void setMilitaryRequired(int militaryRequired) {
+        this.militaryRequired = militaryRequired;
+    }
+
+    public void setMilitaryCost(int militaryCost) {
+        this.militaryCost = militaryCost;
+    }
+
     @Override
     public void picoDellaMirandolaDowngrade() {
         coinsRequired -= 3;

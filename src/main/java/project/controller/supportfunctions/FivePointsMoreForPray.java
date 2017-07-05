@@ -12,6 +12,4 @@ public class FivePointsMoreForPray extends SupportFunctionsDecorator {
         victoryPointsToAdd += 5;
         allSupportFunctions.pray(victoryPointsToAdd);
     }
-
-
 }

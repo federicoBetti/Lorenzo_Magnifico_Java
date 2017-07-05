@@ -2,21 +2,18 @@ package project.controller.supportfunctions;
 
 import com.google.gson.Gson;
 import org.junit.Test;
-import project.controller.cardsfactory.BuildingCard;
-import project.controller.cardsfactory.CharacterCard;
-import project.controller.cardsfactory.TerritoryCard;
-import project.controller.cardsfactory.VenturesCard;
+import project.controller.cardsfactory.*;
 import project.controller.effects.effectsfactory.PokerPE;
-import project.model.PersonalBoard;
-import project.model.Player;
+import project.controller.effects.effectsfactory.TrisIE;
+import project.model.*;
 import project.server.network.PlayerHandler;
+import project.server.network.rmi.RMIPlayerHandler;
 import project.server.network.socket.SocketPlayerHandler;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -86,10 +83,9 @@ public class BasicSupportFunctionsTest {
 
     @Test
     public void extraLostOfPoints() throws Exception {
-    }
-
-    @Test
-    public void towerZoneEffect() throws Exception {
+        BasicSupportFunctions bsf = new BasicSupportFunctions();
+        int res = bsf.extraLostOfPoints(new SocketPlayerHandler());
+        assertEquals(0, res );
     }
 
     @Test
@@ -115,12 +111,16 @@ public class BasicSupportFunctionsTest {
 
     }
 
-    @Test
-    public void applyEffects() throws Exception {
-    }
 
     @Test
     public void setFamiliar() throws Exception {
+        Tower tower = new Tower();
+        FamilyMember familyMember = new FamilyMember();
+
+        BasicSupportFunctions bsf = new BasicSupportFunctions();
+        bsf.setFamiliar(tower, familyMember );
+
+        assertEquals(true, tower.isOccupied());
     }
 
     @Test
@@ -153,26 +153,140 @@ public class BasicSupportFunctionsTest {
 
     @Test
     public void setDicesValue() throws Exception {
+        int[] diceValue = new int[3];
+        diceValue[0] = 1;
+        diceValue[1] = 2;
+        diceValue[2] = 3;
+
+        PlayerHandler player = new SocketPlayerHandler();
+        FamilyMember[] familyMembers = new FamilyMember[4];
+        familyMembers[0] = new FamilyMember();
+        familyMembers[1] = new FamilyMember();
+        familyMembers[2] = new FamilyMember();
+        familyMembers[3] = new FamilyMember();
+        player.setAllFamilyMembers(familyMembers);
+        BasicSupportFunctions bsf = new BasicSupportFunctions();
+        bsf.setDicesValue(diceValue, player);
+
+        assertEquals(1, player.getAllFamilyMembers()[1].getMyValue());
+        assertEquals(2, player.getAllFamilyMembers()[2].getMyValue());
+        assertEquals(3, player.getAllFamilyMembers()[3].getMyValue());
     }
 
     @Test
     public void setFamiliarInTheCouncilPalace() throws Exception {
+        List<Council> councils = new ArrayList<>();
+        FamilyMember familyMember = new FamilyMember();
+
+        BasicSupportFunctions bsf = new BasicSupportFunctions();
+        bsf.setFamiliarInTheCouncilPalace(councils, familyMember);
+
+        assertEquals(true, councils.get(0).getFamiliarOnThisPosition().isPlayed());
     }
 
-    @Test
-    public void takeMarketAction() throws Exception {
-    }
 
     @Test
     public void payCard() throws Exception {
+        PlayerHandler p = new RMIPlayerHandler();
+        DevelopmentCard card = new TerritoryCard("prova",1,false,new TerritoryCost(3,3,3), new ArrayList<>(),new ArrayList<>());
+        boolean coinsFee = true;
+        int zoneDiceCost = 5;
+        int valueOfFM = 3;
+
+        p.getPersonalBoardReference().setServants(1);
+        p.getPersonalBoardReference().setWood(3);
+        p.getPersonalBoardReference().setStone(4);
+        p.getPersonalBoardReference().setCoins(3);
+
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+
+        BasicSupportFunctions bsf = new BasicSupportFunctions(p);
+        bsf.payCard(card,coinsFee,zoneDiceCost,valueOfFM);
+
+        assertEquals(0, p.getPersonalBoardReference().getWood());
+        assertEquals(1, p.getPersonalBoardReference().getStone());
+
     }
 
     @Test
     public void payVenturesCard() throws Exception {
+
+        PlayerHandler p = new RMIPlayerHandler();
+        List<VenturesCost> costs = new ArrayList<>();
+        VenturesCost venturesCost1 = new VenturesCost();
+        venturesCost1.setWoodRequired(5);
+        venturesCost1.setCoinsRequired(5);
+        venturesCost1.setStoneRequired(5);
+        venturesCost1.setMilitaryRequired(0);
+        venturesCost1.setMilitaryCost(0);
+
+        VenturesCost venturesCost2 = new VenturesCost();
+        venturesCost2.setMilitaryCost(2);
+        venturesCost2.setMilitaryRequired(5);
+        venturesCost2.setStoneRequired(0);
+        venturesCost2.setWoodRequired(0);
+        venturesCost2.setCoinsRequired(0);
+
+        costs.add(venturesCost1);
+        costs.add(venturesCost2);
+
+        VenturesCard card = new VenturesCard("prova", 1, false, costs, new ArrayList<>(), new ArrayList<>());
+        boolean coinsFee = false;
+        int zoneDiceCost = 5;
+        int valueOfFM = 3;
+
+        p.getPersonalBoardReference().setServants(10);
+        p.getPersonalBoardReference().setWood(10);
+        p.getPersonalBoardReference().setStone(10);
+        p.getPersonalBoardReference().setCoins(10);
+        p.getScore().setMilitaryPoints(5);
+
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+        p.getPersonalBoardReference().getTerritories().add(new TerritoryCard());
+
+        BasicSupportFunctions basicSupportFunctions = new BasicSupportFunctions(p);
+        int paymentChoosen = 0;
+        basicSupportFunctions.payVenturesCard(card,p, coinsFee, zoneDiceCost,valueOfFM, paymentChoosen);
+
+        assertEquals(5, p.getPersonalBoardReference().getWood());
+        assertEquals(5, p.getPersonalBoardReference().getStone());
+        assertEquals(5, p.getPersonalBoardReference().getCoins());
+
+        coinsFee = true;
+
+        basicSupportFunctions.payVenturesCard(card, p, coinsFee,zoneDiceCost,valueOfFM, paymentChoosen);
+        assertEquals(-3, p.getPersonalBoardReference().getCoins());
+
+        paymentChoosen = 1;
+
+        basicSupportFunctions.payVenturesCard(card,p,coinsFee, zoneDiceCost, valueOfFM, paymentChoosen);
+        assertEquals(3, p.getScore().getMilitaryPoints());
+        assertEquals(-6, p.getPersonalBoardReference().getCoins());
+
     }
 
     @Test
     public void pray() throws Exception {
+
+        PlayerHandler player = new SocketPlayerHandler();
+        Score score = new Score();
+        score.setFaithPoints(10);
+        score.setVictoryPoints(0);
+        player.setScore(score);
+        int victoryPointToAdd = 5;
+
+        BasicSupportFunctions bsf = new BasicSupportFunctions(player);
+        bsf.pray(victoryPointToAdd);
+
+        assertEquals(0, player.getScore().getFaithPoints());
+        assertEquals(5, player.getScore().getVictoryPoints());
+
+
     }
 
 }

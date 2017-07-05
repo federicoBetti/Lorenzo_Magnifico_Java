@@ -56,6 +56,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      * for testing
      */
     public SocketPlayerHandler(){
+        super();
         token = new Object();
         token1 = new Object();
         //for testing
@@ -269,9 +270,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         try {
             String newNickname = (String) objectInputStream.readObject();
             loginRequestAnswer(newNickname);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -360,10 +359,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         try {
             synchronized (token) {
                 token.notify();
+                System.out.println(this.getName() + " SVEGLIATO");
             }
             if ( isOn() ) {
                 setMatchStartedVar(true);
-                System.out.println(this.getName() + " SVEGLIATO");
+
                 objectOutputStream.writeObject(Constants.MATCH_STARTED);
                 objectOutputStream.writeObject(roomPlayers);
                 objectOutputStream.writeObject(familyColour);
