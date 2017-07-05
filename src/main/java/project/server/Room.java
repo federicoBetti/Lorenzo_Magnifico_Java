@@ -13,14 +13,12 @@ import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -236,7 +234,6 @@ public class Room {
                 tiles.remove(tiles.get(0));
             } //todo vedere qua perchè non fa partire partita
         }
-
         //inizia la partita
         for (PlayerHandler p : getListOfPlayers()) {
 

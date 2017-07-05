@@ -1,6 +1,5 @@
 package project.controller.supportfunctions;
 
-import project.model.Position;
 import project.model.Tower;
 import project.server.network.PlayerHandler;
 

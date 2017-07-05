@@ -19,6 +19,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
@@ -156,9 +157,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
-    public void choicePe() {
-        clientSetter.choicePe();
-    }
 
     @Override
     public void sendChoicePe(int input) {
@@ -241,9 +239,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public void productionAction(String familiarChosen, List<String> buidingCards) {
+    public void productionAction(String familiarChosen, List<String> buildingCards) {
         try {
-            myServer.productionRequest(myUniqueId,familiarChosen,buidingCards);
+            myServer.productionRequest(myUniqueId,familiarChosen,(LinkedList)buildingCards);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -328,18 +326,14 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void prayed() {
-        //todo arriva alla Ui per confermare che la scelta della preghiera, cioè che la preghiera è stata fatta.
+        clientSetter.prayed();
     }
 
     @Override
-    public void excommunicationTake() {
-        //todo è la notifica che dice che hai preso la scomunica
+    public int sendChoicePE() throws RemoteException {
+        return clientSetter.choicePe();
     }
 
-    @Override
-    public void askForPrayingLastPlayer() {
-        //todo prova per vedere se funziona una cosa con socket. se vedi questo commento significa che ho scordato di cambiarlo o toglierlo se funziona tutto
-    }
 
     @Override
     public void notifyPlayer() {
@@ -429,23 +423,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     public void boardUpdate() {
     }
 
-    public void scelta(){
-        try {
-            myServer.scelta(myUniqueId);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void matchStarted() {
 
-    }
-
-
-    @Override
-    public int getScelta() throws RemoteException {
-        return clientSetter.getScelta();
     }
 
     @Override

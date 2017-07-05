@@ -205,14 +205,6 @@ public class ClientSetter {
     }
 
 
-    public void connect(String username, String password) {
-        System.out.println(username + " " + password);
-        ui.startGame(3);
-        //startGame(2);
-    }
-
-
-
     //todo check utility
     public void notifyClient(Notify notify) {
     }
@@ -263,10 +255,6 @@ public class ClientSetter {
 
     public void timerTurnDelayed() {
         ui.timerDelayed();
-    }
-
-    public int getScelta() {
-        return ui.getScelta();
     }
 
     public String getLeaderCardChosen(List<LeaderCard> leaders) {

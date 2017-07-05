@@ -6,7 +6,6 @@ import project.client.ui.cli.InputException;
 import project.controller.effects.realeffects.Effects;
 import project.model.FamilyMember;
 import project.model.Harvester;
-import project.model.Production;
 import project.model.Tile;
 
 import java.io.IOException;

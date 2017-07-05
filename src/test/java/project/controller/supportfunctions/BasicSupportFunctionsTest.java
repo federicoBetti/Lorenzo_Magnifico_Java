@@ -6,6 +6,7 @@ import project.controller.cardsfactory.*;
 import project.controller.effects.effectsfactory.PokerPE;
 import project.controller.effects.effectsfactory.TrisIE;
 import project.model.*;
+import project.model.PersonalBoard;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
 import project.server.network.socket.SocketPlayerHandler;

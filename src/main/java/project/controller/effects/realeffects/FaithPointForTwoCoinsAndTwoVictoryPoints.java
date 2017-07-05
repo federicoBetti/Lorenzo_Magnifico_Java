@@ -1,5 +1,6 @@
 package project.controller.effects.realeffects;
 
+import project.controller.cardsfactory.TotalCost;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
@@ -7,7 +8,7 @@ import project.server.network.PlayerHandler;
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class FaithPointForTwoCoinsAndTwoVictoryPoints implements Effects {
+public class FaithPointForTwoCoinsAndTwoVictoryPoints implements ExchangeEffects {
     private int faithPointsrequired;
     private int coinsEarned;
     private int victoryPointsEarned;
@@ -34,5 +35,14 @@ public class FaithPointForTwoCoinsAndTwoVictoryPoints implements Effects {
     public String toScreen() {
         return "Exchange " + faithPointsrequired + " faith points" + " for taking " + coinsEarned + " of " + "coins\n" +
                 "and " + victoryPointsEarned + " of victory points";
+    }
+
+    public int getFaithPointsrequired() {
+        return faithPointsrequired;
+    }
+
+    @Override
+    public void addResourceRequested(TotalCost cost) {
+        cost.addFaithPoints(faithPointsrequired);
     }
 }

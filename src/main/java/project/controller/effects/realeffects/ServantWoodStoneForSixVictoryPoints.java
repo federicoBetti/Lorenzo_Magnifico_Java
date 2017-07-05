@@ -1,5 +1,6 @@
 package project.controller.effects.realeffects;
 
+import project.controller.cardsfactory.TotalCost;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
@@ -7,7 +8,7 @@ import project.server.network.PlayerHandler;
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class ServantWoodStoneForSixVictoryPoints implements Effects {
+public class ServantWoodStoneForSixVictoryPoints implements ExchangeEffects {
     private int servantsRequired;
     private int woodrequired;
     private int stoneRequired;
@@ -38,5 +39,12 @@ public class ServantWoodStoneForSixVictoryPoints implements Effects {
     @Override
     public String toScreen() {
         return "Exchange 1 servant, 1 wood and 1 stone for 6 victory points.";
+    }
+
+    @Override
+    public void addResourceRequested(TotalCost cost) {
+        cost.addServants(servantsRequired);
+        cost.addWood(woodrequired);
+        cost.addStone(stoneRequired);
     }
 }

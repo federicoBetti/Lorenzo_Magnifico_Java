@@ -5,7 +5,6 @@ import project.model.Board;
 import project.model.Council;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

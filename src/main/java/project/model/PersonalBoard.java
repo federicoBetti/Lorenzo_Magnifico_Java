@@ -5,7 +5,6 @@ import project.controller.cardsfactory.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -65,7 +64,7 @@ public class PersonalBoard implements Serializable{
 		coins=i;
 		servants=i;
 		stone=i;
-		wood=i;
+		wood=3;
 	}
 
 	public String toScreen() {

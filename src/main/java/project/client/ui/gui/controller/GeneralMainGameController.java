@@ -1,8 +1,6 @@
 package project.client.ui.gui.controller;
 
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,8 +8,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import project.model.ExcommunicationZone;
 import project.model.Score;
@@ -381,7 +377,7 @@ public class GeneralMainGameController extends AbstractController{
 
     public void setScelta(String bothPaymentAvaiable, String s, String s1) {
         loginBuilder.showChoice(bothPaymentAvaiable,s,s1);
-        mainController.wakeUp(loginBuilder.getChoiceDone());
+        mainController.addIntegerQueue(loginBuilder.getChoiceDone());
     }
 
     public void setScore(Score uiScore) {

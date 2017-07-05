@@ -1,6 +1,5 @@
 package project.client.network.socket;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
@@ -11,7 +10,6 @@ import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
-import project.model.Board;
 import project.model.Tile;
 
 import java.io.IOException;
@@ -133,7 +131,6 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(name);
     }
 
-    @Override
     public void askForPrayingLastPlayer() {
         //thread che ascolta il timer
         new TimerReader().start();
@@ -481,12 +478,10 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(nickname);
     }
 
-    @Override
     public void prayed() {
         clientSetter.prayed();
     }
 
-    @Override
     public void excommunicationTake() {
         try {
             Updates update = (Updates) objectInputStream.readObject();

@@ -55,7 +55,5 @@ import java.util.List;
 
      void skipTurn(String myUniqueId) throws RemoteException;
 
-     void scelta(String myUniqueId) throws RemoteException;
-
      void reconnect(String myUniqueId) throws RemoteException;
  }

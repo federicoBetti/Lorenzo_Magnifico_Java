@@ -8,7 +8,7 @@ import project.server.network.PlayerHandler;
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class ExchangeStoneFor implements Effects {
+public class ExchangeStoneFor implements ExchangeEffects {
 
     private int stoneRequired;
     private int resourceEarned;
@@ -60,5 +60,10 @@ public class ExchangeStoneFor implements Effects {
     @Override
     public String toScreen() {
         return "Exchange " + stoneRequired + " stones" + " for taking " + resourceEarned + " of " + resourceRewardered;
+    }
+
+    @Override
+    public void addResourceRequested(TotalCost cost) {
+        cost.addStone(stoneRequired);
     }
 }

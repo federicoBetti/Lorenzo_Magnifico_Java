@@ -37,7 +37,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void takeBonusCard(TowerAction towerAction) {
-        mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() ); //todo towerAction.printBonusAction());
+        mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() );
     }
 
     //todo ho rinominato both payment availableRMI con bothPaymentAvailable visto che lo dovevo usare pure io ma mi sa che ce l'avevi già
@@ -56,8 +56,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public int choicePe() {
-        mainController.choosePermanentEffect();
-        return 0;
+        return mainController.choosePermanentEffect();
     }
 
 
@@ -213,7 +212,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public int getScelta() {
-        return mainController.getScelta(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
+        return mainController.getChoice(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
     }
 
     @Override

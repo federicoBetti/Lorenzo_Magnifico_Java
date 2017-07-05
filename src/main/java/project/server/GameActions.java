@@ -10,7 +10,6 @@ import project.messages.*;
 import project.messages.updatesmessages.*;
 import project.model.*;
 import project.server.network.PlayerHandler;
-import project.messages.updatesmessages.ExcommunicationTaken;
 import project.server.network.exception.CantDoActionException;
 
 import java.util.*;
@@ -386,28 +385,14 @@ public class GameActions {
         askForPraying(period);
     }
 
-    private void endRound() {//cambiare le carte, pulire spazi azione, settare i familiari a false
-        int count = 0;
-        for (PlayerHandler player : room.getListOfPlayers())
-            if (!player.isOn())
-                count++;
+    private void endRound() {
 
         refactorTowers();
-        System.out.println("dopo refactor");
         changePlayerOrder();
-        System.out.println("dopo change");
         clearAllPosition();
-        System.out.println("dopo clear");
         clearLeaderCardUsed();
-        System.out.println("dopo leader");
+        rollDice();
 
-        //to check
-
-        for (PlayerHandler p : room.getListOfPlayers()) {
-            for (FamilyMember f : p.getAllFamilyMembers())
-                if (f.isPlayed())
-                    System.out.println("giocatore ancora giocato: " + f);
-        }
     }
 
 
@@ -505,7 +490,7 @@ public class GameActions {
                 System.out.println(player.getName());
                 int choice = player.sendAskForPraying(turn);
 
-                if (choice == 1)
+                if (choice == 1 || choice ==-1)
                     takeExcommunication(player);
                 else
                     faithPointsForVictoryPoints(player);
@@ -523,7 +508,7 @@ public class GameActions {
     private void faithPointsForVictoryPoints(PlayerHandler player) {
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + player.getScore().getFaithPoints());
         player.getScore().setFaithPoints(0);
-        player.sendString(Constants.PRAYED);
+        player.prayed();
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 
@@ -585,9 +570,10 @@ public class GameActions {
      * @param familyM
      * @param cardToProduct
      * @param servantsToPay
+     * @param choichePE
      * @param player
      */
-    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, int servantsToPay, PlayerHandler player) {
+    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, int servantsToPay, List<Integer> choichePE, PlayerHandler player) {
         List<Production> productionSpace = board.getProductionZone();
         Production productionZone = new Production();
 
@@ -596,12 +582,12 @@ public class GameActions {
 
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
 
-        productionBonus(cardToProduct, servantsToPay, player);
+        productionBonus(cardToProduct, servantsToPay, choichePE,  player);
 
     }
 
 
-    public void productionBonus(List<BuildingCard> cards, int servantsToPay, PlayerHandler player) {
+    public void productionBonus(List<BuildingCard> cards, int servantsToPay, List<Integer> choichePE, PlayerHandler player) {
 
         int servantsUsed = getSupportFunctions(player).payServants(servantsToPay, 0);
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
@@ -610,7 +596,7 @@ public class GameActions {
             e.doEffect(player);
 
         for (BuildingCard card : cards) {
-            makePermanentEffects(player, card);
+            makePermanentEffectsProduction(player, card, choichePE);
         }
 
         player.sendActionOk();
@@ -619,6 +605,7 @@ public class GameActions {
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
 
     }
+
 
     /**
      * @param position
@@ -779,21 +766,46 @@ public class GameActions {
     }
 
 
-    private void broadcastUpdates(Updates updates) {
-        for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet()) {
-            PlayerHandler player = entry.getValue();
+    private void broadcastUpdates(Updates updates){
+        for(PlayerHandler player: room.getListOfPlayers()){
             player.sendUpdates(updates);
         }
     }
 
-    private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {
+
+    private void makePermanentEffectsProduction(PlayerHandler player, BuildingCard card, List<Integer> choichePE) {
         if (card.isChoicePe()) {
-            int choice = player.sendPossibleChoice(Constants.CHOICE_PE);
+            int choice = choichePE.get(0);
             if (choice == -1)
                 return;
-            card.getPermanentCardEffects().get(choice).doEffect(player);
+            Effects e = card.getPermanentCardEffects().get(choice);
+            BonusInteraction returnFromEffect = e.doEffect(player);
+
+            if (returnFromEffect instanceof TakePrivilegesAction) {
+                System.out.println("if TakePrivilege");
+                player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+            }
+
+            choichePE.remove(0);
             return;
         }
+
+        for (Effects effect : card.getPermanentCardEffects()) {
+            BonusInteraction returnFromEffect = effect.doEffect(player);
+
+            if (returnFromEffect instanceof TakePrivilegesAction) {
+                System.out.println("if TakePrivilege");
+                player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+                System.out.println("stampo la return from effect: " + returnFromEffect);
+            }
+
+            System.out.println(" effetto permanente stampato " + effect.getClass());
+        }
+
+    }
+
+    private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {
 
         for (Effects effect : card.getPermanentCardEffects()) {
                 effect.doEffect(player);

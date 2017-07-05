@@ -7,7 +7,6 @@ import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.updatesmessages.*;
-import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -309,7 +308,7 @@ public class Server {
         player.sendUpdates(new TowersUpdate(room.getBoard().getAllTowers(), nickname));
         player.sendUpdates(new ScoreUpdate(player, nickname));
         player.sendUpdates(new CouncilUpdate(room.getBoard().getCouncilZone(), nickname));
-        // player.sendUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone(), nickname));
+        player.sendUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone(), nickname));
         player.sendUpdates(new HarvesterUpdate(room.getBoard().getHarvesterZone(), nickname));
         player.sendUpdates(new DiceValueUpdate(room.getBoard().getDiceValue()));
         player.sendUpdates(new FamilyMemberUpdate(player, nickname));

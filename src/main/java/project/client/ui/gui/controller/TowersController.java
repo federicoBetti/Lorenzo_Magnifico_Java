@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import project.TowerIterator;
 import project.controller.Constants;
 import project.model.Tower;
 
@@ -168,7 +167,8 @@ public class TowersController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
-        unlockButton();
+        //2
+        // unlockButton();
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiiarPlaced.setImage(null);
         if (floor != -1){
@@ -295,7 +295,7 @@ public class TowersController extends AbstractController {
         }
         else {
             //todo cambiare il greenneutral qua con uno bianco tipo fake
-            myTower[tower][floor].setFamiliarImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + "emptygreenneutral" +".png"))));
+            myTower[tower][floor].setFamiliarImage(new Image(String.valueOf(getClass().getResource("/images/familiar/empty" + loginBuilder.getColour() + "neutral" +".png"))));
             selectCard(tower, floor);
             writeOnChat("you have chosen a bonus action!\n");
         }
@@ -405,7 +405,7 @@ public class TowersController extends AbstractController {
                 return Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD;
             default:
                 return "";
-            }
+        }
 
     }
 
@@ -415,14 +415,7 @@ public class TowersController extends AbstractController {
 
 
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
-        loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
         bonusAction = true;
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        loginBuilder.setScene(SceneType.TOWERS,SceneType.PERSONAL_BOARD);
 
         writeOnChat(printBonusAction);
         writeOnChat("click on the position next to the card you want"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
@@ -437,17 +430,20 @@ public class TowersController extends AbstractController {
         submit.setOnAction(event -> takeBonusCard());
     }
 
-    private void unlockButton(){
+    void unlockButton(){
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> takeCard());
         bonusAction = false;
     }
 
     private void takeBonusCard() {
-        String towerColourString = getTowerColour(towerColour);
-        if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)){
-            System.out.println("sono nel tasto prendere la carta di azione bonus");
-            mainController.takeBonusCardAction(floor,towerColourString);
+        if (towerColour != -1 && floor != -1) {
+            String towerColourString = getTowerColour(towerColour);
+            if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)) {
+                System.out.println("sono nel tasto prendere la carta di azione bonus");
+                mainController.takeBonusCardAction(floor, towerColourString);
+                unlockButton();
+            }
         }
     }
 }

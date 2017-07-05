@@ -38,6 +38,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     List<Integer> privileges;
     private int prayingChoice;
     private int paymentMethodChosen;
+    private int choicePE;
 
     protected RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
         this.myClient = rmiServerToClientInterface;
@@ -64,13 +65,12 @@ public class RMIPlayerHandler extends PlayerHandler {
     public void doBonusHarvester(int servantsNumber) {
         this.servantsNumber = servantsNumber;
 
-        synchronized (tokenn){
+        synchronized (tokenn) {
             tokenn.notify();
         }
     }
 
-    public void
-    doBonusProduction(List<String> parameters) {
+    public void doBonusProduction(List<String> parameters) {
         ArrayList<BuildingCard> buildingCards = new ArrayList<>();
         for (BuildingCard buildingCard : getPersonalBoardReference().getBuildings()) {
             if (parameters.contains(buildingCard.getName())) {
@@ -79,7 +79,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         }
         this.productionCards = buildingCards;
 
-        synchronized (tokenn){
+        synchronized (tokenn) {
             tokenn.notify();
         }
     }
@@ -88,7 +88,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         this.floorChosen = floor;
         this.towerColourChosen = towerColour;
 
-        synchronized (tokenn){
+        synchronized (tokenn) {
             tokenn.notify();
         }
 
@@ -105,32 +105,25 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     public void exitOnBonusAction() {
         towerColourChosen = null;
-        productionCards= null;
+        productionCards = null;
         servantsNumber = -1;
         privileges = null;
         prayingChoice = 1;
+        choicePE = -1;
 
-        synchronized (tokenn){
+        synchronized (tokenn) {
             System.out.println("sto per notificare tutti che mi è scaduto anche il timer");
             tokenn.notify();
         }
     }
 
-    public void anserAskForPraying(int choice) {
-        prayingChoice = choice;
+    public void setChoicePe(int input) {
+        choicePE = input;
+        System.out.println("input: " + input);
         synchronized (tokenn){
             tokenn.notify();
         }
     }
-
-    public void answerBothPayment(int choice) {
-        paymentMethodChosen = choice;
-
-        synchronized (tokenn){
-            tokenn.notify();
-        }
-    }
-
 
     private interface Talker {
 
@@ -143,7 +136,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             bonusType.get(returnFromEffect.toString()).sendEffectAnswer((BonusInteraction) returnFromEffect);
         } catch (RemoteException e) {
-            //todo gestire eccezzione dii rete
+            playerDisconnected();
         }
     }
 
@@ -152,39 +145,40 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.sendNotification(notifications);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
     }
 
     @Override
     public void sendUpdates(Updates updates) {
         try {
-            myClient.sendUpdates(updates);
+            if (isOn())
+                myClient.sendUpdates(updates);
         } catch (RemoteException e) {
-            System.out.println(e.getCause());
-            System.out.println(e.getMessage());
+            playerDisconnected();
         }
     }
 
     @Override
-    public int sendPossibleChoice(String kindOfChoice) {
+    public int sendChoicePE() {
         try {
-            return myClient.getScelta();
+            return myClient.sendChoicePE();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
-        return 0;
+        return -1;
     }
 
     @Override
-    public void sendBonusTowerAction(TowerAction returnFromEffect){
+    public void sendBonusTowerAction(TowerAction returnFromEffect) {
         while (true) {
             try {
                 myClient.bonusTowerAction(returnFromEffect);
             } catch (RemoteException e) {
-                e.printStackTrace();
+                System.out.println("player disconnesso");
+                this.setOn(false);
             }
-            synchronized (tokenn){
+            synchronized (tokenn) {
                 try {
                     System.out.println("STO ANDANDO IN WAIT TOWER ACTION");
                     tokenn.wait();
@@ -195,8 +189,7 @@ public class RMIPlayerHandler extends PlayerHandler {
 
             System.out.println("MI SONO SVEGLIATO DAL TOWER ACTION");
 
-            if (towerColourChosen == null)
-                return;
+            if (towerColourChosen == null) return;
 
             try {
                 clientTakeBonusDevelopementCard(towerColourChosen, floorChosen, returnFromEffect);
@@ -214,34 +207,33 @@ public class RMIPlayerHandler extends PlayerHandler {
             try {
                 myClient.sendBonusProdHarv(returnFromEffect);
             } catch (RemoteException e) {
-                e.printStackTrace();
+                System.out.println("player disconnesso");
+                this.setOn(false);
             }
 
-            synchronized (tokenn){
+            synchronized (tokenn) {
                 try {
                     tokenn.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("player disconnesso");
+                    this.setOn(false);
                 }
             }
 
-            if (productionCards == null )
-                return;
+            if (productionCards == null) return;
 
             try {
 
                 if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER)) {
                     if (servantsNumber == -1) return;
                     doBonusHarv(returnFromEffect, servantsNumber);
-                }
-                else{
+                } else {
                     if (productionCards == null) return;
                     doBonusProduct(returnFromEffect, productionCards);
                 }
 
                 break;
-            }
-            catch (CantDoActionException e){
+            } catch (CantDoActionException e) {
 
             }
         }
@@ -251,23 +243,23 @@ public class RMIPlayerHandler extends PlayerHandler {
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
         privileges = new ArrayList<>();
         try {
-             myClient.sendRequestForPrivileges(returnFromEffect);
+            myClient.sendRequestForPrivileges(returnFromEffect);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
 
-        synchronized (tokenn){
+        synchronized (tokenn) {
             try {
                 System.out.println("sto andando nel wait dei privilegi");
                 tokenn.wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("player disconnesso");
+                this.setOn(false);
             }
         }
-        if (privileges == null)
-            return;
+        if (privileges == null) return;
 
-        for (Integer i: privileges)
+        for (Integer i : privileges)
             takePrivilege(i);
     }
 
@@ -277,16 +269,16 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.cantDoAction();
         } catch (RemoteException e) {
-            //todo gestire eccezzione di rete
+            playerDisconnected();
         }
     }
 
     @Override
     public int canUseBothPaymentMethod() {
         try {
-             return myClient.canUseBothPaymentMethod();
+            return myClient.canUseBothPaymentMethod();
         } catch (RemoteException e) {
-            //todo gestire eccezzione di rete
+            playerDisconnected();
         }
         return 0;
     }
@@ -296,7 +288,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.itMyTurn();
         } catch (RemoteException e) {
-            //todo gestire eccezzione di rete
+            playerDisconnected();
         }
     }
 
@@ -305,7 +297,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             return myClient.askForPraying();
         } catch (RemoteException e) {
-            //todo gestire eccezzione di rete
+            playerDisconnected();
         }
         return 0;
     }
@@ -315,7 +307,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.actionOk();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
     }
 
@@ -334,7 +326,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.nicknameAlreadyUsed();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
     }
 
@@ -344,7 +336,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.loginSucceded();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
     }
 
@@ -353,7 +345,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.waitForYourTurn();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
     }
 
@@ -364,28 +356,30 @@ public class RMIPlayerHandler extends PlayerHandler {
             System.out.println(leaderName);
             return leaderName;
         } catch (RemoteException e) {
-            e.printStackTrace();
+            this.setOn(false);
+            return "-1";
         }
-        return null;
+        //return null;
     }
 
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
-            myClient.matchStarted(roomPlayers,familyColour);
+            if (isOn())
+                myClient.matchStarted(roomPlayers, familyColour);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            playerDisconnected();
         }
     }
-    
+
     @Override
     public int chooseTile(ArrayList<Tile> tiles) {
         try {
             return myClient.tileChoosen(tiles);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            this.setOn(false);
+            return -1;
         }
-        return 0;
     }
 
     @Override
@@ -398,12 +392,21 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     }
 
+    @Override
+    public void prayed() {
+        try {
+            myClient.prayed();
+        } catch (RemoteException e) {
+            System.out.println("player disconnesso");
+            this.setOn(false);
+        }
+    }
+
 
     @Override
     public void sendString(String message) {
         //todo uaglio
     }
-
 
 
     // qua inizia la parte delle chiamate del client sul server
@@ -443,6 +446,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             production(familyMember, buildingCards);
         } catch (CantDoActionException e) {
+            System.out.println("catchata l'eccezione");
             cantDoAction();
         }
     }
@@ -482,16 +486,9 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
 
-
-
-    public void scelta() {
-        int ciao = 0;
-        try {
-            ciao = myClient.getScelta();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        System.out.println(ciao);
-        skipTurn();
+    private void playerDisconnected() {
+        System.out.println("player disconnesso");
+        this.setOn(false);
+        getRoom().getGameActions().nextTurn(this);
     }
 }

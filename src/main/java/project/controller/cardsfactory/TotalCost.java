@@ -18,7 +18,7 @@ public class TotalCost implements Cost, Serializable {
     private int militaryRequired;
 
     private int militaryCost;
-
+    private int faithPonts;
 
 
     public TotalCost() {
@@ -112,4 +112,15 @@ public class TotalCost implements Cost, Serializable {
         woodRequired += i;
     }
 
+    public void addServants(int i) {
+        servantsRequired += i;
+    }
+
+    public void addFaithPoints(int faithPointsrequired) {
+        faithPonts += faithPointsrequired;
+    }
+
+    public int getFaithPoints() {
+        return faithPonts;
+    }
 }

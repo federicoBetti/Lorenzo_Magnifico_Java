@@ -3,11 +3,8 @@ package project.model;
 import org.junit.Before;
 import org.junit.Test;
 import project.controller.Constants;
-import project.server.Server;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
-import project.server.network.socket.SocketPlayerHandler;
-import project.server.network.socket.SocketServer;
 
 import java.util.ArrayList;
 import java.util.List;

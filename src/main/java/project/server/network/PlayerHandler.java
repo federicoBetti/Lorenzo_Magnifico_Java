@@ -5,6 +5,7 @@ import project.controller.checkfunctions.AllCheckFunctions;
 import project.controller.checkfunctions.BasicCheckFunctions;
 import project.controller.Constants;
 import project.controller.effects.effectsfactory.LeaderCardRequirements;
+import project.controller.effects.realeffects.*;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
@@ -184,7 +185,7 @@ public abstract class PlayerHandler extends Player {
             if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour))
                 throw new CantDoActionException();
         }
-        if (room.numberOfPlayerOn() > 2 && zone.size() > 0)
+        if (room.numberOfPlayerOn() > 2 && !zone.isEmpty())
             throw new CantDoActionException();
 
         return zone.size();
@@ -211,6 +212,7 @@ public abstract class PlayerHandler extends Player {
         int maxValueOfProduction;
         List<Production> productionZone = room.getBoard().getProductionZone();
         boolean canTakeCards;
+        List<Integer> choichePE = new ArrayList<>();
         int position;
 
         if ( productionZone.isEmpty() )
@@ -218,31 +220,30 @@ public abstract class PlayerHandler extends Player {
         else
             position = firstFreePosition(productionZone,familyM.getFamilyColour());
 
-        System.out.println("fM: " + familyM.getMyValue());
-        System.out.println("personalBoard bonus on action: " + getPersonalBoardReference().getBonusOnActions());
-        System.out.println("production Bonus: " + getPersonalBoardReference().getBonusOnActions().getProductionBonus());
-
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
-
 
         if (position > 0)
             maxValueOfProduction = maxValueOfProduction - Constants.MALUS_PROD_HARV;
-        int servantsToPay = checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction);
 
-        gameActions().production(position,familyM,cardToProduct,servantsToPay,this);
+        System.out.println("STO ENTANDO NEL CHECK PRODUZIONE");
+        int servantsToPay = checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction, choichePE);
+        System.out.println("HO FATTO LA PRODUZIONE");
+
+        gameActions().production(position,familyM,cardToProduct,servantsToPay,choichePE,this);
     }
 
 
     protected void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
         int maxValueOfProduction;
+        List<Integer> choicePe = new ArrayList<>();
         maxValueOfProduction =  returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
-        int servantsToPay = checkAvaiabiltyToProduct(cards,maxValueOfProduction);
-        gameActions().productionBonus(cards,servantsToPay,this);
+        int servantsToPay = checkAvaiabiltyToProduct(cards,maxValueOfProduction, choicePe);
+        gameActions().productionBonus(cards,servantsToPay, choicePe, this);
     }
 
 
-    private int checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction) throws CantDoActionException {
-        BuildingCost totalCardCosts = new BuildingCost();
+    private int checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction, List<Integer> choicePE) throws CantDoActionException {
+        TotalCost cost = new TotalCost();
         int servantsMax = 0;
         for (BuildingCard b: cardToProduct){
             if (b.getCost().getDiceCost() > maxValueOfProduction + checkFunctions.getServants(this))
@@ -250,21 +251,53 @@ public abstract class PlayerHandler extends Player {
             int servnatsToPay = b.getCost().getDiceCost() - maxValueOfProduction;
             if (servnatsToPay > servantsMax)
                 servantsMax = servnatsToPay;
+            List<Effects> permanentEffect = b.getPermanentCardEffects();
+            if (b.isChoicePe()){
+                fillEffectChoice(permanentEffect, choicePE, cost);
+            }
+            else addCost(permanentEffect.get(0), cost);
         }
-        //todo qua in teoria mancano dei controlli se hai abbastanza risorse per fare produzione con scambio
+
+        checkTotalCost(cost);
         return servantsMax;
     }
 
+    private void checkTotalCost(TotalCost cost) throws CantDoActionException {
+        if (getPersonalBoardReference().getServants() >= cost.getServantsRequired() &&
+                getPersonalBoardReference().getStone() >= cost.getStoneRequired() &&
+                getPersonalBoardReference().getWood() >= cost.getWoodRequired() &&
+                getPersonalBoardReference().getCoins() >= cost.getCoinsRequired() &&
+                getScore().getFaithPoints() >= cost.getFaithPoints())
+            return;
+        else
+            throw new CantDoActionException();
+    }
+
+    private void fillEffectChoice(List<Effects> permanentEffect, List<Integer> choicePE, TotalCost cost) {
+        int choice = sendChoicePE();
+        choicePE.add(choice);
+        System.out.println("effetto scelto1: " + permanentEffect.get(choice).toScreen());
+        if (choice == -1)
+            return;
+        System.out.println("effetto scelto2: " + permanentEffect.get(choice).toScreen());
+        addCost(permanentEffect.get(choice),cost);
+    }
+
+    private void addCost(Effects effects, TotalCost cost) {
+        if (effects instanceof ExchangeEffects)
+            ((ExchangeEffects) effects).addResourceRequested(cost);
+    }
+
     /**
-     * @param position
-     * @param familyM
-     * @return
+     * methods that check if you can go to market
+     * @param position position of the market where you want to place the familiar
+     * @param familyM family member that you want to place
+     * @return void
      */
     protected void goToMarket(int position, FamilyMember familyM) throws CantDoActionException {
         Position[] marketZone = room.getBoard().getMarketZone();
         boolean canGoToMarket = checkFunctions.checkPosition(position,marketZone,familyM);
         canGoToMarket = canGoToMarket && ((familyM.getMyValue() + checkFunctions.getServants(this)) >0);
-        System.out.println("posso andare li? : " + canGoToMarket );
         if (canGoToMarket)
             gameActions().goToMarket(position,familyM,this);
         else
@@ -319,8 +352,6 @@ public abstract class PlayerHandler extends Player {
      * @return
      */
     public void rollDices(){
-        //non faccio controlli perchè presumo che se è arrivata questa chiamata vuol dire che è il seve che ha fatto la richiesta al giocatore
-        //tirare i dadi
         gameActions().rollDice();
     }
 
@@ -392,10 +423,6 @@ public abstract class PlayerHandler extends Player {
 
     public void reconnectClient() {
         this.setOn(true);
-        if ( !matchStartedVar )
-            matchStarted(room.getRoomPlayers(), getFamilyColour());
-
-
         System.out.println("CLIENT RECONNECTED!");
     }
 
@@ -429,7 +456,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void sendUpdates(Updates updates);
 
-    public abstract int sendPossibleChoice(String kindOfChoice);
+    public abstract int sendChoicePE();
 
     public abstract void sendBonusTowerAction(TowerAction returnFromEffect);
 
@@ -495,6 +522,8 @@ public abstract class PlayerHandler extends Player {
     }
 
     public abstract void tokenNotify();
+
+    public abstract void prayed();
 
     public boolean isDisconnectedInDraft() {
         return disconnectedInDraft;
