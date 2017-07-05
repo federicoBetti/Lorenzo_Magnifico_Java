@@ -1,8 +1,12 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -10,16 +14,19 @@ import javafx.stage.Stage;
  */
 public class PopUpController {
 
-    @FXML
-    private Label message;
+    public HBox boxMessage;
+    public Button button;
+    public HBox boxButton;
+    private Text message;
     private MainController mainController;
 
     public void setLabel(String labelMessage) {
-        message.setText(labelMessage);
+        message = new Text(labelMessage);
+        boxMessage.getChildren().add(message);
     }
 
 
-    public void ok(ActionEvent actionEvent) {
+    public void ok() {
         Stage stage = (Stage) message.getScene().getWindow();
         if (message.getText().equals("you are disconnected, click ok to reconnect"))
             mainController.reconnect();
@@ -28,5 +35,12 @@ public class PopUpController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+        setButton();
+    }
+
+    private void setButton() {
+        button = new Button("ok");
+        button.setOnAction(event -> ok());
+        boxButton.getChildren().add(button);
     }
 }

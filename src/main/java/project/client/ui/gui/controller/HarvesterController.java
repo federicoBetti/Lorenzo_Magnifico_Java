@@ -25,16 +25,6 @@ public class HarvesterController extends AbstractController {
     @FXML
     private  HBox familiarBox;
 
-    //todo si potrebbe fare che in base al numero di servants messo si illuminano le carte attivate
-
-    @FXML
-    private Button submit;
-    @FXML
-    private Button mainGameButton;
-    @FXML
-    private Button personalBoard;
-    @FXML
-    private Button buttonPlaceFamiliar;
     /**
      * radio button in which you can chose the familiar to use
      */
@@ -46,6 +36,30 @@ public class HarvesterController extends AbstractController {
     private  RadioButton familiarBlack;
     @FXML
     private  RadioButton familiarNull;
+
+
+    @FXML
+    private Button submit;
+    @FXML
+    private Button mainGameButton;
+    @FXML
+    private Button personalBoard;
+    @FXML
+    private Button buttonPlaceFamiliar;
+
+
+    @FXML
+    private Label numberOfCoins;
+
+    @FXML
+    private Label numberOfWood;
+
+    @FXML
+    private Label numberOfStone;
+
+    @FXML
+    private Label numberOfServants;
+
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
@@ -63,18 +77,6 @@ public class HarvesterController extends AbstractController {
     private  ImageView imageFamiliarOrange;
 
 
-
-    @FXML
-    private Label numberOfCoins;
-
-    @FXML
-    private Label numberOfWood;
-
-    @FXML
-    private Label numberOfStone;
-
-    @FXML
-    private Label numberOfServants;
 
 
     @FXML
@@ -180,15 +182,16 @@ public class HarvesterController extends AbstractController {
         chatArea.setText(loginBuilder.getChat().toString());
 
         if (positionSelected){
+
             FamiliarPosition f = allPosition.get(allPosition.size() -1 );
             f.setImage(null);
-            allPosition.remove(allPosition.size()-1);
+            f.setFamiliarName("");
+            if (allPosition.size() > 1)
+                allPosition.remove(allPosition.size()-1);
 
         }
         positionSelected = false;
     }
-
-
 
     @FXML
     private void doHarvester() {
@@ -201,6 +204,8 @@ public class HarvesterController extends AbstractController {
         catch (NumberFormatException e){
             return;
         }
+        if (servants < 0)
+            return;
         positionSelected = false;
         mainController.doHarvester(servants,familiarChosen);
     }
@@ -232,19 +237,8 @@ public class HarvesterController extends AbstractController {
 
 
     public void placeFamiliar(){
-        if (familiarChosen.equals(""))
-            return;
-        if (positionSelected){
-            if (allPosition.size()>1)
-            allPosition.remove(allPosition.size() - 1);
-            else
-                allPosition.get(0).setFamiliarName("");
-            super.placeFamiliar(allPosition,familiarBox);
-        }
-        if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0)
-            return;
-        super.placeFamiliar(allPosition, familiarBox);
-        positionSelected = true;
+        if (super.placeFamiliarHarvProd(positionSelected,allPosition,familiarBox))
+            positionSelected = true;
     }
 
 
@@ -262,6 +256,7 @@ public class HarvesterController extends AbstractController {
     }
 
     public void updatePosition(List<Harvester> harvesterZone) {
+        System.out.println("sono "+ mainController.getColour() + " e ho la lunghezza di all position " + allPosition.size());
         super.updatePosition(harvesterZone,allPosition);
 
         if (allPosition.size()>1){

@@ -60,9 +60,6 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
     private SceneType lastScene;
     private String card;
     private TextField chatText; //la chat di tutti
-    private String colour;
-    private int faithPoints;
-    private int turnOrder;
     private BorderPane rootLayoutMainGame;
     private StringBuffer stringBuffer;
     private int choiceDone;
@@ -554,17 +551,6 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         return stringBuffer;
     }
 
-    public String getColour() {
-        return colour;
-    }
-
-    public int getFaithPoints() {
-        return faithPoints;
-    }
-
-    public int getTurnOrder() {
-        return turnOrder;
-    }
 
     private Stage getPrimaryStage() {
         return primaryStage;

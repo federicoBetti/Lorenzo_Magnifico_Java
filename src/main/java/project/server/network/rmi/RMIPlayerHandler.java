@@ -353,7 +353,6 @@ public class RMIPlayerHandler extends PlayerHandler {
     public String leaderCardChosen(List<LeaderCard> leaders) {
         try {
             String leaderName = myClient.leaderCardChosen(leaders);
-            System.out.println(leaderName);
             return leaderName;
         } catch (RemoteException e) {
             this.setOn(false);

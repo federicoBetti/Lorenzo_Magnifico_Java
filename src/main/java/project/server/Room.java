@@ -168,7 +168,7 @@ public class Room {
 
         //draft leader
 
-/*
+
         ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
@@ -263,9 +263,10 @@ public class Room {
         for (PlayerHandler p : getListOfPlayers() ) {
             //setResources(p, moreCoin);
             if ( p.isOn() ) {
-                int fauthPoint = 3;
-                p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 10);
+                int fauthPoint = 8;
+                p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 76);
                 p.getScore().setFaithPoints(fauthPoint);
+                p.getScore().setVictoryPoints(35);
                 p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
                 p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
                 p.sendUpdates(new MarketUpdate(board, p.getName()));
@@ -354,7 +355,7 @@ public class Room {
         int numberOfCard = Constants.LEADER_CARD_NUMBER_PER_PLAYER;
         ArrayList<ArrayList<LeaderCard>> listsForDraft = new ArrayList<>();
         ArrayList<LeaderCard> leaders = board.getDeckCard().getLeaderCardeck();
-        Collections.shuffle(leaders);
+        //Collections.shuffle(leaders);
         for (int i = 0; i < getRoomPlayers(); i++) {
             ArrayList<LeaderCard> ll = new ArrayList<>(leaders.subList(numberOfCard * i, numberOfCard * i + numberOfCard));
             listsForDraft.add(ll);

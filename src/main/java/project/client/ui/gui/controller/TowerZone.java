@@ -36,7 +36,6 @@ class TowerZone {
         if (cardName == null)
             card.setImage(null);
         else{
-            System.out.println("sto aggiungendo la carta: " + cardName);
             card.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + cardName +".png"))));
         }}
 

@@ -86,7 +86,7 @@ public abstract class AbstractController {
 
     void sendChat(TextField chatText) {
         String text = chatText.getText() + "\n";
-        writeOnChat(text);
+        loginBuilder.popUp(text);
     }
 
     public void writeOnChat(String s) {
@@ -206,30 +206,32 @@ public abstract class AbstractController {
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
 
         if (positions.isEmpty()){
+            System.out.println("SONO IN QUELLO CHE DEVE RIPULIRE E LA LUNGHEZZA È " + allPosition.size());
             //new round
             if (allPosition.isEmpty())
                 return;
             FamiliarPosition familiarPositionn = allPosition.get(0);
             familiarPositionn.setImage(null);
             familiarPositionn.setFamiliarName("");
-            allPosition.removeIf(familiarPosition -> {
-                if (familiarPosition != familiarPositionn)
-                    return true;
-                return true;
-            });
+            allPosition = new ArrayList<>();
+            allPosition.add(familiarPositionn);
+            System.out.println("SONO IN QUELLO CHE DEVE RIPULIRE E LA LUNGHEZZA È " + allPosition.size());
         }
 
 
         while (itPR.hasNext()) {
             FamiliarPosition familiarPosition;
             if (itFP.hasNext()) {
+                System.out.println("USO FAMILIARE GIA PRESENTE");
                 familiarPosition = itFP.next();
             }
             else {
+                System.out.println("CREO NUOVO FAMILIARE");
                 familiarPosition = new FamiliarPosition("");
                 allPosition.add(familiarPosition);
             }
             Position position = itPR.next();
+            System.out.println(position.getClass() + "familiare: " + position.getFamiliarOnThisPosition());
            if (position.getFamiliarOnThisPosition() == null) {
                 if (familiarPosition.getFamiliarName().equals("")) continue;
                 else {
@@ -237,6 +239,7 @@ public abstract class AbstractController {
                     familiarPosition.setFamiliarName("");
                 }
             } else if (!(familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))){
+               System.out.println("sto aggiungendo un familiare: " + position.getFamiliarOnThisPosition());
                     familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
                     familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
                 }
@@ -254,12 +257,10 @@ public abstract class AbstractController {
 
 
                if (serverTower.getCardOnThisFloor() == null) {
-                   System.out.println("ELIMONO CARTA DALLE TORRI");
                     guiTower.setCardName(null);
                     guiTower.setCardImage(null);
                 }
                 else if (!serverTower.getCardOnThisFloor().getName().equals(guiTower.getCardName())) {
-                   System.out.println("AGGIUNGO CARTA");
                         modifyCard(guiTower, serverTower.getCardOnThisFloor().getName());
                     }
 
@@ -321,5 +322,28 @@ public abstract class AbstractController {
             toAdd.add(im);
         }
         return toAdd;
+    }
+
+    public boolean placeFamiliarHarvProd(boolean positionSelected, List<FamiliarPosition> allPosition, HBox familiarBox) {
+        if (familiarChosen.equals("")) {
+            writeOnChat("you haven't selected the familiar\n");
+            return false;
+        }
+        if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0){
+            writeOnChat("you can't place another familiar there!\n");
+            return false;
+        }
+        if (positionSelected){
+            if (allPosition.size()>1)
+                allPosition.remove(allPosition.size() - 1);
+            else {
+                allPosition.get(0).setFamiliarName("");
+            }placeFamiliar(allPosition,familiarBox);
+            return false;
+        }
+        else {
+            placeFamiliar(allPosition, familiarBox);
+            return true;
+        }
     }
 }
