@@ -65,4 +65,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void nicknameAlreadyUsed() throws RemoteException;
 
     void waitForYourTurn() throws RemoteException;
+
+    void prayed() throws RemoteException;
 }

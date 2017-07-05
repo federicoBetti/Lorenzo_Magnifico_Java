@@ -386,28 +386,14 @@ public class GameActions {
         askForPraying(period);
     }
 
-    private void endRound() {//cambiare le carte, pulire spazi azione, settare i familiari a false
-        int count = 0;
-        for (PlayerHandler player : room.getListOfPlayers())
-            if (!player.isOn())
-                count++;
+    private void endRound() {
 
         refactorTowers();
-        System.out.println("dopo refactor");
         changePlayerOrder();
-        System.out.println("dopo change");
         clearAllPosition();
-        System.out.println("dopo clear");
         clearLeaderCardUsed();
-        System.out.println("dopo leader");
+        rollDice();
 
-        //to check
-
-        for (PlayerHandler p : room.getListOfPlayers()) {
-            for (FamilyMember f : p.getAllFamilyMembers())
-                if (f.isPlayed())
-                    System.out.println("giocatore ancora giocato: " + f);
-        }
     }
 
 
@@ -523,7 +509,7 @@ public class GameActions {
     private void faithPointsForVictoryPoints(PlayerHandler player) {
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + player.getScore().getFaithPoints());
         player.getScore().setFaithPoints(0);
-        player.sendString(Constants.PRAYED);
+        player.prayed();
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 

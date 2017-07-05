@@ -61,12 +61,6 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void newNickname(String nickname);
 
-    public abstract void prayed();
-
-    public abstract void excommunicationTake();
-
-    public abstract void askForPrayingLastPlayer();
-
     public abstract void notifyPlayer();
 
     public abstract void reconnect();

@@ -353,6 +353,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
+    public void prayed() {
+        sendString(Constants.PRAYED);
+    }
+
+    @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
             synchronized (token) {

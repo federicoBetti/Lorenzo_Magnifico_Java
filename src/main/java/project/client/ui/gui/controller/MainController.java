@@ -2,7 +2,6 @@ package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
@@ -360,11 +359,12 @@ public class MainController {
 
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
         actionBonusOn = true;
+        String kind = kindOfCard;
+        String print = printBonusAction;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                loginBuilder.setScene(SceneType.MARKET,SceneType.PERSONAL_BOARD);
-                towerController.takeBonusCard(kindOfCard,printBonusAction);
+                towerController.takeBonusCard(kind,print);
             }
         });
     }
@@ -490,6 +490,7 @@ public class MainController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        stringQueue = null;
         return i;
     }
 
@@ -533,8 +534,11 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                clearStages();
-                cleanActionBonus();
+                if (clearStages()){
+                    clearBlockingQueue();
+                }
+                else
+                    cleanActionBonus();
                 loginBuilder.writeOnMyChat("the turn is over\n");
                 loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
                 myTurn = false;
@@ -555,14 +559,33 @@ public class MainController {
         });
     }
 
-    private void clearStages() {
-        if (choicheController != null)
+    private void clearBlockingQueue() {
+        if (integerQueue!=null){
+            integerQueue.add(1);
+        }
+
+        if (stringQueue!=null)
+            stringQueue.add("-1");
+    }
+
+    private boolean clearStages() {
+        if (choicheController != null) {
             choicheController.closeStage();
+            return true;
+        }
+        return false;
     }
 
     private void cleanActionBonus() {
         if (actionBonusOn){
             actionBonusOn = false;
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
+                    generalGameController.writeOnChat("timer delyed to do bonus action!\n");
+                }
+            });
             clientSetter.sendExitToBonusAction();
         }
     }

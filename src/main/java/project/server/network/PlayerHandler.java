@@ -489,4 +489,6 @@ public abstract class PlayerHandler extends Player {
     }
 
     public abstract void tokenNotify();
+
+    public abstract void prayed();
 }

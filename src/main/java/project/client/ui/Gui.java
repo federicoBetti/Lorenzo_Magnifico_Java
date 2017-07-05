@@ -37,7 +37,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void takeBonusCard(TowerAction towerAction) {
-        mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() ); //todo towerAction.printBonusAction());
+        mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() );
     }
 
     //todo ho rinominato both payment availableRMI con bothPaymentAvailable visto che lo dovevo usare pure io ma mi sa che ce l'avevi già

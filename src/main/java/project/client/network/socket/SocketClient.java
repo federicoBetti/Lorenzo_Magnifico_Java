@@ -133,7 +133,6 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(name);
     }
 
-    @Override
     public void askForPrayingLastPlayer() {
         //thread che ascolta il timer
         new TimerReader().start();
@@ -452,12 +451,10 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(nickname);
     }
 
-    @Override
     public void prayed() {
         clientSetter.prayed();
     }
 
-    @Override
     public void excommunicationTake() {
         try {
             Updates update = (Updates) objectInputStream.readObject();
