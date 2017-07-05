@@ -2,7 +2,6 @@ package project.client.ui.gui.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import project.model.FamilyMember;
 
 
 /**

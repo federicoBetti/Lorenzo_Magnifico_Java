@@ -1,7 +1,5 @@
 package project.controller.cardsfactory;
 
-import java.io.Serializable;
-
 public class ExcommunicationEffectsUseful {
 
     private boolean cantPlaceFamiliyMemberInMarket = false;

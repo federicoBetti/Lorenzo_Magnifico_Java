@@ -10,7 +10,7 @@ import project.server.network.PlayerHandler;
  */
 
 //todo HashMap, si potrebbe mettere le cose sotto come un addWood, addoStone e cose cosi
-public class ExchangeWoodFor implements Effects {
+public class ExchangeWoodFor implements ExchangeEffects {
 
     private int woodRequired;
     private int resourceEarned;
@@ -58,6 +58,11 @@ public class ExchangeWoodFor implements Effects {
     @Override
     public String toScreen() {
         return "Exchange " + woodRequired + " wood" + " for taking " + resourceEarned + " of " + resourceRewardered;
+    }
+
+    @Override
+    public void addResourceRequested(TotalCost cost) {
+        cost.addWood(woodRequired);
     }
 }
 

@@ -1,6 +1,5 @@
 package project.controller.effects.effectsfactory;
 
-import project.controller.Constants;
 import project.controller.effects.realeffects.Effects;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;

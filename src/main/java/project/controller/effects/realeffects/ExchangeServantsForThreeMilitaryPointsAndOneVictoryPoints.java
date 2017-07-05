@@ -1,5 +1,6 @@
 package project.controller.effects.realeffects;
 
+import project.controller.cardsfactory.TotalCost;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
@@ -7,7 +8,7 @@ import project.server.network.PlayerHandler;
 /**
  * Created by raffaelebongo on 10/05/17.
  */
-public class ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints implements Effects {
+public class ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints implements ExchangeEffects {
     private int servantsRequired;
     private int victoryPointsEarned;
     private int militaryPointsEarned;
@@ -34,5 +35,11 @@ public class ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints implement
         return "Exchange " + servantsRequired + " servants" + " for taking " + victoryPointsEarned + " of " + " victory points\n" +
                 "and " +  militaryPointsEarned + " of military points";
 
+    }
+
+
+    @Override
+    public void addResourceRequested(TotalCost cost) {
+        cost.addServants(servantsRequired);
     }
 }

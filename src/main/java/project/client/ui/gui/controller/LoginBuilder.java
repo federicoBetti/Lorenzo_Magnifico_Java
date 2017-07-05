@@ -18,7 +18,6 @@ import project.controller.cardsfactory.LeaderCard;
 import project.model.Score;
 import project.model.Tile;
 
-import javax.swing.event.ChangeEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -453,9 +452,10 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
 
             if (type.equals("tile")) controller.uploadImagesTile(name);
             else controller.uploadImagesLeader(name);
-
+            lastStageOpened = dialogStage;
             dialogStage.setAlwaysOnTop(true);
             dialogStage.showAndWait();
+            lastStageOpened = null;
             return;
         } catch (IOException e) {
             e.printStackTrace();

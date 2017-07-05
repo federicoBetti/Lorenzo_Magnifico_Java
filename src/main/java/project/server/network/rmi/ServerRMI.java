@@ -152,6 +152,7 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
 
     @Override
     public void setChoicePe(String myUniqueId, int input) throws RemoteException {
+        getPlayerHandler(myUniqueId).setChoicePe(input);
 
     }
 
@@ -190,10 +191,6 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
         getPlayerHandler(myUniqueId).skipTurn();
     }
 
-    @Override
-    public void scelta(String myUniqueId) throws RemoteException {
-        getPlayerHandler(myUniqueId).scelta();
-    }
 
     @Override
     public void reconnect(String myUniqueId) throws RemoteException {

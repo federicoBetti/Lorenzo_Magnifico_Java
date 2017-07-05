@@ -2,7 +2,6 @@ package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -288,7 +287,7 @@ public class CouncilPalaceController extends AbstractController {
         submit.setOnAction(event -> takePrivilege());
     }
 
-    private void unlockButton() {
+    void unlockButton() {
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> goToCouncil());
     }

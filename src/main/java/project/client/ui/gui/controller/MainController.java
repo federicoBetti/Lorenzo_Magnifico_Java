@@ -48,6 +48,7 @@ public class MainController {
     private InitialLogin initialLoginController;
     private ChoiceController choicheController;
     private boolean firstTime;
+    private boolean draft = true;
 
 
     private MainController(){
@@ -81,7 +82,7 @@ public class MainController {
         this.numberOfPlayer = numberOfPlayers;
     }
 
-    public int getNumberOfPlayer() {
+    int getNumberOfPlayer() {
         return numberOfPlayer;
     }
 
@@ -240,7 +241,7 @@ public class MainController {
 
     }
 
-    public void goToMarket(int positionSelected, String familiarChosen) {
+    void goToMarket(int positionSelected, String familiarChosen) {
         Runnable a = new Runnable() {
             @Override
             public void run() {
@@ -252,12 +253,12 @@ public class MainController {
 
     }
 
-    public void takeNickname() {
+    void takeNickname() {
         clientSetter.loginRequest(usernameChosen);
     }
 
 
-    public void takeNickname(String usernameChosen) {
+    void takeNickname(String usernameChosen) {
         clientSetter.newNickname(usernameChosen);
     }
     //DA QUA IN GIU LE COSE CHIAMATE DAL CLIENT SETTER SULLA GRAFICA
@@ -370,15 +371,16 @@ public class MainController {
     }
 
     public int bothPaymentAvaiable() {
-        return getScelta(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
+        return getChoice(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
     }
 
     public int choosePermanentEffect() {
-        return getScelta(CliConstants.CHOOSE_PERMANENT_EFFECT, "effect 1", "effect 2");
+        int paymentChosen = getChoice(CliConstants.CHOOSE_PERMANENT_EFFECT, "effect 1", "effect 2");
+        return paymentChosen;
     }
 
     public int askForPraying() {
-        return getScelta(CliConstants.ASK_FOR_PRAYING, "yes", "no");
+        return getChoice(CliConstants.ASK_FOR_PRAYING, "yes", "no");
     }
 
     public void endTurnContext() {
@@ -395,18 +397,7 @@ public class MainController {
     }
 
     public void loginSucceded() {
-    }
-
-    public void initializeMainGame() {
-        loginBuilder.initalizeMainGame();
-    }
-
-    public void showPrimo() {
-        loginBuilder.showPrimo();
-    }
-
-    public void startMainGame() {
-        loginBuilder.startMainGame();
+        //correct void
     }
 
     public void waitingLogin() {
@@ -429,36 +420,29 @@ public class MainController {
     }
 
 
-    public int getScelta(String bothPaymentAvaiable, String s, String s1) {
+    public int getChoice(String choiceType, String s, String s1) {
         integerQueue = new LinkedBlockingQueue<>(1);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-                System.out.println("sono nel runlater");
-                generalGameController.setScelta(bothPaymentAvaiable,s,s1);
-            }
-        });
+        Platform.runLater(() -> generalGameController.setScelta(choiceType,s,s1));
         Integer i = 0;
         try {
-            System.out.println("mi metto in attesa della integerQueue");
              i = integerQueue.take();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.err.println("integer queue interrupted: " + e.getMessage());
         }
         integerQueue = null;
+        System.out.println("STO RITORNANDO DALLLA GETCHOICE " + i);
         return i;
     }
 
-    public void wakeUp(int choiceDone) {
+    void addIntegerQueue(int choiceDone) {
         integerQueue.add(choiceDone);
         }
 
-    public void addStringQueue(String s) {
+    void addStringQueue(String s) {
         stringQueue.add(s);
     }
 
-    public boolean isMyTurn() {
+    boolean isMyTurn() {
         return myTurn;
     }
 
@@ -466,7 +450,7 @@ public class MainController {
         this.myTurn = myTurn;
     }
 
-    public void updateChat() {
+    void updateChat() {
         Platform.runLater(() -> {
             for (AbstractController c: controllers)
                 c.refresh();
@@ -497,6 +481,7 @@ public class MainController {
     public void matchStarted(int roomPlayers, String familyColour) {
         this.numberOfPlayer = roomPlayers;
         this.colour = familyColour;
+        draft = false;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -534,14 +519,17 @@ public class MainController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                if (!draft) {
+                    loginBuilder.writeOnMyChat("the turn is over\n");
+                    loginBuilder.setScene(SceneType.MAIN, SceneType.PERSONAL_BOARD);
+                }
+                myTurn = false;
+
                 if (clearStages()){
                     clearBlockingQueue();
                 }
                 else
                     cleanActionBonus();
-                loginBuilder.writeOnMyChat("the turn is over\n");
-                loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
-                myTurn = false;
             }
         });
 
@@ -561,7 +549,7 @@ public class MainController {
 
     private void clearBlockingQueue() {
         if (integerQueue!=null){
-            integerQueue.add(1);
+            integerQueue.add(-1);
         }
 
         if (stringQueue!=null)
@@ -569,8 +557,8 @@ public class MainController {
     }
 
     private boolean clearStages() {
-        if (choicheController != null) {
-            choicheController.closeStage();
+        if (loginBuilder.getLastStageOpened() != null) {
+            loginBuilder.getLastStageOpened().hide();
             return true;
         }
         return false;
@@ -583,6 +571,10 @@ public class MainController {
                 @Override
                 public void run() {
                     loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
+                    towerController.unlockButton();
+                    councilPalaceController.unlockButton();
+                    harvesterController.unlockButton();
+                    productionController.unlockButton();
                     generalGameController.writeOnChat("timer delyed to do bonus action!\n");
                 }
             });
@@ -590,13 +582,6 @@ public class MainController {
         }
     }
 
-    private void cleanQueue() {
-        if (integerQueue != null) {
-            integerQueue.add(1);
-            System.out.println("ho pulito la coda");
-        }
-        else System.out.println("non ho pulito la coda");
-    }
 
     public void cantDoAction() {
 
@@ -631,16 +616,12 @@ public class MainController {
         return i;
     }
 
-    public void addIntQueue(int i) {
+    void addIntQueue(int i) {
         Integer num = new Integer(i);
         integerQueue.add(num);
     }
 
-    public void sendExitOnChoice() {
-        clientSetter.sendExitToBonusAction();
-    }
-
-    public void setInitialLoginController(InitialLogin initialLoginController) {
+    void setInitialLoginController(InitialLogin initialLoginController) {
         this.initialLoginController = initialLoginController;
     }
 
@@ -655,7 +636,7 @@ public class MainController {
 
     }
 
-    public void setChoicheController(ChoiceController choicheController) {
+    void setChoicheController(ChoiceController choicheController) {
         this.choicheController = choicheController;
     }
 }

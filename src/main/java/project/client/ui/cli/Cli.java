@@ -96,8 +96,9 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void choicePe() {
+    public int choicePe() {
         context = new ChoicePeContext(this);
+        return 0;
     }
 
     public void sendChoicePe(String input) {

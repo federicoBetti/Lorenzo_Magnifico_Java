@@ -8,7 +8,6 @@ import project.controller.cardsfactory.TerritoryCard;
 import project.controller.cardsfactory.VenturesCard;
 import project.controller.effects.effectsfactory.PokerPE;
 import project.model.PersonalBoard;
-import project.model.Player;
 import project.server.network.PlayerHandler;
 import project.server.network.socket.SocketPlayerHandler;
 

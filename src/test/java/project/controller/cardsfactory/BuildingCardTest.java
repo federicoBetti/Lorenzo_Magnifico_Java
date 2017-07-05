@@ -1,7 +1,6 @@
 package project.controller.cardsfactory;
 
 import org.junit.Test;
-import project.model.DevelopmentCard;
 import project.model.PersonalBoard;
 
 import static org.junit.Assert.*;

@@ -13,7 +13,6 @@ import project.controller.cardsfactory.TerritoryCard;
 import project.model.Harvester;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -177,7 +176,6 @@ public class HarvesterController extends AbstractController {
 
     public void refresh(){
         super.refresh();
-        unlockButton();
 
         chatArea.setText(loginBuilder.getChat().toString());
 
@@ -299,7 +297,7 @@ public class HarvesterController extends AbstractController {
         submit.setOnAction(event -> bonusAction());
     }
 
-    private void unlockButton() {
+    void unlockButton() {
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> doHarvester());
     }

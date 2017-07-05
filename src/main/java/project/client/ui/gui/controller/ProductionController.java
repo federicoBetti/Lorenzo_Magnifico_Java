@@ -16,11 +16,10 @@ import project.controller.cardsfactory.BuildingCard;
 import project.model.Production;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ProductionController extends AbstractController{
+public class ProductionController extends AbstractController {
 
 
     @FXML
@@ -35,50 +34,50 @@ public class ProductionController extends AbstractController{
      * radio button in which you can chose the familiar to use
      */
     @FXML
-    private  RadioButton familiarOrange;
+    private RadioButton familiarOrange;
     @FXML
-    private  RadioButton familiarWhite;
+    private RadioButton familiarWhite;
     @FXML
-    private  RadioButton familiarBlack;
+    private RadioButton familiarBlack;
     @FXML
-    private  RadioButton familiarNull;
+    private RadioButton familiarNull;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
      */
 
     @FXML
-    private  ImageView imageFamiliarNull;
+    private ImageView imageFamiliarNull;
 
     @FXML
-    private  ImageView imageFamiliarBlack;
+    private ImageView imageFamiliarBlack;
 
     @FXML
-    private  ImageView imageFamiliarWhite;
+    private ImageView imageFamiliarWhite;
 
     @FXML
-    private  ImageView imageFamiliarOrange;
-
-
-    @FXML
-    private  Label numberOfCoins;
-
-    @FXML
-    private  Label numberOfWood;
-
-    @FXML
-    private  Label numberOfStone;
-
-    @FXML
-    private  Label numberOfServants;
+    private ImageView imageFamiliarOrange;
 
 
     @FXML
-    private  ImageView LorenzoMagnifico;
+    private Label numberOfCoins;
+
+    @FXML
+    private Label numberOfWood;
+
+    @FXML
+    private Label numberOfStone;
+
+    @FXML
+    private Label numberOfServants;
 
 
     @FXML
-    private  TextField chatText;
+    private ImageView LorenzoMagnifico;
+
+
+    @FXML
+    private TextField chatText;
     private final int numberOfCard = 6;
 
     @FXML
@@ -102,30 +101,29 @@ public class ProductionController extends AbstractController{
     private ArrayList<String> nameOfBuilding;
 
     @FXML
-    private  ImageView imageProduction0;
+    private ImageView imageProduction0;
     private List<FamiliarPosition> allPosition;
 
 
     private boolean[] cardSelected;
     private boolean positionSelected;
 
-    private DropShadow borderGlow= new DropShadow();
-    private DropShadow borderNull= new DropShadow();
+    private DropShadow borderGlow = new DropShadow();
+    private DropShadow borderNull = new DropShadow();
     private int diceValueBonus;
     @FXML
     private Label chatArea;
 
 
-    public ProductionController(){
-         super();
+    public ProductionController() {
+        super();
         cardSelected = new boolean[numberOfCard];
         positionSelected = false;
-        //todo guardare bene come fare sta parte in caso di piu di 4 persone nella zona
 
-         /**
-          * initializing of border to show wich card are selected
-          */
-         int depth = 70;//Setting the uniform variable for the glow width and height
+        /**
+         * initializing of border to show wich card are selected
+         */
+        int depth = 70;//Setting the uniform variable for the glow width and height
         borderGlow.setColor(Color.YELLOW);
         borderGlow.setWidth(depth);
         borderGlow.setHeight(depth);
@@ -139,7 +137,8 @@ public class ProductionController extends AbstractController{
         mainController.setProductionController(this);
     }
 
-    public void initialize(){
+    @Override
+    public void initialize() {
         super.initialize();
 
         nameOfBuilding = new ArrayList<>(6);
@@ -147,18 +146,17 @@ public class ProductionController extends AbstractController{
 
     }
 
-    public void uploadImages(){
+    public void uploadImages() {
         super.uploadImages();
         LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
         int playerNumber;
-        if (mainController.getNumberOfPlayer() > 2)
-            playerNumber = 3;
-        else
-            playerNumber = 2;
+        if (mainController.getNumberOfPlayer() > 2) playerNumber = 3;
+        else playerNumber = 2;
         productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/produzione" + playerNumber + "Giocatori.png"))));
 
-        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);allBuildingCard.add(buildingCard0);
-        fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
+        fillFamilymember(imageFamiliarNull, imageFamiliarBlack, imageFamiliarWhite, imageFamiliarOrange);
+        allBuildingCard.add(buildingCard0);
+        fillRadioButton(familiarNull, familiarBlack, familiarWhite, familiarOrange);
         allBuildingCard.add(buildingCard1);
         allBuildingCard.add(buildingCard2);
         allBuildingCard.add(buildingCard3);
@@ -172,23 +170,21 @@ public class ProductionController extends AbstractController{
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
 
-        updateOneResource(coins,numberOfCoins);
-        updateOneResource(wood,numberOfWood);
-        updateOneResource(stone,numberOfStone);
-        updateOneResource(servants,numberOfServants);
+        updateOneResource(coins, numberOfCoins);
+        updateOneResource(wood, numberOfWood);
+        updateOneResource(stone, numberOfStone);
+        updateOneResource(servants, numberOfServants);
     }
 
     @Override
-    public void refresh(){
+    public void refresh() {
         super.refresh();
-        unlockButton();
         chatArea.setText(loginBuilder.getChat().toString());
 
-        if (positionSelected)
-            allPosition.remove(allPosition.size()-1);
+        if (positionSelected) allPosition.remove(allPosition.size() - 1);
         positionSelected = false;
 
-        for (int i = 0; i<cardSelected.length; i++){
+        for (int i = 0; i < cardSelected.length; i++) {
             cardSelected[i] = false;
             allBuildingCard.get(i).setEffect(borderNull);
         }
@@ -196,11 +192,10 @@ public class ProductionController extends AbstractController{
 
     @FXML
     private void doProduction() {
-        if (familiarChosen.equals(""))
-            return;
+        if (familiarChosen.equals("")) return;
         List<String> buildingCardSelected = new LinkedList<>();
-        for (int i = 0; i<cardSelected.length; i++){
-            if (cardSelected[i]){
+        for (int i = 0; i < cardSelected.length; i++) {
+            if (cardSelected[i]) {
                 String cardName = nameOfBuilding.get(i);
                 buildingCardSelected.add(cardName);
             }
@@ -208,15 +203,14 @@ public class ProductionController extends AbstractController{
 
         positionSelected = false;
         writeOnChat("production done!\n");
-        mainController.doProduction(familiarChosen,buildingCardSelected);
+        mainController.doProduction(familiarChosen, buildingCardSelected);
     }
 
-    private void selectCard(int index){
-        if (!cardSelected[index]){
+    private void selectCard(int index) {
+        if (!cardSelected[index]) {
             allBuildingCard.get(index).setEffect(borderGlow);
             cardSelected[index] = true;
-        }
-        else{
+        } else {
             cardSelected[index] = false;
             allBuildingCard.get(index).setEffect(borderNull);
         }
@@ -247,46 +241,42 @@ public class ProductionController extends AbstractController{
     }
 
 
-    public void sendChat(ActionEvent actionEvent){
+    public void sendChat(ActionEvent actionEvent) {
         sendChat(chatText);
     }
 
-    public void placeFamiliar(){
-        if (familiarChosen.equals(""))
-            return;
-        if (positionSelected){
-            if (allPosition.size()>1)
-                allPosition.remove(allPosition.size() - 1);
-            else
-                allPosition.get(0).setFamiliarName("");
-            super.placeFamiliar(allPosition,familiarBox);
+    public void placeFamiliar() {
+        if (familiarChosen.equals("")) return;
+        if (positionSelected) {
+            if (allPosition.size() > 1) allPosition.remove(allPosition.size() - 1);
+            else allPosition.get(0).setFamiliarName("");
+            super.placeFamiliar(allPosition, familiarBox);
         }
-        if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0)
-            return;
+        if (mainController.getNumberOfPlayer() < 3 && familiarPlaced(allPosition) > 0) return;
         super.placeFamiliar(allPosition, familiarBox);
         positionSelected = true;
     }
 
-    public void showPersonalBoard(){
+    public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.PRODUCTION);
     }
 
-    public void updateCards(List<BuildingCard> buildings) {
-        super.updateCards(buildings,nameOfBuilding,allBuildingCard);
+    void updateCards(List<BuildingCard> buildings) {
+        super.updateCards(buildings, nameOfBuilding, allBuildingCard);
     }
 
-    public void updatePosition(List<Production> productions){
-        super.updatePosition(productions,allPosition);
-        if (allPosition.size()>1){
-            super.updateHBox(allPosition.subList(1,allPosition.size()),familiarBox);
+    void updatePosition(List<Production> productions) {
+        super.updatePosition(productions, allPosition);
+        if (allPosition.size() > 1) {
+            super.updateHBox(allPosition.subList(1, allPosition.size()), familiarBox);
         }
     }
 
-    public void bonusProduction(int diceValue) {
+    void bonusProduction(int diceValue) {
         loginBuilder.setScene(SceneType.PRODUCTION, SceneType.PERSONAL_BOARD);
         blockButton();
         this.diceValueBonus = diceValue;
-        for (int i = 0; i < numberOfCard; i++){
+        for (int i = 0; i < numberOfCard; i++) {
             cardSelected[i] = false;
             allBuildingCard.get(i).setEffect(borderNull);
         }
@@ -295,15 +285,15 @@ public class ProductionController extends AbstractController{
     }
 
     private void blockButton() {
-        super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
+        super.blockButton(mainGameButton, personalBoard, buttonPlaceFamiliar);
         submit.setOnAction(event -> bonusAction());
     }
 
     private void bonusAction() {
 
         List<String> buildingCardSelected = new LinkedList<>();
-        for (int i = 0; i<cardSelected.length; i++){
-            if (cardSelected[i]){
+        for (int i = 0; i < cardSelected.length; i++) {
+            if (cardSelected[i]) {
                 String cardName = nameOfBuilding.get(i);
                 buildingCardSelected.add(cardName);
             }
@@ -313,8 +303,8 @@ public class ProductionController extends AbstractController{
 
     }
 
-    private void unlockButton() {
-        super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
+    void unlockButton() {
+        super.unlockButton(mainGameButton, personalBoard, buttonPlaceFamiliar);
         submit.setOnAction(event -> doProduction());
     }
 }

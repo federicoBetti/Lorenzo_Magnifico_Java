@@ -60,7 +60,7 @@ public class BuildPermanentEffects {
                     case"servantWoodStoneForSixVictoryPoint":
                         return new ServantWoodStoneForSixVictoryPoints();
                     case"faithPointForTwoCoinsAndTwoVictoryPoint":
-                        return new FaithPointForTwoCoinsAndTwoVictoryPoints ();
+                        return new FaithPointForTwoCoinsAndTwoVictoryPoints();
                     default: {
                         System.out.println("non ho trovato l'effetto. type  : " + type + " parameter " + parameter1);
                         return null;

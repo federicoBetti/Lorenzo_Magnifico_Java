@@ -1,7 +1,6 @@
 package project.configurations;
 
 import project.DevelopmentDeckIterator;
-import project.TowerIterator;
 import project.controller.Constants;
 import project.controller.cardsfactory.*;
 import project.model.*;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
-import project.server.Server;
 
 public class Configuration {
 

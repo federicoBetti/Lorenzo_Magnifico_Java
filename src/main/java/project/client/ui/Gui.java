@@ -55,8 +55,8 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void choicePe() {
-        mainController.choosePermanentEffect();
+    public int choicePe() {
+        return mainController.choosePermanentEffect();
     }
 
 
@@ -212,7 +212,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public int getScelta() {
-        return mainController.getScelta(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
+        return mainController.getChoice(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
     }
 
     @Override

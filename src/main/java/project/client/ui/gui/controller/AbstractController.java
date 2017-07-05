@@ -9,9 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import project.TowerIterator;
 import project.controller.Constants;
-import project.controller.cardsfactory.TerritoryCard;
 import project.model.DevelopmentCard;
 import project.model.FamilyMember;
 import project.model.Position;
@@ -20,7 +18,6 @@ import project.model.Tower;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * Created by federico on 13/06/17.

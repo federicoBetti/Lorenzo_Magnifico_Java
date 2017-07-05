@@ -38,6 +38,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     List<Integer> privileges;
     private int prayingChoice;
     private int paymentMethodChosen;
+    private int choicePE;
 
     protected RMIPlayerHandler(RMIServerToClientInterface rmiServerToClientInterface) {
         this.myClient = rmiServerToClientInterface;
@@ -108,6 +109,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         servantsNumber = -1;
         privileges = null;
         prayingChoice = 1;
+        choicePE = -1;
 
         synchronized (tokenn) {
             System.out.println("sto per notificare tutti che mi è scaduto anche il timer");
@@ -115,23 +117,13 @@ public class RMIPlayerHandler extends PlayerHandler {
         }
     }
 
-    /* to delate
-    public void anserAskForPraying(int choice) {
-        prayingChoice = choice;
-        synchronized (tokenn) {
+    public void setChoicePe(int input) {
+        choicePE = input;
+        System.out.println("input: " + input);
+        synchronized (tokenn){
             tokenn.notify();
         }
     }
-
-    public void answerBothPayment(int choice) {
-        paymentMethodChosen = choice;
-
-        synchronized (tokenn) {
-            tokenn.notify();
-        }
-    }
-    */
-
 
     private interface Talker {
 
@@ -160,20 +152,21 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public void sendUpdates(Updates updates) {
         try {
-            myClient.sendUpdates(updates);
+            if (isOn())
+                myClient.sendUpdates(updates);
         } catch (RemoteException e) {
             playerDisconnected();
         }
     }
 
     @Override
-    public int sendPossibleChoice(String kindOfChoice) {
+    public int sendChoicePE() {
         try {
-            return myClient.getScelta();
+            return myClient.sendChoicePE();
         } catch (RemoteException e) {
             playerDisconnected();
         }
-        return 0;
+        return -1;
     }
 
     @Override
@@ -363,15 +356,17 @@ public class RMIPlayerHandler extends PlayerHandler {
             System.out.println(leaderName);
             return leaderName;
         } catch (RemoteException e) {
-            playerDisconnected();
+            this.setOn(false);
+            return "-1";
         }
-        return null;
+        //return null;
     }
 
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
-            myClient.matchStarted(roomPlayers, familyColour);
+            if (isOn())
+                myClient.matchStarted(roomPlayers, familyColour);
         } catch (RemoteException e) {
             playerDisconnected();
         }
@@ -382,9 +377,9 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             return myClient.tileChoosen(tiles);
         } catch (RemoteException e) {
-            playerDisconnected();
+            this.setOn(false);
+            return -1;
         }
-        return 0;
     }
 
     @Override
@@ -451,6 +446,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             production(familyMember, buildingCards);
         } catch (CantDoActionException e) {
+            System.out.println("catchata l'eccezione");
             cantDoAction();
         }
     }
@@ -489,17 +485,6 @@ public class RMIPlayerHandler extends PlayerHandler {
         takePrivilege(privilegeNumber);
     }
 
-
-    public void scelta() {
-        int ciao = 0;
-        try {
-            ciao = myClient.getScelta();
-        } catch (RemoteException e) {
-            playerDisconnected();
-        }
-        System.out.println(ciao);
-        skipTurn();
-    }
 
     private void playerDisconnected() {
         System.out.println("player disconnesso");

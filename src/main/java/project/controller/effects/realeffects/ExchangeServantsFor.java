@@ -10,7 +10,7 @@ import project.server.network.PlayerHandler;
  */
 
 //todo fare con HashMap
-public class ExchangeServantsFor implements Effects {
+public class ExchangeServantsFor implements ExchangeEffects {
     private int servantsRequired;
     private int resourceEarned;
     private String resourceRewardered;
@@ -57,5 +57,11 @@ public class ExchangeServantsFor implements Effects {
     @Override
     public String toScreen() {
         return "Exchange " + servantsRequired + " servants" + " for taking " + resourceEarned + " of " + resourceRewardered;
+    }
+
+
+    @Override
+    public void addResourceRequested(TotalCost cost) {
+        cost.addServants(servantsRequired);
     }
 }

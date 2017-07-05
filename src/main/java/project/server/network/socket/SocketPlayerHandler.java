@@ -6,7 +6,6 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
-import project.model.Player;
 import project.model.Tile;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CanUseBothPaymentMethodException;
@@ -512,8 +511,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     //todo controllare il -1 che è feo
     @Override
-    public int sendPossibleChoice(String kindOfChoice) {
-
+    public int sendChoicePE() {
+        String kindOfChoice = Constants.CHOICE_PE;
         int choice = -1;
         try {
             objectOutputStream.writeObject(kindOfChoice);

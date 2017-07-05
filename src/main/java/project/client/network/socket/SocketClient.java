@@ -1,6 +1,5 @@
 package project.client.network.socket;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
@@ -11,7 +10,6 @@ import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
-import project.model.Board;
 import project.model.Tile;
 
 import java.io.IOException;

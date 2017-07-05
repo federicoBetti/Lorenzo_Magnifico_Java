@@ -1,6 +1,5 @@
 package project.client.network.rmi;
 
-import com.sun.org.apache.regexp.internal.RE;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
@@ -52,8 +51,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void loginSucceded() throws RemoteException;
 
-    int getScelta() throws RemoteException;
-
     String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException;
 
     void matchStarted(int roomPlayers, String familyColour) throws RemoteException;
@@ -67,4 +64,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void waitForYourTurn() throws RemoteException;
 
     void prayed() throws RemoteException;
+
+    int sendChoicePE() throws RemoteException;
 }
