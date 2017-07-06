@@ -1,0 +1,316 @@
+[
+  {
+  "anagrafic":{
+    "type":"territoryCard",
+    "name":"commercialHub",
+    "period":1,
+    "choicePe": false,
+    "cost":[{
+      "stoneRequired":0,
+      "woodRequired":0,
+      "coinsRequired":0,
+      "diceCost":1,
+      "militaryRequired":0,
+      "militaryCost":0
+    }]
+  },
+
+
+  "immediateEffect":{
+    "tris":[
+    ]
+  },
+
+
+
+  "permanentEffect":{
+    "poker":[
+      {"resourceEarnedFromExchange":" ",
+
+        "effectCost":{
+          "stoneRequired":0,
+          "woodRequired":0,
+          "servantsRequired":0,
+          "coinsRequired":0,
+          "militaryRequired":0,
+          "militaryCost":0
+        },
+
+        "type":"takeRop",
+        "parameter":"coin",
+        "quantity":1
+      }
+    ]
+  }
+
+},
+
+
+  {
+    "anagrafic":{
+      "type":"territoryCard",
+      "name":"woods",
+      "period":1,
+      "choicePe": false,
+      "cost":[{
+        "stoneRequired":0,
+        "woodRequired":0,
+        "coinsRequired":0,
+        "diceCost":2,
+        "militaryRequired":0,
+        "militaryCost":0
+      }]
+    },
+
+
+    "immediateEffect":{
+      "tris":[
+        {"type":"takeRop", "parameter":"wood", "quantity":1 }
+      ]
+    },
+
+
+
+    "permanentEffect":{
+      "poker":[
+        {"resourceEarnedFromExchange":" ",
+
+          "effectCost":{
+            "stoneRequired":0,
+            "woodRequired":0,
+            "servantsRequired":0,
+            "coinsRequired":0,
+            "militaryRequired":0,
+            "militaryCost":0
+          },
+
+          "type":"takeRop",
+          "parameter":"wood",
+          "quantity":1
+        }
+      ]
+    }
+
+  },
+
+  {
+    "anagrafic":{
+      "type":"territoryCard",
+      "name":"village",
+      "period":1,
+      "choicePe": false,
+      "cost":[{
+        "stoneRequired":0,
+        "woodRequired":0,
+        "coinsRequired":0,
+        "diceCost":3,
+        "militaryRequired":0,
+        "militaryCost":0
+      }]
+    },
+
+
+    "immediateEffect":{
+      "tris":[
+      ]
+    },
+
+
+
+    "permanentEffect":{
+      "poker":[
+        {"resourceEarnedFromExchange":" ",
+
+          "effectCost":{
+            "stoneRequired":0,
+            "woodRequired":0,
+            "servantsRequired":0,
+            "coinsRequired":0,
+            "militaryRequired":0,
+            "militaryCost":0
+          },
+
+          "type":"takeRop",
+          "parameter":"coin",
+          "quantity":1
+        },
+
+        {"resourceEarnedFromExchange":" ",
+
+          "effectCost":{
+            "stoneRequired":0,
+            "woodRequired":0,
+            "servantsRequired":0,
+            "coinsRequired":0,
+            "militaryRequired":0,
+            "militaryCost":0
+          },
+
+          "type":"takeRop",
+          "parameter":"servant",
+          "quantity":1
+        }
+
+      ]
+    }
+
+  },
+
+  {
+    "anagrafic":{
+      "type":"territoryCard",
+      "name":"gravelPit",
+      "period":1,
+      "choicePe": false,
+      "cost":[{
+        "stoneRequired":0,
+        "woodRequired":0,
+        "coinsRequired":0,
+        "diceCost":4,
+        "militaryRequired":0,
+        "militaryCost":0
+      }]
+    },
+
+
+    "immediateEffect":{
+      "tris":[
+        {"type":"takeRop", "parameter":"stone", "quantity":2 }
+      ]
+    },
+
+
+
+    "permanentEffect":{
+      "poker":[
+        {"resourceEarnedFromExchange":" ",
+
+          "effectCost":{
+            "stoneRequired":0,
+            "woodRequired":0,
+            "servantsRequired":0,
+            "coinsRequired":0,
+            "militaryRequired":0,
+            "militaryCost":0
+          },
+
+          "type":"takeRop",
+          "parameter":"stone",
+          "quantity":2
+        }
+      ]
+    }
+
+  },
+
+  {
+    "anagrafic":{
+      "type":"territoryCard",
+      "name":"forest",
+      "period":1,
+      "choicePe": false,
+      "cost":[{
+        "stoneRequired":0,
+        "woodRequired":0,
+        "coinsRequired":0,
+        "diceCost":5,
+        "militaryRequired":0,
+        "militaryCost":0
+      }]
+    },
+
+
+    "immediateEffect":{
+      "tris":[
+        {"type":"takeRop", "parameter":"wood", "quantity":1 }
+      ]
+    },
+
+
+
+    "permanentEffect":{
+      "poker":[
+        {"resourceEarnedFromExchange":" ",
+
+          "effectCost":{
+            "stoneRequired":0,
+            "woodRequired":0,
+            "servantsRequired":0,
+            "coinsRequired":0,
+            "militaryRequired":0,
+            "militaryCost":0
+          },
+
+          "type":"takeRop",
+          "parameter":"wood",
+          "quantity":3
+        }
+      ]
+    }
+
+  },
+
+  {
+    "anagrafic":{
+      "type":"territoryCard",
+      "name":"monastery",
+      "period":1,
+      "choicePe": false,
+      "cost":[{
+        "stoneRequired":0,
+        "woodRequired":0,
+        "coinsRequired":0,
+        "diceCost":6,
+        "militaryRequired":0,
+        "militaryCost":0
+      }]
+    },
+
+
+    "immediateEffect":{
+      "tris":[
+        {"type":"takeRop", "parameter":"militaryPoint", "quantity":2 },
+        {"type":"takeRop", "parameter":"servant", "quantity":1 }
+      ]
+    },
+
+
+
+    "permanentEffect":{
+      "poker":[
+        {"resourceEarnedFromExchange":" ",
+
+          "effectCost":{
+            "stoneRequired":0,
+            "woodRequired":0,
+            "servantsRequired":0,
+            "coinsRequired":0,
+            "militaryRequired":0,
+            "militaryCost":0
+          },
+
+          "type":"takeRop",
+          "parameter":"faithPoint",
+          "quantity":1
+        },
+
+        {"resourceEarnedFromExchange":" ",
+
+          "effectCost":{
+            "stoneRequired":0,
+            "woodRequired":0,
+            "servantsRequired":0,
+            "coinsRequired":0,
+            "militaryRequired":0,
+            "militaryCost":0
+          },
+
+          "type":"takeRop",
+          "parameter":"stone",
+          "quantity":1
+        }
+      ]
+    }
+
+  }
+  ]

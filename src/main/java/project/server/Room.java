@@ -2,6 +2,7 @@ package project.server;
 
 import com.google.gson.Gson;
 import project.PlayerFile;
+import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.cardsfactory.ExcommunicationTile;
@@ -171,7 +172,7 @@ public class Room {
 
         //draft leader
 
-
+/*
         ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
 
         for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
@@ -206,7 +207,7 @@ public class Room {
                 }
             }
             listsForDraft = shiftLeaderList(listsForDraft);
-        }
+        }       */
 
         //draft tile
 
@@ -269,10 +270,17 @@ public class Room {
         board.getTurn().setPlayerTurn(getListOfPlayers());
 
         int moreCoin = 0;
+
         for (PlayerHandler p : getListOfPlayers() ) {
             //setResources(p, moreCoin);
             if ( p.isOn() ) {
                 int fauthPoint = 8;
+
+
+                Configuration configuration = new Configuration();
+                configuration.loadTerritoryCardForTest(p.getPersonalBoardReference());
+                configuration.loadBuildingCardForTest(p.getPersonalBoardReference());
+
                 p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 76);
                 p.getScore().setFaithPoints(fauthPoint);
                 p.getScore().setVictoryPoints(35);

@@ -103,7 +103,7 @@ public class ProductionContext extends AbstractContext {
         boolean cardAvailable = false;
         String[] parameters = input.split("-");
 
-        if ( !(parameters.length < 7))
+        if ( !(parameters.length < 8 ))
             throw new InputException();
 
         checkFamilyMemberColour(parameters[0]);
