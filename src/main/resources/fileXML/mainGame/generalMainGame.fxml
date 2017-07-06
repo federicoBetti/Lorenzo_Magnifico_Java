@@ -43,7 +43,6 @@
             <ImageView fx:id="familiarPurple1" fitHeight="24.0" fitWidth="27.0" layoutX="421.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="familiarPurple2" fitHeight="24.0" fitWidth="27.0" layoutX="420.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="familiarPurple3" fitHeight="24.0" fitWidth="27.0" layoutX="422.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
-                <Button fx:id="goToTowersButton" layoutX="31.45" layoutY="24.65" mnemonicParsing="false" onAction="#goToTowers" prefHeight="409.7" prefWidth="441.15" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
             </children>
         </Pane>
         <ImageView fitHeight="784.55" fitWidth="358.7" layoutX="550.8" layoutY="0.0">
@@ -65,8 +64,8 @@
         <ImageView fx:id="towerYellow_3" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="43.35" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="towerPurple_0" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="towerPurple_1" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="238.85" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerPurple_2" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="towerPurple_3" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="44.199999999999996" pickOnBounds="true" preserveRatio="true" />
+          <Button fx:id="goToTowersButton" layoutX="35.0" layoutY="32.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="398.0" prefWidth="442.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
         <Pane layoutX="583.9499999999999" layoutY="27.2" prefHeight="723.35" prefWidth="297.5">
             <children>
                 <VBox layoutY="0.85" prefHeight="723.35" prefWidth="302.59999999999997">
@@ -196,6 +195,7 @@
                 <ImageView fx:id="faithPoint15" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="408.0" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
+        <ImageView fx:id="towerPurple_2" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
         <Pane layoutX="414.8" layoutY="410.55" prefHeight="117.3" prefWidth="42.5">
             <children>
                 <ImageView fx:id="turnOrder1" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="12.75" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />

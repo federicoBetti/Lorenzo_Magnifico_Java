@@ -28,7 +28,6 @@
                 <Image url="/images/cornici/cornice.png" />
             </image>
         </ImageView>
-        <TextField id="username" fx:id="username" layoutX="84.14999999999999" layoutY="708.05" prefHeight="30.599999999999998" prefWidth="85.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
         <Button id="connect" fx:id="connect" layoutX="207.4" layoutY="704.65" mnemonicParsing="false" onAction="#doConnection" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="connect">
             <font>
                 <Font name="Lucida Blackletter" size="17.849999999999998" />
@@ -51,5 +50,11 @@
                 </RadioButton>
             </children>
         </VBox>
+      <VBox layoutX="84.0" layoutY="681.0" prefHeight="57.8" prefWidth="85.0" spacing="21.25">
+         <children>
+              <TextField id="username" fx:id="username" prefHeight="30.599999999999998" prefWidth="85.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
+            <TextField id="username" fx:id="IP" prefHeight="30.599999999999998" prefWidth="85.0" promptText="IP Address" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

@@ -40,7 +40,7 @@
                         pickOnBounds="true" prefHeight="48.449999999999996" prefWidth="29.75"
                         style="-fx-background-color: transparent; -fx-border-color: transparent;"/>
                 <Button fx:id="buttonMilitaryPoints" layoutX="310.25" layoutY="249.04999999999998"
-                        onAction="#takeTwoMiliaryPoints" pickOnBounds="true" prefHeight="48.449999999999996"
+                        onAction="#takeTwoMilitaryPoints" pickOnBounds="true" prefHeight="48.449999999999996"
                         prefWidth="37.4" style="-fx-background-color: transparent; -fx-border-color: transparent;"/>
                 <Button fx:id="buttonFaithPoints" layoutX="352.75" layoutY="246.5" onAction="#takeOneFaithPoint"
                         pickOnBounds="true" prefHeight="48.449999999999996" prefWidth="37.4"

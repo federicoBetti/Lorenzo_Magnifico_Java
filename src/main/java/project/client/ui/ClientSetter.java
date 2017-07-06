@@ -29,6 +29,7 @@ public class ClientSetter {
     private PersonalBoard uiPersonalBoard;
     private Score uiScore;
     private FamilyMember[] uiFamilyMembers;
+    private String nickname;
 
     //todo fare metodi uguali per rmi e socket in quelli che ritornano risposte e oserei dire di farli tutti con return int
     public ClientSetter(String kindOfUI ) {
@@ -73,6 +74,7 @@ public class ClientSetter {
     //these methods call other methods on the client
 
     public void loginRequest(String loginParameter){
+        this.nickname = loginParameter;
         client.loginRequest(loginParameter);
     }
 
@@ -300,11 +302,11 @@ public class ClientSetter {
     }
 
     public void newGameRequest() {
-        client.newGameRequest();
+        client.newGameRequest(nickname);
     }
 
     public void terminate() {
-        client.terminate();
+        System.exit(1);
     }
 
     public void receiveStatistics(PlayerFile statistics) {

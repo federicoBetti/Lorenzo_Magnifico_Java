@@ -320,6 +320,10 @@ public abstract class AbstractController {
     }
 
     public boolean placeFamiliarHarvProd(boolean positionSelected, List<FamiliarPosition> allPosition, HBox familiarBox) {
+        if (!mainController.isMyTurn()){
+            writeOnChat("it isn't your turn!");
+            return false;
+        }
         if (familiarChosen.equals("")) {
             writeOnChat("you haven't selected the familiar\n");
             return false;

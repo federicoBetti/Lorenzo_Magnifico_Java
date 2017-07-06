@@ -185,7 +185,7 @@ public class CouncilPalaceController extends AbstractController {
         selectPrivilege(2);
     }
 
-    public void takeTwoMiliaryPoints() {
+    public void takeTwoMilitaryPoints() {
         selectPrivilege(3);
     }
 
@@ -194,6 +194,8 @@ public class CouncilPalaceController extends AbstractController {
     }
 
     public void placeFamiliarInCouncil() {
+        if (!mainController.isMyTurn())
+            return;
         if (familiarChosen.equals(""))
             return;
         if (familiarPlaced){
@@ -278,6 +280,7 @@ public class CouncilPalaceController extends AbstractController {
         }
             unlockButton();
             mainController.takeBonusPrivileges(privilegeSelected);
+
         }
         else writeOnChat("you don't have taken the right number of privileges!\nthe righy number is " + maxPrivilegeChosen + "\n");
     }

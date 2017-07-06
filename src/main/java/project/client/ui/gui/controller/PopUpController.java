@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -40,6 +41,7 @@ public class PopUpController {
 
     private void setButton() {
         button = new Button("ok");
+        button.setFont(new Font("Lucida Blackletter", 25.0));
         button.setOnAction(event -> ok());
         boxButton.getChildren().add(button);
     }

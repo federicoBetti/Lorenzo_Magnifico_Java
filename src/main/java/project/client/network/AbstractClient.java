@@ -9,75 +9,43 @@ import java.util.List;
 public abstract class AbstractClient implements Serializable{
 
 
-    public abstract void loginRequest(String loginParameter)  ;
+    public abstract void loginRequest(String loginParameter);
 
-    public abstract void waitingForTheNewInteraction() ;
+    public abstract void takeDevCard(String towerColour, int floor, String familiarColour);
 
-    public abstract void takeDevCard(String towerColour, int floor, String familiarColour )  ;
+    public abstract void harvesterAction(String familyMemberColour, int servantsNumber);
 
-    public abstract void actionOk();
+    public abstract void marketAction(int position, String familyColour);
 
-    public abstract void marketAction(int position, String familyColour)  ;
+    public abstract void councilAction(int priviledgeNumber, String familiarColour);
 
-    public abstract void councilAction(int parameter1, String parameter2)  ;
+    public abstract void productionAction(String familiarColor, List<String> buidingCards);
 
-    public abstract void playLeaderCard(String action)  ;
+    public abstract void takeBonusCardAction(int floor, String towerColour);
 
-    public abstract void discardLeaderCard(String name)  ;
+    public abstract void playLeaderCard(String action);
 
+    public abstract void discardLeaderCard(String name);
 
-    public abstract void sendExitToBonusAction()  ;
+    public abstract void sendExitToBonusAction();
 
+    public abstract void bonusHarvesterAction(int servantsNumber);
 
-    public abstract void bonusHarvesterAction(int servantsNumber)  ;
+    public abstract void immediatePriviledgeAction(List<Integer> privileges);
 
-    public abstract void bonusProductionAction(List<String> parameters)  ;
+    public abstract void bonusProductionAction(List<String> buildingCards);
 
-    public abstract void takeBonusCardAction(int floor, String input)  ;
-
-    public abstract void immediatePriviledgeAction(List<Integer> privileges)  ;
-
-    public abstract void sendChoicePaymentVc(int payment)  ;
-
-    public abstract void harvesterAction(String familyMemberColour, int servantsNumber) ;
-
-    public abstract void productionAction(String familiarChosen, List<String> buidingCards) ;
-
+    public abstract void sendChoicePaymentVc(int payment);
 
     public abstract void skipTurn();
 
-    public abstract void timerTurnDelayed();
-
-    public abstract void boardUpdate();
-
-    public void scelta() {
-
-    }
-
-    public abstract void matchStarted();
-
-    public abstract void cantDoAction();
-
-
-    public abstract void notifyPlayer();
+    public abstract void newNickname(String username);
 
     public abstract void reconnect();
 
-    public abstract void afterGame();
-
     public abstract void showStatistic();
 
-    public abstract void newGameRequest();
-
-    public abstract void newNickname(String username);
-
-    public abstract void terminate();
-
-    public abstract void receiveStatistics();
+    public abstract void newGameRequest(String nickname);
 
     public abstract void showRanking();
-
-    public abstract void ranking();
-
-    //da server a client
 }

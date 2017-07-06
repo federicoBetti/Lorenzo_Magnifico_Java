@@ -120,6 +120,7 @@ public class MarketController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
+        lastFamiliarPlaced.setImage(null);
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiliarPlaced.setImage(null);
     }
@@ -170,6 +171,8 @@ public class MarketController extends AbstractController {
 
 
     private void placeFamiliar(int position){
+        if (!mainController.isMyTurn())
+            return;
         FamiliarPosition familiar = familiarPositions.get(position);
         if (!familiar.getFamiliarName().equals(""))
             return; //posizione occupata

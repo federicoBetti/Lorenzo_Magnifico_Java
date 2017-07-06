@@ -126,6 +126,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         }
     }
 
+
     private interface Talker {
 
         void sendEffectAnswer(BonusInteraction bonusInteraction) throws RemoteException;
@@ -383,13 +384,13 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
-    public void showStatistics() {
-
-    }
-
-    @Override
     protected void sendStatistic(PlayerFile playerFile) {
-
+        try {
+            myClient.sendStatistics(playerFile);
+        } catch (RemoteException e) {
+            System.err.println("player disconnesso");
+            this.setOn(false);
+        }
     }
 
     @Override
@@ -413,13 +414,13 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
-    public void newGame(String nickname) {
-        //to implement
-    }
-
-    @Override
-    public void takeRanking() {
-
+    protected void sendRanking(List<PlayerFile> ranking) {
+        try {
+            myClient.sendRanking(ranking);
+        } catch (RemoteException e) {
+            System.out.println("player disconnesso");
+            this.setOn(false);
+        }
     }
 
 
@@ -507,7 +508,6 @@ public class RMIPlayerHandler extends PlayerHandler {
 
 
     private void playerDisconnected() {
-        System.out.println("player disconnesso");
         this.setOn(false);
         getRoom().getGameActions().nextTurn(this);
     }
