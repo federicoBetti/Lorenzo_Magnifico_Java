@@ -342,21 +342,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    @Override
-    public void showStatistics() {
-        Gson gson = new Gson();
-        String nickname = getName();
-        String statistics = getRoom().takeStatistics(nickname);
-        PlayerFile playerFile = gson.fromJson(statistics, PlayerFile.class);
-        sendString(Constants.RECEIVE_STATISTICS);
-        try {
-            objectOutputStream.writeObject(playerFile);
-            objectOutputStream.flush();
-            objectOutputStream.reset();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
 
     @Override
     public void tokenNotify() {
@@ -393,6 +380,18 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         try {
             objectOutputStream.writeObject(Constants.SHOW_RANKING);
             objectOutputStream.writeObject(ranking);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void sendStatistic(PlayerFile playerFile) {
+        sendString(Constants.RECEIVE_STATISTICS);
+        try {
+            objectOutputStream.writeObject(playerFile);
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
