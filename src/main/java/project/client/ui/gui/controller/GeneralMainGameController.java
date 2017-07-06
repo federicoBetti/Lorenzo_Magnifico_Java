@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import project.model.ExcommunicationZone;
 import project.model.Score;
 import project.model.Tower;
+import project.model.Turn;
 import project.server.network.PlayerHandler;
 
 import java.util.ArrayList;
@@ -203,39 +204,6 @@ public class GeneralMainGameController extends AbstractController{
         super.initialize();
         // da eliminare
 
-
-        
-          ImageView familiarGreen0 = new ImageView();
-        
-          ImageView familiarGreen1 = new ImageView();
-        
-          ImageView familiarGreen2 = new ImageView();
-        
-          ImageView familiarGreen3 = new ImageView();
-        
-          ImageView familiarBlue0 = new ImageView();
-        
-          ImageView familiarBlue1 = new ImageView();
-        
-          ImageView familiarBlue2 = new ImageView();
-        
-          ImageView familiarBlue3 = new ImageView();
-        
-          ImageView familiarYellow0 = new ImageView();
-        
-          ImageView familiarYellow1 = new ImageView();
-        
-          ImageView familiarYellow2 = new ImageView();
-        
-          ImageView familiarYellow3 = new ImageView();
-        
-          ImageView familiarPurple0 = new ImageView();
-        
-          ImageView familiarPurple1 = new ImageView();
-        
-          ImageView familiarPurple2 = new ImageView();
-        
-          ImageView familiarPurple3 = new ImageView();
         faithPointsArray.add(faithPoint0);
         faithPointsArray.add(faithPoint1);
         faithPointsArray.add(faithPoint2);
@@ -357,12 +325,12 @@ public class GeneralMainGameController extends AbstractController{
         super.showPersonalBoard(SceneType.MAIN);
     }
 
-    public void updateTurn(List<PlayerHandler> playerTurn) {
+    public void updateTurn(Turn playerTurn) {
         int current = 0;
-        for (PlayerHandler p: playerTurn){
-            String playerColour = p.getFamilyColour();
-            System.out.println("il colore che devo mettere al posto " + current + " del turno è " + playerColour);
-            turnOrderArray.get(current).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + playerColour + "Pedone.png"))));
+        if (playerTurn == null)
+            return;
+        for (String s: playerTurn.getPlayersColor()){
+            turnOrderArray.get(current).setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + s + "Pedone.png"))));
             current++;
         }
     }

@@ -310,7 +310,7 @@ public class Server {
         player.sendUpdates(new CouncilUpdate(room.getBoard().getCouncilZone(), nickname));
         player.sendUpdates(new ExcomunicationUpdate(room.getBoard().getExcommunicationZone(), nickname));
         player.sendUpdates(new HarvesterUpdate(room.getBoard().getHarvesterZone(), nickname));
-        player.sendUpdates(new DiceValueUpdate(room.getBoard().getDiceValue()));
+        player.sendUpdates(new DiceValueUpdate(room.getBoard().getDiceValue(), room.getBoard().getTurn()));
         player.sendUpdates(new FamilyMemberUpdate(player, nickname));
         player.sendUpdates(new MarketUpdate(room.getBoard(), nickname));
         player.sendUpdates(new ProductionUpdate(room.getBoard().getProductionZone(), nickname));

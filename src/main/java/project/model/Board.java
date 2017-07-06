@@ -352,4 +352,8 @@ public final class Board {
     public void setMilitaryPointsForTerritories(int[] militaryPointsForTerritories) {
         this.militaryPointsForTerritories = militaryPointsForTerritories;
     }
+
+    public void setTurn(Turn turn) {
+        this.turn = turn;
+    }
 }

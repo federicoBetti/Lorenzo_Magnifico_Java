@@ -687,7 +687,7 @@ public class GameActions {
         }
         setEndRound(false);
 
-        broadcastUpdates(new DiceValueUpdate(board.getDiceValue()));
+        broadcastUpdates(new DiceValueUpdate(board.getDiceValue(),board.getTurn()));
     }
 
     /**

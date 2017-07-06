@@ -16,8 +16,10 @@
     <children>
         <Pane fx:id="gameboardPane" prefHeight="784.55" prefWidth="550.8">
             <children>
-            <ImageView fx:id="gameboard" fitHeight="785.0" fitWidth="551.0" pickOnBounds="true" preserveRatio="true" />
-                <Button fx:id="goToTowersButton" layoutX="31.45" layoutY="24.65" mnemonicParsing="false" onAction="#goToTowers" prefHeight="409.7" prefWidth="441.15" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <ImageView fx:id="gameboard" fitHeight="785.0" fitWidth="551.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/immaginiSetUp/gameboard2Giocatori.png" />
+               </image></ImageView>
                 <Button fx:id="goToProductionButton" layoutX="30.599999999999998" layoutY="622.1999999999999" mnemonicParsing="false" onAction="#goToProduction" prefHeight="64.6" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="goToMarketButton" layoutX="281.34999999999997" layoutY="617.9499999999999" mnemonicParsing="false" onAction="#goToMarket" prefHeight="102.85" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="goToCouncilPalaceButton" layoutX="238.0" layoutY="425.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="71.39999999999999" prefWidth="163.2" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
@@ -25,6 +27,23 @@
                 <ImageView fx:id="excommunication1" fitHeight="81.6" fitWidth="42.5" layoutX="105.39999999999999" layoutY="468.34999999999997" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fx:id="excommunication2" fitHeight="81.6" fitWidth="42.5" layoutX="145.35" layoutY="475.15" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fx:id="excommunication3" fitHeight="81.6" fitWidth="42.5" layoutX="186.15" layoutY="467.5" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarGreen1" fitHeight="24.0" fitWidth="27.0" layoutX="106.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarGreen0" fitHeight="24.0" fitWidth="27.0" layoutX="106.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarGreen2" fitHeight="24.0" fitWidth="27.0" layoutX="107.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarGreen3" fitHeight="24.0" fitWidth="27.0" layoutX="106.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarBlue0" fitHeight="24.0" fitWidth="27.0" layoutX="211.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarBlue1" fitHeight="24.0" fitWidth="27.0" layoutX="213.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarBlue2" fitHeight="24.0" fitWidth="27.0" layoutX="211.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarBlue3" fitHeight="24.0" fitWidth="27.0" layoutX="212.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarYellow0" fitHeight="24.0" fitWidth="27.0" layoutX="316.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarYellow1" fitHeight="24.0" fitWidth="27.0" layoutX="316.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarYellow2" fitHeight="24.0" fitWidth="27.0" layoutX="317.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarYellow3" fitHeight="24.0" fitWidth="27.0" layoutX="316.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarPurple0" fitHeight="24.0" fitWidth="27.0" layoutX="421.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarPurple1" fitHeight="24.0" fitWidth="27.0" layoutX="421.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarPurple2" fitHeight="24.0" fitWidth="27.0" layoutX="420.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiarPurple3" fitHeight="24.0" fitWidth="27.0" layoutX="422.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="goToTowersButton" layoutX="31.45" layoutY="24.65" mnemonicParsing="false" onAction="#goToTowers" prefHeight="409.7" prefWidth="441.15" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
             </children>
         </Pane>
         <ImageView fitHeight="784.55" fitWidth="358.7" layoutX="550.8" layoutY="0.0">

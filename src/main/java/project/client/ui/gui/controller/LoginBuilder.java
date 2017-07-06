@@ -398,7 +398,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             controller.setLoginBuilder(this);
             controller.setLabel(message);
             controller.setChoice1(choice1);
-            controller.setCoiche2(choice2);
+            controller.setChoice2(choice2);
             System.out.println("sto per disegnare lo stage");
             // Show the dialog and wait until the user closes it
             lastStageOpened = dialogStage;

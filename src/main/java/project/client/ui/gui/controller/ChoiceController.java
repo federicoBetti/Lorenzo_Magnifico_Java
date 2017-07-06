@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -15,7 +16,7 @@ public class ChoiceController {
     @FXML
     private  Button buttonChoiche2;
     @FXML
-    private  Label message;
+    private Text message;
 
     private MainController mainController;
     private LoginBuilder loginBuilder;
@@ -55,7 +56,7 @@ public class ChoiceController {
         buttonChoiche1.setText(choice1);
     }
 
-    public void setCoiche2(String choice2) {
+    public void setChoice2(String choice2) {
         buttonChoiche2.setText(choice2);
     }
 

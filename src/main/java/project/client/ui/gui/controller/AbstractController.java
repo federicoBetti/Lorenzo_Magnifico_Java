@@ -172,15 +172,12 @@ public abstract class AbstractController {
     }
 
     void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox) {
-        System.out.println("provo a piazzare familiare");
         for (FamiliarPosition f : allPosition) {
             if (f.getFamiliarName().equals("")) {
-                System.out.println("ho trovato un posto vuoto");
                 f.setImage(getTrueFamiliarImage());
                 return;
             }
         }
-        System.out.println("creo un nuovo posto per un mio familiare");
         FamiliarPosition newPosition = new FamiliarPosition("hbox");
         ImageView imageView = newPosition.getImage();
         imageView.setImage(getTrueFamiliarImage());
@@ -206,7 +203,6 @@ public abstract class AbstractController {
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
 
         if (positions.isEmpty()){
-            System.out.println("SONO IN QUELLO CHE DEVE RIPULIRE E LA LUNGHEZZA È " + allPosition.size());
             //new round
             if (allPosition.isEmpty())
                 return;
@@ -215,7 +211,6 @@ public abstract class AbstractController {
             familiarPositionn.setFamiliarName("");
             allPosition = new ArrayList<>();
             allPosition.add(familiarPositionn);
-            System.out.println("SONO IN QUELLO CHE DEVE RIPULIRE E LA LUNGHEZZA È " + allPosition.size());
         }
 
 

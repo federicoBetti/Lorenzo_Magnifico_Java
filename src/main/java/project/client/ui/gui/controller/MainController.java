@@ -49,22 +49,22 @@ public class MainController {
     private boolean draft = true;
 
 
-    private MainController(){
+    private MainController() {
         controllers = new ArrayList<>();
         Object token = new Object();
         firstTime = true;
     }
-    public static MainController getInstance(){
+
+    public static MainController getInstance() {
         if (instance == null) {
             instance = new MainController();
             return instance;
-        }
-        else
-            return instance;
+        } else return instance;
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param clientSetter parameter to set
      */
     public void setClientSetter(ClientSetter clientSetter) {
@@ -72,7 +72,8 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param loginBuilder parameter to set
      */
     public void setLoginBuilder(LoginBuilder loginBuilder) {
@@ -80,14 +81,15 @@ public class MainController {
     }
 
     /**
-     *method to show main page on gui
+     * method to show main page on gui
      */
     public void showMainGame() {
         loginBuilder.showPrimo();
     }
 
     /**
-     *getter
+     * getter
+     *
      * @return number of players in the match
      */
     int getNumberOfPlayer() {
@@ -95,7 +97,8 @@ public class MainController {
     }
 
     /**
-     *getter
+     * getter
+     *
      * @return colour of the family
      */
     public String getColour() {
@@ -103,7 +106,8 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param harvesterController parameter to set
      */
     void setHarvesterController(HarvesterController harvesterController) {
@@ -112,7 +116,8 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param councilPalaceController parameter to set
      */
     void setCouncilPalaceController(CouncilPalaceController councilPalaceController) {
@@ -121,16 +126,18 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param generalGameController parameter to set
      */
-   void setGeneralGameController(GeneralMainGameController generalGameController) {
+    void setGeneralGameController(GeneralMainGameController generalGameController) {
         this.generalGameController = generalGameController;
         controllers.add(this.generalGameController);
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param leaderCardController parameter to set
      */
     void setLeaderCardController(LeaderCardController leaderCardController) {
@@ -139,7 +146,8 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param marketController parameter to set
      */
     void setMarketController(MarketController marketController) {
@@ -148,7 +156,8 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param personalBoardController parameter to set
      */
     void setPersonalBoardController(PersonalBoardController personalBoardController) {
@@ -157,7 +166,8 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param productionController parameter to set
      */
     void setProductionController(ProductionController productionController) {
@@ -166,7 +176,8 @@ public class MainController {
     }
 
     /**
-     *setter
+     * setter
+     *
      * @param towerController parameter to set
      */
     void setTowerController(TowersController towerController) {
@@ -178,7 +189,8 @@ public class MainController {
     //DA QUA IN GIU LE COSE CHIAMATE SUL CLIENT SETTER
 
     /**
-     *method called by gui when connect button is pressed
+     * method called by gui when connect button is pressed
+     *
      * @param connectionType type of connection
      * @param usernameChosen usernamen of the player
      */
@@ -189,6 +201,7 @@ public class MainController {
 
     /**
      * setter
+     *
      * @param initialLoginController parameter to sett
      */
     void setInitialLoginController(InitialLogin initialLoginController) {
@@ -197,26 +210,30 @@ public class MainController {
 
     /**
      * setter
+     *
      * @param choiceController parameter to set
      */
     void setChoiceController(ChoiceController choiceController) {
         ChoiceController choiceController1 = choiceController;
     }
+
     /**
      * main method to take a development card
-     * @param towerColour colour of the tower of the card
-     * @param floor floor of the card
+     *
+     * @param towerColour    colour of the tower of the card
+     * @param floor          floor of the card
      * @param familiarColour colour of familiar chosen
      */
-    public void takeDevCard(String towerColour, int floor, String familiarColour )  {
+    public void takeDevCard(String towerColour, int floor, String familiarColour) {
 
         Runnable a = () -> clientSetter.takeDevCard(towerColour, floor, familiarColour);
         new Thread(a).start();
     }
 
     /**
-     *method to do the production
-     * @param familiarChosen colour of familiar chosen
+     * method to do the production
+     *
+     * @param familiarChosen       colour of familiar chosen
      * @param buildingCardSelected building card selected by the user
      */
     void doProduction(String familiarChosen, List<String> buildingCardSelected) {
@@ -226,28 +243,31 @@ public class MainController {
     }
 
     /**
-     *main method to do the harvester
-     * @param servants number of servants used in the harvester action
+     * main method to do the harvester
+     *
+     * @param servants       number of servants used in the harvester action
      * @param familiarChosen colour of familiar chosen
      */
     void doHarvester(int servants, String familiarChosen) {
-        Runnable a = () -> clientSetter.harvesterAction(familiarChosen,servants);
+        Runnable a = () -> clientSetter.harvesterAction(familiarChosen, servants);
         new Thread(a).start();
 
     }
 
     /**
-     *main method to go to the palace of council
+     * main method to go to the palace of council
+     *
      * @param privilegeSelected number of the privilege selected
-     * @param familiarChosen colour of familiar chosen
+     * @param familiarChosen    colour of familiar chosen
      */
     void goToCouncil(int privilegeSelected, String familiarChosen) {
-        Runnable a = () -> clientSetter.councilAction(privilegeSelected,familiarChosen);
+        Runnable a = () -> clientSetter.councilAction(privilegeSelected, familiarChosen);
         new Thread(a).start();
     }
 
     /**
-     *action bonus in which you can take privileges
+     * action bonus in which you can take privileges
+     *
      * @param privilegeSelected array that indicates the privileges you want to take
      */
     void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
@@ -256,7 +276,8 @@ public class MainController {
     }
 
     /**
-     *bonus action on harvester
+     * bonus action on harvester
+     *
      * @param servants number of servants used
      */
     void doBonusHarvester(int servants) {
@@ -265,7 +286,8 @@ public class MainController {
     }
 
     /**
-     *bonus action of production
+     * bonus action of production
+     *
      * @param buildingCardSelected building card selected fr the production
      */
     void doBonusProduction(List<String> buildingCardSelected) {
@@ -274,44 +296,50 @@ public class MainController {
     }
 
     /**
-     *bonus action of take development card
-     * @param floor floor of the card
+     * bonus action of take development card
+     *
+     * @param floor             floor of the card
      * @param towerColourString tower color of the card
      */
     void takeBonusCardAction(int floor, String towerColourString) {
         actionBonusOn = false;
-        Runnable a = () -> clientSetter.takeBonusCardAction(floor,towerColourString);
+        Runnable a = () -> clientSetter.takeBonusCardAction(floor, towerColourString);
         new Thread(a).start();
     }
 
     /**
-     *method used to play a leader card
+     * method used to play a leader card
+     *
      * @param cardSelected name of the card selected
      */
     public void playLeaderCard(String cardSelected) {
 
-        Runnable a = () -> clientSetter.playLeaderCard(cardSelected);;
+        Runnable a = () -> clientSetter.playLeaderCard(cardSelected);
+        ;
         new Thread(a).start();
 
     }
 
     /**
-     *method used to discarda leader card
+     * method used to discarda leader card
+     *
      * @param cardSelected name of the leader card
      */
     public void discardLeaderCard(String cardSelected) {
-        Runnable a = () -> clientSetter.discardLeaderCard(cardSelected);;
+        Runnable a = () -> clientSetter.discardLeaderCard(cardSelected);
+        ;
         new Thread(a).start();
 
     }
 
     /**
-     *method used to go to market
+     * method used to go to market
+     *
      * @param positionSelected position of the market selcted
-     * @param familiarChosen colour of familiar chosen
+     * @param familiarChosen   colour of familiar chosen
      */
     void goToMarket(int positionSelected, String familiarChosen) {
-        Runnable a = () -> clientSetter.marketAction(positionSelected,familiarChosen);
+        Runnable a = () -> clientSetter.marketAction(positionSelected, familiarChosen);
         new Thread(a).start();
 
     }
@@ -325,7 +353,8 @@ public class MainController {
 
 
     /**
-     *method to reconnect if the nickname is already used
+     * method to reconnect if the nickname is already used
+     *
      * @param usernameChosen username chosen by the user
      */
     void takeNickname(String usernameChosen) {
@@ -333,17 +362,17 @@ public class MainController {
     }
 
     /**
-     *to update the gui following an update message from the server
+     * to update the gui following an update message from the server
      */
-    public void personalBoardUpdate(){
+    public void personalBoardUpdate() {
         Platform.runLater(() -> {
             PersonalBoard personalBoard = clientSetter.getUiPersonalBoard();
             int coins = personalBoard.getCoins();
             int wood = personalBoard.getWood();
             int stone = personalBoard.getStone();
             int servants = personalBoard.getServants();
-            for (AbstractController c: controllers){
-                c.updateResources(coins,wood,stone,servants);
+            for (AbstractController c : controllers) {
+                c.updateResources(coins, wood, stone, servants);
             }
 
             personalBoardController.setBonusTile(personalBoard.getMyTile().getTileNumber());
@@ -355,12 +384,12 @@ public class MainController {
     }
 
     /**
-     *to update the gui following an update message from the server
+     * to update the gui following an update message from the server
      */
     public void boardUpdate() {
         Board board = clientSetter.getUiBoard();
         Platform.runLater(() -> {
-            if (firstTime){
+            if (firstTime) {
                 firstTime = false;
             }
             harvesterController.updatePosition(board.getHarvesterZone());
@@ -369,21 +398,24 @@ public class MainController {
             marketController.updatePosition(board.getMarketZone());
             towerController.updatePosition(board.getAllTowers());
             generalGameController.updatePosition(board.getAllTowers());
-            generalGameController.updateTurn(board.getTurn().getPlayerTurn());
+            generalGameController.updateTurn(board.getTurn());
             generalGameController.excommunicationUpdate(board.getExcommunicationZone());
             generalGameController.setDice(board.getDiceValue());
         });
     }
 
     /**
-     *to update the gui following an update message from the server
+     * to update the gui following an update message from the server
      */
     public void scoreUpdate() {
-        Platform.runLater(() -> loginBuilder.setUiScore(clientSetter.getUiScore()));
+        Platform.runLater(() -> {
+            loginBuilder.setUiScore(clientSetter.getUiScore());
+            generalGameController.setScore(clientSetter.getUiScore());
+        });
     }
 
     /**
-     *to update the gui following an update message from the server
+     * to update the gui following an update message from the server
      */
     public void familyMemberUpdate() {
         Platform.runLater(() -> {
@@ -398,31 +430,34 @@ public class MainController {
 
     /**
      * method that notify the gui to perform a bonus action of privileges
+     *
      * @param quantityOfDifferentPrivileges number of different privileges that you can take
      */
     public void takePrivilege(int quantityOfDifferentPrivileges) {
         actionBonusOn = true;
         numberOfPrivelege = quantityOfDifferentPrivileges;
         Platform.runLater(() -> {
-            loginBuilder.setScene(SceneType.COUNCIL,SceneType.LEADER);
+            loginBuilder.setScene(SceneType.COUNCIL, SceneType.LEADER);
             councilPalaceController.takeImmediatePrivilege(numberOfPrivelege);
         });
     }
 
     /**
-     *method that notify the gui to perform a bonus action of harvester
+     * method that notify the gui to perform a bonus action of harvester
+     *
      * @param diceValue dice value of the action
      */
     public void bonusHarvester(int diceValue) {
         actionBonusOn = true;
         Platform.runLater(() -> {
-            loginBuilder.setScene(SceneType.HARVESTER,SceneType.PERSONAL_BOARD);
+            loginBuilder.setScene(SceneType.HARVESTER, SceneType.PERSONAL_BOARD);
             harvesterController.bonusHarvester(diceValue);
         });
     }
 
     /**
      * method that notify the gui to perform a bonus action of production
+     *
      * @param diceValue dice value of the action
      */
     public void bonusProduction(int diceValue) {
@@ -435,7 +470,8 @@ public class MainController {
 
     /**
      * method that notify the gui to perform a bonus action of take a development card
-     * @param kindOfCard tower of the card
+     *
+     * @param kindOfCard       tower of the card
      * @param printBonusAction string to print
      */
     public void takeBonusCard(String kindOfCard, String printBonusAction) {
@@ -445,6 +481,7 @@ public class MainController {
 
     /**
      * method used to chose which payment of ventures card use
+     *
      * @return number of the payment to use
      */
     public int bothPaymentAvaiable() {
@@ -453,6 +490,7 @@ public class MainController {
 
     /**
      * method to chose between two different permanent effect of a building card
+     *
      * @return user's choice
      */
     public int choosePermanentEffect() {
@@ -461,6 +499,7 @@ public class MainController {
 
     /**
      * method used to ask to pray or not
+     *
      * @return user's choice
      */
     public int askForPraying() {
@@ -472,14 +511,15 @@ public class MainController {
      */
     public void endTurnContext() {
         Platform.runLater(() -> {
-            loginBuilder.setScene(SceneType.LEADER,SceneType.MAIN);
+            loginBuilder.setScene(SceneType.LEADER, SceneType.MAIN);
             leaderCardController.endTurnContext();
 
         });
     }
 
     /**
-     *method to send a message in the chat
+     * method to send a message in the chat
+     *
      * @param s message
      */
     public void sendChat(String s) {
@@ -487,14 +527,14 @@ public class MainController {
     }
 
     /**
-     *method that confirm the login
+     * method that confirm the login
      */
     public void loginSucceded() {
         //correct void
     }
 
     /**
-     *method to change scene in waiting scene
+     * method to change scene in waiting scene
      */
     public void waitingLogin() {
         loginBuilder.waitingScene();
@@ -514,17 +554,18 @@ public class MainController {
 
     /**
      * method that wat for user's choice
+     *
      * @param choiceType choiche typw
-     * @param s first choice
-     * @param s1 second choice
+     * @param s          first choice
+     * @param s1         second choice
      * @return choice done
      */
     public int getChoice(String choiceType, String s, String s1) {
         integerQueue = new LinkedBlockingQueue<>(1);
-        Platform.runLater(() -> generalGameController.setScelta(choiceType,s,s1));
+        Platform.runLater(() -> generalGameController.setScelta(choiceType, s, s1));
         Integer i = 0;
         try {
-             i = integerQueue.take();
+            i = integerQueue.take();
         } catch (InterruptedException e) {
         }
         integerQueue = null;
@@ -533,14 +574,16 @@ public class MainController {
 
     /**
      * add integer in the queue
+     *
      * @param choiceDone integer to add
      */
     void addIntegerQueue(int choiceDone) {
         integerQueue.add(choiceDone);
-        }
+    }
 
     /**
      * add string in the queue
+     *
      * @param s string to add
      */
     void addStringQueue(String s) {
@@ -549,6 +592,7 @@ public class MainController {
 
     /**
      * getter
+     *
      * @return myTurn variable
      */
     boolean isMyTurn() {
@@ -557,6 +601,7 @@ public class MainController {
 
     /**
      * setter
+     *
      * @param myTurn variable
      */
     private void setMyTurn(boolean myTurn) {
@@ -568,13 +613,14 @@ public class MainController {
      */
     void updateChat() {
         Platform.runLater(() -> {
-            for (AbstractController c: controllers)
+            for (AbstractController c : controllers)
                 c.refresh();
         });
     }
 
     /**
      * methd used in leader draft
+     *
      * @param leaders leader to choose
      * @return leader chosen
      */
@@ -596,7 +642,8 @@ public class MainController {
 
     /**
      * methd to notify the match started
-     * @param roomPlayers number of player in the room
+     *
+     * @param roomPlayers  number of player in the room
      * @param familyColour your family color
      */
     public void matchStarted(int roomPlayers, String familyColour) {
@@ -645,11 +692,9 @@ public class MainController {
             }
             myTurn = false;
 
-            if (clearStages()){
+            if (clearStages()) {
                 clearBlockingQueue();
-            }
-            else
-                cleanActionBonus();
+            } else cleanActionBonus();
         });
 
         try {
@@ -665,16 +710,16 @@ public class MainController {
      * methos ude to clear the queues
      */
     private void clearBlockingQueue() {
-        if (integerQueue!=null){
+        if (integerQueue != null) {
             integerQueue.add(-1);
         }
 
-        if (stringQueue!=null)
-            stringQueue.add("-1");
+        if (stringQueue != null) stringQueue.add("-1");
     }
 
     /**
      * method used to close the stages
+     *
      * @return if there is a stage open
      */
     private boolean clearStages() {
@@ -689,10 +734,10 @@ public class MainController {
      * unlock button used for bonus actions
      */
     private void cleanActionBonus() {
-        if (actionBonusOn){
+        if (actionBonusOn) {
             actionBonusOn = false;
             Platform.runLater(() -> {
-                loginBuilder.setScene(SceneType.MAIN,SceneType.PERSONAL_BOARD);
+                loginBuilder.setScene(SceneType.MAIN, SceneType.PERSONAL_BOARD);
                 towerController.unlockButton();
                 councilPalaceController.unlockButton();
                 harvesterController.unlockButton();
@@ -717,6 +762,7 @@ public class MainController {
 
     /**
      * used in tile draft
+     *
      * @param tiles tile to chose
      * @return tile chosen
      */
@@ -735,6 +781,7 @@ public class MainController {
 
     /**
      * method used to add an integer in the queue
+     *
      * @param i int to add
      */
     void addIntQueue(int i) {

@@ -259,6 +259,12 @@ public class Room {
         }
         placeCardInTowers();
 
+
+        gameActions.rollDice();
+        matchStarted = true;
+
+        board.getTurn().setPlayerTurn(getListOfPlayers());
+
         int moreCoin = 0;
         for (PlayerHandler p : getListOfPlayers() ) {
             //setResources(p, moreCoin);
@@ -274,16 +280,14 @@ public class Room {
                 p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
                 p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
                 p.sendUpdates(new ScoreUpdate(p, p.getName()));
+                p.sendUpdates(new DiceValueUpdate(board.getDiceValue(), board.getTurn()));
                 //todo cancellare: aggiunto solo per provare il both payment
                 System.out.println("mando UPDATES");
                 moreCoin++;
             }
         }
 
-        gameActions.rollDice();
-        matchStarted = true;
 
-        board.getTurn().setPlayerTurn(getListOfPlayers());
         gameActions.firstPlayerTurn();
 
     }
