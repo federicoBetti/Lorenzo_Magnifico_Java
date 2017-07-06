@@ -155,7 +155,7 @@
     "effectDescription":"At the end of the game, you don’t score points for any of your Encouraged Ventures.",
     "excomunicationEffectsFromJson": {
       "type": "noFinalPointsFromCards",
-      "parameter": "ventureCard",
+      "parameter": "venturesCard",
       "quantity": 0
     }
   },
@@ -175,7 +175,7 @@
     "effectDescription":"At the end of the game, before the Final Scoring, \nyou lose 1 Victory Point for every 5 Victory Points you have.",
     "excomunicationEffectsFromJson": {
       "type": "loseFinalPoints",
-      "parameter": "victoryPoint",
+      "parameter": "victoryPoints",
       "quantity": 0
     }
   },

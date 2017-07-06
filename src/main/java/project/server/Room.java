@@ -233,7 +233,7 @@ public class Room {
                 p.getPersonalBoardReference().setMyTile(tiles.get(0));
                 tiles.remove(tiles.get(0));
             } //todo vedere qua perchè non fa partire partita
-        }
+        } */
         //inizia la partita
         for (PlayerHandler p : getListOfPlayers()) {
 
@@ -416,6 +416,7 @@ public class Room {
             currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
 
             System.out.println("Il file in questo momento è: " + currentFile);
+            System.out.println();
 
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
 
@@ -426,6 +427,7 @@ public class Room {
                 }
 
         } catch (IOException e) {
+            e.printStackTrace();
             e.printStackTrace();
         }
         return null;
@@ -455,5 +457,20 @@ public class Room {
 
     public void setPlayerAllSupportFunctionsMap(Map<Player, AllSupportFunctions> playerAllSupportFunctionsMap) {
         this.playerAllSupportFunctionsMap = playerAllSupportFunctionsMap;
+    }
+
+    public void afterGame() {
+        for ( PlayerHandler player : getListOfPlayers() ){
+            if ( player.isOn() )
+                player.afterMatch();
+        }
+    }
+
+    public void addWinnersToTheFile(String name) {
+        server.addWinnersToTheFile(name);
+    }
+
+    public List<PlayerFile> generateRanking() {
+        return getServer().generateRanking();
     }
 }

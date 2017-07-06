@@ -20,11 +20,10 @@ public abstract class PlayerHandler extends Player {
 
     private transient Room room;
     private transient AllCheckFunctions checkFunctions;
-    final static String NO_AbCTION_CAN_BE_DONE = "no action can be done";
     private LeaderCardRequirements leaderCardRequirements;
-    boolean callPray;
+    private boolean callPray;
     public boolean disconnectedInDraft = false;
-    boolean matchStartedVar = false;
+    private boolean matchStartedVar = false;
 
 
     protected PlayerHandler() {
@@ -517,4 +516,10 @@ public abstract class PlayerHandler extends Player {
     public void setMatchStartedVar(boolean matchStartedVar) {
         this.matchStartedVar = matchStartedVar;
     }
+
+    public abstract void afterMatch();
+
+    public abstract void newGame(String nickname);
+
+    public abstract void takeRanking();
 }

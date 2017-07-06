@@ -49,6 +49,16 @@ class MessagesFromServerHandler {
         map.put(Constants.NOTIFY, this:: notifyPlayer);
         map.put(Constants.WAITING_FOR_YOUR_TURN, this::waitingForYourTurn);
         map.put(Constants.AFTER_GAME, this:: afterGame );
+        map.put(Constants.RECEIVE_STATISTICS, this::receiveStatistics );
+        map.put(Constants.SHOW_RANKING, this:: ranking );
+    }
+
+    private void ranking() {
+        client.ranking();
+    }
+
+    private void receiveStatistics() {
+        client.receiveStatistics();
     }
 
     private void afterGame() {

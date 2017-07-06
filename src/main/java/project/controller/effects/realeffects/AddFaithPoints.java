@@ -5,7 +5,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 
-public class AddFaithPoints implements TakeRoPEffects {
+public class AddFaithPoints implements Effects {
     private int quantity;
 
     public AddFaithPoints (int quantity){

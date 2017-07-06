@@ -1,5 +1,6 @@
 package project.client.ui.cli;
 
+import project.PlayerFile;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
@@ -256,31 +257,39 @@ public class Cli extends AbstractUI {
     }
 
     @Override
+    public void newGameRequest() {
+        clientSetter.newGameRequest();
+    }
+
+    @Override
+    public void terminate() {
+        clientSetter.terminate();
+    }
+
+    @Override
+    public void receiveStatistics(PlayerFile statistics) {
+        context.getpRed().print("Player name: ");context.getpBlue().println(statistics.getPlayerName());
+        context.getpRed().print("Number of matches: ");context.getpBlue().println(statistics.getNumberOfGames());
+        context.getpRed().print("Number of victories: ");context.getpBlue().println(statistics.getNumberOfVictories());
+        context.getpRed().print("Number of defeats: ");context.getpBlue().println(statistics.getNumberOfDefeats());
+    }
+
+    @Override
+    public void showRanking() {
+        clientSetter.showRanking();
+    }
+
+    @Override
+    public void ranking(List<PlayerFile> ranking) {
+        int i = 1;
+        for ( PlayerFile playerFile : ranking ) {
+            context.getpYellow().print(i +") ");receiveStatistics(playerFile);
+            i++;
+        }
+    }
+
+    @Override
     public void waitingForYourTurn() {
-
-     /*   try {//bonus action interrupted
-            if (context instanceof TakeBonusCard || context instanceof BonusHarvesterContext || context instanceof BonusProductionContext) {
-                System.out.println("mando exit");
-                sendExitToBonusAction();
-
-            }
-            //praying interrupted
-            else if (context instanceof ExcomunicationContext) {
-                choiceQueue.add("1");
-                return;
-            }
-
-            else if (context instanceof BothPaymentsVentureCardsContext) {
-                int randomNum = ThreadLocalRandom.current().nextInt(0, 1 + 1);
-                timerDelayed = true;
-                choiceQueue.add(String.valueOf(randomNum));;
-                return;
-            }
-
-        } catch (InputException e) {
-            e.printStackTrace();
-        }       */
-
         context = new WaitingForYourTurnContext(this);
     }
 
@@ -598,9 +607,10 @@ public class Cli extends AbstractUI {
     }
 
     @Override
-    public void newNickname(String nickname) {
-        clientSetter.newNickname(nickname);
+    public void newNickname(String nickanme) {
+        clientSetter.newNickname(nickanme);
     }
+
 
     @Override
     public void prayed() {

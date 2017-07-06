@@ -263,6 +263,7 @@ public class GameActions {
         MilitaryComparator comparator = new MilitaryComparator();
         List<PlayerHandler> militaryStandings = room.getListOfPlayers();
         Collections.sort(militaryStandings, comparator);
+        Collections.reverse(militaryStandings);
 
         int victoryPointsToWinner = 5;
         int victoryPointsToRunnerUp = 2;
@@ -294,6 +295,7 @@ public class GameActions {
         PlayerHandler winner = findWinner();
         System.out.println("IL VINCITORE È: " + winner.getName());
         //winner.YOUWIN();
+        room.addWinnersToTheFile(winner.getName());
         //todo  broadcastNotifications(new Notify("the winner is + " + winner.getName()));
         //todo queste tre righe servono per eliminare la room quando la partita è finita senno i giocatori si possono riconnettere ad una paritta finita
         //todo funziona tutto il metodo?
@@ -308,7 +310,7 @@ public class GameActions {
     }
 
     private void afterGame() {
-        room.broadcastMessage(Constants.AFTER_GAME);
+        room.afterGame();
     }
 
 
@@ -344,6 +346,7 @@ public class GameActions {
         WinnerComparator comparator = new WinnerComparator();
         List<PlayerHandler> finalStandings = room.getListOfPlayers();
         Collections.sort(finalStandings, comparator);
+        Collections.reverse(finalStandings);
         return finalStandings.get(0);
 
     }

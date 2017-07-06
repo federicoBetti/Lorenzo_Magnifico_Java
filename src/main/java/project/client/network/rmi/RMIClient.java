@@ -316,6 +316,26 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
+    public void terminate() {
+
+    }
+
+    @Override
+    public void receiveStatistics() {
+
+    }
+
+    @Override
+    public void showRanking() {
+
+    }
+
+    @Override
+    public void ranking() {
+
+    }
+
+    @Override
     public void prayed() {
         clientSetter.prayed();
     }
@@ -348,6 +368,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void showStatistic() {
 
+    }
+
+    @Override
+    public void newGameRequest() {
+        //to implement
     }
 
     @Override

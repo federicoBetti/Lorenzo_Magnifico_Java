@@ -59,7 +59,23 @@ class ServerDataHandler {
         map.put(Constants.PRAYING_REQUEST_RECEIVED, this:: waitForPraying );
         map.put(Constants.RECONNECT, this:: reconnectClient);
         map.put(Constants.SHOW_STATISTICS, this:: showStatistics );
+        map.put(Constants.NEW_GAME, this:: newGame );
+        map.put(Constants.SHOW_RANKING, this:: takeRanking );
         //todo completare con tutte le stringhe giuste e i metodi
+    }
+
+    private void takeRanking() {
+        socketPlayerHandler.takeRanking();
+    }
+
+    private void newGame() {
+        try {
+            String nickname = (String)objectInputStream.readObject();
+            socketPlayerHandler.newGame(nickname);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void showStatistics() {

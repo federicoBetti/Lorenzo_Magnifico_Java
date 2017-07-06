@@ -1,5 +1,6 @@
 package project.client.ui;
 
+import project.PlayerFile;
 import project.client.clientexceptions.NotAllowedSelection;
 import project.client.network.AbstractClient;
 import project.client.clientexceptions.ClientConnectionException;
@@ -269,8 +270,9 @@ public class ClientSetter {
         ui.matchStarted(roomPlayers,familyColour);
     }
 
-    public void newNickname(String nickname) {
-        client.newNickname(nickname);
+
+    public void newNickname(String username ) {
+        client.newNickname( username );
     }
 
     public void prayed() {
@@ -295,5 +297,25 @@ public class ClientSetter {
 
     public void showStatistic() {
         client.showStatistic();
+    }
+
+    public void newGameRequest() {
+        client.newGameRequest();
+    }
+
+    public void terminate() {
+        client.terminate();
+    }
+
+    public void receiveStatistics(PlayerFile statistics) {
+        ui.receiveStatistics(statistics);
+    }
+
+    public void showRanking() {
+        client.showRanking();
+    }
+
+    public void ranking(List<PlayerFile> ranking) {
+        ui.ranking(ranking);
     }
 }

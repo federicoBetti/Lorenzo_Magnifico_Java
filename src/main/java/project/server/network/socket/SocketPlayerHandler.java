@@ -1,5 +1,7 @@
 package project.server.network.socket;
 
+import com.google.gson.Gson;
+import project.PlayerFile;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
@@ -342,9 +344,18 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     @Override
     public void showStatistics() {
+        Gson gson = new Gson();
         String nickname = getName();
         String statistics = getRoom().takeStatistics(nickname);
-        sendString(statistics);
+        PlayerFile playerFile = gson.fromJson(statistics, PlayerFile.class);
+        sendString(Constants.RECEIVE_STATISTICS);
+        try {
+            objectOutputStream.writeObject(playerFile);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -356,6 +367,37 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void prayed() {
         sendString(Constants.PRAYED);
+    }
+
+    @Override
+    public void afterMatch() {
+        sendString(Constants.AFTER_GAME);
+    }
+
+    @Override
+    public void newGame(String nickname) {
+        try {
+            loginRequestAnswer(nickname);
+            synchronized (token) {
+                token.wait();
+            }
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void takeRanking() {
+        List<PlayerFile> ranking = getRoom().generateRanking();
+
+        try {
+            objectOutputStream.writeObject(Constants.SHOW_RANKING);
+            objectOutputStream.writeObject(ranking);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

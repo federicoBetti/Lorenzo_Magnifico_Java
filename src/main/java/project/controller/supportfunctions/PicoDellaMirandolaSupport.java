@@ -17,7 +17,8 @@ public class PicoDellaMirandolaSupport extends SupportFunctionsDecorator {
     public void payCard(DevelopmentCard cardOnThisFloor, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember) {
       cardOnThisFloor.getCost().picoDellaMirandolaDowngrade();
       allSupportFunctions.payCard(cardOnThisFloor,coinsFee,zoneDiceCost,valueOfFamilyMember);
-       }
+    }
+
     @Override
     public void payVenturesCard(VenturesCard card, Player player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember, int paymentChoosen) {
         card.getVenturesCost().get(paymentChoosen).picoDellaMirandolaDowngrade();

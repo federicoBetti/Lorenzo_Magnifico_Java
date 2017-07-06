@@ -7,7 +7,7 @@ import project.server.network.PlayerHandler;
 /**
  * Created by Rita1 on 09/05/2017.
  */
-public class AddMilitaryPoints implements TakeRoPEffects {
+public class AddMilitaryPoints implements Effects {
 
     private int quantity;
 
