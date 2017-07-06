@@ -41,7 +41,7 @@ public class CouncilContext extends AbstractContext {
 
         pRed.println("The main action is:");
         pBlue.println("[priviledgeNumber(int)-familiarColour]");
-        pRed.print("priviledgeNumber: "); pYellow.println("0, 1, 2, 3, 4, 5 ");
+        pRed.print("priviledgeNumber: "); pYellow.println("0, 1, 2, 3, 4 ");
         pRed.print("Familiar Colour: ");
         for (FamilyMember familyMember : cli.getMyFamilymembers() ){
             if ( !familyMember.isPlayed() )
@@ -57,11 +57,15 @@ public class CouncilContext extends AbstractContext {
         if(!( parameters.length == 2 ))
             throw new InputException();
 
-        if( !(parameters[0].length() == 1 && Character.isDigit(parameters[0].charAt(0))))
+        if( !(parameters[0].length() == 1) && !(Character.isDigit(parameters[0].charAt(0))))
             throw new InputException();
 
-        if (!(Integer.parseInt(parameters[0]) >= 0 && Integer.parseInt(parameters[0]) < 6 ))
-            throw new InputException();
+        try {
+            if (!(Integer.parseInt(parameters[0]) >= 0) && !(Integer.parseInt(parameters[0]) < 5))
+                throw new InputException();
+        } catch (NumberFormatException e ){
+            printHelp();
+        }
 
         checkFamilyMemberColour(parameters[1]);
     }

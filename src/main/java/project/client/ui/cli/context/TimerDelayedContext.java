@@ -38,6 +38,6 @@ public class TimerDelayedContext extends AbstractContext {
 
     @Override
     protected void mainContextMethod(String action) throws InputException, IOException {
-
+        printHelp();
     }
 }

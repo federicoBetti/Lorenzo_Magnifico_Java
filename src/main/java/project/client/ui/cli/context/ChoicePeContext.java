@@ -42,8 +42,12 @@ public class ChoicePeContext extends AbstractContext {
         if( !(Character.isDigit(input.charAt(0))) )
             throw new InputException();
 
-        if (!(Integer.parseInt(input) == 0) && !(Integer.parseInt(input) == 1) )
-            throw new InputException();
+        try {
+            if (!(Integer.parseInt(input) == 0) && !(Integer.parseInt(input) == 1))
+                throw new InputException();
+        }catch (NumberFormatException e ){
+            printHelp();
+        }
     }
 
     @Override

@@ -28,16 +28,16 @@ public class ImmediatePriviledgesContext extends AbstractContext {
     }
 
     @Override
-    public void checkValidInput(String input) throws InputException {
+    public void checkValidInput(String input) throws InputException, NumberFormatException {
         String[] parameters = input.split("-");
 
         if (!(parameters.length == numberOfpriviledges.getQuantityOfDifferentPrivileges()))
             throw new InputException();
 
         for ( String priviledgeNumber: parameters ){
-            if (!(priviledgeNumber.length() == 1 && Character.isDigit(parameters[0].charAt(0))))
+            if (!(priviledgeNumber.length() == 1) && !(Character.isDigit(parameters[0].charAt(0))))
                 throw new InputException();
-            if (!(Integer.parseInt(priviledgeNumber) >= 0 && Integer.parseInt(priviledgeNumber) < 5))
+            if (!(Integer.parseInt(priviledgeNumber) >= 0) && !(Integer.parseInt(priviledgeNumber) < 5))
                 throw new InputException();
             if( priviledgesTakenInArow[Integer.parseInt(priviledgeNumber)] ==  1 )
                 throw new InputException();
@@ -48,8 +48,13 @@ public class ImmediatePriviledgesContext extends AbstractContext {
     }
 
     @Override
-    public void mainContextMethod(String action) throws InputException, IOException {
-        checkValidInput(action);
-        cli.immediatePriviledgeAction(action);
+    public void mainContextMethod(String action) {
+        try {
+            checkValidInput(action);
+            cli.immediatePriviledgeAction(action);
+        } catch (InputException | NumberFormatException e) {
+            printHelp();
+        }
+
     }
 }

@@ -124,7 +124,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
         int diceBonus = personalBoard(player).getBonusOnActions().getTerritoryBonus();
-        int length = personalBoard(player).getTerritories().size() -1;
+        int length = personalBoard(player).getTerritories().size();
         System.out.println(coinsFee);
         System.out.println(zoneDiceCost);
         System.out.println(valueOfFamilyMember);
@@ -135,7 +135,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     @Override
     public boolean checkMilitaryPointsForTerritory(PlayerHandler player, int length) {
-        return player.getScore().getMilitaryPoints() >= player.getRoom().getBoard().getMilitaryPointsForTerritories()[length];
+            return player.getScore().getMilitaryPoints() >= player.getRoom().getBoard().getMilitaryPointsForTerritories()[length];
     }
 
 

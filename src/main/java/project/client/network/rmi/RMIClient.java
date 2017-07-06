@@ -232,7 +232,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void productionAction(String familiarChosen, List<String> buildingCards) {
         try {
-            myServer.productionRequest(myUniqueId,familiarChosen,(LinkedList)buildingCards);
+            myServer.productionRequest(myUniqueId,familiarChosen,buildingCards);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
