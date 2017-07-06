@@ -272,7 +272,7 @@ public class Room {
         int moreCoin = 0;
 
         for (PlayerHandler p : getListOfPlayers() ) {
-            //setResources(p, moreCoin);
+            setResources(p, moreCoin);
             if ( p.isOn() ) {
                 int fauthPoint = 8;
 

@@ -27,8 +27,6 @@ import java.util.*;
 
 public class Server {
 
-    private static final int RMI_PORT = 2;
-
     private ArrayList<Room> rooms;
 
     private SocketServer serverSocket;
