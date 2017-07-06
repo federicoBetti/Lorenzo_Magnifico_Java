@@ -101,7 +101,7 @@ public class Cli extends AbstractUI {
 
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
-        context = new BonusHarvesterContext(bonusHarv, this);
+        context = new BonusHarvesterContext(bonusHarv, this, clientSetter.getUiPersonalBoard().getTerritories());
     }
 
     @Override
@@ -167,7 +167,7 @@ public class Cli extends AbstractUI {
     }
 
     public void harvester() {
-        context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), clientSetter.getUiPersonalBoard().getMyTile());
+        context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), clientSetter.getUiPersonalBoard().getMyTile(), clientSetter.getUiPersonalBoard().getTerritories());
     }
 
     public void goToCouncil() {
@@ -275,14 +275,15 @@ public class Cli extends AbstractUI {
 
     @Override
     public void receiveStatistics(PlayerFile statistics) {
-        context.getpRed().print("Player name: ");
-        context.getpBlue().println(statistics.getPlayerName());
-        context.getpRed().print("Number of matches: ");
-        context.getpBlue().println(statistics.getNumberOfGames());
-        context.getpRed().print("Number of victories: ");
-        context.getpBlue().println(statistics.getNumberOfVictories());
-        context.getpRed().print("Number of defeats: ");
-        context.getpBlue().println(statistics.getNumberOfDefeats());
+        context.getpBlue().print("Player name: ");
+        context.getpRed().println(statistics.getPlayerName());
+        context.getpBlue().print("Number of matches: ");
+        context.getpRed().println(statistics.getNumberOfGames());
+        context.getpBlue().print("Number of victories: ");
+        context.getpRed().println(statistics.getNumberOfVictories());
+        context.getpBlue().print("Number of defeats: ");
+        context.getpRed().println(statistics.getNumberOfDefeats());
+        context.getpRed().println("");
     }
 
     @Override
@@ -308,14 +309,33 @@ public class Cli extends AbstractUI {
     @Override
     public void setConnectionType(String kindOfConnection) {
 
-        try {
-            context.checkValidInput(kindOfConnection);
-            clientSetter.setConnectionType(kindOfConnection);
-        } catch (InputException e) {
-            context.printHelp();
+            try {
+                context.checkValidInput(kindOfConnection);
+                setIpAddress(kindOfConnection);
+            } catch (InputException e) {
+                context.printHelp();
+            }
         }
 
 
+    private boolean checkIP(String ip) {
+        String[] parameters = ip.split(".");
+        if (parameters.length != 4)
+            return false;
+
+        for (String num : parameters)
+            try {
+                if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > 255)
+                    return false;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+
+        return true;
+    }
+
+    private void setIpAddress(String kindOfConnection) {
+        context = new SetIPaddressContext(this, kindOfConnection);
     }
 
     public void choseAndTakeDevCard(String lineFromKeyBoard) {
@@ -628,16 +648,36 @@ public class Cli extends AbstractUI {
         return numberOfPlayers;
     }
 
-    public String getPlayerColor() {
-        return playerColor;
-    }
-
     public void setFirstRound(boolean firstRound) {
         this.firstRound = firstRound;
     }
 
     public FamilyMember[] getMyFamilymembers() {
         return myFamilymembers;
+    }
+
+    public void showTurns() {
+        Turn turn = clientSetter.getUiBoard().getTurn();
+
+        int count = 1;
+        context.getpBlue().println("TURN ORDER: ");
+        for (String nickname : turn.getPlayerName()) {
+            context.getpRed().print(count + ") ");
+            context.getpBlue().println(nickname);
+            count++;
+        }
+    }
+
+    public void setIPaddress(String kindOfConnection, String ip) {
+
+        try {
+            context.checkValidInput(ip);
+        } catch (InputException e) {
+            context.printHelp();
+            return;
+        }
+
+        clientSetter.setConnectionType(kindOfConnection, ip);
     }
 
     private class Keyboard extends Thread {

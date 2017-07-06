@@ -56,4 +56,12 @@ public class Turn implements Serializable{
     public List<String> getPlayersColor() {
         return playersColor;
     }
+
+    public List<String> getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(List<String> playerName) {
+        this.playerName = playerName;
+    }
 }

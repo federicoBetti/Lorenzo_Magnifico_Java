@@ -45,18 +45,18 @@ public class ClientSetter {
         ui.startUI();
     }
 
-    public void setConnectionType(String connectionType) {
+    public void setConnectionType(String connectionType, String IP) {
         switch (connectionType) {
             case "socket":
                 try {
-                    this.client = new SocketClient(this);
+                    this.client = new SocketClient(this, IP);
                 } catch (ClientConnectionException e) {
                     System.out.println("errore di connessione");
                 }
                 break;
             case "RMI":
                 try {
-                    this.client = new RMIClient(this);
+                    this.client = new RMIClient(this, IP);
                 } catch (ClientConnectionException e) {
                     System.out.println("errore di connessione RMI");
                 }
@@ -320,4 +320,5 @@ public class ClientSetter {
     public void ranking(List<PlayerFile> ranking) {
         ui.ranking(ranking);
     }
+
 }

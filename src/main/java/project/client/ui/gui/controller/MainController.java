@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Logger;
 
 
 /**
@@ -197,7 +196,8 @@ public class MainController {
      */
     void setConnectionType(String connectionType, String usernameChosen) {
         this.usernameChosen = usernameChosen;
-        clientSetter.setConnectionType(connectionType);
+        String IP = "127.0.0.1";
+        clientSetter.setConnectionType(connectionType, IP);
     }
 
     /**

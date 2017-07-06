@@ -29,7 +29,7 @@ class Launcher {
         while (true) {
             p.println("1: CLI");
             p.println("2: GUI");
-            String choice = null;
+            String choice;
             int choiceNum = 0;
             try {
                 choice = keyboard.readLine();
