@@ -111,9 +111,6 @@ public class LeaderCardsEffects {
     }
 
     private BonusInteraction lorenzoDeMedici(PlayerHandler player) {
-        if (leaderNameLorenzoMagnifico != null){
-            return doEffect(leaderNameLorenzoMagnifico,player);
-        }
         List<LeaderCard> leaderPlayed = new ArrayList<>();
         for (PlayerHandler p: player.getRoom().getListOfPlayers()){
             for (LeaderCard l: p.getPersonalBoardReference().getMyLeaderCard())

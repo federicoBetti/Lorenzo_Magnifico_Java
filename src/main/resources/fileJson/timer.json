@@ -1,6 +1,6 @@
 {
   "startMatchTimerName":"timer-start-match",
-  "delayTimerStartMatch":5000,
+  "delayTimerStartMatch":50000,
 
   "skipTurnTimerName":"timer-finish-turn",
   "delayTimerSkipTurn":100000,

@@ -74,6 +74,7 @@ class MessagesFromServerHandler {
     }
 
     private void actionDone() {
+        System.err.println("ACTION DONE ON TIME ARRIVED");
         //serve a consumare quello che viene mandato in piu in caso di scelta con il both payment quando muore il thread di ascolto.
     }
 

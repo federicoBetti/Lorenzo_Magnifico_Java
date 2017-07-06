@@ -26,6 +26,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by raffaelebongo on 01/06/17.
  */
+
 public class Cli extends AbstractUI {
 
     private ClientSetter clientSetter; //all the operation have to pass across this class
@@ -152,6 +153,7 @@ public class Cli extends AbstractUI {
             privilegesChosen.add(Integer.parseInt(priviledge));
 
         clientSetter.immediatePriviledgeAction(privilegesChosen);
+
     }
 
     @Override
@@ -327,7 +329,6 @@ public class Cli extends AbstractUI {
         }
     }
 
-    //todo aggiustare come parametri giusti la chiamata
     public void chooseProductionParameters(String lineFromKeyBoard) {
 
         try {
@@ -392,39 +393,17 @@ public class Cli extends AbstractUI {
         clientSetter.discardLeaderCard(name);
     }
 
-    public void choosePayment(String payment) {
-        try {
-            context.checkValidInput(payment);
-        } catch (InputException e) {
-            context.printHelp();
-            return;
-        }
-        clientSetter.sendChoicePaymentVc(Integer.parseInt(payment));
-    }
-
     public void sendExitToBonusAction() throws InputException {
         clientSetter.sendExitToBonusAction();
     }
 
-    public void showProductionZone() {
-        //to implement
-    }
-
-    public void showCouncilZone() {
-        List<Council> council = clientSetter.getUiBoard().getCouncilZone();
-
-    }
-
-    public void showMarketZone() {
-        //to implement
-    }
-
     public void showExcomunicationsTiles() {
-        int i = 0;
+        int i = 1;
         for (ExcommunicationZone exZone : clientSetter.getUiBoard().getExcommunicationZone()) {
             context.getpRed().print(i + ") ");
-            context.getpYellow().println(exZone.getCardForThisPeriod().getEffectDescription());
+            context.getpBlue().println(exZone.getCardForThisPeriod().getEffectDescription());
             i++;
+            context.getpBlue().println("");
         }
     }
 
@@ -551,6 +530,7 @@ public class Cli extends AbstractUI {
                 cardChoosen = choiceQueue.take();
                 context.checkValidInput(cardChoosen);
                 choice = false;
+                context.getpBlue().println("Leader card choosen! Wait for the new interaction...");
                 return cardChoosen;
             } catch (InterruptedException e) {
                 e.printStackTrace();

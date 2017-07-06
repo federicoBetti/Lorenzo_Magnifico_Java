@@ -64,7 +64,7 @@
       "type":"buildingCard",
       "name":"stonemasonsShop",
       "period":1,
-      "choicePe": true,
+      "choicePe": false,
       "cost":[{
         "stoneRequired":2,
         "woodRequired":0,
