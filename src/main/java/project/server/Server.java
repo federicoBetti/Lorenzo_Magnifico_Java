@@ -105,7 +105,7 @@ public class Server {
 
                     if (!room.draftTime) {
                         player.setOn(true);
-                        checkAndStartTheTimer(room, player);
+                        room.setTimer(checkAndStartTheTimer(room, player));
                     } else {
                         player.disconnectedInDraft = true;
                     }
@@ -124,6 +124,7 @@ public class Server {
 
                     if (room.isFull()) {
                         player.tokenNotify();
+                        room.getTimer().cancel();
                         startMatch(room);
                     }
                     return;
@@ -425,10 +426,12 @@ public class Server {
 
 
     //todo togliere player
-    private void checkAndStartTheTimer(Room room, PlayerHandler player) {
+    private Timer checkAndStartTheTimer(Room room, PlayerHandler player) {
         if (room.numberOfPlayerOn() == 2) {
-            myTimerStartMatch(room, this.timerSettings, player);
+            return myTimerStartMatch(room, this.timerSettings, player);
         }
+        Timer timer = new Timer();
+        return timer;
     }
 
     private void startMatch(Room room) {
@@ -456,7 +459,7 @@ public class Server {
         return true;
     }
 
-    void myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
+    Timer myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -471,6 +474,7 @@ public class Server {
         //todo far partire timer
         Timer timer = new Timer(timerSettings.getStartMatchTimerName());
         timer.schedule(timerTask, timerSettings.getDelayTimerStartMatch());
+        return timer;
     }
 
     public TimerSettings getTimerSettings() {

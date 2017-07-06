@@ -51,6 +51,8 @@ public class Room {
 
     TimerSettings timerSettings;
 
+    Timer timer;
+
     PlayerHandler lastPlayer;
     public boolean draftTime = false;
 
@@ -64,6 +66,7 @@ public class Room {
         this.server = server;
         timerSettings = server.getTimerSettings();
         maxPlayers = 4;
+        timer = new Timer();
     }
 
     boolean isFull() {
@@ -472,5 +475,13 @@ public class Room {
 
     public List<PlayerFile> generateRanking() {
         return getServer().generateRanking();
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
     }
 }

@@ -28,6 +28,6 @@ public class WaitingForMatchStart extends AbstractContext {
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-
+        printHelp();
     }
 }

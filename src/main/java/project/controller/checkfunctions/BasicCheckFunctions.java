@@ -135,7 +135,7 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     @Override
     public boolean checkMilitaryPointsForTerritory(PlayerHandler player, int length) {
-        return player.getScore().getMilitaryPoints() >= player.getRoom().getBoard().getMilitaryPointsForTerritories()[length];
+            return player.getScore().getMilitaryPoints() >= player.getRoom().getBoard().getMilitaryPointsForTerritories()[length];
     }
 
 

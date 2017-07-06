@@ -16,7 +16,7 @@ public class MatchStartedContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        pBlue.println("MATCH STARTED!");
+        pBlue.println("MATCH STARTED! Wait for your turn...");
     }
 
     @Override
@@ -26,6 +26,6 @@ public class MatchStartedContext extends AbstractContext {
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-
+        printHelp();
     }
 }

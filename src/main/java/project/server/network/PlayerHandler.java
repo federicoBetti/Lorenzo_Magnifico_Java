@@ -1,5 +1,7 @@
 package project.server.network;
 
+import com.google.gson.Gson;
+import project.PlayerFile;
 import project.controller.cardsfactory.*;
 import project.controller.checkfunctions.AllCheckFunctions;
 import project.controller.checkfunctions.BasicCheckFunctions;
@@ -13,6 +15,7 @@ import project.server.GameActions;
 import project.server.Room;
 import project.server.network.exception.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -177,8 +180,7 @@ public abstract class PlayerHandler extends Player {
         for (Position p : zone) {
             if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour)) throw new CantDoActionException();
         }
-        if (room.getListOfPlayers().size() < 3 && !zone.isEmpty())
-            throw new CantDoActionException();
+        if (room.numberOfPlayerOn() > 2 && !zone.isEmpty()) throw new CantDoActionException();
 
         return zone.size();
     }
@@ -488,8 +490,6 @@ public abstract class PlayerHandler extends Player {
 
     public abstract int chooseTile(ArrayList<Tile> tiles);
 
-    public abstract void showStatistics();
-
     public boolean isCallPray() {
         return callPray;
     }
@@ -523,4 +523,17 @@ public abstract class PlayerHandler extends Player {
     public abstract void newGame(String nickname);
 
     public abstract void takeRanking();
+
+    public void showStatistics() {
+
+        Gson gson = new Gson();
+        String nickname = getName();
+        String statistics = getRoom().takeStatistics(nickname);
+        PlayerFile playerFile = gson.fromJson(statistics, PlayerFile.class);
+
+        sendStatistic(playerFile);
+
+    }
+
+    protected abstract void sendStatistic(PlayerFile playerFile);
 }

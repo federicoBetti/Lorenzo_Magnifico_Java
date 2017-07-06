@@ -29,7 +29,24 @@ public class ProductionContext extends AbstractContext {
         map.put(CliConstants.HELP, this::printHelp);
         map.put(CliConstants.SHOW_PRODUCTION_ZONE, this:: showProductionZone );
         map.put(CliConstants.SHOW_BONUS_TILE, this:: showBonusTile );
+        map.put(CliConstants.SHOW_BUILDING_CARDS, this:: showBuildingCards );
         printHelp();
+    }
+
+    private void showBuildingCards() {
+        int count1 = 1;
+        for (BuildingCard card : buildings) {
+            pBlue.print(count1 + ") Card name: ");
+            pRed.println(card.getName());
+            pBlue.println("Permanent Effects: ");
+            int count2 = 1;
+            for (Effects effect : card.getPermanentCardEffects()) {
+                pBlue.print(count2 + ") ");
+                pYellow.println(effect.toScreen());
+                count2++;
+            }
+            count1++;
+        }
     }
 
     private void showBonusTile() {
@@ -61,6 +78,8 @@ public class ProductionContext extends AbstractContext {
             i++;
         }
     }
+
+
 
     @Override
     public void printHelp() {

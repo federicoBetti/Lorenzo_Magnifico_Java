@@ -5,6 +5,7 @@ import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
+import project.controller.cardsfactory.ExcommunicationTile;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
@@ -81,7 +82,7 @@ public class Cli extends AbstractUI {
         context = new MainContext(this);
     }
 
-    public void actionOk( ) {
+    public void actionOk() {
         if (context instanceof TimerDelayedContext) {
             return;
         }
@@ -133,10 +134,14 @@ public class Cli extends AbstractUI {
 
     }
 
-    public void takeBonusCardParameters(String input) throws InputException {
-        context.checkValidInput(input);
-        String[] parameters = input.split("-");
-        clientSetter.takeBonusCardAction(Integer.parseInt(parameters[0]), parameters[1]);
+    public void takeBonusCardParameters(String input) {
+        try {
+            context.checkValidInput(input);
+            String[] parameters = input.split("-");
+            clientSetter.takeBonusCardAction(Integer.parseInt(parameters[0]), parameters[1]);
+        } catch (InputException | NumberFormatException e) {
+            context.printHelp();
+        }
     }
 
 
@@ -228,7 +233,7 @@ public class Cli extends AbstractUI {
             } else if (context instanceof ImmediatePriviledgesContext) {
                 sendExitToBonusAction();
 
-            }  else if ( context instanceof LeaderCardDraftContext || context instanceof TileDraftContext || context instanceof ChoicePeContext ) {
+            } else if (context instanceof LeaderCardDraftContext || context instanceof TileDraftContext || context instanceof ChoicePeContext) {
                 choiceQueue.add("-1");
                 context = new TimerDelayedContext(this);
                 return;
@@ -268,10 +273,14 @@ public class Cli extends AbstractUI {
 
     @Override
     public void receiveStatistics(PlayerFile statistics) {
-        context.getpRed().print("Player name: ");context.getpBlue().println(statistics.getPlayerName());
-        context.getpRed().print("Number of matches: ");context.getpBlue().println(statistics.getNumberOfGames());
-        context.getpRed().print("Number of victories: ");context.getpBlue().println(statistics.getNumberOfVictories());
-        context.getpRed().print("Number of defeats: ");context.getpBlue().println(statistics.getNumberOfDefeats());
+        context.getpRed().print("Player name: ");
+        context.getpBlue().println(statistics.getPlayerName());
+        context.getpRed().print("Number of matches: ");
+        context.getpBlue().println(statistics.getNumberOfGames());
+        context.getpRed().print("Number of victories: ");
+        context.getpBlue().println(statistics.getNumberOfVictories());
+        context.getpRed().print("Number of defeats: ");
+        context.getpBlue().println(statistics.getNumberOfDefeats());
     }
 
     @Override
@@ -282,8 +291,9 @@ public class Cli extends AbstractUI {
     @Override
     public void ranking(List<PlayerFile> ranking) {
         int i = 1;
-        for ( PlayerFile playerFile : ranking ) {
-            context.getpYellow().print(i +") ");receiveStatistics(playerFile);
+        for (PlayerFile playerFile : ranking) {
+            context.getpYellow().print(i + ") ");
+            receiveStatistics(playerFile);
             i++;
         }
     }
@@ -312,11 +322,9 @@ public class Cli extends AbstractUI {
             context.checkValidInput(lineFromKeyBoard);
             String[] parameters = lineFromKeyBoard.split("-");
             clientSetter.takeDevCard(parameters[0], Integer.parseInt(parameters[1]), parameters[2]);
-        } catch (InputException e) {
+        } catch (InputException | NumberFormatException e) {
             context.printHelp();
         }
-
-
     }
 
     //todo aggiustare come parametri giusti la chiamata
@@ -353,7 +361,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(lineFromKeyBoard);
             String[] parameters = lineFromKeyBoard.split("-");
             clientSetter.marketAction(Integer.parseInt(parameters[0]), parameters[1]);
-        } catch (InputException e) {
+        } catch (InputException | NumberFormatException e) {
             context.printHelp();
         }
     }
@@ -412,10 +420,11 @@ public class Cli extends AbstractUI {
     }
 
     public void showExcomunicationsTiles() {
-        ExcommunicationZone[] toPrint = clientSetter.getUiBoard().getExcommunicationZone();
-        for (int i = 0; i < 3; i++) {
+        int i = 0;
+        for (ExcommunicationZone exZone : clientSetter.getUiBoard().getExcommunicationZone()) {
             context.getpRed().print(i + ") ");
-            context.getpYellow().println(toPrint[i].getCardForThisPeriod().getExcommunicationEffect().toScreen());
+            context.getpYellow().println(exZone.getCardForThisPeriod().getEffectDescription());
+            i++;
         }
     }
 
@@ -458,7 +467,7 @@ public class Cli extends AbstractUI {
         context = new DiscardLeaderCardAmaContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
-    public void playLeaderCardAma(List<LeaderCard> leaderCards ) {
+    public void playLeaderCardAma(List<LeaderCard> leaderCards) {
         context = new PlayLeadercardAmaContext(this, leaderCards);
     }
 
@@ -492,13 +501,13 @@ public class Cli extends AbstractUI {
 
         String effectChoosen;
 
-        while (true){
+        while (true) {
             try {
                 effectChoosen = choiceQueue.take();
                 context.checkValidInput(effectChoosen);
                 choice = false;
                 return Integer.parseInt(effectChoosen);
-            } catch (InterruptedException | InputException | NumberFormatException e ) {
+            } catch (InterruptedException | InputException | NumberFormatException e) {
                 context.printHelp();
             }
         }
@@ -526,7 +535,7 @@ public class Cli extends AbstractUI {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InputException e) {
-               context.printHelp();
+                context.printHelp();
             }
         }
     }
@@ -594,9 +603,8 @@ public class Cli extends AbstractUI {
                 break;
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            } catch (InputException e) {
+            } catch (InputException | NumberFormatException e) {
                 context.printHelp();
-                context.getpBlue().println("Bonus Tile exceptionnnnnchoosen! Wait for the other players'choice");
             }
         }
 

@@ -111,14 +111,14 @@ public class TowersContext extends AbstractContext {
     }
 
     @Override
-    public void checkValidInput(String input) throws InputException {
+    public void checkValidInput(String input) throws InputException, NumberFormatException {
         String[] parameters = input.split("-");
 
         if(!( parameters.length == 3 ))
             throw new InputException();
 
         try {
-            if (!(Integer.parseInt(parameters[1]) >= 0 && Integer.parseInt(parameters[1]) <= 3))
+            if (Integer.parseInt(parameters[1]) < 0 || Integer.parseInt(parameters[1]) > 3)
                 throw new InputException();
         }
         catch (NumberFormatException e){

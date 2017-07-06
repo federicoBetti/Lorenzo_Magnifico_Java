@@ -116,7 +116,7 @@ public class BasicCheckFunctionsTest {
         ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
         assertEquals(false,ret);
 
-        p.getScore().setMilitaryPoints(7);
+        p.getScore().setMilitaryPoints(12);
         ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
         assertEquals(true,ret);
 

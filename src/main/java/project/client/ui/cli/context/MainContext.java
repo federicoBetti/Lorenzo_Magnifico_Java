@@ -16,8 +16,6 @@ public class MainContext extends AbstractContext {
     public MainContext(Cli cli){
         super(cli);
         cli.setFirstRound(false);
-        //map.put(CliConstants.CHAT, this:: chat );
-        //map.put(CliConstants.GAME_REPORT, this::gameReport);
         map.put(CliConstants.SHOW_POINTS, this::showPoints );
         map.put(CliConstants.SHOW_EXCOMUNICATION_TILES, this:: showExcomunicationsTiles );
         map.put(CliConstants.SHOW_PERSONAL_BOARD, this:: showPersonalBoard );
@@ -92,17 +90,6 @@ public class MainContext extends AbstractContext {
         cli.showPoints();
     }
 
-  /*  private void gameReport() {
-        //to implement
-    }
-
-
-    private void chat(){
-        //to implement
-    }
-    */
-
-
     @Override
     public void checkValidInput(String input) throws InputException {
 
@@ -110,7 +97,7 @@ public class MainContext extends AbstractContext {
 
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
-
+        printHelp();
     }
 
 }

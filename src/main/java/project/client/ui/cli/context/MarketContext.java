@@ -53,7 +53,7 @@ public class MarketContext extends AbstractContext {
     }
 
     @Override
-    public void checkValidInput(String input) throws InputException {
+    public void checkValidInput(String input) throws InputException, NumberFormatException {
         String[] parameters = input.split("-");
 
         if(!( parameters.length == 2 )) {
@@ -68,10 +68,6 @@ public class MarketContext extends AbstractContext {
                 throw new InputException();
             }
         }
-
-        else if ( cli.getNumberOfPlayers() == 2 )
-            if( Integer.parseInt(parameters[0]) > 3 )
-                throw new InputException();
 
         checkFamilyMemberColour(parameters[1]);
     }

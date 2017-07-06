@@ -1,5 +1,6 @@
 package project.server.network.rmi;
 
+import project.PlayerFile;
 import project.client.network.rmi.RMIServerToClientInterface;
 import project.controller.Constants;
 import project.controller.cardsfactory.BuildingCard;
@@ -383,6 +384,11 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void showStatistics() {
+
+    }
+
+    @Override
+    protected void sendStatistic(PlayerFile playerFile) {
 
     }
 
