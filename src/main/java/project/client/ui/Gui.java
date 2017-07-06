@@ -211,7 +211,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void afterGame() {
-
+        mainController.afterGame();
     }
 
     @Override

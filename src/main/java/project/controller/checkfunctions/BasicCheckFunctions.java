@@ -53,6 +53,9 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
 
     private boolean checkCardCostCharacter(CharacterCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+        if (player.getPersonalBoardReference().getCharacters().size() == Constants.MAX_CARDS_NUMBER)
+            return false;
+
         int coinsMore = 0;
         int coinsBonus = personalBoard(player).getBonusOnActions().getCharactersBonus().getCoinsBonus();
         int diceBonus = personalBoard(player).getBonusOnActions().getCharactersBonus().getDiceBonus();
@@ -73,6 +76,9 @@ public class BasicCheckFunctions implements AllCheckFunctions{
     }
 
     private boolean checkCardCostBuilding(BuildingCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
+        if (player.getPersonalBoardReference().getTerritories().size() == Constants.MAX_CARDS_NUMBER)
+            return false;
+
         int coinsMore = 0;
         int diceBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getDiceBonus();
         int woodBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getWoodBonus();
@@ -87,6 +93,9 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         int coinsMore = 0;
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
+
+        if (player.getPersonalBoardReference().getVentures().size() == Constants.MAX_CARDS_NUMBER)
+            return Constants.CANT_USE_ANY_PAYMENT;
 
         int diceBonus = personalBoard(player).getBonusOnActions().getVenturesBonus();
         boolean[] canTakeCardFromEffect = new boolean[2];
@@ -125,6 +134,8 @@ public class BasicCheckFunctions implements AllCheckFunctions{
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
         int diceBonus = personalBoard(player).getBonusOnActions().getTerritoryBonus();
         int length = personalBoard(player).getTerritories().size();
+        if (length == Constants.MAX_CARDS_NUMBER)
+            return false;
         System.out.println(coinsFee);
         System.out.println(zoneDiceCost);
         System.out.println(valueOfFamilyMember);

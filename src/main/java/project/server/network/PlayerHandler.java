@@ -49,6 +49,7 @@ public abstract class PlayerHandler extends Player {
      */
     protected void clientTakeDevelopmentCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException {
         if (familyM == null) throw new CantDoActionException();
+
         Position[] tower;
         DevelopmentCard card;
         int diceCost;
@@ -64,6 +65,7 @@ public abstract class PlayerHandler extends Player {
         zone = getZone(towerColor, floor);
         canPlaceFamiliar = checkFunctions.checkPosition(floor, tower, familyM);
         towerOccupied = checkFunctions.checkTowerOccupied((Tower[]) tower);
+
 
         if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {//todo un giocatore non puo prendere piu di 6 carte dello stetsso tipo
             int paymentChosen = checkOnVenturesCost(card, this, towerOccupied, diceCost, diceValueOfFamiliar);
@@ -91,7 +93,6 @@ public abstract class PlayerHandler extends Player {
     }
 
     protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {
-        System.out.println("SONO IN CLIENT TAKE DEV CARD");
         if (!(returnFromEffect.getKindOfCard().equals(Constants.ALL_COLOURS) || returnFromEffect.getKindOfCard().equals(towerColour)))
             throw new CantDoActionException();
 

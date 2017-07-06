@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * Created by federico on 26/05/17.
+ * class used to apply effect of downgrade type of excommunciation
  */
 public class DowngradeEffect implements Effects, Serializable {
 

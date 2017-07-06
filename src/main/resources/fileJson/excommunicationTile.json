@@ -105,7 +105,7 @@
     "effectDescription":"Each time you take a Venture Card (through the action space or as a Card effect), your action\n receives a -4 reduction of its value. You may still spend servants to increase the action\n value and you must apply your Card’s effects.",
     "excomunicationEffectsFromJson": {
       "type": "downgrade",
-      "parameter": "ventureCard",
+      "parameter": "venturesCard",
       "quantity": 4
     }
   },

@@ -6,7 +6,7 @@ package project.client.ui.gui.controller;
 public enum SceneType {
     MAIN,
     TOWERS,
-    MARKET, HARVESTER, PERSONAL_BOARD, PRODUCTION, COUNCIL, LEADER;
+    MARKET, HARVESTER, PERSONAL_BOARD, PRODUCTION, COUNCIL, LEADER, AFTER_GAME;
 
 
 }

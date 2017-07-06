@@ -272,13 +272,14 @@ public class MainController {
      * @param privilegeSelected array that indicates the privileges you want to take
      */
     void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
-        if (endTurnContext){
-            Platform.runLater(() -> leaderCardController.endTurnContext());
-        }
         actionBonusOn = false;
 
         Runnable a = () -> clientSetter.immediatePriviledgeAction(privilegeSelected);;
         new Thread(a).start();
+
+        if (endTurnContext){
+            loginBuilder.setScene(SceneType.LEADER,SceneType.PERSONAL_BOARD);
+        }
     }
 
     /**
@@ -767,7 +768,6 @@ public class MainController {
         Platform.runLater(() -> {
             loginBuilder.writeOnMyChat("you can't perform this action\n");
             loginBuilder.popUp("you can't do this action");
-            myTurn = false;
         });
     }
 
@@ -816,7 +816,24 @@ public class MainController {
 
     }
 
+    /**
+     *
+     *setter
+     * @return usernamen of the player
+     */
     public String getUsernameChosen() {
         return usernameChosen;
+    }
+
+    /**
+     * sending a request of a new match at the end of the game
+     */
+    public void newGame() {
+        clientSetter.newGameRequest();
+    }
+
+    public void afterGame() {
+        System.err.println("mettoo l'after game context");
+        Platform.runLater(() -> loginBuilder.setScene(SceneType.AFTER_GAME,SceneType.MAIN));
     }
 }

@@ -342,6 +342,10 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.ranking(ranking);
     }
 
+    @Override
+    public void afterMatch() throws RemoteException {
+        clientSetter.afterGame();
+    }
 
 
     @Override

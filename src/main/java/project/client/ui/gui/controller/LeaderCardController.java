@@ -115,7 +115,6 @@ public class LeaderCardController extends AbstractController {
     private void leaderCardChosen(String name) {
         int index = findIndex(name);
         if (!leaderCardSelected[index]){
-            System.out.println("cambio selezione");
             unselectAllCards();
             leaderCardSelected[index] = true;
             ImageView imageView = arrayOfLeaderCard.get(index).getImage();

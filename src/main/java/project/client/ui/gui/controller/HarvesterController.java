@@ -2,10 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -37,6 +34,8 @@ public class HarvesterController extends AbstractController {
     @FXML
     private  RadioButton familiarNull;
 
+    @FXML
+    private ToggleGroup familiar;
 
     @FXML
     private Button submit;
@@ -178,7 +177,7 @@ public class HarvesterController extends AbstractController {
 
     public void refresh(){
         super.refresh();
-
+        super.unselectRadioButton(familiar);
         chatArea.setText(loginBuilder.getChat().toString());
 
         if (positionSelected){

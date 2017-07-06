@@ -13,6 +13,6 @@
             <Image url="@../../../../../../../Scaricati/photo5976785436263164165.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="98.0" layoutY="639.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="171.0" text="New Game" />
+      <Button layoutX="98.0" layoutY="639.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="171.0" text="New Game" onAction="#newGame"/>
    </children>
 </AnchorPane>

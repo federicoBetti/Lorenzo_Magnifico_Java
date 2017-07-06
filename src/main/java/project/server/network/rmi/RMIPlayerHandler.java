@@ -410,7 +410,11 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     @Override
     public void afterMatch() {
-
+        try {
+            myClient.afterMatch();
+        } catch (RemoteException e) {
+            this.setOn(false);
+        }
     }
 
     @Override

@@ -71,4 +71,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void sendStatistics(PlayerFile playerFile) throws RemoteException;
 
     void sendRanking(List<PlayerFile> ranking) throws RemoteException;
+
+    void afterMatch() throws RemoteException;
 }

@@ -47,6 +47,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
     private AnchorPane councilScene;
     private AnchorPane leaderScene;
     private AnchorPane draftScene;
+    private AnchorPane endGameScene;
 
     private HarvesterController harvesterController;
     private GeneralMainGameController generalMainGameController;
@@ -56,6 +57,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
     private PersonalBoardController personalBoardController;
     private ProductionController productionController;
     private TowersController towersController;
+    private EndGameController endGameController;
 
     private SceneType lastScene;
     private String card;
@@ -165,6 +167,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         inizializzaPersonalBoard();
         inizializzaProduction();
         inizializzaLeaderCard();
+        inizializzaEndGame();
         System.out.println("finita inizializzazione");
     }
 
@@ -317,6 +320,23 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             productionController.setLoginBuilder(this);
             productionController.setMainController(mainController);
             productionController.uploadImages();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void inizializzaEndGame() {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/endMatch.fxml"));
+            endGameScene = (AnchorPane) loader.load();
+
+            endGameController = loader.getController();
+            endGameController.setLoginBuilder(this);
+            endGameController.setMainController(mainController);
+            endGameController.uploadImages();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -536,6 +556,10 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             case LEADER: {
                 leaderCardController.refresh();
                 rootLayoutMainGame.setCenter(leaderScene);
+                break;
+            }
+            case AFTER_GAME:{
+                rootLayoutMainGame.setCenter(endGameScene);
                 break;
             }
             default:

@@ -2,10 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import project.model.Market;
@@ -95,6 +92,8 @@ public class MarketController extends AbstractController {
 
     @FXML
     private Label chatArea;
+    @FXML
+    private ToggleGroup familiar;
 
     public MarketController(){
         super();
@@ -120,6 +119,7 @@ public class MarketController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
+        super.unselectRadioButton(familiar);
         lastFamiliarPlaced.setImage(null);
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiliarPlaced.setImage(null);

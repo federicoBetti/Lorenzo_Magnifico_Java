@@ -23,6 +23,7 @@ public class PopUpController {
 
     public void setLabel(String labelMessage) {
         message = new Text(labelMessage);
+        message.setFont(new Font("Lucida Blackletter", 25.0));
         boxMessage.getChildren().add(message);
     }
 

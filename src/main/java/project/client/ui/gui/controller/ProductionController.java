@@ -2,10 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -113,6 +110,8 @@ public class ProductionController extends AbstractController {
     private int diceValueBonus;
     @FXML
     private Label chatArea;
+    @FXML
+    private ToggleGroup familiar;
 
 
     public ProductionController() {
@@ -179,6 +178,7 @@ public class ProductionController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
+        super.unselectRadioButton(familiar);
         chatArea.setText(loginBuilder.getChat().toString());
 
         if (positionSelected) {

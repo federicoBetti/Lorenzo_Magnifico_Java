@@ -2,10 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -78,6 +75,7 @@ public abstract class AbstractController {
     public void refresh(){
         familiarChosen = "";
     }
+
 
     @FXML
     void goToMainGame(ActionEvent actionEvent) {
@@ -164,9 +162,13 @@ public abstract class AbstractController {
                 nameOfTerritoryCard.get(i);
             } catch (IndexOutOfBoundsException e) {
                 String nameOfNewCard = territoryCards.get(i).getName();
+                if (i>5){
+                    System.err.println(nameOfNewCard);
+                }
                 nameOfTerritoryCard.add(nameOfNewCard);
                 ImageView imageView = imageTerritoryCard.get(i);
                 imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
+
             }
         }
     }
@@ -344,5 +346,11 @@ public abstract class AbstractController {
             placeFamiliar(allPosition, familiarBox);
             return true;
         }
+    }
+
+    public void unselectRadioButton(ToggleGroup familiar) {
+        RadioButton rb = (RadioButton) familiar.getSelectedToggle();
+        if (rb != null)
+            rb.setSelected(false);
     }
 }

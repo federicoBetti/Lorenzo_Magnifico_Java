@@ -168,76 +168,12 @@ public class Room {
         //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
 
-        //todo aggiungere questa parte per il draft
-
         //draft leader
-
-/*
-        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
-
-        for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
-            ListIterator<ArrayList<LeaderCard>> leaderIterator = listsForDraft.listIterator();
-            ListIterator<PlayerHandler> playerIterator = playerInTheMatch.listIterator();
-            String leaderName;
-
-            while (leaderIterator.hasNext() && playerIterator.hasNext()) {
-                PlayerHandler player = playerIterator.next();
-                ArrayList<LeaderCard> leaders = leaderIterator.next();
-                if ( player.isOn() ) {
-                    Timer timer = gameActions.myTimerActions(player);
-                    leaderName = player.leaderCardChosen(leaders);
-                    timer.cancel();
-
-                    if ( leaderName.equals("-1")){
-                        System.out.println("SONO QUI");
-                        player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
-                        leaders.remove(leaders.get(0));
-                        continue;
-                    }
-
-                    System.out.println("DRAFT NORMALE");
-                    LeaderCard leaderToAdd = getLeader(leaderName, leaders);
-                    player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
-                    leaders.remove(leaderToAdd);
-                }
-
-                else {
-                    player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
-                    leaders.remove(leaders.get(0));
-                }
-            }
-            listsForDraft = shiftLeaderList(listsForDraft);
-        }       */
+        leaderDraft(playerInTheMatch);
 
         //draft tile
+        tileDraft(playerInTheMatch);
 
-        ArrayList<Tile> tiles = fillListTile();
-        ListIterator<PlayerHandler> iterator = playerInTheMatch.listIterator();
-        while (iterator.hasNext())
-            iterator.next();
-
-        while (iterator.hasPrevious()) {
-            PlayerHandler p = iterator.previous();
-            if (p.isOn()) {
-                Timer timer = gameActions.myTimerActions(p);
-                int tileId = p.chooseTile(tiles);
-                timer.cancel();
-                if (tileId == -1) {
-                    System.out.println("Sono disconnesso è piglio la prima tile che capita");
-                    p.getPersonalBoardReference().setMyTile(tiles.get(0));
-                    tiles.remove(tiles.get(0));
-                    continue;
-                }
-
-                System.out.println("ha scelto la tile numero " + tileId);
-                Tile tile = getTrueTile(tileId, tiles);
-                p.getPersonalBoardReference().setMyTile(tile);
-                tiles.remove(tile);
-            } else {
-                p.getPersonalBoardReference().setMyTile(tiles.get(0));
-                tiles.remove(tiles.get(0));
-            } //todo vedere qua perchè non fa partire partita
-        }
         //inizia la partita
         for (PlayerHandler p : getListOfPlayers()) {
 
@@ -273,10 +209,10 @@ public class Room {
 
         for (PlayerHandler p : getListOfPlayers() ) {
             //setResources(p, moreCoin);
+            //todo rinizializzare la personal board
             if ( p.isOn() ) {
                 int fauthPoint = 8;
-
-
+                System.err.println("numero di carte territorio: " + p.getPersonalBoardReference().getTerritories().size());
                 Configuration configuration = new Configuration();
                 configuration.loadTerritoryCardForTest(p.getPersonalBoardReference());
                 configuration.loadBuildingCardForTest(p.getPersonalBoardReference());
@@ -300,6 +236,78 @@ public class Room {
 
 
         gameActions.firstPlayerTurn();
+
+    }
+
+    private void tileDraft(List<PlayerHandler> playerInTheMatch) {
+
+        ArrayList<Tile> tiles = fillListTile();
+        ListIterator<PlayerHandler> iterator = playerInTheMatch.listIterator();
+        while (iterator.hasNext())
+            iterator.next();
+
+        while (iterator.hasPrevious()) {
+            PlayerHandler p = iterator.previous();
+            if (p.isOn()) {
+                Timer timer = gameActions.myTimerActions(p);
+                int tileId = p.chooseTile(tiles);
+                timer.cancel();
+                if (tileId == -1) {
+                    System.out.println("Sono disconnesso è piglio la prima tile che capita");
+                    p.getPersonalBoardReference().setMyTile(tiles.get(0));
+                    tiles.remove(tiles.get(0));
+                    continue;
+                }
+
+                System.out.println("ha scelto la tile numero " + tileId);
+                Tile tile = getTrueTile(tileId, tiles);
+                p.getPersonalBoardReference().setMyTile(tile);
+                tiles.remove(tile);
+            } else {
+                p.getPersonalBoardReference().setMyTile(tiles.get(0));
+                tiles.remove(tiles.get(0));
+            } //todo vedere qua perchè non fa partire partita
+        }
+    }
+
+    private void leaderDraft(List<PlayerHandler> playerInTheMatch) {
+
+        int i;
+        ArrayList<ArrayList<LeaderCard>> listsForDraft = getListOfLeader();
+
+        for (i = 0; i < Constants.LEADER_CARD_NUMBER_PER_PLAYER; i++) {
+            ListIterator<ArrayList<LeaderCard>> leaderIterator = listsForDraft.listIterator();
+            ListIterator<PlayerHandler> playerIterator = playerInTheMatch.listIterator();
+            String leaderName;
+
+            while (leaderIterator.hasNext() && playerIterator.hasNext()) {
+                PlayerHandler player = playerIterator.next();
+                ArrayList<LeaderCard> leaders = leaderIterator.next();
+                if ( player.isOn() ) {
+                    Timer timer = gameActions.myTimerActions(player);
+                    leaderName = player.leaderCardChosen(leaders);
+                    timer.cancel();
+
+                    if ( leaderName.equals("-1")){
+                        System.out.println("SONO QUI");
+                        player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
+                        leaders.remove(leaders.get(0));
+                        continue;
+                    }
+
+                    System.out.println("DRAFT NORMALE");
+                    LeaderCard leaderToAdd = getLeader(leaderName, leaders);
+                    player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
+                    leaders.remove(leaderToAdd);
+                }
+
+                else {
+                    player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
+                    leaders.remove(leaders.get(0));
+                }
+            }
+            listsForDraft = shiftLeaderList(listsForDraft);
+        }
 
     }
 

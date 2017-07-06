@@ -167,8 +167,8 @@ public class TowersController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
-        //2
-        // unlockButton();
+        super.unselectRadioButton(familiar);
+
         chatArea.setText(loginBuilder.getChat().toString());
         lastFamiiarPlaced.setImage(null);
         if (floor != -1){
@@ -390,10 +390,12 @@ public class TowersController extends AbstractController {
     private void takeCard() {
         if (floor != -1){
             String towerColourString = getTowerColour(towerColour);
+            lastFamiiarPlaced.setImage(null);
             lastFamiiarPlaced = new ImageView();
             mainController.takeDevCard(towerColourString,floor, familiarChosen);
             floor = -1;
             towerColour = -1;
+            refresh();
         }
     }
 
@@ -444,6 +446,7 @@ public class TowersController extends AbstractController {
         if (towerColour != -1 && floor != -1) {
             String towerColourString = getTowerColour(towerColour);
             if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)) {
+                lastFamiiarPlaced.setImage(null);
                 lastFamiiarPlaced = new ImageView();
                 System.out.println("sono nel tasto prendere la carta di azione bonus");
                 mainController.takeBonusCardAction(floor, towerColourString);
