@@ -177,7 +177,8 @@ public abstract class PlayerHandler extends Player {
         for (Position p : zone) {
             if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour)) throw new CantDoActionException();
         }
-        if (room.numberOfPlayerOn() > 2 && !zone.isEmpty()) throw new CantDoActionException();
+        if (room.getListOfPlayers().size() < 3 && !zone.isEmpty())
+            throw new CantDoActionException();
 
         return zone.size();
     }

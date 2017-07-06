@@ -805,4 +805,7 @@ public class MainController {
 
     }
 
+    public String getUsernameChosen() {
+        return usernameChosen;
+    }
 }

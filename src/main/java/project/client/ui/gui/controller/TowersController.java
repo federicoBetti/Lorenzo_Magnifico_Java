@@ -285,6 +285,8 @@ public class TowersController extends AbstractController {
 
 
     public void takeCard(int tower, int floor){
+        if (!mainController.isMyTurn())
+            return;
         if (!bonusAction) {
             if (myTower[tower][floor].getFamiliarImage().getImage() == null) {
                 lastFamiiarPlaced.setImage(null);
@@ -294,12 +296,12 @@ public class TowersController extends AbstractController {
             }
         }
         else {
-            //todo cambiare il greenneutral qua con uno bianco tipo fake
+            System.err.println("ho cliccato per mettere un familiare fake in posizione "+tower + "   " + floor);
             lastFamiiarPlaced.setImage(null);
             lastFamiiarPlaced = myTower[tower][floor].getFamiliarImage();
             myTower[tower][floor].setFamiliarImage(new Image(String.valueOf(getClass().getResource("/images/familiar/empty" + mainController.getColour() + "neutral.png"))));
             selectCard(tower, floor);
-            writeOnChat("you have chosen a bonus action!\n");
+
         }
 
     }
@@ -439,7 +441,6 @@ public class TowersController extends AbstractController {
     }
 
     private void takeBonusCard() {
-        System.out.println("ho cliccat nel submit dell'azione bonus");
         if (towerColour != -1 && floor != -1) {
             String towerColourString = getTowerColour(towerColour);
             if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)) {
@@ -447,6 +448,8 @@ public class TowersController extends AbstractController {
                 System.out.println("sono nel tasto prendere la carta di azione bonus");
                 mainController.takeBonusCardAction(floor, towerColourString);
                 unlockButton();
+                floor = -1;
+                towerColour = -1;
             }
             else writeOnChat("you have chosen the wrong tower!\n");
         }

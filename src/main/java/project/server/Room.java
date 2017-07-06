@@ -233,7 +233,7 @@ public class Room {
                 p.getPersonalBoardReference().setMyTile(tiles.get(0));
                 tiles.remove(tiles.get(0));
             } //todo vedere qua perchè non fa partire partita
-        } */
+        }
         //inizia la partita
         for (PlayerHandler p : getListOfPlayers()) {
 

@@ -418,7 +418,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         for (LeaderCard l : leaderName)
             stringLeaderName.add(l.getName());
 
-        showDraft("draft of Leader Card", stringLeaderName, "leader");
+        showDraft(mainController.getUsernameChosen() + ": draft of Leader Card", stringLeaderName, "leader");
     }
 
 
@@ -426,7 +426,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         List<String> stringTile = new ArrayList<>();
         for (Tile t : tiles)
             stringTile.add(String.valueOf(t.getTileNumber()));
-        showDraft("choose one tile", stringTile, "tile");
+        showDraft(mainController.getUsernameChosen() + ": choose one tile", stringTile, "tile");
     }
 
 
