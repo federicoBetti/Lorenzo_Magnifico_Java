@@ -56,7 +56,7 @@ public class SocketClient extends AbstractClient {
         clientSetter.goToLogin();
     }
 
-    @Override
+
     public void waitingForTheNewInteraction() {
 
         String message;
@@ -89,7 +89,7 @@ public class SocketClient extends AbstractClient {
         send3Parameters(towerColour, floor, familiarColour);
     }
 
-    @Override
+
     public void actionOk() {
         clientSetter.actionOk();
     }
@@ -148,7 +148,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    @Override
+
     public void notifyPlayer() {
         try {
             Notify notify = (Notify) objectInputStream.readObject();
@@ -171,7 +171,7 @@ public class SocketClient extends AbstractClient {
         System.out.println("MANDATA RECONNECT");
     }
 
-    @Override
+
     public void afterGame() {
         clientSetter.afterGame();
     }
@@ -439,12 +439,12 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(Constants.SKIP_TURN);
     }
 
-    @Override
+
     public void timerTurnDelayed() {
         clientSetter.timerTurnDelayed();
     }
 
-    @Override
+
     public void boardUpdate() {
         Updates update = null;
         try {
@@ -455,7 +455,7 @@ public class SocketClient extends AbstractClient {
         clientSetter.boardUpdate(update);
     }
 
-    @Override
+
     public void matchStarted() {
         int roomPlayersNumber = 0;
         try {
@@ -468,7 +468,7 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    @Override
+
     public void cantDoAction() {
         clientSetter.cantDoAction();
     }
@@ -479,12 +479,11 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(nickname);
     }
 
-    @Override
+
     public void terminate() {
-        System.exit(1);
     }
 
-    @Override
+
     public void receiveStatistics() {
         try {
             PlayerFile statistics = (PlayerFile) objectInputStream.readObject();
@@ -501,7 +500,7 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(Constants.SHOW_RANKING);
     }
 
-    @Override
+
     public void ranking() {
         try {
             List<PlayerFile> ranking = (List<PlayerFile>)objectInputStream.readObject();
@@ -514,7 +513,7 @@ public class SocketClient extends AbstractClient {
     }
 
     @Override
-    public void newGameRequest() {
+    public void newGameRequest(String nickname) {
         sendGenericObject(Constants.NEW_GAME);
         sendGenericObject(nickname);
     }

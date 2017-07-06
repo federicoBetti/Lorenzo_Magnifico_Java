@@ -361,7 +361,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         sendString(Constants.AFTER_GAME);
     }
 
-    @Override
+
     public void newGame(String nickname) {
         try {
             loginRequestAnswer(nickname);
@@ -374,8 +374,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     @Override
-    public void takeRanking() {
-        List<PlayerFile> ranking = getRoom().generateRanking();
+    public void sendRanking(List<PlayerFile> ranking) {
 
         try {
             objectOutputStream.writeObject(Constants.SHOW_RANKING);

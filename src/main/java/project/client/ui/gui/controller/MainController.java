@@ -47,6 +47,7 @@ public class MainController {
     private InitialLogin initialLoginController;
     private boolean firstTime;
     private boolean draft = true;
+    private boolean endTurnContext;
 
 
     private MainController() {
@@ -271,8 +272,13 @@ public class MainController {
      * @param privilegeSelected array that indicates the privileges you want to take
      */
     void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
+        if (endTurnContext){
+            Platform.runLater(() -> leaderCardController.endTurnContext());
+        }
         actionBonusOn = false;
-        clientSetter.immediatePriviledgeAction(privilegeSelected);
+
+        Runnable a = () -> clientSetter.immediatePriviledgeAction(privilegeSelected);;
+        new Thread(a).start();
     }
 
     /**
@@ -313,6 +319,9 @@ public class MainController {
      * @param cardSelected name of the card selected
      */
     public void playLeaderCard(String cardSelected) {
+        if (endTurnContext){
+            Platform.runLater(() -> leaderCardController.endTurnContext());
+        }
 
         Runnable a = () -> clientSetter.playLeaderCard(cardSelected);
         ;
@@ -510,6 +519,7 @@ public class MainController {
      * method to set the gui in the end turn context
      */
     public void endTurnContext() {
+        endTurnContext = true;
         Platform.runLater(() -> {
             loginBuilder.setScene(SceneType.LEADER, SceneType.MAIN);
             leaderCardController.endTurnContext();
@@ -547,6 +557,7 @@ public class MainController {
      */
     public void skipTurn() {
         myTurn = false;
+        endTurnContext = false;
         loginBuilder.writeOnMyChat("you have finished your turn\n");
         Runnable a = () -> clientSetter.skipTurn();
         new Thread(a).start();
@@ -755,7 +766,7 @@ public class MainController {
 
         Platform.runLater(() -> {
             loginBuilder.writeOnMyChat("you can't perform this action\n");
-            loginBuilder.popUp("you can't do thi action");
+            loginBuilder.popUp("you can't do this action");
             myTurn = false;
         });
     }

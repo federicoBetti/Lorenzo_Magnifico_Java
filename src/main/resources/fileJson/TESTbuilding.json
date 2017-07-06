@@ -185,7 +185,7 @@
       "type":"buildingCard",
       "name":"stonemasonsGuild",
       "period":2,
-      "choicePe": true,
+      "choicePe": false,
       "cost":[{
         "stoneRequired":2,
         "woodRequired":1,

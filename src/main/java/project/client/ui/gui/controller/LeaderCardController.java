@@ -145,6 +145,8 @@ public class LeaderCardController extends AbstractController {
         return -1;
     }
     public void playCard() {
+        if (!mainController.isMyTurn())
+            return;
         int cardSelected = getLeaderSelected();
         if (cardSelected!=-1) {
             String leaderName = arrayOfLeaderCard.get(cardSelected).getFamiliarName();
@@ -154,6 +156,8 @@ public class LeaderCardController extends AbstractController {
     }
 
     public void discardCard() {
+        if (!mainController.isMyTurn())
+            return;
         int cardSelected = getLeaderSelected();
         if (cardSelected!=-1) {
             String leaderName = arrayOfLeaderCard.get(cardSelected).getFamiliarName();

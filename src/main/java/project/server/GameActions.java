@@ -608,7 +608,6 @@ public class GameActions {
 
         getSupportFunctions(player).setFamiliar(marketPosition, familyM);
 
-        System.out.println("il mio familiare ha valore " + familyM.getMyValue());
         if (!(familyM.getMyValue() > 0)) {
             int servantsUsed = getSupportFunctions(player).payServants(1, 0);
             player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
@@ -617,13 +616,15 @@ public class GameActions {
         MarketUpdate marketUpdate = new MarketUpdate(board, player.getName());
 
         Effects e = board.getMarketZone()[position].getEffect();
-        e.doEffect(player);
-        System.out.println("effect class: " + e.getClass());
+        BonusInteraction returnFromEffect = e.doEffect(player);
+
+        if (returnFromEffect instanceof TakePrivilegesAction)
+            player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+
         player.sendActionOk();
         broadcastUpdates(marketUpdate);
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
-        System.out.println("Update mandato a : " + player.getName());
     }
 
 

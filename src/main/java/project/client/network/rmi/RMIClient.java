@@ -1,6 +1,7 @@
 package project.client.network.rmi;
 
 
+import project.PlayerFile;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
@@ -19,7 +20,6 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
@@ -39,6 +39,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
 
+    private String nickname;
     private RMIClientToServerInterface myServer;
     private String myUniqueId;
     private ClientSetter clientSetter;
@@ -81,16 +82,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     @Override
     public void loginRequest(String loginParameter) {
+        nickname = loginParameter;
         try {
             myServer.loginRequest(myUniqueId,loginParameter);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void waitingForTheNewInteraction() {
-
     }
 
     @Override
@@ -316,24 +313,14 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public void terminate() {
-
-    }
-
-    @Override
-    public void receiveStatistics() {
-
-    }
-
-    @Override
     public void showRanking() {
-
+        try {
+            myServer.askForRanking(myUniqueId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void ranking() {
-
-    }
 
     @Override
     public void prayed() {
@@ -345,11 +332,17 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         return clientSetter.choicePe();
     }
 
+    @Override
+    public void sendStatistics(PlayerFile playerFile) throws RemoteException {
+        clientSetter.receiveStatistics(playerFile);
+    }
 
     @Override
-    public void notifyPlayer() {
-
+    public void sendRanking(List<PlayerFile> ranking) throws RemoteException {
+        clientSetter.ranking(ranking);
     }
+
+
 
     @Override
     public void reconnect() {
@@ -361,18 +354,21 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     @Override
-    public void afterGame() {
-
-    }
-
-    @Override
     public void showStatistic() {
-
+        try {
+            myServer.askForStatistics(myUniqueId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void newGameRequest() {
-        //to implement
+    public void newGameRequest(String nickname) {
+        try {
+            myServer.newGameRequest(myUniqueId, nickname);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -435,14 +431,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.waitingForYourTurn();
     }
 
-    @Override
-    public void boardUpdate() {
-    }
-
-    @Override
-    public void matchStarted() {
-
-    }
 
     @Override
     public String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException {

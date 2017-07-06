@@ -1,5 +1,6 @@
 package project.server.network.rmi;
 
+import project.PlayerFile;
 import project.client.network.rmi.RMIServerToClientInterface;
 import project.server.network.AbstractServer;
 import project.server.Server;
@@ -93,11 +94,7 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
 
 
     public void loginRequest(String clientUniqueId, String nickname)  {
-        try {
-            server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        server.loginRequest(nickname,getPlayerHandler(clientUniqueId));
     }
 
     public void takeDevCard(String clientUniqueId, String towerColour, int floor, String familyMemberColour) throws RemoteException {
@@ -195,6 +192,21 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
     @Override
     public void reconnect(String myUniqueId) throws RemoteException {
         getPlayerHandler(myUniqueId).reconnectClient();
+    }
+
+    @Override
+    public void askForStatistics(String myUniqueId) throws RemoteException {
+        getPlayerHandler(myUniqueId).showStatistics();
+    }
+
+    @Override
+    public void newGameRequest(String myUniqueId, String nickname) throws RemoteException {
+        server.loginRequest(nickname, getPlayerHandler(myUniqueId));
+    }
+
+    @Override
+    public void askForRanking(String myUniqueId) throws RemoteException {
+        getPlayerHandler(myUniqueId).takeRanking();
     }
 
     //da qua in poi ci saranno i metodi che ritornano scelte

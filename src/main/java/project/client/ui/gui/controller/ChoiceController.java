@@ -1,9 +1,12 @@
 package project.client.ui.gui.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -11,7 +14,8 @@ import javafx.stage.Stage;
  * Created by federico on 19/06/17.
  */
 public class ChoiceController {
-    @FXML
+
+    public HBox boxButton;
     private  Button buttonChoiche1;
     @FXML
     private  Button buttonChoiche2;
@@ -29,14 +33,14 @@ public class ChoiceController {
 
 
 
-    public void choice1(ActionEvent actionEvent) {
+    public void choice1() {
 
         loginBuilder.setChoiceDone(0);
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
         stage.hide();
     }
 
-    public void choice2(ActionEvent actionEvent) {
+    public void choice2() {
         loginBuilder.setChoiceDone(1);
         Stage stage = (Stage) buttonChoiche1.getScene().getWindow();
         stage.hide();
@@ -53,11 +57,17 @@ public class ChoiceController {
     }
 
     public void setChoice1(String choice1) {
-        buttonChoiche1.setText(choice1);
+        buttonChoiche1 = new Button(choice1);
+        buttonChoiche1.setFont(new Font("Lucida Blackletter", 25.0));
+        buttonChoiche1.setOnAction(event -> choice1());
+        boxButton.getChildren().add(buttonChoiche1);
     }
 
     public void setChoice2(String choice2) {
-        buttonChoiche2.setText(choice2);
+        buttonChoiche2 = new Button(choice2);
+        buttonChoiche2.setFont(new Font("Lucida Blackletter", 25.0));
+        buttonChoiche2.setOnAction(event -> choice2());
+        boxButton.getChildren().add(buttonChoiche2);
     }
 
     public void setLoginBuilder(LoginBuilder loginBuilder) {

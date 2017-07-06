@@ -238,6 +238,8 @@ public abstract class PlayerHandler extends Player {
         TotalCost cost = new TotalCost();
         int servantsMax = 0;
         for (BuildingCard b : cardToProduct) {
+            System.err.println(b.getName());
+            System.err.println(b.isChoicePe());
             if (b.getCost().getDiceCost() > maxValueOfProduction + checkFunctions.getServants(this))
                 throw new CantDoActionException();
             int servnatsToPay = b.getCost().getDiceCost() - maxValueOfProduction;
@@ -520,9 +522,13 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void afterMatch();
 
-    public abstract void newGame(String nickname);
+    public void takeRanking(){
 
-    public abstract void takeRanking();
+        List<PlayerFile> ranking = getRoom().generateRanking();
+        sendRanking(ranking);
+    }
+
+    protected abstract void sendRanking(List<PlayerFile> ranking);
 
     public void showStatistics() {
 

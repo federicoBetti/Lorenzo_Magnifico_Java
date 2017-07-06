@@ -64,7 +64,7 @@ public class PersonalBoard implements Serializable{
 		coins=i;
 		servants=i;
 		stone=i;
-		wood=i;
+		wood=3;
 	}
 
 	public String toScreen() {

@@ -1,5 +1,6 @@
 package project.client.network.rmi;
 
+import project.PlayerFile;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
@@ -66,4 +67,8 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void prayed() throws RemoteException;
 
     int sendChoicePE() throws RemoteException;
+
+    void sendStatistics(PlayerFile playerFile) throws RemoteException;
+
+    void sendRanking(List<PlayerFile> ranking) throws RemoteException;
 }
