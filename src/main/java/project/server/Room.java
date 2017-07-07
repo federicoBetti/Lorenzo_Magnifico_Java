@@ -76,7 +76,7 @@ public class Room {
             if (entry.getValue().isOn())
                 count++;
 
-        if (count == maxPlayers )
+        if (count == maxPlayers)
             return true;
         return false;
     }
@@ -145,10 +145,13 @@ public class Room {
                 playerInTheMatch.add(player.getValue());
                 player.getValue().setFamilyColour(colors[i]);
                 player.getValue().setFamilyColourInFamilyMembers();
-               // player.getValue().setDisconnectedInDraft(true);
+                // player.getValue().setDisconnectedInDraft(true);
                 i++;
             }
         }
+
+        //testare se va
+        resetPlayers(playerInTheMatch);
 
         maxPlayers = i;
 
@@ -171,7 +174,7 @@ public class Room {
         //todo aggiungere questa parte per il draft
 
         //draft leader
-        leaderDraft(playerInTheMatch);
+        //leaderDraft(playerInTheMatch);
 
         //draft tile
         tileDraft(playerInTheMatch);
@@ -179,18 +182,18 @@ public class Room {
         //inizia la partita
         for (PlayerHandler p : getListOfPlayers()) {
 
-                if ( p.disconnectedInDraft ) {
-                    PlayerHandler oldPlayer = null;
-                    p.setOn(true);
-                    for ( PlayerHandler player : playerInTheMatch )
-                        if ( p.getName().equals(player.getName()))
-                            oldPlayer = player;
-                    System.out.println("Old player : "  + oldPlayer);
-                    server.loadPlayerState(this, p, oldPlayer);
-                }
+            if (p.disconnectedInDraft) {
+                PlayerHandler oldPlayer = null;
+                p.setOn(true);
+                for (PlayerHandler player : playerInTheMatch)
+                    if (p.getName().equals(player.getName()))
+                        oldPlayer = player;
+                System.out.println("Old player : " + oldPlayer);
+                server.loadPlayerState(this, p, oldPlayer);
+            }
 
-                p.matchStarted(getRoomPlayers(), p.getFamilyColour());
-                System.out.println("mando MATCH STARTED");
+            p.matchStarted(getRoomPlayers(), p.getFamilyColour());
+            System.out.println("mando MATCH STARTED");
 
         }
 
@@ -209,9 +212,9 @@ public class Room {
 
         int moreCoin = 0;
 
-        for (PlayerHandler p : getListOfPlayers() ) {
+        for (PlayerHandler p : getListOfPlayers()) {
             //setResources(p, moreCoin);
-            if ( p.isOn() ) {
+            if (p.isOn()) {
                 int fauthPoint = 8;
                 System.err.println("numero di carte territorio: " + p.getPersonalBoardReference().getTerritories().size());
                 Configuration configuration = new Configuration();
@@ -224,7 +227,7 @@ public class Room {
                 p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
                 p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
                 p.sendUpdates(new MarketUpdate(board, p.getName()));
-                p.sendUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(),p.getName()));
+                p.sendUpdates(new ExcomunicationUpdate(board.getExcommunicationZone(), p.getName()));
                 p.sendUpdates(new HarvesterUpdate(board.getHarvesterZone(), p.getName()));
                 p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
                 p.sendUpdates(new ScoreUpdate(p, p.getName()));
@@ -238,6 +241,19 @@ public class Room {
 
         gameActions.firstPlayerTurn();
 
+    }
+
+    private void resetPlayers(List<PlayerHandler> playerInTheMatch) {
+        Configuration configuration = new Configuration();
+        for (PlayerHandler player : playerInTheMatch) {
+            try {
+                //player.setPersonalBoardReference(new PersonalBoard());
+                player.setScore(new Score());
+                configuration.loadFamilyMembers(player);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void tileDraft(List<PlayerHandler> playerInTheMatch) {
@@ -284,12 +300,12 @@ public class Room {
             while (leaderIterator.hasNext() && playerIterator.hasNext()) {
                 PlayerHandler player = playerIterator.next();
                 ArrayList<LeaderCard> leaders = leaderIterator.next();
-                if ( player.isOn() ) {
+                if (player.isOn()) {
                     Timer timer = gameActions.myTimerActions(player);
                     leaderName = player.leaderCardChosen(leaders);
                     timer.cancel();
 
-                    if ( leaderName.equals("-1")){
+                    if (leaderName.equals("-1")) {
                         System.out.println("SONO QUI");
                         player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
                         leaders.remove(leaders.get(0));
@@ -300,9 +316,7 @@ public class Room {
                     LeaderCard leaderToAdd = getLeader(leaderName, leaders);
                     player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
                     leaders.remove(leaderToAdd);
-                }
-
-                else {
+                } else {
                     player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
                     leaders.remove(leaders.get(0));
                 }
@@ -480,8 +494,8 @@ public class Room {
     }
 
     public void afterGame() {
-        for ( PlayerHandler player : getListOfPlayers() ){
-            if ( player.isOn() )
+        for (PlayerHandler player : getListOfPlayers()) {
+            if (player.isOn())
                 player.afterMatch();
         }
     }

@@ -543,4 +543,8 @@ public abstract class PlayerHandler extends Player {
     }
 
     protected abstract void sendStatistic(PlayerFile playerFile);
+
+    public abstract void afterGameIftemporarilyOff();
+
+    public abstract void winnerComunication(String winnerString);
 }

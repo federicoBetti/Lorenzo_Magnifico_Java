@@ -110,4 +110,8 @@ public abstract class AbstractUI {
     public abstract void showRanking();
 
     public abstract void ranking(List<PlayerFile> ranking);
+
+    public abstract void disconnesionMessage(String message);
+
+    public abstract void winnerComunication(String winner);
 }

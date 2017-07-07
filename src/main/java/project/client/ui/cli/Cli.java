@@ -5,7 +5,6 @@ import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
-import project.controller.cardsfactory.ExcommunicationTile;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.Notify;
@@ -302,6 +301,16 @@ public class Cli extends AbstractUI {
     }
 
     @Override
+    public void disconnesionMessage(String message) {
+        context.getpRed().println(message);
+    }
+
+    @Override
+    public void winnerComunication(String winner) {
+        context.getpBlue().println(winner);
+    }
+
+    @Override
     public void waitingForYourTurn() {
         context = new WaitingForYourTurnContext(this);
     }
@@ -565,7 +574,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(input);
             String[] parameters = input.split("-");
             clientSetter.bonusHarvesterAction(Integer.parseInt(parameters[0]));
-        } catch (InputException e) {
+        } catch (InputException | NumberFormatException e) {
             context.printHelp();
         }
 

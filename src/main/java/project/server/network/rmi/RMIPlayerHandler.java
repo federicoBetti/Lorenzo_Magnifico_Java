@@ -394,6 +394,16 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
+    public void afterGameIftemporarilyOff() {
+
+    }
+
+    @Override
+    public void winnerComunication(String winnerString) {
+
+    }
+
+    @Override
     public void tokenNotify() {
 
     }

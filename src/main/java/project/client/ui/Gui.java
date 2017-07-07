@@ -244,6 +244,16 @@ public class Gui extends AbstractUI {
     }
 
     @Override
+    public void disconnesionMessage(String message) {
+
+    }
+
+    @Override
+    public void winnerComunication(String winner) {
+
+    }
+
+    @Override
     public void loginSucceded() {
         mainController.loginSucceded();
     }

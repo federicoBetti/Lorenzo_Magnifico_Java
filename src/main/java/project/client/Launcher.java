@@ -24,9 +24,16 @@ class Launcher {
         builder.attribute(Ansi.Attribute.BOLD);
         builder.foreground(Ansi.FColor.YELLOW);
         UnixColoredPrinter p = new UnixColoredPrinter(builder);
-
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.BLUE);
+        UnixColoredPrinter p1 = new UnixColoredPrinter(builder);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.RED);
+        UnixColoredPrinter p2 = new UnixColoredPrinter(builder);
         SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
         while (true) {
+            p1.println("Welcome to LORENZO IL MAGNIFICO!");
+            p2.println("Please choose the kind of User interface experience between: ");
             p.println("1: CLI");
             p.println("2: GUI");
             String choice;
@@ -42,6 +49,8 @@ class Launcher {
 
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NumberFormatException e) {
+                continue;
             }
             switch (choiceNum) {
                 case 1:

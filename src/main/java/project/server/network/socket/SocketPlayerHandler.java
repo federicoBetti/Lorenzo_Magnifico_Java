@@ -1,6 +1,5 @@
 package project.server.network.socket;
 
-import com.google.gson.Gson;
 import project.PlayerFile;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
@@ -8,6 +7,7 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
+import project.model.Player;
 import project.model.Tile;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CanUseBothPaymentMethodException;
@@ -98,6 +98,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (CanUseBothPaymentMethodException e) {      //todo questa deve esserci?
             canUseBothPaymentMethod();
         } catch (IOException e) {   //todo queste due eccezioni qui
+            broadcastDisconnessioneMessage(this);
             this.setOn(false);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -263,6 +264,19 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     public void timerTurnDelayed() {
         sendString(Constants.TIMER_TURN_DELAYED);
         System.out.println("Il player è a : " + isOn());
+        broadcastDisconnessioneMessage(this);
+    }
+
+    private void broadcastDisconnessioneMessage(PlayerHandler currentPlayer ) {
+
+        for (PlayerHandler player : getRoom().getBoard().getTurn().getPlayerTurn()) {
+            System.out.println(player.getName() + " " + player.isOn());
+            if (player != currentPlayer && player.isOn()) {
+                System.out.println( "SONO NEL MANDO DISCO " + player.getName() + " " + player.isOn());
+                player.sendString(Constants.DISCONNESSION_MESSAGE);
+                player.sendString(currentPlayer.getName() + "is disconnected");
+            }
+        }
     }
 
     @Override
@@ -396,6 +410,25 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void afterGameIftemporarilyOff() {
+            try {
+                objectOutputStream.writeObject(Constants.AFTER_GAME);
+                objectOutputStream.flush();
+                objectOutputStream.reset();
+            } catch (IOException ignored) {}
+    }
+
+    @Override
+    public void winnerComunication(String winnerString ) {
+        sendString(Constants.WINNER_COMUNICATION);
+        try {
+            objectOutputStream.writeObject(winnerString);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+        } catch (IOException ignored) {}
     }
 
     @Override
@@ -621,12 +654,12 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                     case Constants.BONUS_PRODUCTION:
                         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
                         doBonusProduct(returnFromEffect, cards);
-                        break;
+                        return;
 
                     case Constants.BONUS_HARVESTER:
-                        intServantsNumber = Integer.parseInt((String) objectInputStream.readObject());
+                        intServantsNumber = (int)objectInputStream.readObject();
                         doBonusHarv(returnFromEffect, intServantsNumber);
-                        break;
+                        return;
                 }
 
             } catch (IOException | ClassNotFoundException e) {

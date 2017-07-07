@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by raffaelebongo on 08/06/17.
  */
 public class DiscardLeaderCardContext extends AbstractContext {
-    List<LeaderCard> leaderCards;
+    private List<LeaderCard> leaderCards;
 
     public DiscardLeaderCardContext(Cli cli, List<LeaderCard> leaderCards ) {
         super(cli);
@@ -24,7 +24,6 @@ public class DiscardLeaderCardContext extends AbstractContext {
         printHelp();
     }
 
-    //todo implement
     private void showLeaderCards() {
         for ( LeaderCard leaderCard : leaderCards ) {
             pRed.println(leaderCard.getName());
@@ -42,7 +41,7 @@ public class DiscardLeaderCardContext extends AbstractContext {
 
         pRed.println("The main action is:");
         pYellow.print("Choose the "); pRed.print("[leaderCardName]"); pYellow.print(" that you want to play");
-
+        pYellow.println("");
     }
 
     @Override

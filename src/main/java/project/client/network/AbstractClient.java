@@ -48,4 +48,6 @@ public abstract class AbstractClient implements Serializable{
     public abstract void newGameRequest(String nickname);
 
     public abstract void showRanking();
+
+    public abstract void winnerComunication();
 }

@@ -125,9 +125,11 @@ public class Constants {
     public static final String SHOW_STATISTICS = "show-statistics";
     public static final String FILENAME = "E:\\test\\PlayerFile.json";
     public static final String NEW_GAME = "new-game";
-    public static final String VIVA_LA_FIGA = "VIVA-LA-FIGA";
+    public static final String CLOSE_THE_GAME = "close-the-game";
     public static final String RECEIVE_STATISTICS = "receive-statistics";
     public static final int MAX_CARDS_NUMBER = 6;
+    public static final String DISCONNESSION_MESSAGE = "disconnessione-message";
+    public static final String WINNER_COMUNICATION = "winner-comunication";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

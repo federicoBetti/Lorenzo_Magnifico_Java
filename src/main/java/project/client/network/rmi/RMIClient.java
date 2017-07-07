@@ -321,6 +321,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    @Override
+    public void winnerComunication() {
+
+    }
+
 
     @Override
     public void prayed() {

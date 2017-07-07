@@ -1407,6 +1407,67 @@
 
 
 //todo messa qui per provarla va cancellata e messa de-commentata l'altra
+
+	{
+		"anagrafic":{
+			"type":"characterCard",
+			"name":"cardinal",
+			"period":3,
+			"choicePe": false,
+			"cost":[{
+				"stoneRequired":0,
+				"woodRequired":0,
+				"coinsRequired":4,
+				"diceCost":0,
+				"militaryRequired":0,
+				"militaryCost":0
+			}]
+		},
+
+
+		"immediateEffect":{
+			"tris":[
+				{"type":"harvOrProdAct", "parameter":"harvester", "quantity":4 },
+				{"type":"takeRop", "parameter":"faithPoint", "quantity":2 }
+			]
+		},
+
+
+
+		"permanentEffect":{
+			"poker":[
+			]
+		}
+	} ,
+
+	{
+		"anagrafic":{
+			"type":"characterCard",
+			"name":"farmer",
+			"period":1,
+			"choicePe": false,
+			"cost":[{
+				"stoneRequired":0,
+				"woodRequired":0,
+				"coinsRequired":3,
+				"diceCost":0,
+				"militaryRequired":0,
+				"militaryCost":0
+			}]
+		},
+
+
+		"immediateEffect":{
+			"tris":[ {"type":"bonusHarvesterOrProduction", "parameter":"harvester", "quantity":2}
+			]
+		},
+		"permanentEffect":{
+			"poker":[
+
+			]
+		}
+	} ,
+
 	{
 		"anagrafic":{
 			"type":"characterCard",
@@ -1561,7 +1622,7 @@
 		]
 	}
 } ,
-{	
+/*{
 	"anagrafic":{
 		"type":"characterCard",
 		"name":"farmer",
@@ -1587,7 +1648,7 @@
 
 		]
 	}
-} ,
+} ,	*/
 {	
 	"anagrafic":{
 		"type":"characterCard",
@@ -2042,7 +2103,7 @@
 		]
 	}
 } ,
-{	
+/*{
 	"anagrafic":{
 		"type":"characterCard",
 		"name":"cardinal",
@@ -2072,7 +2133,7 @@
 		"poker":[
 		]
 	}
-} ,
+} ,	*/
 {	
 	"anagrafic":{
 		"type":"characterCard",
@@ -3485,7 +3546,54 @@
 			]
 		}
 	} ,
-{	
+
+	{
+		"anagrafic":{
+			"type":"ventureCard",
+			"name":"raisingAStatue",
+			"period":1,
+			"choicePe": false,
+			"cost":[{
+				"stoneRequired":2,
+				"woodRequired":2,
+				"coinsRequired":0,
+				"diceCost":0,
+				"militaryRequired":0,
+				"militaryCost":0
+			}]
+		},
+
+
+		"immediateEffect":{
+			"tris":[
+				{"type":"takeRop", "parameter":"privilege", "quantity":2 }
+			]
+		},
+
+
+
+		"permanentEffect":{
+			"poker":[
+				{"resourceEarnedFromExchange":" ",
+
+					"effectCost":{
+						"stoneRequired":0,
+						"woodRequired":0,
+						"servantsRequired":0,
+						"coinsRequired":0,
+						"militaryRequired":0,
+						"militaryCost":0
+					},
+
+					"type":"takeRop",
+					"parameter":"victoryPoint",
+					"quantity":4
+				}
+			]
+		}
+	} ,
+
+	{
 	"anagrafic":{
 		"type":"ventureCard",
 		"name":"hiringRecruits",
@@ -3676,7 +3784,7 @@
 		]
 	}
 } ,
-{	
+/*{
 	"anagrafic":{
 		"type":"ventureCard",
 		"name":"raisingAStatue",
@@ -3720,7 +3828,7 @@
 		}
 		]
 	}
-} ,
+} ,		*/
 {	
 	"anagrafic":{
 		"type":"ventureCard",

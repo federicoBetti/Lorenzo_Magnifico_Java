@@ -27,6 +27,7 @@ public class ImmediatePriviledgesContext extends AbstractContext {
     public void printHelp() {
         pRed.println("Type " + numberOfpriviledges.getQuantityOfDifferentPrivileges() + " priviledges'numbers that you prefer" +
         " but different each others");
+        pBlue.println("[priviledgeNumber1 - priviledgeNumber2 - ... ]");
     }
 
     @Override

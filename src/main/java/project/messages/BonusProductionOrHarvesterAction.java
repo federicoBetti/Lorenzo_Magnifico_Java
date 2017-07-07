@@ -9,6 +9,7 @@ public class BonusProductionOrHarvesterAction extends BonusInteraction {
 		this.diceValue = quantity;
 	}
 
+
 	public int getDiceValue() {
 		return diceValue;
 	}

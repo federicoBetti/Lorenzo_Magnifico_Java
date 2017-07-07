@@ -25,17 +25,14 @@ public class SetIPaddressContext extends AbstractContext {
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("\\.");
-        System.out.println(parameters.length);
         if (parameters.length != 4)
             throw new InputException();
 
-        System.out.println("1");
         for (String num : parameters)
             try {
                 if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > 255)
                     throw new InputException();
             } catch (NumberFormatException e) {
-                System.out.println("2");
                 throw new InputException();
             }
     }

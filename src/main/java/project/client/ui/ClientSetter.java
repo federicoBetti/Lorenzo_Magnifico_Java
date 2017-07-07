@@ -321,4 +321,11 @@ public class ClientSetter {
         ui.ranking(ranking);
     }
 
+    public void disconnessionMessage(String message) {
+        ui.disconnesionMessage(message);
+    }
+
+    public void winnerComunication(String winner) {
+        ui.winnerComunication(winner);
+    }
 }
