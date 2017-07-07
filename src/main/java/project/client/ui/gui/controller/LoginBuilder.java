@@ -14,6 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.client.ui.ClientSetter;
+import project.client.ui.cli.CliConstants;
+import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.model.Score;
 import project.model.Tile;
@@ -31,7 +33,6 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
     private Stage primaryStage;
     private AnchorPane initialLoginScene;
     private AnchorPane waitingLoginScene;
-    private ClientSetter clientSetter;
     private MainController mainController;
 
     private InitialLogin initialLogin;
@@ -419,6 +420,8 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             controller.setLabel(message);
             controller.setChoice1(choice1);
             controller.setChoice2(choice2);
+            if (message.equals(CliConstants.ASK_FOR_PRAYING))
+                controller.setImage(mainController.getCurrentPeriod());
             System.out.println("sto per disegnare lo stage");
             // Show the dialog and wait until the user closes it
             lastStageOpened = dialogStage;
@@ -678,6 +681,10 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
 
     public void setResizeOn(boolean resizeOn) {
         this.rezieOn = resizeOn;
+    }
+
+    public Image getExcommunicationImage(int currentPeriod) {
+        return generalMainGameController.getExcommunicationImage(currentPeriod);
     }
 }
 

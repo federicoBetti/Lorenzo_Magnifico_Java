@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 public class InitialLogin {
     public ImageView sfondo;
     public AnchorPane anchr;
+    public TextField IP;
     @FXML
     private  TextField username;
     @FXML
@@ -39,6 +40,7 @@ public class InitialLogin {
 
     private MainController mainController;
     private LoginBuilder loginBuilder;
+    private String ipChosen;
 
 
     public InitialLogin(){
@@ -78,8 +80,32 @@ public class InitialLogin {
 
     public void doConnection() {
             usernameChosen = username.getText();
+            ipChosen = IP.getText();
+            if (!checkValidInputIp(ipChosen))
+                return;
+
             System.out.println("invio richiesta connessione");
-            mainController.setConnectionType(connectionType,usernameChosen);
+            mainController.setConnectionType(connectionType, ipChosen,usernameChosen);
+    }
+
+    private boolean checkValidInputIp(String ip) {
+        String[] numbers = ip.split("\\.");
+
+        if (numbers.length != 4)
+            return false;
+
+        try {
+
+            for (String num : numbers) {
+                int n = Integer.parseInt(num);
+                if (n < 0 || n > 255) return false;
+            }
+        }
+        catch (NumberFormatException e){
+            return false;
+        }
+
+        return true;
     }
 
 

@@ -52,7 +52,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         fillUpdateHashMap();
         this.clientSetter = clientSetter;
         System.out.println("provo a connettermi RMI");
-        connect();
+        connect(IP);
     }
 
     private void fillUpdateHashMap() {
@@ -66,9 +66,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     //QUA CI SONO I METODI DA CLIENT A SERVER
 
-    private void connect() throws ClientConnectionException {
+    private void connect(String IP) throws ClientConnectionException {
         try {
-            Registry reg = LocateRegistry.getRegistry(8001);
+            Registry reg = LocateRegistry.getRegistry(IP,8001);
             myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
             myServer.ping();
             UnicastRemoteObject.exportObject(this, 0);

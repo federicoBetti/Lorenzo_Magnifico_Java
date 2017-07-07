@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -23,7 +24,7 @@ public class LeaderCardController extends AbstractController {
     private Button personalBoard;
 
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
 
 
 
@@ -72,7 +73,7 @@ public class LeaderCardController extends AbstractController {
 
     @Override
     public void refresh() {
-        chatArea.setText(loginBuilder.getChat().toString());
+        chatArea.setAccessibleText(loginBuilder.getChat().toString());
     }
 
     @Override

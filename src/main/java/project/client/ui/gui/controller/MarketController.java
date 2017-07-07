@@ -91,7 +91,7 @@ public class MarketController extends AbstractController {
     private List<FamiliarPosition> familiarPositions;
 
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
     @FXML
     private ToggleGroup familiar;
 
@@ -121,7 +121,7 @@ public class MarketController extends AbstractController {
         super.refresh();
         super.unselectRadioButton(familiar);
         lastFamiliarPlaced.setImage(null);
-        chatArea.setText(loginBuilder.getChat().toString());
+        chatArea.setAccessibleText(loginBuilder.getChat().toString());
         lastFamiliarPlaced.setImage(null);
     }
 

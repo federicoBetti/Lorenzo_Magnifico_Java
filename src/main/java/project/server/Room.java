@@ -331,7 +331,9 @@ public class Room {
         Random r = new Random();
         int rand;
         for (int i = 0; i < Constants.PERIOD_NUMBER; i++) {
-            rand = r.nextInt(Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD);
+            //todo rimettere il rand pe far arrivare una scomunica casuale, ora lo piloto io per testare
+            //rand = r.nextInt(Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD);
+            rand = 6;
             ExcommunicationTile ex = deck[i][rand];
             zone[i] = new ExcommunicationZone(ex);
         }

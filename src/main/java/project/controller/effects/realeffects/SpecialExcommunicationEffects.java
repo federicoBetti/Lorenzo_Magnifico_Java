@@ -42,8 +42,7 @@ public class SpecialExcommunicationEffects implements Effects, Serializable {
     }
 
     private BonusInteraction skipMyFirstTurn (PlayerHandler player){
-
-        //TODO
+        player.getRoom().getBoard().getTurn().addSkipTurn(player);
         return new OkOrNo();
     }
     private BonusInteraction doubleServantsValue(PlayerHandler player) { //ho decorato sia la check sia la support function

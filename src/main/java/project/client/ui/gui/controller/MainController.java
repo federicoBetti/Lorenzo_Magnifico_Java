@@ -1,9 +1,11 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
+import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
+import project.messages.updatesmessages.ExcommunicationTaken;
 import project.model.Board;
 import project.model.PersonalBoard;
 import project.model.Tile;
@@ -47,6 +49,7 @@ public class MainController {
     private boolean firstTime;
     private boolean draft = true;
     private boolean endTurnContext;
+    private int currentPeriod = 0;
 
 
     private MainController() {
@@ -190,13 +193,12 @@ public class MainController {
 
     /**
      * method called by gui when connect button is pressed
-     *
      * @param connectionType type of connection
+     * @param IP
      * @param usernameChosen usernamen of the player
      */
-    void setConnectionType(String connectionType, String usernameChosen) {
+    void setConnectionType(String connectionType, String IP, String usernameChosen) {
         this.usernameChosen = usernameChosen;
-        String IP = "127.0.0.1";
         clientSetter.setConnectionType(connectionType, IP);
     }
 
@@ -540,7 +542,7 @@ public class MainController {
     /**
      * method that confirm the login
      */
-    public void loginSucceded() {
+    public void loginSucceeded() {
         //correct void
     }
 
@@ -590,7 +592,8 @@ public class MainController {
      * @param choiceDone integer to add
      */
     void addIntegerQueue(int choiceDone) {
-        integerQueue.add(choiceDone);
+        if (integerQueue != null)
+            integerQueue.add(choiceDone);
     }
 
     /**
@@ -599,7 +602,8 @@ public class MainController {
      * @param s string to add
      */
     void addStringQueue(String s) {
-        stringQueue.add(s);
+        if (stringQueue != null)
+            stringQueue.add(s);
     }
 
     /**
@@ -833,7 +837,23 @@ public class MainController {
     }
 
     public void afterGame() {
+        currentPeriod = 0;
         System.err.println("mettoo l'after game context");
         Platform.runLater(() -> loginBuilder.setScene(SceneType.AFTER_GAME,SceneType.MAIN));
+    }
+
+    public void prayed() {
+        currentPeriod++;
+        Platform.runLater(() -> loginBuilder.writeOnMyChat("you have prayed!\n"));
+    }
+
+    public void excommunicationTaken(ExcommunicationTaken update) {
+        if (update.getNicknameCurrentPlayer().equals(clientSetter.getNickname()))
+            currentPeriod++;
+        Platform.runLater(() -> loginBuilder.writeOnMyChat(update.toScreen()));
+    }
+
+    public int getCurrentPeriod() {
+        return currentPeriod;
     }
 }

@@ -13,10 +13,8 @@ import project.model.ExcommunicationZone;
 import project.model.Score;
 import project.model.Tower;
 import project.model.Turn;
-import project.server.network.PlayerHandler;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by federico on 10/06/17.
@@ -379,5 +377,15 @@ public class GeneralMainGameController extends AbstractController{
                 loginBuilder.setDimensions(t.getCard());
             }
         }
+    }
+
+    public Image getExcommunicationImage(int currentPeriod) {
+        switch (currentPeriod){
+            case 0: return excommunication1.getImage();
+            case 1: return excommunication2.getImage();
+            case 2: return excommunication3.getImage();
+        }
+        System.err.println("null return from excommunication image");
+        return null;
     }
 }

@@ -321,4 +321,7 @@ public class ClientSetter {
         ui.ranking(ranking);
     }
 
+    public String getNickname() {
+        return nickname;
+    }
 }
