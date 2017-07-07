@@ -53,6 +53,7 @@ class MessagesFromServerHandler {
         map.put(Constants.SHOW_RANKING, this:: ranking );
         map.put(Constants.DISCONNESSION_MESSAGE, this:: disconnessionMessage );
         map.put(Constants.WINNER_COMUNICATION, this::winnerComunication );
+        map.put(Constants.NOT_ENOUGH_RESOURCES, this:: cantDoAction );
     }
 
     private void winnerComunication() {

@@ -520,6 +520,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         synchronized (token) {
             token.notify();
         }
+
         System.out.println("BLOCCO LA READ DEL WHILE TRUE\n");
         synchronized (token1) {
             try {
@@ -527,6 +528,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("SBLOCCO LA READ Del while true\n");
         }
     }

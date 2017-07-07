@@ -600,12 +600,16 @@ public class GameActions {
         for (Effects e : player.getPersonalBoardReference().getMyTile().takeProductionResource())
             e.doEffect(player);
 
+        int i = 1;
         for (BuildingCard card : cards) {
             makePermanentEffectsProduction(player, card, choichePE);
+            System.out.println("EFFETTO " + i);
+            i++;
         }
 
         player.sendActionOk();
-        ProductionUpdate productionUpdate = new ProductionUpdate((ArrayList<Production>) board.getProductionZone(), player.getName());
+        System.out.println("PASSATO ACTION OK");
+        ProductionUpdate productionUpdate = new ProductionUpdate( board.getProductionZone(), player.getName());
         broadcastUpdates(productionUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
 
@@ -779,10 +783,11 @@ public class GameActions {
     private void makePermanentEffectsProduction(PlayerHandler player, BuildingCard card, List<Integer> choichePE) {
         if (card.isChoicePe()) {
             int choice = choichePE.get(0);
-            if (choice == -1) return;
+            if (choice == -1)
+                return;
             Effects e = card.getPermanentCardEffects().get(choice);
             BonusInteraction returnFromEffect = e.doEffect(player);
-
+            System.out.println("HO FATTO");
             if (returnFromEffect instanceof TakePrivilegesAction) {
                 System.out.println("if TakePrivilege");
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);

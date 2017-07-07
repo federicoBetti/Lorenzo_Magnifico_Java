@@ -1411,6 +1411,38 @@
 	{
 		"anagrafic":{
 			"type":"characterCard",
+			"name":"bishop",
+			"period":3,
+			"choicePe": false,
+			"cost":[{
+				"stoneRequired":0,
+				"woodRequired":0,
+				"coinsRequired":5,
+				"diceCost":0,
+				"militaryRequired":0,
+				"militaryCost":0
+			}]
+		},
+
+
+		"immediateEffect":{
+			"tris":[
+				{"type":"harvOrProdAct", "parameter":"production", "quantity":4 },
+				{"type":"takeRop", "parameter":"faithPoint", "quantity":1 }
+			]
+		},
+
+
+
+		"permanentEffect":{
+			"poker":[
+			]
+		}
+	} ,
+
+	{
+		"anagrafic":{
+			"type":"characterCard",
 			"name":"cardinal",
 			"period":3,
 			"choicePe": false,
@@ -2134,7 +2166,7 @@
 		]
 	}
 } ,	*/
-{	
+/* {
 	"anagrafic":{
 		"type":"characterCard",
 		"name":"bishop",
@@ -2164,7 +2196,7 @@
 		"poker":[
 		]
 	}
-} ,
+} ,	*/
 {	
 	"anagrafic":{
 		"type":"characterCard",
