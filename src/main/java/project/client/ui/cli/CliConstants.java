@@ -36,4 +36,6 @@ public class CliConstants {
     public static final String SHOW_TOWERS_CARDS_EFFECTS = "show-effects";
     public static final String SHOW_BONUS_TILE = "show-bonus-tile";
     public static final String SHOW_BUILDING_CARDS = "show-building-cards";
+    public static final String SHOW_TERRITORIES = "show-territories";
+    public static final String SHOW_TURNS = "show-turns";
 }

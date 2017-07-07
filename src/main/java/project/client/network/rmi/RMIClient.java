@@ -47,7 +47,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
 
     private BlockingQueue<List<Integer>> integerListQueue;
 
-    public RMIClient(ClientSetter clientSetter) throws ClientConnectionException {
+    public RMIClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
         super();
         fillUpdateHashMap();
         this.clientSetter = clientSetter;

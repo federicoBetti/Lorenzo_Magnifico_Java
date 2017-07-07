@@ -1,6 +1,7 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
+import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.messages.TakePrivilegesAction;
 
@@ -16,6 +17,7 @@ public class ImmediatePriviledgesContext extends AbstractContext {
 
     public ImmediatePriviledgesContext(Cli cli, TakePrivilegesAction numberOfpriviledges) {
         super(cli);
+        map.put(CliConstants.EXIT, this:: exit );
         this.numberOfpriviledges = numberOfpriviledges;
         priviledgesTakenInArow = new int[5];
         printHelp();
@@ -37,8 +39,10 @@ public class ImmediatePriviledgesContext extends AbstractContext {
         for ( String priviledgeNumber: parameters ){
             if (!(priviledgeNumber.length() == 1) && !(Character.isDigit(parameters[0].charAt(0))))
                 throw new InputException();
-            if (!(Integer.parseInt(priviledgeNumber) >= 0) && !(Integer.parseInt(priviledgeNumber) < 5))
+
+            if ( Integer.parseInt(priviledgeNumber) < 0 || Integer.parseInt(priviledgeNumber) > 5)
                 throw new InputException();
+
             if( priviledgesTakenInArow[Integer.parseInt(priviledgeNumber)] ==  1 )
                 throw new InputException();
 
@@ -52,7 +56,7 @@ public class ImmediatePriviledgesContext extends AbstractContext {
         try {
             checkValidInput(action);
             cli.immediatePriviledgeAction(action);
-        } catch (InputException | NumberFormatException e) {
+        } catch (InputException | NumberFormatException | StringIndexOutOfBoundsException e) {
             printHelp();
         }
 

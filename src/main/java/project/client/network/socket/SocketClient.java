@@ -36,13 +36,13 @@ public class SocketClient extends AbstractClient {
 
 
     // cosi si collega con la user interface scelta e creata appositamente
-    public SocketClient(ClientSetter clientSetter) throws ClientConnectionException {
+    public SocketClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
         this.clientSetter = clientSetter;
         this.messageHandler = new MessagesFromServerHandler(this);
         token = new Object();
         token1 = new Object();
         try {
-            socket = new Socket(Constants.LOCAL_ADDRESS, Constants.SOCKET_PORT);
+            socket = new Socket(IP, Constants.SOCKET_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             goToLogin();

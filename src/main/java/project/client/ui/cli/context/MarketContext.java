@@ -30,7 +30,7 @@ public class MarketContext extends AbstractContext {
         int i = 0;
         for ( Market market: marketZone ) {
             pRed.print(i + ") ");pRed.print("occupied: ");pYellow.println( market.isOccupied());pYellow.print(" ");
-            pRed.print("Effect: ");pYellow.println(market.getEffect().toString());
+            pRed.print("Effect: ");pYellow.println(market.getEffect().toScreen());
             i++;
         }
     }

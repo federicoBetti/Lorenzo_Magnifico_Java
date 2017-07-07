@@ -26,6 +26,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by raffaelebongo on 01/06/17.
  */
+
 public class Cli extends AbstractUI {
 
     private ClientSetter clientSetter; //all the operation have to pass across this class
@@ -100,7 +101,7 @@ public class Cli extends AbstractUI {
 
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
-        context = new BonusHarvesterContext(bonusHarv, this);
+        context = new BonusHarvesterContext(bonusHarv, this, clientSetter.getUiPersonalBoard().getTerritories());
     }
 
     @Override
@@ -152,6 +153,7 @@ public class Cli extends AbstractUI {
             privilegesChosen.add(Integer.parseInt(priviledge));
 
         clientSetter.immediatePriviledgeAction(privilegesChosen);
+
     }
 
     @Override
@@ -165,7 +167,7 @@ public class Cli extends AbstractUI {
     }
 
     public void harvester() {
-        context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), clientSetter.getUiPersonalBoard().getMyTile());
+        context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), clientSetter.getUiPersonalBoard().getMyTile(), clientSetter.getUiPersonalBoard().getTerritories());
     }
 
     public void goToCouncil() {
@@ -273,14 +275,15 @@ public class Cli extends AbstractUI {
 
     @Override
     public void receiveStatistics(PlayerFile statistics) {
-        context.getpRed().print("Player name: ");
-        context.getpBlue().println(statistics.getPlayerName());
-        context.getpRed().print("Number of matches: ");
-        context.getpBlue().println(statistics.getNumberOfGames());
-        context.getpRed().print("Number of victories: ");
-        context.getpBlue().println(statistics.getNumberOfVictories());
-        context.getpRed().print("Number of defeats: ");
-        context.getpBlue().println(statistics.getNumberOfDefeats());
+        context.getpBlue().print("Player name: ");
+        context.getpRed().println(statistics.getPlayerName());
+        context.getpBlue().print("Number of matches: ");
+        context.getpRed().println(statistics.getNumberOfGames());
+        context.getpBlue().print("Number of victories: ");
+        context.getpRed().println(statistics.getNumberOfVictories());
+        context.getpBlue().print("Number of defeats: ");
+        context.getpRed().println(statistics.getNumberOfDefeats());
+        context.getpRed().println("");
     }
 
     @Override
@@ -306,14 +309,33 @@ public class Cli extends AbstractUI {
     @Override
     public void setConnectionType(String kindOfConnection) {
 
-        try {
-            context.checkValidInput(kindOfConnection);
-            clientSetter.setConnectionType(kindOfConnection);
-        } catch (InputException e) {
-            context.printHelp();
+            try {
+                context.checkValidInput(kindOfConnection);
+                setIpAddress(kindOfConnection);
+            } catch (InputException e) {
+                context.printHelp();
+            }
         }
 
 
+    private boolean checkIP(String ip) {
+        String[] parameters = ip.split(".");
+        if (parameters.length != 4)
+            return false;
+
+        for (String num : parameters)
+            try {
+                if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > 255)
+                    return false;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+
+        return true;
+    }
+
+    private void setIpAddress(String kindOfConnection) {
+        context = new SetIPaddressContext(this, kindOfConnection);
     }
 
     public void choseAndTakeDevCard(String lineFromKeyBoard) {
@@ -327,7 +349,6 @@ public class Cli extends AbstractUI {
         }
     }
 
-    //todo aggiustare come parametri giusti la chiamata
     public void chooseProductionParameters(String lineFromKeyBoard) {
 
         try {
@@ -392,39 +413,17 @@ public class Cli extends AbstractUI {
         clientSetter.discardLeaderCard(name);
     }
 
-    public void choosePayment(String payment) {
-        try {
-            context.checkValidInput(payment);
-        } catch (InputException e) {
-            context.printHelp();
-            return;
-        }
-        clientSetter.sendChoicePaymentVc(Integer.parseInt(payment));
-    }
-
     public void sendExitToBonusAction() throws InputException {
         clientSetter.sendExitToBonusAction();
     }
 
-    public void showProductionZone() {
-        //to implement
-    }
-
-    public void showCouncilZone() {
-        List<Council> council = clientSetter.getUiBoard().getCouncilZone();
-
-    }
-
-    public void showMarketZone() {
-        //to implement
-    }
-
     public void showExcomunicationsTiles() {
-        int i = 0;
+        int i = 1;
         for (ExcommunicationZone exZone : clientSetter.getUiBoard().getExcommunicationZone()) {
             context.getpRed().print(i + ") ");
-            context.getpYellow().println(exZone.getCardForThisPeriod().getEffectDescription());
+            context.getpBlue().println(exZone.getCardForThisPeriod().getEffectDescription());
             i++;
+            context.getpBlue().println("");
         }
     }
 
@@ -551,6 +550,7 @@ public class Cli extends AbstractUI {
                 cardChoosen = choiceQueue.take();
                 context.checkValidInput(cardChoosen);
                 choice = false;
+                context.getpBlue().println("Leader card choosen! Wait for the new interaction...");
                 return cardChoosen;
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -648,16 +648,36 @@ public class Cli extends AbstractUI {
         return numberOfPlayers;
     }
 
-    public String getPlayerColor() {
-        return playerColor;
-    }
-
     public void setFirstRound(boolean firstRound) {
         this.firstRound = firstRound;
     }
 
     public FamilyMember[] getMyFamilymembers() {
         return myFamilymembers;
+    }
+
+    public void showTurns() {
+        Turn turn = clientSetter.getUiBoard().getTurn();
+
+        int count = 1;
+        context.getpBlue().println("TURN ORDER: ");
+        for (String nickname : turn.getPlayerName()) {
+            context.getpRed().print(count + ") ");
+            context.getpBlue().println(nickname);
+            count++;
+        }
+    }
+
+    public void setIPaddress(String kindOfConnection, String ip) {
+
+        try {
+            context.checkValidInput(ip);
+        } catch (InputException e) {
+            context.printHelp();
+            return;
+        }
+
+        clientSetter.setConnectionType(kindOfConnection, ip);
     }
 
     private class Keyboard extends Thread {

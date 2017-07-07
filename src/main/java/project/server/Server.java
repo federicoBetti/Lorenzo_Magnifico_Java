@@ -27,8 +27,6 @@ import java.util.*;
 
 public class Server {
 
-    private static final int RMI_PORT = 2;
-
     private ArrayList<Room> rooms;
 
     private SocketServer serverSocket;
@@ -105,6 +103,7 @@ public class Server {
 
                     if (!room.draftTime) {
                         player.setOn(true);
+
                         room.setTimer(checkAndStartTheTimer(room, player));
                     } else {
                         player.disconnectedInDraft = true;
@@ -120,7 +119,8 @@ public class Server {
                     player.setRoom(room);
                     room.nicknamePlayersMap.put(nickname, player);
                     player.loginSucceded();
-                    checkAndStartTheTimer(room, player);
+                    if ( room.numberOfPlayerOn() == 2)
+                        room.setTimer(checkAndStartTheTimer(room, player));
 
                     if (room.isFull()) {
                         player.tokenNotify();
@@ -427,9 +427,9 @@ public class Server {
 
     //todo togliere player
     private Timer checkAndStartTheTimer(Room room, PlayerHandler player) {
-        if (room.numberOfPlayerOn() == 2) {
+        if ( room.numberOfPlayerOn() == 2)
             return myTimerStartMatch(room, this.timerSettings, player);
-        }
+
         Timer timer = new Timer();
         return timer;
     }

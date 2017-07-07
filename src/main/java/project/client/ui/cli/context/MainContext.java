@@ -29,7 +29,12 @@ public class MainContext extends AbstractContext {
         map.put(Constants.DISCARD_LEADER_CARD, this:: dLeaderCard );
         map.put(Constants.GO_TO_MARKET, this::marketContext );
         map.put(CliConstants.HELP, this::printHelp);
+        map.put(CliConstants.SHOW_TURNS, this:: showTurns );
         printHelp();
+    }
+
+    private void showTurns() {
+        cli.showTurns();
     }
 
     private void marketContext() {

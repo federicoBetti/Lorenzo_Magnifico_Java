@@ -3,6 +3,8 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
+import project.controller.cardsfactory.BuildingCard;
+import project.controller.cardsfactory.TerritoryCard;
 import project.controller.effects.realeffects.Effects;
 import project.model.FamilyMember;
 import project.model.Harvester;
@@ -18,16 +20,36 @@ import java.util.Map;
 public class HarvesterContext extends AbstractContext {
     List<Harvester> harvesterZone;
     Tile bonusTile;
+    List<TerritoryCard> territories;
 
-    public HarvesterContext(Cli cli, List<Harvester> harvesterZone, Tile bonusTile){
+    public HarvesterContext(Cli cli, List<Harvester> harvesterZone, Tile bonusTile, List<TerritoryCard> territories ){
         super(cli);
         this.harvesterZone = harvesterZone;
         this.bonusTile = bonusTile;
+        this.territories = territories;
         map.put(CliConstants.EXIT, this::exit);
         map.put(CliConstants.HELP, this::printHelp );
+        map.put(CliConstants.SHOW_TERRITORIES, this:: showTerritories );
         map.put(CliConstants.SHOW_HARVESTER_ZONE, this::showHarvesterZone );
         map.put(CliConstants.SHOW_BONUS_TILE, this:: showBonusTile );
         printHelp();
+    }
+
+    private void showTerritories() {
+
+            int count1 = 1;
+            for (TerritoryCard card : territories) {
+                pRed.print(count1 + ") "); pBlue.println( "Card name: ");
+                pRed.println(card.getName());
+                pBlue.println("Permanent Effects: ");
+                int count2 = 1;
+                for (Effects effect : card.getPermanentCardEffects()) {
+                    pBlue.print(count2 + ") ");
+                    pYellow.println(effect.toScreen());
+                    count2++;
+                }
+                count1++;
+            }
     }
 
     private void showBonusTile() {

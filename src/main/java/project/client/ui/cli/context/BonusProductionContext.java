@@ -1,8 +1,10 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
+import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.cardsfactory.BuildingCard;
+import project.controller.effects.realeffects.Effects;
 import project.messages.BonusProductionOrHarvesterAction;
 
 import java.io.IOException;
@@ -18,10 +20,27 @@ public class BonusProductionContext extends AbstractContext {
 
     public BonusProductionContext(BonusProductionOrHarvesterAction bonusProd, Cli cli, List<BuildingCard> myBuildingCards ) {
         super(cli);
+        map.put(CliConstants.SHOW_BUILDING_CARDS, this:: showBuildingCards );
         this.bonusProd = bonusProd;
         this.myBuildingCards = myBuildingCards;
         bonusProd.actionString();
         printHelp();
+    }
+
+    private void showBuildingCards() {
+        int count1 = 1;
+        for (BuildingCard card : myBuildingCards) {
+            pBlue.print(count1 + ") Card name: ");
+            pRed.println(card.getName());
+            pBlue.println("Permanent Effects: ");
+            int count2 = 1;
+            for (Effects effect : card.getPermanentCardEffects()) {
+                pBlue.print(count2 + ") ");
+                pYellow.println(effect.toScreen());
+                count2++;
+            }
+            count1++;
+        }
     }
 
     @Override

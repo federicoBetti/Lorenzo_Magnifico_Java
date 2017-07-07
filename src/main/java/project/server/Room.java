@@ -168,6 +168,8 @@ public class Room {
         //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
 
+        //todo aggiungere questa parte per il draft
+
         //draft leader
         leaderDraft(playerInTheMatch);
 
@@ -209,7 +211,6 @@ public class Room {
 
         for (PlayerHandler p : getListOfPlayers() ) {
             //setResources(p, moreCoin);
-            //todo rinizializzare la personal board
             if ( p.isOn() ) {
                 int fauthPoint = 8;
                 System.err.println("numero di carte territorio: " + p.getPersonalBoardReference().getTerritories().size());
