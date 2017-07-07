@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * Created by federico on 26/05/17.
+ * excommunication effect that don't let you to take victory points from some resources
  */
 public class LoseFinalPointsFromResources implements Effects, Serializable {
 

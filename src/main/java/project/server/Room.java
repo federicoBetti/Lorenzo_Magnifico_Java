@@ -151,7 +151,7 @@ public class Room {
         }
 
         //testare se va
-        resetPlayers(playerInTheMatch);
+        //resetPlayers(playerInTheMatch);
 
         maxPlayers = i;
 
@@ -174,7 +174,7 @@ public class Room {
         //todo aggiungere questa parte per il draft
 
         //draft leader
-        //leaderDraft(playerInTheMatch);
+        leaderDraft(playerInTheMatch);
 
         //draft tile
         tileDraft(playerInTheMatch);

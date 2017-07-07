@@ -175,4 +175,45 @@ public class PersonalBoard implements Serializable{
 	public void setBuildings(List<BuildingCard> buildings) {
 		this.buildings = buildings;
 	}
+
+	public void addCoins(int coinsToAdd) {
+		int coinsBonus = bonusOnActions.getCoinsBonus();
+		if (coinsToAdd < 0){
+			coins += coinsToAdd;
+			return;
+		}
+		if (coinsToAdd + coinsBonus < 0) return;
+		coins = coins + coinsToAdd + coinsBonus;
+	}
+
+	public void addStone(int stoneToAdd) {
+		int stoneBonus = bonusOnActions.getStoneBonus();
+		if (stoneToAdd < 0){
+			stone += stoneToAdd;
+			return;
+		}
+		if (stoneToAdd + stoneBonus < 0) return;
+		stone = stone + stoneToAdd + stoneBonus;
+	}
+
+	public void addWood(int woodToAdd) {
+		int woodBonus = bonusOnActions.getWoodBonus();
+		if (woodToAdd < 0){
+			wood += woodToAdd;
+			return;
+		}
+		if (woodToAdd + woodBonus < 0) return;
+		wood = wood + woodToAdd + woodBonus;
+	}
+
+	public void addServants(int servantsToAdd){
+		int servantsBonus = bonusOnActions.getServantsBonus();
+		if (servantsToAdd < 0){
+			servants += servantsToAdd;
+			return;
+		}
+		if (servantsToAdd + servantsBonus < 0)
+			return;
+		servants = servants + servantsToAdd + servantsBonus;
+	}
 }

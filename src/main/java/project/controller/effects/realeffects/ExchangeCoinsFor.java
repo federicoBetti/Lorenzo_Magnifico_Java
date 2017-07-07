@@ -6,7 +6,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * effect that exchange coins for other resources
  */
 
 //todo fare con HAshMap
@@ -14,12 +14,12 @@ public class ExchangeCoinsFor implements ExchangeEffects {
 
     private int coinsRequired;
     private int resourceEarned;
-    private String resourceRewardered;
+    private String resourceReordered;
 
     public ExchangeCoinsFor(int quantity, TotalCost effectCost, String resourceRewardered) {
         this.coinsRequired = effectCost.getCoinsRequired();
         this.resourceEarned = quantity;
-        this.resourceRewardered = resourceRewardered;
+        this.resourceReordered = resourceRewardered;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ExchangeCoinsFor implements ExchangeEffects {
         if (player.getPersonalBoardReference().getCoins() >= coinsRequired) {
             player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - coinsRequired);
 
-            switch (resourceRewardered) {
+            switch (resourceReordered) {
                 case "wood":
                     player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
                     break;
@@ -59,7 +59,7 @@ public class ExchangeCoinsFor implements ExchangeEffects {
 
     @Override
     public String toScreen() {
-        return "Exchange " + coinsRequired + " coins" + " for taking " + resourceEarned + " of " + resourceRewardered;
+        return "Exchange " + coinsRequired + " coins" + " for taking " + resourceEarned + " of " + resourceReordered;
     }
 
 

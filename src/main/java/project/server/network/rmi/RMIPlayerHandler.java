@@ -222,8 +222,6 @@ public class RMIPlayerHandler extends PlayerHandler {
                 }
             }
 
-            if (productionCards == null) return;
-
             try {
 
                 if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER)) {

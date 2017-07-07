@@ -13,7 +13,7 @@ public class SocketServer extends AbstractServer {
     private ServerSocket serverSocket;
 
 
-    public SocketServer(Server server) throws IOException {
+    public SocketServer(Server server)  {
         super(server);
         this.socketServer = this;
     }

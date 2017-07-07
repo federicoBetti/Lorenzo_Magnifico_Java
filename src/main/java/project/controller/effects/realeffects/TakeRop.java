@@ -2,7 +2,7 @@ package project.controller.effects.realeffects;
 
 
 public class TakeRop  {
-
+//todo magari con una hash map..
     public Effects chooseRoP(String parameter, int quantity){
         switch (parameter) {
             case "wood":
@@ -12,7 +12,7 @@ public class TakeRop  {
             case "servant":
                 return new AddServants(quantity);
             case "victoryPoint":
-                return new AddVicotryPoints(quantity);
+                return new AddVictoryPoints(quantity);
             case "faithPoint":
                 return new AddFaithPoints(quantity);
             case "militaryPoint":

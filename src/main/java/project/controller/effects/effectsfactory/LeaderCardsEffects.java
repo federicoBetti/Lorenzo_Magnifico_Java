@@ -18,7 +18,7 @@ import java.util.List;
 
 
 /**
- * Created by federico on 17/06/17.
+ * class that apply leader card effects
  */
 public class LeaderCardsEffects {
 
@@ -82,13 +82,13 @@ public class LeaderCardsEffects {
     }
 
     private BonusInteraction bartolometoColleoni(PlayerHandler player) {
-        Effects effects = new AddVicotryPoints(4);
+        Effects effects = new AddVictoryPoints(4);
         effects.doEffect(player);
         return okOrNo;
     }
 
     private BonusInteraction cosimoDeMedici(PlayerHandler player) {
-        Effects effects = new AddVicotryPoints(1);
+        Effects effects = new AddVictoryPoints(1);
         effects.doEffect(player);
         effects = new AddServants(3);
         effects.doEffect(player);
@@ -158,7 +158,7 @@ public class LeaderCardsEffects {
     }
 
     private BonusInteraction sandroBotticelli(PlayerHandler player) {
-        Effects effects = new AddVicotryPoints(1);
+        Effects effects = new AddVictoryPoints(1);
         effects.doEffect(player);
         effects = new AddMilitaryPoints(2);
         effects.doEffect(player);
@@ -170,12 +170,9 @@ public class LeaderCardsEffects {
     }
 
     private BonusInteraction giovanniDalleBandeNere(PlayerHandler player) {
-        Effects effects = new AddCoin(1);
-        effects.doEffect(player);
-        effects = new AddWood(1);
-        effects.doEffect(player);
-        effects = new AddStone(1);
-        effects.doEffect(player);
+        player.getPersonalBoardReference().addWood(1);
+        player.getPersonalBoardReference().addStone(1);
+        player.getPersonalBoardReference().addCoins(1);
         return okOrNo;
     }
 

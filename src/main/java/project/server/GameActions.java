@@ -24,6 +24,7 @@ public class GameActions {
     private Timer timer;
     private LeaderCardsEffects leaderCardEffect;
     int excommunicationPLayerPLayed;
+    private boolean excommunicationTurn;
 
     GameActions(Room room) {
         this.room = room;
@@ -131,13 +132,32 @@ public class GameActions {
         int currentPeriod = board.getPeriod();
         int currentRound = board.getRound();
 
+        if (excommunicationTurn){
+            if (excommunicationPlays())
+                return;
+        }
+
         if (board.getTurn().getRotation() == 0){
-            if (board.getTurn().getSkipTurnForExcommunication().contains(playerHandler)){
-                int nextIndex = indexOfMe + 1;
-                nextIndex = nextIndex % playerNumbers;
-                nextTurn(turn.get(nextIndex));
+            int nextIndex = indexOfMe + 1;
+            nextIndex = nextIndex % playerNumbers;
+            PlayerHandler nextt = turn.get(nextIndex);
+            if (board.getTurn().getSkipTurnForExcommunication().contains(nextt)){
+                if (indexOfMe == playerNumbers -1) {
+                    board.getTurn().setRotation(board.getTurn().getRotation() + 1);
+                    if (nextt.isOn()) {
+                        timer.cancel();
+                        nextt.itsMyTurn();
+                        timer = this.myTimerSkipTurn(nextt);
+                        return;
+                    }
+                    else nextTurn(nextt);
+                }
+                else
+                    nextTurn(nextt);
+                return;
             }
         }
+
         if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
             next = turn.get(indexOfMe + 1);
             if (next.isOn()) {
@@ -163,9 +183,12 @@ public class GameActions {
             }
             nextTurn(next);
         } else if (currentRound == 1 && currentPeriod == 2) {//fine partita
-            if (excommunicationPlays(excommunicationPLayerPLayed))
+            if (excommunicationPlays()){
+                excommunicationTurn = true;
                 return;
+            }
             excommunicationPLayerPLayed = 0;
+            excommunicationTurn = false;
             timer.cancel();
             if (room.numberOfPlayerOn() == 0) {
                 System.out.println("finita la partita senza nessun giocatore");
@@ -174,9 +197,13 @@ public class GameActions {
             } else endMatch();
 
         } else if (currentRound == 1) {//fine periodo
-            if (excommunicationPlays(excommunicationPLayerPLayed))
+            if (excommunicationPlays()){
+                excommunicationTurn = true;
                 return;
+            }
             excommunicationPLayerPLayed = 0;
+            excommunicationTurn = false;
+
             timer.cancel();
             endPeriod(currentPeriod);
             nextRound();
@@ -190,10 +217,13 @@ public class GameActions {
 
         } else {
             System.out.println("fine round!" + currentRound);
-
-            if (excommunicationPlays(excommunicationPLayerPLayed))
+            if (excommunicationPlays()){
+                excommunicationTurn = true;
                 return;
+            }
             excommunicationPLayerPLayed = 0;
+            excommunicationTurn = false;
+
             timer.cancel();
             endRound();
             board.getTurn().setRotation(0);
@@ -208,18 +238,21 @@ public class GameActions {
         //todo se rimane solo un giocatore nella partita?
     }
 
-    private boolean excommunicationPlays(int excommunicationPLayerPLayed) {
+    private boolean excommunicationPlays() {
         List<PlayerHandler> exPlayer = room.getBoard().getTurn().getSkipTurnForExcommunication();
-        for (;excommunicationPLayerPLayed < exPlayer.size(); excommunicationPLayerPLayed++)
-        for (PlayerHandler playerHandler: exPlayer){
-            if (playerHandler.isOn()) {
-                timer.cancel();
-                playerHandler.itsMyTurn();
-                timer = this.myTimerSkipTurn(playerHandler);
-                return true;
-            }
 
-            }
+        for (; excommunicationPLayerPLayed < exPlayer.size(); ) {
+            PlayerHandler playerHandler = exPlayer.get(excommunicationPLayerPLayed);
+                if (playerHandler.isOn()) {
+                    timer.cancel();
+                    playerHandler.itsMyTurn();
+                    String s = playerHandler.getName();
+                    timer = this.myTimerSkipTurn(playerHandler);
+                    excommunicationPLayerPLayed++;
+                    return true;
+                }
+            excommunicationPLayerPLayed++;
+        }
         return false;
     }
 

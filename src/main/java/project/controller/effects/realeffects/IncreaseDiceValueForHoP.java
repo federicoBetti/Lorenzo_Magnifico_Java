@@ -7,7 +7,7 @@ import project.model.Bonus;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * effects that increase the bonus value of harvester or production
  */
 public class IncreaseDiceValueForHoP implements Effects {
 

@@ -37,13 +37,17 @@ public class Server {
 
     private Configuration configuration;
 
-    public Server() throws IOException {
+    public Server() {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
         //todo mettere configuration
         configuration = new Configuration();
-        this.timerSettings = configuration.loadTimer();
+        try {
+            this.timerSettings = configuration.loadTimer();
+        } catch (FileNotFoundException e) {
+            System.err.println("error loading files");
+        }
     }
 
     public static void main(String[] args) throws IOException {

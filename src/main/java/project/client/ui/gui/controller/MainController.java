@@ -291,7 +291,8 @@ public class MainController {
      */
     void doBonusHarvester(int servants) {
         actionBonusOn = false;
-        clientSetter.bonusHarvesterAction(servants);
+        Runnable a = () -> clientSetter.bonusHarvesterAction(servants);;
+        new Thread(a).start();
     }
 
     /**
@@ -301,7 +302,8 @@ public class MainController {
      */
     void doBonusProduction(List<String> buildingCardSelected) {
         actionBonusOn = false;
-        clientSetter.bonusProductionAction(buildingCardSelected);
+        Runnable a = () -> clientSetter.bonusProductionAction(buildingCardSelected);
+        new Thread(a).start();
     }
 
     /**
@@ -562,6 +564,12 @@ public class MainController {
         myTurn = false;
         endTurnContext = false;
         loginBuilder.writeOnMyChat("you have finished your turn\n");
+
+        towerController.unlockButton();
+        councilPalaceController.unlockButton();
+        harvesterController.unlockButton();
+        productionController.unlockButton();
+
         Runnable a = () -> clientSetter.skipTurn();
         new Thread(a).start();
     }
