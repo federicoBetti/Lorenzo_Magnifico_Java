@@ -53,6 +53,7 @@ public class BonusHarvesterContext extends AbstractContext {
 
         pRed.println("The main action is:");
         pYellow.println(bonusHarv.actionString());
+        pBlue.print("Type the number of servants that you want ot use: ");pRed.println("[numberOfServants]");
 
     }
 

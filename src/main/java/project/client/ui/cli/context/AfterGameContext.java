@@ -16,12 +16,11 @@ public class AfterGameContext extends AbstractContext {
         map.put(Constants.SHOW_RANKING, this::showRanking );
         map.put(Constants.SHOW_STATISTICS, this:: showStatistic );
         map.put(Constants.NEW_GAME, this::newGame);
-        map.put(Constants.VIVA_LA_FIGA, this:: terminate );
+        map.put(Constants.CLOSE_THE_GAME, this:: terminate );
         printHelp();
     }
 
     private void terminate() {
-        pRed.println("BASTA GIOCARE ANDIAMO A GNOCCA!");
         cli.terminate();
     }
 
@@ -39,7 +38,7 @@ public class AfterGameContext extends AbstractContext {
 
     @Override
     public void printHelp() {
-        pRed.println("You have finished your match! What do you want to do now?");
+        pRed.println("The match is finished! What do you want to do now?");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
             pBlue.println(entry.getKey());
     }

@@ -324,4 +324,11 @@ public class ClientSetter {
     public String getNickname() {
         return nickname;
     }
+    public void disconnessionMessage(String message) {
+        ui.disconnesionMessage(message);
+    }
+
+    public void winnerComunication(String winner) {
+        ui.winnerComunication(winner);
+    }
 }

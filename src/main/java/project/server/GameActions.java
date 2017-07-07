@@ -46,8 +46,9 @@ public class GameActions {
         for (Effects e : zone.getCardOnThisFloor().getImmediateCardEffects())
             getSupportFunctions(player).applyEffects(e, player);
 
-        player.sendActionOk();
 
+        player.sendActionOk();
+        System.out.println("MANDATA SEND ACTION OK");
         zone.setCardOnThisFloor(null);
 
         TowersUpdate towersUpdate = new TowersUpdate(board.getAllTowersUpdate(), player.getName());
@@ -246,13 +247,21 @@ public class GameActions {
             }
         }
 
+        closeClientForGeneralDisconnection();
+
         ArrayList<Room> rooms = room.getServer().getRooms();
         rooms.remove(room);
         room.getServer().setRooms(rooms);
         room = null;
+
         System.out.println("PARTITA FINITA PER DISCONNESSIONE DI ENTRAMBI I GIOCATORI");
 
         return -1;
+    }
+
+    private void closeClientForGeneralDisconnection() {
+        for ( PlayerHandler player : room.getListOfPlayers())
+            player.afterGameIftemporarilyOff();
     }
 
 
@@ -331,7 +340,7 @@ public class GameActions {
 
         PlayerHandler winner = findWinner();
         System.out.println("IL VINCITORE È: " + winner.getName());
-        //winner.YOUWIN();
+        winnerComunication(winner);
         room.addWinnersToTheFile(winner.getName());
         //todo  broadcastNotifications(new Notify("the winner is + " + winner.getName()));
         //todo queste tre righe servono per eliminare la room quando la partita è finita senno i giocatori si possono riconnettere ad una paritta finita
@@ -344,6 +353,11 @@ public class GameActions {
         room.getServer().setRooms(rooms);
         room = null;
 
+    }
+
+    private void winnerComunication(PlayerHandler winner ) {
+        for ( PlayerHandler player : room.getListOfPlayers() )
+            player.winnerComunication("The winner is " + winner.getName());
     }
 
     private void afterGame() {
@@ -623,12 +637,16 @@ public class GameActions {
         for (Effects e : player.getPersonalBoardReference().getMyTile().takeProductionResource())
             e.doEffect(player);
 
+        int i = 1;
         for (BuildingCard card : cards) {
             makePermanentEffectsProduction(player, card, choichePE);
+            System.out.println("EFFETTO " + i);
+            i++;
         }
 
         player.sendActionOk();
-        ProductionUpdate productionUpdate = new ProductionUpdate((ArrayList<Production>) board.getProductionZone(), player.getName());
+        System.out.println("PASSATO ACTION OK");
+        ProductionUpdate productionUpdate = new ProductionUpdate( board.getProductionZone(), player.getName());
         broadcastUpdates(productionUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
 
@@ -802,10 +820,11 @@ public class GameActions {
     private void makePermanentEffectsProduction(PlayerHandler player, BuildingCard card, List<Integer> choichePE) {
         if (card.isChoicePe()) {
             int choice = choichePE.get(0);
-            if (choice == -1) return;
+            if (choice == -1)
+                return;
             Effects e = card.getPermanentCardEffects().get(choice);
             BonusInteraction returnFromEffect = e.doEffect(player);
-
+            System.out.println("HO FATTO");
             if (returnFromEffect instanceof TakePrivilegesAction) {
                 System.out.println("if TakePrivilege");
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);

@@ -69,7 +69,7 @@ public class SocketClient extends AbstractClient {
                 messageHandler.handleMessage(message);
 
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                System.exit(1);
             }
         }
     }
@@ -117,6 +117,7 @@ public class SocketClient extends AbstractClient {
     public void immediatePriviledgeAction(List<Integer> privileges) {
         sendGenericObject(Constants.ACTION_DONE_ON_TIME);
         sendAllIntegers(privileges);
+        itsMyTurn();
     }
 
     @Override
@@ -132,7 +133,7 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(name);
     }
 
-    public void askForPrayingLastPlayer() {
+    void askForPrayingLastPlayer() {
         //thread che ascolta il timer
         new TimerReader().start();
         int answer = clientSetter.askForPraying();
@@ -149,7 +150,7 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    public void notifyPlayer() {
+    void notifyPlayer() {
         try {
             Notify notify = (Notify) objectInputStream.readObject();
             clientSetter.notifyPlayer(notify);
@@ -236,19 +237,17 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    public void bonusHarvester() {
+    void bonusHarvester() {
         BonusProductionOrHarvesterAction bonusHarv = null;
         try {
             bonusHarv = (BonusProductionOrHarvesterAction) objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         clientSetter.bonusHarvester(bonusHarv);
     }
 
-    public void takeImmediatePrivilege() {
+    void takeImmediatePrivilege() {
         try {
             TakePrivilegesAction privilegesAction = (TakePrivilegesAction) objectInputStream.readObject();
             clientSetter.takeImmediatePrivilege(privilegesAction);
@@ -266,13 +265,11 @@ public class SocketClient extends AbstractClient {
         sendGenericObject(servantsNumber);
     }
 
-    public void bonusProduction() {
+    void bonusProduction() {
         BonusProductionOrHarvesterAction bonusProd = null;
         try {
             bonusProd = (BonusProductionOrHarvesterAction) objectInputStream.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         clientSetter.bonusProduction(bonusProd);
@@ -351,6 +348,17 @@ public class SocketClient extends AbstractClient {
             }
 
         } catch (IOException | ClassNotFoundException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnessionMesaage() {
+        try {
+            String message = (String)objectInputStream.readObject();
+            clientSetter.disconnessionMessage(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -498,6 +506,17 @@ public class SocketClient extends AbstractClient {
     @Override
     public void showRanking() {
         sendGenericObject(Constants.SHOW_RANKING);
+    }
+
+    @Override
+    public void winnerComunication() {
+        try {
+            String winner = (String )objectInputStream.readObject();
+            clientSetter.winnerComunication(winner);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

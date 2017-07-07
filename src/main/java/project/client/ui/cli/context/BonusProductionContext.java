@@ -52,6 +52,8 @@ public class BonusProductionContext extends AbstractContext {
 
         pRed.println("The main action is:");
         pYellow.println(bonusProd.actionString());
+        pRed.print("buildingCard: ");pYellow.println("name1 - name2 - ... ");
+        pYellow.println("");
     }
 
     @Override
