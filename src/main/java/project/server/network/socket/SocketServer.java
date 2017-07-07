@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
+/**
+ * Socket Server that starts a Thread always managing the new socket client requests.
+ */
 public class SocketServer extends AbstractServer {
     private SocketServer socketServer;
     private ServerSocket serverSocket;
@@ -18,27 +20,29 @@ public class SocketServer extends AbstractServer {
         this.socketServer = this;
     }
 
-
+    /**
+     * It starts the Server's Thread for receiving the new Socket's client requests.
+     * @param serverPort
+     * @throws IOException
+     */
     public void startServer(int serverPort) throws IOException {
         serverSocket = new ServerSocket(serverPort);
-        System.out.println("server socket started!");
         new RequestHandler().start();
     }
 
     private class RequestHandler extends Thread {
 
         /**
-         * todo chiudere il socket con finally
+         * Thread for receiving the new Socket's client requests.
          */
+        //todo chiudere il socket con finally
         @Override
         public void run() {
-            System.out.println("i'm waiting for another client...");
 
             while (true) {
                 try {
 
                     Socket socket = serverSocket.accept();
-                    System.out.println("new socket request!");
                     SocketPlayerHandler socketPlayerHandler = new SocketPlayerHandler(socketServer, socket);
                     new Thread(socketPlayerHandler).start();
 

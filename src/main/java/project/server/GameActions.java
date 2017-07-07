@@ -15,7 +15,7 @@ import project.server.network.exception.CantDoActionException;
 import java.util.*;
 
 /**
- * main game actions
+ * This class performs all the main actions receiving the parameters from the network's package classes.
  */
 public class GameActions {
 
@@ -30,10 +30,22 @@ public class GameActions {
         timer = new Timer();
     }
 
-    private AllSupportFunctions getSupportFunctions(Player player) {
+    /**
+     * Get the support function object dedicated to a player
+     * @param player PlayerHandler reference
+     * @return supportFunction object dedicated to the player
+     */
+    private AllSupportFunctions getSupportFunctions(PlayerHandler player) {
         return room.getMySupportFunction(player);
     }
 
+    /**
+     * it takes the development card choosen by the player and performs all the immediate effects and sends the updates
+     * and call the "sendActionOk" method on the player.
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference that perform the action
+     */
     private void takeDevelopmentCard(Tower zone, PlayerHandler player) {
         DevelopmentCard card = zone.getCardOnThisFloor();
 
@@ -46,7 +58,6 @@ public class GameActions {
 
 
         player.sendActionOk();
-        System.out.println("MANDATA SEND ACTION OK");
         zone.setCardOnThisFloor(null);
 
         TowersUpdate towersUpdate = new TowersUpdate(board.getAllTowersUpdate(), player.getName());
@@ -55,9 +66,17 @@ public class GameActions {
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
         player.sendActionOk();
-        System.out.println("MANDATI TUTTTI GLI UPDATE");
     }
 
+    /**
+     * Make the payment for a no venture card choosen, whit supportFunction dedicated to the player, and call
+     * "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param familyM familiar to place in the tower
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     */
     public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -77,6 +96,15 @@ public class GameActions {
         takeDevelopmentCard(zone, player);
     }
 
+    /**
+     * Make the payment for a no venture card choosen whit a bonus actions, using the supportFunction dedicated to the player,
+     * and call "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     * @param diceFamiliarValue the bonus action's dice value
+     */
     public void takeNoVenturesCard(Tower zone, PlayerHandler player, boolean towerIsOccupied, int diceFamiliarValue) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -87,7 +115,15 @@ public class GameActions {
         takeDevelopmentCard(zone, player);
     }
 
-
+    /**
+     * Make the payment for a venture card choosen , using the supportFunction dedicated to the player,
+     * and call "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     * @param numberOfPayment the number of payment choosen
+     */
     public void takeVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -100,8 +136,16 @@ public class GameActions {
         takeDevelopmentCard(zone, player);
     }
 
-
-    //todo perchè ce ne sono due uguali? questo è solo per le bonus?
+    /**
+     * Make the payment for a venture card choosen whit a bonus action , using the supportFunction dedicated to the player,
+     * and call "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     * @param numberOfPayment the number of payment choosen
+     * @param diceFamiliarValue the bonus action's dice value
+     */
     public void takeVenturesCard(Tower zone, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment, int diceFamiliarValue) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -113,6 +157,9 @@ public class GameActions {
     }
 
     /**
+     * This method find who is the next player that has to play in the match and call on his PlayerHandler reference
+     * the method "itsMyTurn"
+     *
      * @param playerHandler
      */
     public void nextTurn(PlayerHandler playerHandler) {
@@ -188,15 +235,6 @@ public class GameActions {
     }
 
 
-    private boolean allAreOff() {
-        for (PlayerHandler player : board.getTurn().getPlayerTurn()) {
-            if (player.isOn()) {
-                System.out.println("player on per stoppare: " + player.isOn());
-                return false;
-            }
-        }
-        return true;
-    }
 
     int firstPlayerTurn() {
         int i = 0;

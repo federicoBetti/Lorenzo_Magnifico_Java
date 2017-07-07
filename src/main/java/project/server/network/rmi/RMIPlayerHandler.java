@@ -143,15 +143,6 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     @Override
-    public void sendNotification(Notify notifications) {
-        try {
-            myClient.sendNotification(notifications);
-        } catch (RemoteException e) {
-            playerDisconnected();
-        }
-    }
-
-    @Override
     public void sendUpdates(Updates updates) {
         try {
             if (isOn())

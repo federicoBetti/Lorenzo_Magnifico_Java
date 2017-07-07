@@ -492,7 +492,7 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    public void receiveStatistics() {
+    void receiveStatistics() {
         try {
             PlayerFile statistics = (PlayerFile) objectInputStream.readObject();
             clientSetter.receiveStatistics(statistics);

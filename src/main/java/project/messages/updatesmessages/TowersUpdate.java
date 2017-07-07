@@ -30,6 +30,6 @@ public class TowersUpdate extends Updates implements Serializable {
 
     @Override
     public String toScreen() {
-       return getNicknameCurrentPlayer() + " has taken from a tower!    " + towersZone[0][0].getFamiliarOnThisPosition();
+       return getNicknameCurrentPlayer() + " has taken from a tower!    ";
     }
 }

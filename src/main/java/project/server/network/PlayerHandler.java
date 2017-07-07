@@ -433,8 +433,6 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void sendAnswer(Object returnFromEffect);
 
-    public abstract void sendNotification(Notify notifications);
-
     public abstract void sendUpdates(Updates updates);
 
     public abstract int sendChoicePE();

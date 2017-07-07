@@ -143,15 +143,16 @@ public class Room {
                 BasicSupportFunctions supportFunctions = new BasicSupportFunctions(player.getValue());
                 playerAllSupportFunctionsMap.put(player.getValue(), supportFunctions);
                 playerInTheMatch.add(player.getValue());
+                resetPlayers(player.getValue());
                 player.getValue().setFamilyColour(colors[i]);
                 player.getValue().setFamilyColourInFamilyMembers();
-                // player.getValue().setDisconnectedInDraft(true);
+
                 i++;
             }
         }
 
-        //testare se va
-        resetPlayers(playerInTheMatch);
+
+
 
         maxPlayers = i;
 
@@ -213,7 +214,7 @@ public class Room {
         int moreCoin = 0;
 
         for (PlayerHandler p : getListOfPlayers()) {
-            //setResources(p, moreCoin);
+            setResources(p, moreCoin);
             if (p.isOn()) {
                 int fauthPoint = 8;
                 System.err.println("numero di carte territorio: " + p.getPersonalBoardReference().getTerritories().size());
@@ -243,9 +244,8 @@ public class Room {
 
     }
 
-    private void resetPlayers(List<PlayerHandler> playerInTheMatch) {
+    private void resetPlayers( PlayerHandler player) {
         Configuration configuration = new Configuration();
-        for (PlayerHandler player : playerInTheMatch) {
             try {
                 //player.setPersonalBoardReference(new PersonalBoard());
                 player.setScore(new Score());
@@ -254,7 +254,6 @@ public class Room {
                 e.printStackTrace();
             }
         }
-    }
 
     private void tileDraft(List<PlayerHandler> playerInTheMatch) {
 
