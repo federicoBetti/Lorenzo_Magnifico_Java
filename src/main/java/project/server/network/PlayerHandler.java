@@ -15,10 +15,14 @@ import project.server.GameActions;
 import project.server.Room;
 import project.server.network.exception.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract class that is extended by RMIplayerHandler and SocketPlayerHandler. in this class pass all the methods that
+ * have an implementation independent from the technology used for the networking. Here are acted controls and parameters
+ * are prepared for the "GameActions" class's methods.
+ */
 public abstract class PlayerHandler extends Player {
 
     private transient Room room;
@@ -41,11 +45,12 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * controllare se si puo fare una check functions che si chiamauguale CheckIfCanTakeCard che prendere come parametr una volta buildingCard una volta TerritoryCard e cosi via
+     * This method check the take development card request, control if the player has the requirements for taking the card
+     * and call the right method for taking the card from the tower.
      *
-     * @param towerColor
-     * @param floor
-     * @param familyM
+     * @param towerColor colour of the tower on which the player wants to place the familiar
+     * @param floor floor of the selected tower
+     * @param familyM familiar that the player wants to place
      */
     protected void clientTakeDevelopmentCard(String towerColor, int floor, FamilyMember familyM) throws CantDoActionException {
         if (familyM == null) throw new CantDoActionException();
@@ -82,6 +87,17 @@ public abstract class PlayerHandler extends Player {
 
     }
 
+    /**
+     * This method check what cost the player can pay for a venture card
+     *
+     * @param card card's reference
+     * @param playerHandler palyerahandler's reference
+     * @param towerOccupied boolean that says if a tower is already occupied and if is necessary pay coins more
+     * @param diceCost dice value required for the action
+     * @param diceValueOfFamiliar choosen familiar's dice value
+     * @return index of the possible payment
+     * @throws CantDoActionException thrown when the player is unable to act an action
+     */
     private int checkOnVenturesCost(DevelopmentCard card, PlayerHandler playerHandler, boolean towerOccupied, int diceCost, int diceValueOfFamiliar) throws CantDoActionException {
         int canTakeVenturesCard = checkFunctions.checkCardCostVentures((VenturesCard) card, playerHandler, towerOccupied, diceCost, diceValueOfFamiliar);
 
@@ -92,6 +108,15 @@ public abstract class PlayerHandler extends Player {
         } else return canTakeVenturesCard - 1; //indice del costo pagabile
     }
 
+    /**
+     * This method check the take bonus development card request, control if the player has the requirements for taking the card
+     * and call the right method for taking the card from the tower.
+     *
+     * @param towerColour colour of the tower on which the player wants to place the familiar
+     * @param floor floor of the selected tower
+     * @param returnFromEffect object that contains all the characteristics of the bonus tower action
+     * @throws CantDoActionException thrown when the player is unable to act an action
+     */
     protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {
         if (!(returnFromEffect.getKindOfCard().equals(Constants.ALL_COLOURS) || returnFromEffect.getKindOfCard().equals(towerColour)))
             throw new CantDoActionException();
@@ -125,6 +150,14 @@ public abstract class PlayerHandler extends Player {
 
     }
 
+    /**
+     * Act the discount of the cost contained in the effect.
+     *
+     * @param costDiscounted copy of the cost modified withe the discounts
+     * @param discountedResource string that represent the discounted resource
+     * @param quantityDiscounted quantity of the resource discounted
+     * @return final cost with the discounts applied
+     */
     private Cost discountCost(Cost costDiscounted, String discountedResource, int quantityDiscounted) {
         switch (discountedResource) {
             case Constants.WOOD: {
@@ -144,11 +177,11 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * this method is used when the system ask to the client which of VenturesCard payment he wants to use
+     * this method is used when the system ask to the client which VenturesCard payment he wants to use
      *
-     * @param position
-     * @param familyMember
-     * @param paymentChoosen
+     * @param position floor of the tower
+     * @param familyMember familiar choosen for acting the action
+     * @param paymentChoosen represent the payment choosen
      */
     protected void clientChosenPaymentForVenturesCard(int position, FamilyMember familyMember, int paymentChoosen) {
         Position[] tower;
@@ -163,35 +196,47 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * @param familyM
-     * @param servantsNumber
+     * This method prepares the parameters for acting the harvester
+     *
+     * @param familyM familiar choosen for performing the harvester
+     * @param servantsNumber servants number choosen for performing the harvester
      */
-
     protected void harvester(FamilyMember familyM, int servantsNumber) throws CantDoActionException {
         if (servantsNumber > getPersonalBoardReference().getServants()) throw new CantDoActionException();
 
         List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
-        boolean canTakeCard;
         int position = firstFreePosition(harvesterZone, familyM.getFamilyColour());
 
         gameActions().harvester(position, familyM, servantsNumber, this);
     }
 
+    /**
+     * This method finds the first position available in a list of positions
+     *
+     * @param zone list of positions
+     * @param familyColour familiar colour choosen for performing an action
+     * @return the first free position
+     * @throws CantDoActionException thrown when the player is unable to perform an action
+     */
+
     private int firstFreePosition(List<? extends Position> zone, String familyColour) throws CantDoActionException {
         for (Position p : zone) {
-            if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour)) throw new CantDoActionException();
+            if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour))
+                throw new CantDoActionException();
         }
-        if (room.numberOfPlayerOn() > 2 && !zone.isEmpty()) throw new CantDoActionException();
+
+        if (room.numberOfPlayerOn() > 2 && !zone.isEmpty())
+            throw new CantDoActionException();
 
         return zone.size();
     }
 
     /**
-     * check function on bonus harvester action
+     * Check function for bonus harvester action
      *
-     * @param returnFromEffect
-     * @param intServantsNumber
-     * @throws CantDoActionException
+     * @param returnFromEffect object that contains the characteristics of the bonus harvester action
+     * @param intServantsNumber number of servants used for performing the action
+     * @throws CantDoActionException thrown when the player is unable to perform an action
      */
     protected void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
         int harvesterValue = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() + intServantsNumber;
@@ -200,14 +245,14 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * @param familyM
-     * @param cardToProduct
-     * @return
+     * Check function for production action
+     *
+     * @param familyM familiar used for performing the production
+     * @param cardToProduct list of cards' reference on which perform the production
      */
     protected void production(FamilyMember familyM, List<BuildingCard> cardToProduct) throws CantDoActionException {
         int maxValueOfProduction;
         List<Production> productionZone = room.getBoard().getProductionZone();
-        boolean canTakeCards;
         List<Integer> choichePE = new ArrayList<>();
         int position;
 
@@ -216,62 +261,99 @@ public abstract class PlayerHandler extends Player {
 
         maxValueOfProduction = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
 
-        if (position > 0) maxValueOfProduction = maxValueOfProduction - Constants.MALUS_PROD_HARV;
+        if (position > 0)
+            maxValueOfProduction = maxValueOfProduction - Constants.MALUS_PROD_HARV;
 
         System.out.println("STO ENTANDO NEL CHECK PRODUZIONE");
-        int servantsToPay = checkAvaiabiltyToProduct(cardToProduct, maxValueOfProduction, choichePE);
+        int servantsToPay = checkAvailabilityToProduct(cardToProduct, maxValueOfProduction, choichePE);
         System.out.println("HO FATTO LA PRODUZIONE");
 
-        gameActions().production(position, familyM, cardToProduct, servantsToPay, choichePE, this);
+        gameActions().production( familyM, cardToProduct, servantsToPay, choichePE, this);
     }
 
 
+    /**
+     * Check function for bonus production action
+     *
+     * @param returnFromEffect object that contains the characteristics of the bonus harvester action
+     * @param cards list's reference of the building cards on which the player wants to act the production
+     * @throws CantDoActionException thrown when the player is unable to perform an action
+     */
     protected void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
         int maxValueOfProduction;
         List<Integer> choicePe = new ArrayList<>();
         maxValueOfProduction = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
-        int servantsToPay = checkAvaiabiltyToProduct(cards, maxValueOfProduction, choicePe);
+        int servantsToPay = checkAvailabilityToProduct(cards, maxValueOfProduction, choicePe);
         gameActions().productionBonus(cards, servantsToPay, choicePe, this);
     }
 
-
-    private int checkAvaiabiltyToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction, List<Integer> choicePE) throws CantDoActionException {
+    /**
+     * Check if the player is able to act a production
+     *
+     * @param cardToProduct list of cards on which the player wants to act the production
+     * @param maxValueOfProduction
+     * @param choicePE boolean that says if there are 2 permanent effects alternatively
+     * @return correct number of servants to pay
+     * @throws CantDoActionException thrown when the player is unable to perform an action
+     */
+    private int checkAvailabilityToProduct(List<BuildingCard> cardToProduct, int maxValueOfProduction, List<Integer> choicePE) throws CantDoActionException {
         TotalCost cost = new TotalCost();
         int servantsMax = 0;
         for (BuildingCard b : cardToProduct) {
             System.err.println(b.getName());
             System.err.println(b.isChoicePe());
+
             if (b.getCost().getDiceCost() > maxValueOfProduction + checkFunctions.getServants(this))
                 throw new CantDoActionException();
-            int servnatsToPay = b.getCost().getDiceCost() - maxValueOfProduction;
-            if (servnatsToPay > servantsMax) servantsMax = servnatsToPay;
+            
+            int servants = b.getCost().getDiceCost() - maxValueOfProduction;
+
+            if (servants > servantsMax)
+                servantsMax = servants;
             List<Effects> permanentEffect = b.getPermanentCardEffects();
+
             if (b.isChoicePe()) {
                 fillEffectChoice(permanentEffect, choicePE, cost);
-            } else addCost(permanentEffect.get(0), cost);
+            } else
+                addCost(permanentEffect.get(0), cost);
         }
 
         checkTotalCost(cost);
         return servantsMax;
     }
 
+    /**
+     * Check teh player is able to pay the card
+     *
+     * @param cost cost of the card
+     * @throws CantDoActionException thrown when the player is unable to perform an action
+     */
     private void checkTotalCost(TotalCost cost) throws CantDoActionException {
         if (getPersonalBoardReference().getServants() >= cost.getServantsRequired() && getPersonalBoardReference().getStone() >= cost.getStoneRequired() && getPersonalBoardReference().getWood() >= cost.getWoodRequired() && getPersonalBoardReference().getCoins() >= cost.getCoinsRequired() && getScore().getFaithPoints() >= cost.getFaithPoints())
             return;
         else throw new CantDoActionException();
     }
 
+    //todo non capisco bene come
+    /**
+     * This method ask for what permanent effect performing and
+     *
+     * @param permanentEffect
+     * @param choicePE
+     * @param cost
+     */
     private void fillEffectChoice(List<Effects> permanentEffect, List<Integer> choicePE, TotalCost cost) {
         int choice = sendChoicePE();
         choicePE.add(choice);
-        System.out.println("effetto scelto1: " + permanentEffect.get(choice).toScreen());
-        if (choice == -1) return;
-        System.out.println("effetto scelto2: " + permanentEffect.get(choice).toScreen());
+        if (choice == -1)
+            return;
+
         addCost(permanentEffect.get(choice), cost);
     }
 
     private void addCost(Effects effects, TotalCost cost) {
-        if (effects instanceof ExchangeEffects) ((ExchangeEffects) effects).addResourceRequested(cost);
+        if (effects instanceof ExchangeEffects)
+            ((ExchangeEffects) effects).addResourceRequested(cost);
     }
 
     /**
@@ -279,7 +361,6 @@ public abstract class PlayerHandler extends Player {
      *
      * @param position position of the market where you want to place the familiar
      * @param familyM  family member that you want to place
-     * @return void
      */
     protected void goToMarket(int position, FamilyMember familyM) throws CantDoActionException {
         Position[] marketZone = room.getBoard().getMarketZone();

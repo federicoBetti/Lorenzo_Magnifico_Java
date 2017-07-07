@@ -117,6 +117,8 @@ public class TowersContext extends AbstractContext {
         if(!( parameters.length == 3 ))
             throw new InputException();
 
+        checkTowerColour(parameters[0]);
+
         try {
             if (Integer.parseInt(parameters[1]) < 0 || Integer.parseInt(parameters[1]) > 3)
                 throw new InputException();
@@ -125,6 +127,7 @@ public class TowersContext extends AbstractContext {
             throw new InputException();
         }
 
+        checkFamilyMemberColour(parameters[2]);
     }
 
     @Override
