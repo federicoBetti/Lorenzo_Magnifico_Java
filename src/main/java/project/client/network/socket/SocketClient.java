@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class communicate directly with the socket player handler class
+ * This class communicates directly with the socket player handler class
  */
 public class SocketClient extends AbstractClient {
 
@@ -350,7 +350,8 @@ public class SocketClient extends AbstractClient {
     }
 
     /**
-     *
+     * This method receive the object that contains the charateristics of the bonus production to do and calls the
+     * method bonusProduction on the clientSetter
      */
     void bonusProduction() {
         BonusProductionOrHarvesterAction bonusProd = null;
@@ -362,11 +363,20 @@ public class SocketClient extends AbstractClient {
         clientSetter.bonusProduction(bonusProd);
     }
 
+    /**
+     * This method sends to the server all the parameters for performing the bonus production action
+     *
+     * @param parameters
+     */
     public void bonusProductionAction(List<String> parameters) {
         sendGenericObject(Constants.BONUS_PRODUCTION);
         sendAllStrings(parameters);
     }
 
+    /**
+     * This method receive the object that contains the charateristics of the bonus tower action to do and calls the
+     * method takeBonusCard on the clientSetter
+     */
     void takeBonusCard() {
         TowerAction towerAction = null;
         try {
@@ -378,6 +388,11 @@ public class SocketClient extends AbstractClient {
     }
 
 
+    /**
+     * This method starts a Thread that reads if the time for the turn is up and calls on the client setter the
+     * choicePe method. This method return an int that represents the choice of permanent effect and sends the
+     * answer to the server.
+     */
     public void choicePe() {
         new TimerReader().start();
         int peChoosen = clientSetter.choicePe();
@@ -393,6 +408,11 @@ public class SocketClient extends AbstractClient {
 
     }
 
+    /**
+     * This method starts a Thread that reads if the time for the turn is up and calls on the client setter the
+     * bothPaymentsAvailable method. This method return an int that represents the choice of payment and sends the
+     * answer to the server.
+     */
     void bothPaymentsAvailable() {
         new TimerReader().start();
         int costChoice = clientSetter.bothPaymentsAvailable();
@@ -412,9 +432,13 @@ public class SocketClient extends AbstractClient {
         System.out.println("Svegliato e vado in wait");
     }
 
-    public void leaderDraft() {
+    /**
+     * This method receive the list of leader cards for the draft. After it starts a Thread that reads if the time for
+     * the turn is up and calls on the client setter the getLeaderCardChosen method. This method return an int that
+     * represents the leader card choosen and sends the answer to the server.
+     */
+    void leaderDraft() {
         List<LeaderCard> leaders = new ArrayList<>();
-
 
         try {
             int size = (int) objectInputStream.readObject();
@@ -437,17 +461,23 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-    public void disconnessionMesaage() {
+    /**
+     * This method receive a message about the disconnession of another player and calls on the clientSetter the
+     * method disconnessionMessage
+     */
+    void disconnessionMesaage() {
         try {
             String message = (String)objectInputStream.readObject();
             clientSetter.disconnessionMessage(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * This private class is a Thread that is called for waiting for a timer message if it expires while the player
+     * is choosing his action. If it happens, this thread calls the method timerTurnDelayed
+     */
     private class TimerReader extends Thread {
 
         @Override
@@ -459,22 +489,16 @@ public class SocketClient extends AbstractClient {
                 if (message.equals(Constants.TIMER_TURN_DELAYED)) {
                     timerTurnDelayed();
 
-                    System.out.println("Dormo...");
-
-                    System.out.println("mi hanno svegliato e aspetto di ricevere");
-
                     message = (String) objectInputStream.readObject();
                     while (!message.equals(Constants.ACTION_DONE_ON_TIME)) {
                         message = (String) objectInputStream.readObject();
-                        System.out.println("ricevuto:" + message);
                     }
 
                     synchronized (token) {
                         token.notify();
                     }
 
-                    System.out.println("NOTIFY");
-                } else if (message.equals(Constants.ACTION_DONE_ON_TIME)) { //era solo if
+                } else if (message.equals(Constants.ACTION_DONE_ON_TIME)) {
 
                     synchronized (token) {
                         token.notify();
@@ -490,9 +514,10 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    //updates
-
-    public void scoreUpdate() {
+    /**
+     * This method receive a scoreUpdate object and calls the method scoreUpdate on the clientSetter
+     */
+    void scoreUpdate() {
         Updates update = null;
         try {
             update = (ScoreUpdate) objectInputStream.readObject();
@@ -502,7 +527,10 @@ public class SocketClient extends AbstractClient {
         clientSetter.scoreUpdate(update);
     }
 
-    public void personalBoardUpdate() {
+    /**
+     * This method receive a personaBoardUpdate object and calls the method personalBoardUpdate on the clientSetter
+     */
+    void personalBoardUpdate() {
         Updates update = null;
         try {
             update = (PersonalBoardUpdate) objectInputStream.readObject();
@@ -512,7 +540,10 @@ public class SocketClient extends AbstractClient {
         clientSetter.personalBoardUpdate(update);
     }
 
-    public void familyMemberUpdate() {
+    /**
+     * This method receive a FamilyMemberUpdate object and calls the method familyMemberUpdate on the clientSetter
+     */
+    void familyMemberUpdate() {
         Updates update = null;
         try {
             update = (FamilyMemberUpdate) objectInputStream.readObject();
@@ -522,18 +553,24 @@ public class SocketClient extends AbstractClient {
         clientSetter.familyMemberUpdate(update);
     }
 
-
+    /**
+     * This method comunicates to the server that the player wants to skip the turn
+     */
     public void skipTurn() {
         sendGenericObject(Constants.SKIP_TURN);
     }
 
-
+    /**
+     * This method calls the method timerTurnDelayed on the clientSetter
+     */
     public void timerTurnDelayed() {
         clientSetter.timerTurnDelayed();
     }
 
-
-    public void boardUpdate() {
+    /**
+     * This method receive a boardUpdate object and calls the method boardUpdate on the clientSetter
+     */
+    void boardUpdate() {
         Updates update = null;
         try {
             update = (Updates) objectInputStream.readObject();
@@ -543,9 +580,12 @@ public class SocketClient extends AbstractClient {
         clientSetter.boardUpdate(update);
     }
 
-
+    /**
+     * This method receive the number of players in the match and the player's family colour as a string and calls
+     * the method matchStarted on the clientSetter
+     */
     public void matchStarted() {
-        int roomPlayersNumber = 0;
+        int roomPlayersNumber;
         try {
             roomPlayersNumber = (int) objectInputStream.readObject();
             String playerFamilyColour = (String) objectInputStream.readObject();
@@ -556,38 +596,47 @@ public class SocketClient extends AbstractClient {
         }
     }
 
-
+    /**
+     * This method calls the method cantDoAction on the clietSetter
+     */
     public void cantDoAction() {
         clientSetter.cantDoAction();
     }
 
-
+    /**
+     * This method send the player's nickname to the server
+     *
+     * @param nickname nickname as a String
+     */
     @Override
     public void newNickname(String nickname) {
         sendGenericObject(nickname);
     }
 
-
-    public void terminate() {
-    }
-
-
+    /**
+     * This method receive an PlayerFile object containing the player's statistics and calls receiveStatistics on
+     * the clientSetter
+     */
     void receiveStatistics() {
         try {
             PlayerFile statistics = (PlayerFile) objectInputStream.readObject();
             clientSetter.receiveStatistics(statistics);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * This methods sends the ranking's request to the server
+     */
     @Override
     public void showRanking() {
         sendGenericObject(Constants.SHOW_RANKING);
     }
 
+    /**
+     * This method receive the winner's name and calls winnerComunication on the clientSetter
+     */
     @Override
     public void winnerComunication() {
         try {
@@ -599,29 +648,41 @@ public class SocketClient extends AbstractClient {
 
     }
 
-
+    /**
+     * This method receives the list of players ordered as a ranking and calls the method ranking on the clientSetter
+     */
     public void ranking() {
         try {
             List<PlayerFile> ranking = (List<PlayerFile>)objectInputStream.readObject();
             clientSetter.ranking(ranking);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * This method sends to the server the player's nickname with the request of playing anothe match
+     *
+     * @param nickname player's nickname
+     */
     @Override
     public void newGameRequest(String nickname) {
         sendGenericObject(Constants.NEW_GAME);
         sendGenericObject(nickname);
     }
 
+    /**
+     * This method calls the method prayed on the clientSetter
+     */
     public void prayed() {
         clientSetter.prayed();
     }
 
-    public void excommunicationTake() {
+    /**
+     * This method receive the object that contains the excommunicatio characteristics and calls excommunicationTake
+     * on the clientSetter
+     */
+    void excommunicationTake() {
         try {
             Updates update = (Updates) objectInputStream.readObject();
             clientSetter.excommunicationTake(update);
@@ -631,12 +692,19 @@ public class SocketClient extends AbstractClient {
 
     }
 
-
-    public void createWaitingForYourTurnContext() {
+    /**
+     * This method calls waitingForYourTurn on the clientSetter
+     */
+    void createWaitingForYourTurnContext() {
         clientSetter.waitingForYourTurn();
     }
 
-    //sending methods
+    /**
+     * This method sends 2 generica parameters
+     *
+     * @param parameter1 first object
+     * @param parameter2 second object
+     */
     private void send2Parameters(Object parameter1, Object parameter2) {
         try {
             objectOutputStream.writeObject(parameter1);
@@ -651,6 +719,13 @@ public class SocketClient extends AbstractClient {
         }
     }
 
+    /**
+     * This method sends 3 generica parameters
+     *
+     * @param parameter1 first object
+     * @param parameter2 second object
+     * @param parameter3 third object
+     */
     private void send3Parameters(Object parameter1, Object parameter2, Object parameter3) {
 
         try {
@@ -671,6 +746,11 @@ public class SocketClient extends AbstractClient {
         }
     }
 
+    /**
+     * This method sends a list of strings
+     *
+     * @param parameters list of strings
+     */
     private void sendAllStrings(List<String> parameters) {
         sendGenericObject(parameters.size());
         for (String elem : parameters) {
@@ -685,6 +765,11 @@ public class SocketClient extends AbstractClient {
         }
     }
 
+    /**
+     * This method sends a list of integer
+     *
+     * @param parameters list of integer
+     */
     private void sendAllIntegers(List<Integer> parameters) {
 
         for (Integer elem : parameters) {
@@ -698,6 +783,11 @@ public class SocketClient extends AbstractClient {
         }
     }
 
+    /**
+     * This method send a generic object
+     *
+     * @param kindOfRequest generic object
+     */
     private void sendGenericObject(Object kindOfRequest) {
 
         try {
@@ -710,16 +800,29 @@ public class SocketClient extends AbstractClient {
     }
 
 
+    /**
+     * This method calls nicknameAlreadyUsed on the clientSetter
+     */
     public void nicknameAlreadyUsed() {
         clientSetter.nicknameAlreadyUsed();
     }
 
+    /**
+     * This method calls loginSucceded on the clientSetter
+     */
     public void loginSucceded() {
         clientSetter.loginSucceded();
     }
 
-
-    public void tileDraft() throws IOException, ClassNotFoundException {
+    /*
+     * This method receive the list of bonus tiles for the draft. After it starts a Thread that reads if the time for
+     * the turn is up and calls on the client setter the tileDraft method. This method return an int that
+     * represents the bonus tile choosen and sends the answer to the server.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    void tileDraft() throws IOException, ClassNotFoundException {
         List<Tile> tiles = new ArrayList<>();
 
         int size = (int) objectInputStream.readObject();
@@ -746,10 +849,20 @@ public class SocketClient extends AbstractClient {
         }
     }
 
+    /**
+     * This method gets the nickname
+     *
+     * @return nickname as a String
+     */
     public String getNickname() {
         return nickname;
     }
 
+    /**
+     * This method set the nickname
+     *
+     * @param nickname as a String
+     */
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }

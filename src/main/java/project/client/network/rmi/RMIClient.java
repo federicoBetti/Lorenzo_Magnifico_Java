@@ -24,20 +24,9 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * qua devono essere implementati sia i metodi di AbstracClient (cioè tutti quelli che il client deve chiamare sul server, sia quelli della
- * interfaccia (quelli che il server chiama sul client)
- * devo avere un riferimento al main game, cioè al client vero e proprio. all'RMIClient arrivano le risposte e le passa al main game
- *  che poi a sua volta chiama il relatiivo aggiornamento di GUI.
- *  questi metodi che ritornano sono anche quelli dell'update della UI in tempo reale
+ * This class communicates directly with the RMIserver that calls the methods on the dedicated RMIPlayerHandler
  */
 public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
-
-    @Override
-    public void loginSucceded() throws RemoteException {
-        clientSetter.loginSucceded();
-
-    }
-
 
     private String nickname;
     private RMIClientToServerInterface myServer;
@@ -64,8 +53,27 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         updateHashMap.put(Constants.EXCOMMUNICATION_TAKEN_UPDATE,this::excommunicationTaken);
     }
 
-    //QUA CI SONO I METODI DA CLIENT A SERVER
 
+    /**
+     * This methods calls the method loginSucceded on the clientSetter
+     *
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                         exceptions that may occur during the execution of a remote method call
+     */
+    @Override
+    public void loginSucceded() throws RemoteException {
+        clientSetter.loginSucceded();
+
+    }
+
+    /**
+     * This method establish the connection between the client and the Server. The client search the server RMI on a
+     * registry located on a specific port, make himself exportable and pass to the server his instance and the server
+     * creates an RMIPlayer handler dedicated to him. The client receive an unique identifier that will use for
+     * comunicates with his dedicated RMIPlayerHandler.
+     *
+     * @throws ClientConnectionException Exception due to errors in client's connection
+     */
     private void connect() throws ClientConnectionException {
         try {
             Registry reg = LocateRegistry.getRegistry(8001);
@@ -80,6 +88,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.goToLogin();
     }
 
+    /**
+     * This method calls the method loginRequest on the RMIServer
+     *
+     * @param loginParameter player's nickname
+     */
     @Override
     public void loginRequest(String loginParameter) {
         nickname = loginParameter;
@@ -90,6 +103,13 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls the method takeDevCard on the RMIServer
+     *
+     * @param towerColour tower colour as a String
+     * @param floor floor's number
+     * @param familiarColour familiar colour as a String
+     */
     @Override
     public void takeDevCard(String towerColour, int floor, String familiarColour) {
         try {
@@ -99,6 +119,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls the method goToMarketRequest on the RMIServer
+     *
+     * @param position number of the position in the market
+     * @param familyColour familiar colour as a String
+     */
     @Override
     public void marketAction(int position, String familyColour) {
         try {
@@ -108,25 +134,41 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls the method goToCouncilPalaceRequest on the RMIServer
+     *
+     * @param floor floor's number
+     * @param familyMemberColour familiar colour as a String
+     */
     @Override
-    public void councilAction(int parameter1, String parameter2) {
+    public void councilAction(int floor, String familyMemberColour) {
         try {
-            myServer.goToCouncilPalaceRequest(myUniqueId,parameter1,parameter2);
+            myServer.goToCouncilPalaceRequest( myUniqueId, floor, familyMemberColour );
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * This method calls the method playLeaderCardRequest on the RMIServer
+     *
+     * @param name leader's name
+     */
     @Override
-    public void playLeaderCard(String action) {
+    public void playLeaderCard(String name) {
         try {
-            myServer.playLeaderCardRequest(myUniqueId,action);
+            myServer.playLeaderCardRequest(myUniqueId,name);
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getCause());
         }
     }
 
+    /**
+     * This method calls the method discardLeaderCardRequest on the RMIServer
+     *
+     * @param name leader card's name to discard
+     */
     @Override
     public void discardLeaderCard(String name) {
         try {
@@ -136,15 +178,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
-  //todo non dobbiamo usare solo askForPraying?
-    public void prayOrNot(boolean action) {
-        try {
-            myServer.prayOrNot(myUniqueId,action);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * This method calls the method exitOnBonusAction on the RMIServer
+     */
     @Override
     public void sendExitToBonusAction() {
         try {
@@ -154,11 +190,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
-
-    public void bonusHarvester(BonusProductionOrHarvesterAction action) {
-        clientSetter.bonusHarvester(action);
-    }
-
+    /**
+     * This method calls the method sendBonusHarvester on the RMIServer
+     *
+     * @param servantsNumber number of servants
+     */
     @Override
     public void bonusHarvesterAction(int servantsNumber) {
         try {
@@ -168,6 +204,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * Thsi method calls the method sendBonusProduction on the RMIServer
+     *
+     * @param parameters list of building card's name on which perform the production
+     */
     @Override
     public void bonusProductionAction(List<String> parameters) {
         try {
@@ -177,6 +218,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls the method takeBonusCardAction on the ServerRMI
+     *
+     * @param floor floor's number
+     * @param towerColour tower colour as a String
+     */
     @Override
     public void takeBonusCardAction(int floor, String towerColour) {
         try {
@@ -186,6 +233,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls the method sendImmediatePrivileges on the ServerRMI
+     *
+     * @param privileges list of privileges' number that the players wants to take
+     */
     @Override
     public void immediatePriviledgeAction(List<Integer> privileges) {
         try {
@@ -195,15 +247,29 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls actionOn on the clientSetter
+     */
     public void actionOk() {
         clientSetter.actionOk();
     }
 
+    /**
+     *
+     *
+     * @param bonusInteraction
+     */
     @Override
     public void doProductionHarvester(BonusInteraction bonusInteraction) {
 
     }
 
+    /**
+     * This method calls the method harvesterRequest on the RMIServer
+     *
+     * @param familyMemberColour familiar color as a String
+     * @param servantsNumber number of servants
+     */
     @Override
     public void harvesterAction(String familyMemberColour, int servantsNumber) {
         try {
@@ -213,6 +279,12 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls the method productionRequest on the RMIServer
+     *
+     * @param familiarChosen familiar choosen color as a String
+     * @param buildingCards list of building cards' name on which perform the production
+     */
     @Override
     public void productionAction(String familiarChosen, List<String> buildingCards) {
         try {
@@ -222,6 +294,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls the method skipTurn on the RMIServer
+     */
     @Override
     public void skipTurn() {
         try {
@@ -231,24 +306,55 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * Functional interface for call the right update method
+     */
+    @FunctionalInterface
     private interface UpdateMethods{
         void doUpdate(Updates updates);
     }
 
+    /**
+     * This method calls the boardUpdate on the clientSetter
+     *
+     * @param updates board update object
+     */
     private void boardUpdate(Updates updates){
         clientSetter.boardUpdate(updates);
     }
+
+    /**
+     * This method calls the personalBoardUpdate on the clientSetter
+     *
+     * @param updates personal board update object
+     */
     private void personalBoardUpdate(Updates updates){
         clientSetter.personalBoardUpdate(updates);
     }
+
+    /**
+     * This method calls the scoreUpdate on the clientSetter
+     *
+     * @param updates score update object
+     */
     private void scoreUpdate(Updates updates){
         clientSetter.scoreUpdate(updates);
     }
+
+    /**
+     * This method calls the scoreUpdate on the clientSetter
+     *
+     * @param updates the score update object
+     */
     private void familyMemberUpdate(Updates updates){
         clientSetter.familyMemberUpdate(updates);
     }
 
-
+    /**
+     *
+     *
+     * @param updates
+     */
     private void excommunicationTaken(Updates updates) {
         clientSetter.excommunicationTake(updates);
     }
