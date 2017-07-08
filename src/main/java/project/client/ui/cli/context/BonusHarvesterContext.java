@@ -6,7 +6,6 @@ import project.client.ui.cli.InputException;
 import project.controller.cardsfactory.TerritoryCard;
 import project.controller.effects.realeffects.Effects;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.model.Harvester;
 
 import java.io.IOException;
 import java.util.List;

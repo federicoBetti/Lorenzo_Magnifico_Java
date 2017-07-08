@@ -1,9 +1,7 @@
 package project.controller.effects.realeffects;
 
 import org.junit.Test;
-import project.controller.Constants;
 import project.messages.TowerAction;
-import project.model.Tower;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
 

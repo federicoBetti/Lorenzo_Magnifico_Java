@@ -118,7 +118,6 @@ public abstract class AbstractController {
     }
 
     public void familiarWhiteChosen(ActionEvent actionEvent) {
-        System.out.println("ho scelto il faiiare bianco");
         familiarChosen = Constants.FAMILY_MEMBER_COLOUR_WHITE;
     }
 

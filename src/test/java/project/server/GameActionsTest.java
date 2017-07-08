@@ -8,7 +8,6 @@ import project.controller.effects.effectsfactory.PokerPE;
 import project.controller.effects.effectsfactory.TrisIE;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.controller.supportfunctions.BasicSupportFunctions;
-import project.messages.BonusProductionOrHarvesterAction;
 import project.model.*;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
@@ -27,9 +26,9 @@ public class GameActionsTest {
     private Room room = new Room(new Server());
     private GameActions test = new GameActions(room);
     private PlayerHandler p = new RMIPlayerHandler();
-    PlayerHandler playerHandler2 = new RMIPlayerHandler();
-    PlayerHandler playerHandler3 = new RMIPlayerHandler();
-    PlayerHandler playerHandler4 = new RMIPlayerHandler();
+    private PlayerHandler playerHandler2 = new RMIPlayerHandler();
+    private PlayerHandler playerHandler3 = new RMIPlayerHandler();
+    private PlayerHandler playerHandler4 = new RMIPlayerHandler();
     private Tower towerZone = new Tower("blue", 7, 2 , new TrisIE("takeRop","coin",1));
     private FamilyMember familyMember =  new FamilyMember();
     private boolean towerIsOccupied;
@@ -80,7 +79,9 @@ public class GameActionsTest {
 
         buildingCard = new BuildingCard("prova", 1, false, new BuildingCost(1,1,1,1,6), new ArrayList<>(), harvester);
         p.getPersonalBoardReference().getBuildings().add(buildingCard);
-        //p.getPersonalBoardReference().setMyTile(new Tile(new TileBonusFromJson()));
+
+
+        p.getPersonalBoardReference().setMyTile(new Tile(new TrisIE("takeRop" , "coin" , 1), new TrisIE("takeRop" , "coin" , 1)));
 
         List<VenturesCost> costs = new ArrayList<>();
         VenturesCost venturesCost1 = new VenturesCost();
@@ -126,7 +127,7 @@ public class GameActionsTest {
 
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void takeNoVenturesCard() throws Exception {
 
         towerZone.setCardOnThisFloor(characterCard);
@@ -137,7 +138,7 @@ public class GameActionsTest {
         assertEquals(8, p.getPersonalBoardReference().getServants());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void takeNoVenturesCard1() throws Exception {
 
         towerZone.setCardOnThisFloor(characterCard);
@@ -149,20 +150,20 @@ public class GameActionsTest {
         assertEquals(8, p.getPersonalBoardReference().getServants());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void takeVenturesCard() throws Exception {
         towerZone.setCardOnThisFloor(venturesCard);
 
         test.takeVenturesCard(towerZone,familyMember,p,towerIsOccupied,0);
 
         assertEquals(1, p.getPersonalBoardReference().getVentures().size());
-        assertEquals(2, p.getPersonalBoardReference().getCoins());
+        assertEquals(3, p.getPersonalBoardReference().getCoins());
         assertEquals(8, p.getPersonalBoardReference().getServants());
         assertEquals(5, p.getPersonalBoardReference().getStone());
         assertEquals(5, p.getPersonalBoardReference().getWood());
     }
 
-    @Test  (expected = NullPointerException.class)
+    @Test
     public void takeVenturesCard1() throws Exception {
 
         towerZone.setCardOnThisFloor(venturesCard);
@@ -191,35 +192,42 @@ public class GameActionsTest {
     }
 
 
-    @Test  (expected = NullPointerException.class)
+    @Test
     public void harvester() throws Exception {
-        test.harvester(2,familyMember,0,p);
+        test.harvester(2,familyMember,3,p);
 
-        assertEquals(11, p.getPersonalBoardReference().getCoins());
+        assertEquals(12, p.getPersonalBoardReference().getCoins());
         assertEquals(7, p.getPersonalBoardReference().getServants());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void harvesterBonus() throws Exception {
-        test.harvesterBonus(2, 3, p);
-        assertEquals(11, p.getPersonalBoardReference().getCoins());
+        test.harvesterBonus(5, 3, p);
+        assertEquals(12, p.getPersonalBoardReference().getCoins());
         assertEquals(7, p.getPersonalBoardReference().getServants());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void production() throws Exception {
         List<BuildingCard> buildingCards = new ArrayList<>();
         buildingCards.add(buildingCard);
+
+        assertEquals(0, board.getProductionZone().size());
+
         test.production(3, familyMember, buildingCards, 0, new ArrayList<>() , p);
 
-        assertEquals(10 , p.getPersonalBoardReference().getCoins());
+        assertEquals(12 , p.getPersonalBoardReference().getCoins());
+        assertEquals(10, p.getPersonalBoardReference().getServants());
 
         test.production(3, familyMember, buildingCards, 1, new ArrayList<>() , p);
 
-        assertEquals(11 , p.getPersonalBoardReference().getCoins());
+        assertEquals(14 , p.getPersonalBoardReference().getCoins());
+        assertEquals(9, p.getPersonalBoardReference().getServants());
+
+        assertEquals(2, board.getProductionZone().size());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void productionBonus() throws Exception {
 
         List<BuildingCard> buildingCards = new ArrayList<>();
@@ -227,14 +235,16 @@ public class GameActionsTest {
 
         test.productionBonus(buildingCards,0,new ArrayList<>(), p);
 
-        assertEquals(10 , p.getPersonalBoardReference().getCoins());
+        assertEquals(12 , p.getPersonalBoardReference().getCoins());
+        assertEquals(10, p.getPersonalBoardReference().getServants());
 
         test.productionBonus(buildingCards, 1, new ArrayList<>() , p);
 
-        assertEquals(11 , p.getPersonalBoardReference().getCoins());
+        assertEquals(14 , p.getPersonalBoardReference().getCoins());
+        assertEquals(9, p.getPersonalBoardReference().getServants());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void goToMarket() throws Exception {
         Market market = new Market(new TrisIE("takeRop" , "coin" , 5));
         Market[] markets = new Market[1];
@@ -246,15 +256,16 @@ public class GameActionsTest {
         assertEquals(15, p.getPersonalBoardReference().getCoins());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void playLeaderCard() throws Exception {
         LeaderCard l = new LeaderCard();
+        l.setName("michelangeloBuonarroti");
         p.getPersonalBoardReference().getMyLeaderCard().add(l);
         test.playLeaderCard("michelangeloBuonarroti", p);
-        assertEquals(12, p.getPersonalBoardReference().getCoins());
+        assertEquals(13, p.getPersonalBoardReference().getCoins());
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void discardLeaderCard() throws Exception {
         LeaderCard l = new LeaderCard();
         l.setName("michelangeloBuonarroti");
@@ -272,13 +283,13 @@ public class GameActionsTest {
         }
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test
     public void goToCouncilPalace() throws Exception {
         test.goToCouncilPalace(1,familyMember,p);
 
         assertEquals(11, p.getPersonalBoardReference().getCoins());
-        assertEquals(11, p.getPersonalBoardReference().getStone());
-        assertEquals(11, p.getPersonalBoardReference().getWood());
+        assertEquals(10, p.getPersonalBoardReference().getStone());
+        assertEquals(10, p.getPersonalBoardReference().getWood());
     }
 
     @Test

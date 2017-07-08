@@ -37,4 +37,9 @@ public class TerritoryCard extends DevelopmentCard implements Serializable {
     public TerritoryCost getCost() {
         return cardCost;
     }
+
+    @Override
+    public void setCost(Cost cost) {
+        cardCost = (TerritoryCost)cost;
+    }
 }

@@ -20,24 +20,33 @@ public class ProductionController extends AbstractController {
 
 
     @FXML
+    private Label numberOfServants;
+    @FXML
+    private Label numberOfCoins;
+    @FXML
+    private Label numberOfWood;
+    @FXML
+    private Label numberOfStone;
+
+    @FXML
     private Button submit;
     @FXML
     private Button mainGameButton;
     @FXML
-    private Button personalBoard;
-    @FXML
     private Button buttonPlaceFamiliar;
+    @FXML
+    private Button personalBoard;
     /**
      * radio button in which you can chose the familiar to use
      */
     @FXML
-    private RadioButton familiarOrange;
-    @FXML
     private RadioButton familiarWhite;
     @FXML
-    private RadioButton familiarBlack;
+    private RadioButton familiarOrange;
     @FXML
     private RadioButton familiarNull;
+    @FXML
+    private RadioButton familiarBlack;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
@@ -45,28 +54,15 @@ public class ProductionController extends AbstractController {
 
     @FXML
     private ImageView imageFamiliarNull;
-
+    @FXML
+    private ImageView imageFamiliarOrange;
     @FXML
     private ImageView imageFamiliarBlack;
-
     @FXML
     private ImageView imageFamiliarWhite;
 
-    @FXML
-    private ImageView imageFamiliarOrange;
 
 
-    @FXML
-    private Label numberOfCoins;
-
-    @FXML
-    private Label numberOfWood;
-
-    @FXML
-    private Label numberOfStone;
-
-    @FXML
-    private Label numberOfServants;
 
 
     @FXML

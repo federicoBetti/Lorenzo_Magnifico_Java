@@ -177,8 +177,7 @@ public class LeaderCardsEffects {
     }
 
     private BonusInteraction michelangeloBuonarroti(PlayerHandler player) {
-        Effects effects = new AddCoin(3);
-        effects.doEffect(player);
+        player.getPersonalBoardReference().addCoins(3);
         return okOrNo;
     }
 

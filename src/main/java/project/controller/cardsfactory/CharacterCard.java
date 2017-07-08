@@ -32,4 +32,9 @@ public class CharacterCard extends DevelopmentCard implements Serializable{
     public CharactersCost getCost() {
         return cardCost;
     }
+
+    @Override
+    public void setCost(Cost cost) {
+        cardCost = (CharactersCost)cost;
+    }
 }

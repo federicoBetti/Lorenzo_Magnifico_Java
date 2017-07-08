@@ -15,7 +15,6 @@ import project.server.GameActions;
 import project.server.Room;
 import project.server.network.exception.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +22,9 @@ public abstract class PlayerHandler extends Player {
 
     private transient Room room;
     private transient AllCheckFunctions checkFunctions;
-    private LeaderCardRequirements leaderCardRequirements;
+    transient private LeaderCardRequirements leaderCardRequirements;
     private boolean callPray;
-    public boolean disconnectedInDraft = false;
+    private boolean disconnectedInDraft = false;
     private boolean matchStartedVar = false;
 
 
@@ -67,7 +66,7 @@ public abstract class PlayerHandler extends Player {
         towerOccupied = checkFunctions.checkTowerOccupied((Tower[]) tower);
 
 
-        if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {//todo un giocatore non puo prendere piu di 6 carte dello stetsso tipo
+        if (towerColor.equals(Constants.COLOUR_OF_TOWER_WITH_VENTURES_CARD)) {
             int paymentChosen = checkOnVenturesCost(card, this, towerOccupied, diceCost, diceValueOfFamiliar);
             gameActions().takeVenturesCard(zone, familyM, this, towerOccupied, paymentChosen);
         } else {
@@ -98,6 +97,7 @@ public abstract class PlayerHandler extends Player {
 
         DevelopmentCard card = getCard(towerColour, floor);
 
+        Cost costDiscounted;
         int diceValueOfFamiliar = returnFromEffect.getNewCardDicevalue();
         int diceCost = getDiceCost(towerColour, floor);
         Position[] tower = getPosition(towerColour);
@@ -109,16 +109,17 @@ public abstract class PlayerHandler extends Player {
             gameActions().takeVenturesCard(zone, this, towerOccupied, paymentChosen, diceValueOfFamiliar);
         } else {
             Cost realCost = card.getCost();
-            Cost costDiscounted = realCost.copyOf();
+            costDiscounted = realCost.copyOf();
             costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource1(), returnFromEffect.getQuantityDiscounted1());
             costDiscounted = discountCost(costDiscounted, returnFromEffect.getDiscountedResource2(), returnFromEffect.getQuantityDiscounted2());
             card.setCost(costDiscounted);
+
+            zone.getCardOnThisFloor().setCost(costDiscounted);
             boolean canPayCard = checkFunctions.checkCardCost(card, this, towerOccupied, diceCost, diceValueOfFamiliar);
             if (!canPayCard) {
-                card.setCost(realCost);
+                zone.getCardOnThisFloor().setCost(realCost);
                 throw new CantDoActionException();
             } else {
-                System.out.println("eseguo takeNoVenturesCard");
                 gameActions().takeNoVenturesCard(zone, this, towerOccupied, diceValueOfFamiliar);
             }
         }
@@ -171,7 +172,6 @@ public abstract class PlayerHandler extends Player {
         if (servantsNumber > getPersonalBoardReference().getServants()) throw new CantDoActionException();
 
         List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
-        boolean canTakeCard;
         int position = firstFreePosition(harvesterZone, familyM.getFamilyColour());
 
         gameActions().harvester(position, familyM, servantsNumber, this);
@@ -181,7 +181,7 @@ public abstract class PlayerHandler extends Player {
         for (Position p : zone) {
             if (p.getFamiliarOnThisPosition().getFamilyColour().equals(familyColour)) throw new CantDoActionException();
         }
-        if (room.numberOfPlayerOn() > 2 && !zone.isEmpty()) throw new CantDoActionException();
+        if (room.getRoomPlayers() == 2 && !zone.isEmpty()) throw new CantDoActionException();
 
         return zone.size();
     }
@@ -190,13 +190,14 @@ public abstract class PlayerHandler extends Player {
      * check function on bonus harvester action
      *
      * @param returnFromEffect
-     * @param intServantsNumber
+     * @param servantsNumber
      * @throws CantDoActionException
      */
-    protected void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int intServantsNumber) throws CantDoActionException {
-        int harvesterValue = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() + intServantsNumber;
+    protected void doBonusHarv(BonusProductionOrHarvesterAction returnFromEffect, int servantsNumber) throws CantDoActionException {
+        if (servantsNumber > getPersonalBoardReference().getServants()) throw new CantDoActionException();
+        int harvesterValue = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() + servantsNumber;
 
-        gameActions().harvesterBonus(harvesterValue, intServantsNumber, this);
+        gameActions().harvesterBonus(harvesterValue, servantsNumber, this);
     }
 
     /**
@@ -229,7 +230,7 @@ public abstract class PlayerHandler extends Player {
     protected void doBonusProduct(BonusProductionOrHarvesterAction returnFromEffect, ArrayList<BuildingCard> cards) throws CantDoActionException {
         int maxValueOfProduction;
         List<Integer> choicePe = new ArrayList<>();
-        maxValueOfProduction = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus() + checkFunctions.getServants(this);
+        maxValueOfProduction = returnFromEffect.getDiceValue() + getPersonalBoardReference().getBonusOnActions().getProductionBonus();
         int servantsToPay = checkAvaiabiltyToProduct(cards, maxValueOfProduction, choicePe);
         gameActions().productionBonus(cards, servantsToPay, choicePe, this);
     }
@@ -239,8 +240,6 @@ public abstract class PlayerHandler extends Player {
         TotalCost cost = new TotalCost();
         int servantsMax = 0;
         for (BuildingCard b : cardToProduct) {
-            System.err.println(b.getName());
-            System.err.println(b.isChoicePe());
             if (b.getCost().getDiceCost() > maxValueOfProduction + checkFunctions.getServants(this))
                 throw new CantDoActionException();
             int servnatsToPay = b.getCost().getDiceCost() - maxValueOfProduction;
@@ -343,10 +342,10 @@ public abstract class PlayerHandler extends Player {
      * @param privelgeNumber
      * @param familyMember
      */
-    protected void goToCouncilPalace(int privelgeNumber, FamilyMember familyMember) {
-        // ho supposto che posso andare nel palazzo del consiglio anche se c'è gia un altro del mio colore
+    protected void goToCouncilPalace(int privelgeNumber, FamilyMember familyMember) throws CantDoActionException {
         if (familyMember.getMyValue() + checkFunctions.getServants(this) > 1)
             gameActions().goToCouncilPalace(privelgeNumber, familyMember, this);
+        else throw new CantDoActionException();
     }
 
     /**
@@ -492,10 +491,6 @@ public abstract class PlayerHandler extends Player {
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
     public abstract int chooseTile(ArrayList<Tile> tiles);
-
-    public boolean isCallPray() {
-        return callPray;
-    }
 
     public void setCallPray(boolean callPray) {
         this.callPray = callPray;

@@ -7,7 +7,6 @@ import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
 import project.model.FamilyMember;
-import project.model.Player;
 import project.model.Tile;
 import project.server.network.PlayerHandler;
 import project.server.network.exception.CanUseBothPaymentMethodException;
@@ -216,7 +215,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         int privilegeNumber = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
-        goToCouncilPalace(privilegeNumber, familyMember);
+        try {
+            goToCouncilPalace(privilegeNumber, familyMember);
+        } catch (CantDoActionException e) {
+            cantDoAction();
+        }
     }
 
 

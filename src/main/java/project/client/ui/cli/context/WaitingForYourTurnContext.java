@@ -1,7 +1,6 @@
 package project.client.ui.cli.context;
 
 import project.client.ui.cli.Cli;
-import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 
 import java.io.IOException;

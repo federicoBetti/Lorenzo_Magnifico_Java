@@ -19,23 +19,15 @@ public class MarketController extends AbstractController {
     private ImageView market;
     @FXML
     protected Button submit;
+
     @FXML
-    private Button mainGameButton;
+    private  Label numberOfCoins;
     @FXML
-    private Button personalBoard;
+    private  Label numberOfWood;
     @FXML
-    private Button buttonPlaceFamiliar;
-    /**
-     * radio button in which you can chose the familiar to use
-     */
+    private  Label numberOfStone;
     @FXML
-    private  RadioButton familiarOrange;
-    @FXML
-    private  RadioButton familiarWhite;
-    @FXML
-    private  RadioButton familiarBlack;
-    @FXML
-    private  RadioButton familiarNull;
+    private  Label numberOfServants;
 
     /**
      * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
@@ -54,17 +46,19 @@ public class MarketController extends AbstractController {
     private  ImageView imageFamiliarOrange;
 
 
-    @FXML
-    private  Label numberOfCoins;
 
+    /**
+     * radio button in which you can chose the familiar to use
+     */
     @FXML
-    private  Label numberOfWood;
+    private  RadioButton familiarOrange;
+    @FXML
+    private  RadioButton familiarWhite;
+    @FXML
+    private  RadioButton familiarBlack;
+    @FXML
+    private  RadioButton familiarNull;
 
-    @FXML
-    private  Label numberOfStone;
-
-    @FXML
-    private  Label numberOfServants;
 
 
     @FXML

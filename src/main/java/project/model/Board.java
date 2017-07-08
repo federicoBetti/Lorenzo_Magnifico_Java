@@ -10,7 +10,7 @@ import java.util.*;
 /**
  *
  */
-public final class Board {
+public class Board {
 
 
     //todo fare iteratore per riempire le torri
@@ -57,11 +57,6 @@ public final class Board {
     /**
      *
      */
-    private int isPlaying;
-
-    /**
-     *
-     */
     private int round;
 
 
@@ -69,11 +64,6 @@ public final class Board {
 
 
     private Map<String, Position[]> zones;
-
-    /**
-     * questa variabile rappresenta se siamo alla fine di un turno e aspettiamo il lancio dei dadi
-     */
-    private boolean endRound = false;
 
     /**
      * qiesto array di interi rappresenta i punti vittori ottenuti pregando per ognuno dei 15 posti del tracciato di punti fede
@@ -205,14 +195,6 @@ public final class Board {
         return period;
     }
 
-    public int getIsPlaying() {
-        return isPlaying;
-    }
-
-    public void setIsPlaying(int isPlaying) {
-        this.isPlaying = isPlaying;
-    }
-
     public int getRound() {
         return round;
     }
@@ -223,14 +205,6 @@ public final class Board {
 
     public Tower[] getTrueArrayList(String whichZone) {
         return (Tower[]) zones.get(whichZone);
-    }
-
-    public boolean getEndRound() {
-        return endRound;
-    }
-
-    public void setEndRound(boolean endRound) {
-        this.endRound = endRound;
     }
 
     public Tower[][] getAllTowers() {
@@ -277,10 +251,6 @@ public final class Board {
         return councilPrivileges;
     }
 
-    public void setMarketPosition(int positionNumber, Market market) {
-        this.marketZone[positionNumber] = market;
-    }
-
     public void setCouncilPrivileges(CouncilPrivilege[] councilPrivileges) {
         this.councilPrivileges = councilPrivileges;
     }
@@ -305,18 +275,6 @@ public final class Board {
         return productionZone;
     }
 
-    public Map<String, Position[]> getZones() {
-        return zones;
-    }
-
-    public boolean isEndRound() {
-        return endRound;
-    }
-
-    public Deck getDecks() {
-        return decks;
-    }
-
     public void setHarvesterZone(List<Harvester> harvesterZone) {
         this.harvesterZone = harvesterZone;
     }
@@ -325,16 +283,8 @@ public final class Board {
         this.productionZone = productionZone;
     }
 
-    public Tower[][] getAllTowersUpdate() {
-        return towers.clone();
-    }
-
     public void setVictoryPointsInFaithTrack(int[] victoryPointsInFaithTrack) {
         this.victoryPointsInFaithTrack = victoryPointsInFaithTrack;
-    }
-
-    public void setDecks(Deck decks) {
-        this.decks = decks;
     }
 
     public void setFinalPointsFromTerritoryCards(int[] finalPointsFromTerritoryCards) {
@@ -355,5 +305,9 @@ public final class Board {
 
     public void setTurn(Turn turn) {
         this.turn = turn;
+    }
+
+    public void setDeckCard(Deck deckCard) {
+        this.decks = deckCard;
     }
 }

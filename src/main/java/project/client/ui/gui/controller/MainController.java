@@ -1,7 +1,6 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
-import javafx.scene.control.TextField;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;

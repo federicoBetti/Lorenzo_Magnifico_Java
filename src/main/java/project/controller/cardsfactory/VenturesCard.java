@@ -43,6 +43,11 @@ public class VenturesCard extends DevelopmentCard implements Serializable{
         return null;
     }
 
+    @Override
+    public void setCost(Cost cost) {
+        // void
+    }
+
     public List<VenturesCost> getPossibleCost(){
         return possibleCost;
     }

@@ -26,7 +26,7 @@ public class GameActions {
     int excommunicationPLayerPLayed;
     private boolean excommunicationTurn;
 
-    GameActions(Room room) {
+    public GameActions(Room room) {
         this.room = room;
         excommunicationPLayerPLayed = 0;
         leaderCardEffect = new LeaderCardsEffects();
@@ -42,7 +42,6 @@ public class GameActions {
 
         getSupportFunctions(player).placeCardInPersonalBoard(card);
         getSupportFunctions(player).towerZoneEffect(zone, player);
-        zone.getTowerZoneEffect().doEffect(player);
 
         for (Effects e : zone.getCardOnThisFloor().getImmediateCardEffects())
             getSupportFunctions(player).applyEffects(e, player);
@@ -52,7 +51,7 @@ public class GameActions {
         System.out.println("MANDATA SEND ACTION OK");
         zone.setCardOnThisFloor(null);
 
-        TowersUpdate towersUpdate = new TowersUpdate(board.getAllTowersUpdate(), player.getName());
+        TowersUpdate towersUpdate = new TowersUpdate(board.getAllTowers(), player.getName());
         broadcastUpdates(towersUpdate);
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
@@ -202,7 +201,6 @@ public class GameActions {
             nextRound();
             nextPeriod();
             board.getTurn().setRotation(0);
-            setEndRound(true);
             int playerIndex = firstPlayerTurn();
             if (playerIndex == -1) return;
 
@@ -221,7 +219,6 @@ public class GameActions {
             endRound();
             board.getTurn().setRotation(0);
             nextRound();
-            setEndRound(true);
             //il timer cancel era qui
             int playerIndex = firstPlayerTurn();
             if (playerIndex == -1) return;
@@ -549,10 +546,6 @@ public class GameActions {
 
     }
 
-    private void setEndRound(boolean choice) {
-        board.setEndRound(choice);
-    }
-
     private void askForPraying(int period) {
         int faithPointsNeeded = board.getFaithPointsRequiredEveryPeriod()[period];
         List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
@@ -621,11 +614,11 @@ public class GameActions {
 
         for (Effects e : player.getPersonalBoardReference().getMyTile().takeHarvesterResource()) {
             e.doEffect(player);
-            System.out.println("effetto della tile è: " + e.getClass());
         }
 
         for (TerritoryCard card : player.getPersonalBoardReference().getTerritories()) {
-            if (harvesterValue >= card.getCost().getDiceCost()) makePermanentEffects(player, card);
+            if (harvesterValue >= card.getCost().getDiceCost())
+                makePermanentEffects(player, card);
         }
 
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
@@ -663,11 +656,8 @@ public class GameActions {
         for (Effects e : player.getPersonalBoardReference().getMyTile().takeProductionResource())
             e.doEffect(player);
 
-        int i = 1;
         for (BuildingCard card : cards) {
             makePermanentEffectsProduction(player, card, choichePE);
-            System.out.println("EFFETTO " + i);
-            i++;
         }
 
         player.sendActionOk();
@@ -770,7 +760,6 @@ public class GameActions {
             PlayerHandler player = entry.getValue();
             getSupportFunctions(player).setDicesValue(newDiceValue, player);
         }
-        setEndRound(false);
 
         broadcastUpdates(new DiceValueUpdate(board.getDiceValue(),board.getTurn()));
     }

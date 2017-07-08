@@ -22,18 +22,33 @@ public class Tile implements Serializable{
     public Tile(TileBonusFromJson tile ){
         harvesterBonus = new ArrayList<>();
         productionBonus = new ArrayList<>();
-        BuildImmediateEffects BuildImmediateEffects = new BuildImmediateEffects();
+        BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();
 
         this.tileNumber = tile.getTileNumber();
 
         for(TrisIE tris : tile.getHarvesterBonus() ) {
-            harvesterBonus.add(BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
+            harvesterBonus.add(buildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
         }
 
         for(TrisIE tris : tile.getProductionBonus() ){
-            productionBonus.add(BuildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
+            productionBonus.add(buildImmediateEffects.searchImmediateEffects(tris.getType(), tris.getParameter(), tris.getQuantity()));
         }
     }
+
+    /**
+     * constructor used for test
+     * @param trisHarv harvester effect
+     * @param trisProd production effect
+     */
+    public Tile(TrisIE trisHarv, TrisIE trisProd) {
+        harvesterBonus = new ArrayList<>();
+        productionBonus = new ArrayList<>();
+        BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();
+
+        harvesterBonus.add(buildImmediateEffects.searchImmediateEffects(trisHarv.getType(), trisHarv.getParameter(), trisHarv.getQuantity()));
+        productionBonus.add(buildImmediateEffects.searchImmediateEffects(trisProd.getType(), trisProd.getParameter(), trisProd.getQuantity()));
+    }
+
     /**
      * @return
      */

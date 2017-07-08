@@ -1,7 +1,6 @@
 package project.controller.effects.realeffects;
 
 import org.junit.Test;
-import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
 

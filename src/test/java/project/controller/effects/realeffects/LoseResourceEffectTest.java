@@ -2,7 +2,6 @@ package project.controller.effects.realeffects;
 
 import org.junit.Before;
 import org.junit.Test;
-import project.controller.Constants;
 import project.controller.effects.effectsfactory.EffectsConstants;
 import project.model.Bonus;
 import project.model.PersonalBoard;

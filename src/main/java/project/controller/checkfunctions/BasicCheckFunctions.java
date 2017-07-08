@@ -83,9 +83,17 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         int diceBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getDiceBonus();
         int woodBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getWoodBonus();
         int stoneBonus = personalBoard(player).getBonusOnActions().getBuildingsBonus().getStoneBonus();
+        int servantsToPay = valueOfFamilyMember + diceBonus - zoneDiceCost;
+        if (servantsToPay > 0)
+            servantsToPay = 0;
+
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
-        return card.getCost().getWoodRequired() + woodBonus <= personalBoard(player).getWood() && card.getCost().getStoneRequired() + stoneBonus <= personalBoard(player).getStone() && (card.getCost().getCoinsRequired() + coinsMore) <= personalBoard(player).getCoins() && (valueOfFamilyMember + diceBonus + getServants(player)) >= zoneDiceCost;
+        if (card.getCost().getWoodRequired() + woodBonus <= personalBoard(player).getWood())
+            if (card.getCost().getStoneRequired() + stoneBonus <= personalBoard(player).getStone())
+                if ((card.getCost().getCoinsRequired() + coinsMore) <= personalBoard(player).getCoins())
+                    if ((-servantsToPay + card.getCost().getServantsRequired()) <= (getServants(player))) return true;
+        return false;
     }
     // questa torna int. 0=non posso prendere, 1=prendo per effetto 1, 2= prendo per effetto 2, 3 = posso predere per tutti e due gl effetti devo chiedere
     @Override

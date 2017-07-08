@@ -1,7 +1,6 @@
 package project.controller.effects.effectsfactory;
 
 import org.junit.Test;
-import project.controller.effects.realeffects.Effects;
 import project.controller.effects.realeffects.LoseResourceEffect;
 
 import static org.junit.Assert.*;

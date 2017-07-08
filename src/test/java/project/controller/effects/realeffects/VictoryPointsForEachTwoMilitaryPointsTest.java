@@ -1,12 +1,8 @@
 package project.controller.effects.realeffects;
 
 import org.junit.Test;
-import project.controller.cardsfactory.CharacterCard;
-import project.controller.cardsfactory.CharactersCost;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

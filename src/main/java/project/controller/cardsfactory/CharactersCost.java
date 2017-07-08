@@ -40,6 +40,8 @@ public class CharactersCost implements Cost, Serializable {
     @Override
     public void addCoin(int i) {
         coinsRequired += i;
+        if (coinsRequired < 0)
+            coinsRequired = 0;
     }
 
     @Override

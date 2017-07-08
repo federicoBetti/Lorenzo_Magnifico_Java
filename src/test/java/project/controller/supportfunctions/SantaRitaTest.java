@@ -1,15 +1,9 @@
 package project.controller.supportfunctions;
 
 import org.junit.Test;
-import project.controller.cardsfactory.CharacterCard;
-import project.controller.cardsfactory.CharactersCost;
 import project.controller.effects.realeffects.AddCoin;
-import project.model.DevelopmentCard;
-import project.model.PersonalBoard;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

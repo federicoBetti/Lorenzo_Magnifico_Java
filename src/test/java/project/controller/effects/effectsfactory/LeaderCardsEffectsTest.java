@@ -3,7 +3,6 @@ package project.controller.effects.effectsfactory;
 import org.junit.Before;
 import org.junit.Test;
 import project.controller.Constants;
-import project.controller.cardsfactory.*;
 import project.controller.checkfunctions.BasicCheckFunctions;
 import project.messages.BonusInteraction;
 import project.messages.BonusProductionOrHarvesterAction;
@@ -18,7 +17,6 @@ import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

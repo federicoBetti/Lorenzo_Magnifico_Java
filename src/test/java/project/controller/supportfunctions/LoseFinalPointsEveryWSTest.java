@@ -4,7 +4,6 @@ import org.junit.Test;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.cardsfactory.BuildingCost;
 import project.model.PersonalBoard;
-import project.model.Score;
 import project.server.network.PlayerHandler;
 import project.server.network.socket.SocketPlayerHandler;
 

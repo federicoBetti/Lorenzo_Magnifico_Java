@@ -121,7 +121,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     public void setChoicePe(int input) {
         choicePE = input;
         System.out.println("input: " + input);
-        synchronized (tokenn){
+        synchronized (tokenn) {
             tokenn.notify();
         }
     }
@@ -154,8 +154,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public void sendUpdates(Updates updates) {
         try {
-            if (isOn())
-                myClient.sendUpdates(updates);
+            if (isOn()) myClient.sendUpdates(updates);
         } catch (RemoteException e) {
             playerDisconnected();
         }
@@ -243,7 +242,12 @@ public class RMIPlayerHandler extends PlayerHandler {
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
         privileges = new ArrayList<>();
         try {
-            myClient.sendRequestForPrivileges(returnFromEffect);
+            if (isOn()) {
+                myClient.sendRequestForPrivileges(returnFromEffect);
+            } else {
+                return;
+            }
+
         } catch (RemoteException e) {
             playerDisconnected();
         }
@@ -305,7 +309,9 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public void sendActionOk() {
         try {
-            myClient.actionOk();
+            if (isOn()) {
+                myClient.actionOk();
+            }
         } catch (RemoteException e) {
             playerDisconnected();
         }
@@ -343,7 +349,8 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     protected void waitForYourTurn() {
         try {
-            myClient.waitForYourTurn();
+            if (isOn())
+                myClient.waitForYourTurn();
         } catch (RemoteException e) {
             playerDisconnected();
         }
@@ -364,8 +371,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
-            if (isOn())
-                myClient.matchStarted(roomPlayers, familyColour);
+            if (isOn()) myClient.matchStarted(roomPlayers, familyColour);
         } catch (RemoteException e) {
             playerDisconnected();
         }
@@ -511,7 +517,11 @@ public class RMIPlayerHandler extends PlayerHandler {
 
     void goToCouncilPalaceRequest(int privilegeNumber, String familyMemberColour) {
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
-        goToCouncilPalace(privilegeNumber, familyMember);
+        try {
+            goToCouncilPalace(privilegeNumber, familyMember);
+        } catch (CantDoActionException e) {
+            cantDoAction();
+        }
     }
 
     void takePrivilegeRequest(int privilegeNumber) {

@@ -3,8 +3,6 @@ package project.controller.effects.realeffects;
 import org.junit.Test;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.cardsfactory.BuildingCost;
-import project.controller.cardsfactory.TerritoryCard;
-import project.controller.cardsfactory.TerritoryCost;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
 

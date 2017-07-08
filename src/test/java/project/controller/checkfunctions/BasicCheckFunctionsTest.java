@@ -17,13 +17,13 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Created by federico on 04/07/17.
+ * basic check function test
  */
 public class BasicCheckFunctionsTest {
 
-    BasicCheckFunctions BC;
-    Position[] zone;
-    Tower[] towerZone;
+    private BasicCheckFunctions BC;
+    private Position[] zone;
+    private Tower[] towerZone;
 
     @Before
     public void createParameters(){
@@ -87,7 +87,6 @@ public class BasicCheckFunctionsTest {
     public void checkCardCost() throws Exception {
         DevelopmentCard card = new TerritoryCard("prova",1,false,new TerritoryCost(3,3,3), new ArrayList<TrisIE>(),new ArrayList<>());
         PlayerHandler p = new RMIPlayerHandler();
-        boolean coinsFee = true;
         int zoneDiceCost = 5;
         int valueOfFM = 3;
 
@@ -107,31 +106,38 @@ public class BasicCheckFunctionsTest {
         r.setBoard(b);
         p.setRoom(r);
         p.getScore().setMilitaryPoints(-1);
-        int len = 2;
 
-        boolean ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        boolean ret = BC.checkCardCost(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(false,ret);
 
         p.getPersonalBoardReference().setServants(2);
-        ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        ret = BC.checkCardCost(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(false,ret);
 
         p.getScore().setMilitaryPoints(12);
-        ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        ret = BC.checkCardCost(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(true,ret);
 
         card = new BuildingCard("test",1,true,new BuildingCost(2,1,0,0,0), new ArrayList<>(), new ArrayList<>());
-        ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        ret = BC.checkCardCost(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(false,ret);
 
 
         p.getPersonalBoardReference().setServants(3);
-        ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        ret = BC.checkCardCost(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(false,ret);
 
         p.getPersonalBoardReference().setCoins(3+2);
-        ret = BC.checkCardCost(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        ret = BC.checkCardCost(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(true,ret);
+
+        CharacterCard characterCard = new CharacterCard("prova",1,false,new CharactersCost(7), new ArrayList<>(), new ArrayList<>());
+
+
+        p.getPersonalBoardReference().setCoins(7);
+        ret = BC.checkCardCost(characterCard,p, false,zoneDiceCost,valueOfFM);
+        assertEquals(true,ret);
+
     }
 
     @Test
@@ -165,12 +171,12 @@ public class BasicCheckFunctionsTest {
         p.getScore().setMilitaryPoints(6);
 
 
-        int ret = BC.checkCardCostVentures(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        int ret = BC.checkCardCostVentures(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(1,ret);
 
 
         p.getScore().setMilitaryPoints(10);
-        ret = BC.checkCardCostVentures(card,p,coinsFee,zoneDiceCost,valueOfFM);
+        ret = BC.checkCardCostVentures(card,p, true,zoneDiceCost,valueOfFM);
         assertEquals(3,ret);
     }
 

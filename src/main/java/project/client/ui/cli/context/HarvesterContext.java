@@ -3,7 +3,6 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
-import project.controller.cardsfactory.BuildingCard;
 import project.controller.cardsfactory.TerritoryCard;
 import project.controller.effects.realeffects.Effects;
 import project.model.FamilyMember;

@@ -8,7 +8,6 @@ import project.controller.checkfunctions.DoubleServantsValue;
 import project.controller.effects.effectsfactory.EffectsConstants;
 import project.controller.supportfunctions.DoubleServantsPayment;
 import project.model.Board;
-import project.model.Bonus;
 import project.server.Room;
 import project.server.Server;
 import project.server.network.PlayerHandler;

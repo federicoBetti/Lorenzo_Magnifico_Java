@@ -182,7 +182,7 @@ public class Room {
         //inizia la partita
         for (PlayerHandler p : getListOfPlayers()) {
 
-            if (p.disconnectedInDraft) {
+            if (p.isDisconnectedInDraft()) {
                 PlayerHandler oldPlayer = null;
                 p.setOn(true);
                 for (PlayerHandler player : playerInTheMatch)

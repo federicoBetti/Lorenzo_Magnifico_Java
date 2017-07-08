@@ -4,7 +4,6 @@ package project.server.network.rmi;
 // è diversa da quella controler interface perchè ci sono anche i metodi di connessione che
 // sono quelli in più che verranno chiamati dal client sul server
 
-import project.PlayerFile;
 import project.client.network.rmi.RMIServerToClientInterface;
 
 import java.io.IOException;

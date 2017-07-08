@@ -51,10 +51,19 @@ public class BuildingCost extends TerritoryCost implements Serializable {
 
     @Override
     public void addStone(int i) {
+        stoneRequired +=i;
+        if (stoneRequired < 0)
+            stoneRequired = 0;
     }
 
     @Override
     public void addWood(int i) {
+        woodRequired += i;
+        if (woodRequired<0)
+            woodRequired = 0;
     }
 
+    public int getServantsRequired() {
+        return servantRequired;
+    }
 }

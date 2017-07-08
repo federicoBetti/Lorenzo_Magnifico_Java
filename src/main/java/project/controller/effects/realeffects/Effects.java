@@ -1,6 +1,5 @@
 package project.controller.effects.realeffects;
 
-import project.controller.cardsfactory.TotalCost;
 import project.server.network.PlayerHandler;
 import project.messages.BonusInteraction;
 

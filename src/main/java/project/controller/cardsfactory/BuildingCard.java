@@ -45,6 +45,11 @@ public class BuildingCard extends DevelopmentCard implements Serializable {
         return cardCost;
     }
 
+    @Override
+    public void setCost(Cost cost) {
+        cardCost = (BuildingCost)cost;
+    }
+
     public void setCardCost(BuildingCost cardCost) {
         this.cardCost = cardCost;
     }

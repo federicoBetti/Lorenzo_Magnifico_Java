@@ -3,10 +3,7 @@ package project.controller.effects.realeffects;
 import org.junit.Before;
 import org.junit.Test;
 import project.controller.checkfunctions.BasicCheckFunctions;
-import project.controller.checkfunctions.CantPlaceFamiliarInMarket;
-import project.controller.checkfunctions.DoubleServantsValue;
 import project.controller.effects.effectsfactory.EffectsConstants;
-import project.controller.supportfunctions.DoubleServantsPayment;
 import project.controller.supportfunctions.NoFinalPointsFromCharacter;
 import project.controller.supportfunctions.NoFinalPointsFromTerritory;
 import project.controller.supportfunctions.NoFinalPointsFromVentures;
@@ -17,7 +14,6 @@ import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

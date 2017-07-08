@@ -5,8 +5,6 @@ import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.messages.TakePrivilegesAction;
 
-import java.io.IOException;
-
 /**
  * Created by raffaelebongo on 15/06/17.
  */

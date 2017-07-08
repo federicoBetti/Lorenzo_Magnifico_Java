@@ -1,11 +1,9 @@
 package project.server.network.rmi;
 
-import project.PlayerFile;
 import project.client.network.rmi.RMIServerToClientInterface;
 import project.server.network.AbstractServer;
 import project.server.Server;
 
-import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.ServerException;

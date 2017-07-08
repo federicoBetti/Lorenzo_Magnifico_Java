@@ -7,7 +7,6 @@ import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.updatesmessages.*;
-import project.model.Player;
 import project.model.Turn;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.ServerRMI;
@@ -110,7 +109,7 @@ public class Server {
 
                         room.setTimer(checkAndStartTheTimer(room, player));
                     } else {
-                        player.disconnectedInDraft = true;
+                        player.setDisconnectedInDraft(true);
                     }
 
 

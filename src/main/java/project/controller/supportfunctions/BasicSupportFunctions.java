@@ -51,11 +51,11 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
         int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getTerritoryBonus();
-        player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - (card.getCost().getWoodRequired()));
-        player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - (card.getCost().getStoneRequired()));
-        player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - (coinsMore));
+        player.getPersonalBoardReference().addWood( - card.getCost().getWoodRequired());
+        player.getPersonalBoardReference().addStone( - card.getCost().getStoneRequired());
+        player.getPersonalBoardReference().addCoins( - coinsMore);
         int servantsUsed = payServants(zoneDiceCost, valueOfFamilyMember + diceBonus);
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+        player.getPersonalBoardReference().addServants( - servantsUsed);
     }
 
     //TODO CONTROLLARE CHE I COSTI VADANO BENE, AD ESEMPIO CONTROLLARE CHE SE I BONUS O VALORI DEI DADI SONO MAGGIORI DEI COSTI NON MI VADA AD AGGIUNGERE RISORSE, MA E NE TOLGA 0
@@ -69,15 +69,17 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
 
-        if (card.getCost().getWoodRequired() + woodBonus > 0)
-            player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - (card.getCost().getWoodRequired() + woodBonus));
+        if (- card.getCost().getWoodRequired() + woodBonus < 0)
+            player.getPersonalBoardReference().addWood(woodBonus - card.getCost().getWoodRequired());
 
-        if (card.getCost().getStoneRequired() + stoneBonus > 0)
-            player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - (card.getCost().getStoneRequired() + stoneBonus));
+        if (- card.getCost().getStoneRequired() + stoneBonus < 0)
+            player.getPersonalBoardReference().addStone(stoneBonus - card.getCost().getStoneRequired());
 
-        if (card.getCost().getCoinsRequired() + coinsMore > 0)
-            player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - (card.getCost().getCoinsRequired() + coinsMore));
+        if (- card.getCost().getCoinsRequired() + coinsMore < 0)
+            player.getPersonalBoardReference().addCoins(- coinsMore - card.getCost().getCoinsRequired());
+
         int servantsUsed = payServants(zoneDiceCost, valueOfFamilyMember + diceBonus);
+        player.getPersonalBoardReference().addServants( - (servantsUsed + card.getCost().getServantsRequired()));
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
     }
 
@@ -91,9 +93,10 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         int coinsPaid = card.getCost().getCoinsRequired() + coinsMore - coinsBonus;
 
         if (coinsPaid > 0)
-            player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - (coinsPaid));
+            player.getPersonalBoardReference().addCoins( - (coinsPaid));
+
         int servantsUsed = payServants(zoneDiceCost, valueOfFamilyMember + diceBonus);
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+        player.getPersonalBoardReference().addServants( - servantsUsed);
     }
 
     @Override
@@ -210,15 +213,15 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         if (coinsFee)
             coinsMore = Constants.ADD_COINS_IF_TOWER_IS_OCCUPIED;
         int diceBonus = player.getPersonalBoardReference().getBonusOnActions().getVenturesBonus();
-        player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - (cost.getWoodRequired()));
-        player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - (cost.getStoneRequired()));
 
-        if (coinsMore + cost.getCoinsRequired() > 0)
-            player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() - (coinsMore + cost.getCoinsRequired()));
+        player.getPersonalBoardReference().addWood( - (cost.getWoodRequired()));
+        player.getPersonalBoardReference().addStone( - (cost.getStoneRequired()));
+        player.getPersonalBoardReference().addCoins( - (coinsMore + cost.getCoinsRequired()));
 
         player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() - (cost.getMilitaryCost()));
+
         int servantsUsed = payServants(zoneDiceCost, valueOfFamilyMember + diceBonus);
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+        player.getPersonalBoardReference().addServants( - servantsUsed);
     }
 
 

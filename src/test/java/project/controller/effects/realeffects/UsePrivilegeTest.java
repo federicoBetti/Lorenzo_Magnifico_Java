@@ -1,7 +1,6 @@
 package project.controller.effects.realeffects;
 
 import org.junit.Test;
-import project.controller.Constants;
 import project.messages.TakePrivilegesAction;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
