@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * 
+ * This class contains the specific Character Cards characteristics
  */
 public class CharacterCard extends DevelopmentCard implements Serializable{
 
@@ -22,12 +22,21 @@ public class CharacterCard extends DevelopmentCard implements Serializable{
         this.cardCost = cost;
     }
 
-
+    /**
+     * This method add the character card to the personal board
+     *
+     * @param personalBoardReference personalBoard's reference
+     */
     @Override
     public void addToPersonalBoard(PersonalBoard personalBoardReference) {
         personalBoardReference.getCharacters().add(this);
     }
 
+    /**
+     * Get the character cost
+     *
+     * @return character cost
+     */
     @Override
     public CharactersCost getCost() {
         return cardCost;

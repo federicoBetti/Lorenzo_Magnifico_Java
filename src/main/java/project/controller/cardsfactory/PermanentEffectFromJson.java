@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 19/05/17.
+ * This class represent the permanent effects loaded from Json
  */
 public class PermanentEffectFromJson {
     private List<PokerPE> poker;
@@ -14,11 +14,12 @@ public class PermanentEffectFromJson {
 
     }
 
+    /**
+     * Get poker
+     *
+     * @return poker
+     */
     public List<PokerPE> getPoker() {
         return poker;
-    }
-
-    public void setPoker(List<PokerPE> poker) {
-        this.poker = poker;
     }
 }

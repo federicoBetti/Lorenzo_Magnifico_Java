@@ -3,16 +3,26 @@ package project.controller.cardsfactory;
 import project.controller.effects.effectsfactory.TrisIE;
 
 /**
- * Created by raffaelebongo on 17/06/17.
+ * Council privilege's class created from json
  */
 public class CouncilPrivilegesFromJson {
     private int priviledgeNumber;
     private TrisIE trisIEL;
 
+    /**
+     * Get the privilege's number
+     *
+     * @return privilege's number
+     */
     public int getPriviledgeNumber() {
         return priviledgeNumber;
     }
 
+    /**
+     * Get trisIE
+     *
+     * @return trisIE
+     */
     public TrisIE getTrisIEL() {
         return trisIEL;
     }
