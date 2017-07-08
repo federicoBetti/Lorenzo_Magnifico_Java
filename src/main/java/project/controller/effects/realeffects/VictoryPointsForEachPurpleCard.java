@@ -5,7 +5,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ *  effect that give you victory points according to the number of ventures card that you have
  */
 public class VictoryPointsForEachPurpleCard implements Effects {
 
@@ -18,10 +18,7 @@ public class VictoryPointsForEachPurpleCard implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
-        int i = 0;
-        while ( player.getPersonalBoardReference().getVentures().get(i) != null ) {
-            i++;
-        }
+        int i = player.getPersonalBoardReference().getVentures().size();
 
         player.getScore().setVictoryPoints( player.getScore().getVictoryPoints() + this.quantity*i);
 
@@ -30,6 +27,6 @@ public class VictoryPointsForEachPurpleCard implements Effects {
 
     @Override
     public String toScreen() {
-        return "Take " + quantity + " victory points for each purple card.";
+        return "Take " + quantity + " victory points for each purple card";
     }
 }

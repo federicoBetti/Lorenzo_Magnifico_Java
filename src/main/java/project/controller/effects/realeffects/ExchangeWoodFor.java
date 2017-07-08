@@ -3,13 +3,14 @@ package project.controller.effects.realeffects;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.controller.cardsfactory.TotalCost;
+import project.messages.TakePrivilegesAction;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * effect that exchange wood for other resources
  */
 
-//todo HashMap, si potrebbe mettere le cose sotto come un addWood, addoStone e cose cosi
+
 public class ExchangeWoodFor implements ExchangeEffects {
 
     private int woodRequired;
@@ -28,28 +29,13 @@ public class ExchangeWoodFor implements ExchangeEffects {
         if (player.getPersonalBoardReference().getWood() >= woodRequired) {
             player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - woodRequired);
 
-            switch (resourceRewardered) {
-                case "wood":
-                    player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
-                    break;
-                case "stone":
-                    player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + resourceEarned);
-                    break;
-                case "servant":
-                    player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() + resourceEarned);
-                    break;
-                case "victoryPoint":
-                    player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + resourceEarned);
-                    break;
-                case "faithPoint":
-                    player.getScore().setFaithPoints(player.getScore().getFaithPoints() + resourceEarned);
-                    break;
-                case "coin":
-                    player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + resourceEarned);
-                    break;
-                default:
-                    return null;
-            }
+
+            BonusInteraction returnFromEffect = addResources(resourceEarned, resourceRewardered, player);
+            if (returnFromEffect instanceof TakePrivilegesAction)
+                return returnFromEffect;
+            else
+                return new OkOrNo();
+
         }
 
             return new OkOrNo();

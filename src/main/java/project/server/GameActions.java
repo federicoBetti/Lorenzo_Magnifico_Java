@@ -65,16 +65,9 @@ public class GameActions {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
         int diceFamiliarValue = familyM.getMyValue();
-        System.out.println(familyM);
 
-        //devo far pagare i servants!
-        System.out.println("ho numero di servants: " + player.getPersonalBoardReference().getServants());
         getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
         getSupportFunctions(player).setFamiliar(zone, familyM);
-        System.out.println("ho numero di servants: " + player.getPersonalBoardReference().getServants());
-        //prova
-        System.out.println(zone.getFamiliarOnThisPosition());
-
 
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
         takeDevelopmentCard(zone, player);
@@ -287,7 +280,7 @@ public class GameActions {
         room.getServer().setRooms(rooms);
         room = null;
 
-        System.out.println("PARTITA FINITA PER DISCONNESSIONE DI ENTRAMBI I GIOCATORI");
+        System.out.println("PARTITA FINITA PER DISCONNESSIONE DI TUTTI I GIOCATORI");
 
         return -1;
     }
@@ -526,7 +519,7 @@ public class GameActions {
         }
     }
 
-    void refactorTowers() {
+    private void refactorTowers() {
         System.out.println("sto per rimettere a posto tutto le carte");
         int j;
         int i;

@@ -4,6 +4,9 @@ import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
+/**
+ *  effect that give you victory points according to the number of military points that you have
+ */
 public class VictoryPointsForEachTwoMilitaryPoints implements Effects {
 
     @Override
@@ -15,6 +18,6 @@ public class VictoryPointsForEachTwoMilitaryPoints implements Effects {
 
     @Override
     public String toScreen() {
-        return "Take 1 military points for every 2 military points.";
+        return "Take 1 military points for every 2 military points";
     }
 }

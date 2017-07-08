@@ -8,7 +8,7 @@ import project.server.network.rmi.RMIPlayerHandler;
 import static org.junit.Assert.*;
 
 /**
- * Created by federico on 07/07/17.
+ * effect test
  */
 public class AddCoinTest {
     private AddCoin test = new AddCoin(1);

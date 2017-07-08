@@ -54,4 +54,8 @@ public class LeaderCard implements Serializable{
     public void setRequirementsSatisfied(boolean requirementsSatisfied) {
         this.requirementsSatisfied = requirementsSatisfied;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -5,7 +5,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * effect that give you victory points according to the number of character chard that you have
  */
 public class VictoryPointForEachBlueCard implements Effects {
 
@@ -25,6 +25,6 @@ public class VictoryPointForEachBlueCard implements Effects {
 
     @Override
     public String toScreen() {
-        return "Take " + quantity + " victory points " + "for each blue card.";
+        return "Take " + quantity + " victory points " + "for each blue card";
     }
 }

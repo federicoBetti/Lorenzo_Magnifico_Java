@@ -1,6 +1,5 @@
 package project.controller.effects.effectsfactory;
 
-import project.controller.effects.*;
 import project.controller.effects.realeffects.*;
 
 //todo rifare con HashMap
@@ -47,14 +46,6 @@ public class BuildImmediateEffects {
 			// questi tre hanno uno switch interni da sistemare
 			case "reduceValueOfAction":
 				return new ReduceValueOnAction(parameter, quantity);
-
-				//Cosa Sono?
-            case "setFamiliarFixedValue":
-                return new SetFamiliarFixedValue(parameter, quantity);
-            case "setFamiliarFixedBonus":
-                return new SetFamiliarFixedBonus(parameter, quantity);
-            case "setExcommunicationCardUseful":
-                return new SetExcommunicationCardUseful(parameter);
 
 			case"councilSpecial":
 				return new AddWoodAndStone(quantity);

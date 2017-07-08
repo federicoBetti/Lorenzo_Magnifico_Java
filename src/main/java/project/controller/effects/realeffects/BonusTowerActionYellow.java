@@ -6,7 +6,7 @@ import project.messages.TowerAction;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 06/06/17.
+ * effect tat allows you to take a building card bonus
  */
 public class BonusTowerActionYellow implements Effects {
 
@@ -28,9 +28,7 @@ public class BonusTowerActionYellow implements Effects {
         String discRes1 = discountedResources[0];
         String discRes2 = discountedResources[1];
 
-        TowerAction towerAction = new TowerAction(cardColour, diceValue, discRes1, quantityDiscounted, discRes2, quantityDiscounted);
-
-        return  towerAction;
+        return new TowerAction(cardColour, diceValue, discRes1, quantityDiscounted, discRes2, quantityDiscounted);
     }
 
     @Override

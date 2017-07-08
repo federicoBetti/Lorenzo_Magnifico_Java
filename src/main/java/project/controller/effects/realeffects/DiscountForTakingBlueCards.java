@@ -1,4 +1,4 @@
-package project.controller.effects.effectsfactory;
+package project.controller.effects.realeffects;
 
 import project.controller.effects.realeffects.Effects;
 import project.messages.BonusInteraction;
@@ -6,7 +6,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 28/06/17.
+ * effect that apply a discount on taking character card
  */
 public class DiscountForTakingBlueCards implements Effects {
 
@@ -28,6 +28,6 @@ public class DiscountForTakingBlueCards implements Effects {
 
     @Override
     public String toScreen() {
-        return "You have a discount of " + quantityDiscounted + " for taking blue cards";
+        return "You have a discount of " + quantityDiscounted + " coin for taking blue cards";
     }
 }

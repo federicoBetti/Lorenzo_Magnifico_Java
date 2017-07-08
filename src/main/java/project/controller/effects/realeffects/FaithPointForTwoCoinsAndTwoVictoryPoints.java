@@ -6,15 +6,15 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * special permanent effect of a building card
  */
 public class FaithPointForTwoCoinsAndTwoVictoryPoints implements ExchangeEffects {
-    private int faithPointsrequired;
+    private int faithPointsRequired;
     private int coinsEarned;
     private int victoryPointsEarned;
 
     public FaithPointForTwoCoinsAndTwoVictoryPoints(){
-        faithPointsrequired = 1;
+        faithPointsRequired = 1;
         coinsEarned = 2;
         victoryPointsEarned = 2;
     }
@@ -22,9 +22,9 @@ public class FaithPointForTwoCoinsAndTwoVictoryPoints implements ExchangeEffects
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        if ((player.getScore().getFaithPoints() >= faithPointsrequired )) {
-            player.getScore().setFaithPoints(player.getScore().getFaithPoints() - faithPointsrequired);
-            player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + coinsEarned);
+        if ((player.getScore().getFaithPoints() >= faithPointsRequired)) {
+            player.getScore().setFaithPoints(player.getScore().getFaithPoints() - faithPointsRequired);
+            player.getPersonalBoardReference().addCoins(coinsEarned);
             player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned);
         }
 
@@ -33,16 +33,12 @@ public class FaithPointForTwoCoinsAndTwoVictoryPoints implements ExchangeEffects
 
     @Override
     public String toScreen() {
-        return "Exchange " + faithPointsrequired + " faith points" + " for taking " + coinsEarned + " of " + "coins\n" +
+        return "Exchange " + faithPointsRequired + " faith points" + " for taking " + coinsEarned + " of " + "coins\n" +
                 "and " + victoryPointsEarned + " of victory points";
-    }
-
-    public int getFaithPointsrequired() {
-        return faithPointsrequired;
     }
 
     @Override
     public void addResourceRequested(TotalCost cost) {
-        cost.addFaithPoints(faithPointsrequired);
+        cost.addFaithPoints(faithPointsRequired);
     }
 }
