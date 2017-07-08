@@ -9,7 +9,6 @@ import project.client.network.socket.SocketClient;
 import project.client.ui.cli.Cli;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.ExcommunicationTaken;
@@ -208,9 +207,6 @@ public class ClientSetter {
     }
 
 
-    //todo check utility
-    public void notifyClient(Notify notify) {
-    }
 
     public Board getUiBoard() {
         return uiBoard;
@@ -283,10 +279,6 @@ public class ClientSetter {
 
     public void excommunicationTake(Updates update) {
         ui.excommunicationTaken((ExcommunicationTaken)update);
-    }
-
-    public void notifyPlayer(Notify notify) {
-        ui.notifyPlayer(notify);
     }
 
     public void reconnect() {

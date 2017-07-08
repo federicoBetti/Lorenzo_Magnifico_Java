@@ -9,6 +9,9 @@ import project.controller.Constants;
 import project.controller.effects.effectsfactory.LeaderCardRequirements;
 import project.controller.effects.realeffects.*;
 import project.messages.*;
+import project.messages.updatesmessages.DiceValueUpdate;
+import project.messages.updatesmessages.FamilyMemberUpdate;
+import project.messages.updatesmessages.TowersUpdate;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
 import project.server.GameActions;
@@ -225,7 +228,7 @@ public abstract class PlayerHandler extends Player {
                 throw new CantDoActionException();
         }
 
-        if (room.numberOfPlayerOn() > 2 && !zone.isEmpty())
+        if (room.numberOfPlayerOn() == 2 && !zone.isEmpty())
             throw new CantDoActionException();
 
         return zone.size();
@@ -538,12 +541,13 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * Set the boolean On to true
+     * Set the boolean On to true and send the necessary updates
      */
     public void reconnectClient() {
         this.setOn(true);
-    }
+        getRoom().getServer().sendAllUpdates(this, getRoom(), this.getName() );
 
+    }
 
     /**
      * da qua iniziano a comparire i metodi di ritorno al client. che poi potrebbero essere anche lo stesso dove cambia solo il coso che mandi
@@ -551,8 +555,6 @@ public abstract class PlayerHandler extends Player {
      * penso anche in socket cosi sai gia che se devo mandare dal metodo chiamato possoUsareEntrambi... so che il parametro da passare è quella
      * stringa BOTH_COST_CAN_BE_SATISFIED
      */
-
-
     public void showStatistics() {
 
         Gson gson = new Gson();

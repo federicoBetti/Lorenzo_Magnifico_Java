@@ -7,7 +7,6 @@ import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.ExcommunicationTaken;
@@ -395,6 +394,11 @@ public class Cli extends AbstractUI {
         clientSetter.terminate();
     }
 
+    /**
+     * This method prints the statistics
+     *
+     * @param statistics PlayerFile's reference that contains the statistics to print
+     */
     @Override
     public void receiveStatistics(PlayerFile statistics) {
         context.getpBlue().print("Player name: ");
@@ -408,11 +412,18 @@ public class Cli extends AbstractUI {
         context.getpRed().println("");
     }
 
+    /**
+     * This method calls the method showRanking on the clientSetter
+     */
     @Override
     public void showRanking() {
         clientSetter.showRanking();
     }
 
+    /**
+     * This method prints the ranking
+     * @param ranking List of palyerFiles ordered like a ranking
+     */
     @Override
     public void ranking(List<PlayerFile> ranking) {
         int i = 1;
@@ -423,21 +434,39 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method prints the disconnection message
+     *
+     * @param message message as a String to print
+     */
     @Override
     public void disconnesionMessage(String message) {
         context.getpRed().println(message);
     }
 
+    /**
+     * This method print the winner's message
+     *
+     * @param winner winner comunication as a String
+     */
     @Override
     public void winnerComunication(String winner) {
         context.getpBlue().println(winner);
     }
 
+    /**
+     * This method makes the abstract context in a WaitingForYourTurnContext
+     */
     @Override
     public void waitingForYourTurn() {
         context = new WaitingForYourTurnContext(this);
     }
 
+    /**
+     * This method check the input according to the current context specific and calls the setIpAddress method
+     *
+     * @param kindOfConnection kind of connection choosen as a String
+     */
     @Override
     public void setConnectionType(String kindOfConnection) {
 
@@ -449,27 +478,21 @@ public class Cli extends AbstractUI {
         }
     }
 
-
-    private boolean checkIP(String ip) {
-        String[] parameters = ip.split(".");
-        if (parameters.length != 4)
-            return false;
-
-        for (String num : parameters)
-            try {
-                if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > 255)
-                    return false;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-
-        return true;
-    }
-
+    /**
+     * This method makes the abstract context in a SetIPaddressContext
+     *
+     * @param kindOfConnection kind of connection choosen as a String
+     */
     private void setIpAddress(String kindOfConnection) {
         context = new SetIPaddressContext(this, kindOfConnection);
     }
 
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * takeDevCard on the client setter
+     *
+     * @param lineFromKeyBoard input line from keyboard
+     */
     public void choseAndTakeDevCard(String lineFromKeyBoard) {
 
         try {
@@ -481,6 +504,12 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * productionAction on the client setter
+     *
+     * @param lineFromKeyBoard input line from keyboard
+     */
     public void chooseProductionParameters(String lineFromKeyBoard) {
 
         try {
@@ -497,6 +526,12 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * harvesterAction on the client setter
+     *
+     * @param lineFromKeyBoard input line from keyboard
+     */
     public void chooseHarversterParameters(String lineFromKeyBoard) {
         try {
             context.checkValidInput(lineFromKeyBoard);
@@ -508,6 +543,12 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * marketAction on the client setter
+     *
+     * @param lineFromKeyBoard input line from keyboard
+     */
     public void chooseMarketActionParameters(String lineFromKeyBoard) {
 
         try {
@@ -519,6 +560,12 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * councilAction on the client setter
+     *
+     * @param lineFromKeyBoard input line from keyboard
+     */
     public void chooseCouncilParameters(String lineFromKeyBoard) {
 
         try {
@@ -531,6 +578,12 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This method check the input according to the current context specific and calls the playLeaderCard on the
+     * client setter
+     *
+     * @param action input string
+     */
     public void chooseLeaderCardToPlay(String action) {    //todo va controllato sul server
         try {
             context.checkValidInput(action);
@@ -541,6 +594,11 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This method calls discardLeaderCard on clietSetter
+     *
+     * @param name input string
+     */
     public void discardLeaderCard(String name) {    //todo va controllato sul server
         clientSetter.discardLeaderCard(name);
     }
@@ -549,6 +607,9 @@ public class Cli extends AbstractUI {
         clientSetter.sendExitToBonusAction();
     }
 
+    /**
+     * This method prints the information of the excomunication tiles
+     */
     public void showExcomunicationsTiles() {
         int i = 1;
         for (ExcommunicationZone exZone : clientSetter.getUiBoard().getExcommunicationZone()) {
@@ -559,10 +620,16 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method prints the informations of the player's personal board
+     */
     public void showPersonalBoard() {
         context.getpBlue().println(clientSetter.getUiPersonalBoard().toScreen());
     }
 
+    /**
+     * This method prints the dices value
+     */
     public void showDicesValue() {
         int[] diceToPrint = clientSetter.getUiBoard().getDiceValue();
         context.getpBlue().print("Black dice value: ");
@@ -574,35 +641,35 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This methods prints the player's score
+     */
     public void showPoints() {
         context.getpBlue().println(clientSetter.getUiScore().toScreen());
     }
 
-    public void showHarvesterZone() {
-        //to implement
-    }
-
-    public void gameReport() {
-        //to implement
-    }
-
-    public void showAllPlayers() {
-        //to implement
-    }
-
-    void chat() {
-        //to implement
-    }
-
+    /**
+     * This method makes the abstract context in a DiscardLeaderCardAmaContext
+     */
     public void discardLeaderCardAma() {
         context = new DiscardLeaderCardAmaContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
+    /**
+     * This method makes the abstract context in a PlayLeadercardAmaContext
+     *
+     * @param leaderCards the list of leader cards owned by the player
+     */
     public void playLeaderCardAma(List<LeaderCard> leaderCards) {
         context = new PlayLeadercardAmaContext(this, leaderCards);
     }
 
-
+    /**
+     * This method wait for the choice of praying from the keyboard and add it to the choiceQueue. After the input is
+     * checked and if the controls have been passed, this value is returned to the method called in client setter
+     *
+     * @return the int that represent the choice
+     */
     @Override
     public int askForPraying() {
         choice = true;
@@ -624,6 +691,13 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method wait for the choice of permanent effect from the keyboard and add it to the choiceQueue.
+     * After the input is checked and if the controls have been passed, this value is returned to the method called
+     * in client setter
+     *
+     * @return the int that represent the choice
+     */
     @Override
     public int choicePe() {
         choice = true;
@@ -644,7 +718,13 @@ public class Cli extends AbstractUI {
         }
     }
 
-
+    /**
+     * This method wait for the choice of payment from the keyboard and add it to the choiceQueue.
+     * After the input is checked and if the controls have been passed, this value is returned to the method called
+     * in client setter
+     *
+     * @return the int that represent the choice
+     */
     @Override
     public int bothPaymentsAvailable() {
         choice = true;
@@ -671,6 +751,13 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method wait for the choice of leader card from the keyboard and add it to the choiceQueue.
+     * After the input is checked and if the controls have been passed, this value is returned to the method called
+     * in client setter
+     *
+     * @return the string that represent the choice
+     */
     @Override
     public String getLeaderCardChosen(List<LeaderCard> leaders) {
         choice = true;
@@ -692,6 +779,12 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method check the input according to the current context specific and calls the bonusHarvesterAction on the
+     * client setter
+     *
+     * @param input input string taken from the keyboard thread
+     */
     public void bonusHarvesterParameters(String input) {
         try {
             context.checkValidInput(input);
@@ -701,22 +794,15 @@ public class Cli extends AbstractUI {
             context.printHelp();
         }
 
-
     }
 
-    @Override
-    public int getScelta() {
-
-        SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
-        try {
-            int ch = Integer.parseInt(keyboard.readLine());
-            return ch;
-        } catch (IOException e) {
-
-        }
-        return 0;
-    }
-
+    /**
+     * This method wait for the choice of bonus tile from the keyboard and add it to the choiceQueue.
+     * After the input is checked and if the controls have been passed, this value is returned to the method called
+     * in client setter
+     *
+     * @return the int that represent the choice
+     */
     @Override
     public int tileDraft(List<Tile> tiles) {
 
@@ -746,29 +832,43 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This method calls the newNickname method on the client setter
+     *
+     * @param nickanme the player's nickname as a String
+     */
     @Override
     public void newNickname(String nickanme) {
         clientSetter.newNickname(nickanme);
     }
 
 
+    /**
+     * This method prints the communication that the player has acted the prayer
+     */
     @Override
     public void prayed() {
         context.getpRed().println("You have prayed and you did not take the excommunication!");
     }
 
+    /**
+     * This method prints the characteristics of the excommunication taken by the player
+     *
+     * @param update informations about the excommunication taken
+     */
     @Override
     public void excommunicationTaken(ExcommunicationTaken update) {
         context.getpRed().println(update.toScreen());
         context.getpBlue().println(update.getExTile());
     }
 
-    @Override
-    public void notifyPlayer(Notify notify) {
-        context.getpBlue().println(notify.toScreen());
-    }
-
-
+    /**
+     * This method makes the abstract context in a MatchStartedContext and set the number of players in the match
+     * and the family colour of the player
+     *
+     * @param roomPlayers number of players
+     * @param familyColour family colour of the player as a String
+     */
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         context = new MatchStartedContext(this);
@@ -776,18 +876,36 @@ public class Cli extends AbstractUI {
         playerColor = familyColour;
     }
 
+    /**
+     * Get number of players
+     *
+     * @return numeber of players
+     */
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
 
+    /**
+     * Set the boolean firstRound
+     *
+     * @param firstRound boolean first round
+     */
     public void setFirstRound(boolean firstRound) {
         this.firstRound = firstRound;
     }
 
+    /**
+     * Get familymember's array
+     *
+     * @return family members' array
+     */
     public FamilyMember[] getMyFamilymembers() {
         return myFamilymembers;
     }
 
+    /**
+     * This method prints the turn order
+     */
     public void showTurns() {
         Turn turn = clientSetter.getUiBoard().getTurn();
 
@@ -800,6 +918,13 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method check the input according to the current context specific and calls the setConnectionType on the
+     * client setter
+     *
+     * @param kindOfConnection the kind of connection choosen as a String
+     * @param ip ip address choosen as a String
+     */
     public void setIPaddress(String kindOfConnection, String ip) {
 
         try {
@@ -812,6 +937,9 @@ public class Cli extends AbstractUI {
         clientSetter.setConnectionType(kindOfConnection, ip);
     }
 
+    /**
+     * Keyboard Thread
+     */
     private class Keyboard extends Thread {
 
         @Override
@@ -832,11 +960,8 @@ public class Cli extends AbstractUI {
                         System.out.println("Sono in Contesto");
                         context.doAction(lineFromKeyBoard);
                     }
-                } catch (InputException e) {
+                } catch (InputException | IOException e) {
                     e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-
                 }
             }
         }

@@ -46,7 +46,6 @@ class MessagesFromServerHandler {
         map.put(Constants.EXCOMMUNICATION_TAKEN_UPDATE, this:: excommunicationTake );
         map.put(Constants.ASK_FOR_PRAYING_LAST_PLAYER, this:: askForPrayingLastPlayer);
         map.put(Constants.ACTION_DONE_ON_TIME, this:: actionDone );
-        map.put(Constants.NOTIFY, this:: notifyPlayer);
         map.put(Constants.WAITING_FOR_YOUR_TURN, this::waitingForYourTurn);
         map.put(Constants.AFTER_GAME, this:: afterGame );
         map.put(Constants.RECEIVE_STATISTICS, this::receiveStatistics );
@@ -80,10 +79,6 @@ class MessagesFromServerHandler {
         client.createWaitingForYourTurnContext();
     }
 
-    private void notifyPlayer() {
-        client.notifyPlayer();
-    }
-
     private void actionDone() {
         System.err.println("ACTION DONE ON TIME ARRIVED");
         //serve a consumare quello che viene mandato in piu in caso di scelta con il both payment quando muore il thread di ascolto.
@@ -109,9 +104,7 @@ class MessagesFromServerHandler {
     private void tileDraft() {
         try {
             client.tileDraft();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

@@ -418,7 +418,7 @@ public class Server {
      * @param room players room's reference
      * @param nickname player's nickname as a String
      */
-    private void sendAllUpdates(PlayerHandler player, Room room, String nickname) {
+    public void sendAllUpdates(PlayerHandler player, Room room, String nickname) {
         player.sendUpdates(new PersonalBoardUpdate(player, nickname));
         player.sendUpdates(new TowersUpdate(room.getBoard().getAllTowers(), nickname));
         player.sendUpdates(new ScoreUpdate(player, nickname));

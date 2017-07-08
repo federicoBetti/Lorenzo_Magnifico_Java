@@ -273,10 +273,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
 
-    @Override
-    public void notify(Notify notify) {
-        clientSetter.notifyClient(notify);
-    }
 
     @Override
     public void endTurn() {
@@ -390,10 +386,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.itsMyTurn();
     }
 
-    @Override
-    public void sendNotification(Notify notifications) {
-        clientSetter.notifyClient(notifications);
-    }
 
     @Override
     public void sendUpdates(Updates updates) {

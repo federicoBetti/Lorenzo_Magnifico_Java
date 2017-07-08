@@ -4,7 +4,6 @@ import project.PlayerFile;
 import project.client.ui.cli.InputException;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.ExcommunicationTaken;
@@ -77,7 +76,6 @@ public abstract class AbstractUI {
     public void update(Updates update) {
     }
 
-    public abstract int getScelta();
 
     public abstract String getLeaderCardChosen(List<LeaderCard> leaders);
 
@@ -90,8 +88,6 @@ public abstract class AbstractUI {
     public abstract void prayed();
 
     public abstract void excommunicationTaken(ExcommunicationTaken update);
-
-    public abstract void notifyPlayer(Notify notify);
 
     public abstract void timerDelayed();
 

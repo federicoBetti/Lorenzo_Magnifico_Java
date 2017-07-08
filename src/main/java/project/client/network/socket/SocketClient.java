@@ -7,7 +7,6 @@ import project.client.ui.ClientSetter;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.*;
@@ -145,16 +144,6 @@ public class SocketClient extends AbstractClient {
             }
             System.out.println("il res è stato mandato");
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    void notifyPlayer() {
-        try {
-            Notify notify = (Notify) objectInputStream.readObject();
-            clientSetter.notifyPlayer(notify);
-        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

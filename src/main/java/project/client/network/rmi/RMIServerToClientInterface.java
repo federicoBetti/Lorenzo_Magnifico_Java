@@ -20,8 +20,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    void notify (Notify notify) throws RemoteException;
-
     void endTurn() throws RemoteException;
 
     void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
@@ -35,8 +33,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     int canUseBothPaymentMethod() throws RemoteException;
 
     void itMyTurn() throws RemoteException;
-
-    void sendNotification(Notify notifications)throws RemoteException;
 
     void sendUpdates(Updates updates)throws RemoteException;
 

@@ -3,13 +3,11 @@ package project.client.ui;
 import javafx.application.Application;
 import javafx.application.Platform;
 import project.PlayerFile;
-import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.messages.Notify;
 import project.messages.TakePrivilegesAction;
 import project.messages.TowerAction;
 import project.messages.updatesmessages.ExcommunicationTaken;
@@ -195,11 +193,6 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void notifyPlayer(Notify notify) {
-
-    }
-
-    @Override
     public void timerDelayed() {
         mainController.timerDelayed();
     }
@@ -267,10 +260,6 @@ public class Gui extends AbstractUI {
         return mainController.bothPaymentAvaiable();
     }
 
-    @Override
-    public int getScelta() {
-        return mainController.getChoice(CliConstants.BOTH_PAYMENT_AVAIABLE, "payment 1", "payment 2");
-    }
 
     @Override
     public String getLeaderCardChosen(List<LeaderCard> leaders) {
