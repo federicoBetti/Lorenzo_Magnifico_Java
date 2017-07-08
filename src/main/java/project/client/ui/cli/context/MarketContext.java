@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 05/06/17.
+ * This class is a context and it is opened when the player wants to place a familiar in the market
  */
 public class MarketContext extends AbstractContext {
     Market[] marketZone;
@@ -25,6 +25,9 @@ public class MarketContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints all the familiars already placed in the market zone
+     */
     private void showMarketZone() {
         pBlue.println("The market's zone state is:");
         int i = 0;
@@ -35,6 +38,9 @@ public class MarketContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The available actions are");
@@ -52,6 +58,12 @@ public class MarketContext extends AbstractContext {
         pYellow.println("");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException, NumberFormatException {
         String[] parameters = input.split("-");
@@ -72,6 +84,13 @@ public class MarketContext extends AbstractContext {
         checkFamilyMemberColour(parameters[1]);
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls chooseMarketActionParameters
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         cli.chooseMarketActionParameters(action);

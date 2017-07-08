@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 08/06/17.
+ * This class is a context openend when the player wants to discard a Leader card
  */
 public class DiscardLeaderCardContext extends AbstractContext {
     private List<LeaderCard> leaderCards;
@@ -24,6 +24,9 @@ public class DiscardLeaderCardContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the player's leader cards
+     */
     private void showLeaderCards() {
         for ( LeaderCard leaderCard : leaderCards ) {
             pRed.println(leaderCard.getName());
@@ -33,6 +36,9 @@ public class DiscardLeaderCardContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The available actions are:");
@@ -44,11 +50,25 @@ public class DiscardLeaderCardContext extends AbstractContext {
         pYellow.println("");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
 
     }
 
+
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls discardLeaderCard
+     *
+     * @param name string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String name) throws InputException, IOException {
         cli.discardLeaderCard(name);

@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 14/06/17.
+ * This class is a context that is opened when a card taken by the player has like immediate effects a bonus tower
+ * action
  */
 public class TakeBonusCard extends AbstractContext {
     private TowerAction towerAction;
@@ -28,6 +29,9 @@ public class TakeBonusCard extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the card of the tower's effects
+     */
     private void showCardsEffects() {
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
@@ -56,6 +60,9 @@ public class TakeBonusCard extends AbstractContext {
 
     }
 
+    /**
+     * This method prints the card of the tower's costs
+     */
     private void showCardsCost() {
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
@@ -74,12 +81,20 @@ public class TakeBonusCard extends AbstractContext {
         pBlue.print("If you want to see the cards'effects type ");pRed.println("[show-cards-effects]");
     }
 
+    /**
+     * This method call exit method that open the mainContext and call sendExitToBonusAction
+     *
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     private void exitFromBonus() throws IOException, InputException {
         exit();
         cli.sendExitToBonusAction();
     }
 
-
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The available actions are:\ntake the bonus card with these characteristics:");
@@ -92,6 +107,12 @@ public class TakeBonusCard extends AbstractContext {
         pYellow.println("");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException, NumberFormatException {
         String[] parameters = input.split("-");
@@ -109,6 +130,13 @@ public class TakeBonusCard extends AbstractContext {
 
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls takeBonusCardParameters
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         cli.takeBonusCardParameters(action);

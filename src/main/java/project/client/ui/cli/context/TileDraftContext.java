@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 27/06/17.
+ * This class is a context opened during the tile drafting period
  */
 public class TileDraftContext extends AbstractContext {
     private List<Tile> tiles;
@@ -20,6 +20,9 @@ public class TileDraftContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pBlue.print("\nChoose you personal bonus Tile. Type ");pRed.print("[number] ");pBlue.println("for choosing the corresponding tile");
@@ -41,6 +44,12 @@ public class TileDraftContext extends AbstractContext {
 
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException, NumberFormatException {
         System.out.println("sono qui 1. lenght: " + input.length());
@@ -65,7 +74,13 @@ public class TileDraftContext extends AbstractContext {
 
     }
 
-
+    /**
+     * If the string in input does not correspond with no key, this method is called
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
 

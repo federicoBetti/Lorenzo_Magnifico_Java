@@ -6,16 +6,14 @@ import project.client.ui.cli.InputException;
 import project.controller.cardsfactory.TerritoryCard;
 import project.controller.effects.realeffects.Effects;
 import project.messages.BonusProductionOrHarvesterAction;
-import project.model.Harvester;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 15/06/17.
+ * This class is a context opened when there is a bonus Harvester to do
  */
-
 public class BonusHarvesterContext extends AbstractContext {
     private BonusProductionOrHarvesterAction bonusHarv;
     List<TerritoryCard> territories;
@@ -28,6 +26,9 @@ public class BonusHarvesterContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the player's territory cards
+     */
     private void showTerritories() {
 
         int count1 = 1;
@@ -45,6 +46,9 @@ public class BonusHarvesterContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method print the help context's menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The available actions are:");
@@ -57,6 +61,12 @@ public class BonusHarvesterContext extends AbstractContext {
 
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
@@ -70,6 +80,13 @@ public class BonusHarvesterContext extends AbstractContext {
         }
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls bonusHarvesterParameters
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         cli.bonusHarvesterParameters(action);

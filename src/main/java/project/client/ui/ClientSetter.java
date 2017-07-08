@@ -1,7 +1,6 @@
 package project.client.ui;
 
 import project.PlayerFile;
-import project.client.clientexceptions.NotAllowedSelection;
 import project.client.network.AbstractClient;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.rmi.RMIClient;
@@ -60,11 +59,6 @@ public class ClientSetter {
                 }
                 break;
             default:
-                try {
-                    throw new NotAllowedSelection();
-                } catch (NotAllowedSelection notAllowedSelection) {
-                    //scelta non voluta
-                }
                 break;
         }
     }

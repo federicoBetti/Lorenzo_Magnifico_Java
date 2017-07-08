@@ -6,7 +6,7 @@ import project.client.ui.cli.InputException;
 import java.io.IOException;
 
 /**
- * Created by raffaelebongo on 14/06/17.
+ * This class represent a context opened when the player takes a venture card that has two possible costs
  */
 public class BothPaymentsVentureCardsContext extends AbstractContext {
 
@@ -15,6 +15,9 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method print the help context's menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The main action is:");
@@ -22,6 +25,12 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
         pBlue.print("[1]");pYellow.println(" for choosing the second cost");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     public void checkValidInput( String input ) throws InputException{
         String[] parameters = input.split("-");
 
@@ -32,6 +41,13 @@ public class BothPaymentsVentureCardsContext extends AbstractContext {
             throw new InputException();
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
 

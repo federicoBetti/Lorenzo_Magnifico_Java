@@ -603,6 +603,11 @@ public class Cli extends AbstractUI {
         clientSetter.discardLeaderCard(name);
     }
 
+    /**
+     * This method calls sendExitToBonusAction on the client setter
+     *
+     * @throws InputException
+     */
     public void sendExitToBonusAction() throws InputException {
         clientSetter.sendExitToBonusAction();
     }

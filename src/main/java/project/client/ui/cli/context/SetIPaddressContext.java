@@ -6,7 +6,7 @@ import project.client.ui.cli.InputException;
 import java.io.IOException;
 
 /**
- * Created by raffaelebongo on 06/07/17.
+ * This class is a context opened when the player has to choice the server ip address
  */
 public class SetIPaddressContext extends AbstractContext {
     String kindOfConnection;
@@ -17,11 +17,20 @@ public class SetIPaddressContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("Insert the server IP address");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("\\.");
@@ -37,6 +46,13 @@ public class SetIPaddressContext extends AbstractContext {
             }
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls setIPaddress
+     *
+     * @param ip string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     protected void mainContextMethod(String ip) throws InputException, IOException {
         cli.setIPaddress(kindOfConnection, ip);

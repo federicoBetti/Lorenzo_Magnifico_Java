@@ -16,7 +16,7 @@ import java.util.Map;
 
 
 /**
- * Created by raffaelebongo on 05/06/17.
+ * This method is a context that is opened when the players wants to take a card form a tower
  */
 public class TowersContext extends AbstractContext {
 
@@ -31,6 +31,9 @@ public class TowersContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method pritns all tower cards' effects
+     */
     private void showCardsEffects() {
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
@@ -59,7 +62,9 @@ public class TowersContext extends AbstractContext {
 
     }
 
-    //todo controllare questa show
+    /**
+     * This method prints all tower cards' cost
+     */
     private void showCardsCost() {
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
@@ -92,6 +97,9 @@ public class TowersContext extends AbstractContext {
         pRed.println("Type ");pBlue.print("[help]");pRed.println("for watching the other commands.");
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("You are in the Tower Context! The available actions are:");
@@ -110,6 +118,12 @@ public class TowersContext extends AbstractContext {
         pYellow.println("");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException, NumberFormatException {
         String[] parameters = input.split("-");
@@ -130,6 +144,13 @@ public class TowersContext extends AbstractContext {
         checkFamilyMemberColour(parameters[2]);
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls loginRequest
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException{
         cli.choseAndTakeDevCard(action);

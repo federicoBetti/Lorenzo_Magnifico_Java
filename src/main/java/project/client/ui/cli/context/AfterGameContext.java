@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 03/07/17.
+ * Context opened when the match is finished
  */
 public class AfterGameContext extends AbstractContext {
     public AfterGameContext(Cli cli) {
@@ -20,22 +20,37 @@ public class AfterGameContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method calls terminate on the cli
+     */
     private void terminate() {
         cli.terminate();
     }
 
+    /**
+     * This method calls newGame on the cli
+     */
     private void newGame() {
         cli.newGameRequest();
     }
 
+    /**
+     * This method calls showStatistic on the cli
+     */
     private void showStatistic() {
         cli.showStatistic();
     }
 
+    /**
+     * This method calls showRanking on the cli
+     */
     private void showRanking() {
         cli.showRanking();
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The match is finished! What do you want to do now?");
@@ -43,10 +58,23 @@ public class AfterGameContext extends AbstractContext {
             pBlue.println(entry.getKey());
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls printHelp
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     protected void mainContextMethod(String action) throws InputException, IOException {
         printHelp();

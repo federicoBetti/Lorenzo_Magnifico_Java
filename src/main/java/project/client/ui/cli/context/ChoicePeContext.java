@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 15/06/17.
+ * This class is a context opened when during a production action there is a card that has two possible
+ * permanent effects
  */
 public class ChoicePeContext extends AbstractContext {
 
@@ -18,6 +19,9 @@ public class ChoicePeContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method print the help context's menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The available actions are:");
@@ -30,6 +34,12 @@ public class ChoicePeContext extends AbstractContext {
                 "\n[1] for the second PE");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
 
@@ -50,6 +60,13 @@ public class ChoicePeContext extends AbstractContext {
         }
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
 
