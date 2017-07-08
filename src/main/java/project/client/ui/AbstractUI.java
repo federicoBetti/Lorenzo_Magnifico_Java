@@ -13,7 +13,7 @@ import project.model.Tile;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 29/05/17.
+ * Abstract class extended by Cli and Gui, the two kinds of user interface implemented
  */
 public abstract class AbstractUI {
 
@@ -21,93 +21,189 @@ public abstract class AbstractUI {
         //to implement
     }
 
-
+    /**
+     * Abstract mainContext
+     */
     public abstract void mainContext();
 
+    /**
+     * Abstract takeBonusCard
+     *
+     */
     public abstract void takeBonusCard(TowerAction towerAction);
 
+    /**
+     * Abstract choicePe
+     */
     public abstract int choicePe();
 
+    /**
+     * Abstract bonusHarvester
+     */
     public abstract void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv);
 
+    /**
+     * Abstract bonusProduction
+     */
     public abstract void bonusProduction(BonusProductionOrHarvesterAction bonusProd);
 
+    /**
+     * Abstract askForPraying
+     */
     public abstract int askForPraying();
 
+    /**
+     * Abstract actionOk
+     */
     public abstract void actionOk();
 
+    /**
+     * Abstract cantDoAction
+     */
     public abstract void cantDoAction();
 
+    /**
+     * Abstract takeImmediatePrivilege
+     */
     public abstract void takeImmediatePrivilege(TakePrivilegesAction privilegesAction);
 
-
-
-
-
-    public void startGame(int i) {
-
-    }
-
-    //notifica alla ui che èè stato fatto un update, serve solo a me. l'ho messo non astratto cosi da te non fa niente
+    /**
+     * Abstract boardUpdate
+     */
     public abstract void boardUpdate(Updates update);
 
+    /**
+     * Abstract scoreUpdate
+     */
     public abstract void scoreUpdate(Updates updates);
 
+    /**
+     * Abstract personalBoardUpdate
+     */
     public abstract void personalBoardUpdate(Updates updates);
 
+    /**
+     * Abstract familyMemberUpdate
+     */
     public abstract void familyMemberUpdate(Updates updates);
 
+    /**
+     * Abstract nicknameAlreadyUsed
+     */
     public abstract void nicknameAlreadyUsed();
 
+    /**
+     * Abstract skipTurn
+     */
     public abstract void skipTurn();
 
+    /**
+     * Abstract waitingForYourTurn
+     */
     public abstract void waitingForYourTurn();
 
+    /**
+     * Abstract setConnectionType
+     */
     public abstract void setConnectionType(String kindOfConnection) throws InputException;
 
+    /**
+     * Abstract goToLogin
+     */
     public abstract void goToLogin() ;
 
+    /**
+     * Abstract loginSucceded
+     */
     public abstract void loginSucceded();
 
+    /**
+     * Abstract bothPaymentsAvailable
+     */
     public abstract int bothPaymentsAvailable();
 
-
-    //astratto?
-    public void update(Updates update) {
-    }
-
-
+    /**
+     * Abstract getLeaderCardChosen
+     */
     public abstract String getLeaderCardChosen(List<LeaderCard> leaders);
 
+    /**
+     * Abstract matchStarted
+     */
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
+    /**
+     * Abstract tileDraft
+     */
     public abstract int tileDraft(List<Tile> tiles);
 
+    /**
+     * Abstract newNickname
+     */
     public abstract void newNickname(String nickname );
 
+    /**
+     * Abstract prayed
+     */
     public abstract void prayed();
 
+    /**
+     * Abstract excommunicationTaken
+     */
     public abstract void excommunicationTaken(ExcommunicationTaken update);
 
+    /**
+     * Abstract timerDelayed
+     */
     public abstract void timerDelayed();
 
+    /**
+     * Abstract reconnect
+     */
     public abstract void reconnect();
 
+    /**
+     * Abstract afterGame
+     */
     public abstract void afterGame();
 
+    /**
+     * Abstract showStatistic
+     */
     public abstract void showStatistic();
 
+    /**
+     * Abstract newGameRequest
+     */
     public abstract void newGameRequest();
 
+    /**
+     * Abstract terminate
+     */
     public abstract void terminate();
 
+    /**
+     * Abstract receiveStatistics
+     */
     public abstract void receiveStatistics(PlayerFile statistics);
 
+    /**
+     * Abstract showRanking
+     */
     public abstract void showRanking();
 
+    /**
+     * Abstract ranking
+     */
     public abstract void ranking(List<PlayerFile> ranking);
 
+    /**
+     * Abstract disconnesionMessage
+     */
     public abstract void disconnesionMessage(String message);
 
+    /**
+     * Abstract winnerComunication
+     */
     public abstract void winnerComunication(String winner);
 }

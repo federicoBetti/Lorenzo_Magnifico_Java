@@ -7,17 +7,16 @@ import project.client.ui.ClientSetter;
 import java.io.IOException;
 
 /**
- * Created by raffaelebongo on 20/05/17.
+ * The player can start the game running the main method of this class
  */
 class Launcher {
 
-    //todo completare
-    private int x;
 
-    public Launcher(int x) {
-        this.x = x;
-    }
-
+    /**
+     * This method is used for asking to the player if he wants to play with the Cli or Gui user interface
+     *
+     * @return the string that represents the choice
+     */
     private static String selectUi() {
 
         UnixColoredPrinter.Builder builder = new UnixColoredPrinter.Builder(0, false);

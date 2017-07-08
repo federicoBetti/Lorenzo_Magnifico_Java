@@ -35,8 +35,6 @@ public abstract class AbstractClient implements Serializable{
 
     public abstract void bonusProductionAction(List<String> buildingCards);
 
-    public abstract void sendChoicePaymentVc(int payment);
-
     public abstract void skipTurn();
 
     public abstract void newNickname(String username);

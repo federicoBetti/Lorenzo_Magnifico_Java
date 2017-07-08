@@ -394,11 +394,6 @@ public class SocketClient extends AbstractClient {
     }
 
 
-    @Override
-    public void sendChoicePaymentVc(int payment) {
-        sendGenericObject(payment);
-    }
-
     //updates
 
     public void scoreUpdate() {

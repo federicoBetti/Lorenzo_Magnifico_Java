@@ -195,19 +195,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
-    public void takeImmediatePrivilege(TakePrivilegesAction action) {
-        clientSetter.takeImmediatePrivilege(action);
-    }
-
-    @Override
-    public void sendChoicePaymentVc(int payment) {
-        try {
-            myServer.sendChoicePaymentVc(myUniqueId, payment);
-        } catch (RemoteException e) {
-
-        }
-    }
-
     public void actionOk() {
         clientSetter.actionOk();
     }
