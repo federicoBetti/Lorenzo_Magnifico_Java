@@ -371,20 +371,23 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * @return
+     * This method calls "nextTurn" method and it's called when a player has finished his turn.
      */
     public void jumpTurn() {
         gameActions().nextTurn(this);
     }
 
     /**
-     * @param leaderName
-     * @return
+     * This method check if the leader card that the player wants to play has been already played and if not
+     * check if the player owns all the necessary requirements and play the card
+     *
+     * @param leaderName leader card's name as a String
      */
     protected void playLeaderCard(String leaderName) throws CantDoActionException {
         for (LeaderCard leaderCard : getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
-                if (leaderCard.isPlayed()) throw new CantDoActionException();
+                if (leaderCard.isPlayed())
+                    throw new CantDoActionException();
                 if (leaderCard.isRequirementsSatisfied() || leaderCardRequirements.checkRequirements(leaderName, this)) {
                     leaderCard.setRequirementsSatisfied(true);
                     gameActions().playLeaderCard(leaderName, this);
@@ -397,8 +400,10 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * @param leaderName
-     * @return
+     * This method check if the leader card that the player wants to discard has been already played and if not
+     * call the corresponding method on game action class.
+     *
+     * @param leaderName leader card's name as a String
      */
     protected void discardLeaderCard(String leaderName) throws CantDoActionException {
         boolean found = false;
@@ -406,23 +411,29 @@ public abstract class PlayerHandler extends Player {
         for (LeaderCard l : getPersonalBoardReference().getMyLeaderCard()) {
             if (l.getName().equals(leaderName)) {
                 found = true;
-                if (l.isRequirementsSatisfied()) throw new CantDoActionException();
+                if (l.isRequirementsSatisfied())
+                    throw new CantDoActionException();
             }
         }
-        if (found) gameActions().discardLeaderCard(leaderName, this);
-        else throw new CantDoActionException();
+        if (found)
+            gameActions().discardLeaderCard(leaderName, this);
+        else
+            throw new CantDoActionException();
     }
 
     /**
-     * @return
+     * This method is called for rolling dices again
      */
     public void rollDices() {
         gameActions().rollDice();
     }
 
     /**
-     * @param privelgeNumber
-     * @param familyMember
+     * This method check if familiar has enough dice value for act the council palace action and if yes it calls the
+     * corresponding method on gameActions object
+     *
+     * @param privelgeNumber privilege's number that the client wants use
+     * @param familyMember familiar that the client wants to place in the council
      */
     protected void goToCouncilPalace(int privelgeNumber, FamilyMember familyMember) {
         // ho supposto che posso andare nel palazzo del consiglio anche se c'è gia un altro del mio colore
@@ -431,61 +442,106 @@ public abstract class PlayerHandler extends Player {
     }
 
     /**
-     * @param privilegeNumber
+     * This method act the council priviledge effect
+     *
+     * @param privilegeNumber privilege's number that the client wants use
      */
     protected void takePrivilege(int privilegeNumber) {
         gameActions().takeCouncilPrivilege(privilegeNumber, this);
     }
 
+    /**
+     * This method act the prayer
+     */
     public void pray() {
         gameActions().pray(this);
     }
 
+    /**
+     * This method apply the excommunication effect to the player
+     */
     public void dontPray() {
         gameActions().takeExcommunication(this);
     }
 
 
     /**
-     * qua ci sono i metodi ausialiari
+     * Get the checkFunctions object dedicated to the player
      *
-     * @return
+     * @return checkFunctions object
      */
     public AllCheckFunctions getCheckFunctions() {
         return checkFunctions;
     }
 
+    /**
+     * Set the checkFunctions object dedicated to the player
+     *
+     */
     public void setCheckFunctions(AllCheckFunctions checkFunctions) {
         this.checkFunctions = checkFunctions;
     }
 
+    /**
+     * Get the player's room
+     * @return room
+     */
     public Room getRoom() {
         return room;
     }
 
-
+    /**
+     * Get a Tower corresponding to the tower color
+     *
+     * @param towerColor toer color as a string
+     * @return array of Tower positions corresponding to the colour
+     */
     private Tower[] getPosition(String towerColor) {
         return room.getBoard().getTrueArrayList(towerColor);
     }
 
 
+    /**
+     * Get a precice tower position
+     *
+     * @param towerColor tower's colour as a String
+     * @param floor tower's floor as an int
+     * @return tower position
+     */
     private Tower getZone(String towerColor, int floor) {
         return room.getBoard().getTrueArrayList(towerColor)[floor];
     }
 
+    /**
+     * Get the dice cost of a specific position in a tower
+     *
+     * @param towerColor toer color as a string
+     * @param floor tower's floor as an int
+     * @return the int corresponding to the dice cost of that position
+     */
     private int getDiceCost(String towerColor, int floor) {
         return room.getBoard().getTrueArrayList(towerColor)[floor].getDiceValueOfThisFloor();
     }
 
+    /**
+     * Get the development card corresponding to a specific tower colour and a floor
+     *
+     * @param towerColor tower's colour as a String
+     * @param floor tower's floor as an int
+     * @return the corresponding development card
+     * @throws CantDoActionException
+     */
     private DevelopmentCard getCard(String towerColor, int floor) throws CantDoActionException {
         DevelopmentCard card = room.getBoard().getTrueArrayList(towerColor)[floor].getCardOnThisFloor();
         if (card == null) throw new CantDoActionException();
         return card;
     }
 
+    /**
+     * Set the boolean On to true
+     */
     public void reconnectClient() {
         this.setOn(true);
-        System.out.println("CLIENT RECONNECTED!");
     }
 
 
@@ -496,6 +552,47 @@ public abstract class PlayerHandler extends Player {
      * stringa BOTH_COST_CAN_BE_SATISFIED
      */
 
+
+    public void showStatistics() {
+
+        Gson gson = new Gson();
+        String nickname = getName();
+        String statistics = getRoom().takeStatistics(nickname);
+        PlayerFile playerFile = gson.fromJson(statistics, PlayerFile.class);
+
+        sendStatistic(playerFile);
+
+    }
+
+    /**
+     * This method finds the familiar related with the colour
+     * @param colour colour of the family member as a string
+     * @return the family member related to the colour
+     */
+    protected FamilyMember findFamilyMember(String colour) {
+        for (FamilyMember familyMember : getAllFamilyMembers())
+            if (familyMember.getMyColour().equals(colour)) return familyMember;
+        System.out.println("ho ritornato un familiar null");
+        return null;
+    }
+
+    /**
+     * skip turn method
+     */
+    public void skipTurn() {
+        this.waitForYourTurn();
+        room.setLastPlayer(this);
+        room.getGameActions().nextTurn(this);
+    }
+
+    /**
+     * Take the global ranking of the game and send it to the client
+     */
+    public void takeRanking(){
+
+        List<PlayerFile> ranking = getRoom().generateRanking();
+        sendRanking(ranking);
+    }
 
     public abstract void cantDoAction();
 
@@ -520,21 +617,11 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void sendBonusTowerAction(TowerAction returnFromEffect);
 
-    protected FamilyMember findFamilyMember(String colour) {
-        for (FamilyMember familyMember : getAllFamilyMembers())
-            if (familyMember.getMyColour().equals(colour)) return familyMember;
-        System.out.println("ho ritornato un familiar null");
-        return null;
-    }
-
-
     public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect);
 
     public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect);
 
     public abstract void sendActionOk();
-
-    //todo implement
 
     public abstract void timerTurnDelayed();
 
@@ -542,41 +629,19 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void loginSucceded();
 
-    public void skipTurn() {
-        this.waitForYourTurn();
-        room.setLastPlayer(this);
-        room.getGameActions().nextTurn(this);
-    }
-
     protected abstract void waitForYourTurn();
 
     public void setRoom(Room room) {
         this.room = room;
     }
 
-    /**
-     * this method is used for the draft of leader cards
-     *
-     * @param leaders list of leader cards in which the player can choose
-     * @return
-     */
     public abstract String leaderCardChosen(List<LeaderCard> leaders);
 
-    /**
-     * this method notify the players that the match is started.
-     *
-     * @param roomPlayers  number of player in the room
-     * @param familyColour colour of the player
-     */
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
     public abstract int chooseTile(ArrayList<Tile> tiles);
 
-    public boolean isCallPray() {
-        return callPray;
-    }
-
-    public void setCallPray(boolean callPray) {
+    protected void setCallPray(boolean callPray) {
         this.callPray = callPray;
     }
 
@@ -584,42 +649,13 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void prayed();
 
-    public boolean isDisconnectedInDraft() {
-        return disconnectedInDraft;
-    }
-
-    public void setDisconnectedInDraft(boolean disconnectedInDraft) {
-        this.disconnectedInDraft = disconnectedInDraft;
-    }
-
-    public boolean isMatchStartedVar() {
-        return matchStartedVar;
-    }
-
-    public void setMatchStartedVar(boolean matchStartedVar) {
+    protected void setMatchStartedVar(boolean matchStartedVar) {
         this.matchStartedVar = matchStartedVar;
     }
 
     public abstract void afterMatch();
 
-    public void takeRanking(){
-
-        List<PlayerFile> ranking = getRoom().generateRanking();
-        sendRanking(ranking);
-    }
-
     protected abstract void sendRanking(List<PlayerFile> ranking);
-
-    public void showStatistics() {
-
-        Gson gson = new Gson();
-        String nickname = getName();
-        String statistics = getRoom().takeStatistics(nickname);
-        PlayerFile playerFile = gson.fromJson(statistics, PlayerFile.class);
-
-        sendStatistic(playerFile);
-
-    }
 
     protected abstract void sendStatistic(PlayerFile playerFile);
 

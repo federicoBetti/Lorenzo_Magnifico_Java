@@ -25,6 +25,11 @@ import java.util.*;
  * Created by raffaelebongo on 18/05/17.
  */
 
+/**
+ * This is the main Server class. The main of this class, once started, launch both an RMI server and a Socket Server
+ * for receiving all kinds of clients connection's requests. This class also manage the login requests and operations
+ * with persistance purposes.
+ */
 public class Server {
 
     private ArrayList<Room> rooms;
@@ -66,6 +71,12 @@ public class Server {
      * TODO implemetare tutti i metodi che si occupano della gestione delle room e del fileXML.controller dei giocatori
      */
 
+    /**
+     * This method manage the login and the reconnection of the players placing them in the correct room
+     *
+     * @param nickname player's nickname as a String
+     * @param player playerHandler's reference
+     */
     public void loginRequest(String nickname, PlayerHandler player) {
         System.out.println("SONO NEL METODO DI LOGIN");
         System.out.println(nickname);
@@ -152,6 +163,11 @@ public class Server {
             createNewRoom(nickname, player);
     }
 
+    /**
+     * This method ad thw winner to the global file of players
+     *
+     * @param winnerName winner's name a string
+     */
     void addWinnersToTheFile(String winnerName) {
 
         Gson gson = new Gson();
@@ -181,6 +197,9 @@ public class Server {
         }
     }
 
+    /**
+     * This class is the Victories comparator for comapring the players for generarting the ranking
+     */
     class VictoriesComparator implements Comparator<PlayerFile> {
 
         @Override
@@ -199,6 +218,11 @@ public class Server {
     }
 
 
+    /**
+     * This method generate the global ranking of players
+     *
+     * @return list of players ordered for victories
+     */
     List<PlayerFile> generateRanking() {
         Gson gson = new Gson();
         String currentFile;
@@ -220,6 +244,14 @@ public class Server {
         return playerFileList;
     }
 
+    //todo cercare di creare il file della persistenza in resources
+    /**
+     * This method create the file with the players if it doesn't exit, add a json object to the file if is the first
+     * match for the current player or increase the number of matches played if he had played at least a match before
+     * the current one
+     *
+     * @param nickname player's nickname as a string
+     */
     private void createPlayerFile(String nickname) {
         PlayerFile playerFile = new PlayerFile();
         playerFile.setPlayerName(nickname);
@@ -308,12 +340,21 @@ public class Server {
         }
     }
 
+    /**
+     * This method reads all the bytes of a file
+     *
+     * @param path file path as a String
+     * @param encoding Constant definitions for the standard
+     * @return
+     * @throws IOException
+     */
     private String readFile(String path, Charset encoding)
             throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
 
+    //todo serve?
     private String playerIsInTheFile(String nickname, String filename) {
         Gson gson = new Gson();
         try {
@@ -370,6 +411,13 @@ public class Server {
         return true;
     }
 
+    /**
+     * This method sends all the updates to a specific player
+     *
+     * @param player playerHandler's reference
+     * @param room players room's reference
+     * @param nickname player's nickname as a String
+     */
     private void sendAllUpdates(PlayerHandler player, Room room, String nickname) {
         player.sendUpdates(new PersonalBoardUpdate(player, nickname));
         player.sendUpdates(new TowersUpdate(room.getBoard().getAllTowers(), nickname));
@@ -383,16 +431,13 @@ public class Server {
         player.sendUpdates(new ProductionUpdate(room.getBoard().getProductionZone(), nickname));
     }
 
-
-    private int numberOfPlayersOn(List<PlayerHandler> players) {
-        int count = 0;
-        for (PlayerHandler player : players) {
-            if (player.isOn())
-                count++;
-        }
-        return count;
-    }
-
+    /**
+     * This method replace the old player reference with the new one after a reconnection of the same player
+     *
+     * @param turn turn's reference
+     * @param oldPlayer playerHandler's reference to the old player
+     * @param newPlayer playerHandler's reference to the new player
+     */
     private void replaceInTurn(Turn turn, PlayerHandler oldPlayer, PlayerHandler newPlayer) {
         for (int i = 0; i < turn.getPlayerTurn().size(); i++) {
             if (turn.getPlayerTurn().get(i) == oldPlayer) {
@@ -402,6 +447,14 @@ public class Server {
         }
     }
 
+    /**
+     * This method load all the information about the state of a player in a new playerHandler's reference after a
+     * reconnection during the match
+     *
+     * @param room player's room reference
+     * @param oldPlayer playerHandler's reference to the old player
+     * @param newPlayer playerHandler's reference to the new player
+     */
     void loadPlayerState(Room room, PlayerHandler newPlayer, PlayerHandler oldPlayer) {
 
         newPlayer.setName(oldPlayer.getName());
@@ -415,6 +468,13 @@ public class Server {
         replaceInTurn(room.getBoard().getTurn(), oldPlayer, newPlayer);
     }
 
+    /**
+     * Check if a nickname with which the current player is trying to do a login is already used by another player or
+     * not
+     *
+     * @param nickname player's nickname as String
+     * @returnt true if the nickname is already used, else false
+     */
     private boolean nicknameAlreadyUsed(String nickname) {
         for (Room room : rooms) {
             for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet())
@@ -424,20 +484,36 @@ public class Server {
         return false;
     }
 
-
-    //todo togliere player
+    /**
+     * This method check is the number of player on is equals to 2 and, if this is true, trigger the start match timer
+     *
+     * @param room player's room reference
+     * @param player playerHandler's reference
+     * @return reference to the timer
+     */
     private Timer checkAndStartTheTimer(Room room, PlayerHandler player) {
         if ( room.numberOfPlayerOn() == 2)
             return myTimerStartMatch(room, this.timerSettings, player);
 
-        Timer timer = new Timer();
-        return timer;
+        return new Timer();
     }
 
+    /**
+     * This method calls "startMatch" method on the room
+     *
+     * @param room room's reference
+     */
     private void startMatch(Room room) {
         room.startMatch();
     }
 
+    /**
+     * This method create a new room and add the palyer that is currently doing the login in the room's hashMap with
+     * playerHandler's reference and nickname
+     *
+     * @param nickname player's nickename as String
+     * @param player playerhandler's reference
+     */
     private void createNewRoom(String nickname, PlayerHandler player) {
         Room room = new Room(this);
         rooms.add(room);
@@ -451,6 +527,11 @@ public class Server {
         player.loginSucceded();
     }
 
+    /**
+     * Check if all rooms are full
+     *
+     * @return true if all rooms are full, else false
+     */
     private boolean roomsAreAllFull() {
         for (Room room : rooms) {
             if (!room.isFull())
@@ -459,33 +540,39 @@ public class Server {
         return true;
     }
 
-    Timer myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
+    /**
+     * This method starts the timer for starting the match
+     *
+     * @param room
+     * @param timerSettings
+     * @param player
+     * @return
+     */
+    private Timer myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 if (room.minimumNumberOfPlayers()) {
-                    // player.itsMyTurn();
                     startMatch(room);
                 }
             }
         };
 
-        //todo far partire timer
         Timer timer = new Timer(timerSettings.getStartMatchTimerName());
         timer.schedule(timerTask, timerSettings.getDelayTimerStartMatch());
         return timer;
     }
 
-    public TimerSettings getTimerSettings() {
+    TimerSettings getTimerSettings() {
         return timerSettings;
     }
 
-    public ArrayList<Room> getRooms() {
+    ArrayList<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(ArrayList<Room> rooms) {
+    void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
     }
 

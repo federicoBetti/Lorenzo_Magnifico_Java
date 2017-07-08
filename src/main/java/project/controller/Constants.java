@@ -123,7 +123,7 @@ public class Constants {
     public static final String WAITING_FOR_YOUR_TURN = "waiting-for-your-turn";
     public static final String AFTER_GAME = "after-game";
     public static final String SHOW_STATISTICS = "show-statistics";
-    public static final String FILENAME = "E:\\test\\PlayerFile.json";
+    public static final String FILENAME = "PlayerFile.json";
     public static final String NEW_GAME = "new-game";
     public static final String CLOSE_THE_GAME = "close-the-game";
     public static final String RECEIVE_STATISTICS = "receive-statistics";
