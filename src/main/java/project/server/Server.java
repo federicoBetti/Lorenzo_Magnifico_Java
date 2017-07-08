@@ -115,7 +115,7 @@ public class Server {
                     if (!room.draftTime) {
                         player.setOn(true);
 
-                        room.setTimer(checkAndStartTheTimer(room, player));
+                        room.setTimer(checkAndStartTheTimer( room ));
                     } else {
                         player.disconnectedInDraft = true;
                     }
@@ -131,7 +131,7 @@ public class Server {
                     room.nicknamePlayersMap.put(nickname, player);
                     player.loginSucceded();
                     if ( room.numberOfPlayerOn() == 2)
-                        room.setTimer(checkAndStartTheTimer(room, player));
+                        room.setTimer(checkAndStartTheTimer(room));
 
                     if (room.isFull()) {
                         player.tokenNotify();
@@ -488,12 +488,11 @@ public class Server {
      * This method check is the number of player on is equals to 2 and, if this is true, trigger the start match timer
      *
      * @param room player's room reference
-     * @param player playerHandler's reference
      * @return reference to the timer
      */
-    private Timer checkAndStartTheTimer(Room room, PlayerHandler player) {
+    private Timer checkAndStartTheTimer(Room room ) {
         if ( room.numberOfPlayerOn() == 2)
-            return myTimerStartMatch(room, this.timerSettings, player);
+            return myTimerStartMatch(room, this.timerSettings );
 
         return new Timer();
     }
@@ -543,12 +542,11 @@ public class Server {
     /**
      * This method starts the timer for starting the match
      *
-     * @param room
-     * @param timerSettings
-     * @param player
-     * @return
+     * @param room room's reference
+     * @param timerSettings object created from a Json file that contains all the timer's specific
+     * @return timer's reference
      */
-    private Timer myTimerStartMatch(Room room, TimerSettings timerSettings, PlayerHandler player) {
+    private Timer myTimerStartMatch(Room room, TimerSettings timerSettings) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -564,10 +562,20 @@ public class Server {
         return timer;
     }
 
+    /**
+     * Get the timerSettings's reference
+     *
+     * @return timerSettings's reference
+     */
     TimerSettings getTimerSettings() {
         return timerSettings;
     }
 
+    /**
+     * Get the room's reference
+     *
+     * @return room's reference
+     */
     ArrayList<Room> getRooms() {
         return rooms;
     }

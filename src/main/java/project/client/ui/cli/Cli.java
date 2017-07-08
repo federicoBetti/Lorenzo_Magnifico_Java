@@ -26,6 +26,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by raffaelebongo on 01/06/17.
  */
 
+/**
+ * This class manage the the Command line user interface
+ */
 public class Cli extends AbstractUI {
 
     private ClientSetter clientSetter; //all the operation have to pass across this class
@@ -34,9 +37,8 @@ public class Cli extends AbstractUI {
     private int numberOfPlayers;
     private String playerColor;
     private boolean firstRound;
-    FamilyMember[] myFamilymembers;
+    private FamilyMember[] myFamilymembers;
     private volatile BlockingDeque<String> choiceQueue;
-    boolean timerDelayed;
 
 
     public Cli(ClientSetter clientSetter) {
@@ -44,18 +46,26 @@ public class Cli extends AbstractUI {
         this.clientSetter = clientSetter;
         context = new ConnectionContext(this);
         new Keyboard().start();
-        timerDelayed = false;
     }
 
 
+    /**
+     * This method prints the score update
+     *
+     * @param update update's reference
+     */
     @Override
     public void scoreUpdate(Updates update) {
         if (!firstRound) {
             context.getpBlue().println(update.toScreen());
-
         }
     }
 
+    /**
+     * This method prints the personal board update
+     *
+     * @param update update's reference
+     */
     @Override
     public void personalBoardUpdate(Updates update) {
         if (!firstRound) {
@@ -63,11 +73,21 @@ public class Cli extends AbstractUI {
         }
     }
 
+    /**
+     * This method updates the family member's reference
+     *
+     * @param update update's reference
+     */
     @Override
     public void familyMemberUpdate(Updates update) {
         myFamilymembers = update.doUpdateFamilyMembers();
     }
 
+    /**
+     * This method print's board update
+     *
+     * @param update update's reference
+     */
     @Override
     public void boardUpdate(Updates update) {
         if (!firstRound) {
@@ -75,13 +95,16 @@ public class Cli extends AbstractUI {
         }
     }
 
-    //context methods
-
-
+    /**
+     * This method makes the abstract context a main context
+     */
     public void mainContext() {
         context = new MainContext(this);
     }
 
+    /**
+     * This method makes the abstract context an afterGame context
+     */
     public void actionOk() {
         if (context instanceof TimerDelayedContext) {
             return;
@@ -93,32 +116,57 @@ public class Cli extends AbstractUI {
         context = new AfterMainActionContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
+    /**
+     * This method calls the method cantDoAction on the abstract context
+     */
     public void cantDoAction() {
         context.cantDoAction();
     }
 
 
+    /**
+     * This method makes the abstract context a BonusHarvesterContext
+     *
+     * @param bonusHarv object that contains the characteristics of the bonus Harverster action
+     */
     @Override
     public void bonusHarvester(BonusProductionOrHarvesterAction bonusHarv) {
         context = new BonusHarvesterContext(bonusHarv, this, clientSetter.getUiPersonalBoard().getTerritories());
     }
 
+    /**
+     * This method makes the abstract context in a LoginContext
+     */
     @Override
     public void goToLogin() {
         context = new LoginContext(this);
     }
 
+    /**
+     * This method makes the abstract context in a WaitingForMatchStarted context
+     */
     @Override
     public void loginSucceded() {
         context = new WaitingForMatchStart(this);
     }
 
 
+    /**
+     * This method makes the abstract context a BonusProductionContext
+     *
+     * @param bonusProd object that contains the characteristics of the bonus production action
+     */
     @Override
     public void bonusProduction(BonusProductionOrHarvesterAction bonusProd) {
         context = new BonusProductionContext(bonusProd, this, clientSetter.getUiPersonalBoard().getBuildings());
     }
 
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * bonusProductionAction on the client setter
+     *
+     * @param lineFromKeyBoard String in input
+     */
     public void bonusProductionParameters(String lineFromKeyBoard) {
         try {
             context.checkValidInput(lineFromKeyBoard);
@@ -134,6 +182,12 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * takeBonusCardAction o the client setter
+     *
+     * @param input
+     */
     public void takeBonusCardParameters(String input) {
         try {
             context.checkValidInput(input);
@@ -144,7 +198,13 @@ public class Cli extends AbstractUI {
         }
     }
 
-
+    /**
+     * This method check the input according to the current context specific, prepare the parameters and calls the
+     * ImmediatePrivilegeAction on the client setter
+     *
+     * @param input
+     * @throws InputException
+     */
     public void immediatePriviledgeAction(String input) throws InputException {
         String[] privileges = input.split("-");
         List<Integer> privilegesChosen = new ArrayList<>();
@@ -155,68 +215,115 @@ public class Cli extends AbstractUI {
 
     }
 
+    /**
+     * This method makes the abstract context in a ImmediatePriviledgesContext
+     *
+     * @param privilegesAction object with all the characteristics of the immediate privilege action
+     */
     @Override
     public void takeImmediatePrivilege(TakePrivilegesAction privilegesAction) {
         context = new ImmediatePriviledgesContext(this, privilegesAction);
     }
 
-
+    /**
+     * This method makes the abstract context in a TowersContext
+     */
     public void takeDevCard() {
         context = new TowersContext(this, clientSetter.getUiBoard().getAllTowers());
     }
 
+    /**
+     * This method makes the abstract context in a HarvesterContext
+     */
     public void harvester() {
         context = new HarvesterContext(this, clientSetter.getUiBoard().getHarvesterZone(), clientSetter.getUiPersonalBoard().getMyTile(), clientSetter.getUiPersonalBoard().getTerritories());
     }
 
+    /**
+     * This method makes the abstract context in a CouncilContext
+     */
     public void goToCouncil() {
         context = new CouncilContext(this, clientSetter.getUiBoard().getCouncilZone());
     }
 
+    /**
+     * This method makes the abstract context in a ProductionContext
+     */
     public void production() {
         context = new ProductionContext(this, clientSetter.getUiBoard().getProductionZone(), clientSetter.getUiPersonalBoard().getMyTile(), clientSetter.getUiPersonalBoard().getBuildings());
     }
 
+    /**
+     * This method makes the abstract context in a LeaderCardContext
+     */
     public void leaderCardContext() {
         context = new LeaderCardContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
+    /**
+     * This method makes the abstract context in a DiscardLeaderCardContext
+     */
     public void discardLeaderCardContext() {
         context = new DiscardLeaderCardContext(this, clientSetter.getUiPersonalBoard().getMyLeaderCard());
     }
 
+    /**
+     * This method makes the abstract context in a MarketContext
+     */
     public void marketContext() {
         context = new MarketContext(this, clientSetter.getUiBoard().getMarketZone());
     }
 
-    public void loginRequest(String lineFromKeyBoard) throws InputException {
+    /**
+     * This method calls loginRequest on the clientSetter
+     *
+     * @param lineFromKeyBoard nickname choosen
+     */
+    public void loginRequest(String lineFromKeyBoard) {
         clientSetter.loginRequest(lineFromKeyBoard);
     }
 
+    /**
+     * This method starts the Keyboard Thread
+     */
     @Override
     public void startUI() {
         new Keyboard().start();
     }
 
+    /**
+     * This method makes the abstract context in a TakeBonusCard context
+     *
+     * @param towerAction the object with all the characteristics of the bonus action
+     */
     @Override
     public void takeBonusCard(TowerAction towerAction) {
         context = new TakeBonusCard(this, towerAction, clientSetter.getUiBoard().getAllTowers());
     }
 
+    /**
+     * This method makes the abstract context in a NicknameAlreadyUsedContext
+     */
     public void nicknameAlreadyUsed() {
         context = new NicknameAlreadyUsedContext(this);
     }
 
+    /**
+     * This method calls skipTurn on the client setter
+     */
     @Override
     public void skipTurn() {
         clientSetter.skipTurn();
     }
 
+    /**
+     * This method is called when the time for the turn is up. According to the current context, or is called the
+     * sendExitToBonusAction method or is added a specific value in choiceQueue forcibly.
+     */
     @Override
     public void timerDelayed() {
         try {//bonus action interrupted
             if (context instanceof TakeBonusCard || context instanceof BonusHarvesterContext || context instanceof BonusProductionContext) {
-                System.out.println("mando exit");
                 context = new TimerDelayedContext(this);
                 sendExitToBonusAction();
             }
@@ -224,13 +331,14 @@ public class Cli extends AbstractUI {
             else if (context instanceof ExcomunicationContext) {
                 choiceQueue.add("1");
                 context = new TimerDelayedContext(this);
-                System.out.println("SONO IN EX CONTEXT");
                 return;
+
             } else if (context instanceof BothPaymentsVentureCardsContext) {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, 1 + 1);
                 choiceQueue.add(String.valueOf(randomNum));
                 context = new TimerDelayedContext(this);
                 return;
+
             } else if (context instanceof ImmediatePriviledgesContext) {
                 sendExitToBonusAction();
 
@@ -247,26 +355,41 @@ public class Cli extends AbstractUI {
         context = new TimerDelayedContext(this);
     }
 
+    /**
+     * This method calls reconnect on the clientSetter
+     */
     @Override
     public void reconnect() {
         clientSetter.reconnect();
     }
 
+    /**
+     * This method makes the abstract context in a AfterGameContext
+     */
     @Override
     public void afterGame() {
         context = new AfterGameContext(this);
     }
 
+    /**
+     * This method calls the method showStatistic on the clientSetter
+     */
     @Override
     public void showStatistic() {
         clientSetter.showStatistic();
     }
 
+    /**
+     * This method calls the method newGameRequest on the clientSetter
+     */
     @Override
     public void newGameRequest() {
         clientSetter.newGameRequest();
     }
 
+    /**
+     * This method calls the method terminate on the clientSetter
+     */
     @Override
     public void terminate() {
         clientSetter.terminate();
@@ -318,13 +441,13 @@ public class Cli extends AbstractUI {
     @Override
     public void setConnectionType(String kindOfConnection) {
 
-            try {
-                context.checkValidInput(kindOfConnection);
-                setIpAddress(kindOfConnection);
-            } catch (InputException e) {
-                context.printHelp();
-            }
+        try {
+            context.checkValidInput(kindOfConnection);
+            setIpAddress(kindOfConnection);
+        } catch (InputException e) {
+            context.printHelp();
         }
+    }
 
 
     private boolean checkIP(String ip) {
