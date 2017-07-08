@@ -351,47 +351,66 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     /**
+     * This method calls the method excommunicationTake on the clientSetter
      *
-     *
-     * @param updates
+     * @param updates update object the contains the excommunication's malus
      */
     private void excommunicationTaken(Updates updates) {
         clientSetter.excommunicationTake(updates);
     }
 
-    //QUA CI SONO I METODI DI RITORNO DA SERVER A CLIENT
-
+    /**
+     * This method calls the method takeBonusCard on the clientSetter
+     *
+     * @param towerAction object that contains the bonus tower action's characteristics
+     */
     public void takeAnotherCard(BonusInteraction towerAction){
         clientSetter.takeBonusCard((TowerAction)towerAction);
     }
 
-
-
-    @Override
-    public void endTurn() {
-       // clientSetter.skipTurn();
-    }
-
+    /**
+     * This method calls the method takeImmediatePrivilege on the clientSetter
+     *
+     * @param takePrivilegesAction the object that contains the characteristics of the bonus privilege's action
+     */
     @Override
     public void takePrivilege(BonusInteraction takePrivilegesAction) {
         clientSetter.takeImmediatePrivilege((TakePrivilegesAction)takePrivilegesAction);
     }
 
+    /**
+     * This method calls the method askForPraying on the clientSetter
+     *
+     * @return an int that represent choice of praying or not
+     */
     @Override
     public int askForPraying() {
         return clientSetter.askForPraying();
     }
 
+    /**
+     * This method calls the method actionOk on the clientSetter
+     *
+     * @param bonusInteraction
+     */
     @Override
     public void ok(BonusInteraction bonusInteraction) {
         clientSetter.actionOk();
     }
 
+    /**
+     * This method calls cantDoaction method on the clientSetter
+     */
     @Override
     public void cantDoAction() {
         clientSetter.cantDoAction();
     }
 
+    /**
+     * This method calls loginRequest method on the RMIServer
+     *
+     * @param nickname player's nickname as a String
+     */
     @Override
     public void newNickname(String nickname) {
         try {
@@ -401,6 +420,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls askForRanking method on the RMIServer
+     */
     @Override
     public void showRanking() {
         try {
@@ -410,38 +432,72 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * todo
+     */
     @Override
     public void winnerComunication() {
 
     }
 
-
+    /**
+     * This method calls prayed method on the clientSetter
+     */
     @Override
     public void prayed() {
         clientSetter.prayed();
     }
 
+    /**
+     * This method calls choicePe on the clientSetter
+     *
+     * @return an int that represent the permanent effect's choice
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                         exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public int sendChoicePE() throws RemoteException {
         return clientSetter.choicePe();
     }
 
+    /**
+     * This method calls receiveStatistics method on the clientSetter
+     *
+     * @param playerFile the object that contains the player's statistics
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public void sendStatistics(PlayerFile playerFile) throws RemoteException {
         clientSetter.receiveStatistics(playerFile);
     }
 
+    /**
+     * This method calls the method ranking on the clientSetter
+     *
+     * @param ranking the list of playerFile ordered as a ranking
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public void sendRanking(List<PlayerFile> ranking) throws RemoteException {
         clientSetter.ranking(ranking);
     }
 
+    /**
+     * This method calls the method afterGame on the clientSetter
+     *
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public void afterMatch() throws RemoteException {
         clientSetter.afterGame();
     }
 
-
+    /**
+     * This method calls reconnect on the RMIServer
+     */
     @Override
     public void reconnect() {
         try {
@@ -451,6 +507,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls askForStatistics method on the RMIServer
+     */
     @Override
     public void showStatistic() {
         try {
@@ -460,6 +519,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls newGameRequest on the RMIServer
+     *
+     * @param nickname player's nickname
+     */
     @Override
     public void newGameRequest(String nickname) {
         try {
@@ -469,69 +533,131 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         }
     }
 
+    /**
+     * This method calls bothPaymentsAvailable method on the clientSetter
+     *
+     * @return an int that represents the payment choosen
+     */
     @Override
     public int canUseBothPaymentMethod() {
         return clientSetter.bothPaymentsAvailable();
     }
 
+    /**
+     * This method calls itsMyTurn method on the clietSetter
+     */
     @Override
     public void itMyTurn() {
         clientSetter.itsMyTurn();
     }
 
-
+    /**
+     * This method get the right update method releted to the update parameter with the Hashmap
+     *
+     * @param updates object that contains all update's informations
+     */
     @Override
     public void sendUpdates(Updates updates) {
         updateHashMap.get(updates.toString()).doUpdate(updates);
     }
 
+    /**
+     * This method calls takeBonusCard method on the clientSetter
+     *
+     * @param returnFromEffect object that contains all the bonus tower actions characteristics
+     */
     @Override
     public void bonusTowerAction(TowerAction returnFromEffect) {
         clientSetter.takeBonusCard(returnFromEffect);
     }
 
+    /**
+     * This method calls bonusHarvester or bonusHarvester on the clientSetter according to the parameter passed
+     *
+     * @param returnFromEffect object that contains the informations about the bonusAction
+     */
     @Override
     public void sendBonusProdHarv(BonusProductionOrHarvesterAction returnFromEffect) {
         if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER))
             clientSetter.bonusHarvester(returnFromEffect);
         else
-            clientSetter.bonusProduction(returnFromEffect);
+            clientSetter.bonusHarvester(returnFromEffect);
     }
 
+    /**
+     * This method calls the takeImmediatePrivilege on the clientSetter
+     *
+     * @param returnFromEffect object that contains the informations about the bonusAction
+     */
     @Override
     public void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect) {
         clientSetter.takeImmediatePrivilege(returnFromEffect);
     }
 
-
+    /**
+     * This method calls the timerTurnDelayed method on the clientSetter
+     */
     @Override
     public void timerTurnDelayed() {
         clientSetter.timerTurnDelayed();
     }
 
+    /**
+     * This method calls tileDraft on the clientSetter
+     *
+     * @param tiles list of bonus tiles for drafting
+     * @return the tiles's number choosen
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public int tileChoosen(ArrayList<Tile> tiles) throws RemoteException {
-
         return clientSetter.tileDraft(tiles);
     }
 
+    /**
+     * This method calls nicknameAlreadyUsed on the ClientSetter
+     *
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public void nicknameAlreadyUsed() throws RemoteException {
         clientSetter.nicknameAlreadyUsed();
     }
 
+    /**
+     * This method calls waitingForYourTurn on the clientSetter
+     *
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public void waitForYourTurn() throws RemoteException {
         clientSetter.waitingForYourTurn();
     }
 
-
+    /**
+     * This method calls getLeaderCardChosen on the clientSetter
+     *
+     * @param leaders list of leader cards for drafting
+     * @return the leader's name choosen
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException {
-        System.out.println("mi sono arrivate le carte leader");
         return clientSetter.getLeaderCardChosen(leaders);
     }
 
+    /**
+     * This method calls matchStarted on the clientSetter
+     *
+     * @param roomPlayers number of players in the room
+     * @param familyColour familiar colour
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
     @Override
     public void matchStarted(int roomPlayers, String familyColour) throws RemoteException {
         clientSetter.matchStarted(roomPlayers,familyColour);

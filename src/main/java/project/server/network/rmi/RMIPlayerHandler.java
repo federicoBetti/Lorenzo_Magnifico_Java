@@ -63,7 +63,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         bonusType.put(Constants.TAKE_PRIVILEGE_ACTION, myClient::takePrivilege);
     }
 
-    public void doBonusHarvester(int servantsNumber) {
+    void doBonusHarvester(int servantsNumber) {
         this.servantsNumber = servantsNumber;
 
         synchronized (tokenn) {

@@ -20,8 +20,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
 
     void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    void endTurn() throws RemoteException;
-
     void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
 
     int askForPraying() throws RemoteException;
