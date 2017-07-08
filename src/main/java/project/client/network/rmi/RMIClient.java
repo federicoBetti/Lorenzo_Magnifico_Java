@@ -40,7 +40,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         super();
         fillUpdateHashMap();
         this.clientSetter = clientSetter;
-        System.out.println("provo a connettermi RMI");
         connect();
     }
 

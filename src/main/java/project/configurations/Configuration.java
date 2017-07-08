@@ -14,6 +14,9 @@ import java.util.Map;
 
 import com.google.gson.JsonStreamParser;
 
+/**
+ * This class contains the methods for loading the configurables objects in the software
+ */
 public class Configuration {
 
     private Gson gson;
@@ -27,11 +30,17 @@ public class Configuration {
         this.loadMap();
     }
 
+    /**
+     * Get the map reference
+     * @return map reference
+     */
     public Map<String, BuilderHandler> getMap() {
         return map;
     }
 
-
+    /**
+     * Fill the map with the corrects entries
+     */
     private void loadMap() {
         map.put(Constants.BUILDING_CARD, this::buildBuildingCard);
         map.put(Constants.TERRITORY_CARD, this::buildTerritoryCard);
@@ -39,6 +48,11 @@ public class Configuration {
         map.put(Constants.VENTURE_CARD, this::buildVentureCard);
     }
 
+    /**
+     * This method is used for loading the faith points track
+     *
+     * @param board board's reference
+     */
     public void loadFaithPointsTracks(Board board ){
         InputStream is = getClass().getResourceAsStream("/fileJson/victoryPointsInFaithTrack.json");
         Reader reader = new InputStreamReader(is);
@@ -47,6 +61,11 @@ public class Configuration {
 
     }
 
+    /**
+     * This method is used for loading the final points from terriotry cards array
+     *
+     * @param board board's reference
+     */
     public void loadFinalPointsFromTerritoryCards(Board board) {
         InputStream is = getClass().getResourceAsStream("/fileJson/finalPointsFromTerritoryCards.json");
         Reader reader = new InputStreamReader(is);
@@ -55,6 +74,11 @@ public class Configuration {
 
     }
 
+    /**
+     * This method is used for loading the final poits form character cards
+     *
+     * @param board board's reference
+     */
     public void loadFinalPointsFromCharacterCards(Board board) {
         InputStream is = getClass().getResourceAsStream("/fileJson/finalPointsFromCharacterCards.json");
         Reader reader = new InputStreamReader(is);
@@ -63,6 +87,11 @@ public class Configuration {
 
     }
 
+    /**
+     * This method is used for loading the faith points required for every period of game
+     *
+     * @param board board's reference
+     */
     public void loadFaithPointsRequiredEveryPeriod(Board board) {
         InputStream is = getClass().getResourceAsStream("/fileJson/faithPointsRequiredEveryPeriod.json");
         Reader reader = new InputStreamReader(is);
@@ -70,6 +99,11 @@ public class Configuration {
         board.setFaithPointsRequiredEveryPeriod(gson.fromJson(reader, int[].class));
     }
 
+    /**
+     * This method is used for load the military points required for taking territory cards
+     *
+     * @param board board's reference
+     */
     public void loadMilitaryPointsForTerritories(Board board) {
         InputStream is = getClass().getResourceAsStream("/fileJson/militaryPointsForTerritories.json");
         Reader reader = new InputStreamReader(is);
@@ -77,6 +111,13 @@ public class Configuration {
         board.setMilitaryPointsForTerritories(gson.fromJson(reader, int[].class));
     }
 
+    /**
+     * This method is used for loading the development cards
+     *
+     * @param deck deck's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public void loadDevelopmentCards(Deck deck) throws FileNotFoundException {
 
         DevelopmentDeckIterator iterator = new DevelopmentDeckIterator();
@@ -93,7 +134,7 @@ public class Configuration {
         }
     }
 
-
+//todo delete
     public void loadTerritoryCardForTest( PersonalBoard personalBoard ){
         InputStream is = getClass().getResourceAsStream("/fileJson/TESTterritory.json");
         Reader reader = new InputStreamReader(is);
@@ -107,6 +148,7 @@ public class Configuration {
         }
     }
 
+    //todo delete
     public void loadBuildingCardForTest( PersonalBoard personalBoard ){
         InputStream is = getClass().getResourceAsStream("/fileJson/TESTbuilding.json");
         Reader reader = new InputStreamReader(is);
@@ -120,6 +162,13 @@ public class Configuration {
         }
     }
 
+    /**
+     * This method is used for loading the excommunication tiles
+     *
+     * @param deck deck's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public void loadExcommunicationTiles(Deck deck) throws FileNotFoundException {
 
         InputStream is = getClass().getResourceAsStream("/fileJson/excommunicationTile.json");
@@ -134,6 +183,13 @@ public class Configuration {
 
     }
 
+    /**
+     * This method is used for loadinf the bonus tiles
+     *
+     * @param deck deck's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public void loadBonusTile(Deck deck) throws FileNotFoundException {
 
         InputStream is = getClass().getResourceAsStream("/fileJson/bonusTile.json");
@@ -148,6 +204,13 @@ public class Configuration {
 
     }
 
+    /**
+     * This method is use for loading the leader cards
+     *
+     * @param deck deck's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public void loadLeaderCard(Deck deck) throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream("/fileJson/leaderCards.json");
         Reader reader = new InputStreamReader(is);
@@ -163,6 +226,13 @@ public class Configuration {
 
     }
 
+    /**
+     * This method is use for loading the council zone privileges
+     *
+     * @param board board's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
 
         InputStream is = getClass().getResourceAsStream("/fileJson/councilpriviledge.json");
@@ -180,9 +250,12 @@ public class Configuration {
     }
 
     /**
-     * @param board
+     * This method is used for loading the market position's effects
+     *
+     * @param board board's reference
      * @param jsonFile depends on the players'number
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
      */
     public void loadMarketBonus(Board board, String jsonFile) throws FileNotFoundException {
 
@@ -203,6 +276,13 @@ public class Configuration {
         board.setMarketZone(market);
     }
 
+    /**
+     * This method is used for loading the bonus on the towers
+     *
+     * @param board board's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public void loadBonusTower(Board board) throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream("/fileJson/newTowerZone.json");
         Reader reader = new InputStreamReader(is);
@@ -218,6 +298,13 @@ public class Configuration {
         }
     }
 
+    /**
+     * This method is used for loading the family member's colour
+     *
+     * @param player palyer's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public void loadFamilyMembers(Player player) throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream("/fileJson/familyMember.json");
         Reader reader = new InputStreamReader(is);
@@ -225,6 +312,13 @@ public class Configuration {
         player.setAllFamilyMembers(gson.fromJson(reader, FamilyMember[].class));
     }
 
+    /**
+     * This method is used for loading the timers's configuration
+     *
+     * @return the timer's reference
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
+     *                               has failed.
+     */
     public TimerSettings loadTimer() throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream("/fileJson/timer.json");
         Reader reader = new InputStreamReader(is);
@@ -236,6 +330,12 @@ public class Configuration {
 
     }
 
+    /**
+     * This method is used for building a Venture card
+     *
+     * @param cardFromJson the generic card object built with the json file using Gson
+     * @return the VentureCard's reference
+     */
     private DevelopmentCard buildVentureCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         VenturesCost[] venturesCosts = gson.fromJson(jsonCost, VenturesCost[].class);
@@ -247,6 +347,12 @@ public class Configuration {
         return new VenturesCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), ventureCostArray.getCostArray(), cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
+    /**
+     * This method is used for building a building card
+     *
+     * @param cardFromJson the generic card object built with the json file using Gson
+     * @return the buildingCard's reference
+     */
     private DevelopmentCard buildBuildingCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         BuildingCost[] aCost = gson.fromJson(jsonCost, BuildingCost[].class);
@@ -254,6 +360,12 @@ public class Configuration {
         return new BuildingCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
+    /**
+     * This method is used for building a Character card
+     *
+     * @param cardFromJson the generic card object built with the json file using Gson
+     * @return the Character card's reference
+     */
     private DevelopmentCard buildCharacterCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         CharactersCost[] aCost = gson.fromJson(jsonCost, CharactersCost[].class);
@@ -261,6 +373,12 @@ public class Configuration {
         return new CharacterCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
+    /**
+     * This method is used for building a Territory cards
+     *
+     * @param cardFromJson the generic card object built with the json file using Gson
+     * @return the territory card's reference
+     */
     private DevelopmentCard buildTerritoryCard(CardFromJson cardFromJson) {
         String jsonCost = gson.toJson(cardFromJson.getAnagrafic().getCost());
         TerritoryCost[] aCost = gson.fromJson(jsonCost, TerritoryCost[].class);
@@ -268,7 +386,9 @@ public class Configuration {
         return new TerritoryCard(cardFromJson.getAnagrafic().getName(), cardFromJson.getAnagrafic().getPeriod(), cardFromJson.getAnagrafic().isChoicePe(), cost, cardFromJson.getImmediateEffect().getTris(), cardFromJson.getPermanentEffect().getPoker());
     }
 
-
+    /**
+     * Functional interface for building the cards
+     */
     @FunctionalInterface
     private interface BuilderHandler {
 
