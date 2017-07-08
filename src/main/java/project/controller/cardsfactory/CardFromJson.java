@@ -1,7 +1,7 @@
 package project.controller.cardsfactory;
 
 /**
- * Created by raffaelebongo on 19/05/17.
+ * This
  */
 public class CardFromJson {
     private Anagrafic anagrafic;

@@ -3,7 +3,7 @@ package project.controller.cardsfactory;
 import java.io.Serializable;
 
 /**
- * 
+ * This class represent the specific Building card's cost
  */
 public class BuildingCost extends TerritoryCost implements Serializable {
 
@@ -21,38 +21,65 @@ public class BuildingCost extends TerritoryCost implements Serializable {
     }
 
     /**
-     * 
+     * Get coins required
+     *
+     * @return coinsRequired
      */
-
-
     public int getCoinsRequired() {
         return coinsRequired;
     }
 
-    public void setCoinsRequired(int coinsRequired) {
+    /**
+     * Set coinsRequired
+     *
+     * @param coinsRequired coinsRequire
+     */
+    void setCoinsRequired(int coinsRequired) {
         this.coinsRequired = coinsRequired;
     }
 
+    /**
+     * This method subtract 3 to coinsRequired
+     */
     @Override
     public void picoDellaMirandolaDowngrade() {
         coinsRequired -= 3;
     }
 
+    /**
+     * This method generate a cost's copy
+     *
+     * @return cost's copy
+     */
     @Override
     public Cost copyOf() {
         return new BuildingCost(coinsRequired, servantRequired, woodRequired, stoneRequired, diceCost);
     }
 
-
+    /**
+     * Add coins
+     *
+     * @param i coins to add
+     */
     @Override
     public void addCoin(int i) {
         coinsRequired += i;
     }
 
+    /**
+     * Add stone
+     *
+     * @param i stones to add
+     */
     @Override
     public void addStone(int i) {
     }
 
+    /**
+     * Add wood
+     *
+     * @param i wood to add
+     */
     @Override
     public void addWood(int i) {
     }

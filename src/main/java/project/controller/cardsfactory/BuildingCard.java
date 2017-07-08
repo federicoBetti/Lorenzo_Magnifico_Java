@@ -8,7 +8,9 @@ import project.model.*;
 import java.io.Serializable;
 import java.util.*;
 
-
+/**
+ * This class contains the specific Building Cards characteristics
+ */
 public class BuildingCard extends DevelopmentCard implements Serializable {
 
 
@@ -34,17 +36,31 @@ public class BuildingCard extends DevelopmentCard implements Serializable {
 
     }
 
-
+    /**
+     * This method add the building card to the player's personal Board
+     *
+     * @param personalBoardReference personalBoard's reference
+     */
     @Override
     public void addToPersonalBoard(PersonalBoard personalBoardReference) {
         personalBoardReference.getBuildings().add(this);
     }
 
+    /**
+     * Get the building cost
+     *
+     * @return building cost
+     */
     @Override
     public BuildingCost getCost() {
         return cardCost;
     }
 
+    /**
+     * Set the building cost
+     *
+     * @param cardCost building cost
+     */
     public void setCardCost(BuildingCost cardCost) {
         this.cardCost = cardCost;
     }
