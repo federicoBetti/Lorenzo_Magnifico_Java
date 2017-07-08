@@ -5,6 +5,9 @@ import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
+/**
+ * special effect of building card
+ */
 public class TwoVictoryPointsForEachYellowCard implements Effects {
 
     @Override
@@ -18,6 +21,6 @@ public class TwoVictoryPointsForEachYellowCard implements Effects {
 
     @Override
     public String toScreen() {
-        return "Take2 victory points for each yellow card.";
+        return "Take 2 victory points for each yellow card";
     }
 }

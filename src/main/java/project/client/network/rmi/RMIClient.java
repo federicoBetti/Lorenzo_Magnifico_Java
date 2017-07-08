@@ -42,10 +42,10 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     private String nickname;
     private RMIClientToServerInterface myServer;
     private String myUniqueId;
-    private ClientSetter clientSetter;
-    private HashMap<String,UpdateMethods> updateHashMap;
+    transient private ClientSetter clientSetter;
+    transient private HashMap<String,UpdateMethods> updateHashMap;
 
-    private BlockingQueue<List<Integer>> integerListQueue;
+    transient private BlockingQueue<List<Integer>> integerListQueue;
 
     public RMIClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
         super();
