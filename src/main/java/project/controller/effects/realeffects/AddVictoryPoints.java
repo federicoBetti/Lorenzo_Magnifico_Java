@@ -6,7 +6,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- *
+ * This class represent the AddVictoryPoints effect
  */
 public class AddVictoryPoints implements TakeRoPEffects {
 

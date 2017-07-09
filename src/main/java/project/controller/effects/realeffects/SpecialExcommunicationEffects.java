@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * Created by federico on 26/05/17.
+ * This class represent the SpecialExcommunicationEffects effects
  */
 public class SpecialExcommunicationEffects implements Effects, Serializable {
     private String parameter;
@@ -25,11 +25,22 @@ public class SpecialExcommunicationEffects implements Effects, Serializable {
         fillParameterEffect();
     }
 
+    /**
+     * Perform the right effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         return parameterEffect.get(parameter).realEffect(player);
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return null;
@@ -41,22 +52,43 @@ public class SpecialExcommunicationEffects implements Effects, Serializable {
         parameterEffect.put(EffectsConstants.TURN,this::skipMyFirstTurn);
     }
 
+    /**
+     * Perform the effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     private BonusInteraction skipMyFirstTurn (PlayerHandler player){
         player.getRoom().getBoard().getTurn().addSkipTurn(player);
         return new OkOrNo();
     }
+
+    /**
+     * Perform the right effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     private BonusInteraction doubleServantsValue(PlayerHandler player) { //ho decorato sia la check sia la support function
         player.setCheckFunctions(new DoubleServantsValue(player.getCheckFunctions()));
         player.getRoom().setMySupportFunction(new DoubleServantsPayment(player.getRoom().getMySupportFunction(player)),player);
         return new OkOrNo();
     }
 
+    /**
+     * Perform the right effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     private BonusInteraction cantPlaceFamiliarInMarket(PlayerHandler player){
         player.setCheckFunctions(new CantPlaceFamiliarInMarket(player.getCheckFunctions()));
         return new OkOrNo();
     }
 
-
+    /**
+     * The functional interface for calls the right method
+     */
     @FunctionalInterface
     private interface SpecialExcommunicationEffectsBuilder{
         BonusInteraction realEffect(PlayerHandler player);

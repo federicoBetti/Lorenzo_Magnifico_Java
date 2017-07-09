@@ -3,15 +3,25 @@ package project.controller.supportfunctions;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by federico on 26/05/17.
+ * This class is the extraLostOfPoints's decorator applyed when LoseFinalPointsEveryResources excommunication is activated
  */
 public class LoseFinalPointsEveryResources extends SupportFunctionsDecorator {
 
-
+    /**
+     * Constructor
+     *
+     * @param allSupportFunctions allSupportFunctions's reference
+     */
     public LoseFinalPointsEveryResources(AllSupportFunctions allSupportFunctions){
         super(allSupportFunctions);
     }
 
+    /**
+     * This method makes the player loses 1 points for each resource that he has
+     *
+     * @param playerHandler playerHandler's reference
+     * @return number of resources
+     */
     @Override
     public int extraLostOfPoints(PlayerHandler playerHandler) {
         int numberOfResources;

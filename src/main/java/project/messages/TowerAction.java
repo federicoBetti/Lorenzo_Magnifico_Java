@@ -2,6 +2,9 @@ package project.messages;
 
 import project.controller.Constants;
 
+/**
+ * This is the class of the object that the methods return when the effect is a bonus tower action
+ */
 public class TowerAction extends BonusInteraction {
     private int newCardDicevalue;
     private String kindOfCard;

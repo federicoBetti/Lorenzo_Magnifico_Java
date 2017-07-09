@@ -5,16 +5,27 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- *  effect that give you victory points according to the number of ventures card that you have
+ * This class represents the VictoryPointsForEachPurpleCard effect
  */
 public class VictoryPointsForEachPurpleCard implements Effects {
 
     private int quantity;
+
+    /**
+     * Constructor
+     *
+     * @param quantity of points for each card
+     */
     public VictoryPointsForEachPurpleCard( int quantity ){
         this.quantity = quantity;
     }
 
-
+    /**
+     * Perform the right effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
@@ -25,6 +36,11 @@ public class VictoryPointsForEachPurpleCard implements Effects {
         return new OkOrNo();
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Take " + quantity + " victory points for each purple card";

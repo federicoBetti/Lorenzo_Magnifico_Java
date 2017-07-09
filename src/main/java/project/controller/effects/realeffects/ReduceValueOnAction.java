@@ -5,15 +5,30 @@ import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
+/**
+ * This class represent the ReduceValueOnAction effects
+ */
 public class ReduceValueOnAction implements Effects {
     private String parameter;
     private int quantity;
 
+    /**
+     * Constructor
+     *
+     * @param parameter kind of action
+     * @param quantity quantity of value reduced
+     */
     public ReduceValueOnAction(String parameter, int quantity){
         this.parameter = parameter;
         this.quantity = quantity;
     }
 
+    /**
+     * Perform the effect according to the parameters
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         switch (parameter){
@@ -66,6 +81,11 @@ public class ReduceValueOnAction implements Effects {
         return new OkOrNo();
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Reduce dice value necessary for " + parameter +  " of " + quantity;

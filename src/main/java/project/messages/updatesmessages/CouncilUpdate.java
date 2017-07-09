@@ -8,17 +8,28 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 14/06/17.
+ * Object sends to the client for notifying that the council zone has been modified
  */
 public class CouncilUpdate extends Updates implements Serializable {
 
     private List<Council> councilZone;
 
+    /**
+     * Constructor
+     *
+     * @param council list of council position
+     * @param nickname palyer's nickname
+     */
     public CouncilUpdate( List<Council> council, String nickname ){
         super(nickname);
         councilZone = council;
     }
 
+    /**
+     *
+     *
+     * @param board
+     */
     @Override
     public void doUpdate(Board board) {
         board.setCouncilZone(councilZone);
