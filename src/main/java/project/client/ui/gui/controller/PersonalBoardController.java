@@ -13,7 +13,9 @@ import java.util.List;
 
 import static java.lang.String.valueOf;
 
-
+/**
+ * controller  of personal board scene
+ */
 public class PersonalBoardController extends AbstractController {
     @FXML
     private  ImageView bonusTile;

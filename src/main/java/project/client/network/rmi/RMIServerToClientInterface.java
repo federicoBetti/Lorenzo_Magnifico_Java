@@ -141,5 +141,15 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
      * Abstract afterMatch
      */
     void afterMatch() throws RemoteException;
+
+    /**
+     * abstract winner comunication
+     */
+    void winnerComunication(String winnerString) throws RemoteException;
+
+    /**
+     * abstarct afterGameIfTemporaryOff
+     */
+    void afterGameIfTemporaryOff() throws RemoteException;
 }
 

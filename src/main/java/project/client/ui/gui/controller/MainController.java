@@ -56,11 +56,18 @@ public class MainController {
 
     private String interruptdeExceptionString = "program quit during queue .take()";
 
+    /**
+     * constructor
+     */
     private MainController() {
         controllers = new ArrayList<>();
         firstTime = true;
     }
 
+    /**
+     * singleton constructor
+     * @return MainController single instance
+     */
     public static MainController getInstance() {
         if (instance == null) {
             instance = new MainController();
@@ -835,7 +842,10 @@ public class MainController {
      */
     public void afterGame() {
         currentPeriod = 0;
-        Platform.runLater(() -> loginBuilder.setAfterGame());
+        Platform.runLater(() -> {
+            loginBuilder.setAfterGame();
+            clearStages();
+        });
     }
 
     /**
@@ -916,5 +926,12 @@ public class MainController {
      */
     void terminate() {
         clientSetter.terminate();
+    }
+
+    /**
+     * method that notify the payer that he loses
+     */
+    public void youLose() {
+        winner = false;
     }
 }

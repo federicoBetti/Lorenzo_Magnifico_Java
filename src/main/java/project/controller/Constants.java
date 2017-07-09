@@ -29,7 +29,7 @@ public class Constants {
     public static final String FAMILY_MEMBER_COLOUR_WHITE = "white";
 
     public static final int SOCKET_PORT = 1337;
-    public static final int RMI_PORT = 1338;
+    public static final int RMI_PORT = 8001;
 
     public static final String LOGIN_SUCCEDED = "fileXML.login-succeded";
     public static final String YOUR_TURN = "your-turn";

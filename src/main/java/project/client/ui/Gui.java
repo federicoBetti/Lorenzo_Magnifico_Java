@@ -231,7 +231,10 @@ public class Gui extends AbstractUI {
 
     @Override
     public void winnerComunication(String winner) {
-        mainController.youWin();
+        if (winner.equals(clientSetter.getNickname()))
+            mainController.youWin();
+        else
+            mainController.youLose();
     }
 
     @Override

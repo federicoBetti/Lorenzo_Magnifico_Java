@@ -300,7 +300,7 @@ public class Room {
      */
     private void tileDraft(List<PlayerHandler> playerInTheMatch) {
 
-        ArrayList<Tile> tiles = fillListTile();
+        List<Tile> tiles = fillListTile();
         ListIterator<PlayerHandler> iterator = playerInTheMatch.listIterator();
         while (iterator.hasNext())
             iterator.next();
@@ -426,7 +426,7 @@ public class Room {
      * @param tiles list of bonus tiles
      * @return tile choosen reference
      */
-    private Tile getTrueTile(int tileId, ArrayList<Tile> tiles) {
+    private Tile getTrueTile(int tileId, List<Tile> tiles) {
         for (Tile t : tiles)
             if (t.getTileNumber() == tileId)
                 return t;

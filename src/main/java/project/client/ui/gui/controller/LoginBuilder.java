@@ -111,7 +111,6 @@ public class LoginBuilder extends Application {
             loader.setLocation(getClass().getResource("/fileXML/login/attesaInizioPartita.fxml"));
             waitingLoginScene = loader.load();
 
-            WaitingLogin waitingLogin = loader.getController();
 
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(errorIOException);

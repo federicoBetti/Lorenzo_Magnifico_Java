@@ -496,6 +496,27 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     }
 
     /**
+     * method that notify the client who is the winner
+     * @param winnerString winner name
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
+    @Override
+    public void winnerComunication(String winnerString) throws RemoteException {
+        clientSetter.winnerComunication(winnerString);
+    }
+
+    /**
+     * method used to notify also to AFK client that the match is finished
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
+    @Override
+    public void afterGameIfTemporaryOff() throws RemoteException {
+        clientSetter.afterGame();
+    }
+
+    /**
      * This method calls reconnect on the RMIServer
      */
     @Override

@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * controller of production scene
+ */
 public class ProductionController extends AbstractController {
 
 

@@ -66,11 +66,7 @@ public class Server {
 
     private void startServer(int socketPort, int rmiPort) throws IOException {
         serverSocket.startServer(socketPort);
-        try {
-            rmiServer.startServer(rmiPort);
-        } catch (AlreadyBoundException e) {
-            e.printStackTrace();
-        }
+        rmiServer.startServer(rmiPort);
     }
 
 

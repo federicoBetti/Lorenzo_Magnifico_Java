@@ -9,9 +9,6 @@ import project.controller.Constants;
 import project.controller.effects.effectsfactory.LeaderCardRequirements;
 import project.controller.effects.realeffects.*;
 import project.messages.*;
-import project.messages.updatesmessages.DiceValueUpdate;
-import project.messages.updatesmessages.FamilyMemberUpdate;
-import project.messages.updatesmessages.TowersUpdate;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
 import project.server.GameActions;
@@ -605,13 +602,8 @@ public abstract class PlayerHandler extends Player {
     /**
      * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto
      *
-     * @param playerTurn
      */
-    public abstract int sendAskForPraying(List<PlayerHandler> playerTurn); //
-
-    public abstract void sendString(String message);
-
-    public abstract void sendAnswer(Object returnFromEffect);
+    public abstract int sendAskForPraying(); //
 
     public abstract void sendUpdates(Updates updates);
 
@@ -641,7 +633,7 @@ public abstract class PlayerHandler extends Player {
 
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
-    public abstract int chooseTile(ArrayList<Tile> tiles);
+    public abstract int chooseTile(List<Tile> tiles);
 
     protected void setCallPray(boolean callPray) {
         this.callPray = callPray;

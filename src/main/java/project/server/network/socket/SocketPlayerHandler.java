@@ -309,7 +309,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      *
      * @param returnFromEffect Object returned by a "doEffect" method of any effect performed.
      */
-    @Override
+
     public void sendAnswer(Object returnFromEffect) {
         if (isOn()) {
             try {
@@ -356,13 +356,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      *
      * @param currentPlayer player that has been disconnected
      */
+    //todo metterlo su
     private void broadcastDisconnessioneMessage(PlayerHandler currentPlayer ) {
 
         for (PlayerHandler player : getRoom().getBoard().getTurn().getPlayerTurn()) {
             System.out.println(player.getName() + " " + player.isOn());
             if (player != currentPlayer && player.isOn()) {
-                player.sendString(Constants.DISCONNECTION_MESSAGE);
-                player.sendString(currentPlayer.getName() + " is disconnected");
+                //da mettere nel player handòer
+                //player.sendString(Constants.DISCONNECTION_MESSAGE);
+                //player.sendString(currentPlayer.getName() + " is disconnected");
             }
         }
     }
@@ -445,7 +447,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      * @return the tile's number choosen by the player or "-1" in case of disconnection
      */
     @Override
-    public int chooseTile(ArrayList<Tile> tiles) {
+    public int chooseTile(List<Tile> tiles) {
 
         sendString(Constants.TILE_DRAFT);
         try {
@@ -653,11 +655,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      * notify this method's token and keep in wait the another token in the while true for making the methods receive the
      * answer in his objectInputStream.
      *
-     * @param playerTurn list of players in the match in turn order
      * @return 0 if the client wants to pray, 1 if the client doesn't want it, -1 if the client has been disconnected
      */
     @Override
-    public int sendAskForPraying(List<PlayerHandler> playerTurn) {
+    public int sendAskForPraying() {
         System.out.println("SONO IL PLAYER: " + this);
 
         while (true) {
@@ -738,7 +739,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      * Method called for sending a generic string
      * @param message string to send
      */
-    @Override
     public void sendString(String message) {
 
         try {

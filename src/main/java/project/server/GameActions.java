@@ -439,7 +439,7 @@ public class GameActions {
      */
     private void winnerComunication(PlayerHandler winner ) {
         for ( PlayerHandler player : room.getListOfPlayers() )
-            player.winnerComunication("The winner is " + winner.getName());
+            player.winnerComunication(winner.getName());
     }
 
     /**
@@ -676,7 +676,7 @@ public class GameActions {
 
                 timer = myTimerActions(player);
                 System.out.println(player.getName());
-                int choice = player.sendAskForPraying(turn);
+                int choice = player.sendAskForPraying();
 
                 if (choice == 1 || choice == -1) takeExcommunication(player);
                 else faithPointsForVictoryPoints(player);

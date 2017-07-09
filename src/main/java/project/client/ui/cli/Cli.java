@@ -448,6 +448,7 @@ public class Cli extends AbstractUI {
      */
     @Override
     public void winnerComunication(String winner) {
+        winner = "The winner is " + winner;
         context.getpBlue().println(winner);
     }
 
