@@ -7,21 +7,32 @@ import project.messages.TakePrivilegesAction;
 import project.server.network.PlayerHandler;
 
 /**
- * effect that exchange servants for other resources
+ * This class represents the effect that exchange servants for other resources
  */
-
-
 public class ExchangeServantsFor implements ExchangeEffects {
     private int servantsRequired;
     private int resourceEarned;
     private String resourceRewardered;
 
+    /**
+     * Constructor
+     *
+     * @param quantity earned
+     * @param effectCost cost
+     * @param resourceRewardered resourceRewardered
+     */
     public ExchangeServantsFor (int quantity, TotalCost effectCost, String resourceRewardered ){
         this.servantsRequired = effectCost.getServantsRequired();
         this.resourceEarned = quantity;
         this.resourceRewardered = resourceRewardered;
     }
 
+    /**
+     * Perform the effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
@@ -38,12 +49,21 @@ public class ExchangeServantsFor implements ExchangeEffects {
         return new OkOrNo();
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Exchange " + servantsRequired + " servants" + " for taking " + resourceEarned + " of " + resourceRewardered;
     }
 
-
+    /**
+     * This method add the servants required in cost
+     *
+     * @param cost total cost variable
+     */
     @Override
     public void addResourceRequested(TotalCost cost) {
         cost.addServants(servantsRequired);

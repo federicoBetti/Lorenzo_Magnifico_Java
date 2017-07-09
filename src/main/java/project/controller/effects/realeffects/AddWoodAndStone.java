@@ -1,20 +1,30 @@
 package project.controller.effects.realeffects;
 
-import project.controller.effects.realeffects.Effects;
 import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 17/06/17.
+ * This class represent the AddWoodAndStone effect
  */
 public class AddWoodAndStone implements Effects {
     private int quantity;
 
+    /**
+     * Constructor
+     *
+     * @param quantity of wood and stone to add
+     */
     public AddWoodAndStone(int quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     * Perform the effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         int woodQuantity = quantity;
@@ -33,6 +43,11 @@ public class AddWoodAndStone implements Effects {
         return new OkOrNo();
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen(){
         return "Add " + quantity + " stones and " + quantity + " wood";

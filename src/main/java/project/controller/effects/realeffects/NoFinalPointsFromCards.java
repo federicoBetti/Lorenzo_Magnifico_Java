@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * Created by federico on 26/05/17.
+ * This class represent the NoFinalPointsFromCards effect
  */
 public class NoFinalPointsFromCards implements Effects, Serializable {
 
@@ -20,6 +20,11 @@ public class NoFinalPointsFromCards implements Effects, Serializable {
     int quantity;
     private HashMap<String, NoFinalPointsFromCardsBuilder> parameterEffect;
 
+    /**
+     * Constructor
+     *
+     * @param parameter
+     */
     public NoFinalPointsFromCards(String parameter){
         this.parameter = parameter;
         parameterEffect = new HashMap<>(3);

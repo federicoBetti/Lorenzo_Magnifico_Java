@@ -1,12 +1,11 @@
 package project.controller.effects.realeffects;
 
-import project.controller.effects.realeffects.Effects;
 import project.messages.BonusInteraction;
 import project.messages.TowerAction;
 import project.server.network.PlayerHandler;
 
 /**
- * effect that allow you to take a character bonus card
+ * This class represent the BonusTowerActionBlue effect
  */
 public class BonusTowerActionBlue implements Effects {
 
@@ -15,6 +14,12 @@ public class BonusTowerActionBlue implements Effects {
     private String[] discountedResources;
     private int quantityDiscounted;
 
+    /**
+     * Constructor
+     *
+     * @param parameter discounted resources
+     * @param quantity discounted
+     */
     public BonusTowerActionBlue(String parameter, int quantity ){
         cardColour = "blu";
         diceValue = 6;
@@ -22,6 +27,12 @@ public class BonusTowerActionBlue implements Effects {
         quantityDiscounted = quantity;
     }
 
+    /**
+     * Perform the effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         String discRes1 = discountedResources[0];
@@ -29,6 +40,11 @@ public class BonusTowerActionBlue implements Effects {
         return new TowerAction(cardColour, diceValue, discRes1, quantityDiscounted );
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return null;

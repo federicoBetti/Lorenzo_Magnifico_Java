@@ -18,18 +18,16 @@ import java.util.List;
 
 
 /**
- * class that apply leader card effects
+ * This card is used for peforming leader card's effects when the leader card is played
  */
 public class LeaderCardsEffects {
-
-
 
     private  HashMap<String, EffectsBuilder> effects;
     private OkOrNo okOrNo;
     private String leaderNameLorenzoMagnifico;
 
     /**
-     * Default constructor
+     * Constructor
      */
     public LeaderCardsEffects() {
         okOrNo = new OkOrNo();
@@ -38,14 +36,9 @@ public class LeaderCardsEffects {
         fillHashMapRequirements();
     }
 
-    private interface EffectsBuilder{
-        BonusInteraction doEffect(PlayerHandler player);
-    }
-
-    public BonusInteraction doEffect(String leaderName, PlayerHandler player){
-        return effects.get(leaderName).doEffect(player);
-    }
-
+    /**
+     * This method fill the class' HashMap
+     */
     private void fillHashMapRequirements() {
         effects.put(Constants.FRANCESCO_SFORZA,this::francescoSforza);
         effects.put(Constants.LUDVICO_ARIOSTO,this::ludovicoAriosto);
@@ -69,24 +62,46 @@ public class LeaderCardsEffects {
         effects.put(Constants.PICO_DELLA_MIRANDOLA,this::picoDellaMirandola);
     }
 
-
-
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction picoDellaMirandola(PlayerHandler player) {
         player.setCheckFunctions(new PicoDellaMirandolaCheck(player.getCheckFunctions()));
         player.getRoom().setMySupportFunction(new PicoDellaMirandolaSupport(player.getRoom().getMySupportFunction(player)),player);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction ludovicoIIIGonzaga(PlayerHandler player) {
         return new TakePrivilegesAction(1);
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction bartolometoColleoni(PlayerHandler player) {
         Effects effects = new AddVictoryPoints(4);
         effects.doEffect(player);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction cosimoDeMedici(PlayerHandler player) {
         Effects effects = new AddVictoryPoints(1);
         effects.doEffect(player);
@@ -95,21 +110,45 @@ public class LeaderCardsEffects {
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction santaRita(PlayerHandler player) {
         player.getRoom().setMySupportFunction(new SantaRita(player.getRoom().getMySupportFunction(player)),player);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction cesareBorgia(PlayerHandler player) {
         player.setCheckFunctions(new DontPayForTerritories(player.getCheckFunctions()));
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction sistoIV(PlayerHandler player) {
         player.getRoom().setMySupportFunction(new FivePointsMoreForPray(player.getRoom().getMySupportFunction(player)),player);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction lorenzoDeMedici(PlayerHandler player) {
         List<LeaderCard> leaderPlayed = new ArrayList<>();
         for (PlayerHandler p: player.getRoom().getListOfPlayers()){
@@ -138,11 +177,23 @@ public class LeaderCardsEffects {
         return doEffect(leaderNameLorenzoMagnifico,player);
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction federicoDaMontefeltro(PlayerHandler player) {
         player.getRoom().setMySupportFunction(new FedericoDaMontefeltroSupport(player.getRoom().getMySupportFunction(player)),player);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction lucreziaBorgia(PlayerHandler player) {
         player.getAllFamilyMembers()[1].setFixedBonus(2);
         player.getAllFamilyMembers()[2].setFixedBonus(2);
@@ -150,6 +201,12 @@ public class LeaderCardsEffects {
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction ludovicoIlMoro(PlayerHandler player) {
         player.getAllFamilyMembers()[1].setFixedValue(5);
         player.getAllFamilyMembers()[2].setFixedValue(5);
@@ -157,6 +214,12 @@ public class LeaderCardsEffects {
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction sandroBotticelli(PlayerHandler player) {
         Effects effects = new AddVictoryPoints(1);
         effects.doEffect(player);
@@ -165,10 +228,22 @@ public class LeaderCardsEffects {
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction leonardoDaVinci(PlayerHandler player) {
         return new BonusProductionOrHarvesterAction(Constants.PRODUCTION,0);
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction giovanniDalleBandeNere(PlayerHandler player) {
         player.getPersonalBoardReference().addWood(1);
         player.getPersonalBoardReference().addStone(1);
@@ -176,41 +251,89 @@ public class LeaderCardsEffects {
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction michelangeloBuonarroti(PlayerHandler player) {
         player.getPersonalBoardReference().addCoins(3);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction girolamoSavonarola(PlayerHandler player) {
         Effects effects = new AddFaithPoints(1);
         effects.doEffect(player);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction sigismondoMalatesta(PlayerHandler player) {
         player.getAllFamilyMembers()[0].setFixedBonus(3);
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction filippoBrunelleschi(PlayerHandler player) {
         player.setCheckFunctions(new DontPayMoneyForTower(player.getCheckFunctions()));
         return okOrNo;
     }
 
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction francescoSforza(PlayerHandler player) {
         return new BonusProductionOrHarvesterAction(Constants.HARVESTER,1);
     }
 
-
-
+    /**
+     * Perform picoDellaMirandola' effect
+     *
+     * @param player playerHandler's reference
+     * @return object that confirms that the effect has been used with success
+     */
     private BonusInteraction ludovicoAriosto(PlayerHandler player){
         player.setCheckFunctions(new LudovicoAriostoCheck(player.getCheckFunctions()));
         player.getRoom().setMySupportFunction(new LudovicoAriostoSupport(player.getRoom().getMySupportFunction(player)),player);
         return okOrNo;
     }
 
+    /**
+     * This method is used for calling the right method in the map for applying the effect
+     *
+     * @param leaderName as a String
+     * @param player playerHandler's referencee
+     * @return the right effect ( the object okOrNo the confirms that the method called has been performed with success
+     */
+    public BonusInteraction doEffect(String leaderName, PlayerHandler player){
+        return effects.get(leaderName).doEffect(player);
+    }
 
-    private PersonalBoard personalBoard(PlayerHandler player){
-        return player.getPersonalBoardReference();
+    /**
+     * Functional interface for acting leader card's effect
+     */
+    @FunctionalInterface
+    private interface EffectsBuilder{
+        BonusInteraction doEffect(PlayerHandler player);
     }
 }

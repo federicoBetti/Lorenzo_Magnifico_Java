@@ -7,7 +7,7 @@ import project.messages.TakePrivilegesAction;
 import project.server.network.PlayerHandler;
 
 /**
- * effect that exchange coins for other resources
+ * This class represents the ExchangeCoinsFor effects
  */
 
 public class ExchangeCoinsFor implements ExchangeEffects {
@@ -16,12 +16,25 @@ public class ExchangeCoinsFor implements ExchangeEffects {
     private int resourceEarned;
     private String resourceReordered;
 
+    /**
+     * Constructor
+     *
+     * @param quantity earned
+     * @param effectCost cost required
+     * @param resourceRewardered resourceRewardered
+     */
     public ExchangeCoinsFor(int quantity, TotalCost effectCost, String resourceRewardered) {
         this.coinsRequired = effectCost.getCoinsRequired();
         this.resourceEarned = quantity;
         this.resourceReordered = resourceRewardered;
     }
 
+    /**
+     * Perform the effect the right effect according to the parameter
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
@@ -38,13 +51,21 @@ public class ExchangeCoinsFor implements ExchangeEffects {
         return new OkOrNo();
     }
 
-
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Exchange " + coinsRequired + " coins" + " for taking " + resourceEarned + " of " + resourceReordered;
     }
 
-
+    /**
+     * This method add the coins required in cost
+     *
+     * @param cost total cost variable
+     */
     @Override
     public void addResourceRequested(TotalCost cost) {
         cost.addCoin(coinsRequired);

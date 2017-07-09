@@ -2,9 +2,19 @@ package project.controller.effects.effectsfactory;
 
 import project.controller.effects.realeffects.*;
 
-//todo rifare con HashMap
+/**
+ * This class is used for building the immediate effects taking parameters from Json's files
+ */
 public class BuildImmediateEffects {
 
+	/**
+	 * Search and build the immediate effects
+	 *
+	 * @param type of effect
+	 * @param parameter that specify the effect
+	 * @param quantity that specify the effect
+	 * @return the right effects
+	 */
     public Effects searchImmediateEffects(String type, String parameter, int quantity) {
 
         switch (type){
