@@ -1,6 +1,7 @@
 package project.client.network.socket;
 
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
@@ -25,13 +26,13 @@ import java.util.List;
 public class SocketClient extends AbstractClient {
 
     private String nickname;
-    private ClientSetter clientSetter;
-    private MessagesFromServerHandler messageHandler;
-    private Socket socket;
-    private ObjectOutputStream objectOutputStream;
-    private ObjectInputStream objectInputStream;
-    Object token;
-    Object token1;
+    transient private ClientSetter clientSetter;
+    transient private MessagesFromServerHandler messageHandler;
+    transient private Socket socket;
+    transient private ObjectOutputStream objectOutputStream;
+    transient private ObjectInputStream objectInputStream;
+    transient Object token;
+    transient Object token1;
 
     public SocketClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
         this.clientSetter = clientSetter;
@@ -44,7 +45,7 @@ public class SocketClient extends AbstractClient {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             goToLogin();
         } catch (IOException e) {
-            e.printStackTrace();
+            //todo mettere logger
             throw new ClientConnectionException(e);
         }
     }
@@ -72,7 +73,7 @@ public class SocketClient extends AbstractClient {
                 messageHandler.handleMessage(message);
 
             } catch (IOException | ClassNotFoundException e) {
-                System.exit(1);
+                UnixColoredPrinter.Logger.print(Constants.CONNECTION_ERROR );
             }
         }
     }
@@ -196,9 +197,8 @@ public class SocketClient extends AbstractClient {
             synchronized (token) {
                 token.wait();
             }
-            System.out.println("il res è stato mandato");
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_ERROR );
         }
     }
 
@@ -212,7 +212,7 @@ public class SocketClient extends AbstractClient {
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_ERROR );
         }
         createWaitingForYourTurnContext();
     }

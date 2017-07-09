@@ -118,7 +118,7 @@ public class Turn implements Serializable{
     /**
      * Get skipTurnForExcommunication
      *
-     * @return skipTurnForExcommunication
+     * @return skipTurnForExcommunication2
      */
     public List<PlayerHandler> getSkipTurnForExcommunication() {
         return skipTurnForExcommunication;
