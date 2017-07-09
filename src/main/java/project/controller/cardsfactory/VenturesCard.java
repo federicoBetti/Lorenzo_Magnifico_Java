@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This class contains the specific Venture Cards characteristics
+ */
 public class VenturesCard extends DevelopmentCard implements Serializable{
 
     private List<VenturesCost> possibleCost;
@@ -32,26 +34,50 @@ public class VenturesCard extends DevelopmentCard implements Serializable{
         //for testing
     }
 
-
+    /**
+     * This method adds the card to the personal board
+     *
+     * @param personalBoardReference personal board's reference
+     */
     @Override
     public void addToPersonalBoard(PersonalBoard personalBoardReference) {
         personalBoardReference.getVentures().add(this);
     }
 
+    /**
+     * Get cost
+     *
+     * @return cost
+     */
     @Override
     public Cost getCost() {
         return null;
     }
 
+    /**
+     * Set cost
+     *
+     * @param cost cost
+     */
     @Override
     public void setCost(Cost cost) {
         // void
     }
 
+    /**
+     * Get possible cost's list
+     *
+     * @return possibleCost
+     */
     public List<VenturesCost> getPossibleCost(){
         return possibleCost;
     }
 
+    /**
+     * Get possible ventures's cost list
+     *
+     * @return possibleCost
+     */
     public List<VenturesCost> getVenturesCost() {
         return possibleCost;
     }

@@ -3,7 +3,7 @@ package project.controller.checkfunctions;
 import project.model.*;
 
 /**
- * effect of a leader card that allow you not to pay when the tower is occupied
+ * This class is the decoration of the checkTowerOccupied check function
  */
 public class DontPayMoneyForTower extends CheckFunctionsDecorator {
 
@@ -12,6 +12,12 @@ public class DontPayMoneyForTower extends CheckFunctionsDecorator {
     }
 
 
+    /**
+     * This method checks if the tower is occupied by at least another familiar
+     *
+     * @param tower array of tower
+     * @return false
+     */
     @Override
     public boolean checkTowerOccupied(Tower[] tower) {
         return false;

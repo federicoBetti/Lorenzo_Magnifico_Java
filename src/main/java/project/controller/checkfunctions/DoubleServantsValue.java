@@ -3,7 +3,7 @@ package project.controller.checkfunctions;
 import project.server.network.PlayerHandler;
 
 /**
- * todo mettere tutti i ritorni delle altre funzioni come allcheckfunctions.funzione(param....)
+ * This class is the decoration of the getServants method
  */
 public class DoubleServantsValue extends CheckFunctionsDecorator {
 
@@ -12,7 +12,12 @@ public class DoubleServantsValue extends CheckFunctionsDecorator {
         super(allCheckFunctions);
     }
 
-
+    /**
+     * Get servants
+     *
+     * @param player playerHandler's reference
+     * @return half servants' number
+     */
     @Override
     public int getServants(PlayerHandler player) {
         return player.getPersonalBoardReference().getServants() / 2;

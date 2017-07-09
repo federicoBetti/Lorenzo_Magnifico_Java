@@ -5,24 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 19/05/17.
+ * This class represent the array of ventures' cost
  */
 public class VentureCostArray implements Serializable{
 
     private List<VenturesCost> costArray;
 
-
-
-
     public VentureCostArray(){
         this.costArray = new ArrayList<>();
     }
 
+    /**
+     * Get list of ventures'cost
+     *
+     * @return costArray
+     */
     public List<VenturesCost> getCostArray() {
         return costArray;
     }
 
-    public void setCostArray(List<VenturesCost> costArray) {
-        this.costArray = costArray;
-    }
 }

@@ -5,18 +5,38 @@ import project.model.*;
 import project.server.network.PlayerHandler;
 
 /**
- * todo mettere qua tutte le funzioni che sono implementare in basi functions
- * todo CAMBIARE LE CHECK UTILIZZATE E METTERLE CON LETTERA MINUSCOLA
+ * Check functions interface
  */
-
 public interface AllCheckFunctions {
 
-    
+    /**
+     * Abstract checkPosition
+     */
     boolean checkPosition(int position, Position[] zone, FamilyMember familyMember);
+
+    /**
+     * Abstract checkCardCostVentures
+     */
     int checkCardCostVentures(VenturesCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
-   boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+
+    /**
+     * Abstract checkCardCost
+     */
+    boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember);
+
+    /**
+     * Abstract checkMilitaryPointsForTerritory
+     */
     boolean checkMilitaryPointsForTerritory(PlayerHandler player, int length) ;
+
+    /**
+     * Abstract getServants
+     */
     int getServants(PlayerHandler player);
+
+    /**
+     * Abstract checkTowerOccupied
+     */
     boolean checkTowerOccupied(Tower[] tower);
 
 }

@@ -5,11 +5,15 @@ import project.controller.Constants;
 import project.model.*;
 import project.server.network.PlayerHandler;
 
-
+/**
+ * Check functions commons to all players when the match starts
+ */
 public class BasicCheckFunctions implements AllCheckFunctions{
 
     /**
-     * this method checks if the spot where you want to place the familiar is occuped or not and if there are other your familiars
+     * This method checks if the spot where you want to place the familiar is occuped or not and if there are other
+     * your familiars
+     *
      * @param position number of position to check
      * @param zone group of positions where to check
      * @param familyMember familiar that you have placed
@@ -21,6 +25,13 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         return !zone[position].isOccupied() && nobodyOfMyFamily(zone, familyMember.getFamilyColour());
     }
 
+    /**
+     * Check if there is at least another familiar of mine in a array of positions
+     *
+     * @param zone array of positions
+     * @param familyColour player's family colour
+     * @return true if there is another familiar of mine in the zone, else false
+     */
     private boolean nobodyOfMyFamily(Position[] zone, String familyColour){
         for (int i=0;i<zone.length;i++){
             if ( zone[i].getFamiliarOnThisPosition() != null )
@@ -30,7 +41,12 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         return true;
     }
 
-
+    /**
+     * This method checks if the tower is occupied by at least another familiar
+     *
+     * @param zone array of tower
+     * @return true if is occupied, else false
+     */
     @Override
     public boolean checkTowerOccupied(Tower[] zone) {
         for (Tower tower: zone){
@@ -40,6 +56,16 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         return false;
     }
 
+    /**
+     * This method calls the right check cost function according to the kind of card passed
+     *
+     * @param card development card to check
+     * @param playerHandler playerHandler's reference
+     * @param coinsFee coins to pay more if the tower is occupied
+     * @param zoneDiceCost the minimum dice value for placing a familiar in the zone
+     * @param valueOfFamilyMember my familiar's value
+     * @return true if the requirements for taking the card are respected, else false
+     */
     @Override
         public boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember) {
         if (card instanceof TerritoryCard)
@@ -51,7 +77,16 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         return false;
     }
 
-
+    /**
+     * Check the Character's card cost
+     *
+     * @param card development card to check
+     * @param player playerHandler's reference
+     * @param coinsFee coins to pay more if the tower is occupied
+     * @param zoneDiceCost the minimum dice value for placing a familiar in the zone
+     * @param valueOfFamilyMember my familiar's value
+     * @return true if the requirements for taking the card are respected, else false
+     */
     private boolean checkCardCostCharacter(CharacterCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         if (player.getPersonalBoardReference().getCharacters().size() == Constants.MAX_CARDS_NUMBER)
             return false;
@@ -65,16 +100,26 @@ public class BasicCheckFunctions implements AllCheckFunctions{
     }
 
     /**
-     * this method has to be decorated by an excommunication todo
-     * @param player
-     * @return
+     * Get servants
+     *
+     * @param player playerHandler's reference
+     * @return servants' number
      */
-
     @Override
     public int getServants(PlayerHandler player) {
         return personalBoard(player).getServants();
     }
 
+    /**
+     * Check the Building's card cost
+     *
+     * @param card development card to check
+     * @param player playerHandler's reference
+     * @param coinsFee coins to pay more if the tower is occupied
+     * @param zoneDiceCost the minimum dice value for placing a familiar in the zone
+     * @param valueOfFamilyMember my familiar's value
+     * @return true if the requirements for taking the card are respected, else false
+     */
     private boolean checkCardCostBuilding(BuildingCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         if (player.getPersonalBoardReference().getTerritories().size() == Constants.MAX_CARDS_NUMBER)
             return false;
@@ -96,6 +141,17 @@ public class BasicCheckFunctions implements AllCheckFunctions{
         return false;
     }
     // questa torna int. 0=non posso prendere, 1=prendo per effetto 1, 2= prendo per effetto 2, 3 = posso predere per tutti e due gl effetti devo chiedere
+
+    /**
+     * Check the Venture's card cost
+     *
+     * @param card development card to check
+     * @param player playerHandler's reference
+     * @param coinsFee coins to pay more if the tower is occupied
+     * @param zoneDiceCost the minimum dice value for placing a familiar in the zone
+     * @param valueOfFamilyMember my familiar's value
+     * @return true if the requirements for taking the card are respected, else false
+     */
     @Override
     public int checkCardCostVentures(VenturesCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
@@ -136,6 +192,16 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     }
 
+    /**
+     * Check the Territory's card cost
+     *
+     * @param card development card to check
+     * @param player playerHandler's reference
+     * @param coinsFee coins to pay more if the tower is occupied
+     * @param zoneDiceCost the minimum dice value for placing a familiar in the zone
+     * @param valueOfFamilyMember my familiar's value
+     * @return true if the requirements for taking the card are respected, else false
+     */
     private boolean checkCardCostTerritory(TerritoryCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         int coinsMore = 0;
         if (coinsFee)
@@ -152,13 +218,24 @@ public class BasicCheckFunctions implements AllCheckFunctions{
 
     }
 
+    /**
+     * This method check if the player has enough military points for taking the territory's card
+     *
+     * @param player playerHandler's reference
+     * @param length index of my territory cards
+     * @return true if the player has enough military points, else false
+     */
     @Override
     public boolean checkMilitaryPointsForTerritory(PlayerHandler player, int length) {
             return player.getScore().getMilitaryPoints() >= player.getRoom().getBoard().getMilitaryPointsForTerritories()[length];
     }
 
-
-
+    /**
+     * Get the player's personal board
+     *
+     * @param playerHandler playerHandler's reference
+     * @return player's personal board
+     */
     private PersonalBoard personalBoard(PlayerHandler playerHandler){
         return playerHandler.getPersonalBoardReference();
     }
