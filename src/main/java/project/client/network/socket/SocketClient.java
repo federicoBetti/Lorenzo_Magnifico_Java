@@ -26,13 +26,13 @@ import java.util.List;
 public class SocketClient extends AbstractClient {
 
     private String nickname;
-    transient private ClientSetter clientSetter;
-    transient private MessagesFromServerHandler messageHandler;
-    transient private Socket socket;
-    transient private ObjectOutputStream objectOutputStream;
-    transient private ObjectInputStream objectInputStream;
-    final transient Object token;
-    transient Object token1;
+    private transient  ClientSetter clientSetter;
+    private transient  MessagesFromServerHandler messageHandler;
+    private transient  Socket socket;
+    private transient  ObjectOutputStream objectOutputStream;
+    private transient  ObjectInputStream objectInputStream;
+    private final transient Object token;
+    private transient Object token1;
     private String interruptdeExceptionString = "program terminates during a queue .take() in the socket client";
 
     public SocketClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
@@ -546,7 +546,7 @@ public class SocketClient extends AbstractClient {
     /**
      * This method calls the method timerTurnDelayed on the clientSetter
      */
-    public void timerTurnDelayed() {
+    void timerTurnDelayed() {
         clientSetter.timerTurnDelayed();
     }
 
