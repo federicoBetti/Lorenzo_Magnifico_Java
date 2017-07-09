@@ -78,7 +78,6 @@ public class Constants {
     public static final String BONUS_PRODUCTION_HARVESTER_ACTION = "bonus-production-harvester-action";
     public static final String OK_OR_NO = "ok-or-no";
     public static final String CHOICE_PE = "choice-pe";
-    public static final String NOTIFY = "notify" ;
     public static final String FAMILY_MEMBER_UPDATE = "family-member-update";
     public static final String PERSONAL_BOARD_UPDATE = "personal-board-update";
     public static final String SCORE_UPDATE = "score-update";
@@ -123,12 +122,12 @@ public class Constants {
     public static final String WAITING_FOR_YOUR_TURN = "waiting-for-your-turn";
     public static final String AFTER_GAME = "after-game";
     public static final String SHOW_STATISTICS = "show-statistics";
-    public static final String FILENAME = "E:\\test\\PlayerFile.json";
+    public static final String FILENAME = "PlayerFile.json";
     public static final String NEW_GAME = "new-game";
     public static final String CLOSE_THE_GAME = "close-the-game";
     public static final String RECEIVE_STATISTICS = "receive-statistics";
     public static final int MAX_CARDS_NUMBER = 6;
-    public static final String DISCONNESSION_MESSAGE = "disconnessione-message";
+    public static final String DISCONNECTION_MESSAGE = "disconnessione-message";
     public static final String WINNER_COMUNICATION = "winner-comunication";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;

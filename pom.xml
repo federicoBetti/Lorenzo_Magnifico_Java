@@ -59,8 +59,6 @@
     </build>
 
     <dependencies>
-
-
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -91,7 +89,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.language>java</sonar.language>
-        <sonar.host.url>http://localhost:9000/</sonar.host.url>
+        <sonar.host.url> http://localhost:9000/ </sonar.host.url>
     </properties>
 
 

@@ -63,7 +63,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         bonusType.put(Constants.TAKE_PRIVILEGE_ACTION, myClient::takePrivilege);
     }
 
-    public void doBonusHarvester(int servantsNumber) {
+    void doBonusHarvester(int servantsNumber) {
         this.servantsNumber = servantsNumber;
 
         synchronized (tokenn) {
@@ -137,15 +137,6 @@ public class RMIPlayerHandler extends PlayerHandler {
         // chiama il metodo giusto sul client
         try {
             bonusType.get(returnFromEffect.toString()).sendEffectAnswer((BonusInteraction) returnFromEffect);
-        } catch (RemoteException e) {
-            playerDisconnected();
-        }
-    }
-
-    @Override
-    public void sendNotification(Notify notifications) {
-        try {
-            myClient.sendNotification(notifications);
         } catch (RemoteException e) {
             playerDisconnected();
         }

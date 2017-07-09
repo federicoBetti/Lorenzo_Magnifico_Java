@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 05/06/17.
+ * This class receive strings from the socket client and call a related method with the functional interface
  */
 class MessagesFromServerHandler {
 
@@ -16,7 +16,7 @@ class MessagesFromServerHandler {
     private SocketClient client;
 
 
-    public MessagesFromServerHandler( SocketClient client ){
+    MessagesFromServerHandler(SocketClient client){
         map = new HashMap<>();
         this.client = client;
 
@@ -46,155 +46,250 @@ class MessagesFromServerHandler {
         map.put(Constants.EXCOMMUNICATION_TAKEN_UPDATE, this:: excommunicationTake );
         map.put(Constants.ASK_FOR_PRAYING_LAST_PLAYER, this:: askForPrayingLastPlayer);
         map.put(Constants.ACTION_DONE_ON_TIME, this:: actionDone );
-        map.put(Constants.NOTIFY, this:: notifyPlayer);
         map.put(Constants.WAITING_FOR_YOUR_TURN, this::waitingForYourTurn);
         map.put(Constants.AFTER_GAME, this:: afterGame );
         map.put(Constants.RECEIVE_STATISTICS, this::receiveStatistics );
         map.put(Constants.SHOW_RANKING, this:: ranking );
-        map.put(Constants.DISCONNESSION_MESSAGE, this:: disconnessionMessage );
+        map.put(Constants.DISCONNECTION_MESSAGE, this:: disconnessionMessage );
         map.put(Constants.WINNER_COMUNICATION, this::winnerComunication );
         map.put(Constants.NOT_ENOUGH_RESOURCES, this:: cantDoAction );
     }
 
+    /**
+     * This method calls winnerComunication method on the client
+     */
     private void winnerComunication() {
         client.winnerComunication();
     }
 
+    /**
+     * This method calls disconnessionMessage method on the client
+     */
     private void disconnessionMessage() {
         client.disconnessionMesaage();
     }
 
+    /**
+     * This method calls ranking method on the client
+     */
     private void ranking() {
         client.ranking();
     }
 
+    /**
+     * This method calls receiveStatistics method on the client
+     */
     private void receiveStatistics() {
         client.receiveStatistics();
     }
 
+    /**
+     * This method calls afterGame method on the client
+     */
     private void afterGame() {
         client.afterGame();
     }
 
+    /**
+     * This method calls waitingForYourTurn method on the client
+     */
     private void waitingForYourTurn() {
         client.createWaitingForYourTurnContext();
     }
 
-    private void notifyPlayer() {
-        client.notifyPlayer();
-    }
-
+    /**
+     * This method is used for consuming the Action Done On Time constants when the timer reader is down
+     */
     private void actionDone() {
-        System.err.println("ACTION DONE ON TIME ARRIVED");
-        //serve a consumare quello che viene mandato in piu in caso di scelta con il both payment quando muore il thread di ascolto.
     }
 
+    /**
+     * This method calls askForPrayingLastPlayer method on the client
+     */
     private void askForPrayingLastPlayer() {
-        System.out.println("ASK FOR PRAYING LAST PLAYER");
         client.askForPrayingLastPlayer();
     }
 
+    /**
+     * This method calls excommunicationTake method on the client
+     */
     private void excommunicationTake() {
         client.excommunicationTake();
     }
 
+    /**
+     * This method calls prayed method on the client
+     */
     private void prayed() {
         client.prayed();
     }
 
+    /**
+     * This method calls leaderDraft method on the client
+     */
     private void leaderDraft() {
         client.leaderDraft();
     }
 
+    /**
+     * This method calls tileDraft method on the client
+     */
     private void tileDraft() {
         try {
             client.tileDraft();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * This method calls matchStarted method on the client
+     */
     private void matchStarted() {
         client.matchStarted();
     }
 
+    /**
+     * This method calls timerTurnDelayed method on the client
+     */
     private void timerTurnDelayed() {
         client.timerTurnDelayed();
     }
 
-
+    /**
+     * This method calls loginSucceded method on the client
+     */
     private void loginSucceded() {
         client.loginSucceded();
     }
 
+    /**
+     * This method calls nicknameAlreadyUsed method on the client
+     */
     private void nicknameAlreadyUsed() {
         client.nicknameAlreadyUsed();
     }
 
+    /**
+     * This method calls actionOk method on the client
+     */
     private void actionOk() {
         client.actionOk();
     }
 
+    /**
+     * This method calls askForPraying method on the client
+     */
     private void askForPraying() {
         System.out.println("ASK FOR PRAYING");
         client.askForPraying();
     }
 
-    public void takeImmediatePriviledge() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls takeImmediatePrivilege method on the client
+     */
+    private void takeImmediatePriviledge()  {
        client.takeImmediatePrivilege();
     }
 
-    private void bonusHarvester() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls bonusHarvester method on the client
+     */
+    private void bonusHarvester()  {
         client.bonusHarvester();
     }
 
-    private void bonusProduction() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls bonusProduction method on the client
+     */
+    private void bonusProduction() {
         client.bonusProduction();
     }
 
+    /**
+     * This method calls choicePe method on the client
+     */
     private void choicePe() {
         client.choicePe();
     }
 
+    /**
+     * This method calls bothPaymentsAvailable method on the client
+     */
     private void bothPaymentsAvailable() {
         client.bothPaymentsAvailable();
     }
 
-    private void cantDoAction() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls cantDoAction method on the client
+     */
+    private void cantDoAction()  {
         client.cantDoAction();
     }
 
-    private void boardUpdate() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls boardUpdate method on the client
+     */
+    private void boardUpdate()  {
         client.boardUpdate();
     }
 
-    private void familyMemberUpdate() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls familyMemberUpdate method on the client
+     */
+    private void familyMemberUpdate()  {
         client.familyMemberUpdate();
     }
 
-    private void personalBoardUpdate() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls personalBoardUpdate method on the client
+     */
+    private void personalBoardUpdate()  {
         client.personalBoardUpdate();
     }
 
-    private void scoreUpdate() throws IOException, ClassNotFoundException {
+    /**
+     * This method calls scoreUpdate method on the client
+     */
+    private void scoreUpdate()  {
         client.scoreUpdate();
     }
 
+    /**
+     * This method calls takeBonusCard method on the client
+     */
     private void takeBonusCard() {
         client.takeBonusCard();
     }
 
-
-    public void handleMessage(String message) throws IOException, ClassNotFoundException {
-        contextCreator = map.get(message);
-        contextCreator.build();
-    }
+    /**
+     * This method calls itsMyTurn method on the client
+     */
     private void mainContext() {
         client.itsMyTurn();
     }
 
+    /**
+     * It overwrite the functional interface with the reference of a specific method in the map according to the string
+     * received from Socket client
+     *
+     * @param message string received from the socket client
+     * @throws IOException  Signals that an I/O exception of some sort has occurred. This
+     * @throws ClassNotFoundException hrown when an application tries to load in a class through its
+     * string name using:
+     * The forName method in class Class.
+     * The findSystemClass method in class ClassLoader.
+     * The loadClass method in class ClassLoader
+     * but no definition for the class with the specified name could be found.
+     */
+    void handleMessage(String message) throws IOException, ClassNotFoundException {
+        contextCreator = map.get(message);
+        contextCreator.build();
+    }
+
+    /**
+     * functional interface
+     */
     @FunctionalInterface
     private interface ContextCreator{
         void build() throws IOException, ClassNotFoundException;

@@ -4,15 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 19/05/17.
+ * This class represent the immediateEffects loaded from json
  */
 public class ImmediateEffectsFromJson {
     private List<TrisIE> tris;
 
-    public ImmediateEffectsFromJson(){
+    ImmediateEffectsFromJson(){
         this.tris = new ArrayList<>();
     }
 
+    /**
+     * Get tris
+     *
+     * @return tris
+     */
     public List<TrisIE> getTris() {
         return tris;
     }

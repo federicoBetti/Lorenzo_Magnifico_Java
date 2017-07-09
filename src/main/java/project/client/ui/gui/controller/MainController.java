@@ -332,7 +332,7 @@ public class MainController {
         }
 
         Runnable a = () -> clientSetter.playLeaderCard(cardSelected);
-        ;
+
         new Thread(a).start();
 
     }

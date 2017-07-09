@@ -21,11 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * questa classe rappresenta la casse ponte tra il model e la view. da qua ogni volta che vinee aggiornato qualcosa il player dice al suo
- * client che qualcosa è stato aggiornato e quindi fa aggiornare la UI
+ * This class is created when a connection with a socket client is performed. It receive the messages from the client and pass them
+ * to "ServerDataHandler" class that elaborate the message and call a specific method here for acting the correct operations.
  */
 
-//todo implementare per ogni metodo i messaggi di ritorno al client o gia fatto in gameAction? controllare
 public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     private transient SocketServer socketServer;
@@ -59,9 +58,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         super();
         token = new Object();
         token1 = new Object();
-        //for testing
     }
 
+    /**
+     * Thread lauched by "SocketServer" class that is always active for reading by and object input stream the client's messages
+     */
     @Override
     public void run() {
         try {
@@ -108,16 +109,35 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    //ok
-    public void loginRequestAnswer(String nickname) throws IOException, ClassNotFoundException {
+    /**
+     * This method pass the client's nickname to SocketServer class.
+     * @param nickname nickname choosen by the client
+     *
+     * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of
+     * exceptions produced by failed or interrupted I/O operations.
+     *
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using:
+     *The forName method in class Class
+     *The findSystemClass method in class ClassLoader .
+     *The loadClass method in class ClassLoader.
+     *but no definition for the class with the specified name could be found.
+     */
+    void loginRequestAnswer(String nickname) throws IOException, ClassNotFoundException {
         socketServer.loginRequest(nickname, this);
     }
 
-    public void socketSkipTurn() {
+    /**
+     * Method called when the client wants to skip the turn.
+     */
+    void socketSkipTurn() {
         skipTurn();
     }
 
-    //ok
+    /**
+     * Method called when the client wants to take a development card the towers
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void takeDevCard() throws IOException, ClassNotFoundException {
 
         String towerColour = (String) objectInputStream.readObject();
@@ -133,17 +153,29 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    public void choosePaymentForVentureCard() throws IOException, ClassNotFoundException {
+    /**
+     * Method called when is taken a Venture card from the towers and this card have two  discretionary payments.
+     * Another objectInputStream is opened because the
+     * @throws IOException
+     * @throws ClassNotFoundException
+
+    void choosePaymentForVentureCard() throws IOException, ClassNotFoundException {
         int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         int paymentChosen = (int) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
 
         clientChosenPaymentForVenturesCard(position, familyMember, paymentChosen);
-    }
+    }*/
 
-    //ok
-    public void harvesterRequest() throws IOException, ClassNotFoundException {
+    /**
+     * Method called when the client wants to perform an harvetser action. It receives form the client the familiar colour
+     * as a String and the number of servants that wants to use.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    void harvesterRequest() throws IOException, ClassNotFoundException {
         String familyMemberColour = (String) objectInputStream.readObject();
         int servantsNumber = (int) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
@@ -156,8 +188,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
     //ok
-    //int position, FamilyMember familyM, ArrayList<BuildingCard> cardToProduct
-    public void productionRequest() throws IOException, ClassNotFoundException {
+
+    /**
+     * Method called when the client wants to perform a production action. It receives from the client the familiar colour
+     * as a String and the List of building cards on which the client wants to perform the production.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    void productionRequest() throws IOException, ClassNotFoundException {
         String familyMemberColour = (String) objectInputStream.readObject();
         System.out.println("family colour: " + familyMemberColour);
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
@@ -172,9 +211,15 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     }
 
-    //ok
-    //int position, FamilyMember familyM
-    public void goToMarketRequest() throws IOException, ClassNotFoundException {
+    /**
+     * Method called when a client wants to place a familiar in the market. It receives from the client the position
+     * in the market on which he wants to place the familiar as an int and the familiar colour
+     * as a String.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    void goToMarketRequest() throws IOException, ClassNotFoundException {
         int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
@@ -187,8 +232,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    //ok
-    public void playLeaderCardRequest() throws IOException, ClassNotFoundException {
+    /**
+     * Method called when the client wants to play a Leader card. it receives from the client the leader card's name as
+     * a String.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    void playLeaderCardRequest() throws IOException, ClassNotFoundException {
         String leaderCardName = (String) objectInputStream.readObject();
 
         try {
@@ -198,8 +249,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    //ok
-    public void discardLeaderCardRequest() throws IOException, ClassNotFoundException {
+    /**
+     * Method called when the client wants to discard a Leader Card. It receives from the client the leader card's name
+     * as a String.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    void discardLeaderCardRequest() throws IOException, ClassNotFoundException {
         String leaderCardName = (String) objectInputStream.readObject();
 
         try {
@@ -209,9 +266,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    //ok
-    //int privelgeNumber, FamilyMember familyMember
-    public void goToCouncilPalaceRequest() throws IOException, ClassNotFoundException {
+    /**
+     * Method called when the client wants to place a familiar in the Council palace zone. It receives from the client
+     * the privilege number that wants to enjoy and the familiar colour as a String.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    void goToCouncilPalaceRequest() throws IOException, ClassNotFoundException {
         int privilegeNumber = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
@@ -222,18 +284,31 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     *
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
 
-    public void takePrivilegeRequest() throws IOException, ClassNotFoundException {
+    void takePrivilegeRequest() throws IOException, ClassNotFoundException {
         int privilegeNumber = (int) objectInputStream.readObject();
 
         takePrivilege(privilegeNumber);
-    }
+    } */
 
 
+    /**
+     * @return list of Building cards directly from the player's personal board.
+     */
     private List<BuildingCard> takeMyProductionCards() {
         return getPersonalBoardReference().getBuildings();
     }
 
+    /**
+     * Method called for sending a general object identifying it sending before a specific string obtained by toString method
+     *
+     * @param returnFromEffect Object returned by a "doEffect" method of any effect performed.
+     */
     @Override
     public void sendAnswer(Object returnFromEffect) {
         if (isOn()) {
@@ -249,6 +324,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     * Method used for sending to a client the String that comunicates that an action have been performed correctly.
+     */
     @Override
     public void sendActionOk() {
         if (isOn()) {
@@ -263,25 +341,36 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     * Method called when the time for the action is up. When this happens, all the players active receive a notification
+     * that inform them that the player is off.
+     */
     @Override
     public void timerTurnDelayed() {
         sendString(Constants.TIMER_TURN_DELAYED);
-        System.out.println("Il player è a : " + isOn());
         broadcastDisconnessioneMessage(this);
     }
 
+    /**
+     * Send the notification to all players on that the previous player is disconnected.
+     *
+     * @param currentPlayer player that has been disconnected
+     */
     private void broadcastDisconnessioneMessage(PlayerHandler currentPlayer ) {
 
         for (PlayerHandler player : getRoom().getBoard().getTurn().getPlayerTurn()) {
             System.out.println(player.getName() + " " + player.isOn());
             if (player != currentPlayer && player.isOn()) {
-                System.out.println( "SONO NEL MANDO DISCO " + player.getName() + " " + player.isOn());
-                player.sendString(Constants.DISCONNESSION_MESSAGE);
-                player.sendString(currentPlayer.getName() + "is disconnected");
+                player.sendString(Constants.DISCONNECTION_MESSAGE);
+                player.sendString(currentPlayer.getName() + " is disconnected");
             }
         }
     }
 
+    /**
+     * Method called from the "Server" in the login method for sending to the client a string which informs the player
+     * that the nickname choosen is already used by another client.
+     */
     @Override
     public void nicknameAlredyUsed() {
         sendString(Constants.NICKNAME_USED);
@@ -293,16 +382,32 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     * Method called from the "Server" in the login method for sending to the client a string which informs the player
+     * that his login is succeded.
+     */
     @Override
     public void loginSucceded() {
         sendString(Constants.LOGIN_SUCCEDED);
     }
 
+    /**
+     * Method called from the "Server" in the login method for sending to the client a string which informs the player
+     * that he has to wait for his next turn.
+     */
     @Override
     protected void waitForYourTurn() {
         sendString(Constants.WAITING_FOR_YOUR_TURN);
     }
 
+
+    /**
+     * Method called for informing the client about the "Leader Draft Time" in the match. This method send to the client
+     * some leader cards in a row and later wait for a String that represent the Leader card's name choosen by the player.
+     *
+     * @param leaders list of leader cards in which the player can choose
+     * @return the leader card's name choosen by the player or "-1" in case of client's disconnection
+     */
     @Override
     public String leaderCardChosen(List<LeaderCard> leaders) {
 
@@ -332,6 +437,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
+    /**
+     * Method called for informing the client about the "Tile Draft Time" in the match. This method send to the client
+     * some Tiles in a row and later wait for a String that represent the tile's number choosen by the player.
+     *
+     * @param tiles list of Bonus tiles
+     * @return the tile's number choosen by the player or "-1" in case of disconnection
+     */
     @Override
     public int chooseTile(ArrayList<Tile> tiles) {
 
@@ -358,28 +470,41 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-
-
-
-
+    /**
+     * Set the "firstConnection" boolean to false. It's necessary because in the first connection, the client has to pass
+     * in the draft period and it needs to lock the "usual" objectInputStream. Finished the drafts, the variable is set
+     * to false and this make the socket connection works also for further reconnections.
+     */
     @Override
     public void tokenNotify() {
         firstConnection = false;
     }
 
-    //todo: si blocca perchè non ha ricevuto match started e quindi è in wait il server se la connessione cade nel draft
+    /**
+     * Method called for comunicating to the client that he prayed with success.
+     */
     @Override
     public void prayed() {
         sendString(Constants.PRAYED);
     }
 
+    /**
+     * Method called for comunicating to the client that he has to go in the after game context.
+     */
     @Override
     public void afterMatch() {
         sendString(Constants.AFTER_GAME);
     }
 
 
-    public void newGame(String nickname) {
+    /**
+     * Method called when a match is finished and the client decides to play another match with his previous nickname.
+     * It keeps the token in wait for stopping the objectInputStream in the Thread's "while true" for performing
+     * correctly the Drafts actions.
+     *
+     * @param nickname client's nickname
+     */
+    void newGame(String nickname) {
         try {
             loginRequestAnswer(nickname);
             synchronized (token) {
@@ -390,6 +515,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     * Method called for send to the client the ranking of all players that have played with the game
+     * @param ranking list of players ordered for victories, defeats and number of matches played
+     */
     @Override
     public void sendRanking(List<PlayerFile> ranking) {
 
@@ -403,6 +532,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     * Method called for sending to the client his statistics about all matches played with the game
+     * @param playerFile
+     */
     @Override
     protected void sendStatistic(PlayerFile playerFile) {
         sendString(Constants.RECEIVE_STATISTICS);
@@ -415,15 +548,25 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     * Method called for comunicating to the client that he has to go in the after game context in the case in which
+     * all player are temporalrily off.
+     */
     @Override
     public void afterGameIftemporarilyOff() {
             try {
                 objectOutputStream.writeObject(Constants.AFTER_GAME);
                 objectOutputStream.flush();
                 objectOutputStream.reset();
-            } catch (IOException ignored) {}
+            } catch (IOException e) {
+                return;
+            }
     }
 
+    /**
+     * Method called for comunicating to the winner that he has won the match
+     * @param winnerString
+     */
     @Override
     public void winnerComunication(String winnerString ) {
         sendString(Constants.WINNER_COMUNICATION);
@@ -431,9 +574,17 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.writeObject(winnerString);
             objectOutputStream.flush();
             objectOutputStream.reset();
-        } catch (IOException ignored) {}
+        } catch (IOException e ) {
+            return;
+        }
     }
 
+    /**
+     * Method called for starting the match
+     *
+     * @param roomPlayers  number of player in the room
+     * @param familyColour colour of the player
+     */
     @Override
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
@@ -456,11 +607,20 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
+    /**
+     * Method called for informing the client that he can't perfom an operation requested
+     */
     @Override
     public void cantDoAction() {
         sendString(Constants.CANT_DO_ACTION);
     }
 
+    /**
+     * Method called when the client wants to take a Venture card and this card has two possible payments and the client
+     * has enough resources pay the card in both ways.
+     *
+     * @return the number of the choice or "-1" if the client is disconnected
+     */
     @Override
     public int canUseBothPaymentMethod() {
         sendString(Constants.BOTH_PAYMENT_METHODS_AVAILABLE);
@@ -468,7 +628,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             int choice = (int) objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
 
-            System.out.println("CHOICE E': " + choice);
             return choice;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -477,11 +636,26 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
+    /**
+     * Method called for informing the client that it's his turn.
+     */
     @Override
     public void itsMyTurn() {
         sendString(Constants.YOUR_TURN);
     }
 
+    /**
+     * Method called informing the client that he has the possibility of praying. If the client is the last player
+     * that played before the praying time, he has the Thread's "while true" stopped because he called the method in the
+     * server for asking to all of praying, so he can open the objectInputStream, waiting for the answer and return;
+     * else if the client isn't the last in the turn, the method send the string to the client and call a wait on a token,
+     * the client receive the string "ASK_FOR_PRAYING" and send a string that, after being read by the Thread's while true,
+     * notify this method's token and keep in wait the another token in the while true for making the methods receive the
+     * answer in his objectInputStream.
+     *
+     * @param playerTurn list of players in the match in turn order
+     * @return 0 if the client wants to pray, 1 if the client doesn't want it, -1 if the client has been disconnected
+     */
     @Override
     public int sendAskForPraying(List<PlayerHandler> playerTurn) {
         System.out.println("SONO IL PLAYER: " + this);
@@ -517,7 +691,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
-    public void waitForPraying() {
+    /**
+     * Method called for notifying the wait in "sendAskForPraying" method.
+     */
+    void waitForPraying() {
         System.out.println("SBLOCCO LA READ SULLA PREGHIERA\n");
         setCallPray(true);
         synchronized (token) {
@@ -557,6 +734,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }   */
 
 
+    /**
+     * Method called for sending a generic string
+     * @param message string to send
+     */
     @Override
     public void sendString(String message) {
 
@@ -571,12 +752,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     }
 
-    //todo check utility
-    @Override
-    public void sendNotification(Notify notifications) {
-        sendAnswer(notifications);
-    }
 
+    /**
+     * Method called for sending a generic update
+     * @param updates
+     */
     @Override
     public void sendUpdates(Updates updates) {
         if (isOn()) {
@@ -586,7 +766,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
-    //todo controllare il -1 che è feo
+    /**
+     * Method called when a building card has two alternative permanent effects
+     * @return 0 for the first effect, 1 for the second, -1 if the client has been disconnected
+     */
     @Override
     public int sendChoicePE() {
         String kindOfChoice = Constants.CHOICE_PE;
@@ -605,17 +788,18 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         return -1;
     }
 
+    /**
+     * Method called when a card taken from a Tower has a Bonus Tower Action as immediate effect
+     * @param returnFromEffect the object with the Bonus Tower Action's characteristics
+     */
     @Override
     public void sendBonusTowerAction(TowerAction returnFromEffect) {
 
-        //todo riguarda questo metodo, ho cancellato delle cose per le eccezioni, in toeria solo roba relativa alle eccezioni ma non vorrei aver fatto qualche danno
         while (true) {
-            System.out.println("SONO QUI NEL SEND BONUS TOWER ACTION");
             sendAnswer(returnFromEffect);
             String answer = null;
             try {
                 answer = (String) objectInputStream.readObject();
-                System.out.println("è arrivato: " + answer);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -623,15 +807,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             if (answer.equals(Constants.EXIT))
                 return;
 
-            //serve passargli il returnFromEffect perchè contiene lo sconto da applicare
             try {
-                System.out.println("faccio takebonus");
                 takeBonusDevCard(answer, returnFromEffect);
-                System.out.println("faccio return");
                 return;
             } catch (CantDoActionException c) {
                 try {
-                    System.out.println("SONO IN ECCEZIONE");
                     objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
                     objectOutputStream.flush();
                     objectOutputStream.reset();
@@ -643,6 +823,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
     }
 
+    /**
+     * Method called when a card taken from a Tower has a Bonus Harvester or Production as immediate effect.
+     * @param returnFromEffect the object with the Bonus Production or Harvester's characteristics
+     */
     @Override
     public void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect) {
         while (true) {
@@ -681,6 +865,10 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         }
     }
 
+    /**
+     * Method called when a card taken from a Tower has a bonus privilege as immediate effects
+     * @param returnFromEffect the object with the Bonus privilege's characteristics
+     */
     @Override
     public void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect) {
         sendAnswer(returnFromEffect);
@@ -688,6 +876,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
+    /**
+     * Method called for receiving privileges taking in a row due to an card's immediate effect and performing the
+     * right effect.
+     * @param returnFromEffect the object with the Bonus priviledge characteristics
+     */
     private void takePriviledgesInArow(TakePrivilegesAction returnFromEffect) {
 
         try {
@@ -710,15 +903,21 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     }
 
 
+    /**
+     * Method called by "sendBonusTowerAction" for receiving the floor and acting all the resulting operations in the
+     * server.
+     *
+     * @param towerColour card's tower colour that the client wants to take
+     * @param returnFromEffect the object with the Bonus Tower Action characteristics
+     * @throws CantDoActionException thrown when some parameters are uncorrected
+     */
     private void takeBonusDevCard(String towerColour, TowerAction returnFromEffect) throws CantDoActionException {
 
         int floor = 0;
         try {
             floor = (int) objectInputStream.readObject();
             System.out.println("floor: " + floor);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         clientTakeBonusDevelopementCard(towerColour, floor, returnFromEffect);
@@ -740,15 +939,18 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                         cardsForProduction.add(card);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
         return cardsForProduction;
     }
 
+    /**
+     * For closing safely the socket
+     * @param closeable  is a source or destination of data that can be closed. The close method is invoked to release
+     *                  resources that the object is holding
+     */
     private void closeSocket(Closeable closeable) {
         try {
             closeable.close();

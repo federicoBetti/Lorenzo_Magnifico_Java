@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 05/06/17.
+ * This class represent a context that is openend when the player wants to place a familiar in the council zone
  */
 public class CouncilContext extends AbstractContext {
     List<Council> councilZone;
@@ -25,6 +25,9 @@ public class CouncilContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This methods prints the familiars already placed in the council zone
+     */
     private void showCouncilZone() {
         int i = 1;
         for ( Council council : councilZone ){
@@ -33,6 +36,9 @@ public class CouncilContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The available actions are:");
@@ -50,6 +56,12 @@ public class CouncilContext extends AbstractContext {
         pYellow.println("");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
@@ -70,6 +82,13 @@ public class CouncilContext extends AbstractContext {
         checkFamilyMemberColour(parameters[1]);
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls chooseCouncilParameters
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action ) throws InputException, IOException {
         cli.chooseCouncilParameters(action);

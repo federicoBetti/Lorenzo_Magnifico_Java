@@ -6,7 +6,7 @@ import project.client.ui.cli.InputException;
 import java.io.IOException;
 
 /**
- * Created by raffaelebongo on 24/06/17.
+ * This class is a context opened when the match starts
  */
 public class MatchStartedContext extends AbstractContext {
     public MatchStartedContext(Cli cli) {
@@ -14,16 +14,32 @@ public class MatchStartedContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pBlue.println("MATCH STARTED! Wait for your turn...");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
 
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls printHelp
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         printHelp();

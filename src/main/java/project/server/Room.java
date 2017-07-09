@@ -25,14 +25,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
- * TODO completare
+ * This class contains all the methods for handling the match's state
  */
 public class Room {
 
     private final Server server;
-    /**
-     * Stato della partita completo ad eccezione delle personalBoard che sono contenute nel player
-     */
 
     private Board board;
 
@@ -40,7 +37,7 @@ public class Room {
 
     private Map<Player, AllSupportFunctions> playerAllSupportFunctionsMap;
 
-    public Map<String, PlayerHandler> nicknamePlayersMap;
+    Map<String, PlayerHandler> nicknamePlayersMap;
 
     private BuildExcommunicationEffects buildExcommunicationEffects;
 
@@ -48,14 +45,13 @@ public class Room {
 
     private boolean matchStarted;
 
-    AllSupportFunctions allSupportFunctions;
-
     TimerSettings timerSettings;
 
-    Timer timer;
+    private Timer timer;
 
-    PlayerHandler lastPlayer;
-    public boolean draftTime = false;
+    private PlayerHandler lastPlayer;
+
+    boolean draftTime = false;
 
 
     public Room(Server server) {
@@ -70,30 +66,55 @@ public class Room {
         timer = new Timer();
     }
 
+    /**
+     * This method check if the room is full, so if the number of player with the boolean "on" setted to true is equals
+     * to the number of the players that started the match
+     *
+     * @return true if the room is full, else false
+     */
     boolean isFull() {
         int count = 0;
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
             if (entry.getValue().isOn())
                 count++;
 
-        if (count == maxPlayers)
-            return true;
-        return false;
+        return count == maxPlayers;
     }
 
 
+    /**
+     * Get the board related with the room
+     *
+     * @return room board's reference
+     */
     public Board getBoard() {
         return board;
     }
 
+    /**
+     * Get the support functions dedicated to a player
+     *
+     * @param player playerHandler's reference
+     * @return the support function
+     */
     public AllSupportFunctions getMySupportFunction(Player player) {
         return playerAllSupportFunctionsMap.get(player);
     }
 
+    /**
+     * Set the support functions dedicated to a player
+     *
+     * @param player playerHandler's reference
+     */
     public void setMySupportFunction(AllSupportFunctions allSupportFunctions, PlayerHandler player) {
         playerAllSupportFunctionsMap.put(player, allSupportFunctions);
     }
 
+    /**
+     * This method counts the number of players on
+     *
+     * @return the number of players on
+     */
     public int numberOfPlayerOn() {
         int count = 0;
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
@@ -102,29 +123,42 @@ public class Room {
         return count;
     }
 
-    public boolean minimumNumberOfPlayers() {
+    /**
+     * This method checks if there is the minimum number of players on for starting the match
+     *
+     * @return true if there is the minimum number of players on, else false
+     */
+    boolean minimumNumberOfPlayers() {
         int count = 0;
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
             if (entry.getValue().isOn())
                 count++;
-        if (count >= 2)
-            return true;
-        return false;
+        return count >= 2;
     }
 
+    /**
+     * Get the Game Action object
+     *
+     * @return Game Action object
+     */
     public GameActions getGameActions() {
         return gameActions;
     }
 
-    public BuildExcommunicationEffects getBuildExcommunicationEffects() {
-        return buildExcommunicationEffects;
-    }
-
-
+    /**
+     * Get the number of players in the room
+     *
+     * @return the number of players in the room
+     */
     public int getRoomPlayers() {
         return nicknamePlayersMap.size();
     }
 
+    /**
+     * Generete and get the list of players in the room from the correpsonding HashMap
+     *
+     * @return the list of players in the room
+     */
     public List<PlayerHandler> getListOfPlayers() {
         List<PlayerHandler> list = new ArrayList<>();
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet()) {
@@ -133,7 +167,10 @@ public class Room {
         return list;
     }
 
-    public void startMatch() {
+    /**
+     * This method act all the operation for initializing and starting the match in the correct way
+     */
+    void startMatch() {
         draftTime = true;
         String[] colors = fillColors();
         int i = 0;
@@ -143,15 +180,13 @@ public class Room {
                 BasicSupportFunctions supportFunctions = new BasicSupportFunctions(player.getValue());
                 playerAllSupportFunctionsMap.put(player.getValue(), supportFunctions);
                 playerInTheMatch.add(player.getValue());
+                resetPlayers(player.getValue());
                 player.getValue().setFamilyColour(colors[i]);
                 player.getValue().setFamilyColourInFamilyMembers();
-                // player.getValue().setDisconnectedInDraft(true);
+
                 i++;
             }
         }
-
-        //testare se va
-        //resetPlayers(playerInTheMatch);
 
         maxPlayers = i;
 
@@ -174,7 +209,7 @@ public class Room {
         //todo aggiungere questa parte per il draft
 
         //draft leader
-        leaderDraft(playerInTheMatch);
+        //leaderDraft(playerInTheMatch);
 
         //draft tile
         tileDraft(playerInTheMatch);
@@ -213,7 +248,7 @@ public class Room {
         int moreCoin = 0;
 
         for (PlayerHandler p : getListOfPlayers()) {
-            //setResources(p, moreCoin);
+            setResources(p, moreCoin);
             if (p.isOn()) {
                 int fauthPoint = 8;
                 System.err.println("numero di carte territorio: " + p.getPersonalBoardReference().getTerritories().size());
@@ -238,14 +273,17 @@ public class Room {
             }
         }
 
-
         gameActions.firstPlayerTurn();
 
     }
 
-    private void resetPlayers(List<PlayerHandler> playerInTheMatch) {
+    /**
+     * this method reset the player's score, personal board and his familiars
+     *
+     * @param player playerHandler's reference
+     */
+    private void resetPlayers( PlayerHandler player) {
         Configuration configuration = new Configuration();
-        for (PlayerHandler player : playerInTheMatch) {
             try {
                 //player.setPersonalBoardReference(new PersonalBoard());
                 player.setScore(new Score());
@@ -254,8 +292,12 @@ public class Room {
                 e.printStackTrace();
             }
         }
-    }
 
+    /**
+     * This method realize the tiles bonus' draft
+     *
+     * @param playerInTheMatch the list of players in the match
+     */
     private void tileDraft(List<PlayerHandler> playerInTheMatch) {
 
         ArrayList<Tile> tiles = fillListTile();
@@ -287,6 +329,11 @@ public class Room {
         }
     }
 
+    /**
+     * This method realize the leader cards' draft
+     *
+     * @param playerInTheMatch the list of players in the match
+     */
     private void leaderDraft(List<PlayerHandler> playerInTheMatch) {
 
         int i;
@@ -326,6 +373,9 @@ public class Room {
 
     }
 
+    /**
+     * This method place the cards in the towers when the match starts and every round
+     */
     private void placeCardInTowers() {
         Tower[][] tower = board.getAllTowers();
         DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
@@ -339,21 +389,29 @@ public class Room {
 
     }
 
+    /**
+     * This method fill the excommunication zone with 3 random excommunication tiles
+     */
     private void fillExcommunicationTile() {
         ExcommunicationTile[][] deck = board.getDeckCard().getExcommunicationCard();
         ExcommunicationZone[] zone = new ExcommunicationZone[Constants.PERIOD_NUMBER];
         Random r = new Random();
         int rand;
         for (int i = 0; i < Constants.PERIOD_NUMBER; i++) {
-            //todo rimettere il rand pe far arrivare una scomunica casuale, ora lo piloto io per testare
-            //rand = r.nextInt(Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD);
-            rand = 6;
+            rand = r.nextInt(Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD);
             ExcommunicationTile ex = deck[i][rand];
             zone[i] = new ExcommunicationZone(ex);
         }
         board.setExcommunicationZone(zone);
     }
 
+    /**
+     * This method set the player's resource when the match starts
+     *
+     * @param player playerHandler's reference
+     * @param moreCoin int that represent tha quantity of coins more that the player has to have respect of the first
+     *                 player in the match
+     */
     private void setResources(PlayerHandler player, int moreCoin) {
         player.getPersonalBoardReference().setWood(2);
         player.getPersonalBoardReference().setStone(2);
@@ -361,6 +419,13 @@ public class Room {
         player.getPersonalBoardReference().setCoins(5 + moreCoin);
     }
 
+    /**
+     * Get a specific tile between the bonus tiles's list
+     *
+     * @param tileId tile number choosen
+     * @param tiles list of bonus tiles
+     * @return tile choosen reference
+     */
     private Tile getTrueTile(int tileId, ArrayList<Tile> tiles) {
         for (Tile t : tiles)
             if (t.getTileNumber() == tileId)
@@ -368,14 +433,24 @@ public class Room {
         return null;
     }
 
+    /**
+     * Add the Bonus tiles to a list and shuffle it
+     * @return the list of tiles shuffled
+     */
     private ArrayList<Tile> fillListTile() {
         ArrayList<Tile> tiles = new ArrayList<>(4);
-        for (Tile t : board.getDeckCard().getProdHarvTiles())
-            tiles.add(t);
+        tiles.addAll(Arrays.asList(board.getDeckCard().getProdHaarvTiles()));
         Collections.shuffle(tiles);
         return tiles;
     }
 
+    /**
+     * Get the leader card corresponding to the name
+     *
+     * @param leaderName leader card's name as a String
+     * @param leaders list of leader cards
+     * @return the leader card related to the name
+     */
     private LeaderCard getLeader(String leaderName, ArrayList<LeaderCard> leaders) {
         for (LeaderCard l : leaders) {
             if (l.getName().equals(leaderName))
@@ -384,6 +459,12 @@ public class Room {
         return null;
     }
 
+    /**
+     * This method removes the card choosen in the draft and shift the list of cards to send it to the right player
+     *
+     * @param listsForDraft list of Leader cards' lists
+     * @return the list for the draft shifted
+     */
     private ArrayList<ArrayList<LeaderCard>> shiftLeaderList(ArrayList<ArrayList<LeaderCard>> listsForDraft) {
         ArrayList<LeaderCard> firstList = listsForDraft.get(0);
         listsForDraft.remove(0);
@@ -391,6 +472,11 @@ public class Room {
         return listsForDraft;
     }
 
+    //todo c'è una riga di shuffle commentata
+    /**
+     * This method create the list of lists for the leaders drafting
+     * @return the list for the draft
+     */
     private ArrayList<ArrayList<LeaderCard>> getListOfLeader() {
         int numberOfCard = Constants.LEADER_CARD_NUMBER_PER_PLAYER;
         ArrayList<ArrayList<LeaderCard>> listsForDraft = new ArrayList<>();
@@ -404,6 +490,11 @@ public class Room {
     }
 
 
+    /**
+     * This method fills an array with the colours of the players
+     *
+     * @return the array of colors
+     */
     private String[] fillColors() {
         String[] colors = new String[4];
         colors[0] = Constants.GREEN;
@@ -414,6 +505,12 @@ public class Room {
         return colors;
     }
 
+    /**
+     * This method shuffles the development's card deck
+     *
+     * @param deck development's card deck reference
+     * @return the deck shuffled
+     */
     private DevelopmentCard[][][] shuffleDeck(DevelopmentCard[][][] deck) {
         Random rnd = ThreadLocalRandom.current();
         for (int j = 0; j < Constants.CARD_TYPE_NUMBER; j++) {
@@ -429,37 +526,41 @@ public class Room {
         return deck;
     }
 
+    /**
+     * Get the server reference
+     *
+     * @return server reference
+     */
     public Server getServer() {
         return server;
     }
 
+    /**
+     * Check the variable that says if the match is started
+     *
+     * @return the boolean that says if the match is started
+     */
     public boolean isMatchStarted() {
         return matchStarted;
     }
 
-    public void broadcastMessage(String afterGame) {
-        for (PlayerHandler player : getListOfPlayers()) {
-            if (player.isOn())
-                player.sendString(afterGame);
-        }
-    }
-
+    /**
+     * This method takes the history of a specific player from the json file that contains it
+     *
+     * @param nickname player's nickname as a string
+     * @return the object containing the statistics about the player
+     */
     public String takeStatistics(String nickname) {
         String currentFile;
         Gson gson = new Gson();
 
         try {
             currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
-
-            System.out.println("Il file in questo momento è: " + currentFile);
-            System.out.println();
-
-            PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
+            PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class);
 
             for (PlayerFile player : arrayPlayers)
                 if (player.getPlayerName().equals(nickname)) {
-                    String playerStat = gson.toJson(player);
-                    return playerStat;
+                    return gson.toJson(player);
                 }
 
         } catch (IOException e) {
@@ -469,32 +570,59 @@ public class Room {
         return null;
     }
 
+    /**
+     * This method reads all the bytes of a file
+     *
+     * @param path file path as a String
+     * @param encoding Constant definitions for the standard
+     * @return
+     * @throws IOException
+     */
     private String readFile(String path, Charset encoding)
             throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
 
+    /**
+     * Get the last player that has played reference
+     *
+     * @return the last player that has played reference
+     */
     public PlayerHandler getLastPlayer() {
         return lastPlayer;
     }
 
+    /**
+     * Set the last player that has played reference
+     *
+     * @return the last player that has played reference
+     */
     public void setLastPlayer(PlayerHandler lastPlayer) {
         this.lastPlayer = lastPlayer;
     }
 
+    /**
+     * Set the variable board in the room
+     *
+     * @param board board's reference
+     */
     public void setBoard(Board board) {
         this.board = board;
     }
 
-    public Map<Player, AllSupportFunctions> getPlayerAllSupportFunctionsMap() {
+    /**
+     * This method get the maoo of player as key and support function as value
+     *
+     * @return the map's reference
+     */
+    Map<Player, AllSupportFunctions> getPlayerAllSupportFunctionsMap() {
         return playerAllSupportFunctionsMap;
     }
 
-    public void setPlayerAllSupportFunctionsMap(Map<Player, AllSupportFunctions> playerAllSupportFunctionsMap) {
-        this.playerAllSupportFunctionsMap = playerAllSupportFunctionsMap;
-    }
-
+    /**
+     * This method call on each player on the method after match
+     */
     public void afterGame() {
         for (PlayerHandler player : getListOfPlayers()) {
             if (player.isOn())
@@ -502,19 +630,39 @@ public class Room {
         }
     }
 
-    public void addWinnersToTheFile(String name) {
+    /**
+     * This method call on the server the method "addWinnersToTheFile"
+     *
+     * @param name winner's name as a string
+     */
+    void addWinnersToTheFile(String name) {
         server.addWinnersToTheFile(name);
     }
 
+    /**
+     * This method call on the server the method "generateRanking"
+     *
+     * @return the ranking as a list of PlayerFile object
+     */
     public List<PlayerFile> generateRanking() {
         return getServer().generateRanking();
     }
 
-    public Timer getTimer() {
+    /**
+     * Get the timer reference
+     *
+     * @return timer reference
+     */
+    Timer getTimer() {
         return timer;
     }
 
-    public void setTimer(Timer timer) {
+    /**
+     * Set the timer variable
+     *
+     * @param timer Timer variable
+     */
+    void setTimer(Timer timer) {
         this.timer = timer;
     }
 }

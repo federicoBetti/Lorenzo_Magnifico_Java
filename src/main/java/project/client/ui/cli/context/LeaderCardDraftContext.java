@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 28/06/17.
+ * This class is a context opened during the leader cards' draft
  */
 public class LeaderCardDraftContext extends AbstractContext {
     List<LeaderCard> leaders;
@@ -19,6 +19,9 @@ public class LeaderCardDraftContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pBlue.println("Choose a leader card for the draft!");
@@ -31,6 +34,12 @@ public class LeaderCardDraftContext extends AbstractContext {
         }
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
         boolean cardExist = false;
@@ -45,6 +54,13 @@ public class LeaderCardDraftContext extends AbstractContext {
             throw new InputException();
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     protected void mainContextMethod(String action) throws InputException, IOException {
 

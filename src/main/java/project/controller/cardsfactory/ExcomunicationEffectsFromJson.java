@@ -6,15 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by raffaelebongo on 17/06/17.
+ * This class represents the excommunication effect loaded from Json
  */
 class ExcomunicationEffectsFromJson {
     private List<TrisIE> tris;
 
-    public ExcomunicationEffectsFromJson(){
-        this.tris = new ArrayList<>();
-    }
 
+    /**
+     * Get Tris
+     *
+     * @return tris
+     */
     public List<TrisIE> getTris() {
         return tris;
     }

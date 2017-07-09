@@ -1,7 +1,7 @@
 package project.configurations;
 
 /**
- * Created by raffaelebongo on 19/06/17.
+ * This class is used for storing all timers' names and delay
  */
 public class TimerSettings {
 
@@ -12,42 +12,56 @@ public class TimerSettings {
     private String delayTimerPrayingName;
     private int delayTimerPraying;
 
+    /**
+     * Get the start match timer's name
+     *
+     * @return timer's name
+     */
     public String getStartMatchTimerName() {
         return startMatchTimerName;
     }
 
-    public void setStartMatchTimerName(String startMatchTimerName) {
-        this.startMatchTimerName = startMatchTimerName;
-    }
-
+    /**
+     * Get the start match timer's delay
+     *
+     * @return timer's delay
+     */
     public int getDelayTimerStartMatch() {
         return delayTimerStartMatch;
     }
 
-    public void setDelayTimerStartMatch(int delayTimerStartMatch) {
-        this.delayTimerStartMatch = delayTimerStartMatch;
-    }
-
+    /**
+     * Get the skip turn timer's name
+     *
+     * @return timer's name
+     */
     public String getSkipTurnTimerName() {
         return skipTurnTimerName;
     }
 
-    public void setSkipTurnTimerName(String skipTurnTimerName) {
-        this.skipTurnTimerName = skipTurnTimerName;
-    }
-
+    /**
+     * Get the skip turn timer's delay
+     *
+     * @return timer's delay
+     */
     public int getDelayTimerSkipTurn() {
         return delayTimerSkipTurn;
     }
 
-    public void setDelayTimerSkipTurn(int delayTimerSkipTurn) {
-        this.delayTimerSkipTurn = delayTimerSkipTurn;
-    }
-
+    /**
+     * Get the praying timer's delay
+     *
+     * @return timer's delay
+     */
     public long getDelayTimerPraying() {
         return delayTimerPraying;
     }
 
+    /**
+     * Get the praying timer's name
+     *
+     * @return timer's name
+     */
     public String getDelayTimerPrayingName() {
         return delayTimerPrayingName;
     }

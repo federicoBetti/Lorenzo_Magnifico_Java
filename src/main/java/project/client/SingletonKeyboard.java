@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by raffaelebongo on 20/06/17.
+ * Singleton Keyboard class
  */
 public class SingletonKeyboard {
 
@@ -14,10 +14,21 @@ public class SingletonKeyboard {
 
     private SingletonKeyboard(){}
 
+    /**
+     * Get a keyboard's instance
+     *
+     * @return the keyboard's instance
+     */
     public static SingletonKeyboard getInstance(){
         return singletonKeyboard;
     }
 
+    /**
+     * Read a line from keyboard
+     *
+     * @return the line read
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
      public static String readLine() throws IOException {
         return reader.readLine();
     }

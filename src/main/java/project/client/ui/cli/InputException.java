@@ -1,7 +1,7 @@
 package project.client.ui.cli;
 
 /**
- * Created by raffaelebongo on 07/06/17.
+ * This class define the input exception. This exception is thrown when a invalid input is given with the Cli as ui
  */
 public class InputException extends Exception {
 

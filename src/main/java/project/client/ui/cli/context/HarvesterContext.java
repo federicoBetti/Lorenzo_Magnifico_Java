@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 05/06/17.
+ * This class is a context openend when the player wants to perform an harvester action
  */
 public class HarvesterContext extends AbstractContext {
     List<Harvester> harvesterZone;
@@ -34,6 +34,9 @@ public class HarvesterContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints all the player's territory cards
+     */
     private void showTerritories() {
 
             int count1 = 1;
@@ -51,6 +54,9 @@ public class HarvesterContext extends AbstractContext {
             }
     }
 
+    /**
+     * This method prints the player's bonus tile effects
+     */
     private void showBonusTile() {
         pBlue.print(bonusTile.getTileNumber() + ") ");pRed.println("Production effects: ");
 
@@ -67,6 +73,9 @@ public class HarvesterContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method prints the familiar already placed in the harvester zone
+     */
     private void showHarvesterZone() {
         int i = 1;
         pRed.println("Harvester zone: ");
@@ -77,6 +86,10 @@ public class HarvesterContext extends AbstractContext {
         }
     }
 
+
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("The available actions are:");
@@ -93,6 +106,13 @@ public class HarvesterContext extends AbstractContext {
         pRed.print("Servants number: ");pYellow.println("any number");
     }
 
+
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
         String[] parameters = input.split("-");
@@ -107,6 +127,14 @@ public class HarvesterContext extends AbstractContext {
 
     }
 
+
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls chooseHarversterParameters
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         cli.chooseHarversterParameters(action);

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * 
+ * This class contains the specific territory Cards characteristics
  */
 public class TerritoryCard extends DevelopmentCard implements Serializable {
 
@@ -27,12 +27,21 @@ public class TerritoryCard extends DevelopmentCard implements Serializable {
         //for testing
     }
 
-
+    /**
+     * This method add the territory cards to the personal Board
+     *
+     * @param personalBoardReference personal board's reference
+     */
     @Override
     public void addToPersonalBoard(PersonalBoard personalBoardReference) {
         personalBoardReference.getTerritories().add(this);
     }
 
+    /**
+     * Get card cost
+     *
+     * @return cardCost
+     */
     @Override
     public TerritoryCost getCost() {
         return cardCost;

@@ -9,7 +9,7 @@ import project.messages.BonusInteraction;
 import java.io.Serializable;
 
 /**
- * 
+ * This class represents the excommunication's tile
  */
 public class ExcommunicationTile implements Serializable{
 
@@ -26,19 +26,30 @@ public class ExcommunicationTile implements Serializable{
         this.excommunicationEffect = buildExcommunicationEffects.searchEffectType(myEffect.getType(),myEffect.getParameter(),myEffect.getQuantity());
     }
 
-
+    /**
+     * This method perform the excommunication's effect
+     *
+     * @param player palyerHandler's reference
+     * @return bonusInteraction returned by the effect performed
+     */
     public BonusInteraction makeEffect(PlayerHandler player){
         return excommunicationEffect.doEffect(player);
     }
 
+    /**
+     * Get idCard
+     *
+     * @return idCard
+     */
     public int getIdCard() {
         return idCard;
     }
 
-    public Effects getExcommunicationEffect() {
-        return excommunicationEffect;
-    }
-
+    /**
+     * Get effect description
+     *
+     * @return effects description
+     */
     public String getEffectDescription() {
         return effectDescription;
     }

@@ -3,7 +3,7 @@ package project.controller.cardsfactory;
 import project.controller.effects.effectsfactory.TrisIE;
 
 /**
- * Created by raffaelebongo on 17/06/17.
+ * This class represents the 
  */
 public class TowerFromJson {
 

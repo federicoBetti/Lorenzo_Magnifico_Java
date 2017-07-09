@@ -15,7 +15,7 @@ import project.server.network.exception.CantDoActionException;
 import java.util.*;
 
 /**
- * main game actions
+ * This class performs all the main actions receiving the parameters from the network's package classes.
  */
 public class GameActions {
 
@@ -33,10 +33,22 @@ public class GameActions {
         timer = new Timer();
     }
 
-    private AllSupportFunctions getSupportFunctions(Player player) {
+    /**
+     * Get the support function object dedicated to a player
+     * @param player PlayerHandler reference
+     * @return supportFunction object dedicated to the player
+     */
+    private AllSupportFunctions getSupportFunctions(PlayerHandler player) {
         return room.getMySupportFunction(player);
     }
 
+    /**
+     * it takes the development card choosen by the player and performs all the immediate effects and sends the updates
+     * and call the "sendActionOk" method on the player.
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference that perform the action
+     */
     private void takeDevelopmentCard(Tower zone, PlayerHandler player) {
         DevelopmentCard card = zone.getCardOnThisFloor();
 
@@ -48,7 +60,6 @@ public class GameActions {
 
 
         player.sendActionOk();
-        System.out.println("MANDATA SEND ACTION OK");
         zone.setCardOnThisFloor(null);
 
         TowersUpdate towersUpdate = new TowersUpdate(board.getAllTowers(), player.getName());
@@ -57,9 +68,17 @@ public class GameActions {
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
         player.sendUpdates(new FamilyMemberUpdate(player, player.getName()));
         player.sendActionOk();
-        System.out.println("MANDATI TUTTTI GLI UPDATE");
     }
 
+    /**
+     * Make the payment for a no venture card choosen, whit supportFunction dedicated to the player, and call
+     * "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param familyM familiar to place in the tower
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     */
     public void takeNoVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -72,6 +91,15 @@ public class GameActions {
         takeDevelopmentCard(zone, player);
     }
 
+    /**
+     * Make the payment for a no venture card choosen whit a bonus actions, using the supportFunction dedicated to the player,
+     * and call "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     * @param diceFamiliarValue the bonus action's dice value
+     */
     public void takeNoVenturesCard(Tower zone, PlayerHandler player, boolean towerIsOccupied, int diceFamiliarValue) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -82,7 +110,15 @@ public class GameActions {
         takeDevelopmentCard(zone, player);
     }
 
-
+    /**
+     * Make the payment for a venture card choosen , using the supportFunction dedicated to the player,
+     * and call "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     * @param numberOfPayment the number of payment choosen
+     */
     public void takeVenturesCard(Tower zone, FamilyMember familyM, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -95,8 +131,16 @@ public class GameActions {
         takeDevelopmentCard(zone, player);
     }
 
-
-    //todo perchè ce ne sono due uguali? questo è solo per le bonus?
+    /**
+     * Make the payment for a venture card choosen whit a bonus action , using the supportFunction dedicated to the player,
+     * and call "takeDevelopmentCard"
+     *
+     * @param zone reference of the card's tower zone
+     * @param player PlayerHandler reference
+     * @param towerIsOccupied boolean that says if the tower is already occupied for performing the correct payment
+     * @param numberOfPayment the number of payment choosen
+     * @param diceFamiliarValue the bonus action's dice value
+     */
     public void takeVenturesCard(Tower zone, PlayerHandler player, boolean towerIsOccupied, int numberOfPayment, int diceFamiliarValue) {
         DevelopmentCard card = zone.getCardOnThisFloor();
         int diceCostValue = zone.getDiceValueOfThisFloor();
@@ -108,7 +152,10 @@ public class GameActions {
     }
 
     /**
-     * @param playerHandler
+     * This method find who is the next player that has to play in the match and call on his PlayerHandler reference
+     * the method "itsMyTurn"
+     *
+     * @param playerHandler current playerhandler reference
      */
     public void nextTurn(PlayerHandler playerHandler) {
         System.out.println("Sono in next Turn");
@@ -248,16 +295,10 @@ public class GameActions {
 
 
 
-    private boolean allAreOff() {
-        for (PlayerHandler player : board.getTurn().getPlayerTurn()) {
-            if (player.isOn()) {
-                System.out.println("player on per stoppare: " + player.isOn());
-                return false;
-            }
-        }
-        return true;
-    }
-
+    /**
+     * This method finds the first player on in the turn
+     * @return the player's index in the turn's list, or "-1" if the match is finished
+     */
     int firstPlayerTurn() {
         for(int i = 0; i < board.getTurn().getPlayerTurn().size(); i++){
             PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(i);
@@ -282,26 +323,28 @@ public class GameActions {
         return -1;
     }
 
+    /**
+     * Method called when the turn time is up for all the players or there is al least one client still connected
+     * but in the disconnection context for the timer expiration. It call "afterGameIftemporarilyOff" that
+     * comunicate to these clients that the match is finished and send them in the "After game context".
+     */
+    //todo in RMI e GUI
     private void closeClientForGeneralDisconnection() {
         for ( PlayerHandler player : room.getListOfPlayers())
             player.afterGameIftemporarilyOff();
     }
 
-
-    //todo can we delete it?
-    private boolean allFamiliarPlayed() {
-        for (PlayerHandler player : room.getListOfPlayers()) {
-            for (FamilyMember familyMember : player.getAllFamilyMembers()) {
-                if (!familyMember.isPlayed()) return false;
-            }
-        }
-        return true;
-    }
-
+    /**
+     * it set the board in the local variable
+     * @param board board reference
+     */
     public void setBoard(Board board) {
         this.board = board;
     }
 
+    /**
+     * Comparator for military points
+     */
     class MilitaryComparator implements Comparator<PlayerHandler> {
 
         @Override
@@ -312,6 +355,9 @@ public class GameActions {
         }
     }
 
+    /**
+     * Comparator for victory points
+     */
     class WinnerComparator implements Comparator<PlayerHandler> {
         @Override
         public int compare(PlayerHandler o1, PlayerHandler o2) {
@@ -324,10 +370,19 @@ public class GameActions {
 
     }
 
+    /**
+     * Get the player's military points reference
+     * @param playerHandler playerhandler reference
+     * @return military points reference
+     */
     private int getMilitaryPoints(PlayerHandler playerHandler) {
         return playerHandler.getScore().getMilitaryPoints();
     }
 
+    /**
+     * Method that assign to all players their victory points, finds the winner and comunicates to him the victory.
+     * Finally send the players in the after game context and delete the last room.
+     */
     private void endMatch() {
         MilitaryComparator comparator = new MilitaryComparator();
         List<PlayerHandler> militaryStandings = room.getListOfPlayers();
@@ -378,16 +433,29 @@ public class GameActions {
 
     }
 
+    /**
+     * Communicate the victory to the winner
+     * @param winner winner playerhandler's reference
+     */
     private void winnerComunication(PlayerHandler winner ) {
         for ( PlayerHandler player : room.getListOfPlayers() )
             player.winnerComunication("The winner is " + winner.getName());
     }
 
+    /**
+     * Call after game method on the room's reference
+     */
     private void afterGame() {
         room.afterGame();
     }
 
 
+    /**
+     * Perform the last prayer: the players that haven't enough faith points take automatically the excommunication, to
+     * the others is given the possibility to pray
+     *
+     * @param playerHandler playerHandler's reference
+     */
     private void finalPray(PlayerHandler playerHandler) {
         if (playerHandler.getScore().getFaithPoints() >= board.getFaithPointsRequiredEveryPeriod()[board.getPeriod()])
             pray(playerHandler);
@@ -396,6 +464,12 @@ public class GameActions {
         }
     }
 
+    /**
+     * This method counts the victory points earned from the resources remained at the end of the match
+     *
+     * @param playerHandler playerhandler's reference
+     * @return victory points earned
+     */
     private int pointsFromResources(PlayerHandler playerHandler) {
         int numberOfResources;
         numberOfResources = playerHandler.getPersonalBoardReference().getCoins();
@@ -405,6 +479,13 @@ public class GameActions {
         return (numberOfResources / 5);
     }
 
+    /**
+     * This method counts the victory poits earned thanks to the Territory, Character and Venture cards obtained
+     * during the match
+     *
+     * @param playerHandler playerHandler's reference
+     * @return points to add
+     */
     private int getExtraFinalPoints(PlayerHandler playerHandler) {
         int pointsToAdd = 0;
 
@@ -416,6 +497,11 @@ public class GameActions {
         return pointsToAdd;
     }
 
+    /**
+     * This method finds the match winner
+     *
+     * @return Winner playerhandler's reference
+     */
     private PlayerHandler findWinner() {
         WinnerComparator comparator = new WinnerComparator();
         List<PlayerHandler> finalStandings = room.getListOfPlayers();
@@ -425,6 +511,9 @@ public class GameActions {
 
     }
 
+    /**
+     * This method change the player turn's order according to the council zone familiar
+     */
     private void changePlayerOrder() {
         List<PlayerHandler> newTurnOrder = new ArrayList<>();
         List<Council> councilZone = board.getCouncilZone();
@@ -445,19 +534,34 @@ public class GameActions {
     }
 
 
+    /**
+     * Call nextPeriod on the board
+     */
     private void nextPeriod() {
         board.nextPeriod();
     }
 
+    /**
+     * Call nextRound on the board
+     */
     private void nextRound() {
         board.nextRound();
     }
 
+    /**
+     * call the endRound method and askForPraying
+     *
+     * @param period current period of game
+     */
     private void endPeriod(int period) {
         endRound();
         askForPraying(period);
     }
 
+    /**
+     * Clean the towers and fill them with the right cards, give the right order to the turn's list, call clean Leader
+     * cards and roll the dices.
+     */
     private void endRound() {
 
         refactorTowers();
@@ -468,7 +572,9 @@ public class GameActions {
 
     }
 
-
+    /**
+     * set "isPlayed" in the leader cards to false
+     */
     private void clearLeaderCardUsed() {
         for (PlayerHandler p : room.getListOfPlayers()) {
             for (LeaderCard l : p.getPersonalBoardReference().getMyLeaderCard())
@@ -476,6 +582,9 @@ public class GameActions {
         }
     }
 
+    /**
+     * Clean all the positions for start correctly a new round
+     */
     private void clearAllPosition() {
         List<Harvester> harvesterZone = board.getHarvesterZone();
         List<Production> productionZone = board.getProductionZone();
@@ -502,12 +611,17 @@ public class GameActions {
             clearSinglePosition(council);
         councilZone = new ArrayList<>();
         board.setCouncilZone(councilZone);
-        broadcastUpdates(new CouncilUpdate((ArrayList<Council>) board.getCouncilZone(), ""));
+        broadcastUpdates(new CouncilUpdate( board.getCouncilZone(), ""));
 
         for (PlayerHandler p : room.getListOfPlayers())
             p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
     }
 
+    /**
+     * Clear a single position
+     *
+     * @param position position reference to clean
+     */
     private void clearSinglePosition(Position position) {
         position.setOccupied(false);
         if (position.getFamiliarOnThisPosition() != null) {
@@ -516,6 +630,10 @@ public class GameActions {
         }
     }
 
+    /**
+     * Put new cards in the towers
+     */
+    // todo controllare perchè c'erano commenti dentro
     private void refactorTowers() {
         System.out.println("sto per rimettere a posto tutto le carte");
         int j;
@@ -530,7 +648,6 @@ public class GameActions {
 
         else currentPeriod++;
 
-        //si potrebbe fare con iteratore..
         for (i = 0; i < Constants.NUMBER_OF_TOWERS; i++) {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 //ho fatto il ciclo passando per tutte le torri dal basso all'alto
@@ -546,6 +663,11 @@ public class GameActions {
 
     }
 
+    /**
+     * Send the praying request to the players that have enough faith points for praying
+     *
+     * @param period period of game
+     */
     private void askForPraying(int period) {
         int faithPointsNeeded = board.getFaithPointsRequiredEveryPeriod()[period];
         List<PlayerHandler> turn = room.getBoard().getTurn().getPlayerTurn();
@@ -569,6 +691,12 @@ public class GameActions {
     }
 
 
+    /**
+     * Count and add the right number of victory points according to the numeber of faith points owned.
+     *
+     * @param player palyerHandler's reference
+     */
+
     private void faithPointsForVictoryPoints(PlayerHandler player) {
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + player.getScore().getFaithPoints());
         player.getScore().setFaithPoints(0);
@@ -580,10 +708,11 @@ public class GameActions {
     /**
      * methods that perform harvester action
      *
-     * @param position
-     * @param familyM
-     * @param servantsNumber
-     * @param player
+     * @param position position in the harvester zone
+     * @param familyM familiar played for the harvester
+     * @param servantsNumber servants number used for the action
+     * @param player playerHandler's reference
+     *
      */
     public void harvester(int position, FamilyMember familyM, int servantsNumber, PlayerHandler player) {
         int malusByField;
@@ -608,6 +737,13 @@ public class GameActions {
     }
 
 
+    /**
+     * This method perform a bonus harvester action.
+     *
+     * @param harvesterValue starting dice value of the action
+     * @param intServantsNumber number of servants used by the player for the action
+     * @param player playerHandler's reference
+     */
     public void harvesterBonus(int harvesterValue, int intServantsNumber, PlayerHandler player) {
         int servantsUsed = getSupportFunctions(player).payServants(intServantsNumber, 0);
         player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
@@ -627,14 +763,15 @@ public class GameActions {
 
 
     /**
-     * @param position
-     * @param familyM
-     * @param cardToProduct
-     * @param servantsToPay
-     * @param choichePE
-     * @param player
+     * Perform a production action.
+     *
+     * @param familyM familiar used for the action
+     * @param cardToProduct list of building cards on which perform the production
+     * @param servantsToPay list of building cards on which perform the production
+     * @param choichePE boolean that says if the building card has two permanent effects alternatively
+     * @param player playerHandler's reference
      */
-    public void production(int position, FamilyMember familyM, List<BuildingCard> cardToProduct, int servantsToPay, List<Integer> choichePE, PlayerHandler player) {
+    public void production( FamilyMember familyM, List<BuildingCard> cardToProduct, int servantsToPay, List<Integer> choichePE, PlayerHandler player) {
         List<Production> productionSpace = board.getProductionZone();
         Production productionZone = new Production();
 
@@ -648,6 +785,14 @@ public class GameActions {
     }
 
 
+    /**
+     * This method perform a bonus production action.
+     *
+     * @param cards list of building cards on which perform the production
+     * @param servantsToPay list of building cards on which perform the production
+     * @param choichePE boolean that says if the building card has two permanent effects alternatively
+     * @param player playerHandler's reference
+     */
     public void productionBonus(List<BuildingCard> cards, int servantsToPay, List<Integer> choichePE, PlayerHandler player) {
 
         int servantsUsed = getSupportFunctions(player).payServants(servantsToPay, 0);
@@ -670,9 +815,10 @@ public class GameActions {
 
 
     /**
-     * @param position
-     * @param familyM
-     * @return
+     * This method place a familiar in a market position and perform the corresponding method
+     *
+     * @param position position in the market on which places the familiar
+     * @param familyM familiar used for performing the action
      */
     public void goToMarket(int position, FamilyMember familyM, PlayerHandler player) {
         Position marketPosition = board.getMarketZone()[position];
@@ -700,10 +846,12 @@ public class GameActions {
 
 
     /**
-     * @param leaderName
-     * @param player
+     * Play a leader card and perform his effect.
+     *
+     * @param leaderName leader card name
+     * @param player playerhandler's reference
      */
-    //todo modify
+
     public void playLeaderCard(String leaderName, PlayerHandler player) throws CantDoActionException {
         LeaderCard leaderToPlay = null;
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
@@ -727,8 +875,9 @@ public class GameActions {
     }
 
     /**
-     * @param leaderName
-     * @return
+     * Discard a leader card and take a bonus privilege.
+     *
+     * @param leaderName leader card name to discard
      */
     public void discardLeaderCard(String leaderName, PlayerHandler player) {
         int numberToDelate = 0;
@@ -745,7 +894,7 @@ public class GameActions {
     }
 
     /**
-     * @return
+     * Roll dices.
      */
     public void rollDice() {
         int[] newDiceValue = new int[3];
@@ -765,9 +914,12 @@ public class GameActions {
     }
 
     /**
-     * @param privilegeNumber
-     * @param familyMember
-     * @param player          @return
+     * This method place a familiar in the council palace and perform the effect corresponding with the provilege number
+     * choosen.
+     *
+     * @param privilegeNumber privilege number choosen
+     * @param familyMember familiar that the client wants to place
+     * @param player palyerHandler's reference
      */
     public void goToCouncilPalace(int privilegeNumber, FamilyMember familyMember, PlayerHandler player) {
         List<Council> councilZone = board.getCouncilZone();
@@ -791,8 +943,10 @@ public class GameActions {
     }
 
     /**
-     * @param privilegeNumber
-     * @param player
+     * Perform the effect corresponding to the privilege number choosen by the client
+     *
+     * @param privilegeNumber privilege number choosen
+     * @param player palyerHandler's reference
      */
     public void takeCouncilPrivilege(int privilegeNumber, PlayerHandler player) {
         CouncilPrivilege privilege = board.getCouncilPrivileges()[privilegeNumber];
@@ -807,6 +961,12 @@ public class GameActions {
         }
     }
 
+    /**
+     * This method adds the correct amount of victory points according to the amount of faith point owned in
+     * the moment of the prayer.
+     *
+     * @param player playerHandler's reference
+     */
     public void pray(PlayerHandler player) {
         int victoryPointsToAdd = board.getVictoryPointsInFaithTrack()[player.getScore().getFaithPoints()];
 
@@ -814,6 +974,11 @@ public class GameActions {
         player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 
+    /**
+     * this method perform the malus due to the excommunication effect.
+     *
+     * @param player playerHandler's reference
+     */
     public void takeExcommunication(PlayerHandler player) {
         int period = board.getPeriod();
         ExcommunicationTile exTile = board.getExcommunicationZone()[period].getCardForThisPeriod();
@@ -824,7 +989,11 @@ public class GameActions {
 
     }
 
-
+    /**
+     * This method sends an update in broadcast to all players in the match
+     *
+     * @param updates update's reference
+     */
     private void broadcastUpdates(Updates updates) {
         for (PlayerHandler player : room.getListOfPlayers()) {
             player.sendUpdates(updates);
@@ -832,18 +1001,23 @@ public class GameActions {
     }
 
 
+    /**
+     * This method perform the building card' permanent effects during the production action
+     *
+     * @param player playerHandler's reference
+     * @param card building card's reference
+     * @param choichePE boolean that says is there are two effects that could be activated alternatively
+     */
     private void makePermanentEffectsProduction(PlayerHandler player, BuildingCard card, List<Integer> choichePE) {
         if (card.isChoicePe()) {
             int choice = choichePE.get(0);
             if (choice == -1)
                 return;
+
             Effects e = card.getPermanentCardEffects().get(choice);
             BonusInteraction returnFromEffect = e.doEffect(player);
-            System.out.println("HO FATTO");
             if (returnFromEffect instanceof TakePrivilegesAction) {
-                System.out.println("if TakePrivilege");
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
-                System.out.println("stampo la return from effect: " + returnFromEffect);
             }
 
             choichePE.remove(0);
@@ -864,15 +1038,26 @@ public class GameActions {
 
     }
 
+    /**
+     * This method perform the territory card's permanent effect during the harvester action
+     *
+     * @param player playerHandler's reference
+     * @param card card's reference
+     */
     private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {
 
         for (Effects effect : card.getPermanentCardEffects()) {
             effect.doEffect(player);
-            System.out.println(" effetto permanente stampato " + effect.getClass());
         }
     }
 
-    Timer myTimerSkipTurn(PlayerHandler player) {
+    /**
+     * Timer that scan the turns
+     *
+     * @param player playerHandler's reference
+     * @return timer's reference
+     */
+    private Timer myTimerSkipTurn(PlayerHandler player) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -880,15 +1065,6 @@ public class GameActions {
 
                 player.setOn(false);
                 player.timerTurnDelayed();
-                System.out.println("TIMER TURNO");
-
-                //todo aggiunto questo perchè ho letto nei requirements che bisogna fare una cosa del genere
-               /* for ( PlayerHandler playerToInform : playersInTheMatch ){
-                    if ( playerToInform == player )
-                        player.setOn(false);
-                    else
-                        playerToInform.sendNotification(notify);
-                }   */
 
                 nextTurn(player);
             }
@@ -899,6 +1075,12 @@ public class GameActions {
         return timer;
     }
 
+    /**
+     * Timer that scan actions that does not entail that the turn is skipped on
+     *
+     * @param player
+     * @return
+     */
     Timer myTimerActions(PlayerHandler player) {
         TimerTask timerTask = new TimerTask() {
             @Override

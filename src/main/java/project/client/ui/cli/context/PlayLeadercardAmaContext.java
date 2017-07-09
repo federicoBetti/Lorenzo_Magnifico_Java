@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 16/06/17.
+ * This class is a context opened when the player wants to play a leader card
  */
 public class PlayLeadercardAmaContext extends AbstractContext {
     List<LeaderCard> leaderCards;
@@ -25,7 +25,9 @@ public class PlayLeadercardAmaContext extends AbstractContext {
         printHelp();
     }
 
-    //todo
+    /**
+     * This method prints the player's leader cards
+     */
     private void showLeaderCards() {
         for ( LeaderCard leaderCard : leaderCards ) {
             pRed.println(leaderCard.getName());
@@ -35,6 +37,9 @@ public class PlayLeadercardAmaContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("the available actions are:");
@@ -45,11 +50,24 @@ public class PlayLeadercardAmaContext extends AbstractContext {
 
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
 
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls chooseLeaderCardToPlay
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         cli.chooseLeaderCardToPlay(action);

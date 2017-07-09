@@ -32,10 +32,8 @@ public abstract class Updates extends BonusInteraction implements Serializable{
         return null;
     }
     public abstract String toScreen();
-    public void stamp(){
-    }
 
-    public String getNicknameCurrentPlayer() {
+    String getNicknameCurrentPlayer() {
         return nicknameCurrentPlayer;
     }
 }

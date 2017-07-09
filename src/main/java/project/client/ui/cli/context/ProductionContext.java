@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 05/06/17.
+ * This class is a context opened when the player wants to perform a production
  */
 public class ProductionContext extends AbstractContext {
     List<Production> productionZone;
@@ -33,6 +33,9 @@ public class ProductionContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method prints the player's building cards
+     */
     private void showBuildingCards() {
         int count1 = 1;
         for (BuildingCard card : buildings) {
@@ -49,6 +52,9 @@ public class ProductionContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method prints the player's bonus tile effects
+     */
     private void showBonusTile() {
         pBlue.print(bonusTile.getTileNumber() + ") ");pRed.println("Production effects: ");
 
@@ -65,6 +71,9 @@ public class ProductionContext extends AbstractContext {
         }
     }
 
+    /**
+     * This method prints the familiars already placed in the production zone
+     */
     private void showProductionZone() {
         int i = 1;
         pRed.println("Production zone: ");
@@ -79,8 +88,9 @@ public class ProductionContext extends AbstractContext {
         }
     }
 
-
-
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
        pRed.println("The available actions are:");
@@ -98,6 +108,12 @@ public class ProductionContext extends AbstractContext {
         pYellow.println("");
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
         boolean cardAvailable = false;
@@ -121,6 +137,13 @@ public class ProductionContext extends AbstractContext {
         }
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls chooseProductionParameters
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         cli.chooseProductionParameters(action);

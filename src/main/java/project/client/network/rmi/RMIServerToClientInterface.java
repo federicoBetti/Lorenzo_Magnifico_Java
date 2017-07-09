@@ -13,64 +13,133 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * questi sono i metodi che il server puo chiamare sul client,
- * spesso di risposta a qualche chiamata del client precedente. devono essere implementati per forza dall'RMIClient
+ * This class contains all the methods that the RMIServer can call on the RMIClient
  */
 public interface RMIServerToClientInterface extends Remote, Serializable{
 
+    /**
+     * Abstract takeAnotherCard
+     */
     void takeAnotherCard(BonusInteraction towerAction) throws RemoteException;
 
-    void notify (Notify notify) throws RemoteException;
-
-    void endTurn() throws RemoteException;
-
+    /**
+     * Abstract takePrivilege
+     */
     void takePrivilege(BonusInteraction takePrivilegesAction) throws RemoteException;
 
+    /**
+     * Abstract askForPraying
+     */
     int askForPraying() throws RemoteException;
 
+    /**
+     * Abstract ok
+     */
     void ok(BonusInteraction bonusInteraction) throws RemoteException;
 
+    /**
+     * Abstract cantDoAction
+     */
     void cantDoAction() throws RemoteException;
 
+    /**
+     * Abstract canUseBothPaymentMethod
+     */
     int canUseBothPaymentMethod() throws RemoteException;
 
+    /**
+     * Abstract itMyTurn
+     */
     void itMyTurn() throws RemoteException;
 
-    void sendNotification(Notify notifications)throws RemoteException;
-
+    /**
+     * Abstract sendUpdates
+     */
     void sendUpdates(Updates updates)throws RemoteException;
 
+    /**
+     * Abstract bonusTowerAction
+     */
     void bonusTowerAction(TowerAction returnFromEffect)throws RemoteException;
 
+    /**
+     * Abstract sendBonusProdHarv
+     */
     void sendBonusProdHarv(BonusProductionOrHarvesterAction returnFromEffect)throws RemoteException;
 
+    /**
+     * Abstract sendRequestForPrivileges
+     */
     void sendRequestForPrivileges(TakePrivilegesAction returnFromEffect)throws RemoteException;
 
+    /**
+     * Abstract actionOk
+     */
     void actionOk() throws  RemoteException;
 
+    /**
+     * Abstract doProductionHarvester
+     */
     void doProductionHarvester(BonusInteraction bonusInteraction) throws RemoteException;
 
+    /**
+     * Abstract loginSucceded
+     */
     void loginSucceded() throws RemoteException;
 
+    /**
+     * Abstract leaderCardChosen
+     */
     String leaderCardChosen(List<LeaderCard> leaders) throws RemoteException;
 
+    /**
+     * Abstract matchStarted
+     */
     void matchStarted(int roomPlayers, String familyColour) throws RemoteException;
 
+    /**
+     * Abstract timerTurnDelayed
+     */
     void timerTurnDelayed() throws RemoteException;
 
+    /**
+     * Abstract tileChoosen
+     */
     int tileChoosen(ArrayList<Tile> tiles) throws RemoteException;
 
+    /**
+     * Abstract nicknameAlreadyUsed
+     */
     void nicknameAlreadyUsed() throws RemoteException;
 
+    /**
+     * Abstract waitForYourTurn
+     */
     void waitForYourTurn() throws RemoteException;
 
+    /**
+     * Abstract prayed
+     */
     void prayed() throws RemoteException;
 
+    /**
+     * Abstract sendChoicePE
+     */
     int sendChoicePE() throws RemoteException;
 
+    /**
+     * Abstract sendStatistics
+     */
     void sendStatistics(PlayerFile playerFile) throws RemoteException;
 
+    /**
+     * Abstract sendRanking
+     */
     void sendRanking(List<PlayerFile> ranking) throws RemoteException;
 
+    /**
+     * Abstract afterMatch
+     */
     void afterMatch() throws RemoteException;
 }
+

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by raffaelebongo on 05/06/17.
+ * This class is a context opened when the player's turn starts
  */
 public class MainContext extends AbstractContext {
 
@@ -33,34 +33,59 @@ public class MainContext extends AbstractContext {
         printHelp();
     }
 
+    /**
+     * This method calls showTurns on the cli
+     */
     private void showTurns() {
         cli.showTurns();
     }
 
+    /**
+     * This method calls marketContext on the cli
+     */
     private void marketContext() {
         cli.marketContext();
     }
 
+    /**
+     * This method calls dLeaderCard on the cli
+     */
     private void dLeaderCard() {
         cli.discardLeaderCardContext();
     }
 
+    /**
+     * This method calls leaderCard on the cli
+     */
     private void leaderCard() {
         cli.leaderCardContext();
     }
 
+    /**
+     * This method calls harvester on the cli
+     */
     private void harvester() {
         cli.harvester();
     }
 
+    /**
+     * This method calls production on the cli
+     */
     private void production() {
         cli.production();
     }
 
+    /**
+     * This method calls goToCouncil on the cli
+     */
     private void goToCouncil() {
         cli.goToCouncil();
     }
 
+
+    /**
+     * This method prints the help menu
+     */
     @Override
     public void printHelp() {
         pRed.println("You are in the main context! The available actions are:");
@@ -69,37 +94,67 @@ public class MainContext extends AbstractContext {
         pRed.println("Type a command");
     }
 
+    /**
+     * This method calls takeDevCard on the cli
+     */
     private void takeDevCard() {
         cli.takeDevCard();
     }
 
+    /**
+     * This method calls jumpTurn on the cli
+     */
     private void jumpTurn() {
         cli.skipTurn();
     }
 
-
+    /**
+     * This method calls showExcomunicationsTiles on the cli
+     */
     private void showExcomunicationsTiles() {
         cli.showExcomunicationsTiles();
     }
 
+    /**
+     * This methods prints the informations contained in the personal boards
+     */
     private void showPersonalBoard() {
         cli.showPersonalBoard();
         pYellow.print("Type ");pRed.print("[help] ");pYellow.println("for watch the list of commands available");
     }
 
+    /**
+     * This method calls showDicesValue on the cli
+     */
     private void showDicesValue() {
         cli.showDicesValue();
     }
 
+    /**
+     * This method calls showPoints on the cli
+     */
     private void showPoints() {
         cli.showPoints();
     }
 
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
     @Override
     public void checkValidInput(String input) throws InputException {
 
     }
 
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls printHelp
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     @Override
     public void mainContextMethod(String action) throws InputException, IOException {
         printHelp();
