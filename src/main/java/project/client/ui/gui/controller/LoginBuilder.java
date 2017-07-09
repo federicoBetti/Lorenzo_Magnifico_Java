@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import project.PlayerFile;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
 import project.model.Score;
@@ -189,7 +190,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         }
     }
 
-    private void initRootLayoutMainGame() {
+    void initRootLayoutMainGame() {
         try {
             // Configuration root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/mainGame/rootLayout.fxml"));
@@ -325,7 +326,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         }
     }
 
-    private void inizializzaEndGame() {
+    void inizializzaEndGame() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -396,6 +397,103 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             System.out.println("sono uscito dalla visione della carta");
             return;
         }
+    }
+
+
+    public void ringraziamenti() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/ringraziamenti.fxml"));
+            AnchorPane ringraziamenti = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ringraziamenti");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(ringraziamenti);
+            dialogStage.setScene(scene);
+
+            List<PlayerFile> playerFiles = mainController.getRanking();
+            // Set the person into the controller.
+            Greetings controller = loader.getController();
+            controller.updateText();
+            lastStageOpened = dialogStage;
+            dialogStage.showAndWait();
+            lastStageOpened = null;
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return;
+        }
+
+
+    }
+
+
+    public void showStandings() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
+            AnchorPane standings = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Standings");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(standings);
+            dialogStage.setScene(scene);
+
+            List<PlayerFile> playerFiles = mainController.getRanking();
+            // Set the person into the controller.
+            ChoiceController controller = loader.getController();
+            controller.setMainController(mainController);
+            controller.setLoginBuilder(this);
+            controller.setRankings(playerFiles);
+            controller.setLabel("STANDINGS");
+            controller.setChoice1("ok");
+            lastStageOpened = dialogStage;
+            dialogStage.showAndWait();
+            lastStageOpened = null;
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return;
+        }
+
+    }
+
+    public void showStatistics() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
+            AnchorPane statistics = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Statistics");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene scene = new Scene(statistics);
+            dialogStage.setScene(scene);
+
+            PlayerFile playerFile = mainController.getStatistics();
+            // Set the person into the controller.
+            ChoiceController controller = loader.getController();
+            controller.setMainController(mainController);
+            controller.setLoginBuilder(this);
+            controller.setStatistics(playerFile);
+            controller.setLabel("STATISTICS");
+            controller.setChoice1("ok");
+            lastStageOpened = dialogStage;
+            dialogStage.showAndWait();
+            lastStageOpened = null;
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("sono uscito dalla visione della carta");
+            return;
+        }
+
     }
 
     public void showChoice(String message, String choice1, String choice2) {
@@ -684,6 +782,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
     public Image getExcommunicationImage(int currentPeriod) {
         return generalMainGameController.getExcommunicationImage(currentPeriod);
     }
+
 }
 
 

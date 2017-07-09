@@ -1,6 +1,7 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
+import project.PlayerFile;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
@@ -49,6 +50,9 @@ public class MainController {
     private boolean draft = true;
     private boolean endTurnContext;
     private int currentPeriod = 0;
+    private PlayerFile statisticPlayer;
+    private List<PlayerFile> ranking;
+    private boolean winner;
 
 
     private MainController() {
@@ -862,5 +866,29 @@ public class MainController {
 
     public int getCurrentPeriod() {
         return currentPeriod;
+    }
+
+    public PlayerFile getStatistics() {
+        return statisticPlayer;
+    }
+
+    public void setStatistics(PlayerFile statistics) {
+        this.statisticPlayer = statistics;
+    }
+
+    public void setRanking(List<PlayerFile> ranking) {
+        this.ranking = ranking;
+    }
+
+    public void youWin() {
+        winner = true;
+    }
+
+    public List<PlayerFile> getRanking() {
+        return ranking;
+    }
+
+    public boolean isWin() {
+        return winner;
     }
 }

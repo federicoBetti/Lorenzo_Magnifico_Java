@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public class PlayerFile implements Serializable{
 
-    String playerName;
-    int numberOfVictories;
-    int numberOfDefeats;
-    int numberOfGames;
+    private String playerName;
+    private int numberOfVictories;
+    private int numberOfDefeats;
+    private int numberOfGames;
 
     public PlayerFile(){
         numberOfDefeats = 0;

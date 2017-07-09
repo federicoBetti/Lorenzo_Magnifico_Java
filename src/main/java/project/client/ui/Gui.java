@@ -212,11 +212,8 @@ public class Gui extends AbstractUI {
     @Override
     public void afterGame() {
         mainController.afterGame();
-    }
-
-    @Override
-    public void showStatistic() {
-
+        clientSetter.showStatistic();
+        clientSetter.showRanking();
     }
 
     @Override
@@ -225,22 +222,13 @@ public class Gui extends AbstractUI {
     }
 
     @Override
-    public void terminate() {
-
-    }
-
-    @Override
     public void receiveStatistics(PlayerFile statistics) {
-    }
-
-    @Override
-    public void showRanking() {
-
+        mainController.setStatistics(statistics);
     }
 
     @Override
     public void ranking(List<PlayerFile> ranking) {
-
+        mainController.setRanking(ranking);
     }
 
     @Override
@@ -250,7 +238,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void winnerComunication(String winner) {
-
+        mainController.youWin();
     }
 
     @Override

@@ -3,12 +3,10 @@ package project.model;
 import java.io.Serializable;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * class that contains the bonus for taking building card
  */
 public class BonusForTakingBuilding implements Serializable{
 
-
-    private  int casa;
     private int diceBonus;
     private int woodBonus;
     private int stoneBonus;

@@ -340,7 +340,7 @@ public class Room {
     }
 
     private void fillExcommunicationTile() {
-        ExcommunicationTile[][] deck = board.getDeckCard().getExcomunicationCard();
+        ExcommunicationTile[][] deck = board.getDeckCard().getExcommunicationCard();
         ExcommunicationZone[] zone = new ExcommunicationZone[Constants.PERIOD_NUMBER];
         Random r = new Random();
         int rand;
@@ -370,7 +370,7 @@ public class Room {
 
     private ArrayList<Tile> fillListTile() {
         ArrayList<Tile> tiles = new ArrayList<>(4);
-        for (Tile t : board.getDeckCard().getProdHaarvTiles())
+        for (Tile t : board.getDeckCard().getProdHarvTiles())
             tiles.add(t);
         Collections.shuffle(tiles);
         return tiles;
@@ -394,7 +394,7 @@ public class Room {
     private ArrayList<ArrayList<LeaderCard>> getListOfLeader() {
         int numberOfCard = Constants.LEADER_CARD_NUMBER_PER_PLAYER;
         ArrayList<ArrayList<LeaderCard>> listsForDraft = new ArrayList<>();
-        ArrayList<LeaderCard> leaders = board.getDeckCard().getLeaderCardeck();
+        ArrayList<LeaderCard> leaders = board.getDeckCard().getLeaderCardDeck();
         //Collections.shuffle(leaders);
         for (int i = 0; i < getRoomPlayers(); i++) {
             ArrayList<LeaderCard> ll = new ArrayList<>(leaders.subList(numberOfCard * i, numberOfCard * i + numberOfCard));

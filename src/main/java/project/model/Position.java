@@ -52,7 +52,4 @@ public abstract class Position implements Serializable{
         return ludovicoAriostoPosition;
     }
 
-    public void setLudovicoAriostoPosition(List<FamilyMember> ludovicoAriostoPosition) {
-        this.ludovicoAriostoPosition = ludovicoAriostoPosition;
-    }
 }

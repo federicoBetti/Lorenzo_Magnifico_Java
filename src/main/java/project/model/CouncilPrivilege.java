@@ -9,21 +9,13 @@ import project.controller.effects.realeffects.Effects;
  */
 public class CouncilPrivilege {
 
-    private int priviledgeNumber;
+    private int privilegeNumber;
     private Effects effect;
 
-    public CouncilPrivilege(TrisIE trisIE, int priviledgeNumber ){
-        this.priviledgeNumber = priviledgeNumber;
+    public CouncilPrivilege(TrisIE trisIE, int privilegeNumber){
+        this.privilegeNumber = privilegeNumber;
         BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();
         effect = buildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
-    }
-
-    public int getPriviledgeNumber() {
-        return priviledgeNumber;
-    }
-
-    public void setPriviledgeNumber(int priviledgeNumber) {
-        this.priviledgeNumber = priviledgeNumber;
     }
 
     public Effects getEffect() {

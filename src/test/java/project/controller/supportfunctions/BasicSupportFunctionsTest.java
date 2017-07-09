@@ -17,7 +17,7 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 /**
- * Created by raffaelebongo on 04/07/17.
+ * test
  */
 public class BasicSupportFunctionsTest {
     @Test
@@ -259,13 +259,13 @@ public class BasicSupportFunctionsTest {
         coinsFee = true;
 
         basicSupportFunctions.payVenturesCard(card, p, coinsFee,zoneDiceCost,valueOfFM, paymentChoosen);
-        assertEquals(-3, p.getPersonalBoardReference().getCoins());
+        assertEquals(0, p.getPersonalBoardReference().getCoins());
 
         paymentChoosen = 1;
 
         basicSupportFunctions.payVenturesCard(card,p,coinsFee, zoneDiceCost, valueOfFM, paymentChoosen);
         assertEquals(3, p.getScore().getMilitaryPoints());
-        assertEquals(-6, p.getPersonalBoardReference().getCoins());
+        assertEquals(0, p.getPersonalBoardReference().getCoins());
 
     }
 

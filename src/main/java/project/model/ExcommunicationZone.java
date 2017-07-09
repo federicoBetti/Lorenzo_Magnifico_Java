@@ -16,22 +16,16 @@ public class ExcommunicationZone extends Position implements Serializable {
      */
     private ExcommunicationTile cardForThisPeriod;
 
-    private ArrayList<Player> playersHaveTakenThisExcomunication;
     /**
      * Default constructor
      */
     public ExcommunicationZone(ExcommunicationTile excommunicationTile) {
         this.cardForThisPeriod = excommunicationTile;
-        playersHaveTakenThisExcomunication = new ArrayList<>();
     }
 
 
     public ExcommunicationTile getCardForThisPeriod() {
         return cardForThisPeriod;
-    }
-
-    public void addPlayer(Player player){
-        playersHaveTakenThisExcomunication.add(player);
     }
 
 

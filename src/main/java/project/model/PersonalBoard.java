@@ -41,9 +41,6 @@ public class PersonalBoard implements Serializable{
 
     private int servants;
 
-
-    private int endBonus;
-
     private List<LeaderCard> myLeaderCard;
 
     public PersonalBoard(){
@@ -164,14 +161,6 @@ public class PersonalBoard implements Serializable{
 		this.servants = servants;
 	}
 
-	public int getEndBonus() {
-		return endBonus;
-	}
-
-	public void setEndBonus(int endBonus) {
-		this.endBonus = endBonus;
-	}
-
 	public void setBuildings(List<BuildingCard> buildings) {
 		this.buildings = buildings;
 	}
@@ -180,6 +169,8 @@ public class PersonalBoard implements Serializable{
 		int coinsBonus = bonusOnActions.getCoinsBonus();
 		if (coinsToAdd < 0){
 			coins += coinsToAdd;
+			if (coins < 0)
+				coins = 0;
 			return;
 		}
 		if (coinsToAdd + coinsBonus < 0) return;
@@ -190,6 +181,8 @@ public class PersonalBoard implements Serializable{
 		int stoneBonus = bonusOnActions.getStoneBonus();
 		if (stoneToAdd < 0){
 			stone += stoneToAdd;
+			if (stone < 0)
+				stone = 0;
 			return;
 		}
 		if (stoneToAdd + stoneBonus < 0) return;
@@ -200,6 +193,8 @@ public class PersonalBoard implements Serializable{
 		int woodBonus = bonusOnActions.getWoodBonus();
 		if (woodToAdd < 0){
 			wood += woodToAdd;
+			if (wood < 0)
+				wood = 0;
 			return;
 		}
 		if (woodToAdd + woodBonus < 0) return;
@@ -210,6 +205,8 @@ public class PersonalBoard implements Serializable{
 		int servantsBonus = bonusOnActions.getServantsBonus();
 		if (servantsToAdd < 0){
 			servants += servantsToAdd;
+			if (servants < 0)
+				servants = 0;
 			return;
 		}
 		if (servantsToAdd + servantsBonus < 0)

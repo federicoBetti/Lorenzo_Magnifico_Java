@@ -317,7 +317,7 @@ public class GameActions {
         public int compare(PlayerHandler o1, PlayerHandler o2) {
             if (o1.getScore().getVictoryPoints() > o2.getScore().getVictoryPoints()) return 1;
             else if (o1.getScore().getVictoryPoints() == o2.getScore().getVictoryPoints()) {
-                if (o1.getTurnOrder() < o2.getTurnOrder()) return 1;
+                if (board.getTurn().getPlayerTurn().indexOf(o1) < board.getTurn().getPlayerTurn().indexOf(o2)) return 1;
                 else return -1;
             } else return -1;
         }

@@ -28,9 +28,6 @@ public class FamilyMember implements Serializable{
         this.isPlayed = false;
     }
 
-    public void takeValueFromDIce() {
-        // to do implements
-    }
 
     public String  getFamilyColour() {
         return familyColour;

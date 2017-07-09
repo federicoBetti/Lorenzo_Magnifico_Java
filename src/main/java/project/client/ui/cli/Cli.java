@@ -257,7 +257,6 @@ public class Cli extends AbstractUI {
         context = new AfterGameContext(this);
     }
 
-    @Override
     public void showStatistic() {
         clientSetter.showStatistic();
     }
@@ -267,7 +266,7 @@ public class Cli extends AbstractUI {
         clientSetter.newGameRequest();
     }
 
-    @Override
+
     public void terminate() {
         clientSetter.terminate();
     }
@@ -285,7 +284,7 @@ public class Cli extends AbstractUI {
         context.getpRed().println("");
     }
 
-    @Override
+
     public void showRanking() {
         clientSetter.showRanking();
     }

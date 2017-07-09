@@ -15,24 +15,24 @@ public class Deck {
 
     private DevelopmentCard[][][] developmentDeck; // va cotruito con le carte: colore, periodo, carte
 
-    private List<LeaderCard> leaderCardeck; //va costruito con le LeaderCard
+    private List<LeaderCard> leaderCardDeck; //va costruito con le LeaderCard
 
-    private ExcommunicationTile[][] excomunicationCard;
+    private ExcommunicationTile[][] excommunicationCard;
 
-    private Tile[] prodHaarvTiles;
+    private Tile[] prodHarvTiles;
 
-    public Deck() {
+    Deck() {
        developmentDeck = new DevelopmentCard[Constants.CARD_TYPE_NUMBER][Constants.PERIOD_NUMBER][Constants.CARD_FOR_EACH_PERIOD];
-       excomunicationCard = new ExcommunicationTile[Constants.PERIOD_NUMBER][Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD];
-       prodHaarvTiles = new Tile[Constants.NUMBER_OF_TILES];
+       excommunicationCard = new ExcommunicationTile[Constants.PERIOD_NUMBER][Constants.EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD];
+       prodHarvTiles = new Tile[Constants.NUMBER_OF_TILES];
     }
 
-    public ArrayList<LeaderCard> getLeaderCardeck() {
-        return (ArrayList<LeaderCard>) leaderCardeck;
+    public ArrayList<LeaderCard> getLeaderCardDeck() {
+        return (ArrayList<LeaderCard>) leaderCardDeck;
     }
 
-    public void setLeaderCardeck(List<LeaderCard> leaderCardeck) {
-        this.leaderCardeck = leaderCardeck;
+    public void setLeaderCardDeck(List<LeaderCard> leaderCardDeck) {
+        this.leaderCardDeck = leaderCardDeck;
     }
 
     public DevelopmentCard[][][] getDevelopmentDeck() {
@@ -40,20 +40,24 @@ public class Deck {
     }
 
 
-    public ExcommunicationTile[][] getExcomunicationCard() {
-        return excomunicationCard;
+    public ExcommunicationTile[][] getExcommunicationCard() {
+        return excommunicationCard;
     }
 
-    public Tile[] getProdHaarvTiles() {
-        return prodHaarvTiles;
+    public Tile[] getProdHarvTiles() {
+        return prodHarvTiles;
     }
 
     public void setProdHaarvTile( int tileNumber, Tile tile ){
-        prodHaarvTiles[tileNumber] = tile;
-        System.out.println( prodHaarvTiles[tileNumber] + "\n" +  prodHaarvTiles[tileNumber].getTileNumber());
+        prodHarvTiles[tileNumber] = tile;
+        System.out.println( prodHarvTiles[tileNumber] + "\n" +  prodHarvTiles[tileNumber].getTileNumber());
     }
 
     public void setDevelopmentDeck(DevelopmentCard[][][] developmentDeck) {
         this.developmentDeck = developmentDeck;
+    }
+
+    public void setExcommunicationCard(ExcommunicationTile[][] excommunicationCard) {
+        this.excommunicationCard = excommunicationCard;
     }
 }

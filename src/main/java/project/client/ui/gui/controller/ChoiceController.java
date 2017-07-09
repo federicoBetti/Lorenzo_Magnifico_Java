@@ -2,12 +2,17 @@ package project.client.ui.gui.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import jdk.management.resource.internal.inst.FileOutputStreamRMHooks;
+import project.PlayerFile;
+
+import java.util.List;
 
 /**
  * Created by federico on 19/06/17.
@@ -80,5 +85,32 @@ public class ChoiceController {
         imageView.setPreserveRatio(true);
         imageView.setFitHeight(400);
         forImage.getChildren().add(imageView);
+    }
+
+    public void setStatistics(PlayerFile playerFile) {
+        Text text = new Text();
+        String s = "\n\n"  + playerFile.getPlayerName() + "\n"
+                + "\t" + "number of games played: " + playerFile.getNumberOfGames() + "\n"
+                + "\t" + "number of games won: " + playerFile.getNumberOfVictories() + "\n"
+                + "\t" + "number of games lost: " + playerFile.getNumberOfDefeats() + "\n"
+                + "CONGRATULATIONS!\n\n";
+        text.setText(s);
+
+        ScrollPane scrollPane = new ScrollPane(text);
+        forImage.getChildren().add(scrollPane);
+    }
+
+    public void setRankings(List<PlayerFile> playerFiles) {
+        StringBuffer buffer = new StringBuffer();
+        for (PlayerFile playerFile: playerFiles) {
+            String s = "\n\n" + playerFile.getPlayerName() + "\n" + "\t" + "number of games played: " + playerFile.getNumberOfGames() + "\n" + "\t" + "number of games won: " + playerFile.getNumberOfVictories() + "\n" + "\t" + "number of games lost: " + playerFile.getNumberOfDefeats() + "\n\n";
+            buffer.append(s);
+        }
+
+        Text text = new Text(buffer.toString());
+
+        ScrollPane scrollPane = new ScrollPane(text);
+        forImage.getChildren().add(scrollPane);
+
     }
 }

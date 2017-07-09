@@ -99,15 +99,9 @@ public abstract class AbstractUI {
 
     public abstract void afterGame();
 
-    public abstract void showStatistic();
-
     public abstract void newGameRequest();
 
-    public abstract void terminate();
-
     public abstract void receiveStatistics(PlayerFile statistics);
-
-    public abstract void showRanking();
 
     public abstract void ranking(List<PlayerFile> ranking);
 

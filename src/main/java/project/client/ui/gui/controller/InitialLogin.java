@@ -86,6 +86,7 @@ public class InitialLogin {
 
             System.out.println("invio richiesta connessione");
             mainController.setConnectionType(connectionType, ipChosen,usernameChosen);
+
     }
 
     private boolean checkValidInputIp(String ip) {

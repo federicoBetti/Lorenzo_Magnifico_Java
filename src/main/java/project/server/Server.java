@@ -411,9 +411,7 @@ public class Server {
         newPlayer.setPersonalBoardReference(oldPlayer.getPersonalBoardReference());
         newPlayer.setScore(oldPlayer.getScore());
         newPlayer.setAllFamilyMembers(oldPlayer.getAllFamilyMembers());
-        newPlayer.setTurnOrder(oldPlayer.getTurnOrder());
         newPlayer.setFamilyColour(oldPlayer.getFamilyColour());
-        newPlayer.setExcommunicationEffectsUseful(oldPlayer.getExcommunicationEffectsUseful());
 
         replaceInTurn(room.getBoard().getTurn(), oldPlayer, newPlayer);
     }

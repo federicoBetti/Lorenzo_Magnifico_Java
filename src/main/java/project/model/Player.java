@@ -22,11 +22,7 @@ public class Player implements Serializable{
 
 	private FamilyMember[] allFamilyMembers;
 
-	private int turnOrder;
-
 	private String familyColour;
-
-    private transient ExcommunicationEffectsUseful excommunicationEffectsUseful;
 
 
     protected Player(){
@@ -41,25 +37,7 @@ public class Player implements Serializable{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-    	excommunicationEffectsUseful = new ExcommunicationEffectsUseful();
 	}
-
-
-
-
-    public void checkFinalPointsTerritory() {
-        // TODO implement here
-    }
-
-    public void checkFinalPointCharacters() {
-        // TODO implement here
-    }
-
-    public void checkFinalPointResources() {
-        // TODO implement here
-    }
-
-
 
     public String getName() {
         return name;
@@ -99,22 +77,6 @@ public class Player implements Serializable{
 
 	public void setAllFamilyMembers(FamilyMember[] allFamilyMembers) {
 		this.allFamilyMembers = allFamilyMembers;
-	}
-
-	public int getTurnOrder() {
-		return turnOrder;
-	}
-
-	public void setTurnOrder(int turnOrder) {
-		this.turnOrder = turnOrder;
-	}
-
-	public ExcommunicationEffectsUseful getExcommunicationEffectsUseful() {
-		return excommunicationEffectsUseful;
-	}
-
-	public void setExcommunicationEffectsUseful(ExcommunicationEffectsUseful excommunicationEffectsUseful) {
-		this.excommunicationEffectsUseful = excommunicationEffectsUseful;
 	}
 
 	public String getFamilyColour() {

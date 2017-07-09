@@ -129,7 +129,7 @@ public class Configuration {
 
         for ( ExTileFromJson tile : exTilesFromJson ) {
             ExcommunicationTile excommunicationTile = new ExcommunicationTile(tile.getIdCard(), tile.getPeriod(), tile.getExcomunicationEffectsFromJson(), tile.getEffectDescription());
-            deck.getExcomunicationCard()[tile.getPeriod() - 1][tile.getIdCard() - 1] = excommunicationTile;
+            deck.getExcommunicationCard()[tile.getPeriod() - 1][tile.getIdCard() - 1] = excommunicationTile;
         }
 
     }
@@ -159,7 +159,7 @@ public class Configuration {
             leaders.add(card);
 
 
-        deck.setLeaderCardeck(leaders);
+        deck.setLeaderCardDeck(leaders);
 
     }
 

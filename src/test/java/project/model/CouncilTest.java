@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Created by federico on 04/07/17.
+ * bonus test
  */
 public class CouncilTest {
     @Before
