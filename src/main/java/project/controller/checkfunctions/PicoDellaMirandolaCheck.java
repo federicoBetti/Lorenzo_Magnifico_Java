@@ -7,7 +7,7 @@ import project.model.DevelopmentCard;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by federico on 19/05/17.
+ * This class is the decoration of checkCardCost and checkCardCostVentures
  */
 public class PicoDellaMirandolaCheck extends CheckFunctionsDecorator {
 
@@ -15,7 +15,16 @@ public class PicoDellaMirandolaCheck extends CheckFunctionsDecorator {
         super(allCheckFunctions);
     }
 
-
+    /**
+     * todo java doc
+     *
+     * @param card
+     * @param playerHandler
+     * @param coinsFee
+     * @param zoneDiceCost
+     * @param valueOfFamilyMember
+     * @return
+     */
     @Override
     public boolean checkCardCost(DevelopmentCard card, PlayerHandler playerHandler, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         DevelopmentCard card1 = card;
@@ -27,6 +36,17 @@ public class PicoDellaMirandolaCheck extends CheckFunctionsDecorator {
         card.setCost(oldCost);
         return result;
     }
+
+    /**
+     * todo java doc
+     *
+     * @param card
+     * @param player
+     * @param coinsFee
+     * @param zoneDiceCost
+     * @param valueOfFamilyMember
+     * @return
+     */
     @Override
     public int checkCardCostVentures(VenturesCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
         VenturesCard card1 = card;
