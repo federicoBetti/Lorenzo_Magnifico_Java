@@ -7,9 +7,10 @@ import project.controller.effects.effectsfactory.*;
 
 import java.io.Serializable;
 import java.util.*;
-//bisogna fare che il meotod doEffect riitorna la rispooata a ritornare al client, che puo essere un oggetto che è ok, oppure un oggetto tipo tower action
-//ritorna una responde cioè bonusinterface
 
+/**
+ * This class represent a general development card
+ */
 public abstract class DevelopmentCard implements Serializable{
 
     private String name;
@@ -24,6 +25,15 @@ public abstract class DevelopmentCard implements Serializable{
 
     private boolean choicePe;
 
+    /**
+     * Constructor
+     *
+     * @param name card's name
+     * @param period card's period
+     * @param choicePe boolean that says if the card has 2 alternatively permanent effects
+     * @param immediateEffects immediate effect's reference
+     * @param permanentEffects permanent effect's reference
+     */
     protected DevelopmentCard(String name, int period, boolean choicePe, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects){
         this.name = name;
         this.period = period;
@@ -43,34 +53,82 @@ public abstract class DevelopmentCard implements Serializable{
         }
     }
 
+    /**
+     * Constructor
+     */
     protected DevelopmentCard(){}
 
+    /**
+     * Get choicePe
+     *
+     * @return choicePe
+     */
     public boolean isChoicePe() {
         return choicePe;
     }
 
+    /**
+     * Get permanentCardEffects
+     *
+     * @return permanentCardEffects
+     */
     public List<Effects> getPermanentCardEffects() {
         return permanentCardEffects;
     }
 
+    /**
+     * Get immediateCardEffects
+     *
+     * @return immediateCardEffects
+     */
     public List<Effects> getImmediateCardEffects() {
         return immediateCardEffects;
     }
 
+    /**
+     * Abstract addToPersonalBoard
+     *
+     * @param personalBoardReference addToPersonalBoard
+     */
     public abstract void addToPersonalBoard(PersonalBoard personalBoardReference);
 
+    /**
+     * Abstract get cost
+     *
+     * @return cost
+     */
     public abstract Cost getCost();
 
+    /**
+     * Get name
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Abstract set cost
+     *
+     * @param cost cost
+     */
     public abstract void setCost(Cost cost);
 
+    /**
+     * Abstract set name
+     *
+     * @param name name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Set choicePe
+     *
+     * @param choicePe choicePe
+     */
     public void setChoicePe(boolean choicePe) {
         this.choicePe = choicePe;
     }

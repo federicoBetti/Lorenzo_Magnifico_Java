@@ -5,12 +5,23 @@ import project.messages.BonusInteraction;
 import project.server.network.PlayerHandler;
 
 /**
- * interface implemented by all effects that exchange resources
+ * This class represents the ExchangeEffects effects interface
  */
 public interface ExchangeEffects extends Effects {
 
+    /**
+     * Abstract addResourceRequested
+     *
+     * @param cost total cost variable
+     */
     void addResourceRequested(TotalCost cost);
 
+    /**
+     * Perform the effect the right effect according to the parameter
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     default BonusInteraction addResources(int resourceEarned, String resourceReordered, PlayerHandler player) {
 
         switch (resourceReordered) {

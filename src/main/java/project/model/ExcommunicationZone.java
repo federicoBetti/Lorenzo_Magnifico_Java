@@ -6,24 +6,24 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
+ * This calss represent the excommunication zone
  */
 public class ExcommunicationZone extends Position implements Serializable {
 
-
-    /**
-     * excomunication card on this zone
-     */
     private ExcommunicationTile cardForThisPeriod;
 
     /**
-     * Default constructor
+     * Constructor
      */
     public ExcommunicationZone(ExcommunicationTile excommunicationTile) {
         this.cardForThisPeriod = excommunicationTile;
     }
 
-
+    /**
+     * Get cardForThisPeriod
+     *
+     * @return cardForThisPeriod
+     */
     public ExcommunicationTile getCardForThisPeriod() {
         return cardForThisPeriod;
     }

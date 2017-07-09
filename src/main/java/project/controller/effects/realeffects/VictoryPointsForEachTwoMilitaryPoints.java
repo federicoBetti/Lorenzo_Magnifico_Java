@@ -5,10 +5,16 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- *  effect that give you victory points according to the number of military points that you have
+ * This class represents the VictoryPointsForEachPurpleCard effect
  */
 public class VictoryPointsForEachTwoMilitaryPoints implements Effects {
 
+    /**
+     * Perform the right effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         int bonus = player.getScore().getMilitaryPoints() / 2;
@@ -16,6 +22,11 @@ public class VictoryPointsForEachTwoMilitaryPoints implements Effects {
         return new OkOrNo();
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Take 1 military points for every 2 military points";

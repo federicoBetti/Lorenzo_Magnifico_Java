@@ -3,7 +3,7 @@ package project;
 import project.controller.Constants;
 
 /**
- * TODO cambiarlo perchè bisgpa randomizzare le carte
+ * Development deck iterator
  */
 public class DevelopmentDeckIterator implements IteratorInterface {
 
@@ -11,7 +11,9 @@ public class DevelopmentDeckIterator implements IteratorInterface {
     private int period;
     private int cards;
 
-
+    /**
+     * Constructor
+     */
     public DevelopmentDeckIterator(){
         this.color = 0;
         this.period = 0;
@@ -19,6 +21,12 @@ public class DevelopmentDeckIterator implements IteratorInterface {
 
 
     }
+
+    /**
+     * Check if the deck has a next element
+     *
+     * @return true if hasNext, else false
+     */
     @Override
     public boolean hasNext() {
         if (color < Constants.CARD_TYPE_NUMBER && period < 2 && cards < Constants.CARD_FOR_EACH_PERIOD )
@@ -26,7 +34,9 @@ public class DevelopmentDeckIterator implements IteratorInterface {
         return false;
     }
 
-
+    /**
+     * Increase the indexes for pointing the next element of the deck
+     */
     @Override
     public void next( ) {
         if ( cards == Constants.CARD_FOR_EACH_PERIOD - 1  ) {
@@ -44,14 +54,29 @@ public class DevelopmentDeckIterator implements IteratorInterface {
 
     }
 
+    /**
+     * Get color
+     *
+     * @return color
+     */
     public int getColor() {
         return color;
     }
 
+    /**
+     * Get period
+     *
+     * @return period
+     */
     public int getPeriod() {
         return period;
     }
 
+    /**
+     * Get cards
+     *
+     * @return cards
+     */
     public int getCards() {
         return cards;
     }

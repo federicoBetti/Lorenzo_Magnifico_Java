@@ -4,16 +4,25 @@ import project.controller.cardsfactory.BuildingCard;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by federico on 26/05/17.
+ * This class is the extraLostOfPoints's decorator applyed when LoseFinalPointsEveryWS excommunication is activated
  */
 public class LoseFinalPointsEveryWS extends SupportFunctionsDecorator {
 
-
+    /**
+     * Constructor
+     *
+     * @param allSupportFunctions allSupportFunctions's reference
+     */
     public LoseFinalPointsEveryWS(AllSupportFunctions allSupportFunctions){
         super(allSupportFunctions);
     }
 
-
+    /**
+     * This method makes the player loses victory points for every wood and stone that the player has
+     *
+     * @param playerHandler playerHandler's reference
+     * @return the number of points to lose 
+     */
     @Override
     public int extraLostOfPoints(PlayerHandler playerHandler) {
         int numberOfWoodOrStone = 0;

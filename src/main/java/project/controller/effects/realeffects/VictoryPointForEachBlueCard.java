@@ -5,15 +5,27 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * effect that give you victory points according to the number of character chard that you have
+ * This class represents the VictoryPointForEachBlueCard effect
  */
 public class VictoryPointForEachBlueCard implements Effects {
 
     private int quantity;
+
+    /**
+     * Constructor
+     *
+     * @param quantity of points for each card
+     */
     public VictoryPointForEachBlueCard ( int quantity ){
         this.quantity = quantity;
     }
 
+    /**
+     * Perform the right effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
@@ -23,6 +35,11 @@ public class VictoryPointForEachBlueCard implements Effects {
         return new OkOrNo();
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Take " + quantity + " victory points " + "for each blue card";

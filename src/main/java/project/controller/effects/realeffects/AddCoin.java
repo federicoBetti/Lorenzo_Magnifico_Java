@@ -5,16 +5,26 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by Rita1 on 09/05/2017.
+ * This class represents add coins effect
  */
 public class AddCoin implements TakeRoPEffects {
     private int quantity;
 
+    /**
+     * Constructor
+     *
+     * @param quantity coins to add
+     */
     public AddCoin (int quantity){
         this.quantity = quantity;
     }
 
-
+    /**
+     * Perform the effect
+     *
+     * @param player palyerHandle' reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         quantity += player.getPersonalBoardReference().getBonusOnActions().getCoinsBonus();
@@ -25,6 +35,11 @@ public class AddCoin implements TakeRoPEffects {
         return ok;
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Add " + quantity + " coins";

@@ -1,7 +1,7 @@
 package project.controller;
 
 /**
- * some constants used in the software
+ *  Constants
  */
 public class Constants {
 

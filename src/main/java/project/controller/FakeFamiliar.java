@@ -3,7 +3,7 @@ package project.controller;
 import project.model.FamilyMember;
 
 /**
- * todo non penso sia corretto fargli estndere family memeber
+ * Fake familiar
  */
 class FakeFamiliar extends FamilyMember {
 }

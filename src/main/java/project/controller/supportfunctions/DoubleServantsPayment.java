@@ -1,7 +1,15 @@
 package project.controller.supportfunctions;
 
+/**
+ * This class is a the payServants' decorator
+ */
 public class DoubleServantsPayment extends SupportFunctionsDecorator{
 
+    /**
+     * Constru
+     *
+     * @param allSupportFunctions
+     */
     public DoubleServantsPayment(AllSupportFunctions allSupportFunctions){
         super(allSupportFunctions);
     }

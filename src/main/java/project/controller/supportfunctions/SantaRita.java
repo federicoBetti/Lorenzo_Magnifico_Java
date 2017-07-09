@@ -8,13 +8,26 @@ import project.messages.TowerAction;
 import project.messages.BonusInteraction;
 import project.server.network.PlayerHandler;
 
-
+/**
+ * This class is the payCard and applyEffects's decorator applyed when SantaRita is activated
+ */
 public class SantaRita extends SupportFunctionsDecorator {
 
+    /**
+     * Constructor
+     *
+     * @param allSupportFunctions allSupportFunctions's reference
+     */
     public SantaRita(AllSupportFunctions allSupportFunctions) {
         super(allSupportFunctions);
     }
 
+    /**
+     * This method allows the palyer to receive two times the resources taken from immediate effects
+     *
+     * @param effect effect's reference
+     * @param player playerHandler's reference
+     */
     @Override
     public void applyEffects(Effects effect, PlayerHandler player) {
             BonusInteraction returnFromEffect = effect.doEffect(player);

@@ -5,7 +5,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by Rita1 on 09/05/2017.
+ * This class represent the AddMilitaryPoints effect
  */
 public class AddMilitaryPoints implements Effects {
 
@@ -15,6 +15,12 @@ public class AddMilitaryPoints implements Effects {
         this.quantity = quantity;
     }
 
+    /**
+     * Perform the effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         quantity += player.getPersonalBoardReference().getBonusOnActions().getMilitaryPointsBonus();
@@ -23,7 +29,12 @@ public class AddMilitaryPoints implements Effects {
         player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() + quantity);
         return new OkOrNo();
     }
-
+    
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen(){
         return "Add " + quantity + " military points";

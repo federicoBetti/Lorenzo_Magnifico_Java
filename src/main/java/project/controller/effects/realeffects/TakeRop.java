@@ -1,8 +1,17 @@
 package project.controller.effects.realeffects;
 
-
+/**
+ * This class conatins all the effects that has as type "TakeRop"
+ */
 public class TakeRop  {
-//todo magari con una hash map..
+
+    /**
+     * Creates the right effect using the parameters
+     *
+     * @param parameter kind of resource to add
+     * @param quantity to add
+     * @return the right effect's object
+     */
     public Effects chooseRoP(String parameter, int quantity){
         switch (parameter) {
             case "wood":

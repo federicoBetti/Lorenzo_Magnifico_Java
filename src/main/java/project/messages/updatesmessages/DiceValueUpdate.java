@@ -5,13 +5,19 @@ import project.model.Board;
 import project.model.Turn;
 
 /**
- * Created by raffaelebongo on 14/06/17.
+ * Object sends to the client for notifying that the dices' value have been modified
  */
 public class DiceValueUpdate extends Updates {
 
     private final Turn turn;
     private int[] diceValue;
 
+    /**
+     * Constructore
+     *
+     * @param diceValue dice values' zone
+     * @param turn turn's reference
+     */
     public DiceValueUpdate(int[] diceValue, Turn turn){
         super(Constants.TO_EVERYONE);
         this.diceValue = diceValue;
@@ -19,11 +25,21 @@ public class DiceValueUpdate extends Updates {
         turn.fillLists();
     }
 
+    /**
+     * String the descibe the class
+     *
+     * @return the constants
+     */
     @Override
     public String toString() {
         return Constants.BOARD_UPDATE;
     }
 
+    /**
+     * This method act the board's update in the client
+     *
+     * @param board board's reference
+     */
     @Override
     public void doUpdate(Board board) {
         board.setDiceValue(this.diceValue);
@@ -31,6 +47,11 @@ public class DiceValueUpdate extends Updates {
         //todo nnela gui si devono mettere quelli giusti dei giocatori con scene builder
     }
 
+    /**
+     * This method build a string that describes the update
+     *
+     * @return the description
+     */
     @Override
     public String toScreen() {
         return "The dices has been rolled!";

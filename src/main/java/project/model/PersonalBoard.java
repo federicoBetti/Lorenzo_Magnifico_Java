@@ -7,9 +7,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This class represents the personal Board
+ */
 public class PersonalBoard implements Serializable{
-
 
 
     private List<TerritoryCard> territories;
@@ -38,12 +39,14 @@ public class PersonalBoard implements Serializable{
 
     private int coins;
 
-
     private int servants;
 
     private List<LeaderCard> myLeaderCard;
 
-    public PersonalBoard(){
+	/**
+	 * Constructor
+	 */
+	public PersonalBoard(){
     	bonusOnActions = new Bonus();
     	territories = new ArrayList<>();
     	buildings = new ArrayList<>();
@@ -53,9 +56,10 @@ public class PersonalBoard implements Serializable{
 	}
 
 	/**
-	 * costruttore usato di prova
-	 * @param i
-	 */
+	 * Constructor
+	 *
+	 * @param i quantity
+	 *///todo delete
 	public PersonalBoard(int i) {
 		this();
 		coins=i;
@@ -64,6 +68,11 @@ public class PersonalBoard implements Serializable{
 		wood=i;
 	}
 
+	/**
+	 * This method build a string for representing the personal board
+	 *
+	 * @return the string
+	 */
 	public String toScreen() {
 		return "Building Cards: \n" + createCardsString(getBuildings())+
 				"\nCharacter Cards: \n" + createCardsString(getCharacters()) +
@@ -75,96 +84,191 @@ public class PersonalBoard implements Serializable{
 				"Coins: " + String.valueOf(getCoins());
 	}
 
+	/**
+	 * This method creates the string for represents the list of cards
+	 *
+	 * @param cards list of cards
+	 * @return the string
+	 */
 	private String createCardsString(List<? extends DevelopmentCard> cards){
 
 		if ( cards.size() == 0 )
 			return " ";
 
-		int i = 0;
-		String res = i + ") ";
+		String res = "";
 		for ( DevelopmentCard card : cards ) {
 			res += card.getName() +"\n";
-			i++;
 		}
 		return res;
 	}
 
+	/**
+	 * Get myLeaderCard
+	 *
+	 * @return myLeaderCard
+	 */
     public List<LeaderCard> getMyLeaderCard() {
         return myLeaderCard;
     }
 
+	/**
+	 * Get territories
+	 *
+	 * @return territories
+	 */
     public List<TerritoryCard> getTerritories() {
 		return territories;
 	}
 
-
+	/**
+	 * Get buildings
+	 *
+	 * @return buildings
+	 */
 	public List<BuildingCard> getBuildings() {
 		return buildings;
 	}
 
-
+	/**
+	 * Get ventures
+	 *
+	 * @return ventures
+	 */
 	public List<VenturesCard> getVentures() {
 		return ventures;
 	}
 
-
+	/**
+	 * Get characters
+	 *
+	 * @return characters
+	 */
 	public List<CharacterCard> getCharacters() {
 		return characters;
 	}
 
-
+	/**
+	 * Get bonusOnActions
+	 *
+	 * @return bonusOnActions
+	 */
 	public Bonus getBonusOnActions() {
 		return bonusOnActions;
 	}
 
-	public void setBonusOnActions(Bonus bonusOnActions) {
+	/**
+	 * Set bonusOnActions
+	 *
+	 * @param bonusOnActions bonusOnActions
+	 */
+	void setBonusOnActions(Bonus bonusOnActions) {
 		this.bonusOnActions = bonusOnActions;
 	}
 
+	/**
+	 * Get myTile
+	 *
+	 * @return myTile
+	 */
 	public Tile getMyTile() {
 		return myTile;
 	}
 
+	/**
+	 * Set myTile
+	 *
+	 * @param myTile myTile
+	 */
 	public void setMyTile(Tile myTile) {
 		this.myTile = myTile;
 	}
 
+	/**
+	 * Get stone
+	 *
+	 * @return stone
+	 */
 	public int getStone() {
 		return stone;
 	}
 
+	/**
+	 * Set stone
+	 *
+	 * @param stone stone
+	 */
 	public void setStone(int stone) {
 		this.stone = stone;
 	}
 
+	/**
+	 * Get wood
+	 *
+	 * @return wood
+	 */
 	public int getWood() {
 		return wood;
 	}
 
+	/**
+	 * Set wood
+	 *
+	 * @param wood wood
+	 */
 	public void setWood(int wood) {
 		this.wood = wood;
 	}
 
+	/**
+	 * Get coins
+	 *
+	 * @return coins
+	 */
 	public int getCoins() {
 		return coins;
 	}
 
+	/**
+	 * Set coins
+	 *
+	 * @param coins coins
+	 */
 	public void setCoins(int coins) {
 		this.coins = coins;
 	}
 
+	/**
+	 * Get servants
+	 *
+	 * @return servants
+	 */
 	public int getServants() {
 		return servants;
 	}
 
+	/**
+	 * Set servants
+	 *
+	 * @param servants servants
+	 */
 	public void setServants(int servants) {
 		this.servants = servants;
 	}
 
+	/**
+	 * Set buildings
+	 *
+	 * @param buildings buildings
+	 */
 	public void setBuildings(List<BuildingCard> buildings) {
 		this.buildings = buildings;
 	}
 
+	/**
+	 * This method add coins to the personal board
+	 *
+	 * @param coinsToAdd coinsToAdd
+	 */
 	public void addCoins(int coinsToAdd) {
 		int coinsBonus = bonusOnActions.getCoinsBonus();
 		if (coinsToAdd < 0){
@@ -177,6 +281,11 @@ public class PersonalBoard implements Serializable{
 		coins = coins + coinsToAdd + coinsBonus;
 	}
 
+	/**
+	 * This method add stone to the personal board
+	 *
+	 * @param stoneToAdd stoneToAdd
+	 */
 	public void addStone(int stoneToAdd) {
 		int stoneBonus = bonusOnActions.getStoneBonus();
 		if (stoneToAdd < 0){
@@ -189,6 +298,11 @@ public class PersonalBoard implements Serializable{
 		stone = stone + stoneToAdd + stoneBonus;
 	}
 
+	/**
+	 * This method add wood to the personal board
+	 *
+	 * @param woodToAdd woodToAdd
+	 */
 	public void addWood(int woodToAdd) {
 		int woodBonus = bonusOnActions.getWoodBonus();
 		if (woodToAdd < 0){
@@ -201,6 +315,11 @@ public class PersonalBoard implements Serializable{
 		wood = wood + woodToAdd + woodBonus;
 	}
 
+	/**
+	 * This method add servants to the personal board
+	 *
+	 * @param servantsToAdd servantsToAdd
+	 */
 	public void addServants(int servantsToAdd){
 		int servantsBonus = bonusOnActions.getServantsBonus();
 		if (servantsToAdd < 0){

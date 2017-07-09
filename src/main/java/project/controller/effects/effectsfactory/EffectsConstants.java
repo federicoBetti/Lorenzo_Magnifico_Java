@@ -1,7 +1,7 @@
 package project.controller.effects.effectsfactory;
 
 /**
- * constants used to build effects
+ * Constants used to build effects
  */
 public class EffectsConstants {
 
@@ -26,6 +26,9 @@ public class EffectsConstants {
     public static final String VICTORY_POINTS = "victoryPoints";
     public static final String ALL_RESOURCES = "allResources";
 
+    /**
+     * builder
+     */
     private EffectsConstants(){
         //for hiding the public Constructor
     }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * This class represents the Bonus tile
  */
 public class Tile implements Serializable{
 
@@ -18,7 +18,11 @@ public class Tile implements Serializable{
     private List<Effects> harvesterBonus;
     private List<Effects> productionBonus;
 
-
+    /**
+     * Constrcutor
+     *
+     * @param tile Tile form json
+     */
     public Tile(TileBonusFromJson tile ){
         harvesterBonus = new ArrayList<>();
         productionBonus = new ArrayList<>();
@@ -50,19 +54,28 @@ public class Tile implements Serializable{
     }
 
     /**
-     * @return
+     * Get productionBonus
+     *
+     * @return productionBonus
      */
     public List<Effects> takeProductionResource() {
         return productionBonus;
     }
 
     /**
-     * @return
+     * Get harvesterBonus
+     *
+     * @return harvesterBonus
      */
     public List<Effects> takeHarvesterResource() {
         return harvesterBonus;
     }
 
+    /**
+     * Get tileNumber
+     *
+     * @return tileNumber
+     */
     public int getTileNumber() {
         return tileNumber;
     }

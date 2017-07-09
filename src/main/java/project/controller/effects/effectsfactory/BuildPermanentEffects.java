@@ -3,11 +3,22 @@ package project.controller.effects.effectsfactory;
 import project.controller.cardsfactory.TotalCost;
 import project.controller.effects.realeffects.*;
 
-//todo rifare con HAshMap
+/**
+ * This class is used for building the permannet effects taking parameters from Json's files
+ */
 public class BuildPermanentEffects {
 
 
-
+    /**
+     * This method build the right permanent effect
+     *
+     * @param type of effect
+     * @param parameter1 that specify the effect
+     * @param parameter2 that specify the effect
+     * @param quantity taht specify the effect
+     * @param effectCost effect's cost
+     * @return the right effects
+     */
     //va ggiunto un secondo parametro che indica la riorsa da scambiare: cosi si risparmia la scrittura di molte classi
     public Effects searchPermanentEffects(String type, String parameter1, String parameter2, int quantity, TotalCost effectCost) {
 

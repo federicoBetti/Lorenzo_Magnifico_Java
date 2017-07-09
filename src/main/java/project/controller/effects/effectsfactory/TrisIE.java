@@ -1,63 +1,79 @@
 package project.controller.effects.effectsfactory;
 
 /**
- * 
+ * This class is build parsing a json's file. It contains attributes that are useful for buildind immediate effects
  */
 public class TrisIE {
 
 	private String type;
 
-
-
-	/** type of action: 1) takeRop ( take resource or point )	OK
-	 * 					2) exchangeRes ( exchange resources )	OK
-	 * 					3) getDiscount ( get a discount )
-	 * 					4) performAct ( perform action )
-	 * 					5) pointsForEachCardOrMP ( receive coins or points )  OK
-	 * 					6) increaseAct ( increase your action )
-	 */
 	private String parameter;
 
-	/**		1) wood
-	 * 		2) slave
-	 * 		3) coin
-	 * 		4) stone
-	 * 		5) privilege
-	 * 		6) faithPoint
-	 * 		7) victoryPoint
-	 * 		8) militaryPoint
-	 * 		9) diceValue
-	 *
-	 */
 	private int quantity;
 
+	/**
+	 * Constructor
+	 *
+	 * @param type for specifying the effect
+	 * @param parameter for specifying the effect
+	 * @param quantity for specifying the effect
+	 */
     public TrisIE(String type, String parameter, int quantity){
     	this.type = type;
 		this.parameter = parameter;
     	this.quantity = quantity;
 	}
 
-
+	/**
+	 * Get type
+	 *
+	 * @return type
+	 */
 	public String getType() {
 		return type;
 	}
 
+	/**
+	 * Set type
+	 *
+	 * @return type
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	/**
+	 * Get parameter
+	 *
+	 * @return parameter
+	 */
 	public String getParameter() {
 		return parameter;
 	}
 
+	/**
+	 * Set parameter
+	 *
+	 * @return parameter
+	 */
 	public void setParameter(String parameter) {
 		this.parameter = parameter;
 	}
 
+	/**
+	 * Get quantity
+	 *
+	 * @return quantity
+	 */
 	public int getQuantity() {
 		return quantity;
 	}
 
+	/**
+	 * Set quantity
+	 *
+	 * @return quantity
+	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}

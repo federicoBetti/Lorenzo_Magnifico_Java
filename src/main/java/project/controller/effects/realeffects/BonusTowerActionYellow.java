@@ -6,7 +6,7 @@ import project.messages.TowerAction;
 import project.server.network.PlayerHandler;
 
 /**
- * effect tat allows you to take a building card bonus
+ * This class represent the BonusTowerActionYellow effect
  */
 public class BonusTowerActionYellow implements Effects {
 
@@ -15,6 +15,12 @@ public class BonusTowerActionYellow implements Effects {
     private String[] discountedResources;
     private int quantityDiscounted;
 
+    /**
+     * Constructor
+     *
+     * @param parameter resources discounted
+     * @param quantity discounted
+     */
     public BonusTowerActionYellow(String parameter, int quantity ){
         cardColour = "yellow";
         diceValue = 6;
@@ -22,7 +28,12 @@ public class BonusTowerActionYellow implements Effects {
         quantityDiscounted = quantity;
     }
 
-
+    /**
+     * Perform the effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         String discRes1 = discountedResources[0];
@@ -31,11 +42,22 @@ public class BonusTowerActionYellow implements Effects {
         return new TowerAction(cardColour, diceValue, discRes1, quantityDiscounted, discRes2, quantityDiscounted);
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return null;
     }
 
+    //todo maybe we can delete it
+    /**
+     * Constanst for identify the effect
+     *
+     * @return the constant TOWER_ACTION_YELLOW
+     */
     @Override
     public String toString(){
         return Constants.TOWER_ACTION_YELLOW;

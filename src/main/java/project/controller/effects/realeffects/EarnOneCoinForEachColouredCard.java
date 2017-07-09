@@ -6,17 +6,27 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * effect of some building cards
+ * This class represents the EarnOneCoinForEachColouredCard effects
  */
 public class EarnOneCoinForEachColouredCard implements Effects {
 
     private String cardColor;
 
+    /**
+     * Constructor
+     *
+     * @param cardColor card color as a String
+     */
     public EarnOneCoinForEachColouredCard(String cardColor ) {
         this.cardColor = cardColor;
     }
 
-
+    /**
+     * Perform the effect the right effect according to the parameter
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
         int coinsToAdd = 0;
@@ -52,6 +62,11 @@ public class EarnOneCoinForEachColouredCard implements Effects {
         return new OkOrNo();
     }
 
+    /**
+     * Build a string for describing the effect
+     *
+     * @return the description's String
+     */
     @Override
     public String toScreen() {
         return "Earn one coin for each " + cardColor + " card";

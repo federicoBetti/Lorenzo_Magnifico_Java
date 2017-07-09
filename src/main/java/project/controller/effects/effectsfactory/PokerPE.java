@@ -3,7 +3,7 @@ package project.controller.effects.effectsfactory;
 import project.controller.cardsfactory.TotalCost;
 
 /**
- * 
+ * This class is build parsing a json's file. It contains attributes that are useful for building permanent effects
  */
 public class PokerPE extends TrisIE {
 
@@ -15,19 +15,20 @@ public class PokerPE extends TrisIE {
         super(type, parameter, quantity);
     }
 
-
+    /**
+     * Get resourceEarnedFromExchange
+     *
+     * @return resourceEarnedFromExchange
+     */
     public String getResourceEarned() {
         return resourceEarnedFromExchange;
     }
 
-    public void setResourceEarned(String resourceEarned) {
-        this.resourceEarnedFromExchange = resourceEarned;
-    }
-
-    public void setEffectCost(TotalCost effectCost) {
-        this.effectCost = effectCost;
-    }
-
+    /**
+     * Get effectCost
+     *
+     * @return effectCost
+     */
     public TotalCost getEffectCost(){
         return this.effectCost;
     }
