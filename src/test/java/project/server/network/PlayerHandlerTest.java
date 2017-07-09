@@ -115,10 +115,10 @@ public class PlayerHandlerTest {
         venturesCard = new VenturesCard("prova", 1, false, costs, new ArrayList<>(), new ArrayList<>());
 
 
-        room.nicknamePlayersMap.put("fede", test);
-        room.nicknamePlayersMap.put("fede", playerHandler2);
-        room.nicknamePlayersMap.put("fede", playerHandler3);
-        room.nicknamePlayersMap.put("fede", playerHandler4);
+        room.getNicknamePlayersMap().put("fede", test);
+        room.getNicknamePlayersMap().put("fede", playerHandler2);
+        room.getNicknamePlayersMap().put("fede", playerHandler3);
+        room.getNicknamePlayersMap().put("fede", playerHandler4);
         room.setMySupportFunction(new BasicSupportFunctions(playerHandler2), playerHandler2);
         room.setMySupportFunction(new BasicSupportFunctions(playerHandler3), playerHandler3);
         room.setMySupportFunction(new BasicSupportFunctions(playerHandler4), playerHandler4);
@@ -382,7 +382,7 @@ public class PlayerHandlerTest {
         assertEquals(room, test.getRoom());
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void reconnectClient() throws Exception {
         assertEquals(false, test.isOn());
         test.reconnectClient();

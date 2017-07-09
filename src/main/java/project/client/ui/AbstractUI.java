@@ -168,29 +168,14 @@ public abstract class AbstractUI {
     public abstract void afterGame();
 
     /**
-     * Abstract showStatistic
-     */
-    public abstract void showStatistic();
-
-    /**
      * Abstract newGameRequest
      */
     public abstract void newGameRequest();
 
     /**
-     * Abstract terminate
-     */
-    public abstract void terminate();
-
-    /**
      * Abstract receiveStatistics
      */
     public abstract void receiveStatistics(PlayerFile statistics);
-
-    /**
-     * Abstract showRanking
-     */
-    public abstract void showRanking();
 
     /**
      * Abstract ranking

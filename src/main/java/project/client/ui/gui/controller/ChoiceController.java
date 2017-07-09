@@ -9,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import jdk.management.resource.internal.inst.FileOutputStreamRMHooks;
 import project.PlayerFile;
 
 import java.util.List;

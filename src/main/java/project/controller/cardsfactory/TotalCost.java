@@ -60,7 +60,7 @@ public class TotalCost implements Cost, Serializable {
      *
      * @param stoneRequired stoneRequired
      */
-    void setStoneRequired(int stoneRequired) {
+    public void setStoneRequired(int stoneRequired) {
         this.stoneRequired = stoneRequired;
     }
 
@@ -78,7 +78,7 @@ public class TotalCost implements Cost, Serializable {
      *
      * @param woodRequired woodRequired
      */
-    void setWoodRequired(int woodRequired) {
+    public void setWoodRequired(int woodRequired) {
         this.woodRequired = woodRequired;
     }
 
@@ -96,7 +96,7 @@ public class TotalCost implements Cost, Serializable {
      *
      * @param servantsRequired servantsRequired
      */
-    void setServantsRequired(int servantsRequired) {
+    public void setServantsRequired(int servantsRequired) {
         this.servantsRequired = servantsRequired;
     }
 
@@ -114,7 +114,7 @@ public class TotalCost implements Cost, Serializable {
      *
      * @param coinsRequired
      */
-    void setCoinsRequired(int coinsRequired) {
+    public void setCoinsRequired(int coinsRequired) {
         this.coinsRequired = coinsRequired;
     }
 
@@ -186,7 +186,7 @@ public class TotalCost implements Cost, Serializable {
 
 
 
-    void setFaithPonts(int faithPonts) {
+    public void setFaithPonts(int faithPonts) {
         this.faithPonts = faithPonts;
     }
 }

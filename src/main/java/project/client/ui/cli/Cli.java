@@ -373,7 +373,6 @@ public class Cli extends AbstractUI {
     /**
      * This method calls the method showStatistic on the clientSetter
      */
-    @Override
     public void showStatistic() {
         clientSetter.showStatistic();
     }
@@ -389,7 +388,6 @@ public class Cli extends AbstractUI {
     /**
      * This method calls the method terminate on the clientSetter
      */
-    @Override
     public void terminate() {
         clientSetter.terminate();
     }
@@ -415,7 +413,6 @@ public class Cli extends AbstractUI {
     /**
      * This method calls the method showRanking on the clientSetter
      */
-    @Override
     public void showRanking() {
         clientSetter.showRanking();
     }

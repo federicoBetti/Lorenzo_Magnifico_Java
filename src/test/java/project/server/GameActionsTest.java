@@ -214,12 +214,12 @@ public class GameActionsTest {
 
         assertEquals(0, board.getProductionZone().size());
 
-        test.production(3, familyMember, buildingCards, 0, new ArrayList<>() , p);
+        test.production(familyMember, buildingCards, 0, new ArrayList<>() , p);
 
         assertEquals(12 , p.getPersonalBoardReference().getCoins());
         assertEquals(10, p.getPersonalBoardReference().getServants());
 
-        test.production(3, familyMember, buildingCards, 1, new ArrayList<>() , p);
+        test.production(familyMember, buildingCards, 1, new ArrayList<>() , p);
 
         assertEquals(14 , p.getPersonalBoardReference().getCoins());
         assertEquals(9, p.getPersonalBoardReference().getServants());

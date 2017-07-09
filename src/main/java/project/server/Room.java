@@ -439,7 +439,7 @@ public class Room {
      */
     private ArrayList<Tile> fillListTile() {
         ArrayList<Tile> tiles = new ArrayList<>(4);
-        tiles.addAll(Arrays.asList(board.getDeckCard().getProdHaarvTiles()));
+        tiles.addAll(Arrays.asList(board.getDeckCard().getProdHarvTiles()));
         Collections.shuffle(tiles);
         return tiles;
     }
@@ -664,5 +664,9 @@ public class Room {
      */
     void setTimer(Timer timer) {
         this.timer = timer;
+    }
+
+    public Map<String, PlayerHandler> getNicknamePlayersMap() {
+        return nicknamePlayersMap;
     }
 }

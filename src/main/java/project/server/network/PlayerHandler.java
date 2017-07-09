@@ -664,4 +664,16 @@ public abstract class PlayerHandler extends Player {
     public abstract void afterGameIftemporarilyOff();
 
     public abstract void winnerComunication(String winnerString);
+
+    public boolean isDisconnectedInDraft() {
+        return disconnectedInDraft;
+    }
+
+    public void setDisconnectedInDraft(boolean disconnectedInDraft) {
+        this.disconnectedInDraft = disconnectedInDraft;
+    }
+
+    public boolean isMatchStartedVar() {
+        return matchStartedVar;
+    }
 }
