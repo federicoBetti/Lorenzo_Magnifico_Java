@@ -2,6 +2,7 @@ package project.server;
 
 import com.google.gson.Gson;
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
@@ -235,7 +236,8 @@ public class Room {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.SLEEP_INTERRUPTED);
+            Thread.currentThread().interrupt();
         }
         placeCardInTowers();
 
@@ -250,8 +252,8 @@ public class Room {
         for (PlayerHandler p : getListOfPlayers()) {
             setResources(p, moreCoin);
             if (p.isOn()) {
+
                 int fauthPoint = 8;
-                System.err.println("numero di carte territorio: " + p.getPersonalBoardReference().getTerritories().size());
                 Configuration configuration = new Configuration();
                 configuration.loadTerritoryCardForTest(p.getPersonalBoardReference());
                 configuration.loadBuildingCardForTest(p.getPersonalBoardReference());
@@ -285,11 +287,10 @@ public class Room {
     private void resetPlayers( PlayerHandler player) {
         Configuration configuration = new Configuration();
             try {
-                //player.setPersonalBoardReference(new PersonalBoard());
                 player.setScore(new Score());
                 configuration.loadFamilyMembers(player);
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.FILE_NOT_FOUND_EXCEPTION);
             }
         }
 

@@ -83,7 +83,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             }
 
             while (true) {
-
                 object = objectInputStream.readObject();
                 serverDataHandler.handleRequest(object);
             }
@@ -343,21 +342,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         broadcastDisconnessioneMessage(this);
     }
 
-    /**
-     * Send the notification to all players on that the previous player is disconnected.
-     *
-     * @param currentPlayer player that has been disconnected
-     */
-    //todo metterlo su
-    private void broadcastDisconnessioneMessage(PlayerHandler currentPlayer ) {
 
-        for (PlayerHandler player : getRoom().getBoard().getTurn().getPlayerTurn()) {
-            if (player != currentPlayer && player.isOn()) {
-                //da mettere nel player handòer
-                //player.sendString(Constants.DISCONNECTION_MESSAGE);
-                //player.sendString(currentPlayer.getName() + " is disconnected");
-            }
-        }
+    /**
+     * send a notification that another player is disconnected
+     * @param name name of the player disconnected
+     */
+    @Override
+    protected void disconnectionNotification(String name) {
+        sendString(Constants.DISCONNECTION_MESSAGE);
+        sendString(name);
+
     }
 
     /**
@@ -505,7 +499,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
     }
-ClassNotFoundException
     /**
      * Method called for send to the client the ranking of all players that have played with the game
      * @param ranking list of players ordered for victories, defeats and number of matches played
@@ -545,7 +538,8 @@ ClassNotFoundException
      * all player are temporalrily off.
      */
     @Override
-    public void afterGameIftemporarilyOff() {
+    public void
+    afterGameIftemporarilyOff() {
             try {
                 objectOutputStream.writeObject(Constants.AFTER_GAME);
                 objectOutputStream.flush();
@@ -789,7 +783,7 @@ ClassNotFoundException
 
             }
 
-            if (answer.equals(Constants.EXIT))
+            if (answer == null || answer.equals(Constants.EXIT))
                 return;
 
             try {

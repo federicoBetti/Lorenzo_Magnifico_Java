@@ -593,6 +593,17 @@ public abstract class PlayerHandler extends Player {
         sendRanking(ranking);
     }
 
+    protected void broadcastDisconnessioneMessage(PlayerHandler currentPlayer) {
+
+        for (PlayerHandler player : getRoom().getListOfPlayers()) {
+            if (player != currentPlayer && player.isOn()) {
+                player.disconnectionNotification(currentPlayer.getName());
+            }
+        }
+    }
+
+    protected abstract void disconnectionNotification(String name);
+
     public abstract void cantDoAction();
 
     protected abstract int canUseBothPaymentMethod();

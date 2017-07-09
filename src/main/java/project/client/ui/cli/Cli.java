@@ -310,7 +310,6 @@ public class Cli extends AbstractUI {
     /**
      * This method calls skipTurn on the client setter
      */
-    @Override
     public void skipTurn() {
         clientSetter.skipTurn();
     }
@@ -357,7 +356,6 @@ public class Cli extends AbstractUI {
     /**
      * This method calls reconnect on the clientSetter
      */
-    @Override
     public void reconnect() {
         clientSetter.reconnect();
     }
@@ -380,7 +378,6 @@ public class Cli extends AbstractUI {
     /**
      * This method calls the method newGameRequest on the clientSetter
      */
-    @Override
     public void newGameRequest() {
         clientSetter.newGameRequest();
     }
@@ -438,6 +435,7 @@ public class Cli extends AbstractUI {
      */
     @Override
     public void disconnesionMessage(String message) {
+        message = message + " is disconnected!";
         context.getpRed().println(message);
     }
 
@@ -465,7 +463,6 @@ public class Cli extends AbstractUI {
      *
      * @param kindOfConnection kind of connection choosen as a String
      */
-    @Override
     public void setConnectionType(String kindOfConnection) {
 
         try {
@@ -840,7 +837,6 @@ public class Cli extends AbstractUI {
      *
      * @param nickanme the player's nickname as a String
      */
-    @Override
     public void newNickname(String nickanme) {
         clientSetter.newNickname(nickanme);
     }

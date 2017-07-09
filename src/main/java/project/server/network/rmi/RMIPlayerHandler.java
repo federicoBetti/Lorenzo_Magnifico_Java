@@ -48,6 +48,21 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     /**
+     * method used to notify to client that someone is disconnected
+     * @param name name of the player disconnected
+     */
+    @Override
+    protected void disconnectionNotification(String name) {
+        try {
+            myClient.disconectionNotification(name);
+        } catch (RemoteException e) {
+            disconnectionNotTurn();
+        }
+    }
+
+
+
+    /**
      * method used to stop the actions of RMI payer ìhandler while waiting to user decision
      */
     private void waitForClient() {
@@ -77,7 +92,7 @@ public class RMIPlayerHandler extends PlayerHandler {
     }
 
     /**
-     * method that send updates to cient
+     * method that send updates to client
      * @param updates update to send
      */
     @Override
@@ -85,7 +100,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             if (isOn()) myClient.sendUpdates(updates);
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
         }
     }
 
@@ -98,9 +113,9 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             return myClient.sendChoicePE();
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
+            return -1;
         }
-        return -1;
     }
 
     /**
@@ -113,7 +128,8 @@ public class RMIPlayerHandler extends PlayerHandler {
             try {
                 myClient.bonusTowerAction(returnFromEffect);
             } catch (RemoteException e) {
-                this.setOn(false);
+                disconnectionNotTurn();
+                return;
             }
 
             waitForClient();
@@ -156,7 +172,8 @@ public class RMIPlayerHandler extends PlayerHandler {
             try {
                 myClient.sendBonusProdHarv(returnFromEffect);
             } catch (RemoteException e) {
-                this.setOn(false);
+                disconnectionNotTurn();
+                return;
             }
 
             waitForClient();
@@ -222,7 +239,8 @@ public class RMIPlayerHandler extends PlayerHandler {
                     return;
                 }
             } catch (RemoteException e) {
-                playerDisconnected();
+                disconnectionNotTurn();
+                return;
             }
 
             waitForClient();
@@ -253,7 +271,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.cantDoAction();
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
         }
     }
 
@@ -266,9 +284,9 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             return myClient.canUseBothPaymentMethod();
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
+            return 0;
         }
-        return 0;
     }
 
     /**
@@ -292,9 +310,9 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             return myClient.askForPraying();
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
+            return -1;
         }
-        return 0;
     }
 
     /**
@@ -307,7 +325,7 @@ public class RMIPlayerHandler extends PlayerHandler {
                 myClient.actionOk();
             }
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
         }
     }
 
@@ -319,7 +337,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.timerTurnDelayed();
         } catch (RemoteException e) {
-            setOn(false);
+            disconnectionNotTurn();
         }
     }
 
@@ -331,7 +349,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.nicknameAlreadyUsed();
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
         }
     }
 
@@ -343,7 +361,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.loginSucceded();
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
         }
     }
 
@@ -356,7 +374,7 @@ public class RMIPlayerHandler extends PlayerHandler {
             if (isOn())
                 myClient.waitForYourTurn();
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
         }
     }
 
@@ -370,7 +388,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             return myClient.leaderCardChosen(leaders);
         } catch (RemoteException e) {
-            this.setOn(false);
+            disconnectionNotTurn();
             return "-1";
         }
     }
@@ -385,7 +403,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             if (isOn()) myClient.matchStarted(roomPlayers, familyColour);
         } catch (RemoteException e) {
-            playerDisconnected();
+            disconnectionNotTurn();
         }
     }
 
@@ -399,7 +417,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             return myClient.tileChoosen((ArrayList<Tile>) tiles);
         } catch (RemoteException e) {
-            this.setOn(false);
+            disconnectionNotTurn();
             return -1;
         }
     }
@@ -413,7 +431,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.sendStatistics(playerFile);
         } catch (RemoteException e) {
-            this.setOn(false);
+            disconnectionNotTurn();
         }
     }
 
@@ -438,7 +456,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.winnerComunication(winnerString);
         } catch (RemoteException e) {
-            setOn(false);
+            disconnectionNotTurn();
         }
     }
 
@@ -458,7 +476,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.prayed();
         } catch (RemoteException e) {
-            this.setOn(false);
+            disconnectionNotTurn();
         }
     }
 
@@ -470,7 +488,7 @@ public class RMIPlayerHandler extends PlayerHandler {
         try {
             myClient.afterMatch();
         } catch (RemoteException e) {
-            this.setOn(false);
+            disconnectionNotTurn();
         }
     }
 
@@ -593,6 +611,15 @@ public class RMIPlayerHandler extends PlayerHandler {
      */
     private void playerDisconnected() {
         this.setOn(false);
+        broadcastDisconnessioneMessage(this);
         getRoom().getGameActions().nextTurn(this);
+    }
+
+    /**
+     * method called when a disconection is discovered during a notification, so it is not possible to call nextTurn()
+     */
+    private void disconnectionNotTurn() {
+        this.setOn(false);
+        broadcastDisconnessioneMessage(this);
     }
 }

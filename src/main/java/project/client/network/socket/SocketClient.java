@@ -31,8 +31,9 @@ public class SocketClient extends AbstractClient {
     transient private Socket socket;
     transient private ObjectOutputStream objectOutputStream;
     transient private ObjectInputStream objectInputStream;
-    transient Object token;
+    final transient Object token;
     transient Object token1;
+    private String interruptdeExceptionString = "program terminates during a queue .take() in the socket client";
 
     public SocketClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
         this.clientSetter = clientSetter;
@@ -192,14 +193,8 @@ public class SocketClient extends AbstractClient {
         new TimerReader().start();
         int answer = clientSetter.askForPraying();
         sendGenericObject(answer);
-        try {
 
-            synchronized (token) {
-                token.wait();
-            }
-        } catch (InterruptedException e) {
-            UnixColoredPrinter.Logger.print(Constants.CONNECTION_ERROR );
-        }
+        tokenWait();
     }
 
     /**
@@ -244,15 +239,8 @@ public class SocketClient extends AbstractClient {
 
         int answer = clientSetter.askForPraying();
         sendGenericObject(answer);
-        try {
 
-            synchronized (token) {
-                token.wait();
-            }
-            System.out.println("il res è stato mandato");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        tokenWait();
 
         System.out.println("il res viene mandato: " + answer);
     }
@@ -398,11 +386,20 @@ public class SocketClient extends AbstractClient {
         int peChoosen = clientSetter.choicePe();
         sendGenericObject(peChoosen);
 
+        tokenWait();
+
+    }
+
+    /**
+     * method used to wait on a token
+     */
+    private void tokenWait() {
         synchronized (token) {
             try {
                 token.wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(interruptdeExceptionString);
+                Thread.currentThread().interrupt();
             }
         }
 
@@ -422,13 +419,8 @@ public class SocketClient extends AbstractClient {
 
         sendGenericObject(costChoice);
 
-        synchronized (token) {
-            try {
-                token.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        tokenWait();
+
         System.out.println("Svegliato e vado in wait");
     }
 
@@ -452,18 +444,16 @@ public class SocketClient extends AbstractClient {
             String leaderCardChoosen = clientSetter.getLeaderCardChosen(leaders);
             objectOutputStream.writeObject(leaderCardChoosen);
 
-            synchronized (token) {
-                token.wait();
-            }
+            tokenWait();
 
-        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * This method receive a message about the disconnession of another player and calls on the clientSetter the
-     * method disconnessionMessage
+     * method disconnectionMessage
      */
     void disconnessionMesaage() {
         try {
@@ -840,11 +830,9 @@ public class SocketClient extends AbstractClient {
             objectOutputStream.flush();
             objectOutputStream.reset();
 
-            synchronized (token) {
-                token.wait();
-            }
+            tokenWait();
 
-        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

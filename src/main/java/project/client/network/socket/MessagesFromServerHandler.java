@@ -63,7 +63,7 @@ class MessagesFromServerHandler {
     }
 
     /**
-     * This method calls disconnessionMessage method on the client
+     * This method calls disconnectionMessage method on the client
      */
     private void disconnessionMessage() {
         client.disconnessionMesaage();

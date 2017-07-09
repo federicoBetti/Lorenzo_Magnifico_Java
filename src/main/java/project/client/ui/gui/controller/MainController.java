@@ -54,7 +54,7 @@ public class MainController {
     private List<PlayerFile> ranking;
     private boolean winner;
 
-    private String interruptdeExceptionString = "program quit during queue .take()";
+    private String interruptdeExceptionString = "program quit during queue .take() in the main controller";
 
     /**
      * constructor
@@ -933,5 +933,13 @@ public class MainController {
      */
     public void youLose() {
         winner = false;
+    }
+
+    /**
+     * method that notify the user that someone is disconnected
+     * @param message message to show
+     */
+    public void disconnectionMessage(String message) {
+        Platform.runLater(() -> loginBuilder.writeOnMyChat(message));
     }
 }

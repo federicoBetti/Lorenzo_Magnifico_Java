@@ -130,18 +130,22 @@ public class Constants {
     public static final String DISCONNECTION_MESSAGE = "disconnessione-message";
     public static final String WINNER_COMUNICATION = "winner-comunication";
     public static final String CONNECTION_EXCEPTION = "Connection exception";
-    public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
+    public static final String CONNECTION_ERROR = "Connection Error!";
+    public static final String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;
     public static final int MALUS_PROD_HARV = 3;
     public static final String MARKET = "market";
-    public static int LEADER_CARD_NUMBER = 20;
-    public static int EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD = 7;
-    public static int NUMBER_OF_TILES = 4;
-    public static String RED = "red";
-    public static String YELLOW ="yellow";
-    public static String BLUE ="blue";
-    public static String SHOW_RANKING  =  "show-ranking";
+    public static final String FILE_NOT_FOUND_EXCEPTION = "file not found exception has been thrown";
+    public static final String IO_EXCEPTION = "IOException";
+    public static final String SLEEP_INTERRUPTED = "sleep interrupted";
+    public static final int LEADER_CARD_NUMBER = 20;
+    public static final int EXCOMMUNICATION_CARD_NUMBER_PER_PERIOD = 7;
+    public static final int NUMBER_OF_TILES = 4;
+    public static final String RED = "red";
+    public static final String YELLOW ="yellow";
+    public static final String BLUE ="blue";
+    public static final String SHOW_RANKING  =  "show-ranking";
 
 
     private Constants(){}

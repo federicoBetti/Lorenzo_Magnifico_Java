@@ -23,12 +23,12 @@ public class GameActions {
     private Board board;
     private Timer timer;
     private LeaderCardsEffects leaderCardEffect;
-    int excommunicationPLayerPLayed;
+    private int excommunicationPlayerPlayed;
     private boolean excommunicationTurn;
 
-    public GameActions(Room room) {
+    GameActions(Room room) {
         this.room = room;
-        excommunicationPLayerPLayed = 0;
+        excommunicationPlayerPlayed = 0;
         leaderCardEffect = new LeaderCardsEffects();
         timer = new Timer();
     }
@@ -106,7 +106,6 @@ public class GameActions {
 
         getSupportFunctions(player).payCard(card, towerIsOccupied, diceCostValue, diceFamiliarValue);
 
-        System.out.println("faccio takedevCard con zone: " + zone + "e player: " + player);
         takeDevelopmentCard(zone, player);
     }
 
@@ -158,22 +157,16 @@ public class GameActions {
      * @param playerHandler current playerhandler reference
      */
     public void nextTurn(PlayerHandler playerHandler) {
-        System.out.println("Sono in next Turn");
         PlayerHandler next;
         List<PlayerHandler> turn = board.getTurn().getPlayerTurn();
-
-        for (PlayerHandler player : turn)
-            System.out.println("Player : " + player.isOn());
-
 
         int indexOfMe = turn.indexOf(playerHandler);
         int playerNumbers = room.getRoomPlayers();
         int currentPeriod = board.getPeriod();
         int currentRound = board.getRound();
 
-        if (excommunicationTurn){
-            if (excommunicationPlays())
-                return;
+        if (excommunicationTurn && excommunicationPlays()){
+            return;
         }
 
         if (board.getTurn().getRotation() == 0){
@@ -183,13 +176,7 @@ public class GameActions {
             if (board.getTurn().getSkipTurnForExcommunication().contains(nextt)){
                 if (indexOfMe == playerNumbers -1) {
                     board.getTurn().setRotation(board.getTurn().getRotation() + 1);
-                    if (nextt.isOn()) {
-                        timer.cancel();
-                        nextt.itsMyTurn();
-                        timer = this.myTimerSkipTurn(nextt);
-                        return;
-                    }
-                    else nextTurn(nextt);
+                    sendItsMyTurn(nextt);
                 }
                 else
                     nextTurn(nextt);
@@ -199,34 +186,18 @@ public class GameActions {
 
         if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
             next = turn.get(indexOfMe + 1);
-            if (next.isOn()) {
-                indexOfMe++; //inutle ma se no mi dava font duplicato sottolieato e mi stava su
-                timer.cancel();
-                next.itsMyTurn();
-                timer = this.myTimerSkipTurn(next);
-                return;
-            }
-            nextTurn(next);
+            sendItsMyTurn(next);
 
         } else if (board.getTurn().getRotation() < 3) {// sono 'ultimo del turno ma non è finito round (è giusto che sia 3 il numero perchè si incrementa dopo)
-            System.out.println("sono l'ultimo del turno, metto la rotazione a " + board.getTurn().getRotation());
             board.getTurn().setRotation(board.getTurn().getRotation() + 1);
             next = turn.get(0);
-            System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
-            if (next.isOn()) {
-                timer.cancel();
-                next.itsMyTurn();
-                timer = this.myTimerSkipTurn(next);
-                System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
-                return;
-            }
-            nextTurn(next);
+            sendItsMyTurn(next);
         } else if (currentRound == 1 && currentPeriod == 2) {//fine partita
             if (excommunicationPlays()){
                 excommunicationTurn = true;
                 return;
             }
-            excommunicationPLayerPLayed = 0;
+            excommunicationPlayerPlayed = 0;
             excommunicationTurn = false;
             timer.cancel();
             if (room.numberOfPlayerOn() == 0) {
@@ -240,7 +211,7 @@ public class GameActions {
                 excommunicationTurn = true;
                 return;
             }
-            excommunicationPLayerPLayed = 0;
+            excommunicationPlayerPlayed = 0;
             excommunicationTurn = false;
 
             timer.cancel();
@@ -254,12 +225,11 @@ public class GameActions {
             return;
 
         } else {
-            System.out.println("fine round!" + currentRound);
             if (excommunicationPlays()){
                 excommunicationTurn = true;
                 return;
             }
-            excommunicationPLayerPLayed = 0;
+            excommunicationPlayerPlayed = 0;
             excommunicationTurn = false;
 
             timer.cancel();
@@ -270,25 +240,37 @@ public class GameActions {
             int playerIndex = firstPlayerTurn();
             if (playerIndex == -1) return;
 
-            System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
         }
         //todo se rimane solo un giocatore nella partita?
+    }
+
+    /**
+     * method that notify a player that it's his turn. If he's off call nextTurn();
+     * @param next player to notify
+     */
+    private void sendItsMyTurn(PlayerHandler next) {
+        if (next.isOn()) {
+            timer.cancel();
+            next.itsMyTurn();
+            timer = this.myTimerSkipTurn(next);
+            return;
+        }
+        else nextTurn(next);
     }
 
     private boolean excommunicationPlays() {
         List<PlayerHandler> exPlayer = room.getBoard().getTurn().getSkipTurnForExcommunication();
 
-        for (; excommunicationPLayerPLayed < exPlayer.size(); ) {
-            PlayerHandler playerHandler = exPlayer.get(excommunicationPLayerPLayed);
+        while ( excommunicationPlayerPlayed < exPlayer.size()) {
+            PlayerHandler playerHandler = exPlayer.get(excommunicationPlayerPlayed);
                 if (playerHandler.isOn()) {
                     timer.cancel();
                     playerHandler.itsMyTurn();
-                    String s = playerHandler.getName();
                     timer = this.myTimerSkipTurn(playerHandler);
-                    excommunicationPLayerPLayed++;
+                    excommunicationPlayerPlayed++;
                     return true;
                 }
-            excommunicationPLayerPLayed++;
+            excommunicationPlayerPlayed++;
         }
         return false;
     }
@@ -318,8 +300,6 @@ public class GameActions {
         room.getServer().setRooms(rooms);
         room = null;
 
-        System.out.println("PARTITA FINITA PER DISCONNESSIONE DI TUTTI I GIOCATORI");
-
         return -1;
     }
 
@@ -328,7 +308,6 @@ public class GameActions {
      * but in the disconnection context for the timer expiration. It call "afterGameIftemporarilyOff" that
      * comunicate to these clients that the match is finished and send them in the "After game context".
      */
-    //todo in RMI e GUI
     private void closeClientForGeneralDisconnection() {
         for ( PlayerHandler player : room.getListOfPlayers())
             player.afterGameIftemporarilyOff();
@@ -857,6 +836,7 @@ public class GameActions {
         for (LeaderCard leaderCard : player.getPersonalBoardReference().getMyLeaderCard()) {
             if (leaderCard.getName().equals(leaderName)) {
                 leaderToPlay = leaderCard;
+                leaderToPlay.setPlayed(true);
                 break;
             }
 
@@ -869,7 +849,6 @@ public class GameActions {
         else if (returnFromEffect instanceof TakePrivilegesAction)
             player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
 
-        leaderToPlay.setPlayed(true);
 
         player.sendUpdates(new PersonalBoardUpdate(player, player.getName()));
     }

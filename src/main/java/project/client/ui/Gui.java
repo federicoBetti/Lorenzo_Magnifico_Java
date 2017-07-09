@@ -3,7 +3,6 @@ package project.client.ui;
 import javafx.application.Application;
 import javafx.application.Platform;
 import project.PlayerFile;
-import project.client.ui.cli.InputException;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
 import project.controller.cardsfactory.LeaderCard;
@@ -201,12 +200,6 @@ public class Gui extends AbstractUI {
         mainController.nicknameAlreadyUsed();
     }
 
-    //todo delate
-    @Override
-    public void skipTurn() {
-
-    }
-
     /**
      * method called when your turn is finished
      */
@@ -216,22 +209,11 @@ public class Gui extends AbstractUI {
     }
 
     /**
-     * method used to set connection
-     * @param kindOfConnection connection type chosen
-     * @throws InputException if the connection selected is not available
-     */
-    @Override
-    public void setConnectionType(String kindOfConnection) throws InputException {
-        //todo delate from abstact ui
-    }
-
-    /**
      * method called when the login has been done correctly
      */
     @Override
     public void goToLogin() {
         mainController.waitingLogin();
-      //  mainController.takeNickname(usernameChosen);
     }
 
     /**
@@ -254,14 +236,6 @@ public class Gui extends AbstractUI {
         return mainController.tileDraft(tiles);
     }
 
-    /**
-     * todo delate from abstact ui
-     */
-    @Override
-    public void newNickname(String nickname) {
-        // //lo devo fare per reiterare la richiesta di un nuovo nickname. non posso in socket rimandare lo stesso
-        //metodo di login perchè di default manda la stringa LOGIN_REQUEST e devo mandare solo il nickname
-    }
 
     /**
      * method used to notify that the pray has been done successfully
@@ -273,7 +247,7 @@ public class Gui extends AbstractUI {
 
     /**
      * method used to notify who has taken the excommunication
-     * @param update
+     * @param update update
      */
     @Override
     public void excommunicationTaken(ExcommunicationTaken update) {
@@ -288,13 +262,6 @@ public class Gui extends AbstractUI {
         mainController.timerDelayed();
     }
 
-    /**
-     * todo delate
-     */
-    @Override
-    public void reconnect() {
-
-    }
 
     /**
      * method used to show after game scene
@@ -306,13 +273,6 @@ public class Gui extends AbstractUI {
         clientSetter.showRanking();
     }
 
-    /**
-     * todo delate
-     */
-    @Override
-    public void newGameRequest() {
-
-    }
 
     /**
      * method that has recived statistics from the server
@@ -338,7 +298,7 @@ public class Gui extends AbstractUI {
      */
     @Override
     public void disconnesionMessage(String message) {
-
+        mainController.disconnectionMessage(message);
     }
 
     /**

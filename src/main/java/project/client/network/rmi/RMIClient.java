@@ -2,6 +2,7 @@ package project.client.network.rmi;
 
 
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
 import project.client.ui.ClientSetter;
@@ -31,10 +32,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     private String nickname;
     private RMIClientToServerInterface myServer;
     private String myUniqueId;
-    transient private ClientSetter clientSetter;
-    transient private HashMap<String,UpdateMethods> updateHashMap;
-
-    transient private BlockingQueue<List<Integer>> integerListQueue;
+    private transient  ClientSetter clientSetter;
+    private transient  HashMap<String,UpdateMethods> updateHashMap;
 
     public RMIClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
         super();
@@ -82,9 +81,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
             UnicastRemoteObject.exportObject(this, 0);
             myUniqueId = myServer.connect(this);
         } catch (RemoteException | NotBoundException e) {
+            UnixColoredPrinter.Logger.print("remote exception in rmi");
             throw new ClientConnectionException(e);
         }
-        System.out.println("sto andando al login");
         clientSetter.goToLogin();
     }
 
@@ -514,6 +513,17 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     @Override
     public void afterGameIfTemporaryOff() throws RemoteException {
         clientSetter.afterGame();
+    }
+
+    /**
+     * method used to notify the client that someone is disconnected
+     * @param name name of the player disconnected
+     * @throws RemoteException A RemoteException is the common superclass for a number of communication-related
+     *                          exceptions that may occur during the execution of a remote method call
+     */
+    @Override
+    public void disconectionNotification(String name) throws RemoteException {
+        clientSetter.disconnessionMessage(name);
     }
 
     /**

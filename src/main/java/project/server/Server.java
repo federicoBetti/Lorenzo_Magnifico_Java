@@ -18,12 +18,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.rmi.AlreadyBoundException;
 import java.util.*;
-
-/**
- * Created by raffaelebongo on 18/05/17.
- */
 
 /**
  * This is the main Server class. The main of this class, once started, launch both an RMI server and a Socket Server
@@ -40,27 +35,22 @@ public class Server {
 
     private TimerSettings timerSettings;
 
-    private Configuration configuration;
-
-    static UnixColoredPrinter.Logger logger;
-
     public Server() {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
-        //todo mettere configuration
-        configuration = new Configuration();
+        Configuration configuration = new Configuration();
         try {
             this.timerSettings = configuration.loadTimer();
         } catch (FileNotFoundException e) {
-            System.err.println("error loading files");
+            UnixColoredPrinter.Logger.print("error loading files");
         }
     }
 
     public static void main(String[] args) throws IOException {
         Server server = new Server();
         server.startServer(Constants.SOCKET_PORT, Constants.RMI_PORT);
-        logger = new UnixColoredPrinter.Logger();
+        new UnixColoredPrinter.Logger();
 
     }
 
@@ -69,43 +59,34 @@ public class Server {
         rmiServer.startServer(rmiPort);
     }
 
-
-    /**
-     * TODO implemetare tutti i metodi che si occupano della gestione delle room e del fileXML.controller dei giocatori
-     */
-
     /**
      * This method manage the login and the reconnection of the players placing them in the correct room
      *
      * @param nickname player's nickname as a String
-     * @param player playerHandler's reference
+     * @param player   playerHandler's reference
      */
     public void loginRequest(String nickname, PlayerHandler player) {
-        System.out.println("SONO NEL METODO DI LOGIN");
-        System.out.println(nickname);
-        System.out.println(player);
-        System.out.println(roomsAreAllFull());
 
-
-        createPlayerFile(nickname);
+        try {
+            createPlayerFile(nickname);
+        } catch (IOException e) {
+            UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
+        }
 
         if (nicknameAlreadyUsed(nickname)) {
-            System.out.println("NICKNAME GIA USATO");
             player.nicknameAlredyUsed();
             return;
         }
 
         if (rooms.isEmpty() || roomsAreAllFull()) {
-            System.out.println("CREO NUOVA ROOM");
+            UnixColoredPrinter.Logger.print("new room created!");
             createNewRoom(nickname, player);
             return;
         }
 
         for (Room room : rooms) {
             if (!room.isMatchStarted()) {
-                //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { // riconnessione giocatre andato down durante il collegament alla partita
-                    System.out.println("RICONNESSIONE MATCH NOT STARTED");
 
                     PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
                     player.setName(nickname);
@@ -118,7 +99,7 @@ public class Server {
                     if (!room.draftTime) {
                         player.setOn(true);
 
-                        room.setTimer(checkAndStartTheTimer( room ));
+                        room.setTimer(checkAndStartTheTimer(room));
                     } else {
                         player.setDisconnectedInDraft(true);
                     }
@@ -126,15 +107,13 @@ public class Server {
 
                     return;
 
-                } else if (!room.isFull() && !room.isMatchStarted()) { //se la room non è piena aggiungo il giocatore
-                    System.out.println("ROOM NON PIENA AGGIUNGO IL GIOCATORE");
+                } else if (!room.isFull() && !room.isMatchStarted()) { // if room is not full, add player to the room
                     player.setName(nickname);
                     player.setOn(true);
                     player.setRoom(room);
                     room.nicknamePlayersMap.put(nickname, player);
                     player.loginSucceded();
-                    if ( room.numberOfPlayerOn() == 2)
-                        room.setTimer(checkAndStartTheTimer(room));
+                    if (room.numberOfPlayerOn() == 2) room.setTimer(checkAndStartTheTimer(room));
 
                     if (room.isFull()) {
                         player.tokenNotify();
@@ -145,7 +124,6 @@ public class Server {
                 }
 
             } else if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { //durante la partita
-                System.out.println("RICONNESSIONE IN PARTITA");
                 player.setOn(true);
                 player.setRoom(room);
                 PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
@@ -162,8 +140,7 @@ public class Server {
 
             }
         }
-        if (allMatchStarted())
-            createNewRoom(nickname, player);
+        if (allMatchStarted()) createNewRoom(nickname, player);
     }
 
     /**
@@ -178,25 +155,22 @@ public class Server {
         try {
 
             currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
-            System.out.println("Il file è: " + currentFile);
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class);
 
             for (PlayerFile player : arrayPlayers)
                 if (player.getPlayerName().equals(winnerName))
                     player.setNumberOfVictories(player.getNumberOfVictories() + 1);
-                else
-                    player.setNumberOfDefeats(player.getNumberOfDefeats() + 1);
+                else player.setNumberOfDefeats(player.getNumberOfDefeats() + 1);
 
             String fileUpgraded = gson.toJson(arrayPlayers);
-            System.out.println("FILE UPGRADED IS: " + fileUpgraded);
 
-            FileWriter f2 = new FileWriter(Constants.FILENAME, false);
-            f2.write(fileUpgraded);
-            f2.close();
 
-            System.out.println(readFile(Constants.FILENAME, StandardCharsets.UTF_8));
+            try (FileWriter f2 = new FileWriter(Constants.FILENAME, false);){
+                f2.write(fileUpgraded);
+            }
+
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
         }
     }
 
@@ -207,16 +181,13 @@ public class Server {
 
         @Override
         public int compare(PlayerFile o1, PlayerFile o2) {
-            if (o1.getNumberOfVictories() > o2.getNumberOfVictories())
-                return 1;
-            else if ( o1.getNumberOfVictories() == o2.getNumberOfVictories() )
-                if ( o1.getNumberOfDefeats() < o2.getNumberOfDefeats() ) {
+            if (o1.getNumberOfVictories() > o2.getNumberOfVictories()) return 1;
+            else if (o1.getNumberOfVictories() == o2.getNumberOfVictories())
+                if (o1.getNumberOfDefeats() < o2.getNumberOfDefeats()) {
                     return 1;
-                }else
-                    return 0;
+                } else return 0;
 
-            else
-                return -1;
+            else return -1;
         }
     }
 
@@ -247,7 +218,7 @@ public class Server {
         return playerFileList;
     }
 
-    //todo cercare di creare il file della persistenza in resources
+
     /**
      * This method create the file with the players if it doesn't exit, add a json object to the file if is the first
      * match for the current player or increase the number of matches played if he had played at least a match before
@@ -255,23 +226,19 @@ public class Server {
      *
      * @param nickname player's nickname as a string
      */
-    private void createPlayerFile(String nickname) {
+    private void createPlayerFile(String nickname) throws IOException {
         PlayerFile playerFile = new PlayerFile();
         playerFile.setPlayerName(nickname);
         String fileUpgraded = null;
 
         Gson gson = new Gson();
-        BufferedWriter bw = null;
-        FileWriter fw = null;
+        File file = new File(Constants.FILENAME);
 
-        try {
-            File file = new File(Constants.FILENAME);
+        try (   FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+                BufferedWriter bw = new BufferedWriter(fw)){
 
-            if (!file.exists() ) {
-                System.out.println("CREO IL FILE");
+            if (!file.exists()) {
                 file.createNewFile();
-                fw = new FileWriter(file.getAbsoluteFile(), true);
-                bw = new BufferedWriter(fw);
                 PlayerFile[] array = new PlayerFile[1];
                 array[0] = playerFile;
                 String data = gson.toJson(array);
@@ -280,145 +247,71 @@ public class Server {
             }
 
             String currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
-            System.out.println("Il file in questo momento è: " + currentFile);
 
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
 
-            for (PlayerFile player : arrayPlayers)
+            for (PlayerFile player : arrayPlayers) {
                 if (player.getPlayerName().equals(nickname)) {
                     player.setNumberOfGames(player.getNumberOfGames() + 1);
                     fileUpgraded = gson.toJson(arrayPlayers);
                     break;
 
                 }
+            }
+                try (RandomAccessFile randomAccessFile = new RandomAccessFile(Constants.FILENAME, "rw")){
 
-            fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-            RandomAccessFile randomAccessFile = new RandomAccessFile(Constants.FILENAME, "rw");
 
-            long pos = randomAccessFile.length();
-            while (randomAccessFile.length() > 0) {
-                pos--;
-                randomAccessFile.seek(pos);
-                if (randomAccessFile.readByte() == ']') {
-                    randomAccessFile.seek(pos);
-                    break;
+                    long pos = randomAccessFile.length();
+                    while (randomAccessFile.length() > 0) {
+                        pos--;
+                        randomAccessFile.seek(pos);
+                        if (randomAccessFile.readByte() == ']') {
+                            randomAccessFile.seek(pos);
+                            break;
+                        }
+                    }
+
+                    // se non è stato trovato il player nel file
+                    if (fileUpgraded == null) { // aggiungo l'elemento
+                        String jsonElement = gson.toJson(playerFile);
+                        randomAccessFile.writeBytes("," + jsonElement + "]");
+
+                    } else {
+                        try (FileWriter fw1 = new FileWriter(file.getAbsoluteFile(), true);
+                             BufferedWriter bw1 = new BufferedWriter(fw1)) {
+                            bw1.write(fileUpgraded);
+                        }
+                    }
                 }
-            }
 
-            // se non è stato trovato il player nel file
-            if (fileUpgraded == null) { // aggiungo l'elemento
-                String jsonElement = gson.toJson(playerFile);
-                randomAccessFile.writeBytes("," + jsonElement + "]");
-
-            } else {
-
-                fw = new FileWriter(file.getAbsoluteFile(), false);
-                bw = new BufferedWriter(fw);
-                bw.write(fileUpgraded);
-
-            }
-            randomAccessFile.close();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-            try {
-
-                if (bw != null)
-                    bw.close();
-
-                if (fw != null)
-                    fw.close();
-
-
-            } catch (IOException ex) {
-
-                ex.printStackTrace();
-
-            }
         }
     }
 
     /**
      * This method reads all the bytes of a file
      *
-     * @param path file path as a String
+     * @param path     file path as a String
      * @param encoding Constant definitions for the standard
      * @return
      * @throws IOException
      */
-    private String readFile(String path, Charset encoding)
-            throws IOException {
+    private String readFile(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
-    }
-
-    //todo serve?
-    private String playerIsInTheFile(String nickname, String filename) {
-        Gson gson = new Gson();
-        try {
-
-            FileInputStream fis = new FileInputStream(filename);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader bufferedReader = new BufferedReader(isr);
-            //StringBuilder sb = new StringBuilder();
-            String finalString = "";
-            String line;
-            while ((line = bufferedReader.readLine()) != null) { //stringhifico il file
-                finalString += line;
-                //sb.append(line);
-            }
-
-            //String json = sb.toString();
-
-            System.out.println(finalString);
-            PlayerFile[] arrayPlayers = gson.fromJson(finalString, PlayerFile[].class); //lo trasformo in oggetto
-
-            for (PlayerFile player : arrayPlayers)
-                if (player.getPlayerName().equals(nickname)) {
-                    player.setNumberOfGames(player.getNumberOfGames() + 1);
-                    {
-                        return gson.toJson(arrayPlayers);
-                    }
-                }
-
-            /* br = new BufferedReader(new FileReader(filename));
-
-
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                line = br.readLine();
-            }*/
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
 
     private boolean allMatchStarted() {
         for (Room room : getRooms())
-            if (!room.isMatchStarted())
-                return false;
+            if (!room.isMatchStarted()) return false;
         return true;
     }
 
     /**
      * This method sends all the updates to a specific player
      *
-     * @param player playerHandler's reference
-     * @param room players room's reference
+     * @param player   playerHandler's reference
+     * @param room     players room's reference
      * @param nickname player's nickname as a String
      */
     public void sendAllUpdates(PlayerHandler player, Room room, String nickname) {
@@ -437,7 +330,7 @@ public class Server {
     /**
      * This method replace the old player reference with the new one after a reconnection of the same player
      *
-     * @param turn turn's reference
+     * @param turn      turn's reference
      * @param oldPlayer playerHandler's reference to the old player
      * @param newPlayer playerHandler's reference to the new player
      */
@@ -454,7 +347,7 @@ public class Server {
      * This method load all the information about the state of a player in a new playerHandler's reference after a
      * reconnection during the match
      *
-     * @param room player's room reference
+     * @param room      player's room reference
      * @param oldPlayer playerHandler's reference to the old player
      * @param newPlayer playerHandler's reference to the new player
      */
@@ -479,8 +372,7 @@ public class Server {
     private boolean nicknameAlreadyUsed(String nickname) {
         for (Room room : rooms) {
             for (Map.Entry<String, PlayerHandler> entry : room.nicknamePlayersMap.entrySet())
-                if (entry.getKey().equals(nickname) && entry.getValue().isOn())
-                    return true;
+                if (entry.getKey().equals(nickname) && entry.getValue().isOn()) return true;
         }
         return false;
     }
@@ -491,9 +383,8 @@ public class Server {
      * @param room player's room reference
      * @return reference to the timer
      */
-    private Timer checkAndStartTheTimer(Room room ) {
-        if ( room.numberOfPlayerOn() == 2)
-            return myTimerStartMatch(room, this.timerSettings );
+    private Timer checkAndStartTheTimer(Room room) {
+        if (room.numberOfPlayerOn() == 2) return myTimerStartMatch(room, this.timerSettings);
 
         return new Timer();
     }
@@ -512,18 +403,16 @@ public class Server {
      * playerHandler's reference and nickname
      *
      * @param nickname player's nickename as String
-     * @param player playerhandler's reference
+     * @param player   playerhandler's reference
      */
     private void createNewRoom(String nickname, PlayerHandler player) {
         Room room = new Room(this);
         rooms.add(room);
-        System.out.println("new room created!");
         player.setOn(true);
         player.setRoom(room);
         player.setName(nickname);
         room.nicknamePlayersMap.put(nickname, player);
 
-        System.out.println(room.nicknamePlayersMap.entrySet());
         player.loginSucceded();
     }
 
@@ -534,8 +423,7 @@ public class Server {
      */
     private boolean roomsAreAllFull() {
         for (Room room : rooms) {
-            if (!room.isFull())
-                return false;
+            if (!room.isFull()) return false;
         }
         return true;
     }
@@ -543,7 +431,7 @@ public class Server {
     /**
      * This method starts the timer for starting the match
      *
-     * @param room room's reference
+     * @param room          room's reference
      * @param timerSettings object created from a Json file that contains all the timer's specific
      * @return timer's reference
      */

@@ -93,19 +93,9 @@ public abstract class AbstractUI {
     public abstract void nicknameAlreadyUsed();
 
     /**
-     * Abstract skipTurn
-     */
-    public abstract void skipTurn();
-
-    /**
      * Abstract waitingForYourTurn
      */
     public abstract void waitingForYourTurn();
-
-    /**
-     * Abstract setConnectionType
-     */
-    public abstract void setConnectionType(String kindOfConnection) throws InputException;
 
     /**
      * Abstract goToLogin
@@ -137,10 +127,6 @@ public abstract class AbstractUI {
      */
     public abstract int tileDraft(List<Tile> tiles);
 
-    /**
-     * Abstract newNickname
-     */
-    public abstract void newNickname(String nickname );
 
     /**
      * Abstract prayed
@@ -157,20 +143,11 @@ public abstract class AbstractUI {
      */
     public abstract void timerDelayed();
 
-    /**
-     * Abstract reconnect
-     */
-    public abstract void reconnect();
 
     /**
      * Abstract afterGame
      */
     public abstract void afterGame();
-
-    /**
-     * Abstract newGameRequest
-     */
-    public abstract void newGameRequest();
 
     /**
      * Abstract receiveStatistics

@@ -30,7 +30,7 @@ public class NicknameAlreadyUsedContext extends AbstractContext {
      */
     @Override
     public void checkValidInput(String input) throws InputException {
-
+        //no check needed
     }
 
     /**
