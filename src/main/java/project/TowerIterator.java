@@ -46,9 +46,6 @@ public class TowerIterator implements IteratorInterface {
     public Tower getZone(){
         return towers[floor][towerNumber];
     }
-    public int getTowerNumber() {
-        return towerNumber;
-    }
 
     public int getFloor() {
         return floor;

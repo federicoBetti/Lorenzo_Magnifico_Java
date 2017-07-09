@@ -13,6 +13,9 @@ public class TowerAction extends BonusInteraction {
     private String discountedResource2;
     private int quantityDiscounted2;
 
+    /**
+     * Constructor
+     */
     public TowerAction() {
         newCardDicevalue = 0;
         discountedResource1 = "empty";
@@ -21,6 +24,12 @@ public class TowerAction extends BonusInteraction {
         quantityDiscounted2 = 0;
     }
 
+    /**
+     * Constructor
+     *
+     * @param parameter kind of card
+     * @param quantity dice value
+     */
     public TowerAction(String parameter, int quantity) {
         this.kindOfCard = parameter;
         this.newCardDicevalue = quantity;
@@ -30,6 +39,14 @@ public class TowerAction extends BonusInteraction {
         quantityDiscounted2 = 0;
     }
 
+    /**
+     * Constructor
+     *
+     * @param parameter kind of card
+     * @param quantity dice value
+     * @param discountedResource1 resource discounted
+     * @param quantityDiscounted1 quantity discounted
+     */
     public TowerAction(String parameter, int quantity, String discountedResource1, int quantityDiscounted1) {
         this.kindOfCard = parameter;
         this.newCardDicevalue = quantity;
@@ -39,6 +56,16 @@ public class TowerAction extends BonusInteraction {
         quantityDiscounted2 = 0;
     }
 
+    /**
+     * Constructor
+     *
+     * @param parameter kindo of card
+     * @param quantity dice value
+     * @param discountedResource1 resource disocunted
+     * @param quantityDiscounted1 quantity discounted
+     * @param discountedResource2 resource discounted 2
+     * @param quantityDiscounted2 quantity disocunted 2
+     */
     public TowerAction(String parameter, int quantity, String discountedResource1, int quantityDiscounted1, String discountedResource2, int quantityDiscounted2) {
         this.kindOfCard = parameter;
         this.newCardDicevalue = quantity;
@@ -48,6 +75,11 @@ public class TowerAction extends BonusInteraction {
         this.quantityDiscounted2 = quantityDiscounted2;
     }
 
+    /**
+     * Create a string that describe the bonus tower action
+     *
+     * @return the string
+     */
     public String printBonusAction() {
 
         //todo controllare se i campi vuoti sono ad empty nel json
@@ -72,31 +104,66 @@ public class TowerAction extends BonusInteraction {
 
     }
 
+    /**
+     * Get kindOfCard
+     *
+     * @return kindOfCard
+     */
     public String getKindOfCard() {
         return kindOfCard;
     }
 
+    /**
+     * String the descibe the class
+     *
+     * @return the constants
+     */
     @Override
     public String toString() {
         return Constants.TOWER_ACTION;
     }
 
+    /**
+     * Get newCardDicevalue
+     *
+     * @return newCardDicevalue
+     */
     public int getNewCardDicevalue() {
         return newCardDicevalue;
     }
 
+    /**
+     * Get discountedResource1
+     *
+     * @return discountedResource1
+     */
     public String getDiscountedResource1() {
         return discountedResource1;
     }
 
+    /**
+     * Get quantityDiscounted1
+     *
+     * @return quantityDiscounted1
+     */
     public int getQuantityDiscounted1() {
         return quantityDiscounted1;
     }
 
+    /**
+     * Get discountedResource2
+     *
+     * @return discountedResource2
+     */
     public String getDiscountedResource2() {
         return discountedResource2;
     }
 
+    /**
+     * Get quantityDiscounted2
+     *
+     * @return quantityDiscounted2
+     */
     public int getQuantityDiscounted2() {
         return quantityDiscounted2;
     }

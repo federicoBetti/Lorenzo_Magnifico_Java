@@ -3,7 +3,7 @@ package project.model;
 import java.io.Serializable;
 
 /**
- * 
+ * This class represent the family member
  */
 public class FamilyMember implements Serializable{
 
@@ -20,7 +20,9 @@ public class FamilyMember implements Serializable{
 
     private boolean isPlayed;
 
-
+    /**
+     * Constructor
+     */
     public FamilyMember(){
         this.fixedValue = 0;
         this.fixedBonus = 0;
@@ -28,31 +30,65 @@ public class FamilyMember implements Serializable{
         this.isPlayed = false;
     }
 
-
+    /**
+     * Get familyColour
+     *
+     * @return familyColour
+     */
     public String  getFamilyColour() {
         return familyColour;
     }
 
+    /**
+     * Set familyColour
+     *
+     * @param familyColour familyColour
+     */
     public void setFamilyColour(String  familyColour) {
         this.familyColour = familyColour;
     }
 
+    /**
+     * Get fixedBonus
+     *
+     * @return fixedBonus
+     */
     public int getFixedBonus() {
         return fixedBonus;
     }
 
+    /**
+     * Set fixedBonus
+     *
+     * @param fixedBonus fixedBonus
+     */
     public void setFixedBonus(int fixedBonus) {
         this.fixedBonus = fixedBonus;
     }
 
+    /**
+     * Get myColour
+     *
+     * @return myColour
+     */
     public String getMyColour() {
         return myColour;
     }
 
+    /**
+     * Set myColour
+     *
+     * @param myColour myColour
+     */
     public void setMyColour(String myColour) {
         this.myColour = myColour;
     }
 
+    /**
+     * Get my value
+     *
+     * @return my value
+     */
     public int getMyValue() {
         if (fixedValue == 0)
             return myValue + fixedBonus;
@@ -64,14 +100,29 @@ public class FamilyMember implements Serializable{
         this.myValue = myValue;
     }
 
+    /**
+     * Get isPlayed
+     *
+     * @return isPlayed
+     */
     public boolean isPlayed() {
         return isPlayed;
     }
 
+    /**
+     * Set played
+     *
+     * @param played played
+     */
     public void setPlayed(boolean played) {
         isPlayed = played;
     }
 
+    /**
+     * Set fixedValue
+     *
+     * @param fixedValue fixedValue
+     */
     public void setFixedValue(int fixedValue) {
         this.fixedValue = fixedValue;
     }

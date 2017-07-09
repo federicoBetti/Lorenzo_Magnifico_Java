@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.Serializable;
 
 /**
- * 
+ * This class represents the player in the model
  */
 public class Player implements Serializable{
 
@@ -24,7 +24,9 @@ public class Player implements Serializable{
 
 	private String familyColour;
 
-
+	/**
+	 * Constructor
+	 */
     protected Player(){
     	Configuration configuration = new Configuration();
     	
@@ -39,6 +41,11 @@ public class Player implements Serializable{
 		}
 	}
 
+	/**
+	 * Get name
+	 *
+	 * @return name
+	 */
     public String getName() {
         return name;
     }
