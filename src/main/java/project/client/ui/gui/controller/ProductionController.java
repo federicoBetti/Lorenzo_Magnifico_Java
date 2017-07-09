@@ -1,12 +1,10 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import project.controller.cardsfactory.BuildingCard;
@@ -36,9 +34,8 @@ public class ProductionController extends AbstractController {
     private Button buttonPlaceFamiliar;
     @FXML
     private Button personalBoard;
-    /**
-     * radio button in which you can chose the familiar to use
-     */
+
+
     @FXML
     private RadioButton familiarWhite;
     @FXML
@@ -48,9 +45,6 @@ public class ProductionController extends AbstractController {
     @FXML
     private RadioButton familiarBlack;
 
-    /**
-     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
-     */
 
     @FXML
     private ImageView imageFamiliarNull;
@@ -66,12 +60,12 @@ public class ProductionController extends AbstractController {
 
 
     @FXML
-    private ImageView LorenzoMagnifico;
+    private ImageView lorenzoMagnifico;
 
 
     @FXML
     private TextField chatText;
-    private final int numberOfCard = 6;
+    private static final int NUMBER_OF_CARD = 6;
 
     @FXML
     private ImageView productionZoneImage;
@@ -103,22 +97,20 @@ public class ProductionController extends AbstractController {
 
     private DropShadow borderGlow = new DropShadow();
     private DropShadow borderNull = new DropShadow();
-    private int diceValueBonus;
     @FXML
     private ScrollPane chatArea;
     @FXML
     private ToggleGroup familiar;
 
-
+    /**
+     * constructor
+     */
     public ProductionController() {
         super();
-        cardSelected = new boolean[numberOfCard];
+        cardSelected = new boolean[NUMBER_OF_CARD];
         positionSelected = false;
 
-        /**
-         * initializing of border to show wich card are selected
-         */
-        int depth = 70;//Setting the uniform variable for the glow width and height
+        int depth = 70;
         borderGlow.setColor(Color.YELLOW);
         borderGlow.setWidth(depth);
         borderGlow.setHeight(depth);
@@ -126,12 +118,19 @@ public class ProductionController extends AbstractController {
         borderNull.setColor(Color.TRANSPARENT);
     }
 
+    /**
+     * setter
+     * @param mainController main controller used to communicate with clientSetter
+     */
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setProductionController(this);
     }
 
+    /**
+     * initialization
+     */
     @Override
     public void initialize() {
         super.initialize();
@@ -141,9 +140,13 @@ public class ProductionController extends AbstractController {
 
     }
 
+    /**
+     * method called during the initialization to update images
+     */
+    @Override
     public void uploadImages() {
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        lorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
         int playerNumber;
         if (mainController.getNumberOfPlayer() > 2) playerNumber = 3;
         else playerNumber = 2;
@@ -162,6 +165,13 @@ public class ProductionController extends AbstractController {
         allPosition.add(new FamiliarPosition(imageProduction0));
     }
 
+    /**
+     * method that updates resources
+     * @param coins new coins value
+     * @param wood new wood value
+     * @param stone new stone value
+     * @param servants new servants value
+     */
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
 
@@ -171,6 +181,9 @@ public class ProductionController extends AbstractController {
         updateOneResource(servants, numberOfServants);
     }
 
+    /**
+     * method that refresh the scene
+     */
     @Override
     public void refresh() {
         super.refresh();
@@ -191,6 +204,9 @@ public class ProductionController extends AbstractController {
         }
     }
 
+    /**
+     * method that submit the action to do the production to the server
+     */
     @FXML
     private void doProduction() {
         if (familiarChosen.equals("")) return;
@@ -207,6 +223,10 @@ public class ProductionController extends AbstractController {
         mainController.doProduction(familiarChosen, buildingCardSelected);
     }
 
+    /**
+     * method that select a card
+     * @param index card to select
+     */
     private void selectCard(int index) {
         if (!cardSelected[index]) {
             allBuildingCard.get(index).setEffect(borderGlow);
@@ -217,48 +237,82 @@ public class ProductionController extends AbstractController {
         }
     }
 
-    public void selectBuildingCard0(MouseEvent MouseEvent) {
+    /**
+     * method calls when the card 0 has been selected
+     */
+    public void selectBuildingCard0( ) {
         selectCard(0);
     }
 
-    public void selectBuildingCard1(MouseEvent MouseEvent) {
+    /**
+     * method calls when the card 1 has been selected
+     */
+    public void selectBuildingCard1( ) {
         selectCard(1);
     }
 
-    public void selectBuildingCard2(MouseEvent MouseEvent) {
+    /**
+     * method calls when the card 2 has been selected
+     */
+    public void selectBuildingCard2( ) {
         selectCard(2);
     }
 
-    public void selectBuildingCard3(MouseEvent MouseEvent) {
+    /**
+     * method calls when the card 3 has been selected
+     */
+    public void selectBuildingCard3( ) {
         selectCard(3);
     }
 
-    public void selectBuildingCard4(MouseEvent MouseEvent) {
+    /**
+     * method calls when the card 4 has been selected
+     */
+    public void selectBuildingCard4( ) {
         selectCard(4);
     }
 
-    public void selectBuildingCard5(MouseEvent MouseEvent) {
+    /**
+     * method calls when the card 5 has been selected
+     */
+    public void selectBuildingCard5( ) {
         selectCard(5);
     }
 
-
-    public void sendChat(ActionEvent actionEvent) {
+    /**
+     * method that send message to chat
+     */
+    public void sendChat() {
         sendChat(chatText);
     }
 
+    /**
+     * method called to place a familiar in the production positions
+     */
     public void placeFamiliar() {
         if (super.placeFamiliarHarvProd(positionSelected,allPosition,familiarBox))
             positionSelected = true;
     }
 
+    /**
+     * method called to show the personal board
+     */
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.PRODUCTION);
     }
 
+    /**
+     * method called to update card in the production
+     * @param buildings server building cards
+     */
     void updateCards(List<BuildingCard> buildings) {
         super.updateCards(buildings, nameOfBuilding, allBuildingCard);
     }
 
+    /**
+     * method used to update positions in production
+     * @param productions server familiars on production positions
+     */
     void updatePosition(List<Production> productions) {
         super.updatePosition(productions, allPosition);
         if (allPosition.size() > 1) {
@@ -266,23 +320,32 @@ public class ProductionController extends AbstractController {
         }
     }
 
+    /**
+     * method called when the player has to make a bonus production action
+     * @param diceValue dice value of the bonus action
+     */
     void bonusProduction(int diceValue) {
         loginBuilder.setScene(SceneType.PRODUCTION, SceneType.PERSONAL_BOARD);
         blockButton();
-        this.diceValueBonus = diceValue;
-        for (int i = 0; i < numberOfCard; i++) {
+        for (int i = 0; i < NUMBER_OF_CARD; i++) {
             cardSelected[i] = false;
             allBuildingCard.get(i).setEffect(borderNull);
         }
-        writeOnChat("BONUS ACTION: you can perform a prodution action of value" + diceValueBonus);
+        writeOnChat("BONUS ACTION: you can perform a prodution action of value" + diceValue);
         writeOnChat("select the cards that you want to use");
     }
 
+    /**
+     * method called to block button for bonus action
+     */
     private void blockButton() {
         super.blockButton(mainGameButton, personalBoard, buttonPlaceFamiliar);
         submit.setOnAction(event -> bonusAction());
     }
 
+    /**
+     * method called to perform the bonus action
+     */
     private void bonusAction() {
 
         List<String> buildingCardSelected = new LinkedList<>();
@@ -297,6 +360,9 @@ public class ProductionController extends AbstractController {
 
     }
 
+    /**
+     * method called to unlock buttons after a bonus action
+     */
     void unlockButton() {
         super.unlockButton(mainGameButton, personalBoard, buttonPlaceFamiliar);
         submit.setOnAction(event -> doProduction());

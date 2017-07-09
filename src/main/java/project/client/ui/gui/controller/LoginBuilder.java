@@ -34,23 +34,9 @@ public class LoginBuilder extends Application {
 
 
     private AnchorPane generalScene;
-    private AnchorPane towersScene;
-    private AnchorPane marketScene;
-    private AnchorPane harvesterScene;
-    private AnchorPane personalBoardScene;
-    private AnchorPane productionScene;
-    private AnchorPane councilScene;
-    private AnchorPane leaderScene;
     private AnchorPane endGameScene;
 
-    private HarvesterController harvesterController;
     private GeneralMainGameController generalMainGameController;
-    private CouncilPalaceController councilPalaceController;
-    private LeaderCardController leaderCardController;
-    private MarketController marketController;
-    private PersonalBoardController personalBoardController;
-    private ProductionController productionController;
-    private TowersController towersController;
 
     private SceneType lastScene;
     private BorderPane rootLayoutMainGame;
@@ -126,7 +112,6 @@ public class LoginBuilder extends Application {
             waitingLoginScene = loader.load();
 
             WaitingLogin waitingLogin = loader.getController();
-            waitingLogin.setMainController(mainController);
 
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(errorIOException);
@@ -165,7 +150,6 @@ public class LoginBuilder extends Application {
             generalMainGameController.setMainController(mainController);
             generalMainGameController.uploadImages();
 
-            System.err.println("ho finito di caricare il general man game");
             SceneType.MAIN.setController(generalMainGameController);
             SceneType.MAIN.setScene(generalScene);
         } catch (IOException e) {
@@ -198,9 +182,9 @@ public class LoginBuilder extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/councilPalaceMainGame.fxml"));
-            councilScene = loader.load();
+            AnchorPane councilScene = loader.load();
 
-            councilPalaceController = loader.getController();
+            CouncilPalaceController councilPalaceController = loader.getController();
             councilPalaceController.setLoginBuilder(this);
             councilPalaceController.setMainController(mainController);
             councilPalaceController.uploadImages();
@@ -221,9 +205,9 @@ public class LoginBuilder extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/leaderCardMainGame.fxml"));
-            leaderScene = loader.load();
+            AnchorPane leaderScene = loader.load();
 
-            leaderCardController = loader.getController();
+            LeaderCardController leaderCardController = loader.getController();
             leaderCardController.setLoginBuilder(this);
             leaderCardController.setMainController(mainController);
             leaderCardController.uploadImages();
@@ -243,9 +227,9 @@ public class LoginBuilder extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/towersMainGame.fxml"));
-            towersScene = loader.load();
+            AnchorPane towersScene = loader.load();
 
-            towersController = loader.getController();
+            TowersController towersController = loader.getController();
             towersController.setLoginBuilder(this);
             towersController.setMainController(mainController);
             towersController.uploadImages();
@@ -266,9 +250,9 @@ public class LoginBuilder extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/marketMainGame.fxml"));
-            marketScene = loader.load();
+            AnchorPane marketScene = loader.load();
 
-            marketController = loader.getController();
+            MarketController marketController = loader.getController();
             marketController.setLoginBuilder(this);
             marketController.setMainController(mainController);
             marketController.uploadImages();
@@ -288,9 +272,9 @@ public class LoginBuilder extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/personalBoardMainGame.fxml"));
-            personalBoardScene = loader.load();
+            AnchorPane personalBoardScene = loader.load();
 
-            personalBoardController = loader.getController();
+            PersonalBoardController personalBoardController = loader.getController();
             personalBoardController.setLoginBuilder(this);
             personalBoardController.setMainController(mainController);
             personalBoardController.uploadImages();
@@ -310,9 +294,9 @@ public class LoginBuilder extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/harvesterMainGame.fxml"));
-            harvesterScene = loader.load();
+            AnchorPane harvesterScene = loader.load();
 
-            harvesterController = loader.getController();
+            HarvesterController harvesterController = loader.getController();
             harvesterController.setLoginBuilder(this);
             harvesterController.setMainController(mainController);
             harvesterController.uploadImages();
@@ -332,9 +316,9 @@ public class LoginBuilder extends Application {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/productionMainGame.fxml"));
-            productionScene = loader.load();
+            AnchorPane productionScene = loader.load();
 
-            productionController = loader.getController();
+            ProductionController productionController = loader.getController();
             productionController.setLoginBuilder(this);
             productionController.setMainController(mainController);
             productionController.uploadImages();
@@ -762,9 +746,7 @@ public class LoginBuilder extends Application {
             Scene scene = new Scene(popUp);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
             PointsController controller = loader.getController();
-            controller.setMainController(mainController);
             controller.updatePoints(uiScore);
 
             dialogStage.showAndWait();

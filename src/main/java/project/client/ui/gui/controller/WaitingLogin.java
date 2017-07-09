@@ -2,14 +2,10 @@ package project.client.ui.gui.controller;
 
 
 /**
- * Created by federico on 09/06/17.
+ * controller of the waiiting login scene
  */
 public class WaitingLogin {
 
-    private MainController mainController;
-
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
+    //it's correct that it's empty. this scene has just to wait for the other player login
 
 }

@@ -1,6 +1,5 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -8,10 +7,11 @@ import javafx.scene.image.ImageView;
 import project.model.Market;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by federico on 11/06/17.
+ * controller class of the market scene
  */
 public class MarketController extends AbstractController {
 
@@ -29,9 +29,6 @@ public class MarketController extends AbstractController {
     @FXML
     private  Label numberOfServants;
 
-    /**
-     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
-     */
 
     @FXML
     private  ImageView imageFamiliarNull;
@@ -46,10 +43,6 @@ public class MarketController extends AbstractController {
     private  ImageView imageFamiliarOrange;
 
 
-
-    /**
-     * radio button in which you can chose the familiar to use
-     */
     @FXML
     private  RadioButton familiarOrange;
     @FXML
@@ -62,14 +55,13 @@ public class MarketController extends AbstractController {
 
 
     @FXML
-    private  ImageView LorenzoMagnifico;
+    private  ImageView lorenzoMagnifico;
 
 
     @FXML
     private  TextField chatText;
-    /**
-     * the imageViews where the familiar will be placed
-     */
+
+
     @FXML
     private  ImageView imageMarket0;
     @FXML
@@ -89,27 +81,38 @@ public class MarketController extends AbstractController {
     @FXML
     private ToggleGroup familiar;
 
+    /**
+     * constructor
+     */
     public MarketController(){
         super();
-        System.out.print("sono nel controller");
         lastFamiliarPlaced = new ImageView();
         positionSelected = -1;
     }
 
-    //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
+    /**
+     * initialization method
+     */
+    @Override
     @FXML
     public void initialize(){
         super.initialize();
         familiarPositions = new ArrayList<>(2);
     }
 
-
+    /**
+     * setter
+     * @param mainController main controller used to communicate with clientSetter
+     */
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setMarketController(this);
     }
 
+    /**
+     * method used to refresh the scene
+     */
     @Override
     public void refresh() {
         super.refresh();
@@ -119,9 +122,13 @@ public class MarketController extends AbstractController {
         lastFamiliarPlaced.setImage(null);
     }
 
+    /**
+     * method used to upload images during initialization
+     */
+    @Override
     public void uploadImages(){
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        lorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
 
         int playerNumber;
         if (mainController.getNumberOfPlayer() < 4)
@@ -146,6 +153,13 @@ public class MarketController extends AbstractController {
         }
     }
 
+    /**
+     * method used to update resources in the scene
+     * @param coins new coins value
+     * @param wood new wood value
+     * @param stone new stone value
+     * @param servants new servants value
+     */
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
 
@@ -155,58 +169,85 @@ public class MarketController extends AbstractController {
         updateOneResource(servants,numberOfServants);
     }
 
+    /**
+     * method used to submit market action
+     */
     public void goToMarket() {
         if (positionSelected!= -1){
-            System.out.println("fatto partire richiesta mercato");
             lastFamiliarPlaced = new ImageView((Image) null);
             mainController.goToMarket(positionSelected,familiarChosen);
         }
     }
 
-
+    /**
+     * method used to place familiar in a market position
+     * @param position position in which place the familiar
+     */
     private void placeFamiliar(int position){
         if (!mainController.isMyTurn())
             return;
-        FamiliarPosition familiar = familiarPositions.get(position);
-        if (!familiar.getFamiliarName().equals(""))
+        FamiliarPosition familiarChosen = familiarPositions.get(position);
+        if (!familiarChosen.getFamiliarName().equals(""))
             return; //posizione occupata
         lastFamiliarPlaced.setImage(null);
         positionSelected = position;
-        familiar.setImage(getTrueFamiliarImage());
-        lastFamiliarPlaced = familiar.getImage();
+        familiarChosen.setImage(getTrueFamiliarImage());
+        lastFamiliarPlaced = familiarChosen.getImage();
     }
-    
+
+    /**
+     * method used to place a familiar in the market position 0
+     */
     public void placeFamiliarOnMarket0() {
         placeFamiliar(0);
     }
+
+    /**
+     * method used to place a familiar in the market position 1
+     */
     public void placeFamiliarOnMarket1() {
         placeFamiliar(1);
     }
+
+    /**
+     * method used to place a familiar in the market position 2
+     */
     public void placeFamiliarOnMarket2() {
         placeFamiliar(2);
     }
+
+    /**
+     * method used to place a familiar in the market position 3
+     */
     public void placeFamiliarOnMarket3() {
         placeFamiliar(3);
     }
 
 
-
+    /**
+     * methos used to show personal board sceen
+     */
     public void showPersonalBoard(){
         super.showPersonalBoard(SceneType.MARKET);
     }
 
-    public void updatePosition(Market[] markets){
+    /**
+     * method used to update positions following an update
+     * @param markets market arrived from update
+     */
+    void updatePosition(Market[] markets){
         if (markets == null)
             return;
         List<Market> markets1 = new ArrayList<>();
-        for (Market m: markets){
-            markets1.add(m);
-        }
+        markets1.addAll(Arrays.asList(markets));
         super.updatePosition(markets1,familiarPositions);
 
     }
 
-    public void sendChat(ActionEvent actionEvent) {
+    /**
+     * method used to send a message in the chat
+     */
+    public void sendChat() {
         sendChat(chatText);
     }
 }

@@ -1,6 +1,6 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -8,20 +8,23 @@ import javafx.stage.Stage;
 import project.model.Score;
 
 /**
- * Created by federico on 04/07/17.
+ * controller of points stage
  */
 public class PointsController {
-    public Label faithLabel;
-    public Label victoryLabel;
-    public Label militaryLabel;
-    public Button ok;
-    private MainController mainController;
+    @FXML
+    private Label faithLabel;
+    @FXML
+    private Label victoryLabel;
+    @FXML
+    private Label militaryLabel;
+    @FXML
+    private Button ok;
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
-    public void updatePoints(Score uiScore) {
+    /**
+     * method used to update points in the scene
+     * @param uiScore score updated arrived from server
+     */
+    void updatePoints(Score uiScore) {
         faithLabel.setContentDisplay(ContentDisplay.CENTER);
         militaryLabel.setContentDisplay(ContentDisplay.CENTER);
         victoryLabel.setContentDisplay(ContentDisplay.CENTER);
@@ -32,7 +35,10 @@ public class PointsController {
 
     }
 
-    public void done(ActionEvent actionEvent) {
+    /**
+     * method called to close the stage
+     */
+    public void done() {
         Stage s = (Stage) ok.getScene().getWindow();
         s.hide();
     }

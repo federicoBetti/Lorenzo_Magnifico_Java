@@ -2,6 +2,7 @@ package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
@@ -53,10 +54,10 @@ public class MainController {
     private List<PlayerFile> ranking;
     private boolean winner;
 
+    private String interruptdeExceptionString = "program quit during queue .take()";
 
     private MainController() {
         controllers = new ArrayList<>();
-        Object token = new Object();
         firstTime = true;
     }
 
@@ -196,12 +197,12 @@ public class MainController {
     /**
      * method called by gui when connect button is pressed
      * @param connectionType type of connection
-     * @param IP ip address of server
+     * @param ipAddress ip address of server
      * @param usernameChosen usernamen of the player
      */
-    void setConnectionType(String connectionType, String IP, String usernameChosen) {
+    void setConnectionType(String connectionType, String ipAddress, String usernameChosen) {
         this.usernameChosen = usernameChosen;
-        clientSetter.setConnectionType(connectionType, IP);
+        clientSetter.setConnectionType(connectionType, ipAddress);
     }
 
     /**
@@ -269,7 +270,7 @@ public class MainController {
     void takeBonusPrivileges(ArrayList<Integer> privilegeSelected) {
         actionBonusOn = false;
 
-        Runnable a = () -> clientSetter.immediatePriviledgeAction(privilegeSelected);;
+        Runnable a = () -> clientSetter.immediatePriviledgeAction(privilegeSelected);
         new Thread(a).start();
 
         if (endTurnContext){
@@ -284,7 +285,7 @@ public class MainController {
      */
     void doBonusHarvester(int servants) {
         actionBonusOn = false;
-        Runnable a = () -> clientSetter.bonusHarvesterAction(servants);;
+        Runnable a = () -> clientSetter.bonusHarvesterAction(servants);
         new Thread(a).start();
     }
 
@@ -334,7 +335,7 @@ public class MainController {
      */
     public void discardLeaderCard(String cardSelected) {
         Runnable a = () -> clientSetter.discardLeaderCard(cardSelected);
-        ;
+
         new Thread(a).start();
 
     }
@@ -574,13 +575,15 @@ public class MainController {
      * @param s1         second choice
      * @return choice done
      */
-    public int getChoice(String choiceType, String s, String s1) {
+    private int getChoice(String choiceType, String s, String s1) {
         integerQueue = new LinkedBlockingQueue<>(1);
         Platform.runLater(() -> generalGameController.setChoice(choiceType, s, s1));
         Integer i = 0;
         try {
             i = integerQueue.take();
         } catch (InterruptedException e) {
+            UnixColoredPrinter.Logger.print(interruptdeExceptionString);
+            Thread.currentThread().interrupt();
         }
         integerQueue = null;
         return i;
@@ -616,15 +619,6 @@ public class MainController {
     }
 
     /**
-     * setter
-     *
-     * @param myTurn variable
-     */
-    private void setMyTurn(boolean myTurn) {
-        this.myTurn = myTurn;
-    }
-
-    /**
      * method used to update chat of all scene
      */
     void updateChat() {
@@ -635,21 +629,20 @@ public class MainController {
     }
 
     /**
-     * methd used in leader draft
+     * method used in leader draft
      *
      * @param leaders leader to choose
      * @return leader chosen
      */
     public String getLeaderCardChosen(List<LeaderCard> leaders) {
         stringQueue = new LinkedBlockingQueue<>(1);
-        Platform.runLater(() -> {
-            loginBuilder.setLeaderDraft(leaders);
-        });
+        Platform.runLater(() -> loginBuilder.setLeaderDraft(leaders));
         String i = "";
         try {
             i = stringQueue.take();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(interruptdeExceptionString);
+            Thread.currentThread().interrupt();
         }
         stringQueue = null;
         return i;
@@ -669,7 +662,6 @@ public class MainController {
             loginBuilder.initializeMainGame();
             loginBuilder.startMainGame();
 
-            System.err.println("sto per settare il nome");
             generalGameController.setName(usernameChosen);
         });
     }
@@ -678,7 +670,7 @@ public class MainController {
      * method to notify that it is your turn
      */
     public void startTurn() {
-        setMyTurn(true);
+        myTurn = true;
         Platform.runLater(() -> {
             loginBuilder.writeOnMyChat("it's your turn, you can play!\n");
             loginBuilder.showMainScene();
@@ -716,7 +708,8 @@ public class MainController {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            //
+            UnixColoredPrinter.Logger.print(interruptdeExceptionString);
+            Thread.currentThread().interrupt();
         }
 
         Platform.runLater(() -> loginBuilder.popUp("you are disconnected, click ok to reconnect"));
@@ -789,7 +782,8 @@ public class MainController {
         try {
             i = integerQueue.take();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(interruptdeExceptionString);
+            Thread.currentThread().interrupt();
         }
         return i;
     }
@@ -823,65 +817,104 @@ public class MainController {
     /**
      *
      *setter
-     * @return usernamen of the player
+     * @return username of the player
      */
-    public String getUsernameChosen() {
+    String getUsernameChosen() {
         return usernameChosen;
     }
 
     /**
      * sending a request of a new match at the end of the game
      */
-    public void newGame() {
+    void newGame() {
         clientSetter.newGameRequest();
     }
 
+    /**
+     * method that show after game scene
+     */
     public void afterGame() {
         currentPeriod = 0;
-        System.err.println("mettoo l'after game context");
         Platform.runLater(() -> loginBuilder.setAfterGame());
     }
 
+    /**
+     * method that notify player that he have prayed
+     */
     public void prayed() {
         currentPeriod++;
         Platform.runLater(() -> loginBuilder.writeOnMyChat("you have prayed!\n"));
     }
 
+    /**
+     * method that notify player that someone has taken an excommunication
+     * @param update excommunication taken
+     */
     public void excommunicationTaken(ExcommunicationTaken update) {
         if (update.getNicknameCurrentPlayer().equals(clientSetter.getNickname()))
             currentPeriod++;
         Platform.runLater(() -> loginBuilder.writeOnMyChat(update.toScreen()));
     }
 
-    public int getCurrentPeriod() {
+    /**
+     * getter
+     * @return current period
+     */
+    int getCurrentPeriod() {
         return currentPeriod;
     }
 
+    /**
+     * getter
+     * @return statistics file
+     */
     public PlayerFile getStatistics() {
         return statisticPlayer;
     }
 
+    /**
+     * setter
+     * @param statistics statistics file
+     */
     public void setStatistics(PlayerFile statistics) {
         this.statisticPlayer = statistics;
     }
 
+    /**
+     * setter
+     * @param ranking ranking file
+     */
     public void setRanking(List<PlayerFile> ranking) {
         this.ranking = ranking;
     }
 
+    /**
+     * method that notify player that he wins
+     */
     public void youWin() {
         winner = true;
     }
 
+    /**
+     * getter
+     * @return ranking files
+     */
     public List<PlayerFile> getRanking() {
         return ranking;
     }
 
-    public boolean isWin() {
+    /**
+     * getter
+     * @return win variable
+     */
+    boolean isWin() {
         return winner;
     }
 
-    public void terminate() {
+    /**
+     * method that close the program at the end of the game
+     */
+    void terminate() {
         clientSetter.terminate();
     }
 }

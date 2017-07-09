@@ -1,8 +1,6 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,12 +11,12 @@ import project.model.PersonalBoard;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 
 public class PersonalBoardController extends AbstractController {
     @FXML
     private  ImageView bonusTile;
-    @FXML
-    private Button goBackButton;
     @FXML
     private Label numberOfCoins;
 
@@ -90,6 +88,9 @@ public class PersonalBoardController extends AbstractController {
     @FXML
     private Label chatArea;
 
+    /**
+     * constructor
+     */
     public PersonalBoardController() {
         super();
         territoryCards = new ArrayList<>();
@@ -98,6 +99,10 @@ public class PersonalBoardController extends AbstractController {
         venturesCards = new ArrayList<>();
     }
 
+    /**
+     * initialization
+     */
+    @Override
     public void initialize() {
         territoryCards.add(territory0);
         territoryCards.add(territory1);
@@ -128,17 +133,31 @@ public class PersonalBoardController extends AbstractController {
         venturesCards.add(ventures5);
     }
 
+    /**
+     * setter
+     * @param mainController main controller used to communicate with clientSetter
+     */
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setPersonalBoardController(this);
     }
 
+    /**
+     * method used to refresh the scene
+     */
     @Override
     public void refresh() {
         chatArea.setText(loginBuilder.getChat().toString());
     }
 
+    /**
+     * method used to update resources
+     * @param coins new coins value
+     * @param wood new wood value
+     * @param stone new stone value
+     * @param servants new servants value
+     */
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
 
@@ -148,112 +167,186 @@ public class PersonalBoardController extends AbstractController {
         updateOneResource(servants,numberOfServants);
     }
 
+    /**
+     * method used to go back to the last scene
+     */
     public void goBack() {
         SceneType lastScene = loginBuilder.getLastScene();
         loginBuilder.setScene(lastScene, SceneType.PERSONAL_BOARD);
     }
 
-
+    /**
+     * method used to zoom on the territory card 0
+     */
     public void zoomOnTerritory0() {
         loginBuilder.showCardZoomed(territory0.getImage());
     }
 
+    /**
+     * method used to zoom on the territory card 1
+     */
     public void zoomOnTerritory1() {
         loginBuilder.showCardZoomed(territory1.getImage());
     }
 
+    /**
+     * method used to zoom on the territory card 2
+     */
     public void zoomOnTerritory2() {
         loginBuilder.showCardZoomed(territory2.getImage());
     }
 
+    /**
+     * method used to zoom on the territory card 3
+     */
     public void zoomOnTerritory3() {
         loginBuilder.showCardZoomed(territory3.getImage());
     }
 
+    /**
+     * method used to zoom on the territory card 4
+     */
     public void zoomOnTerritory4() {
         loginBuilder.showCardZoomed(territory4.getImage());
     }
 
+    /**
+     * method used to zoom on the territory card 5
+     */
     public void zoomOnTerritory5() {
         loginBuilder.showCardZoomed(territory5.getImage());
     }
 
-
+    /**
+     * method used to zoom on the character card 0
+     */
     public void zoomOnCharacter0() {
         loginBuilder.showCardZoomed(character0.getImage());
     }
 
+    /**
+     * method used to zoom on the character card 1
+     */
     public void zoomOnCharacter1() {
         loginBuilder.showCardZoomed(character1.getImage());
     }
 
+    /**
+     * method used to zoom on the character card 2
+     */
     public void zoomOnCharacter2() {
         loginBuilder.showCardZoomed(character2.getImage());
     }
 
+    /**
+     * method used to zoom on the character card 3
+     */
     public void zoomOnCharacter3() {
         loginBuilder.showCardZoomed(character3.getImage());
     }
 
+    /**
+     * method used to zoom on the character card 4
+     */
     public void zoomOnCharacter4() {
         loginBuilder.showCardZoomed(character4.getImage());
     }
 
+    /**
+     * method used to zoom on the character card 5
+     */
     public void zoomOnCharacter5() {
         loginBuilder.showCardZoomed(character5.getImage());
     }
 
-
+    /**
+     * method used to zoom on the building card 0
+     */
     public void zoomOnBuilding0() {
         loginBuilder.showCardZoomed(building0.getImage());
     }
 
+    /**
+     * method used to zoom on the building card 1
+     */
     public void zoomOnBuilding1() {
         loginBuilder.showCardZoomed(building1.getImage());
     }
 
+    /**
+     * method used to zoom on the building card 2
+     */
     public void zoomOnBuilding2() {
         loginBuilder.showCardZoomed(building2.getImage());
     }
 
+    /**
+     * method used to zoom on the building card 3
+     */
     public void zoomOnBuilding3() {
         loginBuilder.showCardZoomed(building3.getImage());
     }
 
+    /**
+     * method used to zoom on the building card 4
+     */
     public void zoomOnBuilding4() {
         loginBuilder.showCardZoomed(building4.getImage());
     }
 
+    /**
+     * method used to zoom on the building card 5
+     */
     public void zoomOnBuilding5() {
         loginBuilder.showCardZoomed(building5.getImage());
     }
 
-
+    /**
+     * method used to zoom on the ventures card 0
+     */
     public void zoomOnVentures0() {
         loginBuilder.showCardZoomed(ventures0.getImage());
     }
 
+    /**
+     * method used to zoom on the ventures card 1
+     */
     public void zoomOnVentures1() {
         loginBuilder.showCardZoomed(ventures1.getImage());
     }
 
+    /**
+     * method used to zoom on the ventures card 2
+     */
     public void zoomOnVentures2() {
         loginBuilder.showCardZoomed(ventures2.getImage());
     }
 
+    /**
+     * method used to zoom on the ventures card 3
+     */
     public void zoomOnVentures3() {
         loginBuilder.showCardZoomed(ventures3.getImage());
     }
 
+    /**
+     * method used to zoom on the ventures card 4
+     */
     public void zoomOnVentures4() {
         loginBuilder.showCardZoomed(ventures4.getImage());
     }
 
+    /**
+     * method used to zoom on the ventures card 5
+     */
     public void zoomOnVentures5() {
         loginBuilder.showCardZoomed(ventures5.getImage());
     }
 
-
+    /**
+     * method called to update card
+     * @param personalBoard personal board updated
+     */
     public void update(PersonalBoard personalBoard) {
         fillList(territoryCards, personalBoard.getTerritories());
         fillList(characterCards, personalBoard.getCharacters());
@@ -261,26 +354,37 @@ public class PersonalBoardController extends AbstractController {
         fillList(venturesCards, personalBoard.getVentures());
     }
 
-
-    public void sendChat(ActionEvent actionEvent){
+    /**
+     * method used to send a message in the chat
+     */
+    public void sendChat(){
         sendChat(chatText);
     }
 
+    /**
+     *  method used to update a list of card
+     * @param cards imageviews of card in the gui
+     * @param territories list of card arrived from update
+     */
     private void fillList(List<ImageView> cards, List<? extends DevelopmentCard> territories) {
         int counter = 0;
         for (DevelopmentCard c : territories) {
             if (c == null) return;
             else {
                 if (cards.get(counter).getImage() == null)
-                    cards.get(counter).setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + c.getName() + ".png"))));
+                    cards.get(counter).setImage(new Image(valueOf(getClass().getResource("/images/cards/" + c.getName() + ".png"))));
                 counter++;
             }
         }
     }
 
-    public void setBonusTile(int i) {
+    /**
+     * method used to set the bonus tile chosen in the draft
+     * @param i number of tile chosen
+     */
+    void setBonusTile(int i) {
         if (bonusTile.getImage()!=null)
             return;
-        bonusTile.setImage(new Image(String.valueOf(getClass().getResource("/images/risorse/bonusTile" + String.valueOf(i) + ".png"))));
+        bonusTile.setImage(new Image(valueOf(getClass().getResource("/images/risorse/bonusTile" + i + ".png"))));
     }
 }
