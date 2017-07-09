@@ -129,6 +129,7 @@ public class Constants {
     public static final int MAX_CARDS_NUMBER = 6;
     public static final String DISCONNECTION_MESSAGE = "disconnessione-message";
     public static final String WINNER_COMUNICATION = "winner-comunication";
+    public static final String CONNECTION_EXCEPTION = "Connection exception";
     public static String TOWER_ACTION_YELLOW = "tower-action-yellow";
     public static final int CANT_USE_ANY_PAYMENT = 0;
     public static final int CAN_USE_BOTH_PAYMENT_METHOD = 3;

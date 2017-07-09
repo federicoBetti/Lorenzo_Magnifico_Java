@@ -1,6 +1,7 @@
 package project.server.network.socket;
 
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
@@ -32,8 +33,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ObjectInputStream objectInputStream;
     private transient ObjectOutputStream objectOutputStream;
     private transient ServerDataHandler serverDataHandler;
-    final Object token;
-    final Object token1;
+    private transient final Object token;
+    private transient final Object token1;
     private boolean firstConnection;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
@@ -67,29 +68,23 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     public void run() {
         try {
 
-            System.out.println("waiting for Request...");
             Object object = objectInputStream.readObject();
-            System.out.println(object);
-            System.out.println("the client wants to do " + object);
             serverDataHandler.handleRequest(object);
 
             if (firstConnection) {
                 synchronized (token) {
-                    System.out.println(this.getName() + " WAIT");
                     try {
                         token.wait();
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        UnixColoredPrinter.Logger.print("Interrupt!");
+                        Thread.currentThread().interrupt();
                     }
                 }
             }
-            System.out.println(this.getName() + " WAITTT");
 
             while (true) {
-                System.out.println("SONO NEL WHILE TRUE. PLAYER: " + this.getName());
+
                 object = objectInputStream.readObject();
-                System.out.println(object);
-                System.out.println("the client wants to do " + object);
                 serverDataHandler.handleRequest(object);
             }
 
@@ -101,7 +96,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             broadcastDisconnessioneMessage(this);
             this.setOn(false);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
         closeSocket(objectInputStream);
         closeSocket(objectOutputStream);
@@ -122,7 +117,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      *The loadClass method in class ClassLoader.
      *but no definition for the class with the specified name could be found.
      */
-    void loginRequestAnswer(String nickname) throws IOException, ClassNotFoundException {
+    void loginRequestAnswer(String nickname) throws IOException {
         socketServer.loginRequest(nickname, this);
     }
 
@@ -198,9 +193,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      */
     void productionRequest() throws IOException, ClassNotFoundException {
         String familyMemberColour = (String) objectInputStream.readObject();
-        System.out.println("family colour: " + familyMemberColour);
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
-        System.out.println("familiar: " + familyMember);
         ArrayList<BuildingCard> cards = receiveListOfBuildingCard();
 
         try {
@@ -223,7 +216,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         int position = (int) objectInputStream.readObject();
         String familyMemberColour = (String) objectInputStream.readObject();
         FamilyMember familyMember = findFamilyMember(familyMemberColour);
-        System.out.println("parametri mercato ricevuti :  " + familyMemberColour + " " + position);
 
         try {
             goToMarket(position, familyMember);
@@ -336,7 +328,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 objectOutputStream.reset();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
             }
         }
     }
@@ -360,7 +352,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private void broadcastDisconnessioneMessage(PlayerHandler currentPlayer ) {
 
         for (PlayerHandler player : getRoom().getBoard().getTurn().getPlayerTurn()) {
-            System.out.println(player.getName() + " " + player.isOn());
             if (player != currentPlayer && player.isOn()) {
                 //da mettere nel player handòer
                 //player.sendString(Constants.DISCONNECTION_MESSAGE);
@@ -380,7 +371,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             String newNickname = (String) objectInputStream.readObject();
             loginRequestAnswer(newNickname);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
     }
 
@@ -427,13 +418,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             String res = (String) objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
-            System.out.println(res + " result");
             return res;
         } catch (IOException e) {
             setOn(false);
             return "-1";
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print("Class not found");
+
         }
         return "-1";
     }
@@ -461,10 +452,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             }
 
-            System.out.println("sono in attesa qui");
             int choice = (int) objectInputStream.readObject();
             sendString(Constants.ACTION_DONE_ON_TIME);
-            System.out.println("Arrivato choice " + choice);
             return choice;
         } catch (IOException | ClassNotFoundException e) {
             setOn(false);
@@ -512,11 +501,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             synchronized (token) {
                 token.wait();
             }
-        } catch (IOException | ClassNotFoundException | InterruptedException e) {
-            e.printStackTrace();
+        } catch (IOException | InterruptedException e) {
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
     }
-
+ClassNotFoundException
     /**
      * Method called for send to the client the ranking of all players that have played with the game
      * @param ranking list of players ordered for victories, defeats and number of matches played
@@ -526,11 +515,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         try {
             objectOutputStream.writeObject(Constants.SHOW_RANKING);
-            objectOutputStream.writeObject(ranking);
+            objectOutputStream.writeObject((ArrayList)ranking);
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
     }
 
@@ -546,7 +535,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
         }
     }
 
@@ -591,8 +581,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     public void matchStarted(int roomPlayers, String familyColour) {
         try {
             synchronized (token) {
-                token.notify();
-                System.out.println(this.getName() + " SVEGLIATO");
+                token.notifyAll();
             }
             if (isOn()) {
                 setMatchStartedVar(true);
@@ -632,7 +621,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             return choice;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
         return -1;
     }
@@ -659,7 +648,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      */
     @Override
     public int sendAskForPraying() {
-        System.out.println("SONO IL PLAYER: " + this);
 
         while (true) {
             try {
@@ -671,23 +659,22 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 }
 
                 sendString(Constants.ASK_FOR_PRAYING);
-                System.out.println(" mandata ask ");
                 synchronized (token) {
                     token.wait();
                 }
 
                 int answer = (int) objectInputStream.readObject();
-                System.out.println("risposta arrivata " + answer);
                 sendString(Constants.ACTION_DONE_ON_TIME);
 
                 synchronized (token1) {
-                    token1.notify();
+                    token1.notifyAll();
                 }
 
                 return answer;
 
             } catch (IOException | ClassNotFoundException | InterruptedException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
             }
         }
     }
@@ -696,21 +683,19 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      * Method called for notifying the wait in "sendAskForPraying" method.
      */
     void waitForPraying() {
-        System.out.println("SBLOCCO LA READ SULLA PREGHIERA\n");
+
         setCallPray(true);
         synchronized (token) {
-            token.notify();
+            token.notifyAll();
         }
 
-        System.out.println("BLOCCO LA READ DEL WHILE TRUE\n");
         synchronized (token1) {
             try {
                 token1.wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print("Interrupted!");
+                Thread.currentThread().interrupt();
             }
-
-            System.out.println("SBLOCCO LA READ Del while true\n");
         }
     }
 
@@ -746,7 +731,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.flush();
             objectOutputStream.reset();
         } catch (IOException e) {
-            System.out.println("errore invio su socket");
+            UnixColoredPrinter.Logger.print("Connection error");
             setOn(false);
         }
 
@@ -760,7 +745,6 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     @Override
     public void sendUpdates(Updates updates) {
         if (isOn()) {
-            System.out.println(updates.getClass());
             sendAnswer(updates);
         }
     }
@@ -779,11 +763,11 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             objectOutputStream.flush();
             objectOutputStream.reset();
             int choice = (int) objectInputStream.readObject();
-            System.out.println("la scelta è: " + choice);
             sendString(Constants.ACTION_DONE_ON_TIME);
             return choice;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
         }
         return -1;
     }
@@ -801,7 +785,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
             try {
                 answer = (String) objectInputStream.readObject();
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
             }
 
             if (answer.equals(Constants.EXIT))
@@ -816,7 +801,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                     objectOutputStream.flush();
                     objectOutputStream.reset();
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
                 }
             }
         }
@@ -849,17 +835,21 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                         intServantsNumber = (int)objectInputStream.readObject();
                         doBonusHarv(returnFromEffect, intServantsNumber);
                         return;
+                    default:
+                        return;
+
                 }
 
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
             } catch (CantDoActionException e) {
                 try {
                     objectOutputStream.writeObject(Constants.NOT_ENOUGH_RESOURCES);
                     objectOutputStream.flush();
                     objectOutputStream.reset();
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
                 }
             }
         }
@@ -891,14 +881,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                     int privilegeNumber = 0;
 
                     privilegeNumber = (int) objectInputStream.readObject();
-                    System.out.println();
                     takePrivilege(privilegeNumber);
                 }
             } else if (message.equals(Constants.EXIT))
                 return;
 
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
         }
     }
 
@@ -916,9 +906,9 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         int floor = 0;
         try {
             floor = (int) objectInputStream.readObject();
-            System.out.println("floor: " + floor);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
         }
         clientTakeBonusDevelopementCard(towerColour, floor, returnFromEffect);
 
@@ -940,7 +930,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
         }
 
         return cardsForProduction;
@@ -955,6 +946,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
         try {
             closeable.close();
         } catch (IOException e) {
+            UnixColoredPrinter.Logger.print("Connection exception");
         }
     }
 
