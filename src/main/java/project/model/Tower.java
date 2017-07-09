@@ -9,9 +9,9 @@ import project.server.network.PlayerHandler;
 import java.io.Serializable;
 
 /**
- * portare tutte le torri della board da file
+ * This class represents a Tower position
  */
-public class Tower extends Position implements Serializable{
+public class Tower extends Position implements Serializable {
 
 
     private String colour;
@@ -26,17 +26,23 @@ public class Tower extends Position implements Serializable{
 
     private Effects towerZoneEffect;
 
-
-    public Tower(String colour, int diceValueOfhisFloor, int towerNumber, TrisIE trisIE ) {
+    /**
+     * Constructor
+     *
+     * @param colour              tower colour
+     * @param diceValueOfhisFloor dice value of the floor
+     * @param towerNumber         tower's number
+     * @param trisIE              object that represents the effect
+     */
+    public Tower(String colour, int diceValueOfhisFloor, int towerNumber, TrisIE trisIE) {
         super();
         this.colour = colour;
         this.diceValueOfThisFloor = diceValueOfhisFloor;
 
-        if(diceValueOfThisFloor >= 5 ) {
+        if (diceValueOfThisFloor >= 5) {
             BuildImmediateEffects buildImmediateEffects = new BuildImmediateEffects();
             towerZoneEffect = buildImmediateEffects.searchImmediateEffects(trisIE.getType(), trisIE.getParameter(), trisIE.getQuantity());
-        }
-        else {
+        } else {
             towerZoneEffect = new Effects() {
                 @Override
                 public BonusInteraction doEffect(PlayerHandler player) {
@@ -54,28 +60,53 @@ public class Tower extends Position implements Serializable{
     }
 
     /**
-     * for testing
+     * Constructor for testing
      */
     public Tower() {
-//for testing
+        //for testing
     }
 
+    /**
+     * Get cardOnThisFloor
+     *
+     * @return cardOnThisFloor
+     */
     public DevelopmentCard getCardOnThisFloor() {
         return cardOnThisFloor;
     }
 
+    /**
+     * Set cardOnThisFloor
+     *
+     * @param cardOnThisFloor cardOnThisFloor
+     */
     public void setCardOnThisFloor(DevelopmentCard cardOnThisFloor) {
         this.cardOnThisFloor = cardOnThisFloor;
     }
 
+    /**
+     * Get diceValueOfThisFloor
+     *
+     * @return diceValueOfThisFloor
+     */
     public int getDiceValueOfThisFloor() {
         return diceValueOfThisFloor;
     }
 
+    /**
+     * Get towerZoneEffect
+     *
+     * @return towerZoneEffect
+     */
     public Effects getTowerZoneEffect() {
         return towerZoneEffect;
     }
 
+    /**
+     * Get colour
+     *
+     * @return colour
+     */
     public String getColour() {
         return colour;
     }
