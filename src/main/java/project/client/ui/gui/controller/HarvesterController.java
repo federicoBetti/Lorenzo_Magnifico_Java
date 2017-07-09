@@ -112,7 +112,7 @@ public class HarvesterController extends AbstractController {
     @FXML
     private TextField numberOfServantsTextField;
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
 
     //todo si potrebbe fare la stessa cosa con familiar position con le carte
     private List<ImageView> imageTerritoryCard;
@@ -178,7 +178,7 @@ public class HarvesterController extends AbstractController {
     public void refresh(){
         super.refresh();
         super.unselectRadioButton(familiar);
-        chatArea.setText(loginBuilder.getChat().toString());
+        chatArea.setAccessibleText(loginBuilder.getChat().toString());
 
         if (positionSelected){
 

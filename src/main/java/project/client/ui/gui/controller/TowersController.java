@@ -143,7 +143,7 @@ public class TowersController extends AbstractController {
     private TowerZone[][] myTower;
     private String bonusCardType;
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
     private boolean bonusAction;
 
 
@@ -169,7 +169,7 @@ public class TowersController extends AbstractController {
         super.refresh();
         super.unselectRadioButton(familiar);
 
-        chatArea.setText(loginBuilder.getChat().toString());
+        chatArea.setAccessibleText(loginBuilder.getChat().toString());
         lastFamiiarPlaced.setImage(null);
         if (floor != -1){
             myTower[towerColour][floor].setFamiliarName("");

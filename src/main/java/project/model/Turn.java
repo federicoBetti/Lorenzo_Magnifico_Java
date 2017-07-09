@@ -15,6 +15,7 @@ public class Turn implements Serializable{
 
 
     transient private List<PlayerHandler> playerTurn;
+    transient private List<PlayerHandler> skipTurnForExcommunication;
     private List<String> playersColor;
     private List<String> playerName;
     /*
@@ -25,6 +26,7 @@ public class Turn implements Serializable{
 
     public Turn(){
         playerTurn = new ArrayList<>();
+        skipTurnForExcommunication = new ArrayList<>();
         rotation = 0;
     }
 
@@ -63,5 +65,13 @@ public class Turn implements Serializable{
 
     public void setPlayerName(List<String> playerName) {
         this.playerName = playerName;
+    }
+
+    public void addSkipTurn(PlayerHandler player) {
+        skipTurnForExcommunication.add(player);
+    }
+
+    public List<PlayerHandler> getSkipTurnForExcommunication() {
+        return skipTurnForExcommunication;
     }
 }

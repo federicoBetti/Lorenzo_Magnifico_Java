@@ -23,9 +23,12 @@ public class GameActions {
     private Board board;
     private Timer timer;
     private LeaderCardsEffects leaderCardEffect;
+    int excommunicationPLayerPLayed;
+    private boolean excommunicationTurn;
 
     GameActions(Room room) {
         this.room = room;
+        excommunicationPLayerPLayed = 0;
         leaderCardEffect = new LeaderCardsEffects();
         timer = new Timer();
     }
@@ -170,17 +173,45 @@ public class GameActions {
         for (PlayerHandler player : turn)
             System.out.println("Player : " + player.isOn());
 
+
         int indexOfMe = turn.indexOf(playerHandler);
         int playerNumbers = room.getRoomPlayers();
         int currentPeriod = board.getPeriod();
         int currentRound = board.getRound();
 
+        if (excommunicationTurn){
+            if (excommunicationPlays())
+                return;
+        }
+
+        if (board.getTurn().getRotation() == 0){
+            int nextIndex = indexOfMe + 1;
+            nextIndex = nextIndex % playerNumbers;
+            PlayerHandler nextt = turn.get(nextIndex);
+            if (board.getTurn().getSkipTurnForExcommunication().contains(nextt)){
+                if (indexOfMe == playerNumbers -1) {
+                    board.getTurn().setRotation(board.getTurn().getRotation() + 1);
+                    if (nextt.isOn()) {
+                        timer.cancel();
+                        nextt.itsMyTurn();
+                        timer = this.myTimerSkipTurn(nextt);
+                        return;
+                    }
+                    else nextTurn(nextt);
+                }
+                else
+                    nextTurn(nextt);
+                return;
+            }
+        }
+
         if (indexOfMe < playerNumbers - 1) { //non sono l'ultimo del turno
             next = turn.get(indexOfMe + 1);
             if (next.isOn()) {
+                indexOfMe++; //inutle ma se no mi dava font duplicato sottolieato e mi stava su
                 timer.cancel();
                 next.itsMyTurn();
-                timer = this.myTimerSkipTurn(turn.get(indexOfMe + 1));
+                timer = this.myTimerSkipTurn(next);
                 return;
             }
             nextTurn(next);
@@ -193,12 +224,18 @@ public class GameActions {
             if (next.isOn()) {
                 timer.cancel();
                 next.itsMyTurn();
-                timer = this.myTimerSkipTurn(turn.get(0));
+                timer = this.myTimerSkipTurn(next);
                 System.out.println("turno numero: " + room.getBoard().getTurn().getRotation());
                 return;
             }
             nextTurn(next);
         } else if (currentRound == 1 && currentPeriod == 2) {//fine partita
+            if (excommunicationPlays()){
+                excommunicationTurn = true;
+                return;
+            }
+            excommunicationPLayerPLayed = 0;
+            excommunicationTurn = false;
             timer.cancel();
             if (room.numberOfPlayerOn() == 0) {
                 System.out.println("finita la partita senza nessun giocatore");
@@ -207,6 +244,13 @@ public class GameActions {
             } else endMatch();
 
         } else if (currentRound == 1) {//fine periodo
+            if (excommunicationPlays()){
+                excommunicationTurn = true;
+                return;
+            }
+            excommunicationPLayerPLayed = 0;
+            excommunicationTurn = false;
+
             timer.cancel();
             endPeriod(currentPeriod);
             nextRound();
@@ -220,6 +264,13 @@ public class GameActions {
 
         } else {
             System.out.println("fine round!" + currentRound);
+            if (excommunicationPlays()){
+                excommunicationTurn = true;
+                return;
+            }
+            excommunicationPLayerPLayed = 0;
+            excommunicationTurn = false;
+
             timer.cancel();
             endRound();
             board.getTurn().setRotation(0);
@@ -234,21 +285,40 @@ public class GameActions {
         //todo se rimane solo un giocatore nella partita?
     }
 
+    private boolean excommunicationPlays() {
+        List<PlayerHandler> exPlayer = room.getBoard().getTurn().getSkipTurnForExcommunication();
+
+        for (; excommunicationPLayerPLayed < exPlayer.size(); ) {
+            PlayerHandler playerHandler = exPlayer.get(excommunicationPLayerPLayed);
+                if (playerHandler.isOn()) {
+                    timer.cancel();
+                    playerHandler.itsMyTurn();
+                    String s = playerHandler.getName();
+                    timer = this.myTimerSkipTurn(playerHandler);
+                    excommunicationPLayerPLayed++;
+                    return true;
+                }
+            excommunicationPLayerPLayed++;
+        }
+        return false;
+    }
+
+
 
     /**
      * This method finds the first player on in the turn
      * @return the player's index in the turn's list, or "-1" if the match is finished
      */
     int firstPlayerTurn() {
-        int i = 0;
-        while (i < board.getTurn().getPlayerTurn().size()) {
+        for(int i = 0; i < board.getTurn().getPlayerTurn().size(); i++){
             PlayerHandler firstPlayer = board.getTurn().getPlayerTurn().get(i);
             if (firstPlayer.isOn()) {
+                if (board.getTurn().getSkipTurnForExcommunication().contains(firstPlayer))
+                    continue;
                 timer = this.myTimerSkipTurn(firstPlayer);
                 firstPlayer.itsMyTurn();
                 return i;
             }
-            i++;
         }
 
         closeClientForGeneralDisconnection();
@@ -777,7 +847,7 @@ public class GameActions {
 
         getSupportFunctions(player).setFamiliar(marketPosition, familyM);
 
-        if (!(familyM.getMyValue() > 0)) {
+        if (familyM.getMyValue() < 1) {
             int servantsUsed = getSupportFunctions(player).payServants(1, 0);
             player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
         }

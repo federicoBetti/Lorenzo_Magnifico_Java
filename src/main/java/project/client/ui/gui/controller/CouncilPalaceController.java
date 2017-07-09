@@ -95,7 +95,7 @@ public class CouncilPalaceController extends AbstractController {
     @FXML
     private TextField chatText;
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
     private boolean familiarPlaced;
     @FXML
     private ToggleGroup familiar;
@@ -234,7 +234,7 @@ public class CouncilPalaceController extends AbstractController {
     public void refresh() {
         super.refresh();
         super.unselectRadioButton(familiar);
-        chatArea.setText(loginBuilder.getChat().toString());
+        chatArea.setAccessibleText(loginBuilder.getChat().toString());
 
         if (familiarPlaced)
             familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);

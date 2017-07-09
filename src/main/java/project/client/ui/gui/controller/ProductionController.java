@@ -109,7 +109,7 @@ public class ProductionController extends AbstractController {
     private DropShadow borderNull = new DropShadow();
     private int diceValueBonus;
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
     @FXML
     private ToggleGroup familiar;
 
@@ -179,7 +179,7 @@ public class ProductionController extends AbstractController {
     public void refresh() {
         super.refresh();
         super.unselectRadioButton(familiar);
-        chatArea.setText(loginBuilder.getChat().toString());
+        chatArea.setAccessibleText(loginBuilder.getChat().toString());
 
         if (positionSelected) {
             FamiliarPosition f = allPosition.get(allPosition.size() - 1);

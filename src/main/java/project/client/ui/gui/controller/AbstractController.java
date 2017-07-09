@@ -276,6 +276,7 @@ public abstract class AbstractController {
 
 
     private void modifyFamiliar(TowerZone guiTower, String s) {
+        System.err.println("sto posizionaand il familiare " + s);
         guiTower.setFamiliarName(s);
         guiTower.setFamiliarImage(s);
     }

@@ -6,7 +6,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * special effect of a buildiing card
  */
 public class ServantWoodStoneForSixVictoryPoints implements ExchangeEffects {
     private int servantsRequired;
@@ -23,15 +23,11 @@ public class ServantWoodStoneForSixVictoryPoints implements ExchangeEffects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        if (player.getPersonalBoardReference().getServants() >=  servantsRequired &&
-                player.getPersonalBoardReference().getWood() >= woodrequired &&
-                player.getPersonalBoardReference().getServants() >= stoneRequired) {
-
-            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsRequired);
-            player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - woodrequired);
-            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - stoneRequired);
+            player.getPersonalBoardReference().addServants(-servantsRequired);
+            player.getPersonalBoardReference().addWood(-woodrequired);
+            player.getPersonalBoardReference().addStone(-stoneRequired);
             player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsEarned);
-        }
+
 
         return new OkOrNo();
     }

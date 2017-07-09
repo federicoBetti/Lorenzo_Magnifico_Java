@@ -6,7 +6,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * effect of some building cards
  */
 public class EarnOneCoinForEachColouredCard implements Effects {
 

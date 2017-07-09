@@ -6,7 +6,7 @@ import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * special effct of a building card
  */
 public class ExchangeServantsForThreeMilitaryPointsAndOneVictoryPoints implements ExchangeEffects {
     private int servantsRequired;

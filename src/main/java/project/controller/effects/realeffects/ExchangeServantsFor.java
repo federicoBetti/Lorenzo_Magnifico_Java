@@ -6,7 +6,7 @@ import project.controller.cardsfactory.TotalCost;
 import project.server.network.PlayerHandler;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * effect that exchange servants for other resources
  */
 
 //todo fare con HashMap
@@ -16,7 +16,7 @@ public class ExchangeServantsFor implements ExchangeEffects {
     private String resourceRewardered;
 
     public ExchangeServantsFor (int quantity, TotalCost effectCost, String resourceRewardered ){
-        this.servantsRequired = effectCost.getStoneRequired();
+        this.servantsRequired = effectCost.getServantsRequired();
         this.resourceEarned = quantity;
         this.resourceRewardered = resourceRewardered;
     }
@@ -24,8 +24,8 @@ public class ExchangeServantsFor implements ExchangeEffects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
 
-        if (player.getPersonalBoardReference().getStone() >= servantsRequired) {
-            player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() - servantsRequired);
+        if (player.getPersonalBoardReference().getServants() >= servantsRequired) {
+            player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsRequired);
 
             switch (resourceRewardered) {
                 case "wood":

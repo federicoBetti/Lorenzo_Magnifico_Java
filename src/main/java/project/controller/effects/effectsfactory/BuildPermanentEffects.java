@@ -19,7 +19,7 @@ public class BuildPermanentEffects {
                     case "VictoryPointsForEachBlueCard":
                         return new VictoryPointForEachBlueCard(quantity);
                     case "victoryPoint":
-                        return new AddVicotryPoints(quantity);
+                        return new AddVictoryPoints(quantity);
                     case "militaryPoint":
                         return new AddMilitaryPoints(quantity);
                     case "coin":

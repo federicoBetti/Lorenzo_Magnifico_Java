@@ -17,38 +17,35 @@ public class LeaderCardRequirements {
     public LeaderCardRequirements() {
         requirements = new HashMap<>();
         requirements = new HashMap<>(Constants.LEADER_CARD_NUMBER);
-        fillHashMapRequirements();
+        fillHashMapRequirements(requirements);
     }
 
     public boolean checkRequirements(String leaderName, PlayerHandler playerHandler){
-        System.out.println("sto per cercare il leader: " + leaderName);
         RequirementsBuilder r = requirements.get(leaderName);
-        boolean action = r.checkRequirements(playerHandler);
-        return action;
-        //return requirements.get(leaderName).checkRequirements(playerHandler);
+        return r.checkRequirements(playerHandler);
     }
 
-    private void fillHashMapRequirements() {
-        requirements.put(Constants.FRANCESCO_SFORZA,this::francescoSforza);
-        requirements.put(Constants.LUDVICO_ARIOSTO,this::ludovicoAriosto);
-        requirements.put(Constants.FILIPPO_BRUNELLESCHI,this::filippoBrunelleschi);
-        requirements.put(Constants.SIGISMONDO_MALATESTA,this::sigismondoMalatesta);
-        requirements.put(Constants.GIROLAMO_SAVONAROLA,this::girolamoSavonarola);
-        requirements.put(Constants.MICHELANGELO_BUONARROTI,this::michelangeloBuonarroti);
-        requirements.put(Constants.GIOVANNI_DALLE_BANDE_NERE,this::giovanniDalleBandeNere);
-        requirements.put(Constants.LEONARDO_DA_VINCI,this::leonardoDaVinci);
-        requirements.put(Constants.SANDRO_BOTTICELLI,this::sandroBotticelli);
-        requirements.put(Constants.LUDOVICO_IL_MORO,this::ludovicoIlMoro);
-        requirements.put(Constants.LUCREZIA_BORGIA,this::lucreziaBorgia);
-        requirements.put(Constants.FEDERICO_DA_MONTEFELTRO,this::federicoDaMontefeltro);
-        requirements.put(Constants.LORENZO_DE_MEDICI,this::lorenzoDeMedici);
-        requirements.put(Constants.SISTO_IV,this::sistoIV);
-        requirements.put(Constants.CESARE_BORGIA,this::cesareBorgia);
-        requirements.put(Constants.SANTA_RITA,this::santaRita);
-        requirements.put(Constants.COSIMO_DE_MEDICI,this::cosimoDeMedici);
-        requirements.put(Constants.BARTOLOMEO_CORLEONI,this::bartolometoColleoni);
-        requirements.put(Constants.LUDOVICO_III_GONZAGA,this::ludovicoIIIGonzaga);
-        requirements.put(Constants.PICO_DELLA_MIRANDOLA,this::picoDellaMiradola);
+    private void fillHashMapRequirements(HashMap<String, RequirementsBuilder> requirements) {
+        this.requirements.put(Constants.FRANCESCO_SFORZA,this::francescoSforza);
+        this.requirements.put(Constants.LUDVICO_ARIOSTO,this::ludovicoAriosto);
+        this.requirements.put(Constants.FILIPPO_BRUNELLESCHI,this::filippoBrunelleschi);
+        this.requirements.put(Constants.SIGISMONDO_MALATESTA,this::sigismondoMalatesta);
+        this.requirements.put(Constants.GIROLAMO_SAVONAROLA,this::girolamoSavonarola);
+        this.requirements.put(Constants.MICHELANGELO_BUONARROTI,this::michelangeloBuonarroti);
+        this.requirements.put(Constants.GIOVANNI_DALLE_BANDE_NERE,this::giovanniDalleBandeNere);
+        this.requirements.put(Constants.LEONARDO_DA_VINCI,this::leonardoDaVinci);
+        this.requirements.put(Constants.SANDRO_BOTTICELLI,this::sandroBotticelli);
+        this.requirements.put(Constants.LUDOVICO_IL_MORO,this::ludovicoIlMoro);
+        this.requirements.put(Constants.LUCREZIA_BORGIA,this::lucreziaBorgia);
+        this.requirements.put(Constants.FEDERICO_DA_MONTEFELTRO,this::federicoDaMontefeltro);
+        this.requirements.put(Constants.LORENZO_DE_MEDICI,this::lorenzoDeMedici);
+        this.requirements.put(Constants.SISTO_IV,this::sistoIV);
+        this.requirements.put(Constants.CESARE_BORGIA,this::cesareBorgia);
+        this.requirements.put(Constants.SANTA_RITA,this::santaRita);
+        this.requirements.put(Constants.COSIMO_DE_MEDICI,this::cosimoDeMedici);
+        this.requirements.put(Constants.BARTOLOMEO_CORLEONI,this::bartolometoColleoni);
+        this.requirements.put(Constants.LUDOVICO_III_GONZAGA,this::ludovicoIIIGonzaga);
+        this.requirements.put(Constants.PICO_DELLA_MIRANDOLA,this::picoDellaMiradola);
     }
 
 

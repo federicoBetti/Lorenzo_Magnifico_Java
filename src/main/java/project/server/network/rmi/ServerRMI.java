@@ -54,30 +54,6 @@ public class ServerRMI extends AbstractServer implements RMIClientToServerInterf
             System.out.println("errore creazione Server RMI");
         }
     }
-/*
-    /**
-     * Create or load registry in a specified port number.
-     * @param port number of the port to use.
-     * @return the created or retrieved registry.
-     * @throws ServerException if some error occurs.
-     *
-    private Registry createOrLoadRegistry(int port) throws ServerException {
-        try {
-            return LocateRegistry.createRegistry(port);
-        } catch (RemoteException e) {
-            Debug.debug("RMI Registry already exists", e);
-        }
-        try {
-            return LocateRegistry.getRegistry(port);
-        } catch (RemoteException e) {
-            Debug.debug("RMI Registry not found", e);
-        }
-        throw new ServerException("Cannot initialize RMI registry");
-    }
-
-
-    */
-
     /**
      * questo metodo è il primo che viene eseguito per connettersi che restituisce la stringa per identificare il client
      * @return

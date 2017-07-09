@@ -530,6 +530,9 @@ public class ClientSetter {
         ui.ranking(ranking);
     }
 
+    public String getNickname() {
+        return nickname;
+    }
     /**
      * This method calls disconnesionMessage method on the ui
      *

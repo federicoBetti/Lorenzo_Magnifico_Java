@@ -7,7 +7,7 @@ import project.server.network.PlayerHandler;
 import java.io.Serializable;
 
 /**
- * Created by raffaelebongo on 10/05/17.
+ * effect that increase the bonus on dice value for taking development card
  */
 public class IncreaseDicevalueForTakingCards implements Effects, Serializable {
 

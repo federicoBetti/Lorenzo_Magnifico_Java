@@ -17,8 +17,19 @@ public class AddWoodAndStone implements Effects {
 
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + quantity);
-        player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + quantity);
+        int woodQuantity = quantity;
+        woodQuantity += player.getPersonalBoardReference().getBonusOnActions().getWoodBonus();
+        if (woodQuantity<0)
+            woodQuantity = 0;
+        player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + woodQuantity);
+
+
+        int stoneQuantity = quantity;
+        stoneQuantity += player.getPersonalBoardReference().getBonusOnActions().getStoneBonus();
+        if (stoneQuantity<0)
+            stoneQuantity = 0;
+
+        player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + stoneQuantity);
         return new OkOrNo();
     }
 

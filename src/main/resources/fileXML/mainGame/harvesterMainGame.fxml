@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ScrollPane?>
 <AnchorPane prefHeight="784.55" prefWidth="909.5" xmlns="http://javafx.com/javafx/8.0.111"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.HarvesterController">
     <children>
@@ -107,48 +108,6 @@
                         <Image url="/images/immaginiSetUp/finestra.png"/>
                     </image>
                 </ImageView>
-                <SplitPane dividerPositions="0.7718662952646239" orientation="VERTICAL" prefHeight="306.84999999999997"
-                           prefWidth="308.55">
-                    <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
-                            <children>
-                                <Label fx:id="chatArea" layoutX="4.25" layoutY="1.7" prefHeight="165.75"
-                                       prefWidth="296.65" text="chat" AnchorPane.bottomAnchor="0.0"
-                                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                       AnchorPane.topAnchor="0.0"/>
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="136.0">
-                            <children>
-                                <SplitPane dividerPositions="0.6419402985074627" layoutX="-2.55" layoutY="0.85"
-                                           prefHeight="32.3" prefWidth="306.84999999999997"
-                                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="85.0">
-                                            <children>
-                                                <TextField fx:id="chatText" layoutY="0.85" prefHeight="24.65"
-                                                           prefWidth="300.9" AnchorPane.bottomAnchor="0.0"
-                                                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                           AnchorPane.topAnchor="0.0"/>
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.65"
-                                                    prefWidth="131.75">
-                                            <children>
-                                                <Button fx:id="send" layoutX="3.4" layoutY="1.7" mnemonicParsing="false"
-                                                        onAction="#sendChat" prefHeight="24.65"
-                                                        prefWidth="71.39999999999999" text="Send"
-                                                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                                        AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-                                            </children>
-                                        </AnchorPane>
-                                    </items>
-                                </SplitPane>
-                            </children>
-                        </AnchorPane>
-                    </items>
-                </SplitPane>
                 <ImageView fitHeight="306.84999999999997" fitWidth="185.29999999999998" layoutX="307.7"
                            opacity="0.49299999999999994">
                     <image>
@@ -256,6 +215,22 @@
                         </ImageView>
                     </children>
                 </Pane>
+                <VBox prefHeight="306.84999999999997" prefWidth="308.55">
+                    <children>
+                        <ScrollPane fx:id="chatArea" prefHeight="279.84999999999997" prefWidth="308.55">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+                            </content>
+                        </ScrollPane>
+                        <HBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="308.55">
+                            <children>
+                                <TextField fx:id="chatText" prefHeight="26.0" prefWidth="196.0"/>
+                                <Button mnemonicParsing="false" onAction="#sendChat" prefHeight="26.0" prefWidth="84.0"
+                                        text="send"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
             </children>
         </Pane>
         <ImageView fitHeight="350.2" fitWidth="731.0" layoutY="438.59999999999997">

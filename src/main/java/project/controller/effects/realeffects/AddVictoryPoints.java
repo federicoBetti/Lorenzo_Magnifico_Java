@@ -5,11 +5,11 @@ import project.messages.BonusInteraction;
 import project.messages.OkOrNo;
 import project.server.network.PlayerHandler;
 
-public class AddVicotryPoints implements TakeRoPEffects {
+public class AddVictoryPoints implements TakeRoPEffects {
 
     private int quantity;
 
-    public AddVicotryPoints (int quantity){
+    public AddVictoryPoints(int quantity){
         this.quantity = quantity;
     }
 

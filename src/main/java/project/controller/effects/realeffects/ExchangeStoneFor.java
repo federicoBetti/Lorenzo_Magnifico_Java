@@ -29,7 +29,7 @@ public class ExchangeStoneFor implements ExchangeEffects {
 
             switch (resourceRewardered) {
                 case "wood":
-                    player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() + resourceEarned);
+                    player.getPersonalBoardReference().addWood(resourceEarned);
                     break;
                 case "stone":
                     player.getPersonalBoardReference().setStone(player.getPersonalBoardReference().getStone() + resourceEarned);

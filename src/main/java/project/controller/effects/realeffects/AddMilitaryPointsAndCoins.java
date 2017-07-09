@@ -10,8 +10,8 @@ import project.server.network.PlayerHandler;
 public class AddMilitaryPointsAndCoins implements Effects {
     @Override
     public BonusInteraction doEffect(PlayerHandler player) {
-        player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() + 3 );
-        player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + 2);
+        player.getScore().setMilitaryPoints(player.getScore().getMilitaryPoints() + 3 + player.getPersonalBoardReference().getBonusOnActions().getMilitaryPointsBonus());
+        player.getPersonalBoardReference().setCoins(player.getPersonalBoardReference().getCoins() + 2 + player.getPersonalBoardReference().getBonusOnActions().getCoinsBonus());
 
         return new OkOrNo();
     }

@@ -184,12 +184,12 @@ public class Gui extends AbstractUI {
 
     @Override
     public void prayed() {
-        //todo lo uso quando si sceglie di pregare. Nella cli arriva e stampa una stringa dicendo che la preghiera è stata fatta
+        mainController.prayed();
     }
 
     @Override
     public void excommunicationTaken(ExcommunicationTaken update) {
-        //todo notifica che dice che hai preso la scomunica
+        mainController.excommunicationTaken(update);
     }
 
     @Override
@@ -248,7 +248,7 @@ public class Gui extends AbstractUI {
 
     @Override
     public void loginSucceded() {
-        mainController.loginSucceded();
+        mainController.loginSucceeded();
     }
 
     public String draftChoice(List<String> leaderName){

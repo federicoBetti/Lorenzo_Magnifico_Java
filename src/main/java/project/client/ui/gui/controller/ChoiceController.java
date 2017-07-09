@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 public class ChoiceController {
 
     public HBox boxButton;
+    public HBox forImage;
     private  Button buttonChoiche1;
     @FXML
     private  Button buttonChoiche2;
@@ -72,5 +75,13 @@ public class ChoiceController {
 
     public void setLoginBuilder(LoginBuilder loginBuilder) {
         this.loginBuilder = loginBuilder;
+    }
+
+    public void setImage(int currentPeriod) {
+        Image image = loginBuilder.getExcommunicationImage(currentPeriod);
+        ImageView imageView = new ImageView(image);
+        imageView.setPreserveRatio(true);
+        imageView.setFitHeight(400);
+        forImage.getChildren().add(imageView);
     }
 }
