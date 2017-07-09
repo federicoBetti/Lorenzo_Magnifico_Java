@@ -157,7 +157,7 @@ public class LeaderCardsEffects {
                     leaderPlayed.add(l);
         }
         leaderNameLorenzoMagnifico = player.leaderCardChosen(leaderPlayed);
-        if (leaderNameLorenzoMagnifico.equals(-1))
+        if (leaderNameLorenzoMagnifico.equals("-1"))
             return null;
 
         LeaderCard newLeader = null;

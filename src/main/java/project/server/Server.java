@@ -40,6 +40,8 @@ public class Server {
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
         Configuration configuration = new Configuration();
+        new UnixColoredPrinter.Logger();
+
         try {
             this.timerSettings = configuration.loadTimer();
         } catch (FileNotFoundException e) {
@@ -50,10 +52,15 @@ public class Server {
     public static void main(String[] args) throws IOException {
         Server server = new Server();
         server.startServer(Constants.SOCKET_PORT, Constants.RMI_PORT);
-        new UnixColoredPrinter.Logger();
 
     }
 
+    /**
+     * start servers
+     * @param socketPort socket port
+     * @param rmiPort rmi port
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     private void startServer(int socketPort, int rmiPort) throws IOException {
         serverSocket.startServer(socketPort);
         rmiServer.startServer(rmiPort);

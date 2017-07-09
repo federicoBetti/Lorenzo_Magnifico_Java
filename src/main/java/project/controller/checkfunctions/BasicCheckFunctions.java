@@ -178,12 +178,10 @@ public class BasicCheckFunctions implements AllCheckFunctions{
             return 3;
 
         else if (canTakeCardFromEffect[0] && !canTakeCardFromEffect[1]){
-            card.getVenturesCost().get(0).setToPaid(true);
             return 1;
         }
 
         else if (!canTakeCardFromEffect[0] && canTakeCardFromEffect[1]){
-            card.getVenturesCost().get(1).setToPaid(true);
             return 2;
         }
 

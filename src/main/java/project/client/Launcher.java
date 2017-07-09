@@ -3,6 +3,7 @@ package project.client;
 import com.diogonunes.jcdp.color.api.Ansi;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.ClientSetter;
+import project.controller.Constants;
 
 import java.io.IOException;
 
@@ -11,6 +12,10 @@ import java.io.IOException;
  */
 class Launcher {
 
+    private Launcher(){
+        new UnixColoredPrinter.Logger();
+        new ClientSetter(selectUi());
+    }
 
     /**
      * This method is used for asking to the player if he wants to play with the Cli or Gui user interface
@@ -18,8 +23,6 @@ class Launcher {
      * @return the string that represents the choice
      */
     private static String selectUi() {
-
-        UnixColoredPrinter.Logger logger = new UnixColoredPrinter.Logger();
 
         UnixColoredPrinter.Builder builder = new UnixColoredPrinter.Builder(0, false);
         builder.attribute(Ansi.Attribute.BOLD);
@@ -31,7 +34,6 @@ class Launcher {
         builder.attribute(Ansi.Attribute.BOLD);
         builder.foreground(Ansi.FColor.RED);
         UnixColoredPrinter p2 = new UnixColoredPrinter(builder);
-        SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
         while (true) {
             p1.println("Welcome to LORENZO IL MAGNIFICO!");
             p2.println("Please choose the kind of User interface experience between: ");
@@ -40,7 +42,7 @@ class Launcher {
             String choice;
             int choiceNum = 0;
             try {
-                choice = keyboard.readLine();
+                choice = SingletonKeyboard.readLine();
 
                 for (int i = 0; i < choice.length(); i++)
                     if (!(Character.isDigit(choice.charAt(i))))
@@ -49,7 +51,7 @@ class Launcher {
                 choiceNum = Integer.parseInt(choice);
 
             } catch (IOException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
             } catch (NumberFormatException e) {
                 UnixColoredPrinter.Logger.print("wrong choice");
                 continue;
@@ -71,7 +73,7 @@ class Launcher {
      * @param args args
      */
     public static void main(String[] args) {
-        new ClientSetter(selectUi());
+        new Launcher();
     }
 
 

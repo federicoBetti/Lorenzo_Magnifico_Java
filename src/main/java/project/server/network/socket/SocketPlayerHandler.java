@@ -70,15 +70,17 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
             Object object = objectInputStream.readObject();
             serverDataHandler.handleRequest(object);
-
             if (firstConnection) {
-                synchronized (token) {
-                    try {
-                        token.wait();
-                    } catch (InterruptedException e) {
-                        UnixColoredPrinter.Logger.print("Interrupt!");
-                        Thread.currentThread().interrupt();
+                while (true) {
+                    synchronized (token) {
+                        try {
+                            token.wait();
+                        } catch (InterruptedException e) {
+                            UnixColoredPrinter.Logger.print("Interrupt!");
+                            Thread.currentThread().interrupt();
+                        }
                     }
+                    break;
                 }
             }
 
@@ -490,13 +492,16 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      * @param nickname client's nickname
      */
     void newGame(String nickname) {
-        try {
-            loginRequestAnswer(nickname);
-            synchronized (token) {
-                token.wait();
+        while (true) {
+            try {
+                loginRequestAnswer(nickname);
+                synchronized (token) {
+                    token.wait();
+                }
+            } catch (IOException | InterruptedException e) {
+                UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
             }
-        } catch (IOException | InterruptedException e) {
-            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            break;
         }
     }
     /**
@@ -677,42 +682,23 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
      * Method called for notifying the wait in "sendAskForPraying" method.
      */
     void waitForPraying() {
-
-        setCallPray(true);
-        synchronized (token) {
-            token.notifyAll();
-        }
-
-        synchronized (token1) {
-            try {
-                token1.wait();
-            } catch (InterruptedException e) {
-                UnixColoredPrinter.Logger.print("Interrupted!");
-                Thread.currentThread().interrupt();
+        while (true) {
+            setCallPray(true);
+            synchronized (token) {
+                token.notifyAll();
             }
+
+            synchronized (token1) {
+                try {
+                    token1.wait();
+                } catch (InterruptedException e) {
+                    UnixColoredPrinter.Logger.print("Interrupted!");
+                    Thread.currentThread().interrupt();
+                }
+            }
+            break;
         }
     }
-
-/*    @Override
-    public int sendAskForPraying() {
-        if (isOn()) {
-            sendAnswer(Constants.ASK_FOR_PRAYING);
-            int answer = -1;
-            try {
-                System.out.println("Ho mandato la richiesta di preghiere");
-                answer = (int) objectInputStream.readObject();
-                System.out.println(answer);
-                return answer;
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return -1;
-    }   */
-
 
     /**
      * Method called for sending a generic string

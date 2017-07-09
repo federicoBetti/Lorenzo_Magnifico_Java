@@ -63,17 +63,20 @@ public class RMIPlayerHandler extends PlayerHandler {
 
 
     /**
-     * method used to stop the actions of RMI payer ìhandler while waiting to user decision
+     * method used to stop the actions of RMI playerhandler while waiting to user decision
      */
     private void waitForClient() {
-        synchronized (tokenn) {
-            try {
-                tokenn.wait();
-            } catch (InterruptedException e) {
-                this.setOn(false);
-                UnixColoredPrinter.Logger.print("wait interrupted");
-                Thread.currentThread().interrupt();
+        while (true) {
+            synchronized (tokenn) {
+                try {
+                    tokenn.wait();
+                } catch (InterruptedException e) {
+                    this.setOn(false);
+                    UnixColoredPrinter.Logger.print("wait interrupted");
+                    Thread.currentThread().interrupt();
+                }
             }
+            break;
         }
     }
 

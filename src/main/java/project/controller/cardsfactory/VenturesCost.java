@@ -18,8 +18,6 @@ public class VenturesCost implements Cost, Serializable {
 
     private int militaryCost;
 
-    private boolean toPaid = false;
-
 
     public VenturesCost() {
 
@@ -42,19 +40,23 @@ public class VenturesCost implements Cost, Serializable {
     public String toScreen() {
         String toScreen = "";
 
-        if (stoneRequired != 0)
+        if (stoneRequired != 0) {
             toScreen += "Stone required: " + stoneRequired;
+        }
 
-        if (woodRequired != 0)
+        if (woodRequired != 0) {
             toScreen += " Wood required: " + woodRequired;
+        }
 
-        if (coinsRequired != 0)
+        if (coinsRequired != 0) {
             toScreen += " Coins required: " + coinsRequired;
+        }
 
-        if (militaryRequired == 0)
+        if (militaryRequired == 0) {
             return toScreen;
+        }
 
-            toScreen += " or you can pay Military points required: " + militaryRequired;
+        toScreen += " or you can pay Military points required: " + militaryRequired;
 
         if (militaryCost != 0)
             toScreen += " Military points to pay: " + militaryCost;
@@ -70,15 +72,6 @@ public class VenturesCost implements Cost, Serializable {
     @Override
     public Cost copyOf() {
         return new VenturesCost(stoneRequired,woodRequired,coinsRequired,militaryRequired,militaryCost);
-    }
-
-    /**
-     * Set toPaid
-     *
-     * @param toPaid toPaid
-     */
-    public void setToPaid(boolean toPaid) {
-        this.toPaid = toPaid;
     }
 
     /**
