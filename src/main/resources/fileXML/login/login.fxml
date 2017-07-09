@@ -53,7 +53,7 @@
       <VBox layoutX="84.0" layoutY="683.0" prefHeight="57.8" prefWidth="85.0" spacing="10.0">
          <children>
               <TextField id="username" fx:id="username" prefHeight="17.0" prefWidth="85.0" promptText="Username" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" />
-            <TextField fx:id="IP" prefHeight="23.0" prefWidth="85.0" promptText="IP Address" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" text="127.0.0.1" />
+            <TextField fx:id="ipAddress" prefHeight="23.0" prefWidth="85.0" promptText="IP Address" style="-fx-background-color: papayawhip; -fx-border-color: sandybrown;" text="127.0.0.1" />
          </children>
       </VBox>
     </children>

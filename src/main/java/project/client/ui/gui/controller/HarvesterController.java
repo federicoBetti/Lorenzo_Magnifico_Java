@@ -1,6 +1,5 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by federico on 11/06/17.
+ * controller of harvester scene in gui
  */
 public class HarvesterController extends AbstractController {
 
@@ -22,9 +21,6 @@ public class HarvesterController extends AbstractController {
     @FXML
     private  HBox familiarBox;
 
-    /**
-     * radio button in which you can chose the familiar to use
-     */
     @FXML
     private  RadioButton familiarOrange;
     @FXML
@@ -59,10 +55,6 @@ public class HarvesterController extends AbstractController {
     @FXML
     private Label numberOfServants;
 
-
-    /**
-     * queste sono le immagini el familiar, vanno cariicate quelle giuste in base al colore della famiglia
-     */
     @FXML
     private  ImageView imageFamiliarNull;
 
@@ -76,10 +68,8 @@ public class HarvesterController extends AbstractController {
     private  ImageView imageFamiliarOrange;
 
 
-
-
     @FXML
-    private ImageView LorenzoMagnifico;
+    private ImageView lorenzoMagnifico;
 
 
     @FXML
@@ -114,34 +104,44 @@ public class HarvesterController extends AbstractController {
     @FXML
     private ScrollPane chatArea;
 
-    //todo si potrebbe fare la stessa cosa con familiar position con le carte
     private List<ImageView> imageTerritoryCard;
     private List<String> nameOfTerritoryCard;
     private boolean positionSelected;
-    private int diceValueBonus;
 
-
+    /**
+     * constructor
+     */
     public HarvesterController() {
         super();
         positionSelected = false;
-        System.out.print("sono nel controller");
     }
 
+    /**
+     * setter
+     * @param mainController main controller used to communicate with clientSetter
+     */
     @Override
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         mainController.setHarvesterController(this);
     }
 
-    //questo è il metodo che viene chiamato quando il file fxml viene creato quindi ci possono essere tutte le inizializzazioni
+    /**
+     * method called during initialization of gui scenes
+     */
+    @Override
     @FXML
     public void initialize() {
         super.initialize();
     }
 
+    /**
+     * method called for uploading images during the initialization
+     */
+    @Override
     public void uploadImages() {
         super.uploadImages();
-        LorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
+        lorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
         int playerNumber;
         if (mainController.getNumberOfPlayer() > 2)
             playerNumber = 3;
@@ -151,7 +151,7 @@ public class HarvesterController extends AbstractController {
 
         fillFamilyMember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
-        nameOfTerritoryCard = new ArrayList<String>();
+        nameOfTerritoryCard = new ArrayList<>();
         imageTerritoryCard = new ArrayList<>(6);
         imageTerritoryCard.add(territoryCard0);
         imageTerritoryCard.add(territoryCard1);
@@ -165,7 +165,13 @@ public class HarvesterController extends AbstractController {
 
     }
 
-
+    /**
+     * method used to upload resources
+     * @param coins new coins value
+     * @param wood new wood value
+     * @param stone new stone value
+     * @param servants new servants value
+     */
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
 
@@ -175,6 +181,10 @@ public class HarvesterController extends AbstractController {
         updateOneResource(servants,numberOfServants);
     }
 
+    /**
+     * method called to refresh the scene
+     */
+    @Override
     public void refresh(){
         super.refresh();
         super.unselectedRadioButton(familiar);
@@ -192,9 +202,12 @@ public class HarvesterController extends AbstractController {
         positionSelected = false;
     }
 
+    /**
+     * method called by submit button to make an harvester action
+     */
     @FXML
     private void doHarvester() {
-        int servants = -1;
+        int servants;
         if (familiarChosen.equals(""))
             return;
         try {
@@ -209,53 +222,83 @@ public class HarvesterController extends AbstractController {
         mainController.doHarvester(servants,familiarChosen);
     }
 
-
+    /**
+     * method called to zoom on territory card 0
+     */
     public void zoomTerritoryCard0() {
         loginBuilder.showCardZoomed(territoryCard0.getImage());
     }
 
+    /**
+     * method called to zoom on territory card 1
+     */
     public void zoomTerritoryCard1() {
         loginBuilder.showCardZoomed(territoryCard1.getImage());
     }
 
+    /**
+     * method called to zoom on territory card 2
+     */
     public void zoomTerritoryCard2() {
         loginBuilder.showCardZoomed(territoryCard2.getImage());
     }
 
+    /**
+     * method called to zoom on territory card 3
+     */
     public void zoomTerritoryCard3() {
         loginBuilder.showCardZoomed(territoryCard3.getImage());
     }
 
+    /**
+     * method called to zoom on territory card 4
+     */
     public void zoomTerritoryCard4() {
         loginBuilder.showCardZoomed(territoryCard4.getImage());
     }
 
+    /**
+     * method called to zoom on territory card 5
+     */
     public void zoomTerritoryCard5() {
         loginBuilder.showCardZoomed(territoryCard5.getImage());
     }
 
-
+    /**
+     * method called to place a familiar in the harvester action space
+     */
     public void placeFamiliar(){
         if (super.placeFamiliarHarvProd(positionSelected,allPosition,familiarBox))
             positionSelected = true;
     }
 
-
-    public void sendChat(ActionEvent actionEvent){
+    /**
+     * method called to send a message in the chat
+     */
+    public void sendChat(){
         sendChat(chatText);
     }
 
+    /**
+     * method called to show personal board scene
+     */
     public void showPersonalBoard() {
         super.showPersonalBoard(SceneType.HARVESTER);
     }
 
-
-    public void updateCards(List<TerritoryCard> territoryCards){
+    /**
+     * method used to update card in the harvester scene
+     * @param territoryCards territory card of the player to set in harvester scene
+     */
+    void updateCards(List<TerritoryCard> territoryCards){
         super.updateCards(territoryCards,nameOfTerritoryCard,imageTerritoryCard);
     }
 
-    public void updatePosition(List<Harvester> harvesterZone) {
-        System.out.println("sono "+ mainController.getColour() + " e ho la lunghezza di all position " + allPosition.size());
+    /**
+     * method used t update familiars following an update from the serve
+     * @param harvesterZone harvester zone arrived from update
+     */
+    void updatePosition(List<Harvester> harvesterZone) {
         super.updatePosition(harvesterZone,allPosition);
 
         if (allPosition.size()>1){
@@ -263,18 +306,23 @@ public class HarvesterController extends AbstractController {
         }
     }
 
-    public void bonusHarvester(int diceValue) {
+    /**
+     * method called to perform a bonus harvester action
+     * @param diceValue dice value of harvester bonus action
+     */
+    void bonusHarvester(int diceValue) {
         loginBuilder.setScene(SceneType.HARVESTER, SceneType.PERSONAL_BOARD);
         blockButton();
-        this.diceValueBonus = diceValue;
         numberOfServantsTextField.setText("");
-        writeOnChat("BONUS ACTION: you can perform an harvester action of value" + diceValueBonus);
+        writeOnChat("BONUS ACTION: you can perform an harvester action of value" + diceValue);
         writeOnChat("select the number of servants that you want to use");
     }
 
-
+    /**
+     * method called by submit button to make a bonus action
+     */
     private void bonusAction() {
-        int servants = -1;
+        int servants;
         try {
             servants = Integer.parseInt(numberOfServantsTextField.getText());
         }
@@ -286,11 +334,17 @@ public class HarvesterController extends AbstractController {
 
     }
 
+    /**
+     * method used to block button before bonus actions
+     */
     private void blockButton() {
         super.blockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> bonusAction());
     }
 
+    /**
+     * method used to ulock buttons after bonus actions
+     */
     void unlockButton() {
         super.unlockButton(mainGameButton,personalBoard,buttonPlaceFamiliar);
         submit.setOnAction(event -> doHarvester());

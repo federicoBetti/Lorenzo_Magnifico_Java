@@ -19,6 +19,8 @@ class Launcher {
      */
     private static String selectUi() {
 
+        UnixColoredPrinter.Logger logger = new UnixColoredPrinter.Logger();
+
         UnixColoredPrinter.Builder builder = new UnixColoredPrinter.Builder(0, false);
         builder.attribute(Ansi.Attribute.BOLD);
         builder.foreground(Ansi.FColor.YELLOW);
@@ -49,6 +51,7 @@ class Launcher {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (NumberFormatException e) {
+                UnixColoredPrinter.Logger.print("wrong choice");
                 continue;
             }
             switch (choiceNum) {

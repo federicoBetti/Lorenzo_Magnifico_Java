@@ -249,7 +249,7 @@ public abstract class AbstractController {
                 return;
             }
         }
-        FamiliarPosition newPosition = new FamiliarPosition("hbox");
+        FamiliarPosition newPosition = new FamiliarPosition();
         ImageView imageView = newPosition.getImage();
         imageView.setImage(getTrueFamiliarImage());
 
@@ -298,7 +298,7 @@ public abstract class AbstractController {
                 familiarPosition = itFP.next();
             }
             else {
-                familiarPosition = new FamiliarPosition("");
+                familiarPosition = new FamiliarPosition();
                 allPosition.add(familiarPosition);
             }
             Position position = itPR.next();

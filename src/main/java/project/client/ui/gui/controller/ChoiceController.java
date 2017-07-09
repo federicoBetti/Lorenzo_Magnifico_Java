@@ -29,15 +29,6 @@ public class ChoiceController {
     private LoginBuilder loginBuilder;
 
     /**
-     * setter
-     * @param mainController main controller used to communicate whit ClientSetter
-     */
-    public void setMainController(MainController mainController) {
-        mainController.setChoiceController(this);
-    }
-
-
-    /**
      * method called if the choice number 1 is chosen
      */
     @FXML

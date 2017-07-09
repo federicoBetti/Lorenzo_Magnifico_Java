@@ -1,19 +1,16 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
 import project.model.Score;
@@ -23,18 +20,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginBuilder extends Application implements ChangeListener<Number> {
+/**
+ * main gui class. this is the Application class that host the gui application. there are instance of all scene and all controllers
+ * used to switch between scene in gui.
+ */
+public class LoginBuilder extends Application {
 
-    private static final double WINDOW_WIDTH = 1070;
-    private static final double WINDOW_HEIGHT = 923;
     private BorderPane rootLayout;
     private Stage primaryStage;
     private AnchorPane initialLoginScene;
     private AnchorPane waitingLoginScene;
     private MainController mainController;
-
-    private InitialLogin initialLogin;
-    private WaitingLogin waitingLogin;
 
 
     private AnchorPane generalScene;
@@ -45,7 +41,6 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
     private AnchorPane productionScene;
     private AnchorPane councilScene;
     private AnchorPane leaderScene;
-    private AnchorPane draftScene;
     private AnchorPane endGameScene;
 
     private HarvesterController harvesterController;
@@ -56,20 +51,21 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
     private PersonalBoardController personalBoardController;
     private ProductionController productionController;
     private TowersController towersController;
-    private EndGameController endGameController;
 
     private SceneType lastScene;
-    private String card;
-    private TextField chatText; //la chat di tutti
     private BorderPane rootLayoutMainGame;
-    private StringBuffer stringBuffer;
+    private StringBuilder stringBuffer;
     private int choiceDone;
-    private DraftController draftController;
     private Stage lastStageOpened;
     private Score uiScore;
-    private boolean rezieOn = false;
 
+    private String errorIOException = "error loading fxml file";
+    private String choiceFXMLFile = "/fileXML/mainGame/choice.fxml";
 
+    /**
+     * method called by Application.launch() to start the application
+     * @param primaryStage primary stage
+     */
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Login");
@@ -77,33 +73,11 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         mainController = MainController.getInstance();
         mainController.setLoginBuilder(this);
 
-
-        this.primaryStage.widthProperty().addListener((javafx.beans.value.ChangeListener<? super Number>) this);
-        this.primaryStage.heightProperty().addListener((javafx.beans.value.ChangeListener<? super Number>) this);
-
-        //resize(this.primaryStage.getWidth(), this.primaryStage.getHeight());
         initRootLayout();
 
         initializeInitialLogin();
         initializeWaitingLogin();
-        //initalizeMainGame();
         showFirstPage();
-    }
-
-    private void resize(double width, double height) {
-        if (rezieOn) {
-            System.out.println("NUOVA MISURA: "+ width + " " + height);
-            //generalMainGameController.resize(width, height);
-        }
-    }
-
-    public BorderPane getRootLayout() {
-        return rootLayout;
-    }
-
-    @Override
-    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        resize(primaryStage.getWidth(), primaryStage.getHeight());
     }
 
     /**
@@ -111,270 +85,328 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
      */
     private void initRootLayout() {
         try {
-            // Configuration root layout from fxml file.
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/login/rootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
-            // Show the scene containing the root layout.
+            rootLayout = loader.load();
+
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            System.out.print("qua prendo l'eccezzione di chiusura");
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
     }
 
+    /**
+     * method that initialize the initial login scene
+     */
     private void initializeInitialLogin() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/login.fxml"));
-            initialLoginScene = (AnchorPane) loader.load();
+            initialLoginScene = loader.load();
 
-            this.initialLogin = loader.getController();
+            InitialLogin initialLogin = loader.getController();
             initialLogin.setMainController(mainController);
-            initialLogin.setLoginBuilder(this);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
     }
 
+    /**
+     *  method that initialize the waiting login scene
+     */
     private void initializeWaitingLogin() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/attesaInizioPartita.fxml"));
-            waitingLoginScene = (AnchorPane) loader.load();
+            waitingLoginScene = loader.load();
 
-            this.waitingLogin = loader.getController();
+            WaitingLogin waitingLogin = loader.getController();
             waitingLogin.setMainController(mainController);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
 
     }
 
-    public void initalizeMainGame() {
-        System.out.println("inizio inizializzazione");
-        inizializzaGeneralMainGame();
-        inizializzaCouncil();
-        inizializzaTowers();
-        inizializzaHarvester();
-        inizializzaMarket();
-        inizializzaPersonalBoard();
-        inizializzaProduction();
-        inizializzaLeaderCard();
-        inizializzaEndGame();
-        System.out.println("finita inizializzazione");
+    /**
+     * method used to initialize all the scenes of main game
+     */
+    void initializeMainGame() {
+        initializeGeneralMainGame();
+        initializeCouncil();
+        initializeTowers();
+        initializeHarvester();
+        initializeMarket();
+        initializePersonalBoard();
+        initializeProduction();
+        initializeLeaderCard();
+        initializeEndGame();
     }
 
-
-    private void inizializzaGeneralMainGame() {
+    /**
+     *  method that initialize the general main game scene
+     */
+    private void initializeGeneralMainGame() {
         try {
-            stringBuffer = new StringBuffer();
+            stringBuffer = new StringBuilder();
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/generalMainGame.fxml"));
-            generalScene = (AnchorPane) loader.load();
+            generalScene = loader.load();
 
             generalMainGameController = loader.getController();
             generalMainGameController.setLoginBuilder(this);
             generalMainGameController.setMainController(mainController);
             generalMainGameController.uploadImages();
 
+            System.err.println("ho finito di caricare il general man game");
+            SceneType.MAIN.setController(generalMainGameController);
+            SceneType.MAIN.setScene(generalScene);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " general");
         }
     }
 
-    void initRootLayoutMainGame() {
+    /**
+     *  method that initialize the root layout for main game scenes
+     */
+    private void initRootLayoutMainGame() {
         try {
-            // Configuration root layout from fxml file.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/mainGame/rootLayout.fxml"));
-            rootLayoutMainGame = (BorderPane) loader.load();
+            rootLayoutMainGame = loader.load();
 
             primaryStage.close();
-            // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayoutMainGame);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            System.out.print("qua prendo l'eccezzione di chiusura");
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " rootLayout");
         }
     }
 
-    private void inizializzaCouncil() {
+    /**
+     *  method that initialize the council scene
+     */
+    private void initializeCouncil() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/councilPalaceMainGame.fxml"));
-            councilScene = (AnchorPane) loader.load();
+            councilScene = loader.load();
 
             councilPalaceController = loader.getController();
             councilPalaceController.setLoginBuilder(this);
             councilPalaceController.setMainController(mainController);
             councilPalaceController.uploadImages();
 
+
+            SceneType.COUNCIL.setController(councilPalaceController);
+            SceneType.COUNCIL.setScene(councilScene);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " council");
         }
     }
 
-    private void inizializzaLeaderCard() {
+    /**
+     *  method that initialize the leader scene
+     */
+    private void initializeLeaderCard() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/leaderCardMainGame.fxml"));
-            leaderScene = (AnchorPane) loader.load();
+            leaderScene = loader.load();
 
             leaderCardController = loader.getController();
             leaderCardController.setLoginBuilder(this);
             leaderCardController.setMainController(mainController);
             leaderCardController.uploadImages();
 
+            SceneType.LEADER.setController(leaderCardController);
+            SceneType.LEADER.setScene(leaderScene);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " leader");
         }
     }
 
-    private void inizializzaTowers() {
+    /**
+     *  method that initialize the tower scene
+     */
+    private void initializeTowers() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/towersMainGame.fxml"));
-            towersScene = (AnchorPane) loader.load();
+            towersScene = loader.load();
 
             towersController = loader.getController();
             towersController.setLoginBuilder(this);
             towersController.setMainController(mainController);
             towersController.uploadImages();
 
+            SceneType.TOWERS.setController(towersController);
+            SceneType.TOWERS.setScene(towersScene);
+
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " towers");
         }
     }
 
-    private void inizializzaMarket() {
+    /**
+     *  method that initialize the market scene
+     */
+    private void initializeMarket() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/marketMainGame.fxml"));
-            marketScene = (AnchorPane) loader.load();
+            marketScene = loader.load();
 
             marketController = loader.getController();
             marketController.setLoginBuilder(this);
             marketController.setMainController(mainController);
             marketController.uploadImages();
 
+            SceneType.MARKET.setController(marketController);
+            SceneType.MARKET.setScene(marketScene);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " market");
         }
     }
 
-    private void inizializzaPersonalBoard() {
+    /**
+     *  method that initialize the personal board scene
+     */
+    private void initializePersonalBoard() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/personalBoardMainGame.fxml"));
-            personalBoardScene = (AnchorPane) loader.load();
+            personalBoardScene = loader.load();
 
             personalBoardController = loader.getController();
             personalBoardController.setLoginBuilder(this);
             personalBoardController.setMainController(mainController);
             personalBoardController.uploadImages();
 
+            SceneType.PERSONAL_BOARD.setController(personalBoardController);
+            SceneType.PERSONAL_BOARD.setScene(personalBoardScene);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " personalBoard");
         }
     }
 
-    private void inizializzaHarvester() {
+    /**
+     *  method that initialize the harvester scene
+     */
+    private void initializeHarvester() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/harvesterMainGame.fxml"));
-            harvesterScene = (AnchorPane) loader.load();
+            harvesterScene = loader.load();
 
             harvesterController = loader.getController();
             harvesterController.setLoginBuilder(this);
             harvesterController.setMainController(mainController);
             harvesterController.uploadImages();
 
+            SceneType.HARVESTER.setController(harvesterController);
+            SceneType.HARVESTER.setScene(harvesterScene);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " harvester");
         }
     }
 
-    private void inizializzaProduction() {
+    /**
+     *  method that initialize the production scene
+     */
+    private void initializeProduction() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/productionMainGame.fxml"));
-            productionScene = (AnchorPane) loader.load();
+            productionScene = loader.load();
 
             productionController = loader.getController();
             productionController.setLoginBuilder(this);
             productionController.setMainController(mainController);
             productionController.uploadImages();
 
+            SceneType.PRODUCTION.setController(productionController);
+            SceneType.PRODUCTION.setScene(productionScene);
+
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " production");
         }
     }
 
-    void inizializzaEndGame() {
+    /**
+     *  method that initialize the end game scene
+     */
+    private void initializeEndGame() {
         try {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/endMatch.fxml"));
-            endGameScene = (AnchorPane) loader.load();
+            endGameScene = loader.load();
 
-            endGameController = loader.getController();
+            EndGameController endGameController = loader.getController();
             endGameController.setLoginBuilder(this);
             endGameController.setMainController(mainController);
             endGameController.uploadImages();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(errorIOException + " endGame");
         }
     }
 
-
+    /**
+     * method used to start the gui app and set aat the center of the stage the login scene
+     */
     void showFirstPage() {
         rootLayout.setCenter(initialLoginScene);
     }
 
+    /**
+     * main used to launch the application
+     * @param args args
+     */
     public void main(String[] args) {
         launch(args);
     }
 
-
-    public void startMainGame() {
-
+    /**
+     * method used to start the main game scenes and set in the center of the stage the main game scene
+     */
+    void startMainGame() {
         initRootLayoutMainGame();
-
-        showPrimo();
-
-        System.out.println("sono in start");
+        showMainScene();
     }
 
-
-    public void showPrimo() {
+    /**
+     * method used to set in the center the general main game scene
+     */
+    void showMainScene() {
         rootLayoutMainGame.setCenter(generalScene);
-        System.out.print("faccio vedere il primo");
     }
 
-
-    public void showCardZoomed(Image imageView) {
+    /**
+     * method called to show a card zoomed
+     * @param imageView imageView of the card to zoom
+     */
+    void showCardZoomed(Image imageView) {
         if (imageView == null) return;
         try {
-            // Configuration the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/cardZoom.fxml"));
-            AnchorPane cardZoomed = (AnchorPane) loader.load();
+            AnchorPane cardZoomed = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Card");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -382,60 +414,53 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             Scene scene = new Scene(cardZoomed);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
             CardZoomController controller = loader.getController();
-            //controller.setDialogStage(dialogStage);
             controller.setImage(imageView);
 
-            // Show the dialog and wait until the user closes it
             dialogStage.show();
 
-            return;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
     }
 
-
-    public void ringraziamenti() {
+    /**
+     * method used to initialize and show thanksgiving scene
+     */
+    void showThanksgiving() {
 
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/ringraziamenti.fxml"));
-            AnchorPane ringraziamenti = (AnchorPane) loader.load();
+            AnchorPane greetings = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Ringraziamenti");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
-            Scene scene = new Scene(ringraziamenti);
+            Scene scene = new Scene(greetings);
             dialogStage.setScene(scene);
 
-            List<PlayerFile> playerFiles = mainController.getRanking();
-            // Set the person into the controller.
             Greetings controller = loader.getController();
             controller.updateText();
             lastStageOpened = dialogStage;
             dialogStage.showAndWait();
             lastStageOpened = null;
-            return;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
 
 
     }
 
-
-    public void showStandings() {
+    /**
+     * method used to show standings scene
+     */
+    void showStandings() {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
-            AnchorPane standings = (AnchorPane) loader.load();
+            loader.setLocation(getClass().getResource(choiceFXMLFile));
+            AnchorPane standings = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Standings");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -444,9 +469,8 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             dialogStage.setScene(scene);
 
             List<PlayerFile> playerFiles = mainController.getRanking();
-            // Set the person into the controller.
+
             ChoiceController controller = loader.getController();
-            controller.setMainController(mainController);
             controller.setLoginBuilder(this);
             controller.setRankings(playerFiles);
             controller.setLabel("STANDINGS");
@@ -454,20 +478,20 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             lastStageOpened = dialogStage;
             dialogStage.showAndWait();
             lastStageOpened = null;
-            return;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
 
     }
 
-    public void showStatistics() {
+    /**
+     * method used to show statistics scene
+     */
+    void showStatistics() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
-            AnchorPane statistics = (AnchorPane) loader.load();
+            loader.setLocation(getClass().getResource(choiceFXMLFile));
+            AnchorPane statistics = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Statistics");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -476,9 +500,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             dialogStage.setScene(scene);
 
             PlayerFile playerFile = mainController.getStatistics();
-            // Set the person into the controller.
             ChoiceController controller = loader.getController();
-            controller.setMainController(mainController);
             controller.setLoginBuilder(this);
             controller.setStatistics(playerFile);
             controller.setLabel("STATISTICS");
@@ -486,20 +508,24 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             lastStageOpened = dialogStage;
             dialogStage.showAndWait();
             lastStageOpened = null;
-            return;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
 
     }
 
-    public void showChoice(String message, String choice1, String choice2) {
+    /**
+     * method used to show choice popUp
+     * @param message message of the popUP
+     * @param choice1 first choice
+     * @param choice2 second choice
+     */
+    void showChoice(String message, String choice1, String choice2) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fileXML/mainGame/choice.fxml"));
-            AnchorPane choice = (AnchorPane) loader.load();
+            loader.setLocation(getClass().getResource(choiceFXMLFile));
+            AnchorPane choice = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Choice");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -507,31 +533,28 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             Scene scene = new Scene(choice);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
             ChoiceController controller = loader.getController();
-            controller.setMainController(mainController);
-            //controller.setDialogStage(dialogStage);
             controller.setLoginBuilder(this);
             controller.setLabel(message);
             controller.setChoice1(choice1);
             controller.setChoice2(choice2);
             if (message.equals(CliConstants.ASK_FOR_PRAYING))
                 controller.setImage(mainController.getCurrentPeriod());
-            System.out.println("sto per disegnare lo stage");
-            // Show the dialog and wait until the user closes it
+
             lastStageOpened = dialogStage;
             dialogStage.showAndWait();
-            System.out.println("sono dopo che ho disegnato lo stage");
             lastStageOpened = null;
-            return;
+
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
     }
 
-    public void setDraft(List<LeaderCard> leaderName) {
+    /**
+     * method that pass form leader card to their names, used for uploading images
+     * @param leaderName list of leader to draft
+     */
+    void setLeaderDraft(List<LeaderCard> leaderName) {
         List<String> stringLeaderName = new ArrayList<>();
         for (LeaderCard l : leaderName)
             stringLeaderName.add(l.getName());
@@ -539,20 +562,28 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         showDraft(mainController.getUsernameChosen() + ": draft of Leader Card", stringLeaderName, "leader");
     }
 
-
-    public void setDraft(ArrayList<Tile> tiles) {
+    /**
+     * method used to show draft of tiles
+     * @param tiles tiles t draft
+     */
+    void setTileDraft(List<Tile> tiles) {
         List<String> stringTile = new ArrayList<>();
         for (Tile t : tiles)
             stringTile.add(String.valueOf(t.getTileNumber()));
         showDraft(mainController.getUsernameChosen() + ": choose one tile", stringTile, "tile");
     }
 
-
+    /**
+     * method that show draft stage
+     * @param labelMessage titile of draft
+     * @param name list of name of images to show
+     * @param type draft type
+     */
     private void showDraft(String labelMessage, List<String> name, String type) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/login/draft.fxml"));
-            AnchorPane draft = (AnchorPane) loader.load();
+            AnchorPane draft = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Draft");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -560,32 +591,32 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             Scene scene = new Scene(draft);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
             DraftController controller = loader.getController();
             controller.setMainController(mainController);
             controller.setLabel(labelMessage);
 
             if (type.equals("tile")) controller.uploadImagesTile(name);
-            else controller.uploadImagesLeader(name);
+                else controller.uploadImagesLeader(name);
+
             lastStageOpened = dialogStage;
             dialogStage.setAlwaysOnTop(true);
             dialogStage.showAndWait();
             lastStageOpened = null;
-            return;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
     }
 
-
-    public void popUp(String s) {
+    /**
+     * method to show a popUp stage
+     * @param s message in the popUp
+     */
+    void popUp(String s) {
 
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/error/popUp.fxml"));
-            AnchorPane popUp = (AnchorPane) loader.load();
+            AnchorPane popUp = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Warning");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -593,92 +624,65 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             Scene scene = new Scene(popUp);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
             PopUpController controller = loader.getController();
             controller.setLabel(s);
             controller.setMainController(mainController);
-            System.out.println("sto per disegnare lo stage");
-            // Show the dialog and wait until the user closes it
+
             dialogStage.showAndWait();
-            System.out.println("sono dopo che ho disegnato lo stage");
-            return;
+
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
     }
 
-    public void setLastScene(SceneType lastScene) {
+    /**
+     * method used to swich scene in gui application
+     * @param nextScene scene to set in the center of the stage
+     * @param lastScene scene that called this action, used for the goBack button
+     */
+    void setScene(SceneType nextScene, SceneType lastScene) {
         this.lastScene = lastScene;
+        setScene(nextScene.getController(), nextScene.getScene());
     }
 
-    public void setScene(SceneType nextScene, SceneType lastScene) {
-        this.lastScene = lastScene;
-        switch (nextScene) {
-            case MAIN: {
-                generalMainGameController.refresh();
-                rootLayoutMainGame.setCenter(generalScene);
-                break;
-            }
-            case TOWERS: {
-                towersController.refresh();
-                rootLayoutMainGame.setCenter(towersScene);
-                break;
-            }
-            case MARKET: {
-                marketController.refresh();
-                rootLayoutMainGame.setCenter(marketScene);
-                break;
-            }
-            case HARVESTER: {
-                harvesterController.refresh();
-                rootLayoutMainGame.setCenter(harvesterScene);
-                break;
-            }
-            case PERSONAL_BOARD: {
-                personalBoardController.refresh();
-                rootLayoutMainGame.setCenter(personalBoardScene);
-                break;
-            }
-            case PRODUCTION: {
-                productionController.refresh();
-                rootLayoutMainGame.setCenter(productionScene);
-                break;
-            }
-            case COUNCIL: {
-                councilPalaceController.refresh();
-                rootLayoutMainGame.setCenter(councilScene);
-                break;
-            }
-            case LEADER: {
-                leaderCardController.refresh();
-                rootLayoutMainGame.setCenter(leaderScene);
-                break;
-            }
-            case AFTER_GAME:{
-                rootLayoutMainGame.setCenter(endGameScene);
-                break;
-            }
-            default:
-                break;
-        }
+    /**
+     * method used to show a scene chosen
+     * @param controller controller of the scene
+     * @param scene root anchor pane of the scene
+     */
+    private void setScene(AbstractController controller, AnchorPane scene) {
+        controller.refresh();
+        rootLayoutMainGame.setCenter(scene);
     }
 
-    public SceneType getLastScene() {
+    /**
+     * getter
+     * @return last scene showed
+     */
+    SceneType getLastScene() {
         return lastScene;
     }
 
-    public StringBuffer getChat() {
+    /**
+     * getter
+     * @return chat text
+     */
+    StringBuilder getChat() {
         return stringBuffer;
     }
 
-
+    /**
+     * getter
+     * @return primary stage
+     */
     private Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    public void waitingScene() {
+    /**
+     * method that show the waiting login scene and called the method the set the connection to the server
+     */
+    void waitingScene() {
         rootLayout.setCenter(waitingLoginScene);
         Task task = new Task<Void>() {
             @Override
@@ -689,49 +693,67 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
         };
 
         new Thread(task).start();
-        System.out.println("ho messo la scena di wait");
     }
 
-    public StringBuffer getStringBuffer() {
-        return stringBuffer;
+    /**
+     * method used to appen strings in the chat
+     * @param s string to append
+     */
+    void stringBufferAppend(String s) {
+        stringBuffer.append(s).append("\n");
     }
 
-    public void stringBufferAppend(String s) {
-        stringBuffer.append(s + "\n");
-    }
-
-    public void setChoiceDone(int choiceDone) {
+    /**
+     * setter
+     * @param choiceDone choice to set
+     */
+    void setChoiceDone(int choiceDone) {
         this.choiceDone = choiceDone;
     }
 
-    public int getChoiceDone() {
+    /**
+     * getter
+     * @return choice done
+     */
+    int getChoiceDone() {
         return choiceDone;
     }
 
-    public void writeOnMyChat(String s) {
+    /**
+     * method used to write in the chat of all scenes
+     * @param s string to write
+     */
+    void writeOnMyChat(String s) {
         stringBuffer.append(s);
         mainController.updateChat();
     }
 
-    public void inFront() {
+    /**
+     * method used to set a scene to front
+     */
+    void inFront() {
         Stage s = getPrimaryStage();
         s.toFront();
         s.toFront();
         s.toFront();
     }
 
-
-    public Stage getLastStageOpened() {
+    /**
+     * getter
+     * @return last stage open
+     */
+    Stage getLastStageOpened() {
         return lastStageOpened;
     }
 
-
-    public void showPoints() {
-
+    /**
+     * method used to show the points stage
+     */
+    void showPoints() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fileXML/mainGame/showPoints.fxml"));
-            AnchorPane popUp = (AnchorPane) loader.load();
+            AnchorPane popUp = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Points");
@@ -744,44 +766,37 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             PointsController controller = loader.getController();
             controller.setMainController(mainController);
             controller.updatePoints(uiScore);
-            System.out.println("sto per disegnare lo stage");
-            // Show the dialog and wait until the user closes it
+
             dialogStage.showAndWait();
-            System.out.println("sono dopo che ho disegnato lo stage");
-            return;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("sono uscito dalla visione della carta");
-            return;
+            UnixColoredPrinter.Logger.print(errorIOException);
         }
     }
 
-    public void setUiScore(Score uiScore) {
+    /**
+     * setter
+     * @param uiScore player score
+     */
+    void setUiScore(Score uiScore) {
         this.uiScore = uiScore;
     }
 
-    public void setDimensions(ImageView imageView) {
-        int oldWidth = (int) imageView.getFitWidth();
-        int oldHeight = (int) imageView.getFitHeight();
-
-        imageView.setFitWidth(((oldWidth * primaryStage.getWidth()) / WINDOW_WIDTH));
-        imageView.setFitHeight(((oldHeight * primaryStage.getHeight()) / WINDOW_HEIGHT));
-
-        int oldX = (int) imageView.getLayoutX();
-        int oldY = (int) imageView.getLayoutY();
-
-        imageView.setLayoutX(((oldX * primaryStage.getWidth()) / WINDOW_WIDTH));
-        imageView.setLayoutY(((oldY * primaryStage.getHeight()) / WINDOW_HEIGHT));
-    }
-
-    public void setResizeOn(boolean resizeOn) {
-        this.rezieOn = resizeOn;
-    }
-
-    public Image getExcommunicationImage(int currentPeriod) {
+    /**
+     * method used to get the excommunication tile image of the right period
+     * @param currentPeriod period
+     * @return image
+     */
+    Image getExcommunicationImage(int currentPeriod) {
         return generalMainGameController.getExcommunicationImage(currentPeriod);
     }
 
+    /**
+     * method used to set the after game scene
+     */
+    void setAfterGame() {
+        rootLayoutMainGame.setCenter(endGameScene);
+
+    }
 }
 
 

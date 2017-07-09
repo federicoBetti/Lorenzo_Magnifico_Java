@@ -21,16 +21,27 @@ public class DraftController {
     private HBox cardBox;
     private MainController mainController;
 
+    /**
+     * setter
+     * @param mainController parameter to set
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
+    /**
+     * set the title of the new stage
+     * @param labelMessage title
+     */
     public void setLabel(String labelMessage) {
         title.setText(labelMessage);
     }
 
-
-    public void uploadImagesTile(List<String> name) {
+    /**
+     * upload images for tile draft
+     * @param name list of tile to show
+     */
+    void uploadImagesTile(List<String> name) {
         for (String s: name){
             ImageView imageView = new ImageView();
             imageView.setFitWidth(49);
@@ -42,6 +53,10 @@ public class DraftController {
 
     }
 
+    /**
+     * method that set the variable chosen on the main controller
+     * @param s name of tile chosen
+     */
     private void imageClickedInt(String s) {
 
         mainController.addIntQueue(Integer.parseInt(s));
@@ -49,7 +64,11 @@ public class DraftController {
         stage.hide();
     }
 
-    public void uploadImagesLeader(List<String> name) {
+    /**
+     * method that upload the images of leader cards
+     * @param name list of string of leader's name
+     */
+    void uploadImagesLeader(List<String> name) {
         for (String s: name){
             ImageView imageView = new ImageView();
             imageView.setFitWidth(128);
@@ -60,7 +79,10 @@ public class DraftController {
         }
     }
 
-
+    /**
+     * method that set the variable chosen on the main controller
+     * @param s name of leader chosen
+     */
     private void imageClickedLeader(String s) {
         mainController.addStringQueue(s);
         Stage stage = (Stage) title.getScene().getWindow();

@@ -17,7 +17,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
- * this is a singleton class used to
+ * this is a singleton class used from the Gui class (extends AbstractUI) to communicate with the Application and viceversa.
  */
 public class MainController {
     private static MainController instance;
@@ -35,7 +35,7 @@ public class MainController {
     private List<AbstractController> controllers;
 
     private int numberOfPlayer = 2;
-    private String colour = "rosso";
+    private String colour = "red";
     private String usernameChosen;
 
     private BlockingQueue<Integer> integerQueue;
@@ -43,7 +43,6 @@ public class MainController {
 
     private boolean myTurn;
 
-    private int numberOfPrivelege;
     private boolean actionBonusOn;
     private InitialLogin initialLoginController;
     private boolean firstTime;
@@ -90,7 +89,7 @@ public class MainController {
      * method to show main page on gui
      */
     public void showMainGame() {
-        loginBuilder.showPrimo();
+        loginBuilder.showMainScene();
     }
 
     /**
@@ -197,7 +196,7 @@ public class MainController {
     /**
      * method called by gui when connect button is pressed
      * @param connectionType type of connection
-     * @param IP
+     * @param IP ip address of server
      * @param usernameChosen usernamen of the player
      */
     void setConnectionType(String connectionType, String IP, String usernameChosen) {
@@ -212,15 +211,6 @@ public class MainController {
      */
     void setInitialLoginController(InitialLogin initialLoginController) {
         this.initialLoginController = initialLoginController;
-    }
-
-    /**
-     * setter
-     *
-     * @param choiceController parameter to set
-     */
-    void setChoiceController(ChoiceController choiceController) {
-        ChoiceController choiceController1 = choiceController;
     }
 
     /**
@@ -452,10 +442,9 @@ public class MainController {
      */
     public void takePrivilege(int quantityOfDifferentPrivileges) {
         actionBonusOn = true;
-        numberOfPrivelege = quantityOfDifferentPrivileges;
         Platform.runLater(() -> {
             loginBuilder.setScene(SceneType.COUNCIL, SceneType.LEADER);
-            councilPalaceController.takeImmediatePrivilege(numberOfPrivelege);
+            councilPalaceController.takeImmediatePrivilege(quantityOfDifferentPrivileges);
         });
     }
 
@@ -587,7 +576,7 @@ public class MainController {
      */
     public int getChoice(String choiceType, String s, String s1) {
         integerQueue = new LinkedBlockingQueue<>(1);
-        Platform.runLater(() -> generalGameController.setScelta(choiceType, s, s1));
+        Platform.runLater(() -> generalGameController.setChoice(choiceType, s, s1));
         Integer i = 0;
         try {
             i = integerQueue.take();
@@ -654,8 +643,7 @@ public class MainController {
     public String getLeaderCardChosen(List<LeaderCard> leaders) {
         stringQueue = new LinkedBlockingQueue<>(1);
         Platform.runLater(() -> {
-
-            loginBuilder.setDraft(leaders);
+            loginBuilder.setLeaderDraft(leaders);
         });
         String i = "";
         try {
@@ -678,10 +666,11 @@ public class MainController {
         this.colour = familyColour;
         draft = false;
         Platform.runLater(() -> {
-            loginBuilder.initalizeMainGame();
+            loginBuilder.initializeMainGame();
             loginBuilder.startMainGame();
+
+            System.err.println("sto per settare il nome");
             generalGameController.setName(usernameChosen);
-            loginBuilder.setResizeOn(true);
         });
     }
 
@@ -692,7 +681,7 @@ public class MainController {
         setMyTurn(true);
         Platform.runLater(() -> {
             loginBuilder.writeOnMyChat("it's your turn, you can play!\n");
-            loginBuilder.showPrimo();
+            loginBuilder.showMainScene();
             loginBuilder.inFront();
         });
     }
@@ -795,7 +784,7 @@ public class MainController {
     public int tileDraft(List<Tile> tiles) {
         integerQueue = new LinkedBlockingQueue<>();
 
-        Platform.runLater(() -> loginBuilder.setDraft((ArrayList<Tile>) tiles));
+        Platform.runLater(() -> loginBuilder.setTileDraft(tiles));
         int i = 0;
         try {
             i = integerQueue.take();
@@ -850,7 +839,7 @@ public class MainController {
     public void afterGame() {
         currentPeriod = 0;
         System.err.println("mettoo l'after game context");
-        Platform.runLater(() -> loginBuilder.setScene(SceneType.AFTER_GAME,SceneType.MAIN));
+        Platform.runLater(() -> loginBuilder.setAfterGame());
     }
 
     public void prayed() {
@@ -890,5 +879,9 @@ public class MainController {
 
     public boolean isWin() {
         return winner;
+    }
+
+    public void terminate() {
+        clientSetter.terminate();
     }
 }

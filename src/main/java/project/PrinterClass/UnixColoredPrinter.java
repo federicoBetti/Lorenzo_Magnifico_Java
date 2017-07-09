@@ -4,6 +4,7 @@ package project.PrinterClass;
         import com.diogonunes.jcdp.bw.api.AbstractPrinter;
         import com.diogonunes.jcdp.bw.api.IPrinter;
         import com.diogonunes.jcdp.color.api.AbstractColoredPrinter;
+        import com.diogonunes.jcdp.color.api.Ansi;
         import com.diogonunes.jcdp.color.api.Ansi.Attribute;
         import com.diogonunes.jcdp.color.api.Ansi.BColor;
         import com.diogonunes.jcdp.color.api.Ansi.FColor;
@@ -20,7 +21,6 @@ package project.PrinterClass;
  * @version 2.0
  */
 public class UnixColoredPrinter extends AbstractColoredPrinter {
-
     /**
      * Constructor (using defaults): creates a Colored Printer with no format,
      * zero level of debug and timestamping active according to ISO 8601.
@@ -323,4 +323,21 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
                 + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
                 + getBackgroundColor().name();
     }
+
+    public static class Logger{
+        Builder builder = new UnixColoredPrinter.Builder(0, false);
+        static UnixColoredPrinter p;
+
+        public Logger(){
+            builder.attribute(Attribute.BOLD);
+            builder.foreground(FColor.RED);
+            p = new UnixColoredPrinter(builder);
+            System.err.println("creato il logger");
+        }
+
+        public static void print(String message){
+            p.println(message);
+        }
+    }
+
 }

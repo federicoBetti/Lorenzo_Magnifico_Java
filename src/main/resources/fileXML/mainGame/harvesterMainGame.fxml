@@ -238,7 +238,7 @@
                 <Image url="/images/cornici/cornice14x27.png"/>
             </image>
         </ImageView>
-        <ImageView fx:id="LorenzoMagnifico" fitHeight="182.75" fitWidth="182.75" layoutX="731.0" layoutY="606.05"
+        <ImageView fx:id="lorenzoMagnifico" fitHeight="182.75" fitWidth="182.75" layoutX="731.0" layoutY="606.05"
                    pickOnBounds="true" preserveRatio="true">
             <image></image>
         </ImageView>

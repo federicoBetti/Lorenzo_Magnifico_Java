@@ -1,43 +1,56 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
+import com.sun.istack.internal.Nullable;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import project.PrinterClass.UnixColoredPrinter;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Created by federico on 09/07/17.
+ * controller of thanksgiving scene
  */
 public class Greetings {
-    public Label text;
-    public TextArea scroll;
+    @FXML
+    private TextArea scroll;
 
+    /**
+     * method used to update text from the file
+     */
+    void updateText() {
 
-    public void updateText() {
-
-        String s = getFile("endMatchFile/greetings.txt");
-        System.err.println(s);
+        String s = getFile();
         scroll.setText(s);
         scroll.setBackground(Background.EMPTY);
 
 
     }
 
-    private String getFile(String fileName) {
+    /**
+     * private method to conver file.txt in a string
+     * @return text.toString()
+     */
+    private String getFile() {
 
         StringBuilder result = new StringBuilder("");
 
         //Get file from resources folder
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
+        File file = null;
 
+        try {
+            file = new File(classLoader.getResource("endMatchFile/greetings.txt").getFile());
+        }
+        catch (NullPointerException e){
+            UnixColoredPrinter.Logger.print("error uploading greetings file");
+        }
+
+        assert file != null;
         try (Scanner scanner = new Scanner(file)) {
 
             while (scanner.hasNextLine()) {
@@ -48,15 +61,17 @@ public class Greetings {
             scanner.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print("error uploading greetings file");
         }
 
         return result.toString();
 
     }
 
-    public void close(ActionEvent actionEvent) {
-
+    /**
+     * method use to close the stage
+     */
+    public void close() {
         Stage stage = (Stage) scroll.getScene().getWindow();
         stage.hide();
     }

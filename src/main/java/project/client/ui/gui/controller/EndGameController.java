@@ -1,6 +1,6 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -9,23 +9,40 @@ import javafx.scene.text.Text;
  * this is the controller of the end game scene
  */
 public class EndGameController {
-    public ImageView sfondo;
-    public Text winner;
+
+    @FXML
+    private ImageView sfondo;
+    @FXML
+    private Text winner;
     private LoginBuilder loginBuilder;
     private MainController mainController;
 
-    public void newGame(ActionEvent actionEvent) {
+    /**
+     * method called by new game button to start a new game
+     */
+    public void newGame() {
         mainController.newGame();
     }
 
+    /**
+     * setter
+     * @param loginBuilder parameter to set
+     */
     public void setLoginBuilder(LoginBuilder loginBuilder) {
         this.loginBuilder = loginBuilder;
     }
 
+    /**
+     * setter
+     * @param mainController parameter to set
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
+    /**
+     * method used to upload images on the scene
+     */
     public void uploadImages() {
         sfondo.setImage(new Image(String.valueOf(getClass().getResource("/endMatchFile/ponteVecchio.jpg"))));
         if (mainController.isWin())
@@ -35,18 +52,31 @@ public class EndGameController {
 
     }
 
-    public void close(ActionEvent actionEvent) {
+    /**
+     * method used to close the window and the match
+     */
+    public void close() {
+        mainController.terminate();
     }
 
-    public void showStatistics(ActionEvent actionEvent) {
+    /**
+     * method called to show statistics
+     */
+    public void showStatistics() {
         loginBuilder.showStatistics();
     }
 
-    public void showStandings(ActionEvent actionEvent) {
+    /**
+     * method called to show rankings
+     */
+    public void showStandings() {
         loginBuilder.showStandings();
     }
 
-    public void ringraziamenti(ActionEvent actionEvent) {
-        loginBuilder.ringraziamenti();
+    /**
+     * method called to show thanksgiving
+     */
+    public void ringraziamenti() {
+        loginBuilder.showThanksgiving();
     }
 }

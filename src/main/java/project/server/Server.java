@@ -2,6 +2,7 @@ package project.server;
 
 import com.google.gson.Gson;
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
@@ -41,6 +42,8 @@ public class Server {
 
     private Configuration configuration;
 
+    static UnixColoredPrinter.Logger logger;
+
     public Server() {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);
@@ -57,6 +60,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         Server server = new Server();
         server.startServer(Constants.SOCKET_PORT, Constants.RMI_PORT);
+        logger = new UnixColoredPrinter.Logger();
 
     }
 

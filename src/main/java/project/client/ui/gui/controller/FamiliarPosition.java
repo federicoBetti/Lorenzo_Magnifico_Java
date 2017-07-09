@@ -5,41 +5,60 @@ import javafx.scene.image.ImageView;
 
 
 /**
- * Created by federico on 18/06/17.
+ * class used to store a familiar for gui scenes. there are its name and its imageview
  */
 class FamiliarPosition {
-    private ImageView familiarPosition;
+    private ImageView familiarImage;
     private String familiarName;
 
+    /**
+     * constructor
+     * @param imageView imageview to set
+     */
     FamiliarPosition(ImageView imageView){
-        this.familiarPosition = imageView;
+        this.familiarImage = imageView;
         familiarName = "";
     }
 
-    FamiliarPosition(FamiliarPosition toClone){
-        this.familiarPosition = toClone.getImage();
+    /**
+     * void constructor
+     */
+    FamiliarPosition(){
+        this.familiarImage = new ImageView();
+        familiarImage.setFitWidth(94);
+        familiarImage.setFitHeight(86);
         familiarName = "";
     }
 
-    FamiliarPosition(String type){
-        this.familiarPosition = new ImageView();
-        familiarPosition.setFitWidth(94);
-        familiarPosition.setFitHeight(86);
-        familiarName = "";
-    }
-    public String getFamiliarName() {
+    /**
+     * getter
+     * @return familiar name
+     */
+    String getFamiliarName() {
         return familiarName;
     }
 
+    /**
+     * getter
+     * @return familiar image
+     */
     public ImageView getImage() {
-        return familiarPosition;
+        return familiarImage;
     }
 
+    /**
+     * setter
+     * @param trueFamiliarImage image to set
+     */
     public void setImage(Image trueFamiliarImage) {
-        familiarPosition.setImage(trueFamiliarImage);
+        familiarImage.setImage(trueFamiliarImage);
     }
 
-    public void setFamiliarName(String familiarName) {
+    /**
+     * setter
+     * @param familiarName familiar name to set
+     */
+    void setFamiliarName(String familiarName) {
         this.familiarName = familiarName;
     }
 }

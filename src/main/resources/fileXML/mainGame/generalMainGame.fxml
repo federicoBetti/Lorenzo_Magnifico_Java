@@ -22,7 +22,6 @@
                </image></ImageView>
                 <Button fx:id="goToProductionButton" layoutX="30.599999999999998" layoutY="622.1999999999999" mnemonicParsing="false" onAction="#goToProduction" prefHeight="64.6" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="goToMarketButton" layoutX="281.34999999999997" layoutY="617.9499999999999" mnemonicParsing="false" onAction="#goToMarket" prefHeight="102.85" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-                <Button fx:id="goToCouncilPalaceButton" layoutX="238.0" layoutY="425.0" mnemonicParsing="false" onAction="#goToCouncliPalace" prefHeight="71.39999999999999" prefWidth="163.2" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <Button fx:id="goToHarvesterButton" layoutX="32.3" layoutY="687.65" mnemonicParsing="false" onAction="#goToHarvester" prefHeight="64.6" prefWidth="184.45" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                 <ImageView fx:id="excommunication1" fitHeight="81.6" fitWidth="42.5" layoutX="105.39999999999999" layoutY="468.34999999999997" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fx:id="excommunication2" fitHeight="81.6" fitWidth="42.5" layoutX="145.35" layoutY="475.15" pickOnBounds="true" preserveRatio="true" />
@@ -50,21 +49,21 @@
                 <Image url="/images/cornici/ritaglioCornice10Quadretti.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="towerGreen_3" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="38.25" layoutY="44.199999999999996" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerGreen_2" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="37.4" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerGreen_1" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="37.4" layoutY="239.7" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerGreen_0" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="38.25" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerBlue_0" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerBlue_1" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="238.85" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerBlue_2" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerBlue_3" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="141.95" layoutY="45.05" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerYellow_0" fitHeight="90.95" fitWidth="59.5" layoutX="249.04999999999998" layoutY="336.59999999999997" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerYellow_1" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="239.7" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerYellow_2" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="141.1" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerYellow_3" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="43.35" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerPurple_0" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerPurple_1" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="238.85" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="towerPurple_3" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="44.199999999999996" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerGreen3" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="38.25" layoutY="44.199999999999996" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerGreen2" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="37.4" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerGreen1" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="37.4" layoutY="239.7" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerGreen0" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="38.25" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue0" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue1" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="238.85" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue2" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="142.79999999999998" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerBlue3" fitHeight="90.95" fitWidth="61.199999999999996" layoutX="141.95" layoutY="45.05" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow0" fitHeight="90.95" fitWidth="59.5" layoutX="249.04999999999998" layoutY="336.59999999999997" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow1" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="239.7" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow2" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="141.1" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerYellow3" fitHeight="90.95" fitWidth="59.5" layoutX="248.2" layoutY="43.35" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple0" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="337.45" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple1" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="238.85" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple3" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="44.199999999999996" pickOnBounds="true" preserveRatio="true" />
           <Button fx:id="goToTowersButton" layoutX="35.0" layoutY="32.0" mnemonicParsing="false" onAction="#goToTowers" prefHeight="398.0" prefWidth="442.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
         <Pane layoutX="583.9499999999999" layoutY="27.2" prefHeight="723.35" prefWidth="297.5">
             <children>
@@ -195,7 +194,7 @@
                 <ImageView fx:id="faithPoint15" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="408.0" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <ImageView fx:id="towerPurple_2" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="towerPurple2" fitHeight="90.95" fitWidth="58.65" layoutX="354.45" layoutY="141.95" pickOnBounds="true" preserveRatio="true" />
         <Pane layoutX="414.8" layoutY="410.55" prefHeight="117.3" prefWidth="42.5">
             <children>
                 <ImageView fx:id="turnOrder1" fitHeight="18.7" fitWidth="17.849999999999998" layoutX="12.75" layoutY="6.8" pickOnBounds="true" preserveRatio="true" />

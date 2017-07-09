@@ -151,7 +151,7 @@ public class CouncilPalaceController extends AbstractController {
     @Override
     public void uploadImages() {
         super.uploadImages();
-        lorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/lorenzoMagnifico" + mainController.getColour() + ".png"))));
+        lorenzoMagnifico.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/LorenzoMagnifico" + mainController.getColour() + ".png"))));
         fillFamilyMember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
 

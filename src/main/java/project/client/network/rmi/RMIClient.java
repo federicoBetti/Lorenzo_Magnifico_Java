@@ -581,7 +581,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         if (returnFromEffect.toString().equals(Constants.BONUS_HARVESTER))
             clientSetter.bonusHarvester(returnFromEffect);
         else
-            clientSetter.bonusHarvester(returnFromEffect);
+            clientSetter.bonusProduction(returnFromEffect);
     }
 
     /**
