@@ -5,7 +5,7 @@ import project.controller.Constants;
 /**
  * Development deck iterator
  */
-public class DevelopmentDeckIterator implements IteratorInterface {
+public class DevelopmentDeckIterator  {
 
     private int color;
     private int period;
@@ -22,22 +22,10 @@ public class DevelopmentDeckIterator implements IteratorInterface {
 
     }
 
-    /**
-     * Check if the deck has a next element
-     *
-     * @return true if hasNext, else false
-     */
-    @Override
-    public boolean hasNext() {
-        if (color < Constants.CARD_TYPE_NUMBER && period < 2 && cards < Constants.CARD_FOR_EACH_PERIOD )
-            return true;
-        return false;
-    }
 
     /**
      * Increase the indexes for pointing the next element of the deck
      */
-    @Override
     public void next( ) {
         if ( cards == Constants.CARD_FOR_EACH_PERIOD - 1  ) {
             cards = 0;

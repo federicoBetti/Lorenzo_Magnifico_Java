@@ -1,8 +1,6 @@
 package project.client.ui.gui.controller;
 
-import com.sun.istack.internal.Nullable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.stage.Stage;

@@ -1,6 +1,7 @@
 package project.client.ui.cli;
 
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
@@ -395,7 +396,7 @@ public class Cli extends AbstractUI {
     /**
      * This method prints the statistics
      *
-     * @param statistics PlayerFile's reference that contains the statistics to print
+     * @param statistics PlayerFile.json's reference that contains the statistics to print
      */
     @Override
     public void receiveStatistics(PlayerFile statistics) {
@@ -687,7 +688,8 @@ public class Cli extends AbstractUI {
                 choice = false;
                 return Integer.parseInt(prayOrNot);
             } catch (InterruptedException e) {
-                System.out.println("sono in eccezione");
+                UnixColoredPrinter.Logger.print("Interrupeted");
+                Thread.currentThread().interrupt();
             } catch (InputException e) {
                 context.printHelp();
             }

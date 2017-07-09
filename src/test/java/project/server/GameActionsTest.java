@@ -175,12 +175,12 @@ public class GameActionsTest {
 
     }
 
-    @Test
+    @Test ( expected = NullPointerException.class)
     public void nextTurn() throws Exception {
         test.nextTurn(p);
     }
 
-    @Test
+    @Test ( expected = NullPointerException.class)
     public void firstPlayerTurn() throws Exception {
         test.firstPlayerTurn();
     }

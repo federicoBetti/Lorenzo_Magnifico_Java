@@ -67,9 +67,7 @@ public class SocketClient extends AbstractClient {
         while (true) {
             try {
 
-                System.out.println("SONO NEL WHIOLE TRUE");
                 message = (String) objectInputStream.readObject();
-                System.out.println("IL MESSAGE é: " + message);
                 messageHandler.handleMessage(message);
 
             } catch (IOException | ClassNotFoundException e) {
@@ -249,12 +247,10 @@ public class SocketClient extends AbstractClient {
             synchronized (token) {
                 token.wait();
             }
-            System.out.println("il res è stato mandato");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        System.out.println("il res viene mandato: " + answer);
     }
 
     /**
@@ -331,7 +327,6 @@ public class SocketClient extends AbstractClient {
             TakePrivilegesAction privilegesAction = (TakePrivilegesAction) objectInputStream.readObject();
             clientSetter.takeImmediatePrivilege(privilegesAction);
 
-            System.out.println("il res è stato mandato");
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -417,9 +412,6 @@ public class SocketClient extends AbstractClient {
         new TimerReader().start();
         int costChoice = clientSetter.bothPaymentsAvailable();
 
-
-        System.out.println("mandato! e vado in wait");
-
         sendGenericObject(costChoice);
 
         synchronized (token) {
@@ -429,7 +421,6 @@ public class SocketClient extends AbstractClient {
                 e.printStackTrace();
             }
         }
-        System.out.println("Svegliato e vado in wait");
     }
 
     /**
@@ -614,7 +605,7 @@ public class SocketClient extends AbstractClient {
     }
 
     /**
-     * This method receive an PlayerFile object containing the player's statistics and calls receiveStatistics on
+     * This method receive an PlayerFile.json object containing the player's statistics and calls receiveStatistics on
      * the clientSetter
      */
     void receiveStatistics() {

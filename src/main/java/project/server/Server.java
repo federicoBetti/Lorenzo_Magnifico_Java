@@ -105,7 +105,6 @@ public class Server {
             if (!room.isMatchStarted()) {
                 //riconnessione
                 if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { // riconnessione giocatre andato down durante il collegament alla partita
-                    System.out.println("RICONNESSIONE MATCH NOT STARTED");
 
                     PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
                     player.setName(nickname);
@@ -127,7 +126,7 @@ public class Server {
                     return;
 
                 } else if (!room.isFull() && !room.isMatchStarted()) { //se la room non è piena aggiungo il giocatore
-                    System.out.println("ROOM NON PIENA AGGIUNGO IL GIOCATORE");
+
                     player.setName(nickname);
                     player.setOn(true);
                     player.setRoom(room);
@@ -145,7 +144,7 @@ public class Server {
                 }
 
             } else if (room.nicknamePlayersMap.containsKey(nickname) && !room.nicknamePlayersMap.get(nickname).isOn()) { //durante la partita
-                System.out.println("RICONNESSIONE IN PARTITA");
+
                 player.setOn(true);
                 player.setRoom(room);
                 PlayerHandler oldPlayer = room.nicknamePlayersMap.get(nickname);
@@ -268,8 +267,9 @@ public class Server {
             File file = new File(Constants.FILENAME);
 
             if (!file.exists() ) {
-                System.out.println("CREO IL FILE");
+
                 file.createNewFile();
+
                 fw = new FileWriter(file.getAbsoluteFile(), true);
                 bw = new BufferedWriter(fw);
                 PlayerFile[] array = new PlayerFile[1];
@@ -280,7 +280,6 @@ public class Server {
             }
 
             String currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
-            System.out.println("Il file in questo momento è: " + currentFile);
 
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
 
@@ -292,8 +291,7 @@ public class Server {
 
                 }
 
-            fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
+
             RandomAccessFile randomAccessFile = new RandomAccessFile(Constants.FILENAME, "rw");
 
             long pos = randomAccessFile.length();
@@ -306,8 +304,7 @@ public class Server {
                 }
             }
 
-            // se non è stato trovato il player nel file
-            if (fileUpgraded == null) { // aggiungo l'elemento
+            if (fileUpgraded == null) {
                 String jsonElement = gson.toJson(playerFile);
                 randomAccessFile.writeBytes("," + jsonElement + "]");
 
@@ -356,56 +353,6 @@ public class Server {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
-
-    //todo serve?
-    private String playerIsInTheFile(String nickname, String filename) {
-        Gson gson = new Gson();
-        try {
-
-            FileInputStream fis = new FileInputStream(filename);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader bufferedReader = new BufferedReader(isr);
-            //StringBuilder sb = new StringBuilder();
-            String finalString = "";
-            String line;
-            while ((line = bufferedReader.readLine()) != null) { //stringhifico il file
-                finalString += line;
-                //sb.append(line);
-            }
-
-            //String json = sb.toString();
-
-            System.out.println(finalString);
-            PlayerFile[] arrayPlayers = gson.fromJson(finalString, PlayerFile[].class); //lo trasformo in oggetto
-
-            for (PlayerFile player : arrayPlayers)
-                if (player.getPlayerName().equals(nickname)) {
-                    player.setNumberOfGames(player.getNumberOfGames() + 1);
-                    {
-                        return gson.toJson(arrayPlayers);
-                    }
-                }
-
-            /* br = new BufferedReader(new FileReader(filename));
-
-
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                line = br.readLine();
-            }*/
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
 
     private boolean allMatchStarted() {
         for (Room room : getRooms())

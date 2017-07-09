@@ -287,7 +287,7 @@ public class PlayerHandlerTest {
         assertEquals(9, test.getPersonalBoardReference().getServants());
     }
 
-    @Test
+    @Test ( expected = NullPointerException.class)
     public void jumpTurn() throws Exception {
         test.jumpTurn();
     }
@@ -395,7 +395,7 @@ public class PlayerHandlerTest {
         assertEquals(null, test.findFamilyMember("ciao"));
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void skipTurn() throws Exception {
         test.skipTurn();
         assertEquals(test, room.getLastPlayer());

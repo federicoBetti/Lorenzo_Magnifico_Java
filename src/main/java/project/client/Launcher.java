@@ -65,6 +65,11 @@ class Launcher {
         }
     }
 
+    /**
+     * main methods
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
         new ClientSetter(selectUi());
     }
