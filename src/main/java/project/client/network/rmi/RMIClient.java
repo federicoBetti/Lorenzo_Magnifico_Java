@@ -30,7 +30,7 @@ import java.util.concurrent.BlockingQueue;
 public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
 
     private String nickname;
-    private RMIClientToServerInterface myServer;
+    transient private RMIClientToServerInterface myServer;
     private String myUniqueId;
     private transient  ClientSetter clientSetter;
     private transient  HashMap<String,UpdateMethods> updateHashMap;
@@ -71,11 +71,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
      * comunicates with his dedicated RMIPlayerHandler.
      *
      * @throws ClientConnectionException Exception due to errors in client's connection
-     * @param IP
+     * @param addressIP ip address of the server
      */
-    private void connect(String IP) throws ClientConnectionException {
+    private void connect(String addressIP) throws ClientConnectionException {
         try {
-            Registry reg = LocateRegistry.getRegistry(IP, 8001);
+            Registry reg = LocateRegistry.getRegistry(addressIP, 8001);
             myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
             myServer.ping();
             UnicastRemoteObject.exportObject(this, 0);

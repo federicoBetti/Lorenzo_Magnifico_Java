@@ -1,10 +1,12 @@
 package project.client.ui.cli;
 
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
 import project.client.ui.ClientSetter;
 import project.client.ui.cli.context.*;
+import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
@@ -684,7 +686,8 @@ public class Cli extends AbstractUI {
                 choice = false;
                 return Integer.parseInt(prayOrNot);
             } catch (InterruptedException e) {
-                System.out.println("sono in eccezione");
+                UnixColoredPrinter.Logger.print(CliConstants.INTERRUPTED_EXCEPTION);
+                Thread.currentThread().interrupt();
             } catch (InputException e) {
                 context.printHelp();
             }
@@ -744,7 +747,8 @@ public class Cli extends AbstractUI {
                 return Integer.parseInt(costChoosen);
 
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(CliConstants.INTERRUPTED_EXCEPTION);
+                Thread.currentThread().interrupt();
             } catch (InputException e) {
                 context.printHelp();
             }
@@ -772,7 +776,8 @@ public class Cli extends AbstractUI {
                 context.getpBlue().println("Leader card choosen! Wait for the new interaction...");
                 return cardChoosen;
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(CliConstants.INTERRUPTED_EXCEPTION);
+                Thread.currentThread().interrupt();
             } catch (InputException e) {
                 context.printHelp();
             }
@@ -820,7 +825,8 @@ public class Cli extends AbstractUI {
                 context.checkValidInput(tileChosen);
                 break;
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(CliConstants.INTERRUPTED_EXCEPTION);
+                Thread.currentThread().interrupt();
             } catch (InputException | NumberFormatException e) {
                 context.printHelp();
             }

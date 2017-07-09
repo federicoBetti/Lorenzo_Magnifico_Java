@@ -29,4 +29,5 @@ public class CliConstants {
     public static final String SHOW_BUILDING_CARDS = "show-building-cards";
     public static final String SHOW_TERRITORIES = "show-territories";
     public static final String SHOW_TURNS = "show-turns";
+    public static final String INTERRUPTED_EXCEPTION = "interrupted exception thrown";
 }
