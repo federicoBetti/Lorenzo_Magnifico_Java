@@ -593,6 +593,7 @@ public abstract class PlayerHandler extends Player {
         sendRanking(ranking);
     }
 
+
     protected void broadcastDisconnessioneMessage(PlayerHandler currentPlayer) {
 
         for (PlayerHandler player : getRoom().getListOfPlayers()) {
@@ -604,79 +605,185 @@ public abstract class PlayerHandler extends Player {
 
     protected abstract void disconnectionNotification(String name);
 
+    /**
+     * Abstract cantDoAction
+     */
     public abstract void cantDoAction();
 
+    /**
+     * Abstract cantDoAction
+     */
     protected abstract int canUseBothPaymentMethod();
 
-    public abstract void itsMyTurn(); //non saprei che parametri passare
+    /**
+     * Abstract cantDoAction
+     */
+    public abstract void itsMyTurn();
 
     /**
-     * manda al client la richiesta se vuole pregare o meno. il client o manderà la richiest di pregare o si rimetterà in ascolto
-     *
+     * Abstract cantDoAction
      */
-    public abstract int sendAskForPraying(); //
+    public abstract int sendAskForPraying();
 
+    /**
+     *
+     * @param updates update object
+     */
     public abstract void sendUpdates(Updates updates);
 
+    /**
+     *
+     * @return int that represents the choice
+     */
     public abstract int sendChoicePE();
 
+    /**
+     *
+     * @param returnFromEffect object with the bonus tower action's characteristics
+     */
     public abstract void sendBonusTowerAction(TowerAction returnFromEffect);
 
+    /**
+     *
+     * @param returnFromEffect object with the bonus harvester or production characteristics
+     */
     public abstract void sendBonusProdOrHarv(BonusProductionOrHarvesterAction returnFromEffect);
 
+    /**
+     *
+     * @param returnFromEffect object with the bonus' privilege characteristics
+     */
     public abstract void sendRequestForPriviledges(TakePrivilegesAction returnFromEffect);
 
+    /**
+     * abstract send action ok
+     */
     public abstract void sendActionOk();
 
+    /**
+     * abstarct timer turn delayed
+     */
     public abstract void timerTurnDelayed();
 
+    /**
+     * abstract nicknameAlredyUsed
+     */
     public abstract void nicknameAlredyUsed();
 
+    /**
+     * abstract loginSucceded
+     */
     public abstract void loginSucceded();
 
+    /**
+     * abstract waitForYourTurn
+     */
     protected abstract void waitForYourTurn();
 
+    /**
+     *
+     * @param room room's reference
+     */
     public void setRoom(Room room) {
         this.room = room;
     }
 
+    /**
+     *
+     * @param leaders list
+     * @return leader card's name
+     */
     public abstract String leaderCardChosen(List<LeaderCard> leaders);
 
+    /**
+     *
+     * @param roomPlayers number of players in the roo,
+     * @param familyColour player family colour
+     */
     public abstract void matchStarted(int roomPlayers, String familyColour);
 
+    /**
+     *
+     * @param tiles list of bonus tiles
+     * @return tile's number choosen
+     */
     public abstract int chooseTile(List<Tile> tiles);
 
+    /**
+     *
+     * @param callPray boolena callPray
+     */
     protected void setCallPray(boolean callPray) {
         this.callPray = callPray;
     }
 
+    /**
+     * abstract tokenNotify
+     */
     public abstract void tokenNotify();
 
+    /**
+     * abstract prayed
+     */
     public abstract void prayed();
 
+    /**
+     *
+     * @param matchStartedVar boolean that says if a match is started or not
+     */
     protected void setMatchStartedVar(boolean matchStartedVar) {
         this.matchStartedVar = matchStartedVar;
     }
 
+    /**
+     * abstract afterMatch
+     */
     public abstract void afterMatch();
 
+    /**
+     *
+     * @param ranking list of player files
+     */
     protected abstract void sendRanking(List<PlayerFile> ranking);
 
+    /**
+     *
+     * @param playerFile player file
+     */
     protected abstract void sendStatistic(PlayerFile playerFile);
 
+    /**
+     * abstract afterGameIftemporarilyOff
+     */
     public abstract void afterGameIftemporarilyOff();
 
+    /**
+     *
+     * @param winnerString string with the winner's name
+     */
     public abstract void winnerComunication(String winnerString);
 
+    /**
+     *
+     * @return boolean that says if a client is disconnected during the draft or not
+     */
     public boolean isDisconnectedInDraft() {
         return disconnectedInDraft;
     }
 
+    /**
+     *
+     * @param disconnectedInDraft boolean that says if a client is disconnected during the draft or not
+     */
     public void setDisconnectedInDraft(boolean disconnectedInDraft) {
         this.disconnectedInDraft = disconnectedInDraft;
     }
 
-    public boolean isMatchStartedVar() {
+    /**
+     *
+     * @return boolean that says if the match is started or not
+     */
+    boolean isMatchStartedVar() {
         return matchStartedVar;
     }
 }

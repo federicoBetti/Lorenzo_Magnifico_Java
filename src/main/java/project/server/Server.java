@@ -235,9 +235,8 @@ public class Server {
         File file = new File(Constants.FILENAME);
 
         try (   FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-                BufferedWriter bw = new BufferedWriter(fw)){
+                BufferedWriter bw = new BufferedWriter(fw)){    if (!file.exists() ) {
 
-            if (!file.exists()) {
                 file.createNewFile();
                 PlayerFile[] array = new PlayerFile[1];
                 array[0] = playerFile;
@@ -271,10 +270,10 @@ public class Server {
                         }
                     }
 
-                    // se non è stato trovato il player nel file
-                    if (fileUpgraded == null) { // aggiungo l'elemento
-                        String jsonElement = gson.toJson(playerFile);
-                        randomAccessFile.writeBytes("," + jsonElement + "]");
+
+            if (fileUpgraded == null) {
+                String jsonElement = gson.toJson(playerFile);
+                randomAccessFile.writeBytes("," + jsonElement + "]");
 
                     } else {
                         try (FileWriter fw1 = new FileWriter(file.getAbsoluteFile(), true);

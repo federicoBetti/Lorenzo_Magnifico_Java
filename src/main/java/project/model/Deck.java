@@ -91,7 +91,7 @@ public class Deck {
      *
      * @param developmentDeck developmentDeck
      */
-    void setDevelopmentDeck(DevelopmentCard[][][] developmentDeck) {
+    public void setDevelopmentDeck(DevelopmentCard[][][] developmentDeck) {
         this.developmentDeck = developmentDeck;
     }
 

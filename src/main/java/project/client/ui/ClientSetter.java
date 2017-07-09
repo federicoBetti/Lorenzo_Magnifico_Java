@@ -508,7 +508,7 @@ public class ClientSetter {
     /**
      * This method calls receiveStatistics method on the ui
      *
-     * @param statistics PlayerFile object that contains all the information about all the games played by the client
+     * @param statistics PlayerFile.json object that contains all the information about all the games played by the client
      */
     public void receiveStatistics(PlayerFile statistics) {
         ui.receiveStatistics(statistics);

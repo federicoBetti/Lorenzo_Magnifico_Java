@@ -196,26 +196,22 @@ public class Room {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            //todo gestire
         }
+
         gameActions.setBoard(board);
 
         Collections.shuffle(playerInTheMatch);
         fillExcommunicationTile();
 
-        //todo mischia il mazzo, funge
-        //board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
-
-
-        //todo aggiungere questa parte per il draft
+        board.getDeckCard().setDevelopmentDeck(shuffleDeck(board.getDeckCard().getDevelopmentDeck()));
 
         //draft leader
-        //leaderDraft(playerInTheMatch);
+        leaderDraft(playerInTheMatch);
 
         //draft tile
         tileDraft(playerInTheMatch);
 
-        //inizia la partita
+        //Start match
         for (PlayerHandler p : getListOfPlayers()) {
 
             if (p.isDisconnectedInDraft()) {
@@ -224,12 +220,10 @@ public class Room {
                 for (PlayerHandler player : playerInTheMatch)
                     if (p.getName().equals(player.getName()))
                         oldPlayer = player;
-                System.out.println("Old player : " + oldPlayer);
                 server.loadPlayerState(this, p, oldPlayer);
             }
 
             p.matchStarted(getRoomPlayers(), p.getFamilyColour());
-            System.out.println("mando MATCH STARTED");
 
         }
 
@@ -247,20 +241,23 @@ public class Room {
 
         board.getTurn().setPlayerTurn(getListOfPlayers());
 
+        configurePlayers();
+
+        gameActions.firstPlayerTurn();
+
+    }
+
+    /**
+     * This method is used for configuring the players before starting the match
+     */
+    private void configurePlayers() {
+
         int moreCoin = 0;
 
         for (PlayerHandler p : getListOfPlayers()) {
             setResources(p, moreCoin);
             if (p.isOn()) {
 
-                int fauthPoint = 8;
-                Configuration configuration = new Configuration();
-                configuration.loadTerritoryCardForTest(p.getPersonalBoardReference());
-                configuration.loadBuildingCardForTest(p.getPersonalBoardReference());
-
-                p.getScore().setMilitaryPoints(p.getScore().getMilitaryPoints() + 76);
-                p.getScore().setFaithPoints(fauthPoint);
-                p.getScore().setVictoryPoints(35);
                 p.sendUpdates(new PersonalBoardUpdate(p, p.getName()));
                 p.sendUpdates(new TowersUpdate(board.getAllTowers(), p.getName()));
                 p.sendUpdates(new MarketUpdate(board, p.getName()));
@@ -269,14 +266,9 @@ public class Room {
                 p.sendUpdates(new FamilyMemberUpdate(p, p.getName()));
                 p.sendUpdates(new ScoreUpdate(p, p.getName()));
                 p.sendUpdates(new DiceValueUpdate(board.getDiceValue(), board.getTurn()));
-                //todo cancellare: aggiunto solo per provare il both payment
-                System.out.println("mando UPDATES");
                 moreCoin++;
             }
         }
-
-        gameActions.firstPlayerTurn();
-
     }
 
     /**
@@ -284,9 +276,10 @@ public class Room {
      *
      * @param player playerHandler's reference
      */
-    private void resetPlayers( PlayerHandler player) {
+    private void resetPlayers(PlayerHandler player) {
         Configuration configuration = new Configuration();
             try {
+
                 player.setScore(new Score());
                 configuration.loadFamilyMembers(player);
             } catch (FileNotFoundException e) {
@@ -409,7 +402,7 @@ public class Room {
     /**
      * This method set the player's resource when the match starts
      *
-     * @param player playerHandler's reference
+     * @param player   playerHandler's reference
      * @param moreCoin int that represent tha quantity of coins more that the player has to have respect of the first
      *                 player in the match
      */
@@ -424,7 +417,7 @@ public class Room {
      * Get a specific tile between the bonus tiles's list
      *
      * @param tileId tile number choosen
-     * @param tiles list of bonus tiles
+     * @param tiles  list of bonus tiles
      * @return tile choosen reference
      */
     private Tile getTrueTile(int tileId, List<Tile> tiles) {
@@ -436,6 +429,7 @@ public class Room {
 
     /**
      * Add the Bonus tiles to a list and shuffle it
+     *
      * @return the list of tiles shuffled
      */
     private ArrayList<Tile> fillListTile() {
@@ -449,7 +443,7 @@ public class Room {
      * Get the leader card corresponding to the name
      *
      * @param leaderName leader card's name as a String
-     * @param leaders list of leader cards
+     * @param leaders    list of leader cards
      * @return the leader card related to the name
      */
     private LeaderCard getLeader(String leaderName, ArrayList<LeaderCard> leaders) {
@@ -474,8 +468,10 @@ public class Room {
     }
 
     //todo c'è una riga di shuffle commentata
+
     /**
      * This method create the list of lists for the leaders drafting
+     *
      * @return the list for the draft
      */
     private ArrayList<ArrayList<LeaderCard>> getListOfLeader() {
@@ -574,7 +570,7 @@ public class Room {
     /**
      * This method reads all the bytes of a file
      *
-     * @param path file path as a String
+     * @param path     file path as a String
      * @param encoding Constant definitions for the standard
      * @return
      * @throws IOException
@@ -643,7 +639,7 @@ public class Room {
     /**
      * This method call on the server the method "generateRanking"
      *
-     * @return the ranking as a list of PlayerFile object
+     * @return the ranking as a list of PlayerFile.json object
      */
     public List<PlayerFile> generateRanking() {
         return getServer().generateRanking();
