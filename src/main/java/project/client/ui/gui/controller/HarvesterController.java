@@ -149,7 +149,7 @@ public class HarvesterController extends AbstractController {
             playerNumber = 2;
         harvesterZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/raccolto" + playerNumber + "Giocatori.png"))));
 
-        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+        fillFamilyMember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
         nameOfTerritoryCard = new ArrayList<String>();
         imageTerritoryCard = new ArrayList<>(6);
@@ -177,7 +177,7 @@ public class HarvesterController extends AbstractController {
 
     public void refresh(){
         super.refresh();
-        super.unselectRadioButton(familiar);
+        super.unselectedRadioButton(familiar);
         chatArea.setAccessibleText(loginBuilder.getChat().toString());
 
         if (positionSelected){

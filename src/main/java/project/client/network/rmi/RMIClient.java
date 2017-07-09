@@ -40,7 +40,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         super();
         fillUpdateHashMap();
         this.clientSetter = clientSetter;
-        connect();
+        connect(IP);
     }
 
     private void fillUpdateHashMap() {
@@ -72,10 +72,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
      * comunicates with his dedicated RMIPlayerHandler.
      *
      * @throws ClientConnectionException Exception due to errors in client's connection
+     * @param IP
      */
-    private void connect() throws ClientConnectionException {
+    private void connect(String IP) throws ClientConnectionException {
         try {
-            Registry reg = LocateRegistry.getRegistry(8001);
+            Registry reg = LocateRegistry.getRegistry(IP, 8001);
             myServer = (RMIClientToServerInterface) reg.lookup("ServerRMI");
             myServer.ping();
             UnicastRemoteObject.exportObject(this, 0);

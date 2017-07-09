@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="417.0" prefWidth="227.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.cardZoomController">
+<AnchorPane prefHeight="417.0" prefWidth="227.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.client.ui.gui.controller.CardZoomController">
    <children>
       <ImageView fx:id="imageView" fitHeight="367.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="exit" layoutY="367.0" mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="227.0" text="CLOSE">

@@ -167,7 +167,7 @@ public class TowersController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
-        super.unselectRadioButton(familiar);
+        super.unselectedRadioButton(familiar);
 
         chatArea.setAccessibleText(loginBuilder.getChat().toString());
         lastFamiiarPlaced.setImage(null);
@@ -214,7 +214,7 @@ public class TowersController extends AbstractController {
 
     public void uploadImages(){
         super.uploadImages();
-        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+        fillFamilyMember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
 
     }

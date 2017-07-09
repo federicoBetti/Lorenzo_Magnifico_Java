@@ -113,7 +113,7 @@ public class MarketController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
-        super.unselectRadioButton(familiar);
+        super.unselectedRadioButton(familiar);
         lastFamiliarPlaced.setImage(null);
         chatArea.setAccessibleText(loginBuilder.getChat().toString());
         lastFamiliarPlaced.setImage(null);
@@ -130,7 +130,7 @@ public class MarketController extends AbstractController {
             playerNumber = 4;
         market.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/mercato" + playerNumber + "Giocatori.png"))));
 
-        fillFamilymember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
+        fillFamilyMember(imageFamiliarNull,imageFamiliarBlack,imageFamiliarWhite,imageFamiliarOrange);
         fillRadioButton(familiarNull,familiarBlack,familiarWhite,familiarOrange);
         if (mainController.getNumberOfPlayer()==4){
             familiarPositions.add(new FamiliarPosition(imageMarket0));

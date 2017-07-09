@@ -149,7 +149,7 @@ public class ProductionController extends AbstractController {
         else playerNumber = 2;
         productionZoneImage.setImage(new Image(String.valueOf(getClass().getResource("/images/immaginiSetUp/produzione" + playerNumber + "Giocatori.png"))));
 
-        fillFamilymember(imageFamiliarNull, imageFamiliarBlack, imageFamiliarWhite, imageFamiliarOrange);
+        fillFamilyMember(imageFamiliarNull, imageFamiliarBlack, imageFamiliarWhite, imageFamiliarOrange);
         allBuildingCard.add(buildingCard0);
         fillRadioButton(familiarNull, familiarBlack, familiarWhite, familiarOrange);
         allBuildingCard.add(buildingCard1);
@@ -174,7 +174,7 @@ public class ProductionController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
-        super.unselectRadioButton(familiar);
+        super.unselectedRadioButton(familiar);
         chatArea.setAccessibleText(loginBuilder.getChat().toString());
 
         if (positionSelected) {

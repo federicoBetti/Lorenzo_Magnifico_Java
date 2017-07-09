@@ -17,7 +17,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
- *
+ * this is a singleton class used to
  */
 public class MainController {
     private static MainController instance;

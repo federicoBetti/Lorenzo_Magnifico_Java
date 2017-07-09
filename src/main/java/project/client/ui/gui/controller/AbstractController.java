@@ -1,6 +1,5 @@
 package project.client.ui.gui.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -17,35 +16,46 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by federico on 13/06/17.
+ * abstract controller of gui scenes
  */
 public abstract class AbstractController {
 
     LoginBuilder loginBuilder;
     MainController mainController;
-    /**
-     * textfield to write chat messages
-     */
 
     String familiarChosen;
 
 
-    private List<ImageView> imageFamiltMember;
+    private List<ImageView> imageFamilyMember;
     private List<RadioButton> radioButtonFamiliar;
 
-    void fillFamilymember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange) {
-        familiarChosen = new String();
-        imageFamiltMember.add(imageFamiliarNull);
-        imageFamiltMember.add(imageFamiliarBlack);
-        imageFamiltMember.add(imageFamiliarWhite);
-        imageFamiltMember.add(imageFamiliarOrange);
-        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/empty" + mainController.getColour() + "neutral.png"))));
-        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "black.png"))));
-        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "white.png"))));
-        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + mainController.getColour() + "orange.png"))));
+    /**
+     * methods that fill images of family members for every player and every scene
+     * @param imageFamiliarNull imageview of neutral familiar
+     * @param imageFamiliarBlack imageview of black familiar
+     * @param imageFamiliarWhite imageview of white familiar
+     * @param imageFamiliarOrange imageview of orange familiar
+     */
+    void fillFamilyMember(ImageView imageFamiliarNull, ImageView imageFamiliarBlack, ImageView imageFamiliarWhite, ImageView imageFamiliarOrange) {
+        familiarChosen = "";
+        imageFamilyMember.add(imageFamiliarNull);
+        imageFamilyMember.add(imageFamiliarBlack);
+        imageFamilyMember.add(imageFamiliarWhite);
+        imageFamilyMember.add(imageFamiliarOrange);
+        String s = "/images/familiar/";
+        imageFamiliarNull.setImage(new Image(String.valueOf(getClass().getResource(s + "empty" + mainController.getColour() + "neutral.png"))));
+        imageFamiliarBlack.setImage(new Image(String.valueOf(getClass().getResource(s + mainController.getColour() + "black.png"))));
+        imageFamiliarWhite.setImage(new Image(String.valueOf(getClass().getResource(s + mainController.getColour() + "white.png"))));
+        imageFamiliarOrange.setImage(new Image(String.valueOf(getClass().getResource(s + mainController.getColour() + "orange.png"))));
     }
 
-
+    /**
+     * fill a list of radio button
+     * @param familiarNull radio button of neutral familiar
+     * @param familiarBlack radio button of black familiar
+     * @param familiarWhite radio button of white familiar
+     * @param familiarOrange radio button of orange familiar
+     */
     void fillRadioButton(RadioButton familiarNull, RadioButton familiarBlack, RadioButton familiarWhite, RadioButton familiarOrange) {
         radioButtonFamiliar.add(familiarNull);
         radioButtonFamiliar.add(familiarBlack);
@@ -53,96 +63,148 @@ public abstract class AbstractController {
         radioButtonFamiliar.add(familiarOrange);
     }
 
+    /**
+     * constructor
+     */
     AbstractController() {
         familiarChosen = null;
     }
 
+    /**
+     * method called by all controllers when they are initialized
+     */
     void initialize() {
-        imageFamiltMember = new ArrayList<>(4);
-
+        imageFamilyMember = new ArrayList<>(4);
         radioButtonFamiliar = new ArrayList<>(4);
-        //todo controllare in che ordine sono messi i family member sul player
-
-
     }
 
+    /**
+     * setter
+     * @param loginBuilder main application, used to switch scene
+     */
     public void setLoginBuilder(LoginBuilder loginBuilder) {
         this.loginBuilder = loginBuilder;
     }
 
+    /**
+     *  setter
+     * @param mainController main controller used to communicate with clientSetter
+     */
     public abstract void setMainController(MainController mainController);
 
+    /**
+     * super method of refresh, called by every scene when is loaded
+     */
     public void refresh(){
         familiarChosen = "";
     }
 
-
+    /**
+     * method called by gui to go back to main game
+     */
     @FXML
-    void goToMainGame(ActionEvent actionEvent) {
+    void goToMainGame() {
         loginBuilder.setScene(SceneType.MAIN, SceneType.HARVESTER);
     }
 
+    /**
+     * method used to create a special popUp
+     * @param chatText text to write in the popUp
+     */
     void sendChat(TextField chatText) {
         String text = chatText.getText() + "\n";
         loginBuilder.popUp(text);
     }
 
-    public void writeOnChat(String s) {
+    /**
+     * method used to write in all the chat of gui scenes
+     * @param s message to write
+     */
+    void writeOnChat(String s) {
         loginBuilder.stringBufferAppend(s);
         mainController.updateChat();
 
     }
 
+    /**
+     * super method implemented
+     */
     public void uploadImages() {
     }
 
+    /**
+     * method that returns the image of the familiar chosen
+     * @return image of the familiar chosen
+     */
     Image getTrueFamiliarImage() {
         switch (familiarChosen) {
             case Constants.FAMILY_MEMBER_COLOUR_NEUTRAL:
-                return imageFamiltMember.get(0).getImage();
+                return imageFamilyMember.get(0).getImage();
             case Constants.FAMILY_MEMBER_COLOUR_BLACK:
-                return imageFamiltMember.get(1).getImage();
+                return imageFamilyMember.get(1).getImage();
             case Constants.FAMILY_MEMBER_COLOUR_WHITE:
-                return imageFamiltMember.get(2).getImage();
+                return imageFamilyMember.get(2).getImage();
             case Constants.FAMILY_MEMBER_COLOUR_ORANGE:
-                return imageFamiltMember.get(3).getImage();
+                return imageFamilyMember.get(3).getImage();
             default:
                 return null;
 
         }
     }
 
-
-    public void familiarOrangeChosen(ActionEvent actionEvent) {
+    /**
+     * method called by gui when the familiar orange has been chosen
+     */
+    public void familiarOrangeChosen() {
         familiarChosen = Constants.FAMILY_MEMBER_COLOUR_ORANGE;
     }
 
-    public void familiarWhiteChosen(ActionEvent actionEvent) {
+    /**
+     * method called by gui when the familiar white has been chosen
+     */
+    public void familiarWhiteChosen() {
         familiarChosen = Constants.FAMILY_MEMBER_COLOUR_WHITE;
     }
 
-    public void familiarBlackChosen(ActionEvent actionEvent) {
+    /**
+     * method called by gui when the familiar black has been chosen
+     */
+    public void familiarBlackChosen() {
         familiarChosen = Constants.FAMILY_MEMBER_COLOUR_BLACK;
     }
 
-    public void familiarNullChosen(ActionEvent actionEvent) {
+    /**
+     * method called by gui when the familiar neutral has been chosen
+     */
+    public void familiarNullChosen() {
         familiarChosen = Constants.FAMILY_MEMBER_COLOUR_NEUTRAL;
     }
 
-
+    /**
+     * method called by gui scenes when they want to swich to persoal board scene
+     * @param oldScene old scene used to go back from personal board
+     */
     void showPersonalBoard(SceneType oldScene) {
         loginBuilder.setScene(SceneType.PERSONAL_BOARD, oldScene);
     }
 
+    /**
+     * method used to update a single resurce
+     * @param coins value of the resource to update
+     * @param numberOfCoins label in which write the new value of resource
+     */
     void updateOneResource(int coins, Label numberOfCoins) {
         numberOfCoins.setText(String.valueOf(coins));
     }
 
+    /**
+     * method used to update family members
+     * @param uiFamilyMembers server array of familiar that has to be emulated in the gui
+     */
+    void updateFamilyMember(FamilyMember[] uiFamilyMembers) {
 
-    public void updateFamilyMember(FamilyMember[] uiFamilyMembers) {
-
-        for (int i = 0; i < imageFamiltMember.size(); i++) {
-            ImageView imageView = imageFamiltMember.get(i);
+        for (int i = 0; i < imageFamilyMember.size(); i++) {
+            ImageView imageView = imageFamilyMember.get(i);
             RadioButton radioButton = radioButtonFamiliar.get(i);
             if (uiFamilyMembers[i].isPlayed()) {
                 imageView.setOpacity(0.5);
@@ -155,15 +217,18 @@ public abstract class AbstractController {
         familiarChosen = null;
     }
 
+    /**
+     * method used to update card in personal board, production or harvester scene
+     * @param territoryCards list of cards from server
+     * @param nameOfTerritoryCard list of card that are in gui at the moment
+     * @param imageTerritoryCard images of card that in the gui at the moment
+     */
     void updateCards(List<? extends DevelopmentCard> territoryCards, List<String> nameOfTerritoryCard, List<ImageView> imageTerritoryCard){
         for (int i = 0; i< territoryCards.size(); i++) {
             try {
                 nameOfTerritoryCard.get(i);
             } catch (IndexOutOfBoundsException e) {
                 String nameOfNewCard = territoryCards.get(i).getName();
-                if (i>5){
-                    System.err.println(nameOfNewCard);
-                }
                 nameOfTerritoryCard.add(nameOfNewCard);
                 ImageView imageView = imageTerritoryCard.get(i);
                 imageView.setImage(new Image(String.valueOf(getClass().getResource("/images/cards/" + nameOfNewCard + ".png"))));
@@ -172,6 +237,11 @@ public abstract class AbstractController {
         }
     }
 
+    /**
+     * method used to place a family memeber in a infinite action space like council, harvester or production (2+ players)
+     * @param allPosition list of familiars already placed in the action space
+     * @param familiarBox hbox where to put the next imageView of familiar
+     */
     void placeFamiliar(List<FamiliarPosition> allPosition, HBox familiarBox) {
         for (FamiliarPosition f : allPosition) {
             if (f.getFamiliarName().equals("")) {
@@ -183,14 +253,17 @@ public abstract class AbstractController {
         ImageView imageView = newPosition.getImage();
         imageView.setImage(getTrueFamiliarImage());
 
-        //ArrayList<ImageView> toAddHbox = imageFromFamiliars(allPosition);
         familiarBox.getChildren().addAll(imageView);
 
         allPosition.add(newPosition);
     }
 
-
-    int familiarPlaced(List<FamiliarPosition> allPosition) {
+    /**
+     * method that calculate the number of familiar already placed
+     * @param allPosition list of familiars
+     * @return number of familiars placed
+     */
+    private int familiarPlaced(List<FamiliarPosition> allPosition) {
         int i = 0;
         for (FamiliarPosition f: allPosition)
             if (!f.getFamiliarName().equals(""))
@@ -198,7 +271,11 @@ public abstract class AbstractController {
         return i;
     }
 
-
+    /**
+     * method used to update the gui following an update from the server
+     * @param positions new list of positions from the server
+     * @param allPosition list of familiar already placed in the gui that should be update
+     */
     void updatePosition(List<? extends Position> positions, List<FamiliarPosition> allPosition) {
         Iterator<? extends Position> itPR = positions.iterator();
         Iterator<FamiliarPosition> itFP = allPosition.iterator();
@@ -218,24 +295,19 @@ public abstract class AbstractController {
         while (itPR.hasNext()) {
             FamiliarPosition familiarPosition;
             if (itFP.hasNext()) {
-                System.out.println("USO FAMILIARE GIA PRESENTE");
                 familiarPosition = itFP.next();
             }
             else {
-                System.out.println("CREO NUOVO FAMILIARE");
                 familiarPosition = new FamiliarPosition("");
                 allPosition.add(familiarPosition);
             }
             Position position = itPR.next();
-            System.out.println(position.getClass() + "familiare: " + position.getFamiliarOnThisPosition());
            if (position.getFamiliarOnThisPosition() == null) {
-                if (familiarPosition.getFamiliarName().equals("")) continue;
-                else {
+                if (!familiarPosition.getFamiliarName().equals("")) {
                     familiarPosition.setImage(null);
                     familiarPosition.setFamiliarName("");
                 }
             } else if (!(familiarPosition.getFamiliarName().equals(position.getFamiliarOnThisPosition().toString()))){
-               System.out.println("sto aggiungendo un familiare: " + position.getFamiliarOnThisPosition());
                     familiarPosition.setFamiliarName(position.getFamiliarOnThisPosition().toString());
                     familiarPosition.setImage(new Image(String.valueOf(getClass().getResource("/images/familiar/" + familiarPosition.getFamiliarName() + ".png"))));
                 }
@@ -243,6 +315,11 @@ public abstract class AbstractController {
         }
     }
 
+    /**
+     * method used to update card and familiars in the towers
+     * @param towers towers from the server
+     * @param myTower towers in the gui to update
+     */
     void updatePosition(Tower[][] towers, TowerZone[][] myTower) {
         int floorNumber;
         int towerNumber;
@@ -273,19 +350,32 @@ public abstract class AbstractController {
 
     }
 
-
+    /**
+     * support method used to modify the familiar in the gui
+     * @param guiTower gui tower space
+     * @param s name of the familiar to place in that position
+     */
     private void modifyFamiliar(TowerZone guiTower, String s) {
-        System.err.println("sto posizionaand il familiare " + s);
         guiTower.setFamiliarName(s);
         guiTower.setFamiliarImage(s);
     }
 
+    /**
+     * support method to modify the card in the tower zone
+     * @param guiTower gui tower zone
+     * @param cardName name of the card to place
+     */
     private void modifyCard(TowerZone guiTower, String cardName) {
         guiTower.setCardName(cardName);
         guiTower.setCardImage(cardName);
     }
 
-
+    /**
+     * method used to block some buttons for bonus actions
+     * @param mainGameButton button to go back to main game
+     * @param personalBoard button to show the persona board
+     * @param buttonPlaceFamiliar method used to place the familiar
+     */
     void blockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
         mainGameButton.setDisable(true);
         personalBoard.setDisable(true);
@@ -293,35 +383,49 @@ public abstract class AbstractController {
     }
 
 
+/**
+ * method used to unlock some buttons for bonus actions
+ * @param mainGameButton button to go back to main game
+ * @param personalBoard button to show the persona board
+ * @param buttonPlaceFamiliar method used to place the familiar
+ */
+
     void unlockButton(Button mainGameButton, Button personalBoard, Button buttonPlaceFamiliar) {
         mainGameButton.setDisable(false);
         personalBoard.setDisable(false);
         buttonPlaceFamiliar.setDisable(false);
     }
 
+    /**
+     * abstract method to update resources in all controllers
+     * @param coins new coins value
+     * @param wood new wood value
+     * @param stone new stone value
+     * @param servants new servants value
+     */
     public abstract void updateResources(int coins, int wood, int stone, int servants);
 
-    public void updateHBox(List<FamiliarPosition> familiarInTheCouncil, HBox familiarBox) {
+    /**
+     * method used to update the images of familiars placed in a hbox
+     * @param familiarInTheCouncil list of familiar to place
+     * @param familiarBox hbox where the mages of familiars will be placed
+     */
+    void updateHBox(List<FamiliarPosition> familiarInTheCouncil, HBox familiarBox) {
         for (int i = 0; i < familiarInTheCouncil.size(); i++){
-            System.out.println(i);
             if (!familiarBox.getChildren().contains(familiarInTheCouncil.get(i).getImage())) {
                 familiarBox.getChildren().add(familiarInTheCouncil.get(i).getImage());
-                System.out.println("ho aggiunto un familiare");
             }
         }
     }
 
-
-    private ArrayList<ImageView> imageFromFamiliars(List<FamiliarPosition> allPosition) {
-        ArrayList<ImageView> toAdd = new ArrayList<>();
-        for (FamiliarPosition f: allPosition) {
-            ImageView im = f.getImage();
-            toAdd.add(im);
-        }
-        return toAdd;
-    }
-
-    public boolean placeFamiliarHarvProd(boolean positionSelected, List<FamiliarPosition> allPosition, HBox familiarBox) {
+    /**
+     * method called by harvester and production scene to update familiars images
+     * @param positionSelected boolean that indicates if a familiars has been already placed by the user in this turn in that zone
+     * @param allPosition list of familiars already placed
+     * @param familiarBox hbox where images will be added
+     * @return true if a familiar has been placed for the first time
+     */
+    boolean placeFamiliarHarvProd(boolean positionSelected, List<FamiliarPosition> allPosition, HBox familiarBox) {
         if (!mainController.isMyTurn()){
             writeOnChat("it isn't your turn!");
             return false;
@@ -348,7 +452,11 @@ public abstract class AbstractController {
         }
     }
 
-    public void unselectRadioButton(ToggleGroup familiar) {
+    /**
+     * method used by conntrollers to unselect all radio buttons
+     * @param familiar toggle group where are stored all familiars radio button
+     */
+    void unselectedRadioButton(ToggleGroup familiar) {
         RadioButton rb = (RadioButton) familiar.getSelectedToggle();
         if (rb != null)
             rb.setSelected(false);

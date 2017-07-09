@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO FARE ALTEZZA MAX 900
 public class LoginBuilder extends Application implements ChangeListener<Number> {
 
     private static final double WINDOW_WIDTH = 1070;
@@ -384,7 +383,7 @@ public class LoginBuilder extends Application implements ChangeListener<Number> 
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            cardZoomController controller = loader.getController();
+            CardZoomController controller = loader.getController();
             //controller.setDialogStage(dialogStage);
             controller.setImage(imageView);
 
