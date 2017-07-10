@@ -25,35 +25,6 @@ public class AfterGameContext extends AbstractContext {
         map.put(Constants.CLOSE_THE_GAME, this:: terminate );
         printHelp();
     }
-
-    /**
-     * This method calls terminate on the cli
-     */
-    private void terminate() {
-        cli.terminate();
-    }
-
-    /**
-     * This method calls newGame on the cli
-     */
-    private void newGame() {
-        cli.newGameRequest();
-    }
-
-    /**
-     * This method calls showStatistic on the cli
-     */
-    private void showStatistic() {
-        cli.showStatistic();
-    }
-
-    /**
-     * This method calls showRanking on the cli
-     */
-    private void showRanking() {
-        cli.showRanking();
-    }
-
     /**
      * This method prints the help menu
      */
@@ -65,14 +36,19 @@ public class AfterGameContext extends AbstractContext {
     }
 
     /**
-     * Check if the input is valid for this context
-     *
-     * @param input String given in input
-     * @throws InputException exception thrown when the client type an invalid input
+     * This method calls terminate on the cli
      */
-    @Override
-    public void checkValidInput(String input) throws InputException {
+    private void terminate() {
+        cli.terminate();
     }
+
+    /**
+     * This method calls showStatistic on the cli
+     */
+    private void showStatistic() {
+        cli.showStatistic();
+    }
+
 
     /**
      * If the string in input does not correspond with no key, this method is called and it calls printHelp
@@ -85,4 +61,32 @@ public class AfterGameContext extends AbstractContext {
     protected void mainContextMethod(String action) throws InputException, IOException {
         printHelp();
     }
+
+    /**
+     * This method calls showRanking on the cli
+     */
+    private void showRanking() {
+        cli.showRanking();
+    }
+
+
+    /**
+     * This method calls newGame on the cli
+     */
+    private void newGame() {
+        cli.newGameRequest();
+    }
+
+
+
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
+    @Override
+    public void checkValidInput(String input) throws InputException {
+    }
+
 }

@@ -31,11 +31,36 @@ public class PlayLeadercardAmaContext extends AbstractContext {
         printHelp();
     }
 
+
+    /**
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
+     */
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
+    }
+
     /**
      * This method prints the player's leader cards
      */
     private void showLeaderCards() {
         super.showLeaderCardsAbstract(leaderCards);
+    }
+
+    /**
+     * If the string in input does not correspond with no key, this method is called and it calls chooseLeaderCardToPlay
+     *
+     * @param action string in input
+     * @throws InputException exception thrown when the client type an invalid input
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
+    @Override
+    public void mainContextMethod(String action) throws InputException, IOException {
+        cli.chooseLeaderCardToPlay(action);
+        cli.actionOk();
     }
 
     /**
@@ -51,27 +76,4 @@ public class PlayLeadercardAmaContext extends AbstractContext {
 
     }
 
-    /**
-     * Check if the input is valid for this context
-     *
-     * @param input String given in input
-     * @throws InputException exception thrown when the client type an invalid input
-     */
-    @Override
-    public void checkValidInput(String input) throws InputException {
-
-    }
-
-    /**
-     * If the string in input does not correspond with no key, this method is called and it calls chooseLeaderCardToPlay
-     *
-     * @param action string in input
-     * @throws InputException exception thrown when the client type an invalid input
-     * @throws IOException Signals that an I/O exception of some sort has occurred
-     */
-    @Override
-    public void mainContextMethod(String action) throws InputException, IOException {
-        cli.chooseLeaderCardToPlay(action);
-        cli.actionOk();
-    }
 }

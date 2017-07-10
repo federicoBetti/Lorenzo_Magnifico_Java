@@ -30,12 +30,18 @@ public class DiscardLeaderCardAmaContext extends AbstractContext {
         printHelp();
     }
 
+
     /**
-     * This method prints the player's leader cards
+     * Check if the input is valid for this context
+     *
+     * @param input String given in input
+     * @throws InputException exception thrown when the client type an invalid input
      */
-    private void showLeaderCards() {
-        super.showLeaderCardsAbstract(leaderCards);
+    @Override
+    public void checkValidInput(String input) throws InputException {
+
     }
+
 
     /**
      * This method prints the help menu
@@ -52,18 +58,6 @@ public class DiscardLeaderCardAmaContext extends AbstractContext {
     }
 
     /**
-     * Check if the input is valid for this context
-     *
-     * @param input String given in input
-     * @throws InputException exception thrown when the client type an invalid input
-     */
-    @Override
-    public void checkValidInput(String input) throws InputException {
-
-    }
-
-
-    /**
      * If the string in input does not correspond with no key, this method is called and it calls discardLeaderCard and actionOk
      *
      * @param action string in input
@@ -75,4 +69,13 @@ public class DiscardLeaderCardAmaContext extends AbstractContext {
         cli.discardLeaderCard(action);
         cli.actionOk();
     }
+
+
+    /**
+     * This method prints the player's leader cards
+     */
+    private void showLeaderCards() {
+        super.showLeaderCardsAbstract(leaderCards);
+    }
+
 }
