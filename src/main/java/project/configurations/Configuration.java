@@ -138,34 +138,6 @@ public class Configuration {
         }
     }
 
-//todo delete
-    public void loadTerritoryCardForTest( PersonalBoard personalBoard ){
-        InputStream is = getClass().getResourceAsStream("/fileJson/TESTterritory.json");
-        Reader reader = new InputStreamReader(is);
-
-        this.cardsFromJson = gson.fromJson(reader, CardFromJson[].class);
-        for (CardFromJson cardFJ : cardsFromJson) {
-            builderHandler = map.get(cardFJ.getAnagrafic().getType());
-            DevelopmentCard card = builderHandler.build(cardFJ);
-
-            personalBoard.getTerritories().add((TerritoryCard)card);
-        }
-    }
-
-    //todo delete
-    public void loadBuildingCardForTest( PersonalBoard personalBoard ){
-        InputStream is = getClass().getResourceAsStream("/fileJson/TESTbuilding.json");
-        Reader reader = new InputStreamReader(is);
-
-        this.cardsFromJson = gson.fromJson(reader, CardFromJson[].class);
-        for (CardFromJson cardFJ : cardsFromJson) {
-            builderHandler = map.get(cardFJ.getAnagrafic().getType());
-            DevelopmentCard card = builderHandler.build(cardFJ);
-
-            personalBoard.getBuildings().add((BuildingCard) card);
-        }
-    }
-
     /**
      * This method is used for loading the excommunication tiles
      *

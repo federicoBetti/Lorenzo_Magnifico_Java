@@ -131,6 +131,10 @@ public abstract class AbstractContext {
         pRed.println("Error, action not avaiable. Please try with another input");
     }
 
+    /**
+     * method used by tower context and bonus tower context to display card effects
+     * @param allTowers board towers
+     */
     public void showCardsEffectsTower(Tower[][] allTowers) {
 
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
@@ -158,6 +162,10 @@ public abstract class AbstractContext {
         }
     }
 
+    /**
+     * method used by contexts to display card costs
+     * @param allTowers board towers
+     */
     public void showCardCostTower(Tower[][] allTowers) {
 
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {

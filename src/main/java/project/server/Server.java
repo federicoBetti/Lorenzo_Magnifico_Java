@@ -53,6 +53,11 @@ public class Server {
         }
     }
 
+    /**
+     * main
+     * @param args args
+     * @throws IOException exception throw by server start
+     */
     public static void main(String[] args) throws IOException {
         Server server = new Server();
         server.startServer(Constants.SOCKET_PORT, Constants.RMI_PORT);
