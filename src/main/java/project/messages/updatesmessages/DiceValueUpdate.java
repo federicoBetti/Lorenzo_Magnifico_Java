@@ -44,7 +44,6 @@ public class DiceValueUpdate extends Updates {
     public void doUpdate(Board board) {
         board.setDiceValue(this.diceValue);
         board.setTurn(turn);
-        //todo nnela gui si devono mettere quelli giusti dei giocatori con scene builder
     }
 
     /**

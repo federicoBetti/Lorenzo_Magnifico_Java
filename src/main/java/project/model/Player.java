@@ -29,9 +29,7 @@ public class Player implements Serializable{
 	 */
     protected Player(){
     	Configuration configuration = new Configuration();
-    	
-    	//personalBoardReference = new PersonalBoard();
-		personalBoardReference = new PersonalBoard(1000);
+		personalBoardReference = new PersonalBoard();
     	score = new Score();
 		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
 			configuration.loadFamilyMembers(this);

@@ -24,7 +24,7 @@ We have implemented:
 
 For running the software, firstly run the main method in class /project/server/Server.java. This main starts RMIServer and Socket Server.
 
-Start the client running the main method in /project/client/ClientSetter.java. When you run this main method, the software ask to you of typing the kind of User interface that you wants to use, later the kind of connection's technology and finally the server's IP address. The only IP address tested and surely functioning is 127.0.0.1
+Start the client running the main method in /project/client/ClientSetter.java. When you run this main method, the software ask to you of typing the kind of User interface that you wants to use, later the kind of connection's technology, the server's IP address and finally the nickname that you want to use. The only IP address tested and surely functioning is 127.0.0.1
 
 ##Pattern used 
 

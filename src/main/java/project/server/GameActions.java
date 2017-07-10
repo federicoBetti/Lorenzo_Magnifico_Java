@@ -242,7 +242,6 @@ public class GameActions {
             if (playerIndex == -1) return;
 
         }
-        //todo se rimane solo un giocatore nella partita?
     }
 
     /**
@@ -400,9 +399,7 @@ public class GameActions {
         System.out.println("IL VINCITORE È: " + winner.getName());
         winnerComunication(winner);
         room.addWinnersToTheFile(winner.getName());
-        //todo  broadcastNotifications(new Notify("the winner is + " + winner.getName()));
-        //todo queste tre righe servono per eliminare la room quando la partita è finita senno i giocatori si possono riconnettere ad una paritta finita
-        //todo funziona tutto il metodo?
+
 
         afterGame();
 
@@ -613,7 +610,6 @@ public class GameActions {
     /**
      * Put new cards in the towers
      */
-    // todo controllare perchè c'erano commenti dentro
     private void refactorTowers() {
         System.out.println("sto per rimettere a posto tutto le carte");
         int j;

@@ -57,7 +57,6 @@ class ServerDataHandler {
         map.put(Constants.SHOW_STATISTICS, this:: showStatistics );
         map.put(Constants.NEW_GAME, this:: newGame );
         map.put(Constants.SHOW_RANKING, this:: takeRanking );
-        //todo completare con tutte le stringhe giuste e i metodi
     }
 
     /**
@@ -104,7 +103,7 @@ class ServerDataHandler {
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void skipTurn() {//todo cercare di sicnronizzare qui
+    private void skipTurn() {
         socketPlayerHandler.socketSkipTurn();
     }
     /**

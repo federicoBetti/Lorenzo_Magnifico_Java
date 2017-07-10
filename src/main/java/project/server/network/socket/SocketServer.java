@@ -41,7 +41,6 @@ public class SocketServer extends AbstractServer {
         /**
          * Thread for receiving the new Socket's client requests.
          */
-        //todo chiudere il socket con finally
         @Override
         public void run() {
 

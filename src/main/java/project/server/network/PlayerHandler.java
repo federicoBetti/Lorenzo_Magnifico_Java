@@ -347,7 +347,6 @@ public abstract class PlayerHandler extends Player {
         else throw new CantDoActionException();
     }
 
-    //todo non capisco bene come
     /**
      * This method ask for what permanent effect performing and
      *

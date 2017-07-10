@@ -55,18 +55,6 @@ public class PersonalBoard implements Serializable{
     	myLeaderCard = new ArrayList<>();
 	}
 
-	/**
-	 * Constructor
-	 *
-	 * @param i quantity
-	 *///todo delete
-	public PersonalBoard(int i) {
-		this();
-		coins=i;
-		servants=i;
-		stone=i;
-		wood=i;
-	}
 
 	/**
 	 * This method build a string for representing the personal board

@@ -82,8 +82,6 @@ public class TowerAction extends BonusInteraction {
      */
     public String printBonusAction() {
 
-        //todo controllare se i campi vuoti sono ad empty nel json
-
         String first = "   kindOfCard: " + kindOfCard + "\n" +
                 "   Bonus dice value: " + newCardDicevalue + "\n";
 

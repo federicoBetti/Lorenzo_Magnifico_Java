@@ -9,7 +9,6 @@ import project.server.network.PlayerHandler;
  * This class represent the DiscountForTakingYellowCards effect
  */
 
-//todo fare con HashMap
 public class DiscountForTakingYellowCards implements Effects {
 
     private String kindOfReasourceDiscounted;

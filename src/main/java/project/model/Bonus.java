@@ -20,9 +20,6 @@ public class Bonus implements Serializable {
 
     private int bonusForTakingVentures;
 
-
-    //todo mettere lo 0 nella creazione della carta, togliere il todo quando sono stati messi anche negli effetti
-
     private int militaryPointsBonus;
 
     private int coinsBonus;

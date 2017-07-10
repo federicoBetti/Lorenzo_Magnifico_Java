@@ -12,8 +12,6 @@ import java.util.*;
  */
 public class Board {
 
-
-    //todo fare iteratore per riempire le torri
     private Tower[][] towers;
 
     private CouncilPrivilege[] councilPrivileges;
@@ -104,7 +102,6 @@ public class Board {
         this.turn = new Turn();
         this.decks = new Deck();
 
-        //questi sotto sono da importare da file, li inizializzo poer testare
 
         if (numberOfPlayer == Constants.FOUR_PLAYERS) {
             marketZone = new Market[Constants.FOUR_PLAYERS];
@@ -236,9 +233,6 @@ public class Board {
     public ExcommunicationZone[] getExcommunicationZone() {
         return excommunicationZone;
     }
-
-    // todo public ArrayList<Player> getTurnOrder() { return TurnOrder; } public void setTurnOrder(ArrayList<Player> turnOrder) { TurnOrder = turnOrder;}
-
 
     /**
      * Get period

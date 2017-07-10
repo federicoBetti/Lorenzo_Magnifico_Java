@@ -13,7 +13,7 @@ import java.util.Map;
  * This class is a context opened when the player wants to discard a Leader card after the main action
  */
 public class DiscardLeaderCardAmaContext extends AbstractContext {
-    List<LeaderCard> leaderCards;
+    private List<LeaderCard> leaderCards;
 
     /**
      * Constructor
@@ -50,7 +50,7 @@ public class DiscardLeaderCardAmaContext extends AbstractContext {
 
         pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pBlue.println(entry.getKey());
 
         pRed.println("The main action is:");
         pYellow.print("Type the ");pRed.print("[leaderCardName] ");pYellow.print("that you want to discard");

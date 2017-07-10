@@ -52,7 +52,6 @@ public class BonusTowerActionYellow implements Effects {
         return null;
     }
 
-    //todo maybe we can delete it
     /**
      * Constanst for identify the effect
      *

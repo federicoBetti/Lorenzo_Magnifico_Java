@@ -46,14 +46,14 @@ public class PicoDellaMirandolaCheck extends CheckFunctionsDecorator {
     }
 
     /**
-     * todo java doc
+     * Check venture card's cost
      *
-     * @param card
-     * @param player
-     * @param coinsFee
-     * @param zoneDiceCost
-     * @param valueOfFamilyMember
-     * @return
+     * @param card card's reference
+     * @param player playersHandler referencs
+     * @param coinsFee boolean
+     * @param zoneDiceCost zone dice cost
+     * @param valueOfFamilyMember value of familiar
+     * @return choice
      */
     @Override
     public int checkCardCostVentures(VenturesCard card, PlayerHandler player, boolean coinsFee, int zoneDiceCost, int valueOfFamilyMember){
