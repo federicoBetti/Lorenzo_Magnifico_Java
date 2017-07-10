@@ -37,7 +37,7 @@ public class ExcommunicationTaken extends Updates {
      */
     @Override
     public String toScreen() {
-        return getNicknameCurrentPlayer() + "has take this excommunication:\n";
+        return getNicknameCurrentPlayer() + " has take this excommunication:\n";
     }
 
     /**

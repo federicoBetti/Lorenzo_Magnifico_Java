@@ -225,22 +225,15 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     @Override
     public void applyEffects(Effects effect, PlayerHandler player) {
         BonusInteraction returnFromEffect = effect.doEffect(player);
-        System.out.println("stampo la return from effect: " + returnFromEffect);
 
         if (returnFromEffect instanceof TowerAction) {
-            System.out.println("if towerAction");
             player.sendBonusTowerAction((TowerAction) returnFromEffect);
-            System.out.println("stampo la return from effect: " + returnFromEffect);
 
         } else if (returnFromEffect instanceof BonusProductionOrHarvesterAction) {
-            System.out.println("if BonusInteractionHarv");
             player.sendBonusProdOrHarv((BonusProductionOrHarvesterAction) returnFromEffect);
-            System.out.println("stampo la return from effect: " + returnFromEffect);
 
         } else if (returnFromEffect instanceof TakePrivilegesAction) {
-            System.out.println("if TakePrivilege");
             player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
-            System.out.println("stampo la return from effect: " + returnFromEffect);
         }
     }
 
@@ -255,7 +248,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         zone.setFamiliarOnThisPosition(familyMember);
         zone.setOccupied(true);
         familyMember.setPlayed(true);
-        System.out.println("sono nel set familiar e ho appena messo " + familyMember);
     }
 
     /**
@@ -343,7 +335,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
     @Override
     public void pray(int victoryPointsToAdd) {
         player.getScore().setFaithPoints(0);
-        System.out.println(victoryPointsToAdd);
         player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + victoryPointsToAdd);
     }
 

@@ -23,9 +23,6 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by raffaelebongo on 01/06/17.
- */
 
 /**
  * This class manage the the Command line user interface
@@ -814,11 +811,9 @@ public class Cli extends AbstractUI {
         choiceQueue = new LinkedBlockingDeque<>();
         String tileChosen;
 
-        context.getpBlue().println("Bonus Tile choosen! Wait for the other players'choiceeeee");
 
         while (true) {
             try {
-                context.getpBlue().println("Bonus Tile choosen! Wait foe");
                 tileChosen = choiceQueue.take();
                 context.checkValidInput(tileChosen);
                 break;

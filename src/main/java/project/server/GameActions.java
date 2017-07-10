@@ -651,33 +651,16 @@ public class GameActions {
             if (player.isOn() && player.getScore().getFaithPoints() >= faithPointsNeeded) {
 
                 timer = myTimerActions(player);
-                System.out.println(player.getName());
                 int choice = player.sendAskForPraying();
 
                 if (choice == 1 || choice == -1) takeExcommunication(player);
-                else faithPointsForVictoryPoints(player);
+                else pray(player);
                 timer.cancel();
 
             } else {
-                System.out.println("prendo scomunica");
                 takeExcommunication(player);
             }
         }
-        System.out.println("\nFinita preghiera");
-    }
-
-
-    /**
-     * Count and add the right number of victory points according to the numeber of faith points owned.
-     *
-     * @param player palyerHandler's reference
-     */
-
-    private void faithPointsForVictoryPoints(PlayerHandler player) {
-        player.getScore().setVictoryPoints(player.getScore().getVictoryPoints() + player.getScore().getFaithPoints());
-        player.getScore().setFaithPoints(0);
-        player.prayed();
-        player.sendUpdates(new ScoreUpdate(player, player.getName()));
     }
 
 

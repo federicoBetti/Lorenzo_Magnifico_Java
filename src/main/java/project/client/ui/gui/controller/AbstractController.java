@@ -14,6 +14,7 @@ import project.model.Tower;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * abstract controller of gui scenes
@@ -411,10 +412,15 @@ public abstract class AbstractController {
      * @param familiarBox hbox where the mages of familiars will be placed
      */
     void updateHBox(List<FamiliarPosition> familiarInTheCouncil, HBox familiarBox) {
-        for (int i = 0; i < familiarInTheCouncil.size(); i++){
+        int i;
+        for (i = 0; i < familiarInTheCouncil.size(); i++){
             if (!familiarBox.getChildren().contains(familiarInTheCouncil.get(i).getImage())) {
                 familiarBox.getChildren().add(familiarInTheCouncil.get(i).getImage());
             }
+        }
+
+        for (; i < familiarBox.getChildren().size(); i++){
+            ((ImageView) familiarBox.getChildren().get(i)).setImage(null);
         }
     }
 

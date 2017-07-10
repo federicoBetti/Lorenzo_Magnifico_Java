@@ -905,6 +905,12 @@ public class MainController {
      */
     public void youWin() {
         winner = true;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loginBuilder.setWinner();
+            }
+        });
     }
 
     /**

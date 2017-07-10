@@ -31,17 +31,6 @@ public class SpecialExcommunicationEffects implements Effects, Serializable {
     }
 
     /**
-     * Perform the right effect
-     *
-     * @param player playerHandler's reference
-     * @return okOrNo instance for saying that the effect has been applied correctly
-     */
-    @Override
-    public BonusInteraction doEffect(PlayerHandler player) {
-        return parameterEffect.get(parameter).realEffect(player);
-    }
-
-    /**
      * Build a string for describing the effect
      *
      * @return the description's String
@@ -98,6 +87,19 @@ public class SpecialExcommunicationEffects implements Effects, Serializable {
     private interface SpecialExcommunicationEffectsBuilder{
         BonusInteraction realEffect(PlayerHandler player);
     }
+
+
+    /**
+     * Perform the right effect
+     *
+     * @param player playerHandler's reference
+     * @return okOrNo instance for saying that the effect has been applied correctly
+     */
+    @Override
+    public BonusInteraction doEffect(PlayerHandler player) {
+        return parameterEffect.get(parameter).realEffect(player);
+    }
+
 
 
 }

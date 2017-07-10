@@ -79,4 +79,11 @@ public class EndGameController {
     public void ringraziamenti() {
         loginBuilder.showThanksgiving();
     }
+
+    /**
+     * set winner
+     */
+    public void setWinner() {
+        winner.setText("you win!");
+    }
 }

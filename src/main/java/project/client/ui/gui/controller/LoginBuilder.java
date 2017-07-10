@@ -47,6 +47,7 @@ public class LoginBuilder extends Application {
 
     private String errorIOException = "error loading fxml file";
     private String choiceFXMLFile = "/fileXML/mainGame/choice.fxml";
+    private EndGameController endGameController;
 
     /**
      * method called by Application.launch() to start the application
@@ -340,7 +341,7 @@ public class LoginBuilder extends Application {
             loader.setLocation(getClass().getResource("/fileXML/mainGame/endMatch.fxml"));
             endGameScene = loader.load();
 
-            EndGameController endGameController = loader.getController();
+            endGameController = loader.getController();
             endGameController.setLoginBuilder(this);
             endGameController.setMainController(mainController);
             endGameController.uploadImages();
@@ -784,6 +785,13 @@ public class LoginBuilder extends Application {
             rootLayoutMainGame.setCenter(endGameScene);
         }
 
+    }
+
+    /**
+     * set winner
+     */
+    void setWinner() {
+        endGameController.setWinner();
     }
 }
 
