@@ -73,8 +73,6 @@ public class BasicSupportFunctions implements AllSupportFunctions {
         player.getPersonalBoardReference().addServants( - servantsUsed);
     }
 
-    //TODO CONTROLLARE CHE I COSTI VADANO BENE, AD ESEMPIO CONTROLLARE CHE SE I BONUS O VALORI DEI DADI SONO MAGGIORI DEI COSTI NON MI VADA AD AGGIUNGERE RISORSE, MA E NE TOLGA 0
-
     /**
      * This method acts the building's card payment
      *

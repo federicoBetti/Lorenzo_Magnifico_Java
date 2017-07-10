@@ -58,7 +58,7 @@ public class TileDraftContext extends AbstractContext {
      */
     @Override
     public void checkValidInput(String input) throws InputException, NumberFormatException {
-        System.out.println("sono qui 1. lenght: " + input.length());
+
         try {
             if (Integer.parseInt(input) == -1)
                 return;

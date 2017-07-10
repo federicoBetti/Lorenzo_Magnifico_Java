@@ -51,7 +51,7 @@ public class DiscardLeaderCardAmaContext extends AbstractContext {
 
         pRed.println("The available actions are:");
         for (Map.Entry<String, Actioner> entry: map.entrySet())
-            System.out.println(entry.getKey());
+            pBlue.println(entry.getKey());
 
         pRed.println("The main action is:");
         pYellow.print("Type the ");pRed.print("[leaderCardName] ");pYellow.print("that you want to discard");

@@ -283,7 +283,6 @@ public class CouncilPalaceController extends AbstractController {
     @Override
     public void refresh() {
         super.refresh();
-        //todo fare che mi toglie l'ultimo piazzato che non lo fa, guardare perchè mi ha lasciato quello del turno prima
         super.unselectedRadioButton(familiar);
         chatArea.setAccessibleText(loginBuilder.getChat().toString());
 
