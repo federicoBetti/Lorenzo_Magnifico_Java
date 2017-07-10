@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.junit.Test;
 import project.controller.cardsfactory.*;
 import project.controller.effects.effectsfactory.PokerPE;
+import project.controller.effects.effectsfactory.TrisIE;
 import project.model.*;
 import project.server.network.PlayerHandler;
 import project.server.network.rmi.RMIPlayerHandler;
@@ -208,6 +209,23 @@ public class BasicSupportFunctionsTest {
         assertEquals(0, p.getPersonalBoardReference().getWood());
         assertEquals(1, p.getPersonalBoardReference().getStone());
 
+        List<TrisIE> tris = new ArrayList<>();
+        tris.add(new TrisIE("takeRop", "victoryPoint", 3));
+        List<PokerPE> poker = new ArrayList<>();
+        poker.add(new PokerPE(new TotalCost(), "coin", "exchangeRes", "woodFor", 3));
+        DevelopmentCard building = new BuildingCard("ciao", 1, true, new BuildingCost(1,0,2,0,4), tris, poker);
+
+
+        p.getPersonalBoardReference().setServants(2);
+        p.getPersonalBoardReference().setWood(2);
+        p.getPersonalBoardReference().setStone(0);
+        p.getPersonalBoardReference().setCoins(4);
+
+        bsf.payCard(building, true, 7 , 5);
+        assertEquals(0, p.getPersonalBoardReference().getWood());
+        assertEquals(0, p.getPersonalBoardReference().getStone());
+        assertEquals(0, p.getPersonalBoardReference().getCoins());
+        assertEquals(0, p.getPersonalBoardReference().getServants());
     }
 
     @Test

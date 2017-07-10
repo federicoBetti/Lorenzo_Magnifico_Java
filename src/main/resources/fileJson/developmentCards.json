@@ -1544,7 +1544,7 @@
         {
           "stoneRequired": 0,
           "woodRequired": 0,
-          "coinsRequired": 0,
+          "coinsRequired": 2,
           "diceCost": 0,
           "militaryRequired": 0,
           "militaryCost": 0

@@ -1,6 +1,6 @@
 package project.server.network.socket;
 
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;
@@ -33,8 +33,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ObjectInputStream objectInputStream;
     private transient ObjectOutputStream objectOutputStream;
     private transient ServerDataHandler serverDataHandler;
-    private transient final Object token;
-    private transient final Object token1;
+    private final transient Object token;
+    private final transient Object token1;
     private boolean firstConnection;
 
     /**
@@ -320,7 +320,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 objectOutputStream.flush();
                 objectOutputStream.reset();
             } catch (IOException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
             }
         }
     }

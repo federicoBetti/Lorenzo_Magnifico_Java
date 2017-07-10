@@ -324,17 +324,26 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
                 + getBackgroundColor().name();
     }
 
+    /**
+     * static class used for log exception
+     */
     public static class Logger{
         Builder builder = new UnixColoredPrinter.Builder(0, false);
         static UnixColoredPrinter p;
 
+        /**
+         * constructor
+         */
         public Logger(){
             builder.attribute(Attribute.BOLD);
             builder.foreground(FColor.RED);
             p = new UnixColoredPrinter(builder);
-            System.err.println("creato il logger");
         }
 
+        /**
+         * method that prints
+         * @param message message to print
+         */
         public static void print(String message){
             p.println(message);
         }

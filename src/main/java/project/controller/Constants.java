@@ -50,7 +50,6 @@ public class Constants {
     public static final String DONT_PRAY ="dont-pray";
     public static final String ASK_FOR_PRAYING ="do-you-want-to-pray?";
     public static final String BOTH_PAYMENT_METHODS_AVAILABLE="both-payment-methods-available";
-    public static final String LOCAL_ADDRESS = "127.0.0.1";
     public static final String FILENAME = "PlayerFile.json";
 
     public static final String FRANCESCO_SFORZA = "francescoSforza";
@@ -146,6 +145,7 @@ public class Constants {
     public static final String YELLOW ="yellow";
     public static final String BLUE ="blue";
     public static final String SHOW_RANKING  =  "show-ranking";
+    public static final String FONT_EXCEPTION ="font exception";
 
     /**
      * Constrcutor

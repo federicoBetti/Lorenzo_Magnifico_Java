@@ -5,9 +5,14 @@ import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
+import project.controller.cardsfactory.VenturesCard;
+import project.controller.cardsfactory.VenturesCost;
+import project.controller.effects.realeffects.Effects;
+import project.model.Tower;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,7 +20,6 @@ import java.util.Map;
  */
 public abstract class AbstractContext {
     Cli cli;
-    private Actioner actioner;
     Map<String, Actioner> map;
     UnixColoredPrinter pYellow;
     UnixColoredPrinter pRed;
@@ -23,7 +27,6 @@ public abstract class AbstractContext {
 
     /**
      * Constructor
-     *
      * @param cli cli's reference
      */
     AbstractContext(Cli cli){
@@ -113,7 +116,7 @@ public abstract class AbstractContext {
      */
     public void doAction(String action) throws InputException, IOException {
         if( map.get(action) != null ) {
-            actioner = map.get(action);
+            Actioner actioner = map.get(action);
             actioner.action();
         } else
             mainContextMethod(action);
@@ -127,10 +130,83 @@ public abstract class AbstractContext {
     }
 
     /**
+     * method used by tower context and bonus tower context to display card effects
+     * @param allTowers board towers
+     */
+    void showCardsEffectsTower(Tower[][] allTowers) {
+
+        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
+            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
+            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
+                if ( allTowers[i][j].getCardOnThisFloor() == null ){
+                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
+                    continue;
+                }
+
+                pBlue.print("Floor: "); pRed.println( j );
+                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
+                pBlue.print("Immediate Effects: \n"); int count1 = 1;
+                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getImmediateCardEffects() ){
+                    pBlue.print( count1 + ") ");pYellow.println(effect.toScreen());
+                    count1++;
+                }
+                pBlue.print("Permanent Effects: \n"); int count2 = 1;
+                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getPermanentCardEffects() ){
+                    pBlue.print( count2 + ") ");pYellow.println(effect.toScreen());
+                    count2++;
+                }
+                pRed.println("");
+            }
+        }
+    }
+
+    /**
+     * method used by contexts to display card costs
+     * @param allTowers board towers
+     */
+    void showCardCostTower(Tower[][] allTowers) {
+
+        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
+            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
+            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
+                if ( allTowers[i][j].getCardOnThisFloor() == null ){
+                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
+                    continue;
+                }
+
+                pBlue.print("Floor: "); pRed.println( j );
+                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
+
+                if ( allTowers[i][j].getCardOnThisFloor() instanceof VenturesCard) {
+                    VenturesCard card = (VenturesCard) allTowers[i][j].getCardOnThisFloor();
+                    pBlue.print("Card cost: ");
+                    List<VenturesCost> costs = card.getPossibleCost();
+                    for ( VenturesCost cost : costs )
+                        pYellow.print(cost.toScreen() + " ");
+                    pYellow.println("");
+                }
+
+                else {
+                    pBlue.print("Card cost: ");
+                    pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
+                    pYellow.println("");
+                }
+            }
+        }
+
+    }
+
+
+    /**
      * Functional interface with a void method action.
      */
     @FunctionalInterface
     public interface Actioner{
+        /**
+         * method that perform actions
+         * @throws InputException input exception
+         * @throws IOException IOexception
+         */
          void action() throws InputException, IOException;
     }
 
@@ -158,16 +234,5 @@ public abstract class AbstractContext {
         return pBlue;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 

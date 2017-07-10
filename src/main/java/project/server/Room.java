@@ -1,14 +1,12 @@
 package project.server;
 
 import com.google.gson.Gson;
-import project.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;
 import project.controller.Constants;
 import project.controller.cardsfactory.ExcommunicationTile;
 import project.controller.cardsfactory.LeaderCard;
-import project.controller.effects.effectsfactory.BuildExcommunicationEffects;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.controller.supportfunctions.BasicSupportFunctions;
 import project.messages.updatesmessages.*;
@@ -40,8 +38,6 @@ public class Room {
 
     Map<String, PlayerHandler> nicknamePlayersMap;
 
-    private BuildExcommunicationEffects buildExcommunicationEffects;
-
     private GameActions gameActions;
 
     private boolean matchStarted;
@@ -63,7 +59,6 @@ public class Room {
     public Room(Server server) {
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
-        buildExcommunicationEffects = new BuildExcommunicationEffects();
         matchStarted = false;
         gameActions = new GameActions(this);
         this.server = server;
@@ -200,8 +195,9 @@ public class Room {
             board = new Board(playerInTheMatch.size());
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
         }
+
 
         gameActions.setBoard(board);
 
@@ -283,13 +279,9 @@ public class Room {
      */
     private void resetPlayers(PlayerHandler player) {
         Configuration configuration = new Configuration();
-            try {
                 player.setPersonalBoardReference(new PersonalBoard());
                 player.setScore(new Score());
                 configuration.loadFamilyMembers(player);
-            } catch (FileNotFoundException e) {
-                UnixColoredPrinter.Logger.print(Constants.FILE_NOT_FOUND_EXCEPTION);
-            }
         }
 
     /**
@@ -301,32 +293,30 @@ public class Room {
 
         List<Tile> tiles = fillListTile();
         ListIterator<PlayerHandler> iterator = playerInTheMatch.listIterator();
-        while (iterator.hasNext())
-            iterator.next();
+        while (iterator.hasNext()) iterator.next();
 
         while (iterator.hasPrevious()) {
             PlayerHandler p = iterator.previous();
             if (p.isOn()) {
-                Timer timer = gameActions.myTimerActions(p);
+                timer = gameActions.myTimerActions(p);
                 int tileId = p.chooseTile(tiles);
                 timer.cancel();
                 if (tileId == -1) {
-                    System.out.println("Sono disconnesso è piglio la prima tile che capita");
                     p.getPersonalBoardReference().setMyTile(tiles.get(0));
                     tiles.remove(tiles.get(0));
                     continue;
                 }
 
-                System.out.println("ha scelto la tile numero " + tileId);
                 Tile tile = getTrueTile(tileId, tiles);
                 p.getPersonalBoardReference().setMyTile(tile);
                 tiles.remove(tile);
             } else {
                 p.getPersonalBoardReference().setMyTile(tiles.get(0));
                 tiles.remove(tiles.get(0));
-            } //todo vedere qua perchè non fa partire partita
+            }
         }
     }
+
 
     /**
      * This method realize the leader cards' draft
@@ -347,18 +337,16 @@ public class Room {
                 PlayerHandler player = playerIterator.next();
                 ArrayList<LeaderCard> leaders = leaderIterator.next();
                 if (player.isOn()) {
-                    Timer timer = gameActions.myTimerActions(player);
+                    timer = gameActions.myTimerActions(player);
                     leaderName = player.leaderCardChosen(leaders);
                     timer.cancel();
 
                     if (leaderName.equals("-1")) {
-                        System.out.println("SONO QUI");
                         player.getPersonalBoardReference().getMyLeaderCard().add(leaders.get(0));
                         leaders.remove(leaders.get(0));
                         continue;
                     }
 
-                    System.out.println("DRAFT NORMALE");
                     LeaderCard leaderToAdd = getLeader(leaderName, leaders);
                     player.getPersonalBoardReference().getMyLeaderCard().add(leaderToAdd);
                     leaders.remove(leaderToAdd);
@@ -378,7 +366,8 @@ public class Room {
     private void placeCardInTowers() {
         Tower[][] tower = board.getAllTowers();
         DevelopmentCard[][][] deck = board.getDeckCard().getDevelopmentDeck();
-        int i, j;
+        int i;
+        int j;
         for (i = 0; i < Constants.NUMBER_OF_TOWERS; i++) {
             for (j = 0; j < Constants.CARD_FOR_EACH_TOWER; j++) {
                 tower[i][j].setCardOnThisFloor(deck[i][0][j]);
@@ -481,7 +470,7 @@ public class Room {
         int numberOfCard = Constants.LEADER_CARD_NUMBER_PER_PLAYER;
         ArrayList<ArrayList<LeaderCard>> listsForDraft = new ArrayList<>();
         ArrayList<LeaderCard> leaders = board.getDeckCard().getLeaderCardDeck();
-        //Collections.shuffle(leaders);
+        Collections.shuffle(leaders);
         for (int i = 0; i < getRoomPlayers(); i++) {
             ArrayList<LeaderCard> ll = new ArrayList<>(leaders.subList(numberOfCard * i, numberOfCard * i + numberOfCard));
             listsForDraft.add(ll);
@@ -564,10 +553,10 @@ public class Room {
                 }
 
         } catch (IOException e) {
-            e.printStackTrace();
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
         }
         return null;
+
     }
 
     /**

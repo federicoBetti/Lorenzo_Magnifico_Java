@@ -5,6 +5,7 @@ import project.controller.Constants;
 import project.controller.effects.effectsfactory.LeaderCardsEffects;
 import project.controller.effects.realeffects.AddCoin;
 import project.controller.effects.realeffects.Effects;
+import project.controller.effects.realeffects.UsePrivilege;
 import project.controller.supportfunctions.AllSupportFunctions;
 import project.messages.*;
 import project.messages.updatesmessages.*;
@@ -725,7 +726,7 @@ public class GameActions {
      */
     public void harvesterBonus(int harvesterValue, int intServantsNumber, PlayerHandler player) {
         int servantsUsed = getSupportFunctions(player).payServants(intServantsNumber, 0);
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+        player.getPersonalBoardReference().addServants( - servantsUsed);
 
         for (Effects e : player.getPersonalBoardReference().getMyTile().takeHarvesterResource()) {
             e.doEffect(player);
@@ -775,7 +776,7 @@ public class GameActions {
     public void productionBonus(List<BuildingCard> cards, int servantsToPay, List<Integer> choichePE, PlayerHandler player) {
 
         int servantsUsed = getSupportFunctions(player).payServants(servantsToPay, 0);
-        player.getPersonalBoardReference().setServants(player.getPersonalBoardReference().getServants() - servantsUsed);
+        player.getPersonalBoardReference().addServants(- servantsUsed);
 
         for (Effects e : player.getPersonalBoardReference().getMyTile().takeProductionResource())
             e.doEffect(player);
@@ -985,11 +986,11 @@ public class GameActions {
      *
      * @param player playerHandler's reference
      * @param card building card's reference
-     * @param choichePE boolean that says is there are two effects that could be activated alternatively
+     * @param choicePE boolean that says is there are two effects that could be activated alternatively
      */
-    private void makePermanentEffectsProduction(PlayerHandler player, BuildingCard card, List<Integer> choichePE) {
+    private void makePermanentEffectsProduction(PlayerHandler player, BuildingCard card, List<Integer> choicePE) {
         if (card.isChoicePe()) {
-            int choice = choichePE.get(0);
+            int choice = choicePE.get(0);
             if (choice == -1)
                 return;
 
@@ -999,7 +1000,7 @@ public class GameActions {
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
             }
 
-            choichePE.remove(0);
+            choicePE.remove(0);
             return;
         }
 
@@ -1007,9 +1008,7 @@ public class GameActions {
             BonusInteraction returnFromEffect = effect.doEffect(player);
 
             if (returnFromEffect instanceof TakePrivilegesAction) {
-                System.out.println("if TakePrivilege");
                 player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
-                System.out.println("stampo la return from effect: " + returnFromEffect);
             }
 
             System.out.println(" effetto permanente stampato " + effect.getClass());
@@ -1026,7 +1025,10 @@ public class GameActions {
     private void makePermanentEffects(PlayerHandler player, DevelopmentCard card) {
 
         for (Effects effect : card.getPermanentCardEffects()) {
-            effect.doEffect(player);
+            BonusInteraction returnFromEffect = effect.doEffect(player);
+            if (returnFromEffect instanceof TakePrivilegesAction ){
+                player.sendRequestForPriviledges((TakePrivilegesAction) returnFromEffect);
+            }
         }
     }
 

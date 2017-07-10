@@ -2,9 +2,11 @@ package project.client.ui.gui.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import project.model.DevelopmentCard;
 import project.model.PersonalBoard;
 
@@ -88,7 +90,7 @@ public class PersonalBoardController extends AbstractController {
     @FXML
     private TextField chatText;
     @FXML
-    private Label chatArea;
+    private ScrollPane chatArea;
 
     /**
      * constructor
@@ -150,7 +152,7 @@ public class PersonalBoardController extends AbstractController {
      */
     @Override
     public void refresh() {
-        chatArea.setText(loginBuilder.getChat().toString());
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
     }
 
     /**

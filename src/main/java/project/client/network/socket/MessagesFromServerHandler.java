@@ -1,5 +1,6 @@
 package project.client.network.socket;
 
+import project.PrinterClass.UnixColoredPrinter;
 import project.controller.Constants;
 
 import java.io.IOException;
@@ -12,7 +13,6 @@ import java.util.Map;
 class MessagesFromServerHandler {
 
     private Map<String, ContextCreator> map;
-    private ContextCreator contextCreator;
     private SocketClient client;
 
 
@@ -101,6 +101,7 @@ class MessagesFromServerHandler {
      * This method is used for consuming the Action Done On Time constants when the timer reader is down
      */
     private void actionDone() {
+        //correct
     }
 
     /**
@@ -138,7 +139,7 @@ class MessagesFromServerHandler {
         try {
             client.tileDraft();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
     }
 
@@ -181,7 +182,6 @@ class MessagesFromServerHandler {
      * This method calls askForPraying method on the client
      */
     private void askForPraying() {
-        System.out.println("ASK FOR PRAYING");
         client.askForPraying();
     }
 
@@ -283,7 +283,7 @@ class MessagesFromServerHandler {
      * but no definition for the class with the specified name could be found.
      */
     void handleMessage(String message) throws IOException, ClassNotFoundException {
-        contextCreator = map.get(message);
+        ContextCreator contextCreator = map.get(message);
         contextCreator.build();
     }
 

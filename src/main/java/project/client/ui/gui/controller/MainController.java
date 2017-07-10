@@ -1,9 +1,9 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
-import project.client.ui.ClientSetter;
+import project.client.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.updatesmessages.ExcommunicationTaken;
@@ -562,6 +562,10 @@ public class MainController {
      */
     public void skipTurn() {
         myTurn = false;
+
+        Runnable a = () -> clientSetter.skipTurn();
+        new Thread(a).start();
+        
         endTurnContext = false;
         loginBuilder.writeOnMyChat("you have finished your turn\n");
 
@@ -570,8 +574,6 @@ public class MainController {
         harvesterController.unlockButton();
         productionController.unlockButton();
 
-        Runnable a = () -> clientSetter.skipTurn();
-        new Thread(a).start();
     }
 
     /**
@@ -940,6 +942,9 @@ public class MainController {
      * @param message message to show
      */
     public void disconnectionMessage(String message) {
-        Platform.runLater(() -> loginBuilder.writeOnMyChat(message));
+        Platform.runLater(() -> {
+            if (generalGameController != null)
+                loginBuilder.writeOnMyChat(message + " is disconnected!");
+        });
     }
 }

@@ -1,10 +1,14 @@
-package project.client.ui;
+package project.client.ui.gui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import project.PlayerFile;
+import project.client.ui.AbstractUI;
+import project.client.ClientSetter;
+import project.server.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
+import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
@@ -15,6 +19,7 @@ import project.model.Tile;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -23,13 +28,12 @@ import java.util.List;
 public class Gui extends AbstractUI {
     private ClientSetter clientSetter;
     private MainController mainController;
-    private boolean matchStarted;
 
     /**
      * constructor
      * @param clientSetter client setter
      */
-    Gui(ClientSetter clientSetter) {
+    public Gui(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
     }
 
@@ -38,7 +42,6 @@ public class Gui extends AbstractUI {
      */
     @Override
     public void startUI() {
-        matchStarted = false;
         mainController = MainController.getInstance();
         mainController.setClientSetter(clientSetter);
         uploadFont();
@@ -50,22 +53,30 @@ public class Gui extends AbstractUI {
      * method used to upload a special font in the project
      */
     private void uploadFont() {
-
-
-        InputStream is = getClass().getResourceAsStream("/customFont/Aro.TTF");
-
         try {
             //create the font to use. Specify the size!
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT,is);
+            Font customFont = getFont("LucidaBlackletterRegular.ttf");
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
             ge.registerFont(customFont);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(FontFormatException e) {
+        } catch (IOException | FontFormatException e) {
+            UnixColoredPrinter.Logger.print(Constants.FONT_EXCEPTION);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * methos used to get fot
+     * @param fileName
+     * @return
+     * @throws Exception
+     */
+    public Font getFont(String fileName) throws Exception {
+        String path = "/customFont/" + fileName;
+        URL url = getClass().getResource(path);
+        return Font.createFont(Font.TRUETYPE_FONT, new File(url.toURI()));
     }
 
     /**
@@ -76,13 +87,6 @@ public class Gui extends AbstractUI {
     public void takeBonusCard(TowerAction towerAction) {
         mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() );
     }
-
-    //todo ho rinominato both payment availableRMI con bothPaymentAvailable visto che lo dovevo usare pure io ma mi sa che ce l'avevi già
-    //todo cmq ce l'avevi in todo sotto. non ho cancellato nulla, solo cambiato il nome. controlla un secondo la situa.
-   /* @Override
-    public void bothPaymentsAvailable() {
-        mainController.bothPaymentAvaiable();
-    }   */
 
     /**
      * method that notify client that it's his turn

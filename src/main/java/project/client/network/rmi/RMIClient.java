@@ -1,11 +1,11 @@
 package project.client.network.rmi;
 
 
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.AbstractClient;
-import project.client.ui.ClientSetter;
+import project.client.ClientSetter;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
@@ -19,18 +19,15 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 
 /**
  * This class communicates directly with the RMIserver that calls the methods on the dedicated RMIPlayerHandler
  */
 public class RMIClient extends AbstractClient implements RMIServerToClientInterface {
 
-    private String nickname;
-    transient private RMIClientToServerInterface myServer;
+    private transient  RMIClientToServerInterface myServer;
     private String myUniqueId;
     private transient  ClientSetter clientSetter;
     private transient  HashMap<String,UpdateMethods> updateHashMap;
@@ -42,11 +39,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
      * @param IP string that represent the ip
      * @throws ClientConnectionException Exception due to errors in client connection
      */
-    public RMIClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
+    public RMIClient(ClientSetter clientSetter, String addressIp) throws ClientConnectionException {
         super();
         fillUpdateHashMap();
         this.clientSetter = clientSetter;
-        connect(IP);
+        connect(addressIp);
     }
 
     /**
@@ -104,11 +101,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
      */
     @Override
     public void loginRequest(String loginParameter) {
-        nickname = loginParameter;
         try {
             myServer.loginRequest(myUniqueId,loginParameter);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -124,7 +121,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.takeDevCard(myUniqueId,towerColour,floor,familiarColour);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -139,7 +137,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.goToMarketRequest(myUniqueId,position,familyColour);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -154,7 +153,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.goToCouncilPalaceRequest( myUniqueId, floor, familyMemberColour );
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -168,8 +168,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.playLeaderCardRequest(myUniqueId,name);
         } catch (RemoteException e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getCause());
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -183,7 +183,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.discardLeaderCardRequest(myUniqueId,name);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -195,7 +196,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.exitOnBonusAction(myUniqueId);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -209,7 +211,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.sendBonusHarvester(myUniqueId, servantsNumber);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -223,7 +226,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.sendBonusProduction(myUniqueId, parameters);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -238,7 +242,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.sendBonusCardAction(myUniqueId, floor, towerColour);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -252,7 +257,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.sendImmediatePrivileges(myUniqueId,privileges);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -263,15 +269,6 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         clientSetter.actionOk();
     }
 
-    /**
-     *
-     *
-     * @param bonusInteraction
-     */
-    @Override
-    public void doProductionHarvester(BonusInteraction bonusInteraction) {
-
-    }
 
     /**
      * This method calls the method harvesterRequest on the RMIServer
@@ -284,7 +281,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.harvesterRequest(myUniqueId,familyMemberColour,servantsNumber);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -299,7 +297,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.productionRequest(myUniqueId,familiarChosen,buildingCards);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -311,7 +310,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.skipTurn(myUniqueId);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -425,7 +425,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.loginRequest(myUniqueId,nickname);
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -437,17 +438,11 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.askForRanking(myUniqueId);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
-    /**
-     * todo
-     */
-    @Override
-    public void winnerComunication() {
-
-    }
 
     /**
      * This method calls prayed method on the clientSetter
@@ -544,7 +539,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.reconnect(myUniqueId);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -556,7 +552,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.askForStatistics(myUniqueId);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -570,7 +567,8 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         try {
             myServer.newGameRequest(myUniqueId, nickname);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+            System.exit(1);
         }
     }
 
@@ -652,7 +650,7 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
      *                          exceptions that may occur during the execution of a remote method call
      */
     @Override
-    public int tileChoosen(ArrayList<Tile> tiles) throws RemoteException {
+    public int tileChoosen(List<Tile> tiles) throws RemoteException {
         return clientSetter.tileDraft(tiles);
     }
 

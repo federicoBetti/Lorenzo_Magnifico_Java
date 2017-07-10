@@ -1,6 +1,6 @@
 package project.client.network.rmi;
 
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
@@ -9,7 +9,6 @@ import project.model.Tile;
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,11 +77,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void actionOk() throws  RemoteException;
 
     /**
-     * Abstract doProductionHarvester
-     */
-    void doProductionHarvester(BonusInteraction bonusInteraction) throws RemoteException;
-
-    /**
      * Abstract loginSucceded
      */
     void loginSucceded() throws RemoteException;
@@ -105,7 +99,7 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     /**
      * Abstract tileChoosen
      */
-    int tileChoosen(ArrayList<Tile> tiles) throws RemoteException;
+    int tileChoosen(List<Tile> tiles) throws RemoteException;
 
     /**
      * Abstract nicknameAlreadyUsed

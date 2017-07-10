@@ -25,7 +25,7 @@
             <Font name="Lucida Blackletter" size="24.0" />
          </font>
       </Button>
-      <TextArea fx:id="scroll" editable="false" layoutX="95.0" layoutY="203.0" prefHeight="389.0" prefWidth="421.0" style="-fx-background-color: transparent;" wrapText="true" />
+      <TextArea fx:id="scroll" editable="false" layoutX="95.0" layoutY="203.0" prefHeight="389.0" prefWidth="421.0" style="resize: none;background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" wrapText="true" />
 
    </children>
 </AnchorPane>

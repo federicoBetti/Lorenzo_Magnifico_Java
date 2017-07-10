@@ -52,9 +52,9 @@ public class CantPlaceFamiliarInMarketTest {
 
         assertEquals(true,ret);
         zone = new Market[3];
-        p0 = new Market(new TrisIE("","",0));
-        p2 = new Market(new TrisIE("","",0));
-        p1 = new Market(new TrisIE("","",0));
+        p0 = new Market(new TrisIE("takeRop","coin",0));
+        p2 = new Market(new TrisIE("takeRop","coin",0));
+        p1 = new Market(new TrisIE("takeRop","coin",0));
 
         zone[0] = p0;
         zone[1] = p1;

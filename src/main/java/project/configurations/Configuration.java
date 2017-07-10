@@ -1,6 +1,5 @@
 package project.configurations;
 
-import project.DevelopmentDeckIterator;
 import project.controller.Constants;
 import project.controller.cardsfactory.*;
 import project.controller.effects.realeffects.Effects;
@@ -122,7 +121,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadDevelopmentCards(Deck deck) throws FileNotFoundException {
+    public void loadDevelopmentCards(Deck deck) {
 
         DevelopmentDeckIterator iterator = new DevelopmentDeckIterator();
         InputStream is = getClass().getResourceAsStream("/fileJson/developmentCards.json");
@@ -138,34 +137,6 @@ public class Configuration {
         }
     }
 
-//todo delete
-    public void loadTerritoryCardForTest( PersonalBoard personalBoard ){
-        InputStream is = getClass().getResourceAsStream("/fileJson/TESTterritory.json");
-        Reader reader = new InputStreamReader(is);
-
-        this.cardsFromJson = gson.fromJson(reader, CardFromJson[].class);
-        for (CardFromJson cardFJ : cardsFromJson) {
-            builderHandler = map.get(cardFJ.getAnagrafic().getType());
-            DevelopmentCard card = builderHandler.build(cardFJ);
-
-            personalBoard.getTerritories().add((TerritoryCard)card);
-        }
-    }
-
-    //todo delete
-    public void loadBuildingCardForTest( PersonalBoard personalBoard ){
-        InputStream is = getClass().getResourceAsStream("/fileJson/TESTbuilding.json");
-        Reader reader = new InputStreamReader(is);
-
-        this.cardsFromJson = gson.fromJson(reader, CardFromJson[].class);
-        for (CardFromJson cardFJ : cardsFromJson) {
-            builderHandler = map.get(cardFJ.getAnagrafic().getType());
-            DevelopmentCard card = builderHandler.build(cardFJ);
-
-            personalBoard.getBuildings().add((BuildingCard) card);
-        }
-    }
-
     /**
      * This method is used for loading the excommunication tiles
      *
@@ -173,7 +144,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadExcommunicationTiles(Deck deck) throws FileNotFoundException {
+    public void loadExcommunicationTiles(Deck deck) {
 
         InputStream is = getClass().getResourceAsStream("/fileJson/excommunicationTile.json");
         Reader reader = new InputStreamReader(is);
@@ -194,7 +165,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadBonusTile(Deck deck) throws FileNotFoundException {
+    public void loadBonusTile(Deck deck)  {
 
         InputStream is = getClass().getResourceAsStream("/fileJson/bonusTile.json");
         Reader reader = new InputStreamReader(is);
@@ -203,8 +174,6 @@ public class Configuration {
 
         for ( TileBonusFromJson tileJ : tilesBonusFromJson ) {
             Tile tile = new Tile(tileJ);
-            for (Effects effects : tile.takeProductionResource() )
-                System.out.println("effetto tile " + effects.toScreen());
             deck.setProdHaarvTile(tileJ.getTileNumber(), tile);
         }
 
@@ -217,7 +186,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadLeaderCard(Deck deck) throws FileNotFoundException {
+    public void loadLeaderCard(Deck deck)  {
         InputStream is = getClass().getResourceAsStream("/fileJson/leaderCards.json");
         Reader reader = new InputStreamReader(is);
 
@@ -239,7 +208,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadCouncilZonePriviledges(Board board) throws FileNotFoundException {
+    public void loadCouncilZonePriviledges(Board board)  {
 
         InputStream is = getClass().getResourceAsStream("/fileJson/councilpriviledge.json");
         Reader reader = new InputStreamReader(is);
@@ -263,7 +232,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadMarketBonus(Board board, String jsonFile) throws FileNotFoundException {
+    public void loadMarketBonus(Board board, String jsonFile)  {
 
         InputStream is = getClass().getResourceAsStream(jsonFile);
         Reader reader = new InputStreamReader(is);
@@ -289,7 +258,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadBonusTower(Board board) throws FileNotFoundException {
+    public void loadBonusTower(Board board)  {
         InputStream is = getClass().getResourceAsStream("/fileJson/newTowerZone.json");
         Reader reader = new InputStreamReader(is);
 
@@ -311,7 +280,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public void loadFamilyMembers(Player player) throws FileNotFoundException {
+    public void loadFamilyMembers(Player player) {
         InputStream is = getClass().getResourceAsStream("/fileJson/familyMember.json");
         Reader reader = new InputStreamReader(is);
 
@@ -325,7 +294,7 @@ public class Configuration {
      * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname
      *                               has failed.
      */
-    public TimerSettings loadTimer() throws FileNotFoundException {
+    public TimerSettings loadTimer() {
         InputStream is = getClass().getResourceAsStream("/fileJson/timer.json");
         Reader reader = new InputStreamReader(is);
         JsonStreamParser parser = new JsonStreamParser(reader);

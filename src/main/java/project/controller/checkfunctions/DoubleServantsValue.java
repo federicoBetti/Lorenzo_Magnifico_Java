@@ -7,7 +7,10 @@ import project.server.network.PlayerHandler;
  */
 public class DoubleServantsValue extends CheckFunctionsDecorator {
 
-
+    /**
+     * constructor
+     * @param allCheckFunctions old check function
+     */
     public DoubleServantsValue(AllCheckFunctions allCheckFunctions){
         super(allCheckFunctions);
     }

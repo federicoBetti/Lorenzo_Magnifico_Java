@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import project.controller.Constants;
 import project.model.Tower;
 
@@ -167,11 +168,12 @@ public class TowersController extends AbstractController {
         super.refresh();
         super.unselectedRadioButton(familiar);
 
-        chatArea.setAccessibleText(loginBuilder.getChat().toString());
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
         lastFamiiarPlaced.setImage(null);
         if (floor != -1){
             myTower[towerColour][floor].setFamiliarName("");
         }
+
         floor = -1;
         towerColour = -1;
         familiarChosen = "";
@@ -555,10 +557,10 @@ method called to zoom in the building card 2
     void takeBonusCard(String kindOfCard, String printBonusAction) {
         bonusAction = true;
 
+        this.bonusCardType = kindOfCard;
         writeOnChat(printBonusAction);
         writeOnChat("click on the position next to the card you want"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
         blockButton();
-        this.bonusCardType = kindOfCard;
     }
 
     /**
@@ -582,13 +584,12 @@ method called to zoom in the building card 2
      * method called to perform a bonus take development card action
      */
     private void takeBonusCard() {
-        if (towerColour != -1 && floor != -1) {
+        if (floor != -1) {
             String towerColourString = getTowerColour(towerColour);
             if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)) {
                 lastFamiiarPlaced.setImage(null);
                 lastFamiiarPlaced = new ImageView();
                 mainController.takeBonusCardAction(floor, towerColourString);
-                unlockButton();
                 floor = -1;
                 towerColour = -1;
             }

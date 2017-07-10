@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
@@ -159,7 +159,7 @@ public class LoginBuilder extends Application {
     /**
      *  method that initialize the root layout for main game scenes
      */
-    private void initRootLayoutMainGame() {
+    protected void initRootLayoutMainGame() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fileXML/mainGame/rootLayout.fxml"));
             rootLayoutMainGame = loader.load();
@@ -456,7 +456,7 @@ public class LoginBuilder extends Application {
             ChoiceController controller = loader.getController();
             controller.setLoginBuilder(this);
             controller.setRankings(playerFiles);
-            controller.setLabel("STANDINGS");
+            controller.setLabel("rankings");
             controller.setChoice1("ok");
             lastStageOpened = dialogStage;
             dialogStage.showAndWait();
@@ -486,7 +486,7 @@ public class LoginBuilder extends Application {
             ChoiceController controller = loader.getController();
             controller.setLoginBuilder(this);
             controller.setStatistics(playerFile);
-            controller.setLabel("STATISTICS");
+            controller.setLabel("statistics");
             controller.setChoice1("ok");
             lastStageOpened = dialogStage;
             dialogStage.showAndWait();
@@ -708,7 +708,8 @@ public class LoginBuilder extends Application {
      */
     void writeOnMyChat(String s) {
         stringBuffer.append(s);
-        mainController.updateChat();
+        if (mainController!= null)
+            mainController.updateChat();
     }
 
     /**
@@ -775,7 +776,13 @@ public class LoginBuilder extends Application {
      * method used to set the after game scene
      */
     void setAfterGame() {
-        rootLayoutMainGame.setCenter(endGameScene);
+        if (rootLayoutMainGame != null)
+            rootLayoutMainGame.setCenter(endGameScene);
+        else{
+            initRootLayoutMainGame();
+            initializeEndGame();
+            rootLayoutMainGame.setCenter(endGameScene);
+        }
 
     }
 }

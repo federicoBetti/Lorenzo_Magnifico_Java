@@ -1,7 +1,7 @@
 package project.server.network;
 
 import com.google.gson.Gson;
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.controller.cardsfactory.*;
 import project.controller.checkfunctions.AllCheckFunctions;
 import project.controller.checkfunctions.BasicCheckFunctions;
@@ -214,6 +214,15 @@ public abstract class PlayerHandler extends Player {
         List<Harvester> harvesterZone = room.getBoard().getHarvesterZone();
         int position = firstFreePosition(harvesterZone, familyM.getFamilyColour());
 
+        int familiarValue = familyM.getMyValue() + getPersonalBoardReference().getBonusOnActions().getHarvesterBonus() + servantsNumber;
+        if (position == 0) {
+            if (familiarValue < 1) throw new CantDoActionException();
+        }
+        else{
+            if (familiarValue < 4)
+                throw new CantDoActionException();
+        }
+
         gameActions().harvester(position, familyM, servantsNumber, this);
     }
 
@@ -272,9 +281,7 @@ public abstract class PlayerHandler extends Player {
         if (position > 0)
             maxValueOfProduction = maxValueOfProduction - Constants.MALUS_PROD_HARV;
 
-        System.out.println("STO ENTANDO NEL CHECK PRODUZIONE");
         int servantsToPay = checkAvailabilityToProduct(cardToProduct, maxValueOfProduction, choichePE);
-        System.out.println("HO FATTO LA PRODUZIONE");
 
         gameActions().production( familyM, cardToProduct, servantsToPay, choichePE, this);
     }
@@ -323,6 +330,7 @@ public abstract class PlayerHandler extends Player {
                 addCost(permanentEffect.get(0), cost);
         }
 
+        cost.addServants(servantsMax);
         checkTotalCost(cost);
         return servantsMax;
     }
