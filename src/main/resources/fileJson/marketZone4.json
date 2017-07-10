@@ -4,7 +4,7 @@
 
 	"trisIE":
 	{
-		"type":"takeRos",
+		"type":"takeRop",
 		"parameter":"coin",
 		"quantity":5
 	}
@@ -15,7 +15,7 @@
 
 	"trisIE":
 	{
-		"type":"takeRos",
+		"type":"takeRop",
 		"parameter":"servant",
 		"quantity":5
 	}

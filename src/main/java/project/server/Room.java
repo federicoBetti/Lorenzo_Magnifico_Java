@@ -279,13 +279,9 @@ public class Room {
      */
     private void resetPlayers(PlayerHandler player) {
         Configuration configuration = new Configuration();
-            try {
                 player.setPersonalBoardReference(new PersonalBoard());
                 player.setScore(new Score());
                 configuration.loadFamilyMembers(player);
-            } catch (FileNotFoundException e) {
-                UnixColoredPrinter.Logger.print(Constants.FILE_NOT_FOUND_EXCEPTION);
-            }
         }
 
     /**

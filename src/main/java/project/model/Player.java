@@ -34,11 +34,7 @@ public class Player implements Serializable{
 		personalBoardReference = new PersonalBoard(1000);
     	score = new Score();
 		allFamilyMembers = new FamilyMember[Constants.NUMBER_OF_FAMILIAR];
-		try {
 			configuration.loadFamilyMembers(this);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**

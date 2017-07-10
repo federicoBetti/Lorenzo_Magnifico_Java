@@ -45,11 +45,7 @@ public class Server {
         UnixColoredPrinter.Logger logger = new UnixColoredPrinter.Logger();
         logger.toString();
 
-        try {
             this.timerSettings = configuration.loadTimer();
-        } catch (FileNotFoundException e) {
-            UnixColoredPrinter.Logger.print("error loading files");
-        }
     }
 
     /**

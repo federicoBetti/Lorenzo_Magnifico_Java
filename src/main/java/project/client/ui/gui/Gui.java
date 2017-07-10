@@ -53,16 +53,11 @@ public class Gui extends AbstractUI {
      * method used to upload a special font in the project
      */
     private void uploadFont() {
-
-
-        InputStream is = getClass().getResourceAsStream("/customFont/LucidaBlackletter.ttf");
-
         try {
             //create the font to use. Specify the size!
             Font customFont = getFont("LucidaBlackletterRegular.ttf");
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
-            System.err.println(customFont.getFontName());
             ge.registerFont(customFont);
         } catch (IOException | FontFormatException e) {
             UnixColoredPrinter.Logger.print(Constants.FONT_EXCEPTION);
