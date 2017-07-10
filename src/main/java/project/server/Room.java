@@ -121,7 +121,7 @@ public class Room {
      *
      * @return the number of players on
      */
-    public int numberOfPlayerOn() {
+    int numberOfPlayerOn() {
         int count = 0;
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
             if (entry.getValue().isOn())
@@ -472,8 +472,6 @@ public class Room {
         return listsForDraft;
     }
 
-    //todo c'è una riga di shuffle commentata
-
     /**
      * This method create the list of lists for the leaders drafting
      *
@@ -668,6 +666,11 @@ public class Room {
         this.timer = timer;
     }
 
+    /**
+     * Get nicknamePlayersMap
+     *
+     * @return nicknamePlayersMap
+     */
     public Map<String, PlayerHandler> getNicknamePlayersMap() {
         return nicknamePlayersMap;
     }

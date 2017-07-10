@@ -47,6 +47,12 @@ public class ClientSetter {
         ui.startUI();
     }
 
+    /**
+     * This method set the connection type
+     *
+     * @param connectionType connection tyoe
+     * @param IP ip choosen
+     */
     public void setConnectionType(String connectionType, String IP) {
         switch (connectionType) {
             case "socket":
