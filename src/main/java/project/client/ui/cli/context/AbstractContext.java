@@ -5,9 +5,14 @@ import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
+import project.controller.cardsfactory.VenturesCard;
+import project.controller.cardsfactory.VenturesCost;
+import project.controller.effects.realeffects.Effects;
+import project.model.Tower;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -119,6 +124,65 @@ public abstract class AbstractContext {
      */
     public void cantDoAction(){
         pRed.println("Error, action not avaiable. Please try with another input");
+    }
+
+    public void showCardsEffectsTower(Tower[][] allTowers) {
+
+        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
+            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
+            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
+                if ( allTowers[i][j].getCardOnThisFloor() == null ){
+                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
+                    continue;
+                }
+
+                pBlue.print("Floor: "); pRed.println( j );
+                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
+                pBlue.print("Immediate Effects: \n"); int count1 = 1;
+                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getImmediateCardEffects() ){
+                    pBlue.print( count1 + ") ");pYellow.println(effect.toScreen());
+                    count1++;
+                }
+                pBlue.print("Permanent Effects: \n"); int count2 = 1;
+                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getPermanentCardEffects() ){
+                    pBlue.print( count2 + ") ");pYellow.println(effect.toScreen());
+                    count2++;
+                }
+                pRed.println("");
+            }
+        }
+    }
+
+    public void showCardCostTower(Tower[][] allTowers) {
+
+        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
+            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
+            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
+                if ( allTowers[i][j].getCardOnThisFloor() == null ){
+                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
+                    continue;
+                }
+
+                pBlue.print("Floor: "); pRed.println( j );
+                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
+
+                if ( allTowers[i][j].getCardOnThisFloor() instanceof VenturesCard) {
+                    VenturesCard card = (VenturesCard) allTowers[i][j].getCardOnThisFloor();
+                    pBlue.print("Card cost: ");
+                    List<VenturesCost> costs = card.getPossibleCost();
+                    for ( VenturesCost cost : costs )
+                        pYellow.print(cost.toScreen() + " ");
+                    pYellow.println("");
+                }
+
+                else {
+                    pBlue.print("Card cost: ");
+                    pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
+                    pYellow.println("");
+                }
+            }
+        }
+
     }
 
     /**

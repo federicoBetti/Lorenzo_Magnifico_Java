@@ -40,7 +40,8 @@ public class Server {
         serverSocket = new SocketServer(this);
         rmiServer = new ServerRMI(this);
         Configuration configuration = new Configuration();
-        new UnixColoredPrinter.Logger();
+        UnixColoredPrinter.Logger logger = new UnixColoredPrinter.Logger();
+        logger.toString();
 
         try {
             this.timerSettings = configuration.loadTimer();

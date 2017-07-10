@@ -942,6 +942,9 @@ public class MainController {
      * @param message message to show
      */
     public void disconnectionMessage(String message) {
-        Platform.runLater(() -> loginBuilder.writeOnMyChat(message + " is disconnect!\n"));
+        Platform.runLater(() -> {
+            if (generalGameController != null)
+                loginBuilder.writeOnMyChat(message + " is disconnected!");
+        });
     }
 }

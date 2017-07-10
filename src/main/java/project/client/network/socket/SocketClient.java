@@ -258,7 +258,7 @@ public class SocketClient extends AbstractClient {
             objectOutputStream.reset();
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -276,7 +276,7 @@ public class SocketClient extends AbstractClient {
             objectOutputStream.reset();
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -302,7 +302,7 @@ public class SocketClient extends AbstractClient {
             bonusHarv = (BonusProductionOrHarvesterAction) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
         clientSetter.bonusHarvester(bonusHarv);
     }
@@ -320,7 +320,7 @@ public class SocketClient extends AbstractClient {
 
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
 
     }
@@ -345,7 +345,7 @@ public class SocketClient extends AbstractClient {
             bonusProd = (BonusProductionOrHarvesterAction) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
         clientSetter.bonusProduction(bonusProd);
     }
@@ -370,7 +370,7 @@ public class SocketClient extends AbstractClient {
             towerAction = (TowerAction) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
         clientSetter.takeBonusCard(towerAction);
     }
@@ -447,7 +447,7 @@ public class SocketClient extends AbstractClient {
 
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -461,7 +461,7 @@ public class SocketClient extends AbstractClient {
             clientSetter.disconnessionMessage(message);
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -499,7 +499,7 @@ public class SocketClient extends AbstractClient {
 
             } catch (IOException | ClassNotFoundException e) {
                 UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
             }
         }
 
@@ -515,7 +515,7 @@ public class SocketClient extends AbstractClient {
             update = (ScoreUpdate) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
         clientSetter.scoreUpdate(update);
     }
@@ -529,7 +529,7 @@ public class SocketClient extends AbstractClient {
             update = (PersonalBoardUpdate) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
         clientSetter.personalBoardUpdate(update);
     }
@@ -543,7 +543,7 @@ public class SocketClient extends AbstractClient {
             update = (FamilyMemberUpdate) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
         clientSetter.familyMemberUpdate(update);
     }
@@ -571,7 +571,7 @@ public class SocketClient extends AbstractClient {
             update = (Updates) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
         clientSetter.boardUpdate(update);
     }
@@ -589,7 +589,7 @@ public class SocketClient extends AbstractClient {
 
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -620,7 +620,7 @@ public class SocketClient extends AbstractClient {
             clientSetter.receiveStatistics(statistics);
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -641,7 +641,7 @@ public class SocketClient extends AbstractClient {
             clientSetter.winnerComunication(winner);
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
 
     }
@@ -655,7 +655,7 @@ public class SocketClient extends AbstractClient {
             clientSetter.ranking(ranking);
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -687,7 +687,7 @@ public class SocketClient extends AbstractClient {
             clientSetter.excommunicationTake(update);
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
 
     }
@@ -716,7 +716,7 @@ public class SocketClient extends AbstractClient {
             objectOutputStream.reset();
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -744,7 +744,7 @@ public class SocketClient extends AbstractClient {
 
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -763,7 +763,7 @@ public class SocketClient extends AbstractClient {
                 objectOutputStream.reset();
             } catch (IOException e) {
                 UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
             }
         }
     }
@@ -782,7 +782,7 @@ public class SocketClient extends AbstractClient {
                 objectOutputStream.reset();
             } catch (IOException e) {
                 UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
             }
         }
     }
@@ -800,7 +800,7 @@ public class SocketClient extends AbstractClient {
             objectOutputStream.reset();
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 
@@ -849,7 +849,7 @@ public class SocketClient extends AbstractClient {
 
         } catch (IOException | ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
-            System.exit(1);
+            
         }
     }
 

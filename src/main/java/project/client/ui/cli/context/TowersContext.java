@@ -3,15 +3,10 @@ package project.client.ui.cli.context;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
-import project.controller.Constants;
-import project.controller.cardsfactory.VenturesCard;
-import project.controller.cardsfactory.VenturesCost;
-import project.controller.effects.realeffects.Effects;
 import project.model.FamilyMember;
 import project.model.Tower;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 
@@ -20,7 +15,7 @@ import java.util.Map;
  */
 public class TowersContext extends AbstractContext {
 
-    Tower[][] allTowers;    // allTowers[TORRE][PIANO];
+    private Tower[][] allTowers;
     public TowersContext(Cli cli, Tower[][] allTowers) {
         super(cli);
         this.allTowers = allTowers;
@@ -35,29 +30,7 @@ public class TowersContext extends AbstractContext {
      * This method pritns all tower cards' effects
      */
     private void showCardsEffects() {
-        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
-            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
-            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
-                if ( allTowers[i][j].getCardOnThisFloor() == null ){
-                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
-                    continue;
-                }
-
-                pBlue.print("Floor: "); pRed.println( j );
-                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
-                pBlue.print("Immediate Effects: \n"); int count1 = 1;
-                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getImmediateCardEffects() ){
-                    pBlue.print( count1 + ") ");pYellow.println(effect.toScreen());
-                    count1++;
-                }
-                pBlue.print("Permanent Effects: \n"); int count2 = 1;
-                for (Effects effect : allTowers[i][j].getCardOnThisFloor().getPermanentCardEffects() ){
-                    pBlue.print( count2 + ") ");pYellow.println(effect.toScreen());
-                    count2++;
-                }
-                pRed.println("");
-            }
-        }
+        super.showCardsEffectsTower(allTowers);
         pRed.println("Type help for see the available commands.");
 
     }
@@ -66,34 +39,7 @@ public class TowersContext extends AbstractContext {
      * This method prints all tower cards' cost
      */
     private void showCardsCost() {
-        for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
-            pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
-            for (int j = 0; j < Constants.NUMBER_OF_FLOORS; j++) {
-                if ( allTowers[i][j].getCardOnThisFloor() == null ){
-                    pBlue.print("Floor: "); pRed.println( j );pBlue.println("The card has been taken");
-                    continue;
-                }
-
-                pBlue.print("Floor: "); pRed.println( j );
-                pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
-
-                if ( allTowers[i][j].getCardOnThisFloor() instanceof VenturesCard ) {
-                    VenturesCard card = (VenturesCard) allTowers[i][j].getCardOnThisFloor();
-                    pBlue.print("Card cost: ");
-                    List<VenturesCost> costs = card.getPossibleCost();
-                    for ( VenturesCost cost : costs )
-                        pYellow.print(cost.toScreen() + " ");
-                    pYellow.println("");
-                }
-
-                else {
-                    pBlue.print("Card cost: ");
-                    pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
-                    pYellow.println("");
-                }
-            }
-        }
-
+        super.showCardCostTower(allTowers);
         pRed.println("Type ");pBlue.print("[help]");pRed.println("for watching the other commands.");
     }
 
@@ -128,7 +74,7 @@ public class TowersContext extends AbstractContext {
     public void checkValidInput(String input) throws InputException, NumberFormatException {
         String[] parameters = input.split("-");
 
-        if(!( parameters.length == 3 ))
+        if(( parameters.length != 3 ))
             throw new InputException();
 
         checkTowerColour(parameters[0]);

@@ -1,11 +1,15 @@
 package project.client.ui;
 
+import com.diogonunes.jcdp.color.api.Ansi;
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
+import project.client.SingletonKeyboard;
 import project.client.network.AbstractClient;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.rmi.RMIClient;
 import project.client.network.socket.SocketClient;
 import project.client.ui.cli.Cli;
+import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
@@ -14,6 +18,7 @@ import project.messages.updatesmessages.ExcommunicationTaken;
 import project.messages.updatesmessages.Updates;
 import project.model.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -41,6 +46,69 @@ public class ClientSetter {
             ui = new Gui(this);
         ui.startUI();
     }
+
+
+    /**
+     * This method is used for asking to the player if he wants to play with the Cli or Gui user interface
+     *
+     * @return the string that represents the choice
+     */
+    private static String selectUi() {
+
+        UnixColoredPrinter.Builder builder = new UnixColoredPrinter.Builder(0, false);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.YELLOW);
+        UnixColoredPrinter p = new UnixColoredPrinter(builder);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.BLUE);
+        UnixColoredPrinter p1 = new UnixColoredPrinter(builder);
+        builder.attribute(Ansi.Attribute.BOLD);
+        builder.foreground(Ansi.FColor.RED);
+        UnixColoredPrinter p2 = new UnixColoredPrinter(builder);
+        UnixColoredPrinter.Logger logger = new UnixColoredPrinter.Logger();
+        logger.toString();
+        while (true) {
+            p1.println("Welcome to LORENZO IL MAGNIFICO!");
+            p2.println("Please choose the kind of User interface experience between: ");
+            p.println("1: CLI");
+            p.println("2: GUI");
+            String choice;
+            int choiceNum = 0;
+            try {
+                choice = SingletonKeyboard.readLine();
+
+                for (int i = 0; i < choice.length(); i++)
+                    if (!(Character.isDigit(choice.charAt(i))))
+                        continue;
+
+                choiceNum = Integer.parseInt(choice);
+
+            } catch (IOException e) {
+                UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
+            } catch (NumberFormatException e) {
+                UnixColoredPrinter.Logger.print("wrong choice");
+                continue;
+            }
+            switch (choiceNum) {
+                case 1:
+                    return "CLI";
+                case 2:
+                    return "GUI";
+                default:
+
+            }
+        }
+    }
+
+    /**
+     * main methods
+     *
+     * @param args args
+     */
+    public static void main(String[] args) {
+        new ClientSetter(selectUi());
+    }
+
 
     public void setConnectionType(String connectionType, String IP) {
         switch (connectionType) {
