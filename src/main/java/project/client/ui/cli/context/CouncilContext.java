@@ -16,6 +16,12 @@ import java.util.Map;
 public class CouncilContext extends AbstractContext {
     List<Council> councilZone;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param councilZone council's zone reference
+     */
     public CouncilContext(Cli cli, List<Council> councilZone){
         super(cli);
         this.councilZone = councilZone;

@@ -41,7 +41,11 @@ public class Cli extends AbstractUI {
     private FamilyMember[] myFamilymembers;
     private volatile BlockingDeque<String> choiceQueue;
 
-
+    /**
+     * Constructor
+     *
+     * @param clientSetter clientSetter's reference
+     */
     public Cli(ClientSetter clientSetter) {
         firstRound = true;
         this.clientSetter = clientSetter;
@@ -740,10 +744,10 @@ public class Cli extends AbstractUI {
             try {
 
                 costChoosen = choiceQueue.take();
-                System.out.println("cost choosen è: " + costChoosen);
+
                 context.checkValidInput(costChoosen);
                 choice = false;
-                System.out.println("preso e chiamo giu dal both payment 1");
+
                 return Integer.parseInt(costChoosen);
 
             } catch (InterruptedException e) {
@@ -959,10 +963,10 @@ public class Cli extends AbstractUI {
 
                     lineFromKeyBoard = keyboard.readLine();
                     if (choice) {
-                        System.out.println("Sono in scelta");
+
                         choiceQueue.add(lineFromKeyBoard);
                     } else if (context != null) {
-                        System.out.println("Sono in Contesto");
+
                         context.doAction(lineFromKeyBoard);
                     }
                 } catch (InputException | IOException e) {

@@ -6,9 +6,9 @@ package project.controller.supportfunctions;
 public class DoubleServantsPayment extends SupportFunctionsDecorator{
 
     /**
-     * Constru
+     * Constructor
      *
-     * @param allSupportFunctions
+     * @param allSupportFunctions allSupportFunctions's reference
      */
     public DoubleServantsPayment(AllSupportFunctions allSupportFunctions){
         super(allSupportFunctions);

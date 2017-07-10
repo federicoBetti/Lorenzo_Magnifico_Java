@@ -70,6 +70,11 @@ public abstract class Position implements Serializable{
             ludovicoAriostoPosition.add(familiarOnThisPosition);
     }
 
+    /**
+     * this method adds a family member to ludovicoAriostoPosition
+     *
+     * @param familyMember family member's reference
+     */
     public void addFamiliar(FamilyMember familyMember) {
         ludovicoAriostoPosition.add(familyMember);
     }

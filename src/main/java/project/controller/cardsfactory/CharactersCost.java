@@ -9,6 +9,11 @@ public class CharactersCost implements Cost, Serializable {
 
     private int coinsRequired;
 
+    /**
+     * Constructor
+     *
+     * @param coinsRequired coins's required
+     */
     public CharactersCost(int coinsRequired) {
         this.coinsRequired = coinsRequired;
     }

@@ -11,6 +11,12 @@ import java.util.Map;
  * Context opened when the match is finished
  */
 public class AfterGameContext extends AbstractContext {
+
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public AfterGameContext(Cli cli) {
         super(cli);
         map.put(Constants.SHOW_RANKING, this::showRanking );

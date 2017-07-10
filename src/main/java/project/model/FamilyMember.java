@@ -96,6 +96,11 @@ public class FamilyMember implements Serializable{
             return fixedValue + fixedBonus;
     }
 
+    /**
+     * Set myValue
+     *
+     * @param myValue myValue
+     */
     public void setMyValue(int myValue) {
         this.myValue = myValue;
     }
@@ -127,6 +132,11 @@ public class FamilyMember implements Serializable{
         this.fixedValue = fixedValue;
     }
 
+    /**
+     * to string method
+     *
+     * @return the string of family colour and familiar colour
+     */
     public String toString(){
        return (familyColour + myColour).toLowerCase();
     }

@@ -19,6 +19,11 @@ public class SpecialExcommunicationEffects implements Effects, Serializable {
     int quantity;
     private HashMap<String, SpecialExcommunicationEffectsBuilder> parameterEffect;
 
+    /**
+     * Constructor
+     *
+     * @param parameter sparameter for finding the correct effect
+     */
     public SpecialExcommunicationEffects(String parameter){
         this.parameter = parameter;
         parameterEffect = new HashMap<>(3);

@@ -18,6 +18,13 @@ public class BonusHarvesterContext extends AbstractContext {
     private BonusProductionOrHarvesterAction bonusHarv;
     List<TerritoryCard> territories;
 
+    /**
+     * Constructor
+     *
+     * @param bonusHarv object that contains the bonus harvester's characteristics
+     * @param cli cli's reference
+     * @param territories list of territory cards
+     */
     public BonusHarvesterContext(BonusProductionOrHarvesterAction bonusHarv, Cli cli, List<TerritoryCard> territories ) {
         super(cli);
         this.territories = territories;

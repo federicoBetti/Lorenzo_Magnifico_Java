@@ -24,6 +24,16 @@ public class BuildingCard extends DevelopmentCard implements Serializable {
         //for testing
     }
 
+    /**
+     * Constructor
+     *
+     * @param name card's name
+     * @param period period's number
+     * @param choicePe boolean that says if a card has two permanents effects alternatively
+     * @param cost card's cost
+     * @param immediateEffects card's immediate effects
+     * @param permanentEffects card's permanent effectsb
+     */
     public BuildingCard(String name, int period, boolean choicePe, BuildingCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
         super(name, period, choicePe, immediateEffects, permanentEffects);
         effectCost = new ArrayList<>();

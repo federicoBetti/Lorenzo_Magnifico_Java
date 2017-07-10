@@ -16,6 +16,16 @@ public class VenturesCard extends DevelopmentCard implements Serializable{
 
     private List<VenturesCost> possibleCost;
 
+    /**
+     * Constrctor
+     *
+     * @param name card's name
+     * @param period period's number
+     * @param choicePe choicePe
+     * @param cost card's cost
+     * @param immediateEffects immediateEffect's reference
+     * @param permanentEffects permanentEffect's reference
+     */
     public VenturesCard(String name, int period, boolean choicePe, List<VenturesCost> cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
 
         super(name, period, choicePe, immediateEffects, permanentEffects);

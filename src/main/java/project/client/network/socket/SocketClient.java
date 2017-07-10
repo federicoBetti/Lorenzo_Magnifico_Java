@@ -35,6 +35,13 @@ public class SocketClient extends AbstractClient {
     private transient Object token1;
     private String interruptdeExceptionString = "program terminates during a queue .take() in the socket client";
 
+    /**
+     * Constructor
+     *
+     * @param clientSetter clientSetter's reference
+     * @param IP ip string
+     * @throws ClientConnectionException Exception due to errors in client connection
+     */
     public SocketClient(ClientSetter clientSetter, String IP) throws ClientConnectionException {
         this.clientSetter = clientSetter;
         this.messageHandler = new MessagesFromServerHandler(this);

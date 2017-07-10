@@ -55,6 +55,11 @@ public class Room {
     boolean draftTime = false;
 
 
+    /**
+     * Constructor
+     *
+     * @param server server's reference
+     */
     public Room(Server server) {
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
@@ -279,7 +284,7 @@ public class Room {
     private void resetPlayers(PlayerHandler player) {
         Configuration configuration = new Configuration();
             try {
-
+                player.setPersonalBoardReference(new PersonalBoard());
                 player.setScore(new Score());
                 configuration.loadFamilyMembers(player);
             } catch (FileNotFoundException e) {

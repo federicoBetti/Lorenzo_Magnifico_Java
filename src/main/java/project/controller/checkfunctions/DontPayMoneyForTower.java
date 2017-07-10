@@ -7,6 +7,11 @@ import project.model.*;
  */
 public class DontPayMoneyForTower extends CheckFunctionsDecorator {
 
+    /**
+     * Constructor
+     *
+     * @param allCheckFunctions allCheckFunctions's reference
+     */
     public DontPayMoneyForTower(AllCheckFunctions allCheckFunctions){
         super(allCheckFunctions);
     }

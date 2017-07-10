@@ -21,7 +21,14 @@ import java.util.Map;
 public class TakeBonusCard extends AbstractContext {
     private TowerAction towerAction;
     Tower[][] allTowers;
-    
+
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param towerAction object that contains the bonus tower action characteristics
+     * @param allTowers towers' reference
+     */
     public TakeBonusCard(Cli cli, TowerAction towerAction, Tower[][] allTowers ) {
         super(cli);
         this.towerAction = towerAction;

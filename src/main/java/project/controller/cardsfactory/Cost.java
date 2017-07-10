@@ -5,6 +5,10 @@ import java.io.Serializable;
  * Cost's Interface
  */
 public interface Cost extends Serializable, Cloneable{
+
+    /**
+     * Pico della mirandola downgrade abstract method
+     */
     void picoDellaMirandolaDowngrade();
 
     /**

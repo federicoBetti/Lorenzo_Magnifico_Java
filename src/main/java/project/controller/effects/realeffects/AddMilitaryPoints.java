@@ -11,6 +11,11 @@ public class AddMilitaryPoints implements Effects {
 
     private int quantity;
 
+    /**
+     * Constructor
+     *
+     * @param quantity military points to add
+     */
     public AddMilitaryPoints (int quantity){
         this.quantity = quantity;
     }

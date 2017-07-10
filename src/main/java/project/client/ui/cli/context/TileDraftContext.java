@@ -14,6 +14,12 @@ import java.util.List;
 public class TileDraftContext extends AbstractContext {
     private List<Tile> tiles;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param tiles list of tiles
+     */
     public TileDraftContext(Cli cli, List<Tile> tiles) {
         super(cli);
         this.tiles = tiles;

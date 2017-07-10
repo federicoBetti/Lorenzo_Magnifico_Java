@@ -29,6 +29,11 @@ public class ClientSetter {
     private FamilyMember[] uiFamilyMembers;
     private String nickname;
 
+    /**
+     * Constructor
+     *
+     * @param kindOfUI kind of ui string
+     */
     public ClientSetter(String kindOfUI ) {
         uiBoard = new Board();
         uiPersonalBoard = new PersonalBoard();

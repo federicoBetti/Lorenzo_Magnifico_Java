@@ -9,6 +9,12 @@ import java.io.IOException;
  * This class is a context opened when the client choose a nickname already used
  */
 public class NicknameAlreadyUsedContext extends AbstractContext {
+
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public NicknameAlreadyUsedContext(Cli cli) {
         super(cli);
         printHelp();

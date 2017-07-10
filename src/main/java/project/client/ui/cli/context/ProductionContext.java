@@ -20,6 +20,15 @@ public class ProductionContext extends AbstractContext {
     List<Production> productionZone;
     Tile bonusTile;
     List<BuildingCard> buildings;
+
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param productionZone production zone's reference
+     * @param bonusTile bonus tile's reference
+     * @param buildings buildi cards' reference
+     */
     public ProductionContext(Cli cli, List<Production> productionZone, Tile bonusTile, List<BuildingCard> buildings){
         super(cli);
         this.productionZone = productionZone;

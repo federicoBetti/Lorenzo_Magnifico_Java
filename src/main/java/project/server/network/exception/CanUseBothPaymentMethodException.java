@@ -5,6 +5,9 @@ package project.server.network.exception;
  */
 public class CanUseBothPaymentMethodException extends Exception {
 
+    /**
+     * Constructor
+     */
     public CanUseBothPaymentMethodException(){
         super();
     }

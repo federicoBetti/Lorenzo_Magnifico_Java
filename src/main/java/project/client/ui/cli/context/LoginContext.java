@@ -11,6 +11,11 @@ import java.io.IOException;
  */
 public class LoginContext extends AbstractContext {
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public LoginContext( Cli cli ){
         super(cli);
         map.put(CliConstants.HELP, this::printHelp);

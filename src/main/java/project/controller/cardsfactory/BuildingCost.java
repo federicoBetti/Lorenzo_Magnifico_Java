@@ -14,6 +14,15 @@ public class BuildingCost extends TerritoryCost implements Serializable {
     public BuildingCost() {
     }
 
+    /**
+     * Constructor
+     *
+     * @param coinsRequired coinsRequired
+     * @param servantRequired servantRequired
+     * @param woodRequired woodRequired
+     * @param stoneRequired stoneRequired
+     * @param diceCost diceCost
+     */
     public BuildingCost(int coinsRequired, int servantRequired, int woodRequired, int stoneRequired, int diceCost) {
         super(woodRequired,stoneRequired,diceCost);
         this.coinsRequired = coinsRequired;

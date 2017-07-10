@@ -7,6 +7,11 @@ import project.model.*;
  */
 public class CantPlaceFamiliarInMarket extends CheckFunctionsDecorator {
 
+    /**
+     * Constructor
+     *
+     * @param allCheckFunctions check functions' object
+     */
     public CantPlaceFamiliarInMarket(AllCheckFunctions allCheckFunctions){
         super(allCheckFunctions);
     }

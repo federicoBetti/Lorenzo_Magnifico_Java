@@ -11,6 +11,9 @@ public class VentureCostArray implements Serializable{
 
     private List<VenturesCost> costArray;
 
+    /**
+     * Constructor
+     */
     public VentureCostArray(){
         this.costArray = new ArrayList<>();
     }

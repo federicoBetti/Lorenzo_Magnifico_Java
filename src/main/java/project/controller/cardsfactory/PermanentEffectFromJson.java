@@ -9,7 +9,10 @@ import java.util.List;
 public class PermanentEffectFromJson {
     private List<PokerPE> poker;
 
-    public PermanentEffectFromJson(){
+    /**
+     * Constructor
+     */
+    PermanentEffectFromJson(){
         this.poker = new ArrayList<>();
 
     }

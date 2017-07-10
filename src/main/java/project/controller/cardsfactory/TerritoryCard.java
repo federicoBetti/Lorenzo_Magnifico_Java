@@ -15,6 +15,16 @@ public class TerritoryCard extends DevelopmentCard implements Serializable {
 
     private TerritoryCost cardCost;
 
+    /**
+     * Constructor
+     *
+     * @param name card's name
+     * @param period card's period
+     * @param choicePe boolean that says if the card has two choicePe to act alternatively
+     * @param cost card's cost
+     * @param immediateEffects immediateEffect's reference
+     * @param permanentEffects permanentEffect's reference
+     */
     public TerritoryCard(String name, int period, boolean choicePe, TerritoryCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
         super(name, period, choicePe, immediateEffects, permanentEffects);
         this.cardCost = cost;

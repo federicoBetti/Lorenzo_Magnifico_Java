@@ -35,6 +35,9 @@ public class Server {
 
     private TimerSettings timerSettings;
 
+    /**
+     * Constructor
+     */
     public Server() {
         rooms = new ArrayList<>();
         serverSocket = new SocketServer(this);

@@ -13,6 +13,11 @@ import java.util.Map;
  */
 public class ChoicePeContext extends AbstractContext {
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public ChoicePeContext(Cli cli) {
         super(cli);
         map.put(CliConstants.HELP, this::printHelp );

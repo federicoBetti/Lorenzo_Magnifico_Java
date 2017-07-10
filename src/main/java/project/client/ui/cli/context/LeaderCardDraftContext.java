@@ -13,6 +13,12 @@ import java.util.List;
 public class LeaderCardDraftContext extends AbstractContext {
     List<LeaderCard> leaders;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param leaders leader cards's list
+     */
     public LeaderCardDraftContext(Cli cli, List<LeaderCard> leaders) {
         super(cli);
         this.leaders = leaders;
