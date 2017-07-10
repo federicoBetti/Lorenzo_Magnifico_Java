@@ -1590,7 +1590,7 @@
 	"immediateEffect":{
 		"tris":[
 		{"type":"takeRop", "parameter":"faithPoint", "quantity":1 },
-		{"type":"bonusTowerAction", "parameter":"anyColors", "quantity":4 }
+		{"type":"bonusTowerAction", "parameter":"all-colours", "quantity":4 }
 		]
 	},
 

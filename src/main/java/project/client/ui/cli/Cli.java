@@ -194,7 +194,7 @@ public class Cli extends AbstractUI {
             context.checkValidInput(input);
             String[] parameters = input.split("-");
             clientSetter.takeBonusCardAction(Integer.parseInt(parameters[0]), parameters[1]);
-        } catch (InputException | NumberFormatException e) {
+        } catch (InputException e ) {
             context.printHelp();
         }
     }

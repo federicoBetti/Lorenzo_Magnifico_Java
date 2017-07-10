@@ -118,8 +118,12 @@ public abstract class PlayerHandler extends Player {
      * @throws CantDoActionException thrown when the player is unable to act an action
      */
     protected void clientTakeBonusDevelopementCard(String towerColour, int floor, TowerAction returnFromEffect) throws CantDoActionException {
-        if (!(returnFromEffect.getKindOfCard().equals(Constants.ALL_COLOURS) || returnFromEffect.getKindOfCard().equals(towerColour)))
+        System.out.println("Sono nel client take bonus card");
+
+        if (!(returnFromEffect.getKindOfCard().equals(Constants.ALL_COLOURS) || returnFromEffect.getKindOfCard().equals(towerColour))) {
+            System.out.println("lancio eccezione 1");
             throw new CantDoActionException();
+        }
 
         DevelopmentCard card = getCard(towerColour, floor);
 
@@ -144,6 +148,7 @@ public abstract class PlayerHandler extends Player {
             boolean canPayCard = checkFunctions.checkCardCost(card, this, towerOccupied, diceCost, diceValueOfFamiliar);
             if (!canPayCard) {
                 zone.getCardOnThisFloor().setCost(realCost);
+                System.out.println("lancio eccezione 2");
                 throw new CantDoActionException();
             } else {
                 gameActions().takeNoVenturesCard(zone, this, towerOccupied, diceValueOfFamiliar);
