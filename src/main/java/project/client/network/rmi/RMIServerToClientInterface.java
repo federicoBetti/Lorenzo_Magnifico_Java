@@ -78,11 +78,6 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     void actionOk() throws  RemoteException;
 
     /**
-     * Abstract doProductionHarvester
-     */
-    void doProductionHarvester(BonusInteraction bonusInteraction) throws RemoteException;
-
-    /**
      * Abstract loginSucceded
      */
     void loginSucceded() throws RemoteException;
@@ -105,7 +100,7 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
     /**
      * Abstract tileChoosen
      */
-    int tileChoosen(ArrayList<Tile> tiles) throws RemoteException;
+    int tileChoosen(List<Tile> tiles) throws RemoteException;
 
     /**
      * Abstract nicknameAlreadyUsed

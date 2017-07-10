@@ -198,6 +198,7 @@ public class ProductionController extends AbstractController {
             FamiliarPosition f = allPosition.get(allPosition.size() - 1);
             f.setFamiliarName("");
             f.setImage(null);
+            familiarBox.getChildren().remove(familiarBox.getChildren().size() - 1);
             if (allPosition.size() > 1) allPosition.remove(allPosition.size() - 1);
         }
         positionSelected = false;

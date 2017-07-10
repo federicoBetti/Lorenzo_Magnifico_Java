@@ -146,6 +146,7 @@ public class Constants {
     public static final String YELLOW ="yellow";
     public static final String BLUE ="blue";
     public static final String SHOW_RANKING  =  "show-ranking";
+    public static final String FONT_EXCEPTION ="font exception";
 
     /**
      * Constrcutor

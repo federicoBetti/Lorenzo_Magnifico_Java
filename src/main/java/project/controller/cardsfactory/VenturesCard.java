@@ -81,4 +81,8 @@ public class VenturesCard extends DevelopmentCard implements Serializable{
     public List<VenturesCost> getVenturesCost() {
         return possibleCost;
     }
+
+    public void setVenturesCost(List<VenturesCost> venturesCost) {
+        this.possibleCost = venturesCost;
+    }
 }

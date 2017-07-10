@@ -158,11 +158,10 @@ public class RMIPlayerHandler extends PlayerHandler {
     void takeBonusCardAction(int floor, String towerColour) {
         this.floorChosen = floor;
         this.towerColourChosen = towerColour;
-System.err.println("sto per notificare");
+
         synchronized (tokenn) {
             tokenn.notifyAll();
         }
-        System.err.println("ho appena fatto notify all");
 
     }
 

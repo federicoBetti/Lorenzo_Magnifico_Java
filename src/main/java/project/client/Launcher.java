@@ -13,8 +13,7 @@ import java.io.IOException;
 class Launcher {
 
     private Launcher(){
-        new UnixColoredPrinter.Logger();
-        new ClientSetter(selectUi());
+        ClientSetter clientSetter = new ClientSetter(selectUi());
     }
 
     /**
@@ -34,6 +33,8 @@ class Launcher {
         builder.attribute(Ansi.Attribute.BOLD);
         builder.foreground(Ansi.FColor.RED);
         UnixColoredPrinter p2 = new UnixColoredPrinter(builder);
+        UnixColoredPrinter.Logger logger = new UnixColoredPrinter.Logger();
+        logger.toString();
         while (true) {
             p1.println("Welcome to LORENZO IL MAGNIFICO!");
             p2.println("Please choose the kind of User interface experience between: ");

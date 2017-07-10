@@ -108,12 +108,15 @@ public class ChoiceController {
         String s = "\n\n"  + playerFile.getPlayerName() + "\n"
                 + "\t" + "number of games played: " + playerFile.getNumberOfGames() + "\n"
                 + "\t" + "number of games won: " + playerFile.getNumberOfVictories() + "\n"
-                + "\t" + "number of games lost: " + playerFile.getNumberOfDefeats() + "\n"
-                + "CONGRATULATIONS!\n\n";
+                + "\t" + "number of games lost: " + playerFile.getNumberOfDefeats() + "\n\n";
         text.setText(s);
 
         ScrollPane scrollPane = new ScrollPane(text);
-        forImage.getChildren().add(scrollPane);
+        scrollPane.setPrefHeight(800);
+        forImage.getChildren().add(text);
+        forImage.setPrefHeight(800);
+        forImage.setMaxHeight(1000);
+        forImage.setPrefWidth(600);
     }
 
     /**
@@ -122,15 +125,25 @@ public class ChoiceController {
      */
     void setRankings(List<PlayerFile> playerFiles) {
         StringBuilder buffer = new StringBuilder();
+        buffer.append("top 3 rankings: \n");
+        int times = 0;
         for (PlayerFile playerFile: playerFiles) {
-            String s = "\n\n" + playerFile.getPlayerName() + "\n" + "\t" + "number of games played: " + playerFile.getNumberOfGames() + "\n" + "\t" + "number of games won: " + playerFile.getNumberOfVictories() + "\n" + "\t" + "number of games lost: " + playerFile.getNumberOfDefeats() + "\n\n";
+            String s = "\n\n" + playerFile.getPlayerName() + "\n" + "\t" + "number of games played: " + playerFile.getNumberOfGames() + "\n" + "\t" + "number of games won: " + playerFile.getNumberOfVictories() + "\n" + "\t" + "number of games lost: " + playerFile.getNumberOfDefeats() + "\n";
             buffer.append(s);
+            times++;
+            if (times == 3)
+                break;
         }
 
         Text text = new Text(buffer.toString());
+        text.maxHeight(500);
+        text.maxWidth(500);
+
+
 
         ScrollPane scrollPane = new ScrollPane(text);
-        forImage.getChildren().add(scrollPane);
+        forImage.getChildren().add(text);
+        forImage.setMaxHeight(500);
 
     }
 }

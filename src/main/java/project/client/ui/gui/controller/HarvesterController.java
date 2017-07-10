@@ -192,7 +192,7 @@ public class HarvesterController extends AbstractController {
         chatArea.setContent(new Text(loginBuilder.getChat().toString()));
 
         if (positionSelected){
-
+            familiarBox.getChildren().remove(familiarBox.getChildren().size() - 1);
             FamiliarPosition f = allPosition.get(allPosition.size() -1 );
             f.setImage(null);
             f.setFamiliarName("");

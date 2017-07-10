@@ -33,8 +33,8 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private transient ObjectInputStream objectInputStream;
     private transient ObjectOutputStream objectOutputStream;
     private transient ServerDataHandler serverDataHandler;
-    private transient final Object token;
-    private transient final Object token1;
+    private final transient Object token;
+    private final transient Object token1;
     private boolean firstConnection;
 
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
@@ -312,7 +312,7 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
                 objectOutputStream.flush();
                 objectOutputStream.reset();
             } catch (IOException e) {
-                e.printStackTrace();
+                UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
             }
         }
     }

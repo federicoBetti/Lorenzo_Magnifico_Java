@@ -47,7 +47,7 @@ public class SetIPaddressContext extends AbstractContext {
     }
 
     /**
-     * If the string in input does not correspond with no key, this method is called and it calls setIPaddress
+     * If the string in input does not correspond with no key, this method is called and it calls setIPaddressWhitConnection
      *
      * @param ip string in input
      * @throws InputException exception thrown when the client type an invalid input
@@ -55,6 +55,6 @@ public class SetIPaddressContext extends AbstractContext {
      */
     @Override
     protected void mainContextMethod(String ip) throws InputException, IOException {
-        cli.setIPaddress(kindOfConnection, ip);
+        cli.setIPaddressWhitConnection(kindOfConnection, ip);
     }
 }

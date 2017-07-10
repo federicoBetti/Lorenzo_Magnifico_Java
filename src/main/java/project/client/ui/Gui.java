@@ -3,8 +3,10 @@ package project.client.ui;
 import javafx.application.Application;
 import javafx.application.Platform;
 import project.PlayerFile;
+import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
+import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;
@@ -23,7 +25,6 @@ import java.util.List;
 public class Gui extends AbstractUI {
     private ClientSetter clientSetter;
     private MainController mainController;
-    private boolean matchStarted;
 
     /**
      * constructor
@@ -38,7 +39,6 @@ public class Gui extends AbstractUI {
      */
     @Override
     public void startUI() {
-        matchStarted = false;
         mainController = MainController.getInstance();
         mainController.setClientSetter(clientSetter);
         uploadFont();
@@ -60,10 +60,8 @@ public class Gui extends AbstractUI {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
             ge.registerFont(customFont);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(FontFormatException e) {
-            e.printStackTrace();
+        } catch (IOException | FontFormatException e) {
+            UnixColoredPrinter.Logger.print(Constants.FONT_EXCEPTION);
         }
 
     }
@@ -76,13 +74,6 @@ public class Gui extends AbstractUI {
     public void takeBonusCard(TowerAction towerAction) {
         mainController.takeBonusCard(towerAction.getKindOfCard(),towerAction.toString() );
     }
-
-    //todo ho rinominato both payment availableRMI con bothPaymentAvailable visto che lo dovevo usare pure io ma mi sa che ce l'avevi già
-    //todo cmq ce l'avevi in todo sotto. non ho cancellato nulla, solo cambiato il nome. controlla un secondo la situa.
-   /* @Override
-    public void bothPaymentsAvailable() {
-        mainController.bothPaymentAvaiable();
-    }   */
 
     /**
      * method that notify client that it's his turn

@@ -36,7 +36,6 @@ public class Cli extends AbstractUI {
     private AbstractContext context;
     private volatile boolean choice = false;
     private int numberOfPlayers;
-    private String playerColor;
     private boolean firstRound;
     private FamilyMember[] myFamilymembers;
     private volatile BlockingDeque<String> choiceQueue;
@@ -206,7 +205,7 @@ public class Cli extends AbstractUI {
      * @param input
      * @throws InputException
      */
-    public void immediatePriviledgeAction(String input) throws InputException {
+    public void immediatePriviledgeAction(String input)  {
         String[] privileges = input.split("-");
         List<Integer> privilegesChosen = new ArrayList<>();
         for (String priviledge : privileges)
@@ -322,7 +321,7 @@ public class Cli extends AbstractUI {
      */
     @Override
     public void timerDelayed() {
-        try {//bonus action interrupted
+        //bonus action interrupted
             if (context instanceof TakeBonusCard || context instanceof BonusHarvesterContext || context instanceof BonusProductionContext) {
                 context = new TimerDelayedContext(this);
                 sendExitToBonusAction();
@@ -348,9 +347,6 @@ public class Cli extends AbstractUI {
                 return;
             }
 
-        } catch (InputException e) {
-            e.printStackTrace();
-        }
 
         context = new TimerDelayedContext(this);
     }
@@ -437,8 +433,8 @@ public class Cli extends AbstractUI {
      */
     @Override
     public void disconnesionMessage(String message) {
-        message = message + " is disconnected!";
-        context.getpRed().println(message);
+        String messageToPrint = message + " is disconnected!";
+        context.getpRed().println(messageToPrint);
     }
 
     /**
@@ -448,8 +444,8 @@ public class Cli extends AbstractUI {
      */
     @Override
     public void winnerComunication(String winner) {
-        winner = "The winner is " + winner;
-        context.getpBlue().println(winner);
+        String winnerToPrint = "The winner is " + winner;
+        context.getpBlue().println(winnerToPrint);
     }
 
     /**
@@ -581,7 +577,7 @@ public class Cli extends AbstractUI {
      *
      * @param action input string
      */
-    public void chooseLeaderCardToPlay(String action) {    //todo va controllato sul server
+    public void chooseLeaderCardToPlay(String action) {
         try {
             context.checkValidInput(action);
             clientSetter.playLeaderCard(action);
@@ -596,7 +592,7 @@ public class Cli extends AbstractUI {
      *
      * @param name input string
      */
-    public void discardLeaderCard(String name) {    //todo va controllato sul server
+    public void discardLeaderCard(String name) {
         clientSetter.discardLeaderCard(name);
     }
 
@@ -605,7 +601,7 @@ public class Cli extends AbstractUI {
      *
      * @throws InputException
      */
-    public void sendExitToBonusAction() throws InputException {
+    public void sendExitToBonusAction() {
         clientSetter.sendExitToBonusAction();
     }
 
@@ -740,10 +736,8 @@ public class Cli extends AbstractUI {
             try {
 
                 costChoosen = choiceQueue.take();
-                System.out.println("cost choosen è: " + costChoosen);
                 context.checkValidInput(costChoosen);
                 choice = false;
-                System.out.println("preso e chiamo giu dal both payment 1");
                 return Integer.parseInt(costChoosen);
 
             } catch (InterruptedException e) {
@@ -878,7 +872,6 @@ public class Cli extends AbstractUI {
     public void matchStarted(int roomPlayers, String familyColour) {
         context = new MatchStartedContext(this);
         numberOfPlayers = roomPlayers;
-        playerColor = familyColour;
     }
 
     /**
@@ -930,7 +923,7 @@ public class Cli extends AbstractUI {
      * @param kindOfConnection the kind of connection choosen as a String
      * @param ip ip address choosen as a String
      */
-    public void setIPaddress(String kindOfConnection, String ip) {
+    public void setIPaddressWhitConnection(String kindOfConnection, String ip) {
 
         try {
             context.checkValidInput(ip);
@@ -951,22 +944,19 @@ public class Cli extends AbstractUI {
         public void run() {
 
 
-            SingletonKeyboard keyboard = SingletonKeyboard.getInstance();
             while (true) {
                 String lineFromKeyBoard;
                 try {
 
 
-                    lineFromKeyBoard = keyboard.readLine();
+                    lineFromKeyBoard = SingletonKeyboard.readLine();
                     if (choice) {
-                        System.out.println("Sono in scelta");
                         choiceQueue.add(lineFromKeyBoard);
                     } else if (context != null) {
-                        System.out.println("Sono in Contesto");
                         context.doAction(lineFromKeyBoard);
                     }
                 } catch (InputException | IOException e) {
-                    e.printStackTrace();
+                    UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
                 }
             }
         }

@@ -1,5 +1,7 @@
 package project.server.network.socket;
 
+import project.PrinterClass.UnixColoredPrinter;
+import project.controller.Constants;
 import project.server.network.AbstractServer;
 import project.server.Server;
 
@@ -47,7 +49,7 @@ public class SocketServer extends AbstractServer {
                     new Thread(socketPlayerHandler).start();
 
                 }catch (IOException e) {
-                    e.printStackTrace();
+                    UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
                 }
             }
         }

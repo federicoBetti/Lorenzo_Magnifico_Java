@@ -216,7 +216,7 @@ public class Server {
 
             return playerFileList;
         } catch (IOException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
         }
         return playerFileList;
     }
@@ -235,17 +235,15 @@ public class Server {
         String fileUpgraded = null;
 
         Gson gson = new Gson();
-        BufferedWriter bw = null;
-        FileWriter fw = null;
 
-        try {
-            File file = new File(Constants.FILENAME);
+        File file = new File(Constants.FILENAME);
+        try (
+                FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+                BufferedWriter bw = new BufferedWriter(fw);){
+
 
             if (!file.exists()) {
-                System.out.println("CREO IL FILE");
                 file.createNewFile();
-                fw = new FileWriter(file.getAbsoluteFile(), true);
-                bw = new BufferedWriter(fw);
                 PlayerFile[] array = new PlayerFile[1];
                 array[0] = playerFile;
                 String data = gson.toJson(array);
@@ -254,7 +252,6 @@ public class Server {
             }
 
             String currentFile = readFile(Constants.FILENAME, StandardCharsets.UTF_8);
-            System.out.println("Il file in questo momento è: " + currentFile);
 
             PlayerFile[] arrayPlayers = gson.fromJson(currentFile, PlayerFile[].class); //lo trasformo in oggetto
 
@@ -266,55 +263,32 @@ public class Server {
 
                 }
 
-            fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-            RandomAccessFile randomAccessFile = new RandomAccessFile(Constants.FILENAME, "rw");
+            try (RandomAccessFile randomAccessFile = new RandomAccessFile(Constants.FILENAME, "rw")) {
 
-            long pos = randomAccessFile.length();
-            while (randomAccessFile.length() > 0) {
-                pos--;
-                randomAccessFile.seek(pos);
-                if (randomAccessFile.readByte() == ']') {
+                long pos = randomAccessFile.length();
+                while (randomAccessFile.length() > 0) {
+                    pos--;
                     randomAccessFile.seek(pos);
-                    break;
+                    if (randomAccessFile.readByte() == ']') {
+                        randomAccessFile.seek(pos);
+                        break;
+                    }
+                }
+
+                // se non è stato trovato il player nel file
+                if (fileUpgraded == null) { // aggiungo l'elemento
+                    String jsonElement = gson.toJson(playerFile);
+                    randomAccessFile.writeBytes("," + jsonElement + "]");
+
+                } else {
+                    try (FileWriter fw1 = new FileWriter(file.getAbsoluteFile(), false); BufferedWriter bw1 = new BufferedWriter(fw1)) {
+                        bw1.write(fileUpgraded);
+                    }
                 }
             }
 
-            // se non è stato trovato il player nel file
-            if (fileUpgraded == null) { // aggiungo l'elemento
-                String jsonElement = gson.toJson(playerFile);
-                randomAccessFile.writeBytes("," + jsonElement + "]");
-
-            } else {
-                System.out.println("STO AGGIUNGENDO IL SECONDO PEZZO AL FILE");
-                System.out.println(fileUpgraded);
-                fw = new FileWriter(file.getAbsoluteFile(), false);
-                bw = new BufferedWriter(fw);
-                bw.write(fileUpgraded);
-
-            }
-            randomAccessFile.close();
-
         } catch (IOException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-            try {
-
-                if (bw != null)
-                    bw.close();
-
-                if (fw != null)
-                    fw.close();
-
-
-            } catch (IOException ex) {
-
-                ex.printStackTrace();
-
-            }
+            UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
         }
     }
 

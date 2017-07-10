@@ -102,10 +102,5 @@ public abstract class AbstractClient implements Serializable{
      * Abstract showRanking
      */
     public abstract void showRanking();
-
-    /**
-     * Abstract winnerComunication
-     */
-    public abstract void winnerComunication();
 }
 

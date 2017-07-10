@@ -287,8 +287,10 @@ public class CouncilPalaceController extends AbstractController {
         super.unselectedRadioButton(familiar);
         chatArea.setAccessibleText(loginBuilder.getChat().toString());
 
-        if (familiarPlaced)
+        if (familiarPlaced) {
+            familiarBox.getChildren().remove(familiarBox.getChildren().size() - 1);
             familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
+        }
         familiarPlaced = false;
         for (boolean bo : privilegeChosen)
             bo = false;
