@@ -32,12 +32,7 @@ public class LeaderCardDraftContext extends AbstractContext {
     public void printHelp() {
         pBlue.println("Choose a leader card for the draft!");
         pBlue.println("type [leaderCardName] among these leaders avaible:\n");
-        for ( LeaderCard leaderCard : leaders ) {
-            pRed.println(leaderCard.getName());
-            pBlue.print("Requirements: ");pYellow.println(leaderCard.getRequirementsDescription());
-            pBlue.print("Effect Description:");pYellow.println(leaderCard.getCardDescription());
-            pYellow.println("");
-        }
+        super.showLeaderCardsAbstract(leaders);
     }
 
     /**

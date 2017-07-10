@@ -12,6 +12,9 @@ public class BuildImmediateEffects {
 	private HashMap<String, typeBuilder> typeHashMap;
 	private HashMap<String, PointsForEachCardBuilder> pointsForEachCardHasMap;
 
+	/**
+	 * constructor
+	 */
 	public BuildImmediateEffects(){
 		pointsForEachCardHasMap = new HashMap<>();
 		typeHashMap = new HashMap<>();

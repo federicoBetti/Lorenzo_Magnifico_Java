@@ -196,6 +196,10 @@ public abstract class AbstractContext {
 
     }
 
+    /**
+     * show leader
+     * @param leaderCards list of leader
+     */
     public void showLeaderCardsAbstract(List<LeaderCard> leaderCards) {
 
         for ( LeaderCard leaderCard : leaderCards ) {
@@ -206,6 +210,10 @@ public abstract class AbstractContext {
         }
     }
 
+    /**
+     * method
+     * @param territories list of territory
+     */
     public void showTerritoriesAbstract(List<TerritoryCard> territories) {
 
         int count1 = 1;
@@ -223,6 +231,10 @@ public abstract class AbstractContext {
         }
     }
 
+    /**
+     * metohd
+     * @param bonusTile bonus tile to show
+     */
     public void showBonusTileAbstract(Tile bonusTile) {
 
         pBlue.print(bonusTile.getTileNumber() + ") ");pRed.println("Production effects: ");
@@ -240,6 +252,10 @@ public abstract class AbstractContext {
         }
     }
 
+    /**
+     * abstract method
+     * @param buildings list of buildings
+     */
     public void showBuildingCardsAbstract(List<BuildingCard> buildings) {
 
         int count1 = 1;
