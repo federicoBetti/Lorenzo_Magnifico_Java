@@ -4,11 +4,14 @@ import project.client.ui.cli.Cli;
 import project.client.ui.cli.CliConstants;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
+import project.controller.cardsfactory.VenturesCard;
+import project.controller.cardsfactory.VenturesCost;
 import project.controller.effects.realeffects.Effects;
 import project.messages.TowerAction;
 import project.model.Tower;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -74,11 +77,25 @@ public class TakeBonusCard extends AbstractContext {
 
                 pBlue.print("Floor: "); pRed.println( j );
                 pBlue.print("Card name: "); pRed.println(allTowers[i][j].getCardOnThisFloor().getName());
-                pBlue.print("Card cost: ");pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
+
+                if ( allTowers[i][j].getCardOnThisFloor() instanceof VenturesCard) {
+                    VenturesCard card = (VenturesCard) allTowers[i][j].getCardOnThisFloor();
+                    pBlue.print("Card cost: ");
+                    List<VenturesCost> costs = card.getPossibleCost();
+                    for ( VenturesCost cost : costs )
+                        pYellow.print(cost.toScreen() + " ");
+                    pYellow.println("");
+                }
+
+                else {
+                    pBlue.print("Card cost: ");
+                    pYellow.println(allTowers[i][j].getCardOnThisFloor().getCost().toScreen());
+                    pYellow.println("");
+                }
             }
         }
 
-        pBlue.print("If you want to see the cards'effects type ");pRed.println("[show-cards-effects]");
+        pRed.println("Type ");pBlue.print("[help]");pRed.println("for watching the other commands.");
     }
 
     /**
@@ -123,9 +140,12 @@ public class TakeBonusCard extends AbstractContext {
         if( !(parameters[0].length() == 1) && !(Character.isDigit(parameters[0].charAt(0))))
             throw new InputException();
 
-        if (! (Integer.parseInt(parameters[0]) >= 0) && !(Integer.parseInt(parameters[0]) <= 3 ))
+        try {
+            if (Integer.parseInt(parameters[0]) < 0 || Integer.parseInt(parameters[0]) > 3)
+                throw new InputException();
+        } catch ( NumberFormatException e ){
             throw new InputException();
-
+        }
         checkTowerColour(parameters[1]);
 
     }
