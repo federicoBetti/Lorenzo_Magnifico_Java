@@ -20,7 +20,6 @@ import java.util.Map;
  */
 public abstract class AbstractContext {
     Cli cli;
-    private Actioner actioner;
     Map<String, Actioner> map;
     UnixColoredPrinter pYellow;
     UnixColoredPrinter pRed;
@@ -28,7 +27,6 @@ public abstract class AbstractContext {
 
     /**
      * Constructor
-     *
      * @param cli cli's reference
      */
     AbstractContext(Cli cli){
@@ -118,7 +116,7 @@ public abstract class AbstractContext {
      */
     public void doAction(String action) throws InputException, IOException {
         if( map.get(action) != null ) {
-            actioner = map.get(action);
+            Actioner actioner = map.get(action);
             actioner.action();
         } else
             mainContextMethod(action);
@@ -135,7 +133,7 @@ public abstract class AbstractContext {
      * method used by tower context and bonus tower context to display card effects
      * @param allTowers board towers
      */
-    public void showCardsEffectsTower(Tower[][] allTowers) {
+    void showCardsEffectsTower(Tower[][] allTowers) {
 
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
@@ -166,7 +164,7 @@ public abstract class AbstractContext {
      * method used by contexts to display card costs
      * @param allTowers board towers
      */
-    public void showCardCostTower(Tower[][] allTowers) {
+    void showCardCostTower(Tower[][] allTowers) {
 
         for (int i = 0; i < Constants.NUMBER_OF_TOWERS; i++ ) {
             pBlue.print("Tower: "); pRed.println(allTowers[i][i].getColour());
@@ -198,11 +196,17 @@ public abstract class AbstractContext {
 
     }
 
+
     /**
      * Functional interface with a void method action.
      */
     @FunctionalInterface
     public interface Actioner{
+        /**
+         * method that perform actions
+         * @throws InputException input exception
+         * @throws IOException IOexception
+         */
          void action() throws InputException, IOException;
     }
 
@@ -230,16 +234,5 @@ public abstract class AbstractContext {
         return pBlue;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
