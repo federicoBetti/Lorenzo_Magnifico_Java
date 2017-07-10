@@ -311,7 +311,8 @@ public class PersonalBoard implements Serializable{
 				wood = 0;
 			return;
 		}
-		if (woodToAdd + woodBonus < 0) return;
+		if (woodToAdd + woodBonus < 0)
+			return;
 		wood = wood + woodToAdd + woodBonus;
 	}
 

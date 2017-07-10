@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import project.model.Market;
 
 import java.util.ArrayList;
@@ -118,7 +119,7 @@ public class MarketController extends AbstractController {
         super.refresh();
         super.unselectedRadioButton(familiar);
         lastFamiliarPlaced.setImage(null);
-        chatArea.setAccessibleText(loginBuilder.getChat().toString());
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
         lastFamiliarPlaced.setImage(null);
     }
 

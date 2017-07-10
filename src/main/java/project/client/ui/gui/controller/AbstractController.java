@@ -439,8 +439,10 @@ public abstract class AbstractController {
             return false;
         }
         if (positionSelected){
-            if (allPosition.size()>1)
+            if (allPosition.size()>1) {
                 allPosition.remove(allPosition.size() - 1);
+                familiarBox.getChildren().remove(familiarBox.getChildren().size() - 1);
+            }
             else {
                 allPosition.get(0).setFamiliarName("");
             }placeFamiliar(allPosition,familiarBox);

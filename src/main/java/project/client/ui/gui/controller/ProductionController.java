@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import project.controller.cardsfactory.BuildingCard;
 import project.model.Production;
 
@@ -191,7 +192,7 @@ public class ProductionController extends AbstractController {
     public void refresh() {
         super.refresh();
         super.unselectedRadioButton(familiar);
-        chatArea.setAccessibleText(loginBuilder.getChat().toString());
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
 
         if (positionSelected) {
             FamiliarPosition f = allPosition.get(allPosition.size() - 1);

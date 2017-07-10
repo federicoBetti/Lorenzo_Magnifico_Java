@@ -40,7 +40,7 @@ public class ExchangeWoodFor implements ExchangeEffects {
     public BonusInteraction doEffect(PlayerHandler player) {
 
         if (player.getPersonalBoardReference().getWood() >= woodRequired) {
-            player.getPersonalBoardReference().setWood(player.getPersonalBoardReference().getWood() - woodRequired);
+            player.getPersonalBoardReference().addWood( - woodRequired);
 
 
             BonusInteraction returnFromEffect = addResources(resourceEarned, resourceRewardered, player);

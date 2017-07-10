@@ -95,7 +95,7 @@ public class CouncilPalaceController extends AbstractController {
     @FXML
     private ToggleGroup familiar;
 
-    String transparentStyle = "-fx-background-color: transparent;-fx-border-color: transparent; ";
+    private String transparentStyle = "-fx-background-color: transparent;-fx-border-color: transparent; ";
 
     /**
      * constructor
@@ -244,6 +244,7 @@ public class CouncilPalaceController extends AbstractController {
         if (familiarChosen.equals(""))
             return;
         if (familiarPlaced){
+            familiarBox.getChildren().remove(familiarBox.getChildren().size() - 1);
             if (familiarInTheCouncil.size() > 1)
                 familiarInTheCouncil.remove(familiarInTheCouncil.size() - 1);
             else {

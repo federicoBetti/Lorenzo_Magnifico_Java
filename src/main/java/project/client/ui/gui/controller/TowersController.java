@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import project.controller.Constants;
 import project.model.Tower;
 
@@ -167,11 +168,12 @@ public class TowersController extends AbstractController {
         super.refresh();
         super.unselectedRadioButton(familiar);
 
-        chatArea.setAccessibleText(loginBuilder.getChat().toString());
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
         lastFamiiarPlaced.setImage(null);
         if (floor != -1){
             myTower[towerColour][floor].setFamiliarName("");
         }
+        System.err.println("tower refresh");
         floor = -1;
         towerColour = -1;
         familiarChosen = "";
@@ -507,6 +509,7 @@ method called to zoom in the building card 2
      */
     @FXML
     private void takeCard() {
+        System.err.println("sto per fare una tower take normale");
         if (floor != -1){
             String towerColourString = getTowerColour(towerColour);
             lastFamiiarPlaced.setImage(null);
@@ -555,10 +558,11 @@ method called to zoom in the building card 2
     void takeBonusCard(String kindOfCard, String printBonusAction) {
         bonusAction = true;
 
+        this.bonusCardType = kindOfCard;
+        System.err.println("kind of card " + kindOfCard);
         writeOnChat(printBonusAction);
         writeOnChat("click on the position next to the card you want"); //attenione a quando vinee l'update dei familiari che potrebbe essere che non ci sono familairi disponibili
         blockButton();
-        this.bonusCardType = kindOfCard;
     }
 
     /**
@@ -582,13 +586,17 @@ method called to zoom in the building card 2
      * method called to perform a bonus take development card action
      */
     private void takeBonusCard() {
-        if (towerColour != -1 && floor != -1) {
+        System.out.println("tower color e floor " + towerColour + floor);
+        if (floor != -1) {
+            System.out.println("sto per mandare l'azione del bonus tower acion");
             String towerColourString = getTowerColour(towerColour);
+            System.err.println("toer string, bonus card type " + towerColourString + bonusCardType);
             if (towerColourString.equals(bonusCardType) || bonusCardType.equals(Constants.ALL_COLOURS)) {
+                System.out.println("sto per mandare l'azione del bonus tower acion");
                 lastFamiiarPlaced.setImage(null);
                 lastFamiiarPlaced = new ImageView();
+                System.out.println("sto per mandare l'azione del bonus tower acion");
                 mainController.takeBonusCardAction(floor, towerColourString);
-                unlockButton();
                 floor = -1;
                 towerColour = -1;
             }

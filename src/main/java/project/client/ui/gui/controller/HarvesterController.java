@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import project.controller.cardsfactory.TerritoryCard;
 import project.model.Harvester;
 
@@ -188,7 +189,7 @@ public class HarvesterController extends AbstractController {
     public void refresh(){
         super.refresh();
         super.unselectedRadioButton(familiar);
-        chatArea.setAccessibleText(loginBuilder.getChat().toString());
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
 
         if (positionSelected){
 

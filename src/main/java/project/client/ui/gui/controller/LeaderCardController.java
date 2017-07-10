@@ -8,6 +8,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import project.controller.cardsfactory.LeaderCard;
 
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class LeaderCardController extends AbstractController {
      */
     @Override
     public void refresh() {
-        chatArea.setAccessibleText(loginBuilder.getChat().toString());
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
     }
 
     /**

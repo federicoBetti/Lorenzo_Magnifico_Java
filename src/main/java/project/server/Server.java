@@ -73,12 +73,12 @@ public class Server {
      * @param player   playerHandler's reference
      */
     public void loginRequest(String nickname, PlayerHandler player) {
-
+/*
         try {
             createPlayerFile(nickname);
         } catch (IOException e) {
             UnixColoredPrinter.Logger.print(Constants.IO_EXCEPTION);
-        }
+        }*/
 
         if (nicknameAlreadyUsed(nickname)) {
             player.nicknameAlredyUsed();

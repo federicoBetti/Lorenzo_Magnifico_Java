@@ -562,6 +562,10 @@ public class MainController {
      */
     public void skipTurn() {
         myTurn = false;
+
+        Runnable a = () -> clientSetter.skipTurn();
+        new Thread(a).start();
+        
         endTurnContext = false;
         loginBuilder.writeOnMyChat("you have finished your turn\n");
 
@@ -570,8 +574,6 @@ public class MainController {
         harvesterController.unlockButton();
         productionController.unlockButton();
 
-        Runnable a = () -> clientSetter.skipTurn();
-        new Thread(a).start();
     }
 
     /**
@@ -940,6 +942,6 @@ public class MainController {
      * @param message message to show
      */
     public void disconnectionMessage(String message) {
-        Platform.runLater(() -> loginBuilder.writeOnMyChat(message));
+        Platform.runLater(() -> loginBuilder.writeOnMyChat(message + " is disconnect!\n"));
     }
 }

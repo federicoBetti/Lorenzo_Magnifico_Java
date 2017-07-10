@@ -132,6 +132,7 @@ public class ClientSetter {
      * @param towerColour towerColour as a string
      */
     public void takeBonusCardAction(int floor, String towerColour )  {
+        System.out.println("il thead per l'azione bonus è partito");
         client.takeBonusCardAction(floor, towerColour);
     }
 
