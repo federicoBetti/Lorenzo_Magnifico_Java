@@ -19,6 +19,7 @@ import project.model.Tile;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
@@ -59,10 +60,8 @@ public class Gui extends AbstractUI {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
             ge.registerFont(customFont);
-        } catch (IOException | FontFormatException e) {
+        } catch (IOException | FontFormatException | URISyntaxException e) {
             UnixColoredPrinter.Logger.print(Constants.FONT_EXCEPTION);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
@@ -73,7 +72,7 @@ public class Gui extends AbstractUI {
      * @return
      * @throws Exception
      */
-    public Font getFont(String fileName) throws Exception {
+    public Font getFont(String fileName) throws URISyntaxException, IOException, FontFormatException {
         String path = "/customFont/" + fileName;
         URL url = getClass().getResource(path);
         return Font.createFont(Font.TRUETYPE_FONT, new File(url.toURI()));

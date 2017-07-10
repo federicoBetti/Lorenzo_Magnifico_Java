@@ -34,7 +34,7 @@
                 <ImageView fx:id="territory5" fitHeight="118.14999999999999" fitWidth="73.1" onMouseClicked="#zoomOnTerritory5" pickOnBounds="true" preserveRatio="true" />
             </children>
         </HBox>
-        <HBox fx:id="characterCard" layoutX="34.85" layoutY="328.95" prefHeight="154.7" prefWidth="482.8" spacing="10.2">
+        <HBox fx:id="characterCard" layoutX="34.85" layoutY="182.75" prefHeight="154.7" prefWidth="482.8" spacing="10.2">
             <children>
                 <ImageView fx:id="character0" fitHeight="118.14999999999999" fitWidth="73.1" onMouseClicked="#zoomOnCharacter0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fx:id="character1" fitHeight="118.14999999999999" fitWidth="73.1" onMouseClicked="#zoomOnCharacter1" pickOnBounds="true" preserveRatio="true" />
@@ -44,7 +44,7 @@
                 <ImageView fx:id="character5" fitHeight="118.14999999999999" fitWidth="73.1" onMouseClicked="#zoomOnCharacter5" pickOnBounds="true" preserveRatio="true" />
             </children>
         </HBox>
-        <HBox fx:id="buildingCard" layoutX="36.55" layoutY="182.75" prefHeight="154.7" prefWidth="482.8" spacing="10.2">
+        <HBox fx:id="buildingCard" layoutX="36.55" layoutY="328.95" prefHeight="154.7" prefWidth="482.8" spacing="10.2">
             <children>
                 <ImageView fx:id="building0" fitHeight="118.14999999999999" fitWidth="73.1" onMouseClicked="#zoomOnBuilding0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fx:id="building1" fitHeight="118.14999999999999" fitWidth="73.1" onMouseClicked="#zoomOnBuilding1" pickOnBounds="true" preserveRatio="true" />

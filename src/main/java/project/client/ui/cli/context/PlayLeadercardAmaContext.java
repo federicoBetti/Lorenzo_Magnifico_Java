@@ -35,12 +35,7 @@ public class PlayLeadercardAmaContext extends AbstractContext {
      * This method prints the player's leader cards
      */
     private void showLeaderCards() {
-        for ( LeaderCard leaderCard : leaderCards ) {
-            pRed.println(leaderCard.getName());
-            pBlue.print("Requirements: ");pYellow.println(leaderCard.getRequirementsDescription());
-            pBlue.print("Effect Description:");pYellow.println(leaderCard.getCardDescription());
-            pYellow.println("");
-        }
+        super.showLeaderCardsAbstract(leaderCards);
     }
 
     /**

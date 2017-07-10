@@ -45,28 +45,28 @@ public class HarvesterController extends AbstractController {
 
 
     @FXML
-    private Label numberOfCoins;
-
-    @FXML
-    private Label numberOfWood;
-
-    @FXML
     private Label numberOfStone;
 
     @FXML
     private Label numberOfServants;
 
     @FXML
-    private  ImageView imageFamiliarNull;
+    private Label numberOfCoins;
 
     @FXML
-    private  ImageView imageFamiliarBlack;
+    private Label numberOfWood;
+
 
     @FXML
     private  ImageView imageFamiliarWhite;
 
     @FXML
     private  ImageView imageFamiliarOrange;
+    @FXML
+    private  ImageView imageFamiliarNull;
+
+    @FXML
+    private  ImageView imageFamiliarBlack;
 
 
     @FXML
@@ -176,10 +176,10 @@ public class HarvesterController extends AbstractController {
     @Override
     public void updateResources(int coins, int wood, int stone, int servants) {
 
-        updateOneResource(coins,numberOfCoins);
-        updateOneResource(wood,numberOfWood);
         updateOneResource(stone,numberOfStone);
         updateOneResource(servants,numberOfServants);
+        updateOneResource(coins,numberOfCoins);
+        updateOneResource(wood,numberOfWood);
     }
 
     /**
@@ -189,7 +189,6 @@ public class HarvesterController extends AbstractController {
     public void refresh(){
         super.refresh();
         super.unselectedRadioButton(familiar);
-        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
 
         if (positionSelected){
             familiarBox.getChildren().remove(familiarBox.getChildren().size() - 1);
@@ -201,6 +200,7 @@ public class HarvesterController extends AbstractController {
 
         }
         positionSelected = false;
+        chatArea.setContent(new Text(loginBuilder.getChat().toString()));
     }
 
     /**

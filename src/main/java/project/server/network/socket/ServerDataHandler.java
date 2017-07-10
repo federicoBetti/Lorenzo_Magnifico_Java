@@ -4,6 +4,7 @@ package project.server.network.socket;
  * Created by raffaelebongo on 21/05/17.
  */
 
+import project.PrinterClass.UnixColoredPrinter;
 import project.controller.Constants;
 import project.server.network.exception.CanUseBothPaymentMethodException;
 import project.server.network.exception.CantDoActionException;
@@ -39,7 +40,6 @@ class ServerDataHandler {
     private void loadMap(){
         map.put(Constants.LOGIN_REQUEST, this::loginRequest );
         map.put(Constants.TAKE_DEV_CARD, this::takeDevCard );
-        /*map.put(Constants.CHOOSE_PAYMENT_FOR_VENTURE_CARD, this::choosePaymentForVentureCard );*/
         map.put(Constants.HARVESTER, this:: harvesterRequest );
         map.put(Constants.PRODUCTION, this:: productionRequest);
         map.put(Constants.GO_TO_MARKET, this:: goToMarketRequest );
@@ -48,7 +48,6 @@ class ServerDataHandler {
         map.put(Constants.DISCARD_LEADER_CARD, this:: discardLeaderCard );
         map.put(Constants.ROLL_DICES, this::rollDices );
         map.put(Constants.GO_TO_COUNCIL_PALACE, this::goToCouncilPalaceRequest );
-        /*map.put(Constants.TAKE_PRIVILEDGE, this::takePriviledgeRequest );*/
         map.put(Constants.PRAY, this::prayRequest );
         map.put(Constants.DONT_PRAY, this::dontPrayRequest );
         map.put(Constants.SKIP_TURN, this::skipTurn );
@@ -75,7 +74,7 @@ class ServerDataHandler {
             String nickname = (String)objectInputStream.readObject();
             socketPlayerHandler.newGame(nickname);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
         }
 
     }
@@ -104,7 +103,7 @@ class ServerDataHandler {
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void skipTurn() {//todo cercare di sicnronizzare qui
+    private void skipTurn() {
         socketPlayerHandler.socketSkipTurn();
     }
     /**
@@ -120,15 +119,10 @@ class ServerDataHandler {
         socketPlayerHandler.pray();
     }
 
- /*   private void takePriviledgeRequest() throws IOException, ClassNotFoundException {
-        socketPlayerHandler.takePrivilegeRequest();
-    } */
-
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
     private void goToCouncilPalaceRequest() throws IOException, ClassNotFoundException {
-        System.out.println("sono nella handle del mercato");
         socketPlayerHandler.goToCouncilPalaceRequest();
     }
 
@@ -142,14 +136,14 @@ class ServerDataHandler {
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void discardLeaderCard() throws CantDoActionException, IOException, ClassNotFoundException {
+    private void discardLeaderCard() throws  IOException, ClassNotFoundException {
         socketPlayerHandler.discardLeaderCardRequest();
     }
 
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void playLeaderCardRequest() throws CantDoActionException, IOException, ClassNotFoundException {
+    private void playLeaderCardRequest() throws  IOException, ClassNotFoundException {
         socketPlayerHandler.playLeaderCardRequest();
     }
 
@@ -163,32 +157,29 @@ class ServerDataHandler {
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void goToMarketRequest() throws CantDoActionException, IOException, ClassNotFoundException {
+    private void goToMarketRequest() throws  IOException, ClassNotFoundException {
         socketPlayerHandler.goToMarketRequest();
     }
 
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void productionRequest() throws CantDoActionException, IOException, ClassNotFoundException {
+    private void productionRequest() throws IOException, ClassNotFoundException {
         socketPlayerHandler.productionRequest();
     }
 
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void harvesterRequest() throws IOException, ClassNotFoundException, CantDoActionException {
+    private void harvesterRequest() throws IOException, ClassNotFoundException{
         socketPlayerHandler.harvesterRequest();
     }
 
-   /* private void choosePaymentForVentureCard() throws IOException, ClassNotFoundException {
-        socketPlayerHandler.choosePaymentForVentureCard();
-    }*/
 
     /**
      * Call the corrisponding method on SocketPlayerHandler class
      */
-    private void takeDevCard() throws ClassNotFoundException, CantDoActionException, CanUseBothPaymentMethodException, IOException {
+    private void takeDevCard() throws ClassNotFoundException, IOException {
         socketPlayerHandler.takeDevCard();
     }
 

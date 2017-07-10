@@ -38,19 +38,7 @@ public class BonusProductionContext extends AbstractContext {
      * This method prints the player's building cards
      */
     private void showBuildingCards() {
-        int count1 = 1;
-        for (BuildingCard card : myBuildingCards) {
-            pBlue.print(count1 + ") Card name: ");
-            pRed.println(card.getName());
-            pBlue.println("Permanent Effects: ");
-            int count2 = 1;
-            for (Effects effect : card.getPermanentCardEffects()) {
-                pBlue.print(count2 + ") ");
-                pYellow.println(effect.toScreen());
-                count2++;
-            }
-            count1++;
-        }
+        super.showBuildingCardsAbstract(myBuildingCards);
     }
 
     /**

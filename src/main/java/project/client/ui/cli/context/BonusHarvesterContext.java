@@ -37,20 +37,7 @@ public class BonusHarvesterContext extends AbstractContext {
      * This method prints the player's territory cards
      */
     private void showTerritories() {
-
-        int count1 = 1;
-        for (TerritoryCard card : territories) {
-            pRed.print(count1 + ") "); pBlue.println( "Card name: ");
-            pRed.println(card.getName());
-            pBlue.println("Permanent Effects: ");
-            int count2 = 1;
-            for (Effects effect : card.getPermanentCardEffects()) {
-                pBlue.print(count2 + ") ");
-                pYellow.println(effect.toScreen());
-                count2++;
-            }
-            count1++;
-        }
+super.showTerritoriesAbstract(territories);
     }
 
     /**

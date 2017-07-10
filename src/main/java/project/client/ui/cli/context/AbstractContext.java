@@ -5,9 +5,9 @@ import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.cli.Cli;
 import project.client.ui.cli.InputException;
 import project.controller.Constants;
-import project.controller.cardsfactory.VenturesCard;
-import project.controller.cardsfactory.VenturesCost;
+import project.controller.cardsfactory.*;
 import project.controller.effects.realeffects.Effects;
+import project.model.Tile;
 import project.model.Tower;
 
 import java.io.IOException;
@@ -194,6 +194,67 @@ public abstract class AbstractContext {
             }
         }
 
+    }
+
+    public void showLeaderCardsAbstract(List<LeaderCard> leaderCards) {
+
+        for ( LeaderCard leaderCard : leaderCards ) {
+            pRed.println(leaderCard.getName());
+            pBlue.print("Requirements: ");pYellow.println(leaderCard.getRequirementsDescription());
+            pBlue.print("Effect Description:");pYellow.println(leaderCard.getCardDescription());
+            pYellow.println("");
+        }
+    }
+
+    public void showTerritoriesAbstract(List<TerritoryCard> territories) {
+
+        int count1 = 1;
+        for (TerritoryCard card : territories) {
+            pRed.print(count1 + ") "); pBlue.println( "Card name: ");
+            pRed.println(card.getName());
+            pBlue.println("Permanent Effects: ");
+            int count2 = 1;
+            for (Effects effect : card.getPermanentCardEffects()) {
+                pBlue.print(count2 + ") ");
+                pYellow.println(effect.toScreen());
+                count2++;
+            }
+            count1++;
+        }
+    }
+
+    public void showBonusTileAbstract(Tile bonusTile) {
+
+        pBlue.print(bonusTile.getTileNumber() + ") ");pRed.println("Production effects: ");
+
+        int i = 1;
+        for ( Effects effect : bonusTile.takeProductionResource() ){
+            pYellow.println( i + ") " + effect.toScreen());
+            i++;
+        }
+        pRed.println("\nHarvester Bonus: ");
+        int j = 1;
+        for ( Effects effect : bonusTile.takeHarvesterResource() ){
+            pYellow.println( j + ") " + effect.toScreen());
+            j++;
+        }
+    }
+
+    public void showBuildingCardsAbstract(List<BuildingCard> buildings) {
+
+        int count1 = 1;
+        for (BuildingCard card : buildings) {
+            pBlue.print(count1 + ") Card name: ");
+            pRed.println(card.getName());
+            pBlue.println("Permanent Effects: ");
+            int count2 = 1;
+            for (Effects effect : card.getPermanentCardEffects()) {
+                pBlue.print(count2 + ") ");
+                pYellow.println(effect.toScreen());
+                count2++;
+            }
+            count1++;
+        }
     }
 
 

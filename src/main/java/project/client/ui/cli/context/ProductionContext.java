@@ -46,38 +46,14 @@ public class ProductionContext extends AbstractContext {
      * This method prints the player's building cards
      */
     private void showBuildingCards() {
-        int count1 = 1;
-        for (BuildingCard card : buildings) {
-            pBlue.print(count1 + ") Card name: ");
-            pRed.println(card.getName());
-            pBlue.println("Permanent Effects: ");
-            int count2 = 1;
-            for (Effects effect : card.getPermanentCardEffects()) {
-                pBlue.print(count2 + ") ");
-                pYellow.println(effect.toScreen());
-                count2++;
-            }
-            count1++;
-        }
+        super.showBuildingCardsAbstract(buildings);
     }
 
     /**
      * This method prints the player's bonus tile effects
      */
     private void showBonusTile() {
-        pBlue.print(bonusTile.getTileNumber() + ") ");pRed.println("Production effects: ");
-
-        int i = 1;
-        for ( Effects effect : bonusTile.takeProductionResource() ){
-            pYellow.println( i + ") " + effect.toScreen());
-            i++;
-        }
-        pRed.println("\nHarvester Bonus: ");
-        int j = 1;
-        for ( Effects effect : bonusTile.takeHarvesterResource() ){
-            pYellow.println( j + ") " + effect.toScreen());
-            j++;
-        }
+        super.showBonusTileAbstract(bonusTile);
     }
 
     /**
