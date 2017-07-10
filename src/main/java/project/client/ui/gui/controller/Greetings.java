@@ -21,12 +21,8 @@ public class Greetings {
      * method used to update text from the file
      */
     void updateText() {
-
         String s = getFile();
         scroll.setText(s);
-        scroll.setBackground(Background.EMPTY);
-
-
     }
 
     /**

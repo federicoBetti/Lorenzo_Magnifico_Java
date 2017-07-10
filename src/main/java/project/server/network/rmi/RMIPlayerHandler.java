@@ -1,6 +1,6 @@
 package project.server.network.rmi;
 
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.network.rmi.RMIServerToClientInterface;
 import project.controller.Constants;

@@ -1,8 +1,10 @@
-package project.client.ui;
+package project.client.ui.gui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import project.PlayerFile;
+import project.client.ui.AbstractUI;
+import project.client.ClientSetter;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.ui.gui.controller.LoginBuilder;
 import project.client.ui.gui.controller.MainController;
@@ -17,6 +19,7 @@ import project.model.Tile;
 
 import java.awt.*;
 import java.io.*;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -30,7 +33,7 @@ public class Gui extends AbstractUI {
      * constructor
      * @param clientSetter client setter
      */
-    Gui(ClientSetter clientSetter) {
+    public Gui(ClientSetter clientSetter) {
         this.clientSetter = clientSetter;
     }
 
@@ -52,18 +55,33 @@ public class Gui extends AbstractUI {
     private void uploadFont() {
 
 
-        InputStream is = getClass().getResourceAsStream("/customFont/Aro.TTF");
+        InputStream is = getClass().getResourceAsStream("/customFont/LucidaBlackletter.ttf");
 
         try {
             //create the font to use. Specify the size!
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT,is);
+            Font customFont = getFont("LucidaBlackletterRegular.ttf");
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
+            System.err.println(customFont.getFontName());
             ge.registerFont(customFont);
         } catch (IOException | FontFormatException e) {
             UnixColoredPrinter.Logger.print(Constants.FONT_EXCEPTION);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+    }
+
+    /**
+     * methos used to get fot
+     * @param fileName
+     * @return
+     * @throws Exception
+     */
+    public Font getFont(String fileName) throws Exception {
+        String path = "/customFont/" + fileName;
+        URL url = getClass().getResource(path);
+        return Font.createFont(Font.TRUETYPE_FONT, new File(url.toURI()));
     }
 
     /**

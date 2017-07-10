@@ -1,10 +1,10 @@
 package project.client.ui.cli;
 
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.client.SingletonKeyboard;
 import project.client.ui.AbstractUI;
-import project.client.ui.ClientSetter;
+import project.client.ClientSetter;
 import project.client.ui.cli.context.*;
 import project.controller.Constants;
 import project.controller.cardsfactory.LeaderCard;

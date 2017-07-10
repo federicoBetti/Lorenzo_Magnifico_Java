@@ -338,7 +338,6 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
             builder.attribute(Attribute.BOLD);
             builder.foreground(FColor.RED);
             p = new UnixColoredPrinter(builder);
-            System.err.println("creato il logger");
         }
 
         /**

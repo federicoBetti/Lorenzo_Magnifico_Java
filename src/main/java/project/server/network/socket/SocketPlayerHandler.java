@@ -1,6 +1,6 @@
 package project.server.network.socket;
 
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.controller.cardsfactory.BuildingCard;
 import project.controller.Constants;

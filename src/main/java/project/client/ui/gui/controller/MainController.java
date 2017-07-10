@@ -1,9 +1,9 @@
 package project.client.ui.gui.controller;
 
 import javafx.application.Platform;
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
-import project.client.ui.ClientSetter;
+import project.client.ClientSetter;
 import project.client.ui.cli.CliConstants;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.updatesmessages.ExcommunicationTaken;

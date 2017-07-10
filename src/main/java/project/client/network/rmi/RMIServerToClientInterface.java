@@ -1,6 +1,6 @@
 package project.client.network.rmi;
 
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.*;
 import project.messages.updatesmessages.Updates;
@@ -9,7 +9,6 @@ import project.model.Tile;
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

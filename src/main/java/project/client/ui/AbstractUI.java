@@ -1,7 +1,6 @@
 package project.client.ui;
 
-import project.PlayerFile;
-import project.client.ui.cli.InputException;
+import project.server.PlayerFile;
 import project.controller.cardsfactory.LeaderCard;
 import project.messages.BonusProductionOrHarvesterAction;
 import project.messages.TakePrivilegesAction;

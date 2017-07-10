@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import project.PlayerFile;
+import project.server.PlayerFile;
 
 import java.util.List;
 

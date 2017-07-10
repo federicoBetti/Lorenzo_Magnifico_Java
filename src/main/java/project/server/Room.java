@@ -1,7 +1,6 @@
 package project.server;
 
 import com.google.gson.Gson;
-import project.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
 import project.configurations.Configuration;
 import project.configurations.TimerSettings;

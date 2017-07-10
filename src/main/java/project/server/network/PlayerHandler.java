@@ -1,7 +1,7 @@
 package project.server.network;
 
 import com.google.gson.Gson;
-import project.PlayerFile;
+import project.server.PlayerFile;
 import project.controller.cardsfactory.*;
 import project.controller.checkfunctions.AllCheckFunctions;
 import project.controller.checkfunctions.BasicCheckFunctions;

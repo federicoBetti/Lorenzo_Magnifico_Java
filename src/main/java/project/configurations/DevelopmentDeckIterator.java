@@ -1,4 +1,4 @@
-package project;
+package project.configurations;
 
 import project.controller.Constants;
 
@@ -69,3 +69,4 @@ public class DevelopmentDeckIterator  {
         return cards;
     }
 }
+

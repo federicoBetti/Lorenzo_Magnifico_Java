@@ -1,9 +1,10 @@
-package project.client.ui;
+package project.client;
 
 import com.diogonunes.jcdp.color.api.Ansi;
-import project.PlayerFile;
+import project.client.ui.AbstractUI;
+import project.client.ui.gui.Gui;
+import project.server.PlayerFile;
 import project.PrinterClass.UnixColoredPrinter;
-import project.client.SingletonKeyboard;
 import project.client.network.AbstractClient;
 import project.client.clientexceptions.ClientConnectionException;
 import project.client.network.rmi.RMIClient;
