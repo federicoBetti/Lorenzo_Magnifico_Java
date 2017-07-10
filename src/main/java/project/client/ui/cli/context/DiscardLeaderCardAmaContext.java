@@ -15,6 +15,12 @@ import java.util.Map;
 public class DiscardLeaderCardAmaContext extends AbstractContext {
     List<LeaderCard> leaderCards;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param leaderCards leader cards' list
+     */
     public DiscardLeaderCardAmaContext(Cli cli, List<LeaderCard> leaderCards) {
         super(cli);
         this.leaderCards = leaderCards;

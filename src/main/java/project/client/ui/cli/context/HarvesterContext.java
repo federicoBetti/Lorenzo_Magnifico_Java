@@ -21,6 +21,14 @@ public class HarvesterContext extends AbstractContext {
     Tile bonusTile;
     List<TerritoryCard> territories;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param harvesterZone harvester's zone
+     * @param bonusTile bonusTile's reference
+     * @param territories territories' reference
+     */
     public HarvesterContext(Cli cli, List<Harvester> harvesterZone, Tile bonusTile, List<TerritoryCard> territories ){
         super(cli);
         this.harvesterZone = harvesterZone;

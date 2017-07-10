@@ -7,6 +7,11 @@ import project.server.network.PlayerHandler;
  */
 public class DontPayForTerritories extends CheckFunctionsDecorator {
 
+    /**
+     * Constructor
+     *
+     * @param allCheckFunctions allCheckFunction's reference
+     */
     public DontPayForTerritories(AllCheckFunctions allCheckFunctions){
         super(allCheckFunctions);
     }

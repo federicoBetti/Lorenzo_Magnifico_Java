@@ -34,6 +34,11 @@ public class ClientSetter {
     private FamilyMember[] uiFamilyMembers;
     private String nickname;
 
+    /**
+     * Constructor
+     *
+     * @param kindOfUI kind of ui string
+     */
     public ClientSetter(String kindOfUI ) {
         uiBoard = new Board();
         uiPersonalBoard = new PersonalBoard();
@@ -110,6 +115,12 @@ public class ClientSetter {
     }
 
 
+    /**
+     * This method set the connection type
+     *
+     * @param connectionType connection tyoe
+     * @param IP ip choosen
+     */
     public void setConnectionType(String connectionType, String IP) {
         switch (connectionType) {
             case "socket":

@@ -13,6 +13,12 @@ public class ImmediatePriviledgesContext extends AbstractContext {
     private int[] priviledgesTakenInArow;
     private TakePrivilegesAction numberOfpriviledges;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param numberOfpriviledges object that contains the immediate privilege action's characteristics
+     */
     public ImmediatePriviledgesContext(Cli cli, TakePrivilegesAction numberOfpriviledges) {
         super(cli);
         map.put(CliConstants.EXIT, this:: exit );

@@ -16,6 +16,13 @@ import java.util.Map;
 public class TowersContext extends AbstractContext {
 
     private Tower[][] allTowers;
+
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param allTowers allTower's reference
+     */
     public TowersContext(Cli cli, Tower[][] allTowers) {
         super(cli);
         this.allTowers = allTowers;

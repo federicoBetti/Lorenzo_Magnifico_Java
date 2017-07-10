@@ -10,6 +10,11 @@ import java.io.IOException;
  */
 public class WaitingForYourTurnContext extends AbstractContext {
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public WaitingForYourTurnContext(Cli cli) {
         super(cli);
         printHelp();

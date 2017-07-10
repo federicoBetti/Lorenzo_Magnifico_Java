@@ -18,11 +18,22 @@ public class VenturesCost implements Cost, Serializable {
 
     private int militaryCost;
 
-
+    /**
+     * Constructor
+     */
     public VenturesCost() {
 
     }
 
+    /**
+     * Constructor
+     *
+     * @param stoneRequired stoneRequired
+     * @param woodRequired woodRequired
+     * @param coinsRequired coinsRequired
+     * @param militaryRequired militaryRequired
+     * @param militaryCost militaryCost
+     */
     public VenturesCost(int stoneRequired, int woodRequired, int coinsRequired, int militaryRequired, int militaryCost) {
         this.stoneRequired = stoneRequired;
         this.woodRequired = woodRequired;

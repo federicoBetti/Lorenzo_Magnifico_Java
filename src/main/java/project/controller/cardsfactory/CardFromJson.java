@@ -8,6 +8,9 @@ public class CardFromJson {
     private ImmediateEffectsFromJson immediateEffect;
     private PermanentEffectFromJson permanentEffect;
 
+    /**
+     * Constructor
+     */
     public CardFromJson(){
 
        this.immediateEffect = new ImmediateEffectsFromJson();

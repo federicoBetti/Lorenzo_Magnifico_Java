@@ -13,11 +13,20 @@ public class TerritoryCost implements Cost, Serializable {
 
     int diceCost;
 
-
+    /**
+     * Constructor
+     */
     TerritoryCost() {
         //da fare
     }
 
+    /**
+     * Constructor
+     *
+     * @param woodRequired woodRequired
+     * @param stoneRequired stoneRequired
+     * @param diceCost diceCost
+     */
     public TerritoryCost(int woodRequired, int stoneRequired, int diceCost) {
         this.woodRequired = woodRequired;
         this.stoneRequired = stoneRequired;

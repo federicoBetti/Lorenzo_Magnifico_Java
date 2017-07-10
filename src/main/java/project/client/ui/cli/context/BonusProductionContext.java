@@ -18,6 +18,13 @@ public class BonusProductionContext extends AbstractContext {
     private BonusProductionOrHarvesterAction bonusProd;
     List<BuildingCard> myBuildingCards;
 
+    /**
+     * Constructor
+     *
+     * @param bonusProd object that contains the characteristics of the bonus production
+     * @param cli cli's reference
+     * @param myBuildingCards list of my buildings card
+     */
     public BonusProductionContext(BonusProductionOrHarvesterAction bonusProd, Cli cli, List<BuildingCard> myBuildingCards ) {
         super(cli);
         map.put(CliConstants.SHOW_BUILDING_CARDS, this:: showBuildingCards );

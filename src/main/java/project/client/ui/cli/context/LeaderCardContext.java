@@ -15,6 +15,12 @@ import java.util.Map;
 public class LeaderCardContext extends AbstractContext {
     List<LeaderCard> myLeadersCard;
 
+    /**
+     * Constrcutor
+     *
+     * @param cli cli's reference
+     * @param myLeadersCard list of my leader cards
+     */
     public LeaderCardContext(Cli cli, List<LeaderCard> myLeadersCard){
         super(cli);
         this.myLeadersCard = myLeadersCard;

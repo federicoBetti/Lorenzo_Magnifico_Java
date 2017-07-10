@@ -13,6 +13,11 @@ import java.util.Map;
  */
 public class TimerDelayedContext extends AbstractContext {
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public TimerDelayedContext(Cli cli) {
         super(cli);
         map.put(Constants.RECONNECT, this:: reconnect );

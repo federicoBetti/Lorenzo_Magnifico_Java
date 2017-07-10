@@ -11,6 +11,12 @@ import java.io.IOException;
 public class SetIPaddressContext extends AbstractContext {
     String kindOfConnection;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param kindOfConnection kind of connection
+     */
     public SetIPaddressContext(Cli cli, String kindOfConnection) {
         super(cli);
         this.kindOfConnection = kindOfConnection;

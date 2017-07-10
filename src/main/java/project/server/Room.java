@@ -52,6 +52,11 @@ public class Room {
     boolean draftTime = false;
 
 
+    /**
+     * Constructor
+     *
+     * @param server server's reference
+     */
     public Room(Server server) {
         playerAllSupportFunctionsMap = new HashMap<>();
         nicknamePlayersMap = new HashMap<>();
@@ -112,7 +117,7 @@ public class Room {
      *
      * @return the number of players on
      */
-    public int numberOfPlayerOn() {
+    int numberOfPlayerOn() {
         int count = 0;
         for (Map.Entry<String, PlayerHandler> entry : nicknamePlayersMap.entrySet())
             if (entry.getValue().isOn())
@@ -276,7 +281,7 @@ public class Room {
     private void resetPlayers(PlayerHandler player) {
         Configuration configuration = new Configuration();
             try {
-
+                player.setPersonalBoardReference(new PersonalBoard());
                 player.setScore(new Score());
                 configuration.loadFamilyMembers(player);
             } catch (FileNotFoundException e) {
@@ -460,8 +465,6 @@ public class Room {
         listsForDraft.add(firstList);
         return listsForDraft;
     }
-
-    //todo c'è una riga di shuffle commentata
 
     /**
      * This method create the list of lists for the leaders drafting
@@ -657,6 +660,11 @@ public class Room {
         this.timer = timer;
     }
 
+    /**
+     * Get nicknamePlayersMap
+     *
+     * @return nicknamePlayersMap
+     */
     public Map<String, PlayerHandler> getNicknamePlayersMap() {
         return nicknamePlayersMap;
     }

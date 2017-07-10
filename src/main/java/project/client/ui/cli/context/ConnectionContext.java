@@ -9,6 +9,12 @@ import java.io.IOException;
  * This class is a context openend when is asked to the player to choose the kind of connection
  */
 public class ConnectionContext extends AbstractContext {
+
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public ConnectionContext(Cli cli) {
         super(cli);
         printHelp();

@@ -10,6 +10,11 @@ import java.io.IOException;
  */
 public class WaitingForMatchStart extends AbstractContext {
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public WaitingForMatchStart(Cli cli) {
        super(cli);
        printHelp();

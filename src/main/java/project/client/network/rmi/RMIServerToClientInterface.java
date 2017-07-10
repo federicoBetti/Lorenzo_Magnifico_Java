@@ -147,6 +147,12 @@ public interface RMIServerToClientInterface extends Remote, Serializable{
      */
     void afterGameIfTemporaryOff() throws RemoteException;
 
+    /**
+     * abstract disconectionNotification
+     *
+     * @param name name
+     * @throws RemoteException remote exception
+     */
     void disconectionNotification(String name) throws RemoteException;
 }
 

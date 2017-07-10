@@ -15,8 +15,21 @@ public class CharacterCard extends DevelopmentCard implements Serializable{
 
     private CharactersCost cardCost;
 
+    /**
+     * Constructor
+     */
     public CharacterCard(){}
 
+    /**
+     * Constructor
+     *
+     * @param name card's name
+     * @param period period's number
+     * @param choicePe boolean that says if the card has two effects alternatively
+     * @param cost card's cost
+     * @param immediateEffects card's immediate effect
+     * @param permanentEffects card's permanent effect
+     */
     public CharacterCard(String name, int period, boolean choicePe, CharactersCost cost, List<TrisIE> immediateEffects, List<PokerPE> permanentEffects) {
         super(name, period, choicePe, immediateEffects, permanentEffects);
         this.cardCost = cost;

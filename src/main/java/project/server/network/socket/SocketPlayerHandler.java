@@ -37,6 +37,13 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
     private final transient Object token1;
     private boolean firstConnection;
 
+    /**
+     * Constructor
+     *
+     * @param socketServer socketServer's reference
+     * @param socket socket's reference
+     * @throws IOException Signals that an I/O exception of some sort has occurred
+     */
     public SocketPlayerHandler(SocketServer socketServer, Socket socket) throws IOException {
         super();
         firstConnection = true;
@@ -91,13 +98,14 @@ public class SocketPlayerHandler extends PlayerHandler implements Runnable {
 
         } catch (CantDoActionException e) {
             cantDoAction();
-        } catch (CanUseBothPaymentMethodException e) {      //todo questa deve esserci?
+        } catch (CanUseBothPaymentMethodException e) {
             canUseBothPaymentMethod();
-        } catch (IOException e) {   //todo queste due eccezioni qui
+        } catch (IOException e) {
             broadcastDisconnessioneMessage(this);
             this.setOn(false);
         } catch (ClassNotFoundException e) {
             UnixColoredPrinter.Logger.print(Constants.CONNECTION_EXCEPTION);
+
         }
         closeSocket(objectInputStream);
         closeSocket(objectOutputStream);

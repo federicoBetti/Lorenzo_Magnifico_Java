@@ -5,6 +5,9 @@ package project.client.ui.cli;
  */
 public class InputException extends Exception {
 
+    /**
+     * Constructor
+     */
     public InputException(){
         super();
     }

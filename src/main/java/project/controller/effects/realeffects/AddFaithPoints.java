@@ -10,6 +10,11 @@ import project.server.network.PlayerHandler;
 public class AddFaithPoints implements Effects {
     private int quantity;
 
+    /**
+     * Constructor
+     *
+     * @param quantity faith points to add
+     */
     public AddFaithPoints (int quantity){
         this.quantity = quantity;
     }

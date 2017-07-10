@@ -21,6 +21,14 @@ public class PokerPE extends TrisIE {
         super(type, parameter, quantity);
     }
 
+    /**
+     * constructor
+     * @param effectCost parameter constructor
+     * @param resourceEarnedFromExchange parameter constructor
+     * @param type parameter constructor
+     * @param parameter parameter constructor
+     * @param quantity parameter constructor
+     */
     public PokerPE(TotalCost effectCost, String resourceEarnedFromExchange, String type, String parameter, int quantity) {
         super(type, parameter, quantity);
         this.resourceEarnedFromExchange = resourceEarnedFromExchange;

@@ -10,6 +10,11 @@ import java.io.IOException;
  */
 public class BothPaymentsVentureCardsContext extends AbstractContext {
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public BothPaymentsVentureCardsContext(Cli cli) {
         super(cli);
         printHelp();

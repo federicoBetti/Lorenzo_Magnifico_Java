@@ -26,6 +26,11 @@ public abstract class AbstractContext {
     UnixColoredPrinter pRed;
     UnixColoredPrinter pBlue;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     AbstractContext(Cli cli){
         this.cli = cli;
         map = new HashMap<>();

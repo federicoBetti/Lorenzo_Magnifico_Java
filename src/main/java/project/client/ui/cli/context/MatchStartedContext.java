@@ -9,6 +9,12 @@ import java.io.IOException;
  * This class is a context opened when the match starts
  */
 public class MatchStartedContext extends AbstractContext {
+
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public MatchStartedContext(Cli cli) {
         super(cli);
         printHelp();

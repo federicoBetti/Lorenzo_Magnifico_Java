@@ -40,7 +40,11 @@ public class Cli extends AbstractUI {
     private FamilyMember[] myFamilymembers;
     private volatile BlockingDeque<String> choiceQueue;
 
-
+    /**
+     * Constructor
+     *
+     * @param clientSetter clientSetter's reference
+     */
     public Cli(ClientSetter clientSetter) {
         firstRound = true;
         this.clientSetter = clientSetter;

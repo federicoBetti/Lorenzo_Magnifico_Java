@@ -3,6 +3,7 @@ package project.configurations;
 import project.DevelopmentDeckIterator;
 import project.controller.Constants;
 import project.controller.cardsfactory.*;
+import project.controller.effects.realeffects.Effects;
 import project.model.*;
 import com.google.gson.Gson;
 
@@ -24,6 +25,9 @@ public class Configuration {
     private Map<String, BuilderHandler> map;
     private BuilderHandler builderHandler;
 
+    /**
+     * Constructor
+     */
     public Configuration() {
         this.map = new HashMap<>();
         this.gson = new Gson();
@@ -199,6 +203,8 @@ public class Configuration {
 
         for ( TileBonusFromJson tileJ : tilesBonusFromJson ) {
             Tile tile = new Tile(tileJ);
+            for (Effects effects : tile.takeProductionResource() )
+                System.out.println("effetto tile " + effects.toScreen());
             deck.setProdHaarvTile(tileJ.getTileNumber(), tile);
         }
 

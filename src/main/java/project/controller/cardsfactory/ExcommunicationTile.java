@@ -18,6 +18,14 @@ public class ExcommunicationTile implements Serializable{
     private int idCard;
     transient private Effects excommunicationEffect;
 
+    /**
+     * Constructor
+     *
+     * @param idCard tile id number
+     * @param period tile's period
+     * @param myEffect effect's reference
+     * @param effectDescription string of the effect's description
+     */
     public ExcommunicationTile(int idCard, int period, TrisIE myEffect, String effectDescription ) {
         this.idCard = idCard;
         this.period = period;

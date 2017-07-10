@@ -13,6 +13,11 @@ import java.util.Map;
  */
 public class MainContext extends AbstractContext {
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public MainContext(Cli cli){
         super(cli);
         cli.setFirstRound(false);

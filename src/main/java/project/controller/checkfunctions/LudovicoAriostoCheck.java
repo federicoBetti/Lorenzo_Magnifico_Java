@@ -8,6 +8,11 @@ import project.model.*;
  */
 public class LudovicoAriostoCheck extends CheckFunctionsDecorator {
 
+    /**
+     * Constructor
+     *
+     * @param allCheckFunctions allCheckFunction's reference
+     */
     public LudovicoAriostoCheck(AllCheckFunctions allCheckFunctions){
         super(allCheckFunctions);
     }

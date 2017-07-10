@@ -15,6 +15,11 @@ import java.util.List;
  */
 public class PicoDellaMirandolaCheck extends CheckFunctionsDecorator {
 
+    /**
+     * Constructor
+     *
+     * @param allCheckFunctions allCheckFunctions's reference
+     */
     public PicoDellaMirandolaCheck(AllCheckFunctions allCheckFunctions){
         super(allCheckFunctions);
     }

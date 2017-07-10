@@ -10,6 +10,11 @@ import java.io.IOException;
  */
 public class ExcomunicationContext extends AbstractContext{
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     */
     public ExcomunicationContext (Cli cli ){
         super(cli);
         printHelp();

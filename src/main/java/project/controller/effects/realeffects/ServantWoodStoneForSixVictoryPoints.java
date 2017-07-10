@@ -14,6 +14,9 @@ public class ServantWoodStoneForSixVictoryPoints implements ExchangeEffects {
     private int stoneRequired;
     private int victoryPointsEarned;
 
+    /**
+     * Constructor
+     */
     public ServantWoodStoneForSixVictoryPoints() {
         servantsRequired = 1;
         woodrequired = 1;

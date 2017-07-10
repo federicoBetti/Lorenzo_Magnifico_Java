@@ -16,7 +16,11 @@ public class SocketServer extends AbstractServer {
     private SocketServer socketServer;
     private ServerSocket serverSocket;
 
-
+    /**
+     * Constructor
+     *
+     * @param server server's reference
+     */
     public SocketServer(Server server)  {
         super(server);
         this.socketServer = this;

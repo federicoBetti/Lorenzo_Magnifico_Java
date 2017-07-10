@@ -16,6 +16,12 @@ import java.util.Map;
 public class MarketContext extends AbstractContext {
     Market[] marketZone;
 
+    /**
+     * Constructor
+     *
+     * @param cli cli's reference
+     * @param marketZone market's reference
+     */
     public MarketContext(Cli cli, Market[] marketZone){
         super(cli);
         this.marketZone = marketZone;

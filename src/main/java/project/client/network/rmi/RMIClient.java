@@ -33,6 +33,13 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
     private transient  ClientSetter clientSetter;
     private transient  HashMap<String,UpdateMethods> updateHashMap;
 
+    /**
+     * Constructor
+     *
+     * @param clientSetter clientSetter's reference
+     * @param IP string that represent the ip
+     * @throws ClientConnectionException Exception due to errors in client connection
+     */
     public RMIClient(ClientSetter clientSetter, String addressIp) throws ClientConnectionException {
         super();
         fillUpdateHashMap();
@@ -40,6 +47,9 @@ public class RMIClient extends AbstractClient implements RMIServerToClientInterf
         connect(addressIp);
     }
 
+    /**
+     * This method fills the map
+     */
     private void fillUpdateHashMap() {
         updateHashMap = new HashMap<>(4);
         updateHashMap.put(Constants.BOARD_UPDATE,this::boardUpdate);
